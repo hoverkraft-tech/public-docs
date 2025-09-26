@@ -166,7 +166,7 @@ function ProjectsSection() {
         <div className={styles.projectsCTA}>
           <Link
             className={styles.ctaPrimary}
-            to="/docs/intro">
+            to="//docs/projects">
             Browse All Projects
           </Link>
         </div>
