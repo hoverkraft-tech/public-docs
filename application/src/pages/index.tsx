@@ -40,12 +40,11 @@ function HeroSection() {
                 </div>
               </div>
               <div className={styles.cardContent}>
-                <div className={styles.codeBlock}>
-                  <span className={styles.codeComment}># Discover open-source projects</span>
-                  <span className={styles.codeCommand}>npm install @hoverkraft/awesome-tool</span>
-                  <span className={styles.codeComment}># Build something amazing</span>
-                  <span className={styles.codeCommand}>hoverkraft create my-project</span>
-                </div>
+                <img 
+                  src="/img/home.png" 
+                  alt="Hoverkraft Platform" 
+                  className={styles.heroImage}
+                />
               </div>
             </div>
           </div>
@@ -167,7 +166,7 @@ function ProjectsSection() {
         <div className={styles.projectsCTA}>
           <Link
             className={styles.ctaPrimary}
-            to="https://github.com/hoverkraft-tech">
+            to="/docs/intro">
             Browse All Projects
           </Link>
         </div>

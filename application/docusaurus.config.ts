@@ -1,5 +1,5 @@
-import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config} from '@docusaurus/types';
+import { themes as prismThemes } from 'prism-react-renderer';
+import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
@@ -87,7 +87,6 @@ const config: Config = {
           position: 'left',
           label: 'Documentation',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/hoverkraft-tech',
           label: 'GitHub',
@@ -120,8 +119,8 @@ const config: Config = {
           title: 'More',
           items: [
             {
-              label: 'Blog',
-              to: '/blog',
+              label: 'Site',
+              to: 'https://hoverkraft.cloud',
             },
             {
               label: 'GitHub',
@@ -134,7 +133,8 @@ const config: Config = {
     },
     prism: {
       theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
+      darkTheme: prismThemes.vsDark,
+      additionalLanguages: ['bash', 'json', 'yaml', 'typescript', 'javascript'],
     },
   } satisfies Preset.ThemeConfig,
 };
