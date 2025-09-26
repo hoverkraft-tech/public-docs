@@ -2,7 +2,7 @@
 
 Public documentation portal for Hoverkraft open-source projects (aka openkraft).
 
-This repository contains the source code for the Hoverkraft documentation website built with [Docusaurus](https://docusaurus.io/).
+This repository contains the source code for the Hoverkraft documentation site built with [Docusaurus](https://docusaurus.io/).
 
 ## 🚀 Quick Start
 
@@ -14,7 +14,7 @@ This repository contains the source code for the Hoverkraft documentation websit
 ### Installation
 
 ```bash
-npm install
+make prepare
 ```
 
 ### Development
@@ -22,7 +22,7 @@ npm install
 Start the development server:
 
 ```bash
-npm start
+make start
 ```
 
 This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
@@ -30,31 +30,24 @@ This command starts a local development server and opens up a browser window. Mo
 ### Build
 
 ```bash
-npm run build
+make build
 ```
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
 
-### Deployment
-
-```bash
-npm run deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
-
 ## 📁 Project Structure
 
 ```
-├── blog/                   # Blog posts
-├── docs/                   # Documentation pages
-├── src/                    # Source files (React components, pages, etc.)
-│   ├── components/         # React components
-│   ├── css/               # CSS files
-│   └── pages/             # Additional pages
-├── static/                # Static assets
-├── docusaurus.config.ts   # Docusaurus configuration
-└── sidebars.ts            # Sidebar configuration
+├──application/
+  ├── blog/                   # Blog posts
+  ├── docs/                   # Documentation pages
+  ├── src/                    # Source files (React components, pages, etc.)
+  │   ├── components/         # React components
+  │   ├── css/               # CSS files
+  │   └── pages/             # Additional pages
+  ├── static/                # Static assets
+  ├── docusaurus.config.ts   # Docusaurus configuration
+  └── sidebars.ts            # Sidebar configuration
 ```
 
 ## 🛠️ Customization
@@ -63,7 +56,7 @@ This portal is designed to dynamically build content from Hoverkraft's public re
 
 - Repository topics and descriptions
 - Social preview images
-- README files and documentation
+- Readme files and documentation
 - Other useful metadata
 
 ## 📝 Contributing
