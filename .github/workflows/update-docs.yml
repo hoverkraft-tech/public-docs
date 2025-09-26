@@ -1,0 +1,141 @@
+name: Update Documentation
+
+on:
+  schedule:
+    # Run daily at 6 AM UTC
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+    # Allow manual triggering
+  push:
+    branches: [main]
+    paths:
+      - ".github/scripts/generate-docs.js"
+      - ".github/workflows/update-docs.yml"
+
+concurrency:
+  group: update-docs
+  cancel-in-progress: false
+
+jobs:
+  update-docs:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate documentation from repositories
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "🚀 Starting documentation generation..."
+          npm run generate-docs
+        working-directory: ./application
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "📄 No changes detected"
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "📝 Changes detected"
+            git diff --name-only
+          fi
+
+      - name: Create Pull Request
+        if: steps.changes.outputs.changed == 'true' && github.event_name == 'schedule'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "docs: update repository data from GitHub API"
+          title: "🤖 Update repository documentation"
+          body: |
+            ## 🤖 Automated Documentation Update
+
+            This PR was automatically generated to update the documentation with the latest repository information from the Hoverkraft GitHub organization.
+
+            ### Changes
+            - Updated project listings with current repository data
+            - Refreshed repository statistics (stars, languages, topics)
+            - Updated last modified dates
+            - Categorized projects based on latest topics and descriptions
+
+            ### Generated Files
+            - `docs/projects.md` - Updated project catalog
+            - `docs/projects.module.css` - Updated styling
+            - `src/pages/index.tsx` - Updated homepage with featured projects
+
+            This update includes data from **all public repositories** in the [@hoverkraft-tech](https://github.com/hoverkraft-tech) organization.
+
+            ---
+
+            🕒 **Generated**: $(date)
+            🔄 **Triggered**: Daily automation
+            🚀 **Source**: GitHub API
+          branch: update-docs-${{ github.run_number }}
+          branch-suffix: timestamp
+          delete-branch: true
+
+      - name: Auto-commit changes (on push to main)
+        if: steps.changes.outputs.changed == 'true' && github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          git commit -m "docs: update repository data from GitHub API [skip ci]"
+          git push
+
+      - name: Build documentation
+        run: |
+          echo "🏗️ Building documentation..."
+          npm run build
+          echo "✅ Documentation built successfully"
+
+      - name: Deploy to GitHub Pages (on main branch)
+        if: github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+          user_name: "github-actions[bot]"
+          user_email: "github-actions[bot]@users.noreply.github.com"
+          commit_message: "deploy: update GitHub Pages [skip ci]"
+
+      - name: Summary
+        run: |
+          echo "## 📊 Documentation Update Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- **Repository scan**: ✅ Completed" >> $GITHUB_STEP_SUMMARY
+          echo "- **Documentation generation**: ✅ Completed" >> $GITHUB_STEP_SUMMARY
+          echo "- **Build**: ✅ Completed" >> $GITHUB_STEP_SUMMARY
+          if [[ "${{ steps.changes.outputs.changed }}" == "true" ]]; then
+            echo "- **Changes detected**: ✅ Yes" >> $GITHUB_STEP_SUMMARY
+            if [[ "${{ github.event_name }}" == "schedule" ]]; then
+              echo "- **Pull request**: ✅ Created" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "- **Auto-commit**: ✅ Applied" >> $GITHUB_STEP_SUMMARY
+            fi
+          else
+            echo "- **Changes detected**: ❌ No" >> $GITHUB_STEP_SUMMARY
+          fi
+          if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+            echo "- **Deployment**: ✅ Completed to GitHub Pages" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "🌐 **Live site**: [docs.hoverkraft.cloud](https://docs.hoverkraft.cloud)" >> $GITHUB_STEP_SUMMARY

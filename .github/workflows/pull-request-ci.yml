@@ -1,0 +1,21 @@
+name: Pull request - Continuous Integration
+
+on:
+  merge_group:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+  security-events: write
+  # FIXME: This is a workaround for having workflow ref. See https://github.com/orgs/community/discussions/38659
+  id-token: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ci:
+    uses: ./.github/workflows/__shared-ci.yml
+    secrets: inherit
