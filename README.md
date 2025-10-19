@@ -39,7 +39,6 @@ This command generates static content into the `build` directory and can be serv
 
 ```
 ├──application/
-  ├── blog/                   # Blog posts
   ├── docs/                   # Documentation pages
   ├── src/                    # Source files (React components, pages, etc.)
   │   ├── components/         # React components
