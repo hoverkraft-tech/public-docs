@@ -53,6 +53,8 @@ const config: Config = {
     ],
   ],
 
+  themes: ['@hoverkraft/docusaurus-theme'],
+
   themeConfig: {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
