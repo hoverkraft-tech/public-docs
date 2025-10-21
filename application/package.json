@@ -21,6 +21,7 @@
   "dependencies": {
     "@docusaurus/core": "3.9.2",
     "@docusaurus/preset-classic": "3.9.2",
+    "@hoverkraft/docusaurus-theme": "file:../../../../../../tmp/docusaurus-theme/packages/theme",
     "@mdx-js/react": "^3.0.0",
     "@octokit/rest": "^22.0.0",
     "clsx": "^2.0.0",
