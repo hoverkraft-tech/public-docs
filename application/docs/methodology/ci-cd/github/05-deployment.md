@@ -16,7 +16,7 @@ The main CI pipeline is still responsible for building and publishing container 
 Ensure `main-ci.yml` pushes the full set of container images your application needs whenever the default branch succeeds. Many Hoverkraft projects publish multiple images (for example, API + worker + web) or per-architecture variants. Drive the matrix from the workflow inputs or a manifest file so CI builds each image deterministically. Double-check:
 
 - ✅ Registry credentials and permissions are available (`packages: write`)
-- ✅ Image tags are deterministic (SHA or semver) across every image
+- ✅ Image tags are deterministic (SHA or SemVer) across every image
 - ✅ Security scan artifacts are uploaded for traceability
 - ✅ Every image definition (Dockerfile, build args) is recorded in version control
 
@@ -136,7 +136,6 @@ jobs:
 ## Step 4: Test Each Trigger
 
 1. **Review App**
-
    - Open a pull request
    - Comment `/deploy`
    - Watch the `deploy-review` workflow to ensure it provisions the environment
@@ -175,7 +174,7 @@ Even with manual deployments, enforce CI success before merges:
 
 - Make sure you pass the same tag from `publish-image`
 - For review apps, namespace the tag by PR number to avoid collisions
-- For releases, store promoted tags in a manifest repo or annotate the release for traceability
+- For releases, store promoted tags in a manifest repository or annotate the release for traceability
 
 **"Environment stays stale"**
 

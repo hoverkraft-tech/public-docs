@@ -95,7 +95,7 @@ shell:
   $(RUN) /bin/bash
 ```
 
-If you rely on VS Code Dev Containers or GitHub Codespaces, this wrapper lets contributors execute `make lint` or `make shell` from the host terminal while still running every command inside the container defined in `.devcontainer/`. On pipelines, call the same targets directly—CI already runs inside containers.
+If you rely on Visual Studio Code Dev Containers or GitHub Codespaces, this wrapper lets contributors execute `make lint` or `make shell` from the host terminal while still running every command inside the container defined in `.devcontainer/`. On pipelines, call the same targets directly—CI already runs inside containers.
 
 Remember that the devcontainer image is purely for local tooling (linters, build chains, package managers). Your application still runs inside its own OCI containers built from the project `Dockerfile`/`docker-compose.yml` (or equivalent Helm chart). Keep those runtime images separate from the tooling image so you do not accidentally bake build dependencies into production artifacts.
 

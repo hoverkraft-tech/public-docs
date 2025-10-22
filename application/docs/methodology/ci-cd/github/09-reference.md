@@ -142,7 +142,7 @@ Run services in CI for testing:
 - Test against databases
 - Test with Redis/cache services
 - Integration testing
-- E2E testing with dependencies
+- End-to-end testing with dependencies
 
 ## Common Patterns
 

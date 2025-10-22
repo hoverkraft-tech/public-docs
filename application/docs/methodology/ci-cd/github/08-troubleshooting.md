@@ -431,7 +431,7 @@ Always start here:
 
 - [Hoverkraft Discussions](https://github.com/orgs/hoverkraft-tech/discussions)
 - GitHub Issues in the relevant repository
-- Stack Overflow (tag: github-actions)
+- Stack Overflow (tag: GitHub Actions)
 
 ### Debug Mode
 
