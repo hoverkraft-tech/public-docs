@@ -111,7 +111,7 @@ function shouldIncludeFile(filename, repoConfig, settings) {
   if (repoConfig.exclude) {
     for (const pattern of repoConfig.exclude) {
       // Simple pattern matching (can be enhanced with glob library)
-      if (filename.includes(pattern.replace("**", "").replace("*", ""))) {
+      if (filename.includes(pattern.replaceAll("**", "").replaceAll("*", ""))) {
         return false;
       }
     }
