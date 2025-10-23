@@ -64,25 +64,25 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "docs: update repository data from GitHub API"
-          title: "🤖 Update repository documentation"
+          commit-message: "docs: update repository metadata and project listings"
+          title: "🤖 Update project documentation"
           body: |
             ## 🤖 Automated Documentation Update
 
-            This PR was automatically generated to update the documentation with the latest repository information from the Hoverkraft GitHub organization.
+            This PR was automatically generated to update the documentation with the latest repository information from Hoverkraft GitHub organization.
 
             ### Changes
-            - Updated project listings with current repository data
-            - Refreshed repository statistics (stars, languages, topics)
-            - Updated last modified dates
-            - Categorized projects based on latest topics and descriptions
+            - **Updated project listings** with current repository data
+            - **Refreshed repository statistics** (stars, languages, topics)
+            - **Updated last modified dates**
+            - **Categorized projects** based on latest topics and descriptions
 
             ### Generated Files
             - `docs/projects.md` - Updated project catalog
             - `docs/projects.module.css` - Updated styling
             - `src/pages/index.tsx` - Updated homepage with featured projects
 
-            This update includes data from **all public repositories** in the [@hoverkraft-tech](https://github.com/hoverkraft-tech) organization.
+            This update includes metadata from all public repositories in [@hoverkraft-tech](https://github.com/hoverkraft-tech).
 
             ---
 

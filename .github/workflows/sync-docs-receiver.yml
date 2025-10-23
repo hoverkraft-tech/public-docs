@@ -1,0 +1,125 @@
+name: Sync Documentation Receiver
+
+on:
+  repository_dispatch:
+    types: [sync-documentation]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync-documentation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Validate input
+        id: validate
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+        with:
+          script: |
+            const payload = context.payload.client_payload;
+
+            // Validate required inputs
+            const required = ['artifact-id', 'repository', 'run-id'];
+            const missing = required.filter(field => !payload[field]);
+
+            if (missing.length > 0) {
+              core.setFailed(`❌ Missing required inputs: ${missing.join(', ')}`);
+              return;
+            }
+
+            core.info('✅ Input validation passed');
+
+            // Calculate target path from source repo
+            const targetPath = `projects/${payload.repository.split('/')[1]}`;
+            core.info(`📍 Target path: ${targetPath}`);
+
+            // Set outputs
+            core.setOutput('repository', payload.repository);
+            core.setOutput('target-path', targetPath);
+            core.setOutput('artifact-id', payload['artifact-id']);
+            core.setOutput('run-id', payload['run-id']);
+
+      - name: Download documentation artifact
+        uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6.0.0
+        with:
+          artifact-ids: ${{ steps.validate.outputs.artifact-id }}
+          path: documentation-download
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ steps.validate.outputs.repository }}
+          run-id: ${{ steps.validate.outputs.run-id }}
+
+      - name: Inject documentation
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+        env:
+          TARGET_PATH: ${{ steps.validate.outputs.target-path }}
+          REPOSITORY: ${{ steps.validate.outputs.repository }}
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            const sourceRepo = process.env.REPOSITORY;
+            const targetPath = process.env.TARGET_PATH;
+
+            core.info(`🚀 Starting documentation injection from ${sourceRepo}`);
+
+            // Create target directory
+            const targetDir = `application/docs/${targetPath}`;
+            fs.mkdirSync(targetDir, { recursive: true });
+
+            // Copy documentation files from downloaded artifact
+            if (!fs.existsSync('documentation-download')) {
+              return core.setFailed('❌ Error: Downloaded artifact directory not found');
+            }
+
+            io.cp(`documentation-download/*`, `${targetDir}/`);
+            core.info(`✅ Documentation injected into ${targetDir}`);
+
+      - name: Commit documentation changes
+        uses: hoverkraft-tech/ci-github-common/actions/create-and-merge-pull-request@b7dd413209df265bef8d7eb0efb117eaabc684c4 # 0.27.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: |
+            docs: sync documentation from ${{ steps.validate.outputs.repository }}
+
+            Source: ${{ steps.validate.outputs.repository }}
+            Target: ${{ steps.validate.outputs.target-path }}
+
+            Triggered by repository_dispatch from ${{ steps.validate.outputs.repository }}
+          title: "docs: sync documentation from ${{ steps.validate.outputs.repository }}"
+          body: |
+            Automated documentation sync from `${{ steps.validate.outputs.repository }}`.
+
+            - **Source**: ${{ steps.validate.outputs.repository }}
+            - **Target**: ${{ steps.validate.outputs.target-path }}
+            - **Artifact**: ${{ github.event.client_payload.artifact-id }}
+          branch: docs/sync-${{ steps.validate.outputs.repository }}-${{ github.run_id }}
+
+      - name: Summary
+        if: always()
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+        env:
+          TARGET_PATH: ${{ steps.validate.outputs.target-path }}
+          REPOSITORY: ${{ steps.validate.outputs.repository }}
+          ARTIFACT_ID: ${{ steps.validate.outputs.artifact-id }}
+          STATUS: ${{ job.status }}
+        with:
+          script: |
+            const payload = context.payload.client_payload;
+
+            await core.summary
+              .addHeading('📊 Documentation Sync Summary', 2)
+              .addRaw('\n')
+              .addList([
+                `**Source Repository**: ${process.env.REPOSITORY}`,
+                `**Target Path**: ${process.env.TARGET_PATH}`,
+                `**Artifact**: ${process.env.ARTIFACT_ID}`,
+                `**Status**: ${process.env.STATUS === 'success' ? '✅ Documentation committed to public-docs' : '❌ Error occurred during documentation sync' }`
+              ])
+              .addRaw('\n')
+              .addRaw('ℹ️ Build and deployment will be handled by the push to main workflow.')
+              .addRaw('\n')
+              .addRaw('🌐 **Documentation Portal**: [docs.hoverkraft.cloud](https://docs.hoverkraft.cloud)')
+              .write();
