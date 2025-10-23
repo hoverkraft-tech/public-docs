@@ -228,8 +228,8 @@ Potential improvements to the documentation system:
 
 ## Resources
 
-- [Configuration File](.github/docs-sources.yml)
-- [Pull Script](.github/scripts/pull-docs.js)
-- [Generate Script](.github/scripts/generate-docs.js)
-- [Workflow](.github/workflows/update-docs.yml)
+- [Configuration File](https://github.com/hoverkraft-tech/public-docs/blob/main/.github/docs-sources.yml)
+- [Pull Script](https://github.com/hoverkraft-tech/public-docs/blob/main/.github/scripts/pull-docs.js)
+- [Generate Script](https://github.com/hoverkraft-tech/public-docs/blob/main/.github/scripts/generate-docs.js)
+- [Workflow](https://github.com/hoverkraft-tech/public-docs/blob/main/.github/workflows/update-docs.yml)
 - [Docusaurus Documentation](https://docusaurus.io/)
