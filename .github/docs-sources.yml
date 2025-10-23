@@ -1,0 +1,68 @@
+# Documentation sources configuration
+# This file defines which documentation content should be pulled from project repositories
+
+# Each entry specifies:
+#   - repository: The repository name within the hoverkraft-tech organization
+#   - enabled: Whether to pull documentation from this repository
+#   - docs_path: Path to the documentation directory in the source repository (default: "docs")
+#   - target_path: Where to place the documentation in this portal (relative to application/docs/)
+#   - branch: Branch to pull from (default: "main")
+#   - files: Optional list of specific files to include (wildcards supported)
+#   - exclude: Optional list of patterns to exclude
+
+repositories:
+  - repository: compose-action
+    enabled: true
+    docs_path: docs
+    target_path: projects/compose-action
+    branch: main
+    description: GitHub Action for docker-compose operations
+    
+  - repository: ci-github-container
+    enabled: true
+    docs_path: docs
+    target_path: projects/ci-github-container
+    branch: main
+    description: CI/CD tools for GitHub Actions
+    
+  # Example for pulling README only
+  # - repository: example-repo
+  #   enabled: true
+  #   files:
+  #     - README.md
+  #   target_path: projects/example-repo
+  #   branch: main
+
+  # Example for pulling specific documentation sections
+  # - repository: another-repo
+  #   enabled: true
+  #   docs_path: documentation
+  #   target_path: projects/another-repo
+  #   exclude:
+  #     - "*.draft.md"
+  #     - "internal/**"
+
+# Global settings
+settings:
+  # Default branch to pull from if not specified per repository
+  default_branch: main
+  
+  # Default docs path if not specified per repository
+  default_docs_path: docs
+  
+  # Whether to include README.md from repository root
+  include_readme: true
+  
+  # Whether to add frontmatter with source information
+  add_source_metadata: true
+  
+  # Whether to update existing documentation or skip if already present
+  update_existing: true
+  
+  # Maximum file size to pull (in KB)
+  max_file_size: 1024
+  
+  # File extensions to include (empty means all)
+  allowed_extensions:
+    - .md
+    - .mdx

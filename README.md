@@ -49,14 +49,82 @@ This command generates static content into the `build` directory and can be serv
   └── sidebars.ts            # Sidebar configuration
 ```
 
-## 🛠️ Customization
+## 🛠️ Documentation Aggregation
 
-This portal is designed to dynamically build content from Hoverkraft's public repositories. The CI workflow will scan repositories and build the portal using:
+This portal uses an automated system to aggregate documentation from all Hoverkraft projects while keeping the source documentation in each project repository.
 
-- Repository topics and descriptions
-- Social preview images
-- Readme files and documentation
-- Other useful metadata
+### How It Works
+
+1. **Source Documentation** remains in each project repository (atomic and versioned with code)
+2. **Pull System** automatically fetches documentation from configured repositories
+3. **Centralized View** presents all documentation in a unified portal
+4. **Automated Sync** via GitHub Actions keeps everything up-to-date
+
+### Key Features
+
+- **Pull Mode**: Automatically pulls documentation from project repositories via GitHub API
+- **Source Metadata**: Each document includes information about its source repository
+- **Configurable**: Control which repositories and what content to include via `.github/docs-sources.yml`
+- **Automated**: Daily synchronization with manual trigger option
+- **Atomic**: Documentation stays with code in each project repository
+
+### Synchronizing Documentation
+
+```bash
+# Pull documentation from project repositories
+cd application && npm run pull-docs
+
+# Generate project metadata pages
+npm run generate-docs
+
+# Or run both
+npm run sync-docs
+```
+
+See [Documentation System](application/docs/documentation-system.md) for detailed information.
+
+## 📁 Project Structure
+
+```
+├── .github/
+│   ├── docs-sources.yml        # Configuration for documentation sources
+│   ├── scripts/
+│   │   ├── pull-docs.js        # Pull documentation from projects
+│   │   └── generate-docs.js    # Generate project pages
+│   └── workflows/
+│       └── update-docs.yml     # Automated sync workflow
+├── application/
+│   ├── docs/                   # Documentation pages (aggregated + local)
+│   │   ├── projects/           # Project-specific documentation (pulled)
+│   │   ├── intro.md            # Introduction page
+│   │   ├── documentation-system.md  # System documentation
+│   │   └── projects.md         # Projects overview (generated)
+│   ├── src/                    # Source files (React components, pages, etc.)
+│   │   ├── components/         # React components
+│   │   ├── css/               # CSS files
+│   │   └── pages/             # Additional pages
+│   ├── static/                # Static assets
+│   ├── docusaurus.config.ts   # Docusaurus configuration
+│   └── sidebars.ts            # Sidebar configuration
+```
+
+## 🔄 Adding Documentation from a Project
+
+To include documentation from a new project:
+
+1. **Add to configuration** in `.github/docs-sources.yml`:
+   ```yaml
+   - repository: your-project
+     enabled: true
+     docs_path: docs
+     target_path: projects/your-project
+     branch: main
+     description: Your project description
+   ```
+
+2. **Commit and push** - the workflow will automatically sync the documentation
+
+See [.github/README.md](.github/README.md) for more details.
 
 ## 📝 Contributing
 
