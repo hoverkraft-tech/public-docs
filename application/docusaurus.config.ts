@@ -45,9 +45,6 @@ const config: Config = {
           editUrl:
             'https://github.com/hoverkraft-tech/public-docs/tree/main/',
         },
-        theme: {
-          customCss: './src/css/custom.css',
-        },
       } satisfies Preset.Options,
     ],
   ],
