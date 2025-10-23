@@ -1,0 +1,270 @@
+# Reusable workflow that bundles project docs and triggers public portal sync
+# - Collects README and docs markdown, adds sync metadata, and uploads a short-lived artifact
+# - Dispatches a repository event so hoverkraft-tech/public-docs can ingest and publish updates
+---
+name: Push Documentation Helper
+
+on:
+  workflow_call:
+    inputs:
+      docs_path:
+        description: "Path(s) to documentation in source repo (default: docs). Accepts newline-separated list"
+        required: false
+        type: string
+        default: "docs"
+      include_readme:
+        description: "Include README.md from repository root"
+        required: false
+        type: boolean
+        default: true
+    secrets:
+      PUBLIC_DOCS_TOKEN:
+        description: "GitHub token with write access to trigger repository_dispatch in public-docs"
+        required: true
+
+jobs:
+  prepare-and-dispatch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+
+      - name: Prepare documentation bundle
+        id: prepare
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+        env:
+          SOURCE_REPO: ${{ github.repository }}
+          INCLUDE_README: ${{ inputs.include_readme }}
+          DOCS_PATH: ${{ inputs.docs_path }}
+          CURRENT_BRANCH: ${{ github.ref_name }}
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            function parseDocsInput(raw) {
+              if (!raw) {
+                return [];
+              }
+
+              return raw
+                .split(/\r?\n/)
+                .map(entry => entry.trim())
+                .filter(Boolean);
+            }
+
+            function sanitizeLabel(input) {
+              const cleaned = input.replace(/^[./\\]+/, '').replace(/[\\/]/g, '_');
+              return cleaned.length > 0 ? cleaned : 'docs';
+            }
+
+            function addFrontmatter(filePath, sourcePath) {
+              const content = fs.readFileSync(filePath, 'utf8');
+              const now = new Date().toISOString();
+              const repo = process.env.SOURCE_REPO;
+              const metadataLines = [
+                `source_repo: ${repo}`,
+                `source_path: ${sourcePath}`,
+                `source_branch: ${process.env.CURRENT_BRANCH}`,
+                `last_synced: ${now}`,
+              ];
+              const metadata = metadataLines.join('\n');
+
+              if (!content.startsWith('---\n')) {
+                fs.writeFileSync(filePath, `---\n${metadata}\n---\n\n${content}`);
+                return;
+              }
+
+              const endIndex = content.indexOf('\n---\n', 4);
+              if (endIndex === -1) {
+                fs.writeFileSync(filePath, `---\n${metadata}\n---\n\n${content}`);
+                return;
+              }
+
+              const existing = content.substring(4, endIndex);
+              const body = content.substring(endIndex + 5);
+              fs.writeFileSync(filePath, `---\n${existing}\n${metadata}\n---\n${body}`);
+            }
+
+            async function run() {
+              core.info('📦 Preparing documentation bundle');
+
+              const artifactDir = 'documentation-artifact';
+              fs.mkdirSync(artifactDir, { recursive: true });
+
+              if (process.env.INCLUDE_README === 'true' && fs.existsSync('README.md')) {
+                core.info('📄 Including README.md');
+                const target = path.join(artifactDir, 'README.md');
+                fs.copyFileSync('README.md', target);
+                addFrontmatter(target, 'README.md');
+              }
+
+              const docEntries = [...new Set(parseDocsInput(process.env.DOCS_PATH))];
+              const docTargets = docEntries.length > 0 ? docEntries : ['docs'];
+              const multipleTargets = docTargets.length > 1;
+              const copiedTargets = new Set();
+              let foundDocs = false;
+
+              for (const entry of docTargets) {
+                const candidate = entry.trim();
+                if (!candidate) {
+                  continue;
+                }
+
+                if (!fs.existsSync(candidate)) {
+                  core.warning(`⚠️  Documentation path ${candidate} not found`);
+                  continue;
+                }
+
+                const stats = fs.statSync(candidate);
+
+                if (stats.isDirectory()) {
+                  core.info(`📁 Scanning documentation directory ${candidate}`);
+
+                  const normalized = candidate.replace(/[\\/]+$/, '');
+                  const patterns = [`${normalized}/**/*.md`, `${normalized}/**/*.mdx`];
+                  const baseLabel = multipleTargets ? sanitizeLabel(normalized) : null;
+
+                  const globber = await glob.create(patterns.join('\n'), { followSymbolicLinks: false });
+
+                  for await (const filePath of globber.globGenerator()) {
+                    const relPath = path.relative(normalized, filePath);
+                    if (!relPath) {
+                      continue;
+                    }
+
+                    const relPosixPath = relPath.split(path.sep).join('/');
+                    const targetRelPath = baseLabel ? `${baseLabel}/${relPosixPath}` : relPosixPath;
+                    const targetFile = path.join(artifactDir, ...targetRelPath.split('/'));
+
+                    if (copiedTargets.has(targetFile)) {
+                      core.warning(`⚠️  Duplicate target detected, skipping ${targetRelPath}`);
+                      continue;
+                    }
+
+                    fs.mkdirSync(path.dirname(targetFile), { recursive: true });
+                    fs.copyFileSync(filePath, targetFile);
+
+                    const sourcePath = filePath.split(path.sep).join('/');
+                    addFrontmatter(targetFile, sourcePath);
+                    core.info(`  ✅ Copied: ${targetRelPath}`);
+                    copiedTargets.add(targetFile);
+                    foundDocs = true;
+                  }
+                } else if (stats.isFile()) {
+                  const ext = path.extname(candidate).toLowerCase();
+                  if (ext !== '.md' && ext !== '.mdx') {
+                    core.warning(`⚠️  Skipping ${candidate} because it is not a markdown file`);
+                    continue;
+                  }
+
+                  const normalizedCandidate = candidate.replace(/\\/g, '/');
+                  const targetRelPath = multipleTargets ? normalizedCandidate : path.basename(candidate);
+                  const targetFile = path.join(artifactDir, ...targetRelPath.split('/'));
+
+                  if (copiedTargets.has(targetFile)) {
+                    core.warning(`⚠️  Duplicate target detected, skipping ${targetRelPath}`);
+                    continue;
+                  }
+
+                  fs.mkdirSync(path.dirname(targetFile), { recursive: true });
+                  fs.copyFileSync(candidate, targetFile);
+
+                  const sourcePath = candidate.split(path.sep).join('/');
+                  addFrontmatter(targetFile, sourcePath);
+                  core.info(`  ✅ Copied: ${targetRelPath}`);
+                  copiedTargets.add(targetFile);
+                  foundDocs = true;
+                } else {
+                  core.warning(`⚠️  Skipping ${candidate} because it is not a file or directory`);
+                }
+              }
+
+              if (!foundDocs) {
+                core.warning('⚠️  No documentation files were discovered.');
+              }
+
+              const now = new Date().toISOString();
+              const repositoryName = process.env.SOURCE_REPO.split('/')[1]
+                .replace(/[-_]+/g, ' ')
+                .replace(/\b\w/g, ch => ch.toUpperCase());
+              const indexContent = `---
+            title: ${repositoryName}
+            description: Documentation for ${repositoryName}
+            ---
+
+            # ${repositoryName}
+
+            Documentation for the ${repositoryName} project.
+
+            **Source Repository:** [${process.env.SOURCE_REPO}](https://github.com/${process.env.SOURCE_REPO})
+            **Last Synced:** ${now}
+            `;
+              fs.writeFileSync(path.join(artifactDir, '_index.md'), indexContent);
+
+              core.info('📊 Documentation bundle prepared');
+              const slugifiedRepo = process.env.SOURCE_REPO.replace('/', '-').toLowerCase();
+              return `docs-${slugifiedRepo}-${github.run_id}`;
+            }
+
+            return await run();
+
+      - name: Upload documentation artifact
+        id: upload-artifact
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
+        with:
+          name: ${{ steps.prepare.outputs.result }}
+          path: documentation-artifact/
+          retention-days: 1
+
+      - name: Dispatch to public-docs
+        uses: peter-evans/repository-dispatch@5fc4efd1a4797ddb68ffd0714a238564e4cc0e6f # v4.0.0
+        with:
+          token: ${{ secrets.PUBLIC_DOCS_TOKEN }}
+          repository: hoverkraft-tech/public-docs
+          event-type: sync-documentation
+          client-payload: |
+            {
+              "repository": "${{ github.repository }}",
+              "run-id": "${{ github.run_id }}",
+              "artifact-id": "${{ steps.upload-artifact.outputs.artifact-id }}",
+            }
+
+      - name: Summary
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+        env:
+          DOCS_PATH: ${{ inputs.docs_path }}
+          INCLUDE_README: ${{ inputs.include_readme }}
+          ARTIFACT_NAME: ${{ steps.prepare.outputs.result }}
+          ARTIFACT_ID: ${{ steps.upload-artifact.outputs.artifact-id }}
+        with:
+          script: |
+            function summarizeDocsInput(raw) {
+              if (!raw) {
+                return ['docs'];
+              }
+
+              const entries = raw
+                .split(/\r?\n/)
+                .map(item => item.trim())
+                .filter(Boolean);
+
+              return entries.length > 0 ? entries : ['docs'];
+            }
+
+            const docsList = summarizeDocsInput(process.env.DOCS_PATH).join(', ');
+
+            await core.summary
+              .addHeading('📤 Documentation Dispatch Summary', 2)
+              .addRaw('\n')
+              .addList([
+                `**Docs Path**: ${docsList}`,
+                `**Include README**: ${process.env.INCLUDE_README}`,
+                `**Artifact**: ${process.env.ARTIFACT_NAME} (ID: ${process.env.ARTIFACT_ID})`,
+              ])
+              .addRaw('\n')
+              .addRaw('The public-docs repository will download the artifact and publish the documentation to the portal.')
+              .write();
