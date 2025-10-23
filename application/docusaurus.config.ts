@@ -7,7 +7,6 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'Hoverkraft Docs',
   tagline: 'Documentation for Hoverkraft open-source projects (aka openkraft)',
-  favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -63,10 +62,6 @@ const config: Config = {
     },
     navbar: {
       title: 'Hoverkraft Docs',
-      logo: {
-        alt: 'Hoverkraft Logo',
-        src: 'img/logo.svg',
-      },
       items: [
         {
           type: 'docSidebar',
