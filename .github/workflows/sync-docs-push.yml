@@ -1,34 +1,44 @@
+# ## Synchronization Process
+#
+# Documentation is pushed immediately when changes occur:
+#
+# 1. **Developer commits** documentation changes to project repository
+# 2. **Workflow triggers** on commits to `docs/**` or `README.md`
+# 3. **Reusable workflow** in public-docs is called with project parameters
+# 4. **Documentation synced** directly to public-docs repository
+# 5. **Changes committed** and deployed automatically
+---
 name: Sync Documentation (Push Mode)
 
 on:
   workflow_call:
     inputs:
-      source_repo:
-        description: 'Source repository name (e.g., compose-action)'
+      source-repo:
+        description: "Source repository name (e.g., compose-action)"
         required: true
         type: string
-      docs_path:
-        description: 'Path to documentation in source repo (default: docs)'
+      docs-path:
+        description: "Path to documentation in source repo (default: docs)"
         required: false
         type: string
-        default: 'docs'
-      target_path:
-        description: 'Target path in public-docs (e.g., projects/compose-action)'
+        default: "docs"
+      target-path:
+        description: "Target path in public-docs (e.g., projects/compose-action)"
         required: true
         type: string
       branch:
-        description: 'Branch to sync from (default: main)'
+        description: "Branch to sync from (default: main)"
         required: false
         type: string
-        default: 'main'
-      include_readme:
-        description: 'Include README.md from repository root'
+        default: "main"
+      include-readme:
+        description: "Include README.md from repository root"
         required: false
         type: boolean
         default: true
     secrets:
       PUBLIC_DOCS_TOKEN:
-        description: 'GitHub token with write access to public-docs repository'
+        description: "GitHub token with write access to public-docs repository"
         required: true
 
 jobs:
@@ -41,7 +51,7 @@ jobs:
       - name: Checkout source repository
         uses: actions/checkout@v5
         with:
-          repository: hoverkraft-tech/${{ inputs.source_repo }}
+          repository: hoverkraft-tech/${{ inputs.source-repo }}
           ref: ${{ inputs.branch }}
           path: source
 
@@ -56,26 +66,26 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: '20'
+          node-version: "20"
 
       - name: Sync documentation
         run: |
           set -e
-          
-          echo "🚀 Starting documentation push from ${{ inputs.source_repo }}"
-          
+
+          echo "🚀 Starting documentation push from ${{ inputs.source-repo }}"
+
           # Set up paths
-          SOURCE_REPO="${{ inputs.source_repo }}"
-          DOCS_PATH="${{ inputs.docs_path }}"
-          TARGET_PATH="${{ inputs.target_path }}"
+          source-repo="${{ inputs.source-repo }}"
+          docs-path="${{ inputs.docs-path }}"
+          target-path="${{ inputs.target-path }}"
           BRANCH="${{ inputs.branch }}"
-          INCLUDE_README="${{ inputs.include_readme }}"
-          
-          TARGET_DIR="public-docs/application/docs/${TARGET_PATH}"
-          
+          include-readme="${{ inputs.include-readme }}"
+
+          TARGET_DIR="public-docs/application/docs/${target-path}"
+
           # Create target directory
           mkdir -p "$TARGET_DIR"
-          
+
           # Function to add frontmatter
           add_frontmatter() {
             local file="$1"
@@ -87,7 +97,7 @@ jobs:
               # File has frontmatter, add source metadata to it
               echo "---" > "$temp_file"
               sed -n '2,/^---$/p' "$file" | sed '$d' >> "$temp_file"
-              echo "source_repo: ${SOURCE_REPO}" >> "$temp_file"
+              echo "source-repo: ${source-repo}" >> "$temp_file"
               echo "source_path: ${source_path}" >> "$temp_file"
               echo "source_branch: ${BRANCH}" >> "$temp_file"
               echo "last_synced: $(date -u +"%Y-%m-%dT%H:%M:%SZ")" >> "$temp_file"
@@ -96,7 +106,7 @@ jobs:
             else
               # No frontmatter, add it
               echo "---" > "$temp_file"
-              echo "source_repo: ${SOURCE_REPO}" >> "$temp_file"
+              echo "source-repo: ${source-repo}" >> "$temp_file"
               echo "source_path: ${source_path}" >> "$temp_file"
               echo "source_branch: ${BRANCH}" >> "$temp_file"
               echo "last_synced: $(date -u +"%Y-%m-%dT%H:%M:%SZ")" >> "$temp_file"
@@ -107,22 +117,22 @@ jobs:
             
             mv "$temp_file" "$file"
           }
-          
+
           # Sync README if requested
-          if [ "$INCLUDE_README" = "true" ] && [ -f "source/README.md" ]; then
+          if [ "$include-readme" = "true" ] && [ -f "source/README.md" ]; then
             echo "📄 Syncing README.md"
             cp "source/README.md" "$TARGET_DIR/README.md"
             add_frontmatter "$TARGET_DIR/README.md" "README.md"
           fi
-          
+
           # Sync documentation directory
-          if [ -d "source/${DOCS_PATH}" ]; then
-            echo "📁 Syncing documentation from ${DOCS_PATH}"
+          if [ -d "source/${docs-path}" ]; then
+            echo "📁 Syncing documentation from ${docs-path}"
             
             # Copy all markdown files
-            find "source/${DOCS_PATH}" -type f \( -name "*.md" -o -name "*.mdx" \) | while read file; do
+            find "source/${docs-path}" -type f \( -name "*.md" -o -name "*.mdx" \) | while read file; do
               # Get relative path
-              rel_path="${file#source/${DOCS_PATH}/}"
+              rel_path="${file#source/${docs-path}/}"
               target_file="$TARGET_DIR/$rel_path"
               
               # Create directory structure
@@ -132,38 +142,38 @@ jobs:
               cp "$file" "$target_file"
               
               # Add frontmatter
-              source_path="${DOCS_PATH}/${rel_path}"
+              source_path="${docs-path}/${rel_path}"
               add_frontmatter "$target_file" "$source_path"
               
               echo "  ✅ Synced: $rel_path"
             done
           else
-            echo "⚠️  Documentation path ${DOCS_PATH} not found"
+            echo "⚠️  Documentation path ${docs-path} not found"
           fi
-          
+
           # Create index file
           INDEX_FILE="$TARGET_DIR/_index.md"
           echo "📝 Creating index file"
-          
+
           cat > "$INDEX_FILE" << EOF
           ---
-          title: ${SOURCE_REPO}
-          description: Documentation for ${SOURCE_REPO}
+          title: ${source-repo}
+          description: Documentation for ${source-repo}
           ---
-          
-          # ${SOURCE_REPO}
-          
-          Documentation for the ${SOURCE_REPO} project.
-          
-          This documentation is automatically synchronized from the [${SOURCE_REPO}](https://github.com/hoverkraft-tech/${SOURCE_REPO}) repository.
-          
-          **Source Repository:** [hoverkraft-tech/${SOURCE_REPO}](https://github.com/hoverkraft-tech/${SOURCE_REPO})  
+
+          # ${source-repo}
+
+          Documentation for the ${source-repo} project.
+
+          This documentation is automatically synchronized from the [${source-repo}](https://github.com/hoverkraft-tech/${source-repo}) repository.
+
+          **Source Repository:** [hoverkraft-tech/${source-repo}](https://github.com/hoverkraft-tech/${source-repo})  
           **Branch:** ${BRANCH}  
           **Last Synced:** $(date -u +"%Y-%m-%dT%H:%M:%SZ")
           EOF
-          
+
           echo "✅ Documentation sync completed"
-          
+
           # Show what was synced
           echo ""
           echo "📊 Synced files:"
@@ -174,39 +184,39 @@ jobs:
       - name: Commit and push changes
         run: |
           cd public-docs
-          
+
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action (Push Mode)"
-          
+
           # Check if there are changes
           if git diff --quiet && git diff --staged --quiet; then
             echo "📄 No changes to commit"
             exit 0
           fi
-          
-          git add -A
-          git commit -m "docs(push): sync documentation from ${{ inputs.source_repo }}@${{ inputs.branch }}
 
-          Automatically pushed from ${{ inputs.source_repo }} repository
-          
-          - Source: hoverkraft-tech/${{ inputs.source_repo }}@${{ inputs.branch }}
-          - Target: ${{ inputs.target_path }}
-          - Docs Path: ${{ inputs.docs_path }}
+          git add -A
+          git commit -m "docs(push): sync documentation from ${{ inputs.source-repo }}@${{ inputs.branch }}
+
+          Automatically pushed from ${{ inputs.source-repo }} repository
+
+          - Source: hoverkraft-tech/${{ inputs.source-repo }}@${{ inputs.branch }}
+          - Target: ${{ inputs.target-path }}
+          - Docs Path: ${{ inputs.docs-path }}
           - Timestamp: $(date -u +"%Y-%m-%dT%H:%M:%SZ")"
-          
+
           git push
-          
+
           echo "✅ Changes committed and pushed"
 
       - name: Summary
         run: |
           echo "## 📊 Documentation Push Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "- **Source Repository**: ${{ inputs.source_repo }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Source Repository**: ${{ inputs.source-repo }}" >> $GITHUB_STEP_SUMMARY
           echo "- **Branch**: ${{ inputs.branch }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **Docs Path**: ${{ inputs.docs_path }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **Target Path**: ${{ inputs.target_path }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **Include README**: ${{ inputs.include_readme }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Docs Path**: ${{ inputs.docs-path }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Target Path**: ${{ inputs.target-path }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Include README**: ${{ inputs.include-readme }}" >> $GITHUB_STEP_SUMMARY
           echo "- **Status**: ✅ Completed" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "🌐 **Documentation Portal**: [docs.hoverkraft.cloud](https://docs.hoverkraft.cloud)" >> $GITHUB_STEP_SUMMARY

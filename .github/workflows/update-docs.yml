@@ -39,14 +39,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Pull and generate documentation from repositories
+      - name: Generate documentation from repositories
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "🚀 Starting documentation synchronization..."
-          echo "📥 Step 1: Pulling documentation content from project repositories..."
-          npm run pull-docs
-          echo "📝 Step 2: Generating project metadata and pages..."
+          echo "🚀 Starting documentation generation..."
           npm run generate-docs
         working-directory: ./application
 
@@ -67,29 +64,25 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "docs: sync documentation from project repositories"
-          title: "🤖 Sync project documentation"
+          commit-message: "docs: update repository metadata and project listings"
+          title: "🤖 Update project documentation"
           body: |
-            ## 🤖 Automated Documentation Synchronization
+            ## 🤖 Automated Documentation Update
 
-            This PR was automatically generated to synchronize documentation with the latest content from Hoverkraft project repositories.
+            This PR was automatically generated to update the documentation with the latest repository information from Hoverkraft GitHub organization.
 
             ### Changes
-            - **Pulled documentation content** from individual project repositories
             - **Updated project listings** with current repository data
             - **Refreshed repository statistics** (stars, languages, topics)
             - **Updated last modified dates**
             - **Categorized projects** based on latest topics and descriptions
 
-            ### Synchronized Content
-            - `docs/projects/*/` - Documentation content from individual repositories
+            ### Generated Files
             - `docs/projects.md` - Updated project catalog
             - `docs/projects.module.css` - Updated styling
             - `src/pages/index.tsx` - Updated homepage with featured projects
 
-            This update includes:
-            - 📥 **Documentation content** from configured project repositories
-            - 📊 **Metadata** from all public repositories in [@hoverkraft-tech](https://github.com/hoverkraft-tech)
+            This update includes metadata from all public repositories in [@hoverkraft-tech](https://github.com/hoverkraft-tech).
 
             ---
 
