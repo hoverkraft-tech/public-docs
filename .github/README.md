@@ -4,13 +4,16 @@ This directory contains the scripts and configuration for aggregating documentat
 
 ## Overview
 
-The documentation aggregation system allows this portal to pull documentation content from individual project repositories while keeping the source of truth in each project.
+The documentation aggregation system supports **both pull and push modes** for syncing documentation from individual project repositories while keeping the source of truth in each project.
+
+- **Pull Mode**: Portal pulls documentation on a schedule (daily)
+- **Push Mode**: Projects push documentation in real-time when changes occur
 
 ## Files
 
 ### Configuration
 
-- **`docs-sources.yml`**: Configuration file defining which repositories to pull documentation from and how to organize it.
+- **`docs-sources.yml`**: Configuration file defining which repositories to pull documentation from (pull mode).
 
 ### Scripts
 
@@ -19,7 +22,9 @@ The documentation aggregation system allows this portal to pull documentation co
 
 ### Workflows
 
-- **`workflows/update-docs.yml`**: GitHub Actions workflow that runs the documentation synchronization daily and on demand.
+- **`workflows/update-docs.yml`**: GitHub Actions workflow for pull mode (runs daily and on demand).
+- **`workflows/sync-docs-push.yml`**: Reusable workflow for push mode (called by project repositories).
+- **`workflows/EXAMPLE-push-docs.yml.template`**: Example workflow template for project repositories to use.
 
 ## Quick Start
 
@@ -48,6 +53,8 @@ The documentation aggregation system allows this portal to pull documentation co
 
 ### Adding a New Documentation Source
 
+#### Option 1: Pull Mode (Scheduled)
+
 1. Edit `docs-sources.yml`:
    ```yaml
    repositories:
@@ -66,7 +73,39 @@ The documentation aggregation system allows this portal to pull documentation co
    git push
    ```
 
-3. The workflow will automatically sync the new documentation.
+3. The workflow will automatically sync the new documentation daily.
+
+#### Option 2: Push Mode (Real-time) - Recommended
+
+1. In the **project repository**, add `.github/workflows/push-docs.yml`:
+   ```yaml
+   name: Push Documentation to Portal
+
+   on:
+     push:
+       branches:
+         - main
+       paths:
+         - 'docs/**'
+         - 'README.md'
+     workflow_dispatch:
+
+   jobs:
+     push-docs:
+       uses: hoverkraft-tech/public-docs/.github/workflows/sync-docs-push.yml@main
+       with:
+         source_repo: 'my-new-project'
+         docs_path: 'docs'
+         target_path: 'projects/my-new-project'
+         branch: 'main'
+         include_readme: true
+       secrets:
+         PUBLIC_DOCS_TOKEN: ${{ secrets.PUBLIC_DOCS_TOKEN }}
+   ```
+
+2. Add `PUBLIC_DOCS_TOKEN` secret to the project repository.
+
+3. Documentation will sync immediately on every commit to `docs/**` or `README.md`.
 
 ## Configuration Options
 

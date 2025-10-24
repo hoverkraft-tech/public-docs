@@ -1,8 +1,12 @@
 # Documentation Aggregation - Usage Examples
 
-This document provides examples of how to use the documentation aggregation system.
+This document provides examples of how to use the documentation aggregation system in both pull and push modes.
 
-## Example 1: Basic Configuration
+## Pull Mode Examples
+
+These examples are for the `.github/docs-sources.yml` configuration file.
+
+### Example 1: Basic Configuration
 
 Add a simple repository with documentation in a `docs/` folder:
 
@@ -79,9 +83,101 @@ repositories:
     description: API project with specific docs
 ```
 
+## Push Mode Examples
+
+These examples are for workflows in **project repositories** that push their documentation to public-docs.
+
+### Example 6: Basic Push Mode
+
+Minimal configuration for pushing documentation on every commit:
+
+```yaml
+name: Push Documentation to Portal
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'docs/**'
+      - 'README.md'
+  workflow_dispatch:
+
+jobs:
+  push-docs:
+    uses: hoverkraft-tech/public-docs/.github/workflows/sync-docs-push.yml@main
+    with:
+      source_repo: 'my-project'
+      target_path: 'projects/my-project'
+    secrets:
+      PUBLIC_DOCS_TOKEN: ${{ secrets.PUBLIC_DOCS_TOKEN }}
+```
+
+### Example 7: Push with Custom Docs Path
+
+If your documentation is in a non-standard location:
+
+```yaml
+jobs:
+  push-docs:
+    uses: hoverkraft-tech/public-docs/.github/workflows/sync-docs-push.yml@main
+    with:
+      source_repo: 'my-project'
+      docs_path: 'documentation'
+      target_path: 'projects/my-project'
+      include_readme: false
+    secrets:
+      PUBLIC_DOCS_TOKEN: ${{ secrets.PUBLIC_DOCS_TOKEN }}
+```
+
+### Example 8: Push from Multiple Branches
+
+Sync documentation from both main and develop branches:
+
+```yaml
+on:
+  push:
+    branches:
+      - main
+      - develop
+    paths:
+      - 'docs/**'
+      - 'README.md'
+
+jobs:
+  push-docs-main:
+    if: github.ref == 'refs/heads/main'
+    uses: hoverkraft-tech/public-docs/.github/workflows/sync-docs-push.yml@main
+    with:
+      source_repo: 'my-project'
+      target_path: 'projects/my-project'
+      branch: 'main'
+    secrets:
+      PUBLIC_DOCS_TOKEN: ${{ secrets.PUBLIC_DOCS_TOKEN }}
+
+  push-docs-dev:
+    if: github.ref == 'refs/heads/develop'
+    uses: hoverkraft-tech/public-docs/.github/workflows/sync-docs-push.yml@main
+    with:
+      source_repo: 'my-project'
+      target_path: 'projects/my-project-dev'
+      branch: 'develop'
+    secrets:
+      PUBLIC_DOCS_TOKEN: ${{ secrets.PUBLIC_DOCS_TOKEN }}
+```
+
+### Example 9: Combined Pull and Push
+
+Use both modes for redundancy and verification:
+
+1. **In project repository** - Add push workflow for immediate updates
+2. **In public-docs** - Keep pull configuration as backup
+
+This ensures documentation is always up-to-date with push mode, while pull mode serves as a scheduled verification.
+
 ## Testing Locally
 
-To test the documentation pull locally:
+### Testing Pull Mode
 
 ```bash
 # Set your GitHub token
@@ -97,6 +193,14 @@ ls -la docs/projects/
 # Build to test
 npm run build
 ```
+
+### Testing Push Mode
+
+Push mode can only be tested by:
+1. Setting up the workflow in your project repository
+2. Adding the `PUBLIC_DOCS_TOKEN` secret
+3. Making a commit to `docs/**` or `README.md`
+4. Checking the Actions tab for workflow execution
 
 ## Troubleshooting
 

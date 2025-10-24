@@ -8,17 +8,17 @@ This documentation portal uses an automated system to aggregate documentation fr
 
 ## Architecture
 
-The documentation system follows a **pull-based architecture**:
+The documentation system supports **both pull and push modes** for flexibility:
 
 1. **Source Documentation** remains in each project repository (atomic and versioned with code)
-2. **Central Portal** (this repository) pulls and aggregates documentation periodically
+2. **Central Portal** (this repository) aggregates documentation via pull or push
 3. **Automated Sync** via GitHub Actions keeps documentation up-to-date
 
-## How It Works
+## Synchronization Modes
 
-### Pull Mode (Default)
+### Pull Mode (Scheduled)
 
-The system automatically pulls documentation from configured project repositories:
+The system automatically pulls documentation from configured project repositories on a schedule (daily):
 
 ```
 ┌─────────────────────────────────────────────────────────┐
@@ -42,7 +42,13 @@ The system automatically pulls documentation from configured project repositorie
 └─────────────────────────────────────────────────────────┘
 ```
 
-### Configuration
+**Advantages:**
+- Centralized control over sync timing
+- All projects synced together
+- Changes reviewed via PRs (on schedule)
+- Simple configuration
+
+**Configuration:**
 
 Documentation sources are configured in `.github/docs-sources.yml`:
 
@@ -78,11 +84,81 @@ last_synced: 2024-01-15T10:30:00.000Z
 ...
 ```
 
+### Push Mode (Real-time)
+
+Project repositories can push their documentation updates in real-time using a reusable workflow:
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  Project Repository (e.g., compose-action)              │
+│  ┌────────────────────────────────────────────────────┐ │
+│  │ On commit to docs/ or README.md                    │ │
+│  │ └─ Workflow triggered                              │ │
+│  │    └─ Calls public-docs reusable workflow          │ │
+│  └────────────────────────────────────────────────────┘ │
+└───────────────┬─────────────────────────────────────────┘
+                │ Push via workflow call
+                ↓
+┌─────────────────────────────────────────────────────────┐
+│  Documentation Portal (public-docs)                     │
+│  ┌──────────────────────────────────────────────────┐  │
+│  │ Reusable workflow syncs docs immediately          │  │
+│  │ └─ Commits and pushes changes to portal          │  │
+│  └──────────────────────────────────────────────────┘  │
+└─────────────────────────────────────────────────────────┘
+```
+
+**Advantages:**
+- Real-time updates when documentation changes
+- No waiting for scheduled sync
+- Triggered automatically on commits
+- Faster feedback loop
+
+**Setup:**
+
+To enable push mode for a project, add this workflow to the project repository (`.github/workflows/push-docs.yml`):
+
+```yaml
+name: Push Documentation to Portal
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'docs/**'
+      - 'README.md'
+  workflow_dispatch:
+
+jobs:
+  push-docs:
+    uses: hoverkraft-tech/public-docs/.github/workflows/sync-docs-push.yml@main
+    with:
+      source_repo: 'your-repo-name'
+      docs_path: 'docs'
+      target_path: 'projects/your-repo-name'
+      branch: 'main'
+      include_readme: true
+    secrets:
+      PUBLIC_DOCS_TOKEN: ${{ secrets.PUBLIC_DOCS_TOKEN }}
+```
+
+**Requirements:**
+- Add `PUBLIC_DOCS_TOKEN` secret to project repository with write access to public-docs
+- Token must have `contents: write` permission for public-docs repository
+
+**When to use:**
+- Use **push mode** for projects with frequent documentation updates
+- Use **pull mode** for projects with less frequent updates or for bulk synchronization
+- You can use both modes together for maximum flexibility
+
 ## Synchronization Process
 
-The documentation is synchronized automatically through several mechanisms:
+### Pull Mode Process
 
-### 1. Scheduled Sync (Daily)
+The documentation is pulled automatically through several mechanisms:
+
+#### 1. Scheduled Sync (Daily)
 
 A GitHub Actions workflow runs daily at 6 AM UTC to:
 1. Pull documentation content from configured repositories
@@ -90,15 +166,25 @@ A GitHub Actions workflow runs daily at 6 AM UTC to:
 3. Create a Pull Request with changes
 4. Build and deploy the updated documentation
 
-### 2. Manual Sync
+#### 2. Manual Sync
 
 You can trigger a manual sync:
 - Via GitHub Actions workflow dispatch
 - Or by running locally: `npm run sync-docs`
 
-### 3. On Configuration Changes
+#### 3. On Configuration Changes
 
 When `.github/docs-sources.yml` or the sync scripts are updated, the workflow runs automatically.
+
+### Push Mode Process
+
+For push mode, documentation is pushed immediately when changes occur:
+
+1. **Developer commits** documentation changes to project repository
+2. **Workflow triggers** on commits to `docs/**` or `README.md`
+3. **Reusable workflow** in public-docs is called with project parameters
+4. **Documentation synced** directly to public-docs repository
+5. **Changes committed** and deployed automatically
 
 ## Scripts
 
@@ -141,7 +227,11 @@ npm run sync-docs
 
 ## Adding Documentation from a New Project
 
-To add documentation from a new project:
+You can add documentation using either **pull mode** (scheduled) or **push mode** (real-time):
+
+### Option 1: Pull Mode (Scheduled)
+
+For projects with less frequent documentation updates:
 
 1. **Ensure documentation exists in the project repository**:
    ```
@@ -152,7 +242,7 @@ To add documentation from a new project:
        └── api.md
    ```
 
-2. **Add configuration to `.github/docs-sources.yml`**:
+2. **Add configuration to `.github/docs-sources.yml` in public-docs**:
    ```yaml
    - repository: your-project
      enabled: true
@@ -169,10 +259,57 @@ To add documentation from a new project:
    git push
    ```
 
-4. **The workflow will automatically**:
-   - Pull your documentation
-   - Create project pages
-   - Deploy the updated portal
+4. **Documentation will sync**:
+   - Daily at 6 AM UTC (automatic)
+   - On manual workflow dispatch
+   - Changes reviewed via PR
+
+### Option 2: Push Mode (Real-time) - Recommended
+
+For projects with frequent documentation updates or when you want immediate synchronization:
+
+1. **Ensure documentation exists in the project repository** (same as pull mode)
+
+2. **Add workflow to your project repository** (`.github/workflows/push-docs.yml`):
+   ```yaml
+   name: Push Documentation to Portal
+
+   on:
+     push:
+       branches:
+         - main
+       paths:
+         - 'docs/**'
+         - 'README.md'
+     workflow_dispatch:
+
+   jobs:
+     push-docs:
+       uses: hoverkraft-tech/public-docs/.github/workflows/sync-docs-push.yml@main
+       with:
+         source_repo: 'your-project'
+         docs_path: 'docs'
+         target_path: 'projects/your-project'
+         branch: 'main'
+         include_readme: true
+       secrets:
+         PUBLIC_DOCS_TOKEN: ${{ secrets.PUBLIC_DOCS_TOKEN }}
+   ```
+
+3. **Add secret to your project repository**:
+   - Add `PUBLIC_DOCS_TOKEN` with write access to public-docs
+   - Settings → Secrets → Actions → New repository secret
+
+4. **Documentation will sync immediately**:
+   - On every commit to `docs/**` or `README.md`
+   - On manual workflow dispatch
+   - No PR review (direct push to main)
+
+### Using Both Modes
+
+You can combine both modes:
+- **Push mode** for immediate updates on documentation commits
+- **Pull mode** as a scheduled backup/verification sync
 
 ## Best Practices
 
@@ -183,6 +320,9 @@ To add documentation from a new project:
 3. **Write in Markdown**: Use `.md` or `.mdx` files
 4. **Add frontmatter**: Include metadata like title, description, sidebar position
 5. **Keep README updated**: The README.md is automatically included
+6. **Choose the right mode**: 
+   - Use **push mode** for projects with active documentation development
+   - Use **pull mode** for stable documentation or as a backup
 
 ### For Documentation Portal
 
@@ -219,17 +359,20 @@ To add documentation from a new project:
 
 Potential improvements to the documentation system:
 
-- **Push mode**: Allow projects to push documentation updates via webhooks
+- ✅ **Push mode**: ~~Allow projects to push documentation updates via webhooks~~ **Implemented** via reusable workflow
 - **Version support**: Pull documentation from specific releases/tags
 - **Translation support**: Aggregate translated documentation
 - **Preview deployments**: Generate preview sites for documentation PRs
-- **Validation**: Check documentation quality before pulling
+- **Validation**: Check documentation quality before pulling/pushing
 - **Incremental sync**: Only pull changed files
+- **Webhook support**: Alternative to workflow-based push mode
 
 ## Resources
 
 - [Configuration File](https://github.com/hoverkraft-tech/public-docs/blob/main/.github/docs-sources.yml)
 - [Pull Script](https://github.com/hoverkraft-tech/public-docs/blob/main/.github/scripts/pull-docs.js)
 - [Generate Script](https://github.com/hoverkraft-tech/public-docs/blob/main/.github/scripts/generate-docs.js)
-- [Workflow](https://github.com/hoverkraft-tech/public-docs/blob/main/.github/workflows/update-docs.yml)
+- [Pull Workflow](https://github.com/hoverkraft-tech/public-docs/blob/main/.github/workflows/update-docs.yml)
+- [Push Workflow (Reusable)](https://github.com/hoverkraft-tech/public-docs/blob/main/.github/workflows/sync-docs-push.yml)
+- [Example Push Workflow Template](https://github.com/hoverkraft-tech/public-docs/blob/main/.github/workflows/EXAMPLE-push-docs.yml.template)
 - [Docusaurus Documentation](https://docusaurus.io/)
