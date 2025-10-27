@@ -8,6 +8,8 @@ updates:
     schedule:
       interval: "weekly"
     groups:
+      npm-development-dependencies:
+        dependency-type: "development"
       npm-docusaurus-dependencies:
         patterns:
           - "@docusaurus/*"
@@ -16,8 +18,6 @@ updates:
           - "@mdx-js/react"
           - "clsx"
           - "prism-react-renderer"
-      npm-development-dependencies:
-        dependency-type: "development"
 
   - package-ecosystem: github-actions
     open-pull-requests-limit: 20
@@ -34,10 +34,6 @@ updates:
     directory: "/"
     schedule:
       interval: weekly
-    groups:
-      devcontainers-dependencies:
-        patterns:
-          - "*"
 
   - package-ecosystem: "docker"
     open-pull-requests-limit: 20
