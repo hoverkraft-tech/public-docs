@@ -44,10 +44,10 @@ Welcome to the Hoverkraft project ecosystem! We maintain **29 open-source projec
             <span className={styles.projectTag}>open-source</span>
           </div>
           <div className={styles.projectLinks}>
-            <a href="https://github.com/hoverkraft-tech/compose-action" target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
+            <a href="https://github.com/hoverkraft-tech/compose-action" target="_blank" rel="noopener noreferrer" className={`${styles.projectLink} ${styles.primaryLink}`}>
               View on GitHub
             </a>
-            <a href="https://github.com/marketplace/actions/docker-compose-action" target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
+            <a href="https://github.com/marketplace/actions/docker-compose-action" target="_blank" rel="noopener noreferrer" className={`${styles.projectLink} ${styles.secondaryLink}`}>
               Live Demo
             </a>
           </div>
@@ -80,10 +80,10 @@ Welcome to the Hoverkraft project ecosystem! We maintain **29 open-source projec
             <span className={styles.projectTag}>github-actions</span>
           </div>
           <div className={styles.projectLinks}>
-            <a href="https://github.com/hoverkraft-tech/ci-github-container" target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
+            <a href="https://github.com/hoverkraft-tech/ci-github-container" target="_blank" rel="noopener noreferrer" className={`${styles.projectLink} ${styles.primaryLink}`}>
               View on GitHub
             </a>
-            <a href="https://hoverkraft-tech.github.io/ci-github-container/" target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
+            <a href="https://hoverkraft-tech.github.io/ci-github-container/" target="_blank" rel="noopener noreferrer" className={`${styles.projectLink} ${styles.secondaryLink}`}>
               Live Demo
             </a>
           </div>
@@ -115,10 +115,10 @@ Welcome to the Hoverkraft project ecosystem! We maintain **29 open-source projec
             <span className={styles.projectTag}>workflow</span>
           </div>
           <div className={styles.projectLinks}>
-            <a href="https://github.com/hoverkraft-tech/ci-github-common" target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
+            <a href="https://github.com/hoverkraft-tech/ci-github-common" target="_blank" rel="noopener noreferrer" className={`${styles.projectLink} ${styles.primaryLink}`}>
               View on GitHub
             </a>
-            <a href="https://hoverkraft-tech.github.io/ci-github-common/" target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
+            <a href="https://hoverkraft-tech.github.io/ci-github-common/" target="_blank" rel="noopener noreferrer" className={`${styles.projectLink} ${styles.secondaryLink}`}>
               Live Demo
             </a>
           </div>
@@ -150,10 +150,10 @@ Welcome to the Hoverkraft project ecosystem! We maintain **29 open-source projec
             <span className={styles.projectTag}>open-source</span>
           </div>
           <div className={styles.projectLinks}>
-            <a href="https://github.com/hoverkraft-tech/ci-github-nodejs" target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
+            <a href="https://github.com/hoverkraft-tech/ci-github-nodejs" target="_blank" rel="noopener noreferrer" className={`${styles.projectLink} ${styles.primaryLink}`}>
               View on GitHub
             </a>
-            <a href="https://hoverkraft-tech.github.io/ci-github-nodejs/" target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
+            <a href="https://hoverkraft-tech.github.io/ci-github-nodejs/" target="_blank" rel="noopener noreferrer" className={`${styles.projectLink} ${styles.secondaryLink}`}>
               Live Demo
             </a>
           </div>
@@ -191,10 +191,10 @@ Welcome to the Hoverkraft project ecosystem! We maintain **29 open-source projec
             <span className={styles.projectTag}>postal</span>
           </div>
           <div className={styles.projectLinks}>
-            <a href="https://github.com/hoverkraft-tech/helm-chart-postal" target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
+            <a href="https://github.com/hoverkraft-tech/helm-chart-postal" target="_blank" rel="noopener noreferrer" className={`${styles.projectLink} ${styles.primaryLink}`}>
               View on GitHub
             </a>
-            <a href="https://hoverkraft-tech.github.io/helm-chart-postal/" target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
+            <a href="https://hoverkraft-tech.github.io/helm-chart-postal/" target="_blank" rel="noopener noreferrer" className={`${styles.projectLink} ${styles.secondaryLink}`}>
               Live Demo
             </a>
           </div>
@@ -226,10 +226,10 @@ Welcome to the Hoverkraft project ecosystem! We maintain **29 open-source projec
             <span className={styles.projectTag}>kubernetes</span>
           </div>
           <div className={styles.projectLinks}>
-            <a href="https://github.com/hoverkraft-tech/helm-chart-dufs" target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
+            <a href="https://github.com/hoverkraft-tech/helm-chart-dufs" target="_blank" rel="noopener noreferrer" className={`${styles.projectLink} ${styles.primaryLink}`}>
               View on GitHub
             </a>
-            <a href="https://github.com/sigoden/dufs" target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
+            <a href="https://github.com/sigoden/dufs" target="_blank" rel="noopener noreferrer" className={`${styles.projectLink} ${styles.secondaryLink}`}>
               Live Demo
             </a>
           </div>
@@ -262,7 +262,7 @@ Welcome to the Hoverkraft project ecosystem! We maintain **29 open-source projec
             <span className={styles.projectTag}>starter-pack</span>
           </div>
           <div className={styles.projectLinks}>
-            <a href="https://github.com/hoverkraft-tech/helm-starters" target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
+            <a href="https://github.com/hoverkraft-tech/helm-starters" target="_blank" rel="noopener noreferrer" className={`${styles.projectLink} ${styles.primaryLink}`}>
               View on GitHub
             </a>
           </div>
@@ -294,7 +294,7 @@ Welcome to the Hoverkraft project ecosystem! We maintain **29 open-source projec
             <span className={styles.projectTag}>open-source</span>
           </div>
           <div className={styles.projectLinks}>
-            <a href="https://github.com/hoverkraft-tech/docker-base-images" target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
+            <a href="https://github.com/hoverkraft-tech/docker-base-images" target="_blank" rel="noopener noreferrer" className={`${styles.projectLink} ${styles.primaryLink}`}>
               View on GitHub
             </a>
           </div>
@@ -332,7 +332,7 @@ Welcome to the Hoverkraft project ecosystem! We maintain **29 open-source projec
             <span className={styles.projectTag}>platform-engineering</span>
           </div>
           <div className={styles.projectLinks}>
-            <a href="https://github.com/hoverkraft-tech/terraform-modules" target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
+            <a href="https://github.com/hoverkraft-tech/terraform-modules" target="_blank" rel="noopener noreferrer" className={`${styles.projectLink} ${styles.primaryLink}`}>
               View on GitHub
             </a>
           </div>
@@ -365,10 +365,10 @@ Welcome to the Hoverkraft project ecosystem! We maintain **29 open-source projec
             <span className={styles.projectTag}>hoverkraft-tech</span>
           </div>
           <div className={styles.projectLinks}>
-            <a href="https://github.com/hoverkraft-tech/infrastructure-aws-template" target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
+            <a href="https://github.com/hoverkraft-tech/infrastructure-aws-template" target="_blank" rel="noopener noreferrer" className={`${styles.projectLink} ${styles.primaryLink}`}>
               View on GitHub
             </a>
-            <a href="https://hoverkraft.cloud/" target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
+            <a href="https://hoverkraft.cloud/" target="_blank" rel="noopener noreferrer" className={`${styles.projectLink} ${styles.secondaryLink}`}>
               Live Demo
             </a>
           </div>
@@ -401,7 +401,7 @@ Welcome to the Hoverkraft project ecosystem! We maintain **29 open-source projec
             <span className={styles.projectTag}>kubernetes</span>
           </div>
           <div className={styles.projectLinks}>
-            <a href="https://github.com/hoverkraft-tech/ovh-snapshoter" target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
+            <a href="https://github.com/hoverkraft-tech/ovh-snapshoter" target="_blank" rel="noopener noreferrer" className={`${styles.projectLink} ${styles.primaryLink}`}>
               View on GitHub
             </a>
           </div>
@@ -439,10 +439,10 @@ Welcome to the Hoverkraft project ecosystem! We maintain **29 open-source projec
             <span className={styles.projectTag}>kubernetes</span>
           </div>
           <div className={styles.projectLinks}>
-            <a href="https://github.com/hoverkraft-tech/bitnami-depreciation" target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
+            <a href="https://github.com/hoverkraft-tech/bitnami-depreciation" target="_blank" rel="noopener noreferrer" className={`${styles.projectLink} ${styles.primaryLink}`}>
               View on GitHub
             </a>
-            <a href="https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications" target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
+            <a href="https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications" target="_blank" rel="noopener noreferrer" className={`${styles.projectLink} ${styles.secondaryLink}`}>
               Live Demo
             </a>
           </div>
@@ -474,7 +474,7 @@ Welcome to the Hoverkraft project ecosystem! We maintain **29 open-source projec
             <span className={styles.projectTag}>open-source</span>
           </div>
           <div className={styles.projectLinks}>
-            <a href="https://github.com/hoverkraft-tech/devcontainers" target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
+            <a href="https://github.com/hoverkraft-tech/devcontainers" target="_blank" rel="noopener noreferrer" className={`${styles.projectLink} ${styles.primaryLink}`}>
               View on GitHub
             </a>
           </div>
@@ -505,7 +505,7 @@ Welcome to the Hoverkraft project ecosystem! We maintain **29 open-source projec
             <span className={styles.projectTag}>pre-commit-hook</span>
           </div>
           <div className={styles.projectLinks}>
-            <a href="https://github.com/hoverkraft-tech/lefthook-base" target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
+            <a href="https://github.com/hoverkraft-tech/lefthook-base" target="_blank" rel="noopener noreferrer" className={`${styles.projectLink} ${styles.primaryLink}`}>
               View on GitHub
             </a>
           </div>
@@ -541,10 +541,10 @@ Welcome to the Hoverkraft project ecosystem! We maintain **29 open-source projec
             <span className={styles.projectTag}>open-source</span>
           </div>
           <div className={styles.projectLinks}>
-            <a href="https://github.com/hoverkraft-tech/ci-dokumentor" target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
+            <a href="https://github.com/hoverkraft-tech/ci-dokumentor" target="_blank" rel="noopener noreferrer" className={`${styles.projectLink} ${styles.primaryLink}`}>
               View on GitHub
             </a>
-            <a href="https://hoverkraft-tech.github.io/ci-dokumentor/" target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
+            <a href="https://hoverkraft-tech.github.io/ci-dokumentor/" target="_blank" rel="noopener noreferrer" className={`${styles.projectLink} ${styles.secondaryLink}`}>
               Live Demo
             </a>
           </div>
@@ -575,7 +575,7 @@ Welcome to the Hoverkraft project ecosystem! We maintain **29 open-source projec
             <span className={styles.projectTag}>jekyll-theme</span>
           </div>
           <div className={styles.projectLinks}>
-            <a href="https://github.com/hoverkraft-tech/jekyll-theme" target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
+            <a href="https://github.com/hoverkraft-tech/jekyll-theme" target="_blank" rel="noopener noreferrer" className={`${styles.projectLink} ${styles.primaryLink}`}>
               View on GitHub
             </a>
           </div>
@@ -610,10 +610,10 @@ Welcome to the Hoverkraft project ecosystem! We maintain **29 open-source projec
             <span className={styles.projectTag}>hoverkraft-tech</span>
           </div>
           <div className={styles.projectLinks}>
-            <a href="https://github.com/hoverkraft-tech/landing-page" target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
+            <a href="https://github.com/hoverkraft-tech/landing-page" target="_blank" rel="noopener noreferrer" className={`${styles.projectLink} ${styles.primaryLink}`}>
               View on GitHub
             </a>
-            <a href="https://hoverkraft.cloud/" target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
+            <a href="https://hoverkraft.cloud/" target="_blank" rel="noopener noreferrer" className={`${styles.projectLink} ${styles.secondaryLink}`}>
               Live Demo
             </a>
           </div>
@@ -645,7 +645,7 @@ Welcome to the Hoverkraft project ecosystem! We maintain **29 open-source projec
             <span className={styles.projectTag}>webhook</span>
           </div>
           <div className={styles.projectLinks}>
-            <a href="https://github.com/hoverkraft-tech/hook2mail" target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
+            <a href="https://github.com/hoverkraft-tech/hook2mail" target="_blank" rel="noopener noreferrer" className={`${styles.projectLink} ${styles.primaryLink}`}>
               View on GitHub
             </a>
           </div>
@@ -678,7 +678,7 @@ Welcome to the Hoverkraft project ecosystem! We maintain **29 open-source projec
             <span className={styles.projectTag}>http</span>
           </div>
           <div className={styles.projectLinks}>
-            <a href="https://github.com/hoverkraft-tech/http-header-authenticator" target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
+            <a href="https://github.com/hoverkraft-tech/http-header-authenticator" target="_blank" rel="noopener noreferrer" className={`${styles.projectLink} ${styles.primaryLink}`}>
               View on GitHub
             </a>
           </div>

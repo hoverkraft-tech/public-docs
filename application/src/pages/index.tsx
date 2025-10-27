@@ -1,9 +1,7 @@
 import type {ReactNode} from 'react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
-import { HoverkraftHero, HoverkraftBrandHighlight } from '@theme/hoverscape/HoverkraftHero';
-import { HoverkraftFeatureList } from '@theme/hoverscape/HoverkraftFeatureList';
-import { HoverkraftProjectCard } from '@theme/hoverscape/HoverkraftProjectCard';
+import { HoverkraftProjectCard, HoverkraftFeatureList, HoverkraftHero, HoverkraftBrandHighlight, HoverkraftButton } from "@hoverkraft/docusaurus-theme/components";
 
 function HeroSection() {
   return (
@@ -121,19 +119,11 @@ function ProjectsSection() {
         </div>
 
         <div style={{ textAlign: 'center' }}>
-          <a
+          <HoverkraftButton
             href="/docs/projects"
-            style={{
-              display: 'inline-block',
-              padding: '0.75rem 2rem',
-              backgroundColor: 'var(--ifm-color-primary)',
-              color: 'white',
-              borderRadius: '8px',
-              textDecoration: 'none',
-              fontWeight: 600,
-            }}>
-            Browse All Projects
-          </a>
+            variant="primary"
+            label="Browse All Projects"
+          />
         </div>
       </div>
     </section>
@@ -145,7 +135,7 @@ export default function Home(): ReactNode {
   return (
     <Layout
       title="Home"
-      description="Hoverkraft - Open-source innovation for developers. Discover, contribute, and build amazing things with our developer-first ecosystem.">
+      description={siteConfig.tagline}>
       <HeroSection />
       <ValuePropsSection />
       <ProjectsSection />

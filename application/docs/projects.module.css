@@ -82,23 +82,44 @@
 
 .projectLinks {
   display: flex;
+  align-items: center;
   gap: 1rem;
   margin-top: auto;
 }
 
 .projectLink {
-  background: var(--ifm-color-primary);
-  color: white !important;
-  padding: 0.5rem 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  padding: 0.5rem 1.25rem;
   border-radius: 6px;
   text-decoration: none !important;
   font-size: 0.9rem;
   font-weight: 500;
+  line-height: 1;
+  border: 1px solid transparent;
   transition: all 0.2s ease;
 }
 
-.projectLink:hover {
+.primaryLink {
+  background: var(--ifm-color-primary);
+  color: white !important;
+}
+
+.primaryLink:hover {
   background: var(--ifm-color-primary-dark);
+  transform: translateY(-1px);
+}
+
+.secondaryLink {
+  background: transparent;
+  color: var(--ifm-color-primary) !important;
+  border-color: var(--ifm-color-primary);
+}
+
+.secondaryLink:hover {
+  background: rgba(31, 111, 235, 0.1);
   transform: translateY(-1px);
 }
 
