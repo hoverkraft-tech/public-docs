@@ -74,36 +74,38 @@ function ValuePropsSection() {
 
 function ProjectsSection() {
   const projects = [
-    {
-      icon: '⚡',
-      name: 'compose-action',
-      url: 'https://github.com/hoverkraft-tech/compose-action',
-      stars: 190,
-      language: 'TypeScript',
-      description: 'This action runs your docker-compose file and clean up before action finished. Available on GitHub Marketplace.',
-      tags: ['github-actions', 'docker-compose', 'ci'],
-      accent: 'primary',
-    },
-    {
-      icon: '🔧',
-      name: 'bitnami-depreciation',
-      url: 'https://github.com/hoverkraft-tech/bitnami-depreciation',
-      stars: 6,
-      language: 'Shell',
-      description: 'Help you to survive the Bitnami deprecation on 2025-08-28. Migration tools and guides for affected charts.',
-      tags: ['bitnami', 'helm', 'kubernetes'],
-      accent: 'neutral',
-    },
-    {
-      icon: '⚡',
-      name: 'ci-github-container',
-      url: 'https://github.com/hoverkraft-tech/ci-github-container',
-      stars: 4,
-      language: 'Smarty',
-      description: 'Opinionated GitHub Actions and workflows for continuous integration in container (OCI) context.',
-      tags: ['containers', 'github-actions', 'ci'],
-    },
-  ];
+  {
+    icon: '⚡',
+    name: 'compose-action',
+    url: 'https://github.com/hoverkraft-tech/compose-action',
+    stars: 192,
+    language: 'TypeScript',
+    description: 'This action runs your docker-compose file and clean up before action finished',
+    tags: ['continuous-integration', 'docker-compose', 'github-actions'],
+    accent: 'primary',
+  },
+  {
+    icon: '⚡',
+    name: 'ci-dokumentor',
+    url: 'https://github.com/hoverkraft-tech/ci-dokumentor',
+    stars: 2,
+    language: 'TypeScript',
+    description: 'Automated documentation generator for CI/CD components',
+    tags: ['documentation', 'github-actions', 'open-source'],
+    accent: 'neutral',
+  },
+  {
+    icon: '⚡',
+    name: 'ci-github-container',
+    url: 'https://github.com/hoverkraft-tech/ci-github-container',
+    stars: 4,
+    language: 'Smarty',
+    description: 'Opinionated GitHub Actions and workflows for continuous integration in container (OCI) context',
+    tags: ['build', 'containers', 'continuous-integration'],
+    accent: 'primary',
+  }
+];
+
 
   return (
     <section style={{ padding: '4rem 0' }}>
