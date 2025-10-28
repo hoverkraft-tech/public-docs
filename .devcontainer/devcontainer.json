@@ -4,9 +4,7 @@
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:2": {}
   },
-  "forwardPorts": [
-    3000
-  ],
+  "forwardPorts": [3000],
   "customizations": {
     "vscode": {
       "extensions": [
@@ -18,20 +16,17 @@
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
         "msjsdiag.vscode-react-native",
-        "digitalbrainstem.javascript-ejs-support"
+        "digitalbrainstem.javascript-ejs-support",
+        "unifiedjs.vscode-mdx"
       ],
       "mcpServers": {
         "playwright": {
           "command": "npx",
-          "args": [
-            "@playwright/mcp@latest"
-          ]
+          "args": ["@playwright/mcp@latest"]
         },
         "lighthouse": {
           "command": "npx",
-          "args": [
-            "lighthouse-mcp"
-          ],
+          "args": ["lighthouse-mcp"],
           "disabled": false,
           "autoApprove": []
         }

@@ -83,7 +83,7 @@ Hoverkraft provides several repositories with reusable workflows and actions:
 
 ### Pull Request Workflow
 
-```
+```txt
 PR opened → CI runs → Tests pass → Review → Merge → Deploy
 ```
 
