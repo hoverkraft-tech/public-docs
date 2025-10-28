@@ -44,6 +44,8 @@ The documentation build pulls repository information through scheduled jobs and 
 
 This portal uses an artifact-based push system with repository_dispatch to aggregate documentation from all Hoverkraft projects in real-time while keeping the source documentation atomic within each project repository.
 
+**To configure a project to sync its documentation to this portal, see the [workflow sync documentation](./.github/workflows/sync-docs-dispatcher.md).**
+
 ### Architecture
 
 The documentation system uses a **two-workflow architecture**:
