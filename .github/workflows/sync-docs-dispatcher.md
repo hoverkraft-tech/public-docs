@@ -3,7 +3,7 @@
 # GitHub Reusable Workflow: Push Documentation Helper
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/79519964a7036213980247c494eca7e0471c882cb52d78237d28e9a57901b2d7/hoverkraft-tech/public-docs" width="60px" align="center" alt="Push Documentation Helper" />
+  <img src="https://opengraph.githubassets.com/ad255ca9aac8e2c6fcc2a30b9eb53745c406c37a56c5d366b0f73ebc3d1186b7/hoverkraft-tech/public-docs" width="60px" align="center" alt="Push Documentation Helper" />
 </div>
 
 ---
@@ -62,7 +62,7 @@ on:
       - main
 jobs:
   sync-docs-dispatcher:
-    uses: hoverkraft-tech/public-docs/.github/workflows/sync-docs-dispatcher.yml@28c98a4b7eda20c80e9ed488f87dc1ed381476f5 # main
+    uses: hoverkraft-tech/public-docs/.github/workflows/sync-docs-dispatcher.yml@18facec04f2945f4d66d510e8a06568497b73c54 # 0.1.0
     secrets:
       # GitHub token with write access to trigger repository_dispatch in public-docs
       # This input is required.
