@@ -1,4 +1,4 @@
-/* Projects page styles */
+/* Projects page grid layout */
 .projectsGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
@@ -6,135 +6,9 @@
   margin: 2rem 0;
 }
 
-.projectCard {
-  background: var(--ifm-card-background-color);
-  border: 1px solid var(--ifm-color-emphasis-200);
-  border-radius: 12px;
-  padding: 1.5rem;
-  transition: all 0.3s ease;
-  height: fit-content;
-}
-
-.projectCard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  border-color: var(--ifm-color-primary);
-}
-
-.projectHeader {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-.projectIcon {
-  font-size: 2rem;
-  flex-shrink: 0;
-}
-
-.projectTitle {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.25rem;
-  font-weight: 600;
-}
-
-.projectTitle a {
-  text-decoration: none;
-  color: var(--ifm-color-primary);
-}
-
-.projectTitle a:hover {
-  text-decoration: underline;
-}
-
-.projectMeta {
-  margin: 0;
-  font-size: 0.9rem;
-  color: var(--ifm-color-emphasis-600);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.projectDescription {
-  color: var(--ifm-color-emphasis-700);
-  line-height: 1.6;
-  margin-bottom: 1rem;
-  flex: 1;
-}
-
-.projectFooter {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.projectTag {
-  background: var(--ifm-color-emphasis-100);
-  color: var(--ifm-color-emphasis-600);
-  padding: 0.25rem 0.75rem;
-  border-radius: 15px;
-  font-size: 0.8rem;
-  font-weight: 500;
-}
-
-.projectLinks {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-top: auto;
-}
-
-.projectLink {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 2.5rem;
-  padding: 0.5rem 1.25rem;
-  border-radius: 6px;
-  text-decoration: none !important;
-  font-size: 0.9rem;
-  font-weight: 500;
-  line-height: 1;
-  border: 1px solid transparent;
-  transition: all 0.2s ease;
-}
-
-.primaryLink {
-  background: var(--ifm-color-primary);
-  color: white !important;
-}
-
-.primaryLink:hover {
-  background: var(--ifm-color-primary-dark);
-  transform: translateY(-1px);
-}
-
-.secondaryLink {
-  background: transparent;
-  color: var(--ifm-color-primary) !important;
-  border-color: var(--ifm-color-primary);
-}
-
-.secondaryLink:hover {
-  background: rgba(31, 111, 235, 0.1);
-  transform: translateY(-1px);
-}
-
 @media (max-width: 768px) {
   .projectsGrid {
     grid-template-columns: 1fr;
     gap: 1rem;
-  }
-
-  .projectCard {
-    padding: 1rem;
-  }
-
-  .projectLinks {
-    flex-direction: column;
-    gap: 0.5rem;
   }
 }
