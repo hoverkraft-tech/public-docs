@@ -2,6 +2,9 @@ name: Common Continuous Integration tasks
 
 on:
   workflow_call:
+    secrets:
+      ALGOLIA_API_KEY:
+        required: true
 
 permissions:
   contents: read
@@ -11,11 +14,17 @@ permissions:
 
 jobs:
   continuous-integration:
-    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@6809332ced7647b3d52300a47d65657283f3395e # 0.16.0
-    secrets: inherit
+    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@feat/continuous-intergration-build-secrets # 0.16.0
+    secrets:
+      build-secrets: |
+        {
+          "ALGOLIA_API_KEY": "${{ secrets.ALGOLIA_API_KEY }}",
+        }
+
     with:
       working-directory: application
       build: |
         {
-          "artifact": ["application/build"]
+          "artifact": ["application/build"],
+          "env": { "ALGOLIA_APP_ID": "${{ vars.ALGOLIA_APP_ID }}" }
         }
