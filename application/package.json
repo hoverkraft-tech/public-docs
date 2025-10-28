@@ -13,7 +13,6 @@
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
     "typecheck": "tsc",
-    "generate-docs": "NODE_PATH=./node_modules node ../.github/scripts/generate-docs.js",
     "lint:fix": "echo 'Lint fixing not implemented yet'",
     "lint": "echo 'Linting not implemented yet'",
     "test:ci": "echo 'Testing not implemented yet'"
@@ -23,7 +22,6 @@
     "@docusaurus/preset-classic": "3.9.2",
     "@hoverkraft/docusaurus-theme": "^0.1.1",
     "@mdx-js/react": "^3.0.0",
-    "@octokit/rest": "^22.0.0",
     "clsx": "^2.0.0",
     "prism-react-renderer": "^2.3.0",
     "react": "^19.2.0",

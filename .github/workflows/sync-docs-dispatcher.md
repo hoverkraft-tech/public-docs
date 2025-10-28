@@ -27,6 +27,30 @@ Reusable workflow that bundles project docs and triggers public portal sync
 - Dispatches a repository event so hoverkraft-tech/public-docs can ingest and publish updates
 
 <!-- overview:end -->
+
+## 🔄 Adding Documentation from a Project
+
+To add documentation from a new project:
+
+1. **Ensure documentation exists in the project repository**:
+
+```txt
+your-project/
+└── docs/
+    ├── getting-started.md
+    ├── usage.md
+    └── api.md
+```
+
+2. **Add secret to your project repository**:
+   - Add `PUBLIC_DOCS_TOKEN` with `repo` scope
+   - Settings → Secrets → Actions → New repository secret
+
+3. **Documentation will sync immediately**:
+   - On every commit to `docs/**` or `README.md`
+   - On manual workflow dispatch
+   - Auto-merged PR triggers build and deployment
+
 <!-- usage:start -->
 
 ## Usage
@@ -46,25 +70,64 @@ jobs:
       PUBLIC_DOCS_TOKEN: ""
     with:
       # Path to documentation in source repo (default: docs)
-      # Default: `docs`
-      docs_path: docs
-
-      # Include README.md from repository root
-      # Default: `true`
-      include_readme: true
+      paths: docs
 ```
 
 <!-- usage:end -->
+
+## Best Practices
+
+### For Project Maintainers
+
+1. **Keep documentation with code**: Store docs in the same repository as your code
+2. **Use standard structure**: Place documentation in a `docs/` directory
+3. **Write in Markdown**: Use `.md` or `.mdx` files
+4. **Add frontmatter**: Include metadata like title, description, sidebar position
+5. **Keep readme updated**: The README.md is automatically included
+
+### For Documentation Portal
+
+1. **Use descriptive paths**: Target paths should be clear and organized
+2. **Monitor sync results**: Check workflow logs for any issues
+3. **Maintain consistency**: Use consistent naming conventions across projects
+
+## Troubleshooting
+
+#### Documentation not appearing
+
+1. Verify the workflow is added to your project repository
+2. Check that `PUBLIC_DOCS_TOKEN` secret is configured correctly
+3. Check workflow logs in your project repository
+4. Verify the receiver workflow ran successfully in public-docs
+5. Ensure the documentation files are `.md` or `.mdx`
+6. Verify the target path is correct
+
+#### Sync failures
+
+1. Check that token has `repo` scope for repository_dispatch
+2. Verify the branch exists in the source repository
+3. Review workflow run logs in both repositories
+4. Check if build validation failed in public-docs
+
+#### Build validation failures
+
+1. Build and validation are handled by the push to main workflow
+2. Check the update-docs.yml workflow for build errors
+3. Ensure Markdown is valid
+4. Check frontmatter syntax
+5. Verify relative links point to correct locations
+6. Test locally with `npm run start` before pushing
+
 <!-- inputs:start -->
 
 ## Inputs
 
 ### Workflow Call Inputs
 
-| **Input**            | **Description**                                      | **Required** | **Type**    | **Default** |
-| -------------------- | ---------------------------------------------------- | ------------ | ----------- | ----------- |
+| **Input**            | **Description**                                            | **Required** | **Type**    | **Default** |
+| -------------------- | ---------------------------------------------------------- | ------------ | ----------- | ----------- |
 | **`docs_path`**      | Path to documentation in source repository (default: docs) | **false**    | **string**  | `docs`      |
-| **`include_readme`** | Include README.md from repository root               | **false**    | **boolean** | `true`      |
+| **`include_readme`** | Include README.md from repository root                     | **false**    | **boolean** | `true`      |
 
 <!-- inputs:end -->
 <!-- secrets:start -->

@@ -1,0 +1,65 @@
+---
+sidebar_position: 2
+---
+
+# Projects import styles from './projects.module.css'; Welcome to the Hoverkraft
+project ecosystem! We maintain **<%= stats.totalRepos %> open-source projects**
+with a combined **<%= stats.totalStars %> stars** across multiple technologies
+including <%= stats.languagesSummary %>, and more. ## 📊 Quick Stats - **<%=
+stats.totalRepos %>** Active Projects - **<%= stats.totalStars %>** GitHub Stars
+- **<%= stats.languageCount %>** Programming Languages - **100%** Open Source <%
+categories.forEach((category) => { %> ## <%= category.name %>
+
+<div className="{styles.projectsGrid}">
+  <% category.repositories.forEach((repository) => { %>
+  <div className="{styles.projectCard}">
+    <div className="{styles.projectHeader}">
+      <div className="{styles.projectIcon}"><%= repository.icon %></div>
+      <div>
+        <h3 className="{styles.projectTitle}">
+          <a
+            href="<%= repository.htmlUrl %>"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <%= repository.name %>
+          </a>
+        </h3>
+        <p className="{styles.projectMeta}">
+          <%= repository.language %> • ⭐ <%= repository.stars %> • Updated <%=
+          repository.lastUpdated %>
+        </p>
+      </div>
+    </div>
+    <p className="{styles.projectDescription}"><%= repository.description %></p>
+    <div className="{styles.projectFooter}">
+      <% repository.topics.forEach((topic) => { %>
+      <span className="{styles.projectTag}"><%= topic %></span>
+      <% }) %>
+    </div>
+    <div className="{styles.projectLinks}">
+      <a
+        href="<%= repository.htmlUrl %>"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="{styles.projectLink}"
+      >
+        View on GitHub
+      </a>
+      <% if (repository.homepage) { %>
+      <a
+        href="<%= repository.homepage %>"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="{styles.projectLink}"
+      >
+        Live Demo
+      </a>
+      <% } %>
+    </div>
+  </div>
+  <% }) %>
+</div>
+
+<% }) %> --- *This page is automatically generated from our GitHub repositories.
+Last updated: <%= stats.generatedDate %>*

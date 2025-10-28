@@ -77,25 +77,25 @@ jobs:
             io.cp(`documentation-download/*`, `${targetDir}/`);
             core.info(`✅ Documentation injected into ${targetDir}`);
 
-      - name: Commit documentation changes
-        uses: hoverkraft-tech/ci-github-common/actions/create-and-merge-pull-request@b7dd413209df265bef8d7eb0efb117eaabc684c4 # 0.27.0
+      - name: Generate Documentation
+        uses: ./.github/actions/generate-docs
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/create-github-app-token@67018539274d69449ef7c02e8e71183d1719ab42 # v2.1.4
+        id: generate-token
+        with:
+          app-id: ${{ vars.CI_BOT_APP_ID }}
+          private-key: ${{ secrets.CI_BOT_APP_PRIVATE_KEY }}
+
+      - uses: hoverkraft-tech/ci-github-common/actions/create-and-merge-pull-request@b7dd413209df265bef8d7eb0efb117eaabc684c4 # 0.27.0
+        with:
+          github-token: ${{ steps.generate-token.outputs.token }}
+          branch: docs/sync-documentation-${{ steps.validate.outputs.repository }}
+          title: "docs(${{ steps.validate.outputs.repository }}): update action documentation"
+          body: Update action documentation for ${{ steps.validate.outputs.repository }}
           commit-message: |
-            docs: sync documentation from ${{ steps.validate.outputs.repository }}
-
-            Source: ${{ steps.validate.outputs.repository }}
-            Target: ${{ steps.validate.outputs.target-path }}
-
-            Triggered by repository_dispatch from ${{ steps.validate.outputs.repository }}
-          title: "docs: sync documentation from ${{ steps.validate.outputs.repository }}"
-          body: |
-            Automated documentation sync from `${{ steps.validate.outputs.repository }}`.
-
-            - **Source**: ${{ steps.validate.outputs.repository }}
-            - **Target**: ${{ steps.validate.outputs.target-path }}
-            - **Artifact**: ${{ github.event.client_payload.artifact-id }}
-          branch: docs/sync-${{ steps.validate.outputs.repository }}-${{ github.run_id }}
+            docs(${{ steps.validate.outputs.repository }}): update action documentation
 
       - name: Summary
         if: always()
