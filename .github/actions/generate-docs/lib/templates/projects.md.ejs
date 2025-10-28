@@ -4,6 +4,7 @@ sidebar_position: 2
 
 # Projects
 
+import { HoverkraftProjectCard } from '@hoverkraft/docusaurus-theme/components';
 import styles from './projects.module.css';
 
 Welcome to the Hoverkraft project ecosystem! We maintain **<%= stats.totalRepos %> open-source projects**
@@ -21,54 +22,20 @@ including <%= stats.languagesSummary %>, and more.
     
 ## <%= category.name %>
 
-<div className="{styles.projectsGrid}">
+<div className={styles.projectsGrid}>
   <% category.repositories.forEach((repository) => { %>
-  <div className="{styles.projectCard}">
-    <div className="{styles.projectHeader}">
-      <div className="{styles.projectIcon}"><%= repository.icon %></div>
-      <div>
-        <h3 className="{styles.projectTitle}">
-          <a
-            href="<%= repository.htmlUrl %>"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <%= repository.name %>
-          </a>
-        </h3>
-        <p className="{styles.projectMeta}">
-          <%= repository.language %> • ⭐ <%= repository.stars %> • Updated <%=
-          repository.lastUpdated %>
-        </p>
-      </div>
-    </div>
-    <p className="{styles.projectDescription}"><%= repository.description %></p>
-    <div className="{styles.projectFooter}">
-      <% repository.topics.forEach((topic) => { %>
-      <span className="{styles.projectTag}"><%= topic %></span>
-      <% }) %>
-    </div>
-    <div className="{styles.projectLinks}">
-      <a
-        href="<%= repository.htmlUrl %>"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="{styles.projectLink}"
-      >
-        View on GitHub
-      </a>
-      <% if (repository.homepage) { %>
-      <a
-        href="<%= repository.homepage %>"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="{styles.projectLink}"
-      >
-        Live Demo
-      </a>
-      <% } %>
-    </div>
-  </div>
+  <HoverkraftProjectCard
+    icon="<%= repository.icon %>"
+    title="<%= repository.name %>"
+    titleHref="<%= repository.htmlUrl %>"
+    meta="<%= repository.language %> • ⭐ <%= repository.stars %> • Updated <%= repository.lastUpdated %>"
+    description="<%= repository.description %>"
+    tags={[<% repository.topics.forEach((topic, index) => { %>"<%= topic %>"<%= index < repository.topics.length - 1 ? ', ' : '' %><% }) %>]}
+    actions={[
+      { label: "View on GitHub", href: "<%= repository.htmlUrl %>" }<% if (repository.homepage) { %>,
+      { label: "Live Demo", href: "<%= repository.homepage %>" }<% } %>
+    ]}
+  />
   <% }) %>
 </div>
 
