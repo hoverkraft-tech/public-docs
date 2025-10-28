@@ -17,9 +17,7 @@ jobs:
     uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@feat/continuous-intergration-build-secrets # 0.16.0
     secrets:
       build-secrets: |
-        {
-          "ALGOLIA_API_KEY": "${{ secrets.ALGOLIA_API_KEY }}",
-        }
+        ALGOLIA_API_KEY=${{ secrets.ALGOLIA_API_KEY }}
 
     with:
       working-directory: application
