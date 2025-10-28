@@ -9,7 +9,7 @@ import styles from './projects.module.css';
 
 Welcome to the Hoverkraft project ecosystem! We maintain **32 open-source projects**
 with a combined **234 stars** across multiple technologies
-including TypeScript, Makefile, Smarty, Astro, Dockerfile, and more. 
+including Makefile, TypeScript, Smarty, Astro, Dockerfile, and more. 
 
 ## 📊 Quick Stats
 
@@ -111,7 +111,7 @@ including TypeScript, Makefile, Smarty, Astro, Dockerfile, and more.
     icon="⚡"
     title="ci-github-common"
     titleHref="https://github.com/hoverkraft-tech/ci-github-common"
-    meta="Makefile • ⭐ 3 • Updated Oct 28, 2025"
+    meta="Makefile • ⭐ 3 • Updated Oct 29, 2025"
     description="Opinionated GitHub actions and workflows for common continuous integration needs"
     tags={["continuous-integration", "github-actions", "open-source", "workflow"]}
     actions={[
@@ -124,7 +124,7 @@ including TypeScript, Makefile, Smarty, Astro, Dockerfile, and more.
     icon="⚡"
     title="ci-github-nodejs"
     titleHref="https://github.com/hoverkraft-tech/ci-github-nodejs"
-    meta="Makefile • ⭐ 1 • Updated Oct 28, 2025"
+    meta="Makefile • ⭐ 1 • Updated Oct 29, 2025"
     description="Opinionated Github actions and workflows for continuous integration in NodeJs context"
     tags={["continuous-integration", "github-actions", "node", "open-source"]}
     actions={[
@@ -467,4 +467,4 @@ including TypeScript, Makefile, Smarty, Astro, Dockerfile, and more.
 
 ---
 *This page is automatically generated from our GitHub repositories.
-Last updated: 2025-10-28*
+Last updated: 2025-10-29*

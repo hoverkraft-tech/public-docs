@@ -72,4 +72,4 @@ For questions or support:
 
 - Visit [GitHub Discussions](https://github.com/orgs/hoverkraft-tech/discussions)
 - Review project-specific documentation in individual repositories
-- Check the [Projects page](../projects.md) for relevant repositories
+- Check the [Projects page](../projects/index.md) for relevant repositories

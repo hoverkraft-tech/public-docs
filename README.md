@@ -11,7 +11,7 @@ The portal aggregates technical guides, project overviews, and methodology notes
 ## Documentation Areas
 
 - **Methodology** — Delivery practices, CI/CD playbooks, and platform standards (`application/docs/methodology/`)
-- **Projects** — Directory of open-source projects managed by Hoverkraft (`application/docs/projects.md`)
+- **Projects** — Directory of open-source projects managed by Hoverkraft (`application/docs/projects/`)
 - **Internal notes** — Keep internal or implementation-specific documentation concise in this root readme; `application/docs/` is limited to public-facing content.
 
 ## Site Structure
@@ -61,7 +61,7 @@ The documentation system uses a **two-workflow architecture**:
 
 The reusable dispatcher workflow (`sync-docs-dispatcher.yml`) that projects call:
 
-```
+```txt
 ┌─────────────────────────────────────────────────────────┐
 │  Project Repository (e.g., compose-action)              │
 │  ┌────────────────────────────────────────────────────┐ │

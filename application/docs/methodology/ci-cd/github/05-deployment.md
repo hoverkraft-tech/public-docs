@@ -26,8 +26,11 @@ This step makes all runtime artifacts available so review apps and releases can 
 
 Hoverkraft ships two complementary workflows for review environments. Both assume your deployment artifacts are defined through an umbrella Helm chart that aggregates every service in the stack, even when the code lives in a single monorepo.
 
-- `deploy.yml` provisions a review environment when maintainers comment `/deploy` on a pull request. It validates the commenter, bails out if the comment is not `/deploy`, and then calls the reusable deployment logic that targets your Kubernetes namespace (or equivalent platform). The job pulls every container image produced by the PR CI run (web, API, workers, per-architecture variants) and renders the umbrella Helm chart describing the full stack before invoking the deployment script.
-- `clean-deploy.yml` tears down the review environment either when the PR closes/merges or when someone comments `/undeploy`. The workflow mirrors the same validation logic, then invokes the cleanup script to remove the namespace/resources so clusters stay tidy.
+- `deploy.yml` provisions a review environment when maintainers comment `/deploy` on a pull request.
+  It validates the commenter, bails out if the comment is not `/deploy`, and then calls the reusable deployment logic that targets your Kubernetes namespace (or equivalent platform).
+  The job pulls every container image produced by the PR CI run (web, API, workers, per-architecture variants) and renders the umbrella Helm chart describing the full stack before invoking the deployment script.
+- `clean-deploy.yml` tears down the review environment either when the PR closes/merges or when someone comments `/undeploy`.
+  The workflow mirrors the same validation logic, then invokes the cleanup script to remove the namespace/resources so clusters stay tidy.
 
 Key bits from `deploy.yml` worth adapting to your project:
 

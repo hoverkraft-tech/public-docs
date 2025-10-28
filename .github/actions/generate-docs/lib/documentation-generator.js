@@ -1,8 +1,10 @@
+const path = require("path");
 const fs = require("fs").promises;
 const {
   OWNER,
   IGNORED_REPOSITORIES,
   PROJECTS_MD_PATH,
+  HOMEPAGE_PATH,
 } = require("./constants");
 const { CATEGORY_RULES } = require("./rules");
 const {
@@ -63,8 +65,12 @@ class DocumentationGenerator {
     await fs.writeFile(PROJECTS_MD_PATH, markdown, "utf8");
 
     console.log("📄 Generated files:");
-    console.log("   - docs/projects.md");
-    console.log("   - Updated src/pages/index.tsx");
+    console.log(
+      `   - ${path.relative(process.env.GITHUB_WORKSPACE, PROJECTS_MD_PATH)}`
+    );
+    console.log(
+      `   - ${path.relative(process.env.GITHUB_WORKSPACE, HOMEPAGE_PATH)}`
+    );
   }
 
   logSummary(categories) {
