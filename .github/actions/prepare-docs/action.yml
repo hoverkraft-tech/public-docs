@@ -1,0 +1,72 @@
+name: Prepare Documentation Bundle
+description: |
+  Prepare markdown documentation pulled from an artifact before publishing it to the portal.
+
+  Responsibilities:
+
+  - Sanitize incoming file paths.
+  - Copy supporting assets into a sandbox directory.
+  - Inject sync metadata into markdown and MDX files.
+  - Generate a default index page and metadata manifest when missing.
+
+inputs:
+  github-token:
+    description: GitHub token used to resolve workflow run metadata.
+    required: true
+  repository:
+    description: Source repository that produced the documentation.
+    required: true
+  run-id:
+    description: Workflow run identifier associated with the documentation sync.
+    required: true
+  artifact-path:
+    description: Directory where the documentation artifact was downloaded.
+    required: false
+    default: documentation-download
+
+outputs:
+  source-branch:
+    description: Source branch resolved for the documentation run.
+    value: ${{ steps.prepare.outputs.source-branch }}
+  output-path:
+    description: Path to the prepared documentation content.
+    value: ${{ steps.prepare.outputs.output-path }}
+  processed-files:
+    description: List of processed documentation files.
+    value: ${{ steps.prepare.outputs.processed-files }}
+
+runs:
+  using: composite
+  steps:
+    - name: Setup Node.js
+      uses: hoverkraft-tech/ci-github-nodejs/actions/setup-node@6809332ced7647b3d52300a47d65657283f3395e # 0.16.0
+      with:
+        working-directory: ${{ github.action_path }}
+
+    - name: Prepare documentation content
+      id: prepare
+      uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+      env:
+        ARTIFACT_PATH: ${{ inputs.artifact-path }}
+        OUTPUT_PATH: ${{ runner.temp }}/processed-docs-${{ github.run_id }}
+        NODE_PATH: ${{ github.action_path }}/node_modules
+      with:
+        github-token: ${{ inputs.github-token }}
+        script: |
+          const { run } = require('${{ github.action_path }}/prepare-docs.js');
+          const {
+            processedFiles,
+            sourceBranch,
+          } = await run({
+            github,
+            core,
+            io,
+            artifactPath: process.env.ARTIFACT_PATH,
+            outputPath: process.env.OUTPUT_PATH,
+            sourceRepo, 
+            runId
+          });
+
+          core.setOutput('output-path', outputPath);
+          core.setOutput('processed-files', processedFiles);
+          core.setOutput('source-branch', sourceBranch);

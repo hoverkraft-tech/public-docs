@@ -10,7 +10,7 @@ Set up your repository structure for CI/CD following Hoverkraft conventions. The
 
 Example baseline (single application):
 
-```
+```txt
 your-repo/
 ├── .github/
 │   ├── dependabot.yml

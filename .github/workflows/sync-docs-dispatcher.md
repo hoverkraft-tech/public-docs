@@ -22,7 +22,8 @@
 ## Overview
 
 Reusable workflow that bundles project docs and triggers public portal sync
-- Collects README and docs markdown, adds sync metadata, and uploads a short-lived artifact
+
+- Collects readme and docs Markdown, adds sync metadata, and uploads a short-lived artifact
 - Dispatches a repository event so hoverkraft-tech/public-docs can ingest and publish updates
 
 <!-- overview:end -->
@@ -97,7 +98,7 @@ jobs:
 
 ## Troubleshooting
 
-#### Documentation not appearing
+### Documentation not appearing
 
 1. Verify the workflow is added to your project repository
 2. Check that `PUBLIC_DOCS_TOKEN` secret is configured correctly
@@ -106,14 +107,14 @@ jobs:
 5. Ensure the documentation files are `.md` or `.mdx`
 6. Verify the target path is correct
 
-#### Sync failures
+### Sync failures
 
 1. Check that token has `repo` scope for repository_dispatch
 2. Verify the branch exists in the source repository
 3. Review workflow run logs in both repositories
 4. Check if build validation failed in public-docs
 
-#### Build validation failures
+### Build validation failures
 
 1. Build and validation are handled by the push to main workflow
 2. Check the update-docs.yml workflow for build errors
@@ -128,12 +129,12 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**   | **Description**                                          | **Required** | **Type**   | **Default** |
-| ----------- | -------------------------------------------------------- | ------------ | ---------- | ----------- |
-| **`paths`** | Path(s) to documentation in source repo (default: docs). | **true**     | **string** | -           |
-|             | Accepts newline-separated list.                          |              |            |             |
-|             | Accepts both files and directories.                      |              |            |             |
-|             | Accepts glob patterns.                                   |              |            |             |
+| **Input**   | **Description**                                                | **Required** | **Type**   | **Default** |
+| ----------- | -------------------------------------------------------------- | ------------ | ---------- | ----------- |
+| **`paths`** | Path(s) to documentation in source repository (default: docs). | **true**     | **string** | -           |
+|             | Accepts newline-separated list.                                |              |            |             |
+|             | Accepts both files and directories.                            |              |            |             |
+|             | Accepts glob patterns.                                         |              |            |             |
 
 <!-- inputs:end -->
 <!-- secrets:start -->

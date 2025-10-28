@@ -78,17 +78,18 @@ updates:
 - Keeps npm packages, GitHub Actions, Dev Containers, and Docker images current
 - Provides a template you can adapt to your stack while staying consistent with the example project
 
+```yml title=".github/workflows/stale.yml"
 permissions:
-issues: write
-pull-requests: write
+  issues: write
+  pull-requests: write
 
 jobs:
-main:
-uses: hoverkraft-tech/ci-github-common/.github/workflows/stale.yml@0.26.0
-
-````
+  main:
+    uses: hoverkraft-tech/ci-github-common/.github/workflows/stale.yml@0.26.0
+```
 
 **What this does:**
+
 - Runs daily at midnight
 - Marks issues/PRs as stale after no activity
 - Closes them if they remain inactive
@@ -128,7 +129,7 @@ jobs:
     with:
       manual-commit-ref: ${{ inputs.manual-commit-ref }}
       manual-base-ref: ${{ inputs.manual-base-ref }}
-````
+```
 
 **What this does:**
 

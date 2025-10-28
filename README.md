@@ -61,7 +61,7 @@ The documentation system uses a **two-workflow architecture**:
 
 The reusable dispatcher workflow (`sync-docs-dispatcher.yml`) that projects call:
 
-```
+```txt
 ┌─────────────────────────────────────────────────────────┐
 │  Project Repository (e.g., compose-action)              │
 │  ┌────────────────────────────────────────────────────┐ │
