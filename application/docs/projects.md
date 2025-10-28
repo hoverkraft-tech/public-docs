@@ -2,11 +2,24 @@
 sidebar_position: 2
 ---
 
-# Projects import styles from './projects.module.css'; Welcome to the Hoverkraft
-project ecosystem! We maintain **32 open-source projects**
+# Projects
+
+import styles from './projects.module.css';
+
+Welcome to the Hoverkraft project ecosystem! We maintain **32 open-source projects**
 with a combined **234 stars** across multiple technologies
-including TypeScript, Smarty, Astro, Makefile, Dockerfile, and more. ## 📊 Quick Stats - **32** Active Projects - **234** GitHub Stars
-- **11** Programming Languages - **100%** Open Source  ## Other
+including TypeScript, Smarty, Astro, Makefile, Dockerfile, and more. 
+
+## 📊 Quick Stats
+
+- **32** Active Projects
+- **234** GitHub Stars
+- **11** Programming Languages
+- **100%** Open Source
+
+
+    
+## Other
 
 <div className="{styles.projectsGrid}">
   
@@ -273,7 +286,9 @@ including TypeScript, Smarty, Astro, Makefile, Dockerfile, and more. ## 📊 Qui
   
 </div>
 
- ## GitHub Actions and Reusable Workflows
+
+    
+## GitHub Actions and Reusable Workflows
 
 <div className="{styles.projectsGrid}">
   
@@ -726,7 +741,9 @@ including TypeScript, Smarty, Astro, Makefile, Dockerfile, and more. ## 📊 Qui
   
 </div>
 
- ## CI/CD Tools
+
+    
+## CI/CD Tools
 
 <div className="{styles.projectsGrid}">
   
@@ -820,7 +837,9 @@ including TypeScript, Smarty, Astro, Makefile, Dockerfile, and more. ## 📊 Qui
   
 </div>
 
- ## Infrastructure &amp; DevOps
+
+    
+## Infrastructure &amp; DevOps
 
 <div className="{styles.projectsGrid}">
   
@@ -925,7 +944,9 @@ including TypeScript, Smarty, Astro, Makefile, Dockerfile, and more. ## 📊 Qui
   
 </div>
 
- ## Container &amp; Kubernetes
+
+    
+## Container &amp; Kubernetes
 
 <div className="{styles.projectsGrid}">
   
@@ -1404,7 +1425,9 @@ including TypeScript, Smarty, Astro, Makefile, Dockerfile, and more. ## 📊 Qui
   
 </div>
 
- ## Development Tools
+
+    
+## Development Tools
 
 <div className="{styles.projectsGrid}">
   
@@ -1537,5 +1560,8 @@ including TypeScript, Smarty, Astro, Makefile, Dockerfile, and more. ## 📊 Qui
   
 </div>
 
- --- *This page is automatically generated from our GitHub repositories.
+
+
+---
+*This page is automatically generated from our GitHub repositories.
 Last updated: 2025-10-28*
