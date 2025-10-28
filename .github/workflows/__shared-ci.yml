@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   continuous-integration:
-    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@feat/continuous-intergration-build-secrets # 0.16.0
+    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@4d7c1ed87c18493fc4c2dbae4dbde46cf251c9a7 # 0.16.1
     secrets:
       build-secrets: |
         ALGOLIA_API_KEY=${{ secrets.ALGOLIA_API_KEY }}

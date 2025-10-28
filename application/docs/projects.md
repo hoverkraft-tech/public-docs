@@ -2,11 +2,24 @@
 sidebar_position: 2
 ---
 
-# Projects import styles from './projects.module.css'; Welcome to the Hoverkraft
-project ecosystem! We maintain **32 open-source projects**
+# Projects
+
+import styles from './projects.module.css';
+
+Welcome to the Hoverkraft project ecosystem! We maintain **32 open-source projects**
 with a combined **234 stars** across multiple technologies
-including TypeScript, Smarty, Astro, Makefile, Dockerfile, and more. ## 📊 Quick Stats - **32** Active Projects - **234** GitHub Stars
-- **11** Programming Languages - **100%** Open Source  ## Other
+including Makefile, TypeScript, Smarty, Astro, Dockerfile, and more. 
+
+## 📊 Quick Stats
+
+- **32** Active Projects
+- **234** GitHub Stars
+- **11** Programming Languages
+- **100%** Open Source
+
+
+    
+## Other
 
 <div className="{styles.projectsGrid}">
   
@@ -273,9 +286,63 @@ including TypeScript, Smarty, Astro, Makefile, Dockerfile, and more. ## 📊 Qui
   
 </div>
 
- ## GitHub Actions and Reusable Workflows
+
+    
+## GitHub Actions and Reusable Workflows
 
 <div className="{styles.projectsGrid}">
+  
+  <div className="{styles.projectCard}">
+    <div className="{styles.projectHeader}">
+      <div className="{styles.projectIcon}">⚡</div>
+      <div>
+        <h3 className="{styles.projectTitle}">
+          <a
+            href="https://github.com/hoverkraft-tech/ci-github-nodejs"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            ci-github-nodejs
+          </a>
+        </h3>
+        <p className="{styles.projectMeta}">
+          Makefile • ⭐ 1 • Updated Oct 28, 2025
+        </p>
+      </div>
+    </div>
+    <p className="{styles.projectDescription}">Opinionated Github actions and workflows for continuous integration in NodeJs context</p>
+    <div className="{styles.projectFooter}">
+      
+      <span className="{styles.projectTag}">continuous-integration</span>
+      
+      <span className="{styles.projectTag}">github-actions</span>
+      
+      <span className="{styles.projectTag}">node</span>
+      
+      <span className="{styles.projectTag}">open-source</span>
+      
+    </div>
+    <div className="{styles.projectLinks}">
+      <a
+        href="https://github.com/hoverkraft-tech/ci-github-nodejs"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="{styles.projectLink}"
+      >
+        View on GitHub
+      </a>
+      
+      <a
+        href="https://hoverkraft-tech.github.io/ci-github-nodejs/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="{styles.projectLink}"
+      >
+        Live Demo
+      </a>
+      
+    </div>
+  </div>
   
   <div className="{styles.projectCard}">
     <div className="{styles.projectHeader}">
@@ -423,58 +490,6 @@ including TypeScript, Smarty, Astro, Makefile, Dockerfile, and more. ## 📊 Qui
       
       <a
         href="https://hoverkraft-tech.github.io/ci-github-common/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="{styles.projectLink}"
-      >
-        Live Demo
-      </a>
-      
-    </div>
-  </div>
-  
-  <div className="{styles.projectCard}">
-    <div className="{styles.projectHeader}">
-      <div className="{styles.projectIcon}">⚡</div>
-      <div>
-        <h3 className="{styles.projectTitle}">
-          <a
-            href="https://github.com/hoverkraft-tech/ci-github-nodejs"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            ci-github-nodejs
-          </a>
-        </h3>
-        <p className="{styles.projectMeta}">
-          Makefile • ⭐ 1 • Updated Oct 24, 2025
-        </p>
-      </div>
-    </div>
-    <p className="{styles.projectDescription}">Opinionated Github actions and workflows for continuous integration in NodeJs context</p>
-    <div className="{styles.projectFooter}">
-      
-      <span className="{styles.projectTag}">continuous-integration</span>
-      
-      <span className="{styles.projectTag}">github-actions</span>
-      
-      <span className="{styles.projectTag}">node</span>
-      
-      <span className="{styles.projectTag}">open-source</span>
-      
-    </div>
-    <div className="{styles.projectLinks}">
-      <a
-        href="https://github.com/hoverkraft-tech/ci-github-nodejs"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="{styles.projectLink}"
-      >
-        View on GitHub
-      </a>
-      
-      <a
-        href="https://hoverkraft-tech.github.io/ci-github-nodejs/"
         target="_blank"
         rel="noopener noreferrer"
         className="{styles.projectLink}"
@@ -726,7 +741,9 @@ including TypeScript, Smarty, Astro, Makefile, Dockerfile, and more. ## 📊 Qui
   
 </div>
 
- ## CI/CD Tools
+
+    
+## CI/CD Tools
 
 <div className="{styles.projectsGrid}">
   
@@ -820,7 +837,9 @@ including TypeScript, Smarty, Astro, Makefile, Dockerfile, and more. ## 📊 Qui
   
 </div>
 
- ## Infrastructure &amp; DevOps
+
+    
+## Infrastructure &amp; DevOps
 
 <div className="{styles.projectsGrid}">
   
@@ -925,7 +944,9 @@ including TypeScript, Smarty, Astro, Makefile, Dockerfile, and more. ## 📊 Qui
   
 </div>
 
- ## Container &amp; Kubernetes
+
+    
+## Container &amp; Kubernetes
 
 <div className="{styles.projectsGrid}">
   
@@ -1404,7 +1425,9 @@ including TypeScript, Smarty, Astro, Makefile, Dockerfile, and more. ## 📊 Qui
   
 </div>
 
- ## Development Tools
+
+    
+## Development Tools
 
 <div className="{styles.projectsGrid}">
   
@@ -1537,5 +1560,8 @@ including TypeScript, Smarty, Astro, Makefile, Dockerfile, and more. ## 📊 Qui
   
 </div>
 
- --- *This page is automatically generated from our GitHub repositories.
+
+
+---
+*This page is automatically generated from our GitHub repositories.
 Last updated: 2025-10-28*

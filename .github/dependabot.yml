@@ -3,7 +3,7 @@ version: 2
 updates:
   - package-ecosystem: "npm"
     open-pull-requests-limit: 20
-    directories: |
+    directories:
       - "/application"
       - "/.github/actions/**/"
     versioning-strategy: increase
