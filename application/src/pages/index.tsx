@@ -13,9 +13,9 @@ function HeroSection() {
       }
       description="Your gateway to open-source innovation. Discover, contribute, and build amazing things with our developer-first ecosystem."
       supportingVisual={
-        <img 
-          src="/img/home.png" 
-          alt="Hoverkraft Platform" 
+        <img
+          src="/img/home.png"
+          alt="Hoverkraft Platform"
           style={{ maxWidth: '100%', height: 'auto' }}
         />
       }
@@ -73,6 +73,38 @@ function ValuePropsSection() {
 }
 
 function ProjectsSection() {
+  const projects = [
+    {
+      icon: '⚡',
+      name: 'compose-action',
+      url: 'https://github.com/hoverkraft-tech/compose-action',
+      stars: 190,
+      language: 'TypeScript',
+      description: 'This action runs your docker-compose file and clean up before action finished. Available on GitHub Marketplace.',
+      tags: ['github-actions', 'docker-compose', 'ci'],
+      accent: 'primary',
+    },
+    {
+      icon: '🔧',
+      name: 'bitnami-depreciation',
+      url: 'https://github.com/hoverkraft-tech/bitnami-depreciation',
+      stars: 6,
+      language: 'Shell',
+      description: 'Help you to survive the Bitnami deprecation on 2025-08-28. Migration tools and guides for affected charts.',
+      tags: ['bitnami', 'helm', 'kubernetes'],
+      accent: 'neutral',
+    },
+    {
+      icon: '⚡',
+      name: 'ci-github-container',
+      url: 'https://github.com/hoverkraft-tech/ci-github-container',
+      stars: 4,
+      language: 'Smarty',
+      description: 'Opinionated GitHub Actions and workflows for continuous integration in container (OCI) context.',
+      tags: ['containers', 'github-actions', 'ci'],
+    },
+  ];
+
   return (
     <section style={{ padding: '4rem 0' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1rem' }}>
@@ -82,40 +114,23 @@ function ProjectsSection() {
             Discover a curated collection of tools, libraries, and frameworks designed to accelerate your development workflow.
           </p>
         </div>
-        
+
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', marginBottom: '3rem' }}>
-          <HoverkraftProjectCard
-            icon="⚡"
-            title="compose-action"
-            titleHref="https://github.com/hoverkraft-tech/compose-action"
-            titleTarget="_blank"
-            meta="⭐ 190 • TypeScript"
-            description="This action runs your docker-compose file and clean up before action finished. Available on GitHub Marketplace."
-            tags={['github-actions', 'docker-compose', 'ci']}
-            accent="primary"
-          />
-
-          <HoverkraftProjectCard
-            icon="🔧"
-            title="bitnami-depreciation"
-            titleHref="https://github.com/hoverkraft-tech/bitnami-depreciation"
-            titleTarget="_blank"
-            meta="⭐ 6 • Shell"
-            description="Help you to survive the Bitnami deprecation on 2025-08-28. Migration tools and guides for affected charts."
-            tags={['bitnami', 'helm', 'kubernetes']}
-            accent="neutral"
-          />
-
-          <HoverkraftProjectCard
-            icon="⚡"
-            title="ci-github-container"
-            titleHref="https://github.com/hoverkraft-tech/ci-github-container"
-            titleTarget="_blank"
-            meta="⭐ 4 • Smarty"
-            description="Opinionated GitHub Actions and workflows for continuous integration in container (OCI) context."
-            tags={['containers', 'github-actions', 'ci']}
-            accent="primary"
-          />
+          {
+            projects.map((project, index) => (
+              <HoverkraftProjectCard
+                key={project.name}
+                icon={project.icon}
+                title={project.name}
+                titleHref={project.url}
+                titleTarget="_blank"
+                meta={`⭐ ${project.stars} • ${project.language}`}
+                description={project.description}
+                tags={project.tags}
+                accent={index % 2 === 0 ? 'primary' : 'neutral'}
+              />
+            ))
+          }
         </div>
 
         <div style={{ textAlign: 'center' }}>

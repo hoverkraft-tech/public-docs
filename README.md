@@ -34,14 +34,11 @@ Generated files in `application/build/` are artifacts only—never commit manual
 
 `application/docs/` is published publicly. Avoid adding internal runbooks or sensitive implementation notes there—document those at the repository root instead.
 
-## Content Pipeline
+## Documentation generation
 
-The documentation build pulls repository information through scheduled jobs and manual syncs:
+The documentation build pulls repository information through scheduled jobs and manual syncs.
 
-- Repository topics and descriptions feed project listings.
-- Published readmes and docs are mirrored into portal sections.
-- Social preview images are reused as hero assets where available.
-- Metadata updates require a rebuild (`make build`) to appear in the published site.
+**For more details, see the [documentation generation action](.github/actions/generate-docs/README.md).**
 
 ## 🛠️ Documentation Aggregation System
 
@@ -117,120 +114,7 @@ source_path: docs/usage.md
 source_branch: main
 last_synced: 2024-01-15T10:30:00.000Z
 ---
-
-# Usage Guide
-
-...
 ```
-
-## 🔄 Adding Documentation from a Project
-
-To add documentation from a new project:
-
-1. **Ensure documentation exists in the project repository**:
-
-   ```
-   your-project/
-   └── docs/
-       ├── getting-started.md
-       ├── usage.md
-       └── api.md
-   ```
-
-2. **Add workflow to your project repository** (`.github/workflows/push-docs.yml`):
-
-   ```yaml
-   name: Push Documentation to Portal
-
-   on:
-     push:
-       branches:
-         - main
-       paths:
-         - "docs/**"
-         - "README.md"
-     workflow_dispatch:
-
-   jobs:
-     push-docs:
-       uses: hoverkraft-tech/public-docs/.github/workflows/sync-docs-dispatcher.yml@main
-       with:
-         source_repo: "your-project"
-         docs_path: "docs" # Optional, default: 'docs'
-         include_readme: true # Optional, default: true
-       secrets:
-         PUBLIC_DOCS_TOKEN: ${{ secrets.PUBLIC_DOCS_TOKEN }}
-   ```
-
-   **Note**: The target path is automatically set to `projects/{source_repo}` and syncs from the default branch.
-
-3. **Add secret to your project repository**:
-   - Add `PUBLIC_DOCS_TOKEN` with `repo` scope
-   - Settings → Secrets → Actions → New repository secret
-
-4. **Documentation will sync immediately**:
-   - On every commit to `docs/**` or `README.md`
-   - On manual workflow dispatch
-   - Auto-merged PR triggers build and deployment
-
-### Best Practices
-
-#### For Project Maintainers
-
-1. **Keep documentation with code**: Store docs in the same repository as your code
-2. **Use standard structure**: Place documentation in a `docs/` directory
-3. **Write in Markdown**: Use `.md` or `.mdx` files
-4. **Add frontmatter**: Include metadata like title, description, sidebar position
-5. **Keep readme updated**: The README.md is automatically included
-
-#### For Documentation Portal
-
-1. **Use descriptive paths**: Target paths should be clear and organized
-2. **Monitor sync results**: Check workflow logs for any issues
-3. **Maintain consistency**: Use consistent naming conventions across projects
-
-### Troubleshooting
-
-#### Documentation not appearing
-
-1. Verify the workflow is added to your project repository
-2. Check that `PUBLIC_DOCS_TOKEN` secret is configured correctly
-3. Check workflow logs in your project repository
-4. Verify the receiver workflow ran successfully in public-docs
-5. Ensure the documentation files are `.md` or `.mdx`
-6. Verify the target path is correct
-
-#### Sync failures
-
-1. Check that token has `repo` scope for repository_dispatch
-2. Verify the branch exists in the source repository
-3. Review workflow run logs in both repositories
-4. Check if build validation failed in public-docs
-
-#### Build validation failures
-
-1. Build and validation are handled by the push to main workflow
-2. Check the update-docs.yml workflow for build errors
-3. Ensure Markdown is valid
-4. Check frontmatter syntax
-5. Verify relative links point to correct locations
-6. Test locally with `npm run start` before pushing
-
-### Generating Project Metadata
-
-```bash
-# Generate project metadata pages
-npm run generate-docs
-```
-
-Features:
-
-- Scans all repositories in the organization
-- Categorizes projects by type
-- Generates the projects overview page
-- Updates homepage with featured projects
-
-See [.github/README.md](.github/README.md) for implementation details.
 
 ## Development Workflow
 

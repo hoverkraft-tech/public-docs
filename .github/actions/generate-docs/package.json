@@ -1,0 +1,9 @@
+{
+  "name": "generate-docs-action",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^3.1.10"
+  }
+}
