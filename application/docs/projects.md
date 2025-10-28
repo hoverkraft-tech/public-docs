@@ -8,7 +8,7 @@ import styles from './projects.module.css';
 
 Welcome to the Hoverkraft project ecosystem! We maintain **32 open-source projects**
 with a combined **234 stars** across multiple technologies
-including Makefile, TypeScript, Smarty, Astro, Dockerfile, and more. 
+including TypeScript, Makefile, Smarty, Astro, Dockerfile, and more. 
 
 ## 📊 Quick Stats
 
@@ -298,6 +298,58 @@ including Makefile, TypeScript, Smarty, Astro, Dockerfile, and more.
       <div>
         <h3 className="{styles.projectTitle}">
           <a
+            href="https://github.com/hoverkraft-tech/ci-github-common"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            ci-github-common
+          </a>
+        </h3>
+        <p className="{styles.projectMeta}">
+          Makefile • ⭐ 3 • Updated Oct 28, 2025
+        </p>
+      </div>
+    </div>
+    <p className="{styles.projectDescription}">Opinionated GitHub actions and workflows for common continuous integration needs</p>
+    <div className="{styles.projectFooter}">
+      
+      <span className="{styles.projectTag}">continuous-integration</span>
+      
+      <span className="{styles.projectTag}">github-actions</span>
+      
+      <span className="{styles.projectTag}">open-source</span>
+      
+      <span className="{styles.projectTag}">workflow</span>
+      
+    </div>
+    <div className="{styles.projectLinks}">
+      <a
+        href="https://github.com/hoverkraft-tech/ci-github-common"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="{styles.projectLink}"
+      >
+        View on GitHub
+      </a>
+      
+      <a
+        href="https://hoverkraft-tech.github.io/ci-github-common/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="{styles.projectLink}"
+      >
+        Live Demo
+      </a>
+      
+    </div>
+  </div>
+  
+  <div className="{styles.projectCard}">
+    <div className="{styles.projectHeader}">
+      <div className="{styles.projectIcon}">⚡</div>
+      <div>
+        <h3 className="{styles.projectTitle}">
+          <a
             href="https://github.com/hoverkraft-tech/ci-github-nodejs"
             target="_blank"
             rel="noopener noreferrer"
@@ -438,58 +490,6 @@ including Makefile, TypeScript, Smarty, Astro, Dockerfile, and more.
       
       <a
         href="https://hoverkraft-tech.github.io/ci-dokumentor/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="{styles.projectLink}"
-      >
-        Live Demo
-      </a>
-      
-    </div>
-  </div>
-  
-  <div className="{styles.projectCard}">
-    <div className="{styles.projectHeader}">
-      <div className="{styles.projectIcon}">⚡</div>
-      <div>
-        <h3 className="{styles.projectTitle}">
-          <a
-            href="https://github.com/hoverkraft-tech/ci-github-common"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            ci-github-common
-          </a>
-        </h3>
-        <p className="{styles.projectMeta}">
-          Makefile • ⭐ 3 • Updated Oct 27, 2025
-        </p>
-      </div>
-    </div>
-    <p className="{styles.projectDescription}">Opinionated GitHub actions and workflows for common continuous integration needs</p>
-    <div className="{styles.projectFooter}">
-      
-      <span className="{styles.projectTag}">continuous-integration</span>
-      
-      <span className="{styles.projectTag}">github-actions</span>
-      
-      <span className="{styles.projectTag}">open-source</span>
-      
-      <span className="{styles.projectTag}">workflow</span>
-      
-    </div>
-    <div className="{styles.projectLinks}">
-      <a
-        href="https://github.com/hoverkraft-tech/ci-github-common"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="{styles.projectLink}"
-      >
-        View on GitHub
-      </a>
-      
-      <a
-        href="https://hoverkraft-tech.github.io/ci-github-common/"
         target="_blank"
         rel="noopener noreferrer"
         className="{styles.projectLink}"
