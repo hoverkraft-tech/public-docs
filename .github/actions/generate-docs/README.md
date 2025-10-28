@@ -3,7 +3,7 @@
 # GitHub Action: Generate Documentation
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/3813feb5f8cb3e5d1735128fdc6184592786dd429a58c631d604532ba8fbdedb/hoverkraft-tech/public-docs" width="60px" align="center" alt="Generate Documentation" />
+  <img src="https://opengraph.githubassets.com/79519964a7036213980247c494eca7e0471c882cb52d78237d28e9a57901b2d7/hoverkraft-tech/public-docs" width="60px" align="center" alt="Generate Documentation" />
 </div>
 
 ---
@@ -37,7 +37,7 @@ Features:
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/public-docs/.github/actions/generate-docs@324301664aab7911ec8964b5d6510bcee8775afc # main
+- uses: hoverkraft-tech/public-docs/.github/actions/generate-docs@28c98a4b7eda20c80e9ed488f87dc1ed381476f5 # main
   with:
     # GitHub token used to authenticate repository queries.
     # This input is required.

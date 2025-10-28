@@ -3,12 +3,10 @@ sidebar_position: 2
 ---
 
 # Projects import styles from './projects.module.css'; Welcome to the Hoverkraft
-
 project ecosystem! We maintain **32 open-source projects**
 with a combined **234 stars** across multiple technologies
-including Smarty, TypeScript, Astro, Makefile, Dockerfile, and more. ## 📊 Quick Stats - **32** Active Projects - **234** GitHub Stars
-
-- **11** Programming Languages - **100%** Open Source ## Other
+including TypeScript, Smarty, Astro, Makefile, Dockerfile, and more. ## 📊 Quick Stats - **32** Active Projects - **234** GitHub Stars
+- **11** Programming Languages - **100%** Open Source  ## Other
 
 <div className="{styles.projectsGrid}">
   
@@ -26,12 +24,18 @@ including Smarty, TypeScript, Astro, Makefile, Dockerfile, and more. ## 📊 Qui
           </a>
         </h3>
         <p className="{styles.projectMeta}">
-          TypeScript • ⭐ 0 • Updated Oct 27, 2025
+          TypeScript • ⭐ 0 • Updated Oct 28, 2025
         </p>
       </div>
     </div>
     <p className="{styles.projectDescription}">Hoverkraft theme for Docusaurus</p>
     <div className="{styles.projectFooter}">
+      
+      <span className="{styles.projectTag}">branding</span>
+      
+      <span className="{styles.projectTag}">docusaurus-theme</span>
+      
+      <span className="{styles.projectTag}">hoverkraft-tech</span>
       
     </div>
     <div className="{styles.projectLinks}">
@@ -261,7 +265,7 @@ including Smarty, TypeScript, Astro, Makefile, Dockerfile, and more. ## 📊 Qui
         rel="noopener noreferrer"
         className="{styles.projectLink}"
       >
-        Documentation
+        Live Demo
       </a>
       
     </div>
@@ -269,7 +273,7 @@ including Smarty, TypeScript, Astro, Makefile, Dockerfile, and more. ## 📊 Qui
   
 </div>
 
-## GitHub Actions and Reusable Workflows
+ ## GitHub Actions and Reusable Workflows
 
 <div className="{styles.projectsGrid}">
   
@@ -722,7 +726,7 @@ including Smarty, TypeScript, Astro, Makefile, Dockerfile, and more. ## 📊 Qui
   
 </div>
 
-## CI/CD Tools
+ ## CI/CD Tools
 
 <div className="{styles.projectsGrid}">
   
@@ -816,7 +820,7 @@ including Smarty, TypeScript, Astro, Makefile, Dockerfile, and more. ## 📊 Qui
   
 </div>
 
-## Infrastructure &amp; DevOps
+ ## Infrastructure &amp; DevOps
 
 <div className="{styles.projectsGrid}">
   
@@ -921,7 +925,7 @@ including Smarty, TypeScript, Astro, Makefile, Dockerfile, and more. ## 📊 Qui
   
 </div>
 
-## Container &amp; Kubernetes
+ ## Container &amp; Kubernetes
 
 <div className="{styles.projectsGrid}">
   
@@ -1400,7 +1404,7 @@ including Smarty, TypeScript, Astro, Makefile, Dockerfile, and more. ## 📊 Qui
   
 </div>
 
-## Development Tools
+ ## Development Tools
 
 <div className="{styles.projectsGrid}">
   
@@ -1533,5 +1537,5 @@ including Smarty, TypeScript, Astro, Makefile, Dockerfile, and more. ## 📊 Qui
   
 </div>
 
---- _This page is automatically generated from our GitHub repositories.
-Last updated: 2025-10-28_
+ --- *This page is automatically generated from our GitHub repositories.
+Last updated: 2025-10-28*
