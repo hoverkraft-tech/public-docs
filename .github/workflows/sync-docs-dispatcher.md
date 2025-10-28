@@ -3,7 +3,7 @@
 # GitHub Reusable Workflow: Push Documentation Helper
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/ee8743035f4d97b88b8e03937037b13ca280a32c2398978b76e268b0fa4cf3b1/hoverkraft-tech/public-docs" width="60px" align="center" alt="Push Documentation Helper" />
+  <img src="https://opengraph.githubassets.com/e91ff35f436b055a5c3a434ec051e2205a93142e4af5298c889d754d8910fd29/hoverkraft-tech/public-docs" width="60px" align="center" alt="Push Documentation Helper" />
 </div>
 
 ---
@@ -22,8 +22,7 @@
 ## Overview
 
 Reusable workflow that bundles project docs and triggers public portal sync
-
-- Collects readme and docs Markdown, adds sync metadata, and uploads a short-lived artifact
+- Collects README and docs markdown, adds sync metadata, and uploads a short-lived artifact
 - Dispatches a repository event so hoverkraft-tech/public-docs can ingest and publish updates
 
 <!-- overview:end -->
@@ -63,14 +62,19 @@ on:
       - main
 jobs:
   sync-docs-dispatcher:
-    uses: hoverkraft-tech/public-docs/.github/workflows/sync-docs-dispatcher.yml@4ab9c098ba58ed7f19ae6e879516c04ed5379d1a # copilot/centralize-project-documentation
+    uses: hoverkraft-tech/public-docs/.github/workflows/sync-docs-dispatcher.yml@37b18f792d08a252576c44bfdab695c0db656028 # main
     secrets:
       # GitHub token with write access to trigger repository_dispatch in public-docs
       # This input is required.
-      PUBLIC_DOCS_TOKEN: ""
+      github-token: ""
     with:
-      # Path to documentation in source repo (default: docs)
-      paths: docs
+      # Path(s) to documentation in source repo (default: docs).
+      # Accepts newline-separated list.
+      # Accepts both files and directories.
+      # Accepts glob patterns.
+      #
+      # This input is required.
+      paths: ""
 ```
 
 <!-- usage:end -->
@@ -124,19 +128,21 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**            | **Description**                                            | **Required** | **Type**    | **Default** |
-| -------------------- | ---------------------------------------------------------- | ------------ | ----------- | ----------- |
-| **`docs_path`**      | Path to documentation in source repository (default: docs) | **false**    | **string**  | `docs`      |
-| **`include_readme`** | Include README.md from repository root                     | **false**    | **boolean** | `true`      |
+| **Input**   | **Description**                                          | **Required** | **Type**   | **Default** |
+| ----------- | -------------------------------------------------------- | ------------ | ---------- | ----------- |
+| **`paths`** | Path(s) to documentation in source repo (default: docs). | **true**     | **string** | -           |
+|             | Accepts newline-separated list.                          |              |            |             |
+|             | Accepts both files and directories.                      |              |            |             |
+|             | Accepts glob patterns.                                   |              |            |             |
 
 <!-- inputs:end -->
 <!-- secrets:start -->
 
 ## Secrets
 
-| **Secret**              | **Description**                                                              | **Required** |
-| ----------------------- | ---------------------------------------------------------------------------- | ------------ |
-| **`PUBLIC_DOCS_TOKEN`** | GitHub token with write access to trigger repository_dispatch in public-docs | **true**     |
+| **Secret**         | **Description**                                                              | **Required** |
+| ------------------ | ---------------------------------------------------------------------------- | ------------ |
+| **`github-token`** | GitHub token with write access to trigger repository_dispatch in public-docs | **true**     |
 
 <!-- secrets:end -->
 <!-- outputs:start -->
