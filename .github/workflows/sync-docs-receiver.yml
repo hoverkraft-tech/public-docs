@@ -12,6 +12,11 @@ jobs:
   sync-documentation:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+
       - name: Validate input
         id: validate
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
@@ -162,12 +167,12 @@ jobs:
               .addHeading('Documentation Sync Summary', 2)
               .addRaw('\n')
               .addList([
-                `**Source Repository**: ${process.env.SOURCE_REPO}`,
-                `**Source Branch**: ${process.env.SOURCE_BRANCH}`,
-                `**Target Path**: ${process.env.TARGET_PATH}`,
-                `**Processed file(s)**: ${files.length}`,
-                `**Artifact**: ${process.env.ARTIFACT_ID}`,
-                `**Status**: ${statusText}`
+                `Source Repository: ${process.env.SOURCE_REPO}`,
+                `Source Branch: ${process.env.SOURCE_BRANCH}`,
+                `Target Path: ${process.env.TARGET_PATH}`,
+                `Processed file(s): ${files.length}`,
+                `Artifact: ${process.env.ARTIFACT_ID}`,
+                `Status: ${statusText}`
               ])
               .addRaw('\n')
               .addRaw(filesSummary)
