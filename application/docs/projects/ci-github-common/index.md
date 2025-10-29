@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-common
 source_path: README.md
 source_branch: main
-source_run_id: 18910591307
-last_synced: 2025-10-29T14:04:49.088Z
+source_run_id: 18916311166
+last_synced: 2025-10-29T17:14:01.305Z
 ---
 
 # Continuous Integration - GitHub - Common
@@ -27,34 +27,34 @@ Opinionated GitHub Actions and reusable workflows for foundational continuous-in
 
 ### Workflow & repository automation
 
-- [Checkout](actions/checkout/README.md) — event-aware drop-in replacement for `actions/checkout` that supports issue comment triggers.
-- [Create and merge pull request](actions/create-and-merge-pull-request/README.md) — opens a pull request, rebases, and merges it with the GitHub Actions bot identity.
-- [Create or update comment](actions/create-or-update-comment/README.md) — adds or updates comments on issues and pull requests idempotently.
-- [Get GitHub Actions bot user](actions/get-github-actions-bot-user/README.md) — retrieves the profile information for the GitHub Actions bot.
-- [Get issue number](actions/get-issue-number/README.md) — extracts the relevant issue number from the current workflow context.
+- [Checkout](actions/checkout/index.md) — event-aware drop-in replacement for `actions/checkout` that supports issue comment triggers.
+- [Create and merge pull request](actions/create-and-merge-pull-request/index.md) — opens a pull request, rebases, and merges it with the GitHub Actions bot identity.
+- [Create or update comment](actions/create-or-update-comment/index.md) — adds or updates comments on issues and pull requests idempotently.
+- [Get GitHub Actions bot user](actions/get-github-actions-bot-user/index.md) — retrieves the profile information for the GitHub Actions bot.
+- [Get issue number](actions/get-issue-number/index.md) — extracts the relevant issue number from the current workflow context.
 
 ### Matrix & workflow data helpers
 
-- [Get matrix outputs](actions/get-matrix-outputs/README.md) — aggregates outputs across matrix jobs for downstream steps.
-- [Set matrix output](actions/set-matrix-output/README.md) — writes structured outputs that can be consumed by other matrix jobs.
+- [Get matrix outputs](actions/get-matrix-outputs/index.md) — aggregates outputs across matrix jobs for downstream steps.
+- [Set matrix output](actions/set-matrix-output/index.md) — writes structured outputs that can be consumed by other matrix jobs.
 
 ### Repository insights & utilities
 
-- [Repository owner is organization](actions/repository-owner-is-organization/README.md) — checks whether the repository owner is an organization.
-- [Slugify](actions/slugify/README.md) — converts free-form strings into GitHub-friendly slugs.
+- [Repository owner is organization](actions/repository-owner-is-organization/index.md) — checks whether the repository owner is an organization.
+- [Slugify](actions/slugify/index.md) — converts free-form strings into GitHub-friendly slugs.
 
 ## Reusable Workflows
 
 ### Community & issue hygiene
 
-- [Greetings](.github/workflows/greetings.md) — welcomes first-time issue reporters and pull request authors.
-- [Need fix to Issue](.github/workflows/need-fix-to-issue.md) — labels issues that require follow-up fixes.
-- [Stale](.github/workflows/stale.md) — automatically marks and closes stale issues and pull requests.
+- [Greetings](github/workflows/greetings.md) — welcomes first-time issue reporters and pull request authors.
+- [Need fix to Issue](github/workflows/need-fix-to-issue.md) — labels issues that require follow-up fixes.
+- [Stale](github/workflows/stale.md) — automatically marks and closes stale issues and pull requests.
 
 ### Quality gates
 
-- [Linter](.github/workflows/linter.md) — runs Super Linter and shared formatting checks across the repository.
-- [Semantic pull request](.github/workflows/semantic-pull-request.md) — enforces semantic pull request titles before merging.
+- [Linter](github/workflows/linter.md) — runs Super Linter and shared formatting checks across the repository.
+- [Semantic pull request](github/workflows/semantic-pull-request.md) — enforces semantic pull request titles before merging.
 
 ## Contributing
 

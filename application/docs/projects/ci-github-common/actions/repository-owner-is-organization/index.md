@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/repository-owner-is-organization/README.md
 source_branch: main
-source_run_id: 18910591307
-last_synced: 2025-10-29T14:04:49.088Z
+source_run_id: 18916311166
+last_synced: 2025-10-29T17:14:01.305Z
 ---
 
 <!-- header:start -->
@@ -54,9 +54,9 @@ Action to check if the repository owner is an organization.
 
 ## Inputs
 
-| **Input**          | **Description**                      | **Required** | **Default**           |
-| ------------------ | ------------------------------------ | ------------ | --------------------- |
-| **`github-token`** | GitHub token for fetching users API. | **false**    | `${{ github.token }}` |
+| **Input**          | **Description**                      | **Required** | **Default**             |
+| ------------------ | ------------------------------------ | ------------ | ----------------------- |
+| **`github-token`** | GitHub token for fetching users API. | **false**    | `$\{\{ github.token }}` |
 
 <!-- inputs:end -->
 
