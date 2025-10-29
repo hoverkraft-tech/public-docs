@@ -264,7 +264,7 @@ function ensureIndexPage({
     path.join(outputPath, DEFAULT_INDEX_FILE),
     indexLines.join("\n")
   );
-  processedFiles.add(DEFAULT_INDEX_FILE);
+  processedFiles.push(DEFAULT_INDEX_FILE);
   core.info("Generated default index page for documentation bundle.");
 }
 
