@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-common
 source_path: README.md
 source_branch: main
-source_run_id: 18910377297
-last_synced: 2025-10-29T13:57:44.195Z
+source_run_id: 18910591307
+last_synced: 2025-10-29T14:04:49.088Z
 ---
 
 # Continuous Integration - GitHub - Common
@@ -97,7 +97,7 @@ Makefile                      # Lint helpers
 
 ## Author
 
-🏢 **Hoverkraft <contact@hoverkraft.cloud>**
+🏢 **Hoverkraft**
 
 - Site: [https://hoverkraft.cloud](https://hoverkraft.cloud)
 - GitHub: [@hoverkraft-tech](https://github.com/hoverkraft-tech)
