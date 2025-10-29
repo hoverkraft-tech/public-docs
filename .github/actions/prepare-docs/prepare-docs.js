@@ -28,55 +28,49 @@ async function run(options) {
     outputPath,
   } = validateOptions(options);
 
-  try {
-    ensureArtifactDirectory(artifactPath);
+  ensureArtifactDirectory(artifactPath);
 
-    core.info(`Preparing documentation bundle for ${sourceRepository}`);
+  core.info(`Preparing documentation bundle for ${sourceRepository}`);
 
-    prepareOutputDirectory(outputPath, io);
+  prepareOutputDirectory(outputPath, io);
 
-    const repositoryRef = parseRepositorySlug(sourceRepository);
-    const sourceBranch = await resolveSourceBranch({
-      github,
-      core,
-      repositoryRef,
-      runId,
-    });
+  const repositoryRef = parseRepositorySlug(sourceRepository);
+  const sourceBranch = await resolveSourceBranch({
+    github,
+    core,
+    repositoryRef,
+    runId,
+  });
 
-    const syncTimestamp = new Date().toISOString();
-    const processedFiles = processArtifact({
-      core,
-      io,
-      artifactPath,
-      outputPath,
-      sourceRepository,
-      sourceBranch,
-      runId,
-      syncTimestamp,
-    });
+  const syncTimestamp = new Date().toISOString();
+  const processedFiles = processArtifact({
+    core,
+    io,
+    artifactPath,
+    outputPath,
+    sourceRepository,
+    sourceBranch,
+    runId,
+    syncTimestamp,
+  });
 
-    ensureIndexPage({
-      core,
-      outputPath,
-      processingResult,
-      repositoryRef,
-      sourceRepository,
-      syncTimestamp,
-    });
+  ensureIndexPage({
+    core,
+    outputPath,
+    processingResult,
+    repositoryRef,
+    sourceRepository,
+    syncTimestamp,
+  });
 
-    core.info(
-      `Documentation bundle prepared with ${processedFiles.length} files.`
-    );
+  core.info(
+    `Documentation bundle prepared with ${processedFiles.length} files.`
+  );
 
-    return {
-      processedFiles,
-      sourceBranch,
-    };
-  } catch (error) {
-    return core.setFailed(
-      error?.message || "Failed to prepare documentation bundle."
-    );
-  }
+  return {
+    processedFiles,
+    sourceBranch,
+  };
 }
 
 function validateOptions(options) {
@@ -191,20 +185,18 @@ function processArtifact({
     const relativePath = path.relative(artifactPath, filePath);
 
     if (relativePath.startsWith("..")) {
-      throw new Error(`Skipping file outside artifact directory: ${filePath}`);
+      throw new Error(`File is outside artifact directory: ${filePath}`);
     }
 
     const normalizedSourcePath = normalizeToPosix(relativePath);
     const sanitizedRelativePath = sanitizeRelativePath(relativePath);
 
     if (!sanitizedRelativePath) {
-      throw new Error(`Skipping file with empty sanitized path: ${filePath}`);
+      throw new Error(`File has empty sanitized path: ${filePath}`);
     }
 
     if (copiedTargets.has(sanitizedRelativePath)) {
-      throw new Error(
-        `Duplicate target detected, skipping ${sanitizedRelativePath}`
-      );
+      throw new Error(`Duplicate target detected: ${sanitizedRelativePath}`);
     }
 
     const destination = path.join(outputPath, sanitizedRelativePath);
@@ -233,7 +225,7 @@ function processArtifact({
     throw new Error("No markdown files discovered in downloaded artifact.");
   }
 
-  return { copiedTargets, markdownFiles };
+  return markdownFiles;
 }
 
 function ensureIndexPage({
