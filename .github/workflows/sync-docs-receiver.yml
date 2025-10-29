@@ -83,7 +83,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
         env:
           SOURCE_REPOSITORY: ${{ steps.validate.outputs.repository }}
-          TARGET_PATH: ${{ steps.validate.outputs.repository.target-path }}
+          TARGET_PATH: ${{ steps.validate.outputs.target-path }}
           PREPARED_DIR: ${{ steps.prepare-docs.outputs.output-path }}
         with:
           script: |
@@ -151,10 +151,7 @@ jobs:
           PROCESSED_FILES: ${{ steps.prepare-docs.outputs.processed-files }}
         with:
           script: |
-            const files = process.env.PROCESSED_FILES
-              .split('\n')
-              .map(item => item.trim())
-              .filter(Boolean);
+            const files = JSON.parse(process.env.PROCESSED_FILES);
 
             const statusText = process.env.STATUS === 'success'
               ? 'Documentation committed to public-docs'
