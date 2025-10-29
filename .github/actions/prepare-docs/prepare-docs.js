@@ -184,6 +184,8 @@ async function processArtifact({
   for (const filePath of iterateFiles(artifactPath)) {
     const relativePath = path.relative(artifactPath, filePath);
 
+    core.info(`  Process file: ${relativePath}`);
+
     if (relativePath.startsWith("..")) {
       throw new Error(`File is outside artifact directory: ${filePath}`);
     }
