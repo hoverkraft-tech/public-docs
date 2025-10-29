@@ -10,6 +10,7 @@ permissions:
 
 jobs:
   sync-documentation:
+    name: Sync Documentation
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
