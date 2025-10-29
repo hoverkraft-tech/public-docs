@@ -32,7 +32,7 @@ async function run(options) {
 
   core.info(`Preparing documentation bundle for ${sourceRepository}`);
 
-  prepareOutputDirectory(outputPath, io);
+  await prepareOutputDirectory(outputPath, io);
 
   const repositoryRef = parseRepositorySlug(sourceRepository);
   const sourceBranch = await resolveSourceBranch({
@@ -43,7 +43,7 @@ async function run(options) {
   });
 
   const syncTimestamp = new Date().toISOString();
-  const processedFiles = processArtifact({
+  const processedFiles = await processArtifact({
     core,
     io,
     artifactPath,
@@ -133,9 +133,9 @@ function ensureArtifactDirectory(artifactPath) {
   }
 }
 
-function prepareOutputDirectory(outputPath, io) {
-  io.rmRF(outputPath);
-  io.mkdirP(outputPath);
+async function prepareOutputDirectory(outputPath, io) {
+  await io.rmRF(outputPath);
+  await io.mkdirP(outputPath);
 }
 
 function parseRepositorySlug(repository) {
@@ -168,7 +168,7 @@ async function resolveSourceBranch({ github, core, repositoryRef, runId }) {
   }
 }
 
-function processArtifact({
+async function processArtifact({
   artifactPath,
   outputPath,
   core,
@@ -201,8 +201,8 @@ function processArtifact({
 
     const destination = path.join(outputPath, sanitizedRelativePath);
 
-    io.mkdirP(path.dirname(destination));
-    io.cp(filePath, destination, { recursive: true, force: true });
+    await io.mkdirP(path.dirname(destination));
+    await io.cp(filePath, destination, { recursive: true, force: true });
 
     if (isMarkdownFile(destination)) {
       applyFrontmatter(destination, {
