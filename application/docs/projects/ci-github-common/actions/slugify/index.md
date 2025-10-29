@@ -1,17 +1,17 @@
 ---
 source_repo: hoverkraft-tech/ci-github-common
-source_path: actions/get-github-actions-bot-user/README.md
+source_path: actions/slugify/README.md
 source_branch: main
-source_run_id: 18909933009
-last_synced: 2025-10-29T13:42:41.947Z
+source_run_id: 18910377297
+last_synced: 2025-10-29T13:57:44.195Z
 ---
 
 <!-- header:start -->
 
-# ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItdXNlci1jaGVjayIgY29sb3I9ImJsdWUiPjxwYXRoIGQ9Ik0xNiAyMXYtMmE0IDQgMCAwIDAtNC00SDVhNCA0IDAgMCAwLTQgNHYyIj48L3BhdGg+PGNpcmNsZSBjeD0iOC41IiBjeT0iNyIgcj0iNCI+PC9jaXJjbGU+PHBvbHlsaW5lIHBvaW50cz0iMTcgMTEgMTkgMTMgMjMgOSI+PC9wb2x5bGluZT48L3N2Zz4=) GitHub Action: Get GitHub Actions bot user
+# ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItbGluay0yIiBjb2xvcj0iYmx1ZSI+PHBhdGggZD0iTTE1IDdoM2E1IDUgMCAwIDEgNSA1IDUgNSAwIDAgMS01IDVoLTNtLTYgMEg2YTUgNSAwIDAgMS01LTUgNSA1IDAgMCAxIDUtNWgzIj48L3BhdGg+PGxpbmUgeDE9IjgiIHkxPSIxMiIgeDI9IjE2IiB5Mj0iMTIiPjwvbGluZT48L3N2Zz4=) GitHub Action: Slugify
 
 <div align="center">
-  <img src="../../.github/logo.svg" width="60px" align="center" alt="Get GitHub Actions bot user" />
+  <img src="../../.github/logo.svg" width="60px" align="center" alt="Slugify" />
 </div>
 
 ---
@@ -20,7 +20,7 @@ last_synced: 2025-10-29T13:42:41.947Z
 
 <!-- badges:start -->
 
-[![Marketplace](https://img.shields.io/badge/Marketplace-get--github--actions--bot--user-blue?logo=github-actions)](https://github.com/marketplace/actions/get-github-actions-bot-user)
+[![Marketplace](https://img.shields.io/badge/Marketplace-slugify-blue?logo=github-actions)](https://github.com/marketplace/actions/slugify)
 [![Release](https://img.shields.io/github/v/release/hoverkraft-tech/ci-github-common)](https://github.com/hoverkraft-tech/ci-github-common/releases)
 [![License](https://img.shields.io/github/license/hoverkraft-tech/ci-github-common)](http://choosealicense.com/licenses/mit/)
 [![Stars](https://img.shields.io/github/stars/hoverkraft-tech/ci-github-common?style=social)](https://img.shields.io/github/stars/hoverkraft-tech/ci-github-common?style=social)
@@ -32,8 +32,7 @@ last_synced: 2025-10-29T13:42:41.947Z
 
 ## Overview
 
-Action to get the GitHub Actions bot user informations.
-Usefull to commit, comment, etc.
+Action to slugify a given string value.
 
 <!-- overview:end -->
 
@@ -42,7 +41,11 @@ Usefull to commit, comment, etc.
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-common/actions/get-github-actions-bot-user@b7dd413209df265bef8d7eb0efb117eaabc684c4 # 0.27.0
+- uses: hoverkraft-tech/ci-github-common/actions/slugify@b7dd413209df265bef8d7eb0efb117eaabc684c4 # 0.27.0
+  with:
+    # The value to slugify.
+    # This input is required.
+    value: ""
 ```
 
 <!-- usage:end -->
@@ -51,8 +54,9 @@ Usefull to commit, comment, etc.
 
 ## Inputs
 
-| **Input** | **Description** | **Required** | **Default** |
-| --------- | --------------- | ------------ | ----------- |
+| **Input**   | **Description**       | **Required** | **Default** |
+| ----------- | --------------------- | ------------ | ----------- |
+| **`value`** | The value to slugify. | **true**     | -           |
 
 <!-- inputs:end -->
 
@@ -63,10 +67,9 @@ Usefull to commit, comment, etc.
 
 ## Outputs
 
-| **Output**  | **Description**                    |
-| ----------- | ---------------------------------- |
-| **`email`** | The GitHub Actions bot user email. |
-| **`name`**  | The GitHub Actions bot username.   |
+| **Output**   | **Description**     |
+| ------------ | ------------------- |
+| **`result`** | The slugified value |
 
 <!-- outputs:end -->
 

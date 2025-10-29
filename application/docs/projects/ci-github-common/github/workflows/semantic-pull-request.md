@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-common
 source_path: .github/workflows/semantic-pull-request.md
 source_branch: main
-source_run_id: 18909933009
-last_synced: 2025-10-29T13:42:41.947Z
+source_run_id: 18910377297
+last_synced: 2025-10-29T13:57:44.195Z
 ---
 
 <!-- header:start -->
@@ -85,7 +85,7 @@ jobs:
 | **Input**     | **Description**                                                                    | **Required** | **Type**   | **Default**         |
 | ------------- | ---------------------------------------------------------------------------------- | ------------ | ---------- | ------------------- |
 | **`runs-on`** | JSON array of runner(s) to use.                                                    | **false**    | **string** | `["ubuntu-latest"]` |
-|               | See <https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job>. |              |            |                     |
+|               | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job). |              |            |                     |
 
 <!-- inputs:end -->
 
