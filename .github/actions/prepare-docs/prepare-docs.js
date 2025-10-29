@@ -191,20 +191,18 @@ function processArtifact({
     const relativePath = path.relative(artifactPath, filePath);
 
     if (relativePath.startsWith("..")) {
-      throw new Error(`Skipping file outside artifact directory: ${filePath}`);
+      throw new Error(`File is outside artifact directory: ${filePath}`);
     }
 
     const normalizedSourcePath = normalizeToPosix(relativePath);
     const sanitizedRelativePath = sanitizeRelativePath(relativePath);
 
     if (!sanitizedRelativePath) {
-      throw new Error(`Skipping file with empty sanitized path: ${filePath}`);
+      throw new Error(`File has empty sanitized path: ${filePath}`);
     }
 
     if (copiedTargets.has(sanitizedRelativePath)) {
-      throw new Error(
-        `Duplicate target detected, skipping ${sanitizedRelativePath}`
-      );
+      throw new Error(`Duplicate target detected: ${sanitizedRelativePath}`);
     }
 
     const destination = path.join(outputPath, sanitizedRelativePath);
@@ -233,7 +231,7 @@ function processArtifact({
     throw new Error("No markdown files discovered in downloaded artifact.");
   }
 
-  return { copiedTargets, markdownFiles };
+  return markdownFiles;
 }
 
 function ensureIndexPage({
