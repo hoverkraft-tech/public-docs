@@ -51,19 +51,24 @@ runs:
         github-token: ${{ inputs.github-token }}
         script: |
           const { run } = require('${{ github.action_path }}/prepare-docs.js');
-          const {
-            processedFiles,
-            sourceBranch,
-          } = await run({
-            github,
-            core,
-            io,
-            artifactPath: process.env.ARTIFACT_PATH,
-            outputPath: process.env.OUTPUT_PATH,
-            sourceRepository: process.env.SOURCE_REPOSITORY,
-            runId: process.env.RUN_ID
-          });
 
-          core.setOutput('output-path', outputPath);
-          core.setOutput('processed-files', processedFiles);
-          core.setOutput('source-branch', sourceBranch);
+          try{
+            const {
+              processedFiles,
+              sourceBranch,
+            } = await run({
+              github,
+              core,
+              io,
+              artifactPath: process.env.ARTIFACT_PATH,
+              outputPath: process.env.OUTPUT_PATH,
+              sourceRepository: process.env.SOURCE_REPOSITORY,
+              runId: process.env.RUN_ID
+            });
+
+            core.setOutput('output-path', process.env.OUTPUT_PATH);
+            core.setOutput('processed-files', processedFiles);
+            core.setOutput('source-branch', sourceBranch);
+          } catch (error) {
+            core.setFailed(`Documentation preparation failed: ${error.message}.\nStack trace: ${error.stack}`);
+          }

@@ -23,7 +23,7 @@
 
 Reusable workflow that bundles project docs and triggers public portal sync
 
-- Collects README and docs markdown, adds sync metadata, and uploads a short-lived artifact
+- Collects readme and docs Markdown, adds sync metadata, and uploads a short-lived artifact
 - Dispatches a repository event so hoverkraft-tech/public-docs can ingest and publish updates
 
 <!-- overview:end -->

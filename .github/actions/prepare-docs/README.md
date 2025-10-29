@@ -22,13 +22,13 @@
 
 ## Overview
 
-Prepare markdown documentation pulled from an artifact before publishing it to the portal.
+Prepare Markdown documentation pulled from an artifact before publishing it to the portal.
 
 Responsibilities:
 
 - Sanitize incoming file paths.
 - Copy supporting assets into a sandbox directory.
-- Inject sync metadata into markdown and MDX files.
+- Inject sync metadata into Markdown and MDX files.
 - Generate a default index page and metadata manifest when missing.
 
 <!-- overview:end -->
