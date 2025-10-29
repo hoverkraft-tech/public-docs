@@ -336,7 +336,7 @@ function applyFrontmatter(
   const frontmatterBlock = `${FRONTMATTER_HEADER}${metadata}${FRONTMATTER_FOOTER}`;
 
   if (!content.startsWith(FRONTMATTER_HEADER)) {
-    const normalizedContent = convertAngleBracketLinks(content);
+    const normalizedContent = normalizeMarkdownBody(content);
     fs.writeFileSync(filePath, `${frontmatterBlock}\n${normalizedContent}`);
     return;
   }
@@ -346,7 +346,7 @@ function applyFrontmatter(
     FRONTMATTER_HEADER.length
   );
   if (endIndex === -1) {
-    const normalizedContent = convertAngleBracketLinks(content);
+    const normalizedContent = normalizeMarkdownBody(content);
     fs.writeFileSync(filePath, `${frontmatterBlock}\n${normalizedContent}`);
     return;
   }
@@ -356,7 +356,7 @@ function applyFrontmatter(
   const mergedFrontmatter = [existing, metadata].filter(Boolean).join("\n");
   fs.writeFileSync(
     filePath,
-    `${FRONTMATTER_HEADER}${mergedFrontmatter}${FRONTMATTER_FOOTER}${convertAngleBracketLinks(
+    `${FRONTMATTER_HEADER}${mergedFrontmatter}${FRONTMATTER_FOOTER}${normalizeMarkdownBody(
       body
     )}`
   );
@@ -375,6 +375,263 @@ function convertAngleBracketLinks(text) {
       return `[${raw}](${href})`;
     }
   );
+}
+
+function normalizeMarkdownBody(content) {
+  if (!content) {
+    return content;
+  }
+
+  return rewriteLocalLinks(convertAngleBracketLinks(content));
+}
+
+function rewriteLocalLinks(text) {
+  if (!text) {
+    return text;
+  }
+
+  let result = "";
+  let index = 0;
+
+  while (index < text.length) {
+    const bracketIndex = text.indexOf("[", index);
+    if (bracketIndex === -1) {
+      result += text.slice(index);
+      break;
+    }
+
+    result += text.slice(index, bracketIndex);
+
+    let cursor = bracketIndex + 1;
+    let nested = 0;
+    let bracketEnd = -1;
+
+    while (cursor < text.length) {
+      const char = text[cursor];
+      if (char === "\\") {
+        cursor += 2;
+        continue;
+      }
+      if (char === "[") {
+        nested += 1;
+      } else if (char === "]") {
+        if (nested === 0) {
+          bracketEnd = cursor;
+          break;
+        }
+        nested -= 1;
+      }
+      cursor += 1;
+    }
+
+    if (bracketEnd === -1) {
+      result += text.slice(bracketIndex);
+      break;
+    }
+
+    const afterBracket = bracketEnd + 1;
+
+    if (text[afterBracket] !== "(") {
+      result += text.slice(bracketIndex, afterBracket);
+      index = afterBracket;
+      continue;
+    }
+
+    let parenCursor = afterBracket + 1;
+    let parenDepth = 0;
+    let parenEnd = -1;
+
+    while (parenCursor < text.length) {
+      const char = text[parenCursor];
+      if (char === "\\") {
+        parenCursor += 2;
+        continue;
+      }
+      if (char === "(") {
+        parenDepth += 1;
+      } else if (char === ")") {
+        if (parenDepth === 0) {
+          parenEnd = parenCursor;
+          break;
+        }
+        parenDepth -= 1;
+      }
+      parenCursor += 1;
+    }
+
+    if (parenEnd === -1) {
+      result += text.slice(bracketIndex);
+      break;
+    }
+
+    const target = text.slice(afterBracket + 1, parenEnd);
+    const rewrittenTarget = rewriteLinkTarget(target);
+
+    result += text.slice(bracketIndex, afterBracket + 1);
+    result += rewrittenTarget;
+    result += ")";
+
+    index = parenEnd + 1;
+  }
+
+  return rewriteReferenceLinks(result);
+}
+
+function rewriteReferenceLinks(text) {
+  const referencePattern = /^(\s*\[[^\]]+\]:\s*)(.+)$/gm;
+
+  return text.replace(referencePattern, (match, prefix, target) => {
+    const rewritten = rewriteLinkTarget(target);
+    if (rewritten === target) {
+      return match;
+    }
+    return `${prefix}${rewritten}`;
+  });
+}
+
+function rewriteLinkTarget(rawTarget) {
+  if (!rawTarget) {
+    return rawTarget;
+  }
+
+  const leadingWhitespaceMatch = rawTarget.match(/^\s+/);
+  const leadingWhitespace = leadingWhitespaceMatch
+    ? leadingWhitespaceMatch[0]
+    : "";
+  const trimmedValue = rawTarget.trim();
+
+  if (!trimmedValue) {
+    return rawTarget;
+  }
+
+  let urlPart = trimmedValue;
+  let trailingTitle = "";
+
+  const quoteTitleMatch = trimmedValue.match(/\s+(".*"|'.*')\s*$/);
+  if (quoteTitleMatch) {
+    trailingTitle = quoteTitleMatch[0];
+    urlPart = trimmedValue
+      .slice(0, trimmedValue.length - trailingTitle.length)
+      .trim();
+  } else {
+    const parenTitleMatch = trimmedValue.match(/\s+\([^)]*\)\s*$/);
+    if (parenTitleMatch) {
+      trailingTitle = parenTitleMatch[0];
+      urlPart = trimmedValue
+        .slice(0, trimmedValue.length - trailingTitle.length)
+        .trim();
+    }
+  }
+
+  if (!urlPart || isExternalLink(urlPart)) {
+    return rawTarget;
+  }
+
+  const { path: targetPath, suffix } = splitLinkPathAndSuffix(urlPart);
+  if (!targetPath) {
+    return rawTarget;
+  }
+
+  const sanitizedPath = sanitizeLinkPath(targetPath);
+  const rebuiltTarget = `${sanitizedPath}${suffix}`;
+
+  if (rebuiltTarget === urlPart) {
+    return rawTarget;
+  }
+
+  return `${leadingWhitespace}${rebuiltTarget}${trailingTitle}`;
+}
+
+function isExternalLink(target) {
+  const trimmed = target.trim();
+  if (!trimmed) {
+    return true;
+  }
+
+  if (trimmed.startsWith("#")) {
+    return true;
+  }
+
+  if (trimmed.startsWith("//")) {
+    return true;
+  }
+
+  return /^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(trimmed);
+}
+
+function sanitizeLinkPath(targetPath) {
+  if (!targetPath) {
+    return targetPath;
+  }
+
+  const normalized = normalizeToPosix(targetPath);
+  const hasLeadingSlash = normalized.startsWith("/");
+  const hasTrailingSlash = normalized.length > 1 && normalized.endsWith("/");
+
+  const segments = normalized.split("/");
+  const sanitizedSegments = [];
+
+  segments.forEach((segment, index) => {
+    if (segment === "" && index === 0 && hasLeadingSlash) {
+      sanitizedSegments.push("");
+      return;
+    }
+
+    if (segment === "" && index === segments.length - 1 && hasTrailingSlash) {
+      sanitizedSegments.push("");
+      return;
+    }
+
+    if (segment === "." || segment === "..") {
+      sanitizedSegments.push(segment);
+      return;
+    }
+
+    if (!segment) {
+      return;
+    }
+
+    const sanitized = sanitizeSegment(segment);
+    if (sanitized) {
+      sanitizedSegments.push(sanitized);
+    }
+  });
+
+  let sanitizedPath = sanitizedSegments.join("/");
+
+  if (hasLeadingSlash && !sanitizedPath.startsWith("/")) {
+    sanitizedPath = `/${sanitizedPath}`;
+  }
+
+  if (hasTrailingSlash && !sanitizedPath.endsWith("/")) {
+    sanitizedPath = `${sanitizedPath}/`;
+  }
+
+  const rewrittenPath = rewriteReadmeToIndex(sanitizedPath);
+  return rewrittenPath;
+}
+
+function splitLinkPathAndSuffix(target) {
+  let cutIndex = -1;
+  const hashIndex = target.indexOf("#");
+  const queryIndex = target.indexOf("?");
+
+  if (hashIndex !== -1 && queryIndex !== -1) {
+    cutIndex = Math.min(hashIndex, queryIndex);
+  } else if (hashIndex !== -1) {
+    cutIndex = hashIndex;
+  } else if (queryIndex !== -1) {
+    cutIndex = queryIndex;
+  }
+
+  if (cutIndex === -1) {
+    return { path: target, suffix: "" };
+  }
+
+  return {
+    path: target.slice(0, cutIndex),
+    suffix: target.slice(cutIndex),
+  };
 }
 
 module.exports = { run };
