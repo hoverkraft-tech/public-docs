@@ -18,17 +18,24 @@ const FRONTMATTER_FOOTER = "\n---\n";
  * @param {string} options.outputPath
  */
 async function run(options) {
-  const { github, core, io, sourceRepo, runId, artifactPath, outputPath } =
-    validateOptions(options);
+  const {
+    github,
+    core,
+    io,
+    sourceRepository,
+    runId,
+    artifactPath,
+    outputPath,
+  } = validateOptions(options);
 
   try {
     ensureArtifactDirectory(artifactPath);
 
-    core.info(`Preparing documentation bundle for ${sourceRepo}`);
+    core.info(`Preparing documentation bundle for ${sourceRepository}`);
 
     prepareOutputDirectory(outputPath, io);
 
-    const repositoryRef = parseRepositorySlug(sourceRepo);
+    const repositoryRef = parseRepositorySlug(sourceRepository);
     const sourceBranch = await resolveSourceBranch({
       github,
       core,
@@ -42,7 +49,7 @@ async function run(options) {
       io,
       artifactPath,
       outputPath,
-      sourceRepo,
+      sourceRepository,
       sourceBranch,
       runId,
       syncTimestamp,
@@ -53,7 +60,7 @@ async function run(options) {
       outputPath,
       processingResult,
       repositoryRef,
-      sourceRepo,
+      sourceRepository,
       syncTimestamp,
     });
 
@@ -77,8 +84,15 @@ function validateOptions(options) {
     throw new Error("Expected options object for documentation preparation.");
   }
 
-  const { github, core, io, artifactPath, outputPath, sourceRepo, runId } =
-    options;
+  const {
+    github,
+    core,
+    io,
+    artifactPath,
+    outputPath,
+    sourceRepository,
+    runId,
+  } = options;
 
   if (!github?.rest?.actions) {
     throw new Error("GitHub client is required to resolve workflow metadata.");
@@ -100,7 +114,7 @@ function validateOptions(options) {
     throw new Error("Output path is required.");
   }
 
-  if (!sourceRepo) {
+  if (!sourceRepository) {
     throw new Error("Source repository is required.");
   }
 
@@ -114,7 +128,7 @@ function validateOptions(options) {
     io,
     artifactPath,
     outputPath,
-    sourceRepo,
+    sourceRepository,
     runId,
   };
 }
@@ -165,7 +179,7 @@ function processArtifact({
   outputPath,
   core,
   io,
-  sourceRepo,
+  sourceRepository,
   sourceBranch,
   runId,
   syncTimestamp,
@@ -200,7 +214,7 @@ function processArtifact({
 
     if (isMarkdownFile(destination)) {
       applyFrontmatter(destination, {
-        sourceRepo,
+        sourceRepository,
         sourcePath: normalizedSourcePath,
         sourceBranch,
         runId,
@@ -227,7 +241,7 @@ function ensureIndexPage({
   outputPath,
   processingResult,
   repositoryRef,
-  sourceRepo,
+  sourceRepository,
   syncTimestamp,
 }) {
   if (processingResult.copiedTargets.has(DEFAULT_INDEX_FILE)) {
@@ -248,7 +262,7 @@ function ensureIndexPage({
     "",
     `Documentation for the ${prettyRepoName} project.`,
     "",
-    `**Source Repository:** [${sourceRepo}](https://github.com/${sourceRepo})`,
+    `**Source Repository:** [${sourceRepository}](https://github.com/${sourceRepository})`,
     `**Last Synced:** ${syncTimestamp}`,
   ];
 
@@ -299,11 +313,11 @@ function sanitizeSegment(segment = "") {
 
 function applyFrontmatter(
   filePath,
-  { sourceRepo, sourcePath, sourceBranch, runId, syncTimestamp }
+  { sourceRepository, sourcePath, sourceBranch, runId, syncTimestamp }
 ) {
   const content = fs.readFileSync(filePath, "utf8");
   const metadata = [
-    `source_repo: ${sourceRepo}`,
+    `source_repo: ${sourceRepository}`,
     `source_path: ${sourcePath}`,
     `source_branch: ${sourceBranch}`,
     `source_run_id: ${runId}`,

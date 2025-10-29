@@ -13,7 +13,7 @@ inputs:
   github-token:
     description: GitHub token used to resolve workflow run metadata.
     required: true
-  repository:
+  source-repository:
     description: Source repository that produced the documentation.
     required: true
   run-id:
@@ -44,6 +44,8 @@ runs:
       env:
         ARTIFACT_PATH: ${{ inputs.artifact-path }}
         OUTPUT_PATH: ${{ runner.temp }}/processed-docs-${{ github.run_id }}
+        SOURCE_REPOSITORY: ${{ inputs.source-repository }}
+        RUN_ID: ${{ inputs.run-id }}
         NODE_PATH: ${{ github.action_path }}/node_modules
       with:
         github-token: ${{ inputs.github-token }}
@@ -58,8 +60,8 @@ runs:
             io,
             artifactPath: process.env.ARTIFACT_PATH,
             outputPath: process.env.OUTPUT_PATH,
-            sourceRepo, 
-            runId
+            sourceRepository: process.env.SOURCE_REPOSITORY,
+            runId: process.env.RUN_ID
           });
 
           core.setOutput('output-path', outputPath);
