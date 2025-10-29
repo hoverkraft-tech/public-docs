@@ -124,7 +124,7 @@ including Makefile, TypeScript, Smarty, Astro, Dockerfile, and more.
     icon="⚡"
     title="ci-github-nodejs"
     titleHref="https://github.com/hoverkraft-tech/ci-github-nodejs"
-    meta="Makefile • ⭐ 1 • Updated Oct 28, 2025"
+    meta="Makefile • ⭐ 1 • Updated Oct 29, 2025"
     description="Opinionated Github actions and workflows for continuous integration in NodeJs context"
     tags={["continuous-integration", "github-actions", "node", "open-source"]}
     actions={[
