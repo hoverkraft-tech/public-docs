@@ -66,9 +66,9 @@ jobs:
               .addHeading('Documentation Dispatch Summary', 2)
               .addRaw('\n')
               .addList([
-                `**Repository**: ${process.env.SOURCE_REPO}`,
-                `**Run ID**: ${process.env.RUN_ID}`,
-                `**Artifact ID**: ${process.env.ARTIFACT_ID}`,
+                `Repository: ${process.env.SOURCE_REPO}`,
+                `Run ID: ${process.env.RUN_ID}`,
+                `Artifact ID: ${process.env.ARTIFACT_ID}`,
               ])
               .addRaw('\n')
               .addRaw('The public-docs repository will download the artifact and process the documentation within an isolated workflow.')
