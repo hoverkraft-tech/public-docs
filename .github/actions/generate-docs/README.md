@@ -3,7 +3,7 @@
 # GitHub Action: Generate Documentation
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/cdde79708836b75eb53534588457e3635d07b3a38fb1f09bfcfe74dfcf892d28/hoverkraft-tech/public-docs" width="60px" align="center" alt="Generate Documentation" />
+  <img src="https://opengraph.githubassets.com/7991258691134bd8e90594fe3e50cc5731a41a65cfb5b9b746da573ba7d8af6b/hoverkraft-tech/public-docs" width="60px" align="center" alt="Generate Documentation" />
 </div>
 
 ---
