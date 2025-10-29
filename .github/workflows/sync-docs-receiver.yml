@@ -161,7 +161,7 @@ jobs:
               ? `Processed files:\n${files.join('\n')}`
               : 'No files were processed.';
 
-            await core.summary
+            const summaryBuilder = core.summary
               .addHeading('Documentation Sync Summary', 2)
               .addRaw('\n')
               .addList([
@@ -172,8 +172,18 @@ jobs:
                 `Artifact: ${process.env.ARTIFACT_ID}`,
                 `Status: ${statusText}`
               ])
-              .addRaw('\n')
-              .addRaw(filesSummary)
-              .addRaw('\n\n')
-              .addRaw('Build and deployment will be handled by the push to main workflow.')
-              .write();
+              .addRaw('\n');
+
+            if (files.length > 0) {
+              summaryBuilder
+                .addRaw("Processed files:")
+                .addList(files);
+            } else {
+              summaryBuilder.addRaw("Processed files: no files were processed.");
+            }
+
+            summaryBuilder
+            .addRaw('\n\n')
+            .addRaw('Build and deployment will be handled by the push to main workflow.');
+
+            await summaryBuilder.write();
