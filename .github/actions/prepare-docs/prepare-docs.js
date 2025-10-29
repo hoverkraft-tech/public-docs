@@ -57,7 +57,7 @@ async function run(options) {
   ensureIndexPage({
     core,
     outputPath,
-    processingResult,
+    processedFiles,
     repositoryRef,
     sourceRepository,
     syncTimestamp,
@@ -178,7 +178,7 @@ async function processArtifact({
   runId,
   syncTimestamp,
 }) {
-  const copiedTargets = new Set();
+  const processedFiles = new Set();
   const markdownFiles = [];
 
   for (const filePath of iterateFiles(artifactPath)) {
@@ -197,7 +197,7 @@ async function processArtifact({
       throw new Error(`File has empty sanitized path: ${filePath}`);
     }
 
-    if (copiedTargets.has(sanitizedRelativePath)) {
+    if (processedFiles.has(sanitizedRelativePath)) {
       throw new Error(`Duplicate target detected: ${sanitizedRelativePath}`);
     }
 
@@ -220,25 +220,25 @@ async function processArtifact({
       core.info(`  Copied asset: ${sanitizedRelativePath}`);
     }
 
-    copiedTargets.add(sanitizedRelativePath);
+    processedFiles.add(sanitizedRelativePath);
   }
 
-  if (!markdownFiles.length) {
-    throw new Error("No markdown files discovered in downloaded artifact.");
+  if (!processedFiles.size) {
+    throw new Error("No files discovered in downloaded artifact.");
   }
 
-  return markdownFiles;
+  return Array.from(processedFiles);
 }
 
 function ensureIndexPage({
   core,
   outputPath,
-  processingResult,
+  processingFiles,
   repositoryRef,
   sourceRepository,
   syncTimestamp,
 }) {
-  if (processingResult.copiedTargets.has(DEFAULT_INDEX_FILE)) {
+  if (processingFiles.includes(DEFAULT_INDEX_FILE)) {
     return;
   }
 
@@ -264,8 +264,7 @@ function ensureIndexPage({
     path.join(outputPath, DEFAULT_INDEX_FILE),
     indexLines.join("\n")
   );
-  processingResult.copiedTargets.add(DEFAULT_INDEX_FILE);
-  processingResult.markdownFiles.push(DEFAULT_INDEX_FILE);
+  processedFiles.add(DEFAULT_INDEX_FILE);
   core.info("Generated default index page for documentation bundle.");
 }
 
