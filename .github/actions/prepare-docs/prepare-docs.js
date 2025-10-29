@@ -58,7 +58,7 @@ async function run(options) {
     });
 
     core.info(
-      `Documentation bundle prepared with ${processedFiles.length} files.`,
+      `Documentation bundle prepared with ${processedFiles.length} files.`
     );
 
     return {
@@ -67,7 +67,7 @@ async function run(options) {
     };
   } catch (error) {
     return core.setFailed(
-      error?.message || "Failed to prepare documentation bundle.",
+      error?.message || "Failed to prepare documentation bundle."
     );
   }
 }
@@ -77,7 +77,8 @@ function validateOptions(options) {
     throw new Error("Expected options object for documentation preparation.");
   }
 
-  const { github, core, io, artifactPath, outputPath } = options;
+  const { github, core, io, artifactPath, outputPath, sourceRepo, runId } =
+    options;
 
   if (!github?.rest?.actions) {
     throw new Error("GitHub client is required to resolve workflow metadata.");
@@ -99,7 +100,23 @@ function validateOptions(options) {
     throw new Error("Output path is required.");
   }
 
-  return { github, core, context, artifactPath, outputPath };
+  if (!sourceRepo) {
+    throw new Error("Source repository is required.");
+  }
+
+  if (!runId) {
+    throw new Error("Run ID is required.");
+  }
+
+  return {
+    github,
+    core,
+    io,
+    artifactPath,
+    outputPath,
+    sourceRepo,
+    runId,
+  };
 }
 
 function ensureArtifactDirectory(artifactPath) {
@@ -138,7 +155,7 @@ async function resolveSourceBranch({ github, core, repositoryRef, runId }) {
   } catch (error) {
     throw new Error(
       `Failed to resolve source branch for ${repositoryRef.owner}/${repositoryRef.name} run ${runId}: ${error.message}`,
-      { cause: error },
+      { cause: error }
     );
   }
 }
@@ -172,7 +189,7 @@ function processArtifact({
 
     if (copiedTargets.has(sanitizedRelativePath)) {
       throw new Error(
-        `Duplicate target detected, skipping ${sanitizedRelativePath}`,
+        `Duplicate target detected, skipping ${sanitizedRelativePath}`
       );
     }
 
@@ -237,7 +254,7 @@ function ensureIndexPage({
 
   fs.writeFileSync(
     path.join(outputPath, DEFAULT_INDEX_FILE),
-    indexLines.join("\n"),
+    indexLines.join("\n")
   );
   processingResult.copiedTargets.add(DEFAULT_INDEX_FILE);
   processingResult.markdownFiles.push(DEFAULT_INDEX_FILE);
@@ -282,7 +299,7 @@ function sanitizeSegment(segment = "") {
 
 function applyFrontmatter(
   filePath,
-  { sourceRepo, sourcePath, sourceBranch, runId, syncTimestamp },
+  { sourceRepo, sourcePath, sourceBranch, runId, syncTimestamp }
 ) {
   const content = fs.readFileSync(filePath, "utf8");
   const metadata = [
@@ -301,7 +318,7 @@ function applyFrontmatter(
 
   const endIndex = content.indexOf(
     FRONTMATTER_FOOTER,
-    FRONTMATTER_HEADER.length,
+    FRONTMATTER_HEADER.length
   );
   if (endIndex === -1) {
     fs.writeFileSync(filePath, `${frontmatterBlock}\n${content}`);
@@ -313,7 +330,7 @@ function applyFrontmatter(
   const mergedFrontmatter = [existing, metadata].filter(Boolean).join("\n");
   fs.writeFileSync(
     filePath,
-    `${FRONTMATTER_HEADER}${mergedFrontmatter}${FRONTMATTER_FOOTER}${body}`,
+    `${FRONTMATTER_HEADER}${mergedFrontmatter}${FRONTMATTER_FOOTER}${body}`
   );
 }
 
