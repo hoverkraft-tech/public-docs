@@ -134,10 +134,10 @@ jobs:
         with:
           github-token: ${{ steps.generate_token.outputs.token }}
           branch: docs/sync-documentation-${{ github.event.client_payload.repository }}
-          title: "docs(${{ github.event.client_payload.repository }}): update action documentation"
-          body: Update action documentation for ${{ github.event.client_payload.repository }}
+          title: "docs(${{ github.event.client_payload.repository }}): update documentation"
+          body: Update documentation for ${{ github.event.client_payload.repository }}
           commit-message: |
-            docs(${{ github.event.client_payload.repository }}): update action documentation
+            docs(${{ github.event.client_payload.repository }}): update documentation
 
       - name: Summary
         if: always()
