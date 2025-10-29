@@ -191,7 +191,9 @@ async function processArtifact({
     }
 
     const normalizedSourcePath = normalizeToPosix(relativePath);
-    const sanitizedRelativePath = sanitizeRelativePath(relativePath);
+    const sanitizedRelativePath = rewriteReadmeToIndex(
+      sanitizeRelativePath(relativePath)
+    );
 
     if (!sanitizedRelativePath) {
       throw new Error(`File has empty sanitized path: ${filePath}`);
@@ -296,6 +298,21 @@ function sanitizeRelativePath(relPath) {
     .join("/");
 }
 
+function rewriteReadmeToIndex(relPath) {
+  if (!relPath) {
+    return relPath;
+  }
+
+  const segments = relPath.split("/");
+  const lastIndex = segments.length - 1;
+
+  if (lastIndex >= 0 && segments[lastIndex].toLowerCase() === "readme.md") {
+    segments[lastIndex] = "index.md";
+  }
+
+  return segments.join("/");
+}
+
 function sanitizeSegment(segment = "") {
   return segment
     .replace(/^[.\s]+/, "")
@@ -319,7 +336,8 @@ function applyFrontmatter(
   const frontmatterBlock = `${FRONTMATTER_HEADER}${metadata}${FRONTMATTER_FOOTER}`;
 
   if (!content.startsWith(FRONTMATTER_HEADER)) {
-    fs.writeFileSync(filePath, `${frontmatterBlock}\n${content}`);
+    const normalizedContent = convertAngleBracketLinks(content);
+    fs.writeFileSync(filePath, `${frontmatterBlock}\n${normalizedContent}`);
     return;
   }
 
@@ -328,7 +346,8 @@ function applyFrontmatter(
     FRONTMATTER_HEADER.length
   );
   if (endIndex === -1) {
-    fs.writeFileSync(filePath, `${frontmatterBlock}\n${content}`);
+    const normalizedContent = convertAngleBracketLinks(content);
+    fs.writeFileSync(filePath, `${frontmatterBlock}\n${normalizedContent}`);
     return;
   }
 
@@ -337,7 +356,20 @@ function applyFrontmatter(
   const mergedFrontmatter = [existing, metadata].filter(Boolean).join("\n");
   fs.writeFileSync(
     filePath,
-    `${FRONTMATTER_HEADER}${mergedFrontmatter}${FRONTMATTER_FOOTER}${body}`
+    `${FRONTMATTER_HEADER}${mergedFrontmatter}${FRONTMATTER_FOOTER}${convertAngleBracketLinks(
+      body
+    )}`
+  );
+}
+
+function convertAngleBracketLinks(text) {
+  if (!text) {
+    return text;
+  }
+
+  return text.replace(
+    /<(https?:\/\/[^>\s]+)>/g,
+    (match, url) => `[${url}](${url})`
   );
 }
 
