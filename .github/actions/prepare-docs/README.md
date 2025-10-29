@@ -3,7 +3,7 @@
 # GitHub Action: Prepare Documentation Bundle
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/a47a2920b75e6d0de4420fa2d45fd87398605c25cc7ae95996718f474ebba9b5/hoverkraft-tech/public-docs" width="60px" align="center" alt="Prepare Documentation Bundle" />
+  <img src="https://opengraph.githubassets.com/546a72c7800c4d2282441abbd3c1f3056e57fd19a2f1cde18939c91c6fcb7986/hoverkraft-tech/public-docs" width="60px" align="center" alt="Prepare Documentation Bundle" />
 </div>
 
 ---
@@ -22,13 +22,13 @@
 
 ## Overview
 
-Prepare Markdown documentation pulled from an artifact before publishing it to the portal.
+Prepare markdown documentation pulled from an artifact before publishing it to the portal.
 
 Responsibilities:
 
 - Sanitize incoming file paths.
 - Copy supporting assets into a sandbox directory.
-- Inject sync metadata into Markdown and MDX files.
+- Inject sync metadata into markdown and MDX files.
 - Generate a default index page and metadata manifest when missing.
 
 <!-- overview:end -->
@@ -37,7 +37,7 @@ Responsibilities:
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/public-docs/.github/actions/prepare-docs@9210dd11fa19531b50547a0a7c255b0375169cfb # fix/sync-docs-dispatch
+- uses: hoverkraft-tech/public-docs/.github/actions/prepare-docs@18facec04f2945f4d66d510e8a06568497b73c54 # 0.1.0
   with:
     # GitHub token used to resolve workflow run metadata.
     # This input is required.

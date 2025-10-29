@@ -3,7 +3,7 @@
 # GitHub Reusable Workflow: Push Documentation Helper
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/67d4f23ba37d889c335d30d2b71ba778b3494a89ee6a508209c1e1c88eca349e/hoverkraft-tech/public-docs" width="60px" align="center" alt="Push Documentation Helper" />
+  <img src="https://opengraph.githubassets.com/546a72c7800c4d2282441abbd3c1f3056e57fd19a2f1cde18939c91c6fcb7986/hoverkraft-tech/public-docs" width="60px" align="center" alt="Push Documentation Helper" />
 </div>
 
 ---
@@ -23,7 +23,7 @@
 
 Reusable workflow that bundles project docs and triggers public portal sync
 
-- Collects readme and docs Markdown, adds sync metadata, and uploads a short-lived artifact
+- Collects README and docs markdown, adds sync metadata, and uploads a short-lived artifact
 - Dispatches a repository event so hoverkraft-tech/public-docs can ingest and publish updates
 
 <!-- overview:end -->
@@ -65,17 +65,18 @@ jobs:
   sync-docs-dispatcher:
     uses: hoverkraft-tech/public-docs/.github/workflows/sync-docs-dispatcher.yml@18facec04f2945f4d66d510e8a06568497b73c54 # 0.1.0
     secrets:
-      # GitHub token with write access to trigger repository_dispatch in public-docs
-      # This input is required.
-      github-token: ""
+      # GitHub App private key to generate GitHub token in place of github-token.
+      # See https://github.com/actions/create-github-app-token.
+      github-app-key: ""
     with:
-      # Path(s) to documentation in source repo (default: docs).
-      # Accepts newline-separated list.
-      # Accepts both files and directories.
-      # Accepts glob patterns.
+      # GitHub App ID to generate GitHub token in place of github-token.
+      # See https://github.com/actions/create-github-app-token.
+      github-app-id: ""
+
+      # ID of the uploaded documentation artifact.
       #
       # This input is required.
-      paths: ""
+      artifact-id: ""
 ```
 
 <!-- usage:end -->
@@ -129,21 +130,21 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**   | **Description**                                                | **Required** | **Type**   | **Default** |
-| ----------- | -------------------------------------------------------------- | ------------ | ---------- | ----------- |
-| **`paths`** | Path(s) to documentation in source repository (default: docs). | **true**     | **string** | -           |
-|             | Accepts newline-separated list.                                |              |            |             |
-|             | Accepts both files and directories.                            |              |            |             |
-|             | Accepts glob patterns.                                         |              |            |             |
+| **Input**           | **Description**                                                  | **Required** | **Type**   | **Default** |
+| ------------------- | ---------------------------------------------------------------- | ------------ | ---------- | ----------- |
+| **`github-app-id`** | GitHub App ID to generate GitHub token in place of github-token. | **false**    | **string** | -           |
+|                     | See <https://github.com/actions/create-github-app-token>.        |              |            |             |
+| **`artifact-id`**   | ID of the uploaded documentation artifact.                       | **true**     | **string** | -           |
 
 <!-- inputs:end -->
 <!-- secrets:start -->
 
 ## Secrets
 
-| **Secret**         | **Description**                                                              | **Required** |
-| ------------------ | ---------------------------------------------------------------------------- | ------------ |
-| **`github-token`** | GitHub token with write access to trigger repository_dispatch in public-docs | **true**     |
+| **Secret**           | **Description**                                                           | **Required** |
+| -------------------- | ------------------------------------------------------------------------- | ------------ |
+| **`github-app-key`** | GitHub App private key to generate GitHub token in place of github-token. | **false**    |
+|                      | See <https://github.com/actions/create-github-app-token>.                 |              |
 
 <!-- secrets:end -->
 <!-- outputs:start -->
