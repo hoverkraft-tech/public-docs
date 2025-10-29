@@ -368,8 +368,12 @@ function convertAngleBracketLinks(text) {
   }
 
   return text.replace(
-    /<(https?:\/\/[^>\s]+)>/g,
-    (match, url) => `[${url}](${url})`
+    /<(https?:\/\/[^>\s]+|[\w.+-]+@[\w.-]+\.[A-Za-z]{2,})>/g,
+    (match, raw) => {
+      const isEmail = raw.includes("@");
+      const href = isEmail ? `mailto:${raw}` : raw;
+      return `[${raw}](${href})`;
+    }
   );
 }
 
