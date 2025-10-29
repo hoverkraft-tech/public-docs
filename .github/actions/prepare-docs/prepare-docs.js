@@ -233,12 +233,12 @@ async function processArtifact({
 function ensureIndexPage({
   core,
   outputPath,
-  processingFiles,
+  processedFiles,
   repositoryRef,
   sourceRepository,
   syncTimestamp,
 }) {
-  if (processingFiles.includes(DEFAULT_INDEX_FILE)) {
+  if (processedFiles.includes(DEFAULT_INDEX_FILE)) {
     return;
   }
 
