@@ -1,17 +1,17 @@
 ---
 source_repo: hoverkraft-tech/ci-github-common
-source_path: actions/get-issue-number/README.md
+source_path: actions/get-github-actions-bot-user/README.md
 source_branch: main
-source_run_id: 18909933009
-last_synced: 2025-10-29T13:42:41.947Z
+source_run_id: 18910377297
+last_synced: 2025-10-29T13:57:44.195Z
 ---
 
 <!-- header:start -->
 
-# ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItaGFzaCIgY29sb3I9ImJsdWUiPjxsaW5lIHgxPSI0IiB5MT0iOSIgeDI9IjIwIiB5Mj0iOSI+PC9saW5lPjxsaW5lIHgxPSI0IiB5MT0iMTUiIHgyPSIyMCIgeTI9IjE1Ij48L2xpbmU+PGxpbmUgeDE9IjEwIiB5MT0iMyIgeDI9IjgiIHkyPSIyMSI+PC9saW5lPjxsaW5lIHgxPSIxNiIgeTE9IjMiIHgyPSIxNCIgeTI9IjIxIj48L2xpbmU+PC9zdmc+) GitHub Action: Get issue number
+# ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItdXNlci1jaGVjayIgY29sb3I9ImJsdWUiPjxwYXRoIGQ9Ik0xNiAyMXYtMmE0IDQgMCAwIDAtNC00SDVhNCA0IDAgMCAwLTQgNHYyIj48L3BhdGg+PGNpcmNsZSBjeD0iOC41IiBjeT0iNyIgcj0iNCI+PC9jaXJjbGU+PHBvbHlsaW5lIHBvaW50cz0iMTcgMTEgMTkgMTMgMjMgOSI+PC9wb2x5bGluZT48L3N2Zz4=) GitHub Action: Get GitHub Actions bot user
 
 <div align="center">
-  <img src="../../.github/logo.svg" width="60px" align="center" alt="Get issue number" />
+  <img src="../../.github/logo.svg" width="60px" align="center" alt="Get GitHub Actions bot user" />
 </div>
 
 ---
@@ -20,7 +20,7 @@ last_synced: 2025-10-29T13:42:41.947Z
 
 <!-- badges:start -->
 
-[![Marketplace](https://img.shields.io/badge/Marketplace-get--issue--number-blue?logo=github-actions)](https://github.com/marketplace/actions/get-issue-number)
+[![Marketplace](https://img.shields.io/badge/Marketplace-get--github--actions--bot--user-blue?logo=github-actions)](https://github.com/marketplace/actions/get-github-actions-bot-user)
 [![Release](https://img.shields.io/github/v/release/hoverkraft-tech/ci-github-common)](https://github.com/hoverkraft-tech/ci-github-common/releases)
 [![License](https://img.shields.io/github/license/hoverkraft-tech/ci-github-common)](http://choosealicense.com/licenses/mit/)
 [![Stars](https://img.shields.io/github/stars/hoverkraft-tech/ci-github-common?style=social)](https://img.shields.io/github/stars/hoverkraft-tech/ci-github-common?style=social)
@@ -32,7 +32,8 @@ last_synced: 2025-10-29T13:42:41.947Z
 
 ## Overview
 
-Action to get Pull request or issue number
+Action to get the GitHub Actions bot user informations.
+Usefull to commit, comment, etc.
 
 <!-- overview:end -->
 
@@ -41,7 +42,7 @@ Action to get Pull request or issue number
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-common/actions/get-issue-number@b7dd413209df265bef8d7eb0efb117eaabc684c4 # 0.27.0
+- uses: hoverkraft-tech/ci-github-common/actions/get-github-actions-bot-user@b7dd413209df265bef8d7eb0efb117eaabc684c4 # 0.27.0
 ```
 
 <!-- usage:end -->
@@ -62,9 +63,10 @@ Action to get Pull request or issue number
 
 ## Outputs
 
-| **Output**         | **Description**   |
-| ------------------ | ----------------- |
-| **`issue-number`** | The issue number. |
+| **Output**  | **Description**                    |
+| ----------- | ---------------------------------- |
+| **`email`** | The GitHub Actions bot user email. |
+| **`name`**  | The GitHub Actions bot username.   |
 
 <!-- outputs:end -->
 

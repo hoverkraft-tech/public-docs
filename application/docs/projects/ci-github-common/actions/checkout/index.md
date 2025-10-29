@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/checkout/README.md
 source_branch: main
-source_run_id: 18909933009
-last_synced: 2025-10-29T13:42:41.947Z
+source_run_id: 18910377297
+last_synced: 2025-10-29T13:57:44.195Z
 ---
 
 <!-- header:start -->
@@ -33,7 +33,7 @@ last_synced: 2025-10-29T13:42:41.947Z
 ## Overview
 
 Action to checkout the repository compatible for PRs, issues and push events.
-Workaround for <https://github.com/actions/checkout/issues/331>](<https://github.com/actions/checkout/issues/331>.
+Workaround for [https://github.com/actions/checkout/issues/331](https://github.com/actions/checkout/issues/331)]([https://github.com/actions/checkout/issues/331](https://github.com/actions/checkout/issues/331).
 
 <!-- overview:end -->
 
@@ -79,9 +79,9 @@ permissions:
 | **Input**         | **Description**                                                                   | **Required** | **Default** |
 | ----------------- | --------------------------------------------------------------------------------- | ------------ | ----------- |
 | **`fetch-depth`** | Number of commits to fetch. 0 indicates all history for all branches and tags.    | **false**    | `1`         |
-|                   | See <https://github.com/actions/checkout#usage>                                   |              |             |
+|                   | See [https://github.com/actions/checkout#usage](https://github.com/actions/checkout#usage)                                   |              |             |
 | **`lfs`**         | Whether to download Git-LFS files.                                                | **false**    | `false`     |
-|                   | See <https://github.com/actions/checkout#usage>                                   |              |             |
+|                   | See [https://github.com/actions/checkout#usage](https://github.com/actions/checkout#usage)                                   |              |             |
 | **`token`**       | Token to use for checking out the repository instead of the default GITHUB_TOKEN. | **false**    | -           |
 |                   | If specified and not empty, persist-credentials in checkout will be false.        |              |             |
 

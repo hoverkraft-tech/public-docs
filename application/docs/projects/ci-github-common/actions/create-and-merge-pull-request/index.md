@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/create-and-merge-pull-request/README.md
 source_branch: main
-source_run_id: 18909933009
-last_synced: 2025-10-29T13:42:41.947Z
+source_run_id: 18910377297
+last_synced: 2025-10-29T13:57:44.195Z
 ---
 
 <!-- header:start -->
@@ -36,7 +36,7 @@ Action to create and merge Pull Request.
 Opinionated, set GitHub Actions bot as author, then rebase and merge.
 
 For this action to work you must explicitly allow GitHub Actions to create pull requests.
-See <https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository>.
+See [https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository).
 
 <!-- overview:end -->
 
@@ -79,7 +79,7 @@ See <https://docs.github.com/en/repositories/managing-your-repositorys-settings-
 | **Input**            | **Description**                                                                                            | **Required** | **Default**           |
 | -------------------- | ---------------------------------------------------------------------------------------------------------- | ------------ | --------------------- |
 | **`github-token`**   | GitHub token for creating and merging pull request (permissions contents: write and pull-requests: write). | **false**    | `${{ github.token }}` |
-|                      | See <https://github.com/peter-evans/create-pull-request#action-inputs>.                                    |              |                       |
+|                      | See [https://github.com/peter-evans/create-pull-request#action-inputs](https://github.com/peter-evans/create-pull-request#action-inputs).                                    |              |                       |
 | **`branch`**         | The pull request branch name                                                                               | **true**     | -                     |
 | **`title`**          | The pull request title                                                                                     | **true**     | -                     |
 | **`body`**           | The pull request body                                                                                      | **true**     | -                     |
