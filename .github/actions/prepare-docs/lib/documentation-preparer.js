@@ -21,13 +21,15 @@ class DocumentationPreparer {
     this.outputPath = validated.outputPath;
     this.sourceRepository = validated.sourceRepository;
     this.runId = validated.runId;
+    this.docsPath = validated.docsPath;
+    this.staticPath = validated.staticPath;
   }
 
   async run() {
     ensureArtifactDirectory(this.artifactPath);
 
     this.core.info(
-      `Preparing documentation bundle for ${this.sourceRepository}`,
+      `Preparing documentation bundle for ${this.sourceRepository}`
     );
 
     await prepareOutputDirectory(this.outputPath, this.io);
@@ -47,6 +49,8 @@ class DocumentationPreparer {
       sourceRepository: this.sourceRepository,
       sourceBranch,
       runId: this.runId,
+      docsPath: this.docsPath,
+      staticPath: this.staticPath,
       syncTimestamp,
     });
 
@@ -62,7 +66,7 @@ class DocumentationPreparer {
     });
 
     this.core.info(
-      `Documentation bundle prepared with ${processedFiles.length} files.`,
+      `Documentation bundle prepared with ${processedFiles.length} files.`
     );
 
     return {

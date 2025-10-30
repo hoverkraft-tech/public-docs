@@ -12,7 +12,7 @@ const {
   deriveTitleFromReadmePath,
 } = require("../utils/path-utils");
 const { registerAssetPath } = require("../utils/asset-registry");
-const { applyFrontmatter } = require("../frontmatter/frontmatter-writer");
+const { MarkdownProcessor } = require("../markdown/markdown-processor");
 
 class ArtifactProcessor {
   constructor({
@@ -22,6 +22,8 @@ class ArtifactProcessor {
     sourceRepository,
     sourceBranch,
     runId,
+    docsPath,
+    staticPath,
     syncTimestamp,
   }) {
     this.core = core;
@@ -30,8 +32,19 @@ class ArtifactProcessor {
     this.sourceRepository = sourceRepository;
     this.sourceBranch = sourceBranch;
     this.runId = runId;
+    this.docsPath = docsPath;
+    this.staticPath = staticPath;
     this.syncTimestamp = syncTimestamp;
     this.assetMap = new Map();
+    this.markdownProcessor = new MarkdownProcessor({
+      sourceRepository,
+      sourceBranch,
+      runId,
+      syncTimestamp,
+      assetMap: this.assetMap,
+      docsPath: this.docsPath,
+      staticPath: this.staticPath,
+    });
   }
 
   async process(artifactPath) {
@@ -112,15 +125,11 @@ class ArtifactProcessor {
     }
 
     for (const item of markdownWorkItems) {
-      applyFrontmatter(item.destination, {
-        sourceRepository: this.sourceRepository,
+      this.markdownProcessor.process({
+        filePath: item.destination,
         sourcePath: item.normalizedSourcePath,
-        sourceBranch: this.sourceBranch,
-        runId: this.runId,
-        syncTimestamp: this.syncTimestamp,
-        title: item.title,
         docRelativePath: item.docRelativePath,
-        assetMap: this.assetMap,
+        title: item.title,
       });
       this.core.info(`  Prepared markdown: ${item.docRelativePath}`);
     }

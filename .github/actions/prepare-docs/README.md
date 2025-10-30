@@ -54,6 +54,14 @@ Responsibilities:
     # Directory where the documentation artifact was downloaded.
     # Default: `documentation-download`
     artifact-path: documentation-download
+
+    # Documentation path within the portal where the docs will be injected.
+    # This input is required.
+    docs-path: ""
+
+    # Static asset path within the portal where supporting files will be stored.
+    # This input is required.
+    static-path: ""
 ```
 
 <!-- usage:end -->
@@ -61,12 +69,14 @@ Responsibilities:
 
 ## Inputs
 
-| **Input**               | **Description**                                                 | **Required** | **Default**              |
-| ----------------------- | --------------------------------------------------------------- | ------------ | ------------------------ |
-| **`github-token`**      | GitHub token used to resolve workflow run metadata.             | **true**     | -                        |
-| **`source-repository`** | Source repository that produced the documentation.              | **true**     | -                        |
-| **`run-id`**            | Workflow run identifier associated with the documentation sync. | **true**     | -                        |
-| **`artifact-path`**     | Directory where the documentation artifact was downloaded.      | **false**    | `documentation-download` |
+| **Input**               | **Description**                                                  | **Required** | **Default**              |
+| ----------------------- | ---------------------------------------------------------------- | ------------ | ------------------------ |
+| **`github-token`**      | GitHub token used to resolve workflow run metadata.              | **true**     | -                        |
+| **`source-repository`** | Source repository that produced the documentation.               | **true**     | -                        |
+| **`run-id`**            | Workflow run identifier associated with the documentation sync.  | **true**     | -                        |
+| **`artifact-path`**     | Directory where the documentation artifact was downloaded.       | **false**    | `documentation-download` |
+| **`docs-path`**         | Documentation path within the portal where the docs will live.   | **true**     | -                        |
+| **`static-path`**       | Static asset path for supporting files associated with the docs. | **true**     | -                        |
 
 <!-- inputs:end -->
 <!-- secrets:start -->

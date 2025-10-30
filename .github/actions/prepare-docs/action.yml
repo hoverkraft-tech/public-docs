@@ -1,12 +1,12 @@
 name: Prepare Documentation Bundle
 description: |
-  Prepare markdown documentation pulled from an artifact before publishing it to the portal.
+  Prepare Markdown documentation pulled from an artifact before publishing it to the portal.
 
   Responsibilities:
 
   - Sanitize incoming file paths.
   - Copy supporting assets into a sandbox directory.
-  - Inject sync metadata into markdown and MDX files.
+  - Inject sync metadata into Markdown and MDX files.
   - Generate a default index page and metadata manifest when missing.
 
 inputs:
@@ -23,6 +23,12 @@ inputs:
     description: Directory where the documentation artifact was downloaded.
     required: false
     default: documentation-download
+  docs-path:
+    description: Documentation path within the portal where the docs will be injected.
+    required: true
+  static-path:
+    description: Static asset path within the portal where supporting files will be stored.
+    required: true
 
 outputs:
   source-branch:
@@ -46,6 +52,8 @@ runs:
         OUTPUT_PATH: ${{ runner.temp }}/processed-docs-${{ github.run_id }}
         SOURCE_REPOSITORY: ${{ inputs.source-repository }}
         RUN_ID: ${{ inputs.run-id }}
+        DOCS_PATH: ${{ inputs.docs-path }}
+        STATIC_PATH: ${{ inputs.static-path }}
         NODE_PATH: ${{ github.action_path }}/node_modules
       with:
         github-token: ${{ inputs.github-token }}
@@ -63,7 +71,9 @@ runs:
               artifactPath: process.env.ARTIFACT_PATH,
               outputPath: process.env.OUTPUT_PATH,
               sourceRepository: process.env.SOURCE_REPOSITORY,
-              runId: process.env.RUN_ID
+              runId: process.env.RUN_ID,
+              docsPath: process.env.DOCS_PATH,
+              staticPath: process.env.STATIC_PATH,
             });
 
             core.setOutput('output-path', process.env.OUTPUT_PATH);

@@ -1,7 +1,10 @@
 "use strict";
 
-const { splitLinkPathAndSuffix, sanitizeLinkPath } = require("./path-utils");
-const { resolveAssetPublicPath } = require("./asset-registry");
+const {
+  splitLinkPathAndSuffix,
+  sanitizeLinkPath,
+} = require("../utils/path-utils");
+const { resolveAssetPublicPath } = require("../utils/asset-registry");
 
 function normalizeMarkdownBody(content, options = {}) {
   if (!content) {
@@ -22,7 +25,7 @@ function convertAngleBracketLinks(text) {
       const isEmail = raw.includes("@");
       const href = isEmail ? `mailto:${raw}` : raw;
       return `[${raw}](${href})`;
-    },
+    }
   );
 }
 
@@ -178,6 +181,8 @@ function rewriteLinkTarget(rawTarget, options = {}) {
     assetMap: options.assetMap,
     docRelativePath: options.docRelativePath,
     targetPath: sanitizedPath,
+    docsPath: options.docsPath,
+    staticPath: options.staticPath,
   });
   const rewrittenPath = assetPublicPath || sanitizedPath;
   const rebuiltTarget = `${rewrittenPath}${suffix}`;

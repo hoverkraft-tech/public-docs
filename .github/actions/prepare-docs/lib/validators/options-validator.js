@@ -13,6 +13,8 @@ function validateOptions(options) {
     outputPath,
     sourceRepository,
     runId,
+    docsPath,
+    staticPath,
   } = options;
 
   if (!github?.rest?.actions) {
@@ -43,6 +45,14 @@ function validateOptions(options) {
     throw new Error("Run ID is required.");
   }
 
+  if (!docsPath) {
+    throw new Error("Docs path is required.");
+  }
+
+  if (!staticPath) {
+    throw new Error("Static path is required.");
+  }
+
   return {
     github,
     core,
@@ -51,6 +61,8 @@ function validateOptions(options) {
     outputPath,
     sourceRepository,
     runId,
+    docsPath,
+    staticPath,
   };
 }
 

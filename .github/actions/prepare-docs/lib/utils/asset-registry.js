@@ -10,26 +10,105 @@ function registerAssetPath(assetMap, assetPath) {
   const publicPath = `/${storageRelativePath}`.replace(/\/+/g, "/");
 
   if (!assetMap.has(key)) {
-    assetMap.set(key, publicPath);
+    assetMap.set(key, {
+      storageRelativePath,
+      publicPath,
+    });
   }
 
-  return { key, storageRelativePath, publicPath };
+  const registration = assetMap.get(key);
+
+  return {
+    key,
+    storageRelativePath: registration.storageRelativePath,
+    publicPath: registration.publicPath,
+  };
 }
 
-function resolveAssetPublicPath({ assetMap, docRelativePath, targetPath }) {
+function resolveAssetPublicPath({
+  assetMap,
+  docRelativePath,
+  targetPath,
+  docsPath,
+  staticPath,
+}) {
   if (!assetMap || assetMap.size === 0) {
     return null;
   }
 
   const normalizedTarget = normalizeAssetLinkTarget(
     docRelativePath,
-    targetPath,
+    targetPath
   );
   if (!normalizedTarget) {
     return null;
   }
 
-  return assetMap.get(normalizedTarget) || null;
+  const registration = assetMap.get(normalizedTarget);
+  if (!registration) {
+    return null;
+  }
+
+  const relativePath = deriveRelativeAssetPath({
+    docRelativePath,
+    docsPath,
+    staticPath,
+    storageRelativePath: registration.storageRelativePath,
+  });
+
+  if (relativePath) {
+    return relativePath;
+  }
+
+  return registration.publicPath || null;
+}
+
+function deriveRelativeAssetPath({
+  docRelativePath,
+  docsPath,
+  staticPath,
+  storageRelativePath,
+}) {
+  if (!docsPath || !staticPath || !storageRelativePath) {
+    return null;
+  }
+
+  const normalizedDocsRoot = normalizeToPosix(docsPath);
+  const normalizedStaticRoot = normalizeToPosix(staticPath);
+
+  if (!normalizedDocsRoot || !normalizedStaticRoot) {
+    return null;
+  }
+
+  const normalizedDocRelative = docRelativePath
+    ? normalizeToPosix(docRelativePath)
+    : "";
+
+  const docFullPath = normalizedDocRelative
+    ? path.posix.join(normalizedDocsRoot, normalizedDocRelative)
+    : normalizedDocsRoot;
+
+  const docDirectory = normalizedDocRelative
+    ? path.posix.dirname(docFullPath)
+    : normalizedDocsRoot;
+  const effectiveDocDirectory =
+    docDirectory && docDirectory !== "." ? docDirectory : normalizedDocsRoot;
+
+  const assetFullPath = path.posix.join(
+    normalizedStaticRoot,
+    normalizeToPosix(storageRelativePath)
+  );
+
+  const relativePath = path.posix.relative(
+    effectiveDocDirectory,
+    assetFullPath
+  );
+
+  if (!relativePath) {
+    return null;
+  }
+
+  return relativePath.replace(/\\/g, "/");
 }
 
 function normalizeAssetLinkTarget(docRelativePath, targetPath) {
