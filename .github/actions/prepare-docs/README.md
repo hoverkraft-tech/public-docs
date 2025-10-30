@@ -3,7 +3,7 @@
 # GitHub Action: Prepare Documentation Bundle
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/eaebaf40ddf3d5f143dc07113565b01a4d6a650148237b4efda3c7c2e88f7e81/hoverkraft-tech/public-docs" width="60px" align="center" alt="Prepare Documentation Bundle" />
+  <img src="https://opengraph.githubassets.com/68c815a8654cc1e994c6a6444cb002de76569d891ef25ba5849fde5ca333d2ad/hoverkraft-tech/public-docs" width="60px" align="center" alt="Prepare Documentation Bundle" />
 </div>
 
 ---
@@ -22,13 +22,13 @@
 
 ## Overview
 
-Prepare markdown documentation pulled from an artifact before publishing it to the portal.
+Prepare Markdown documentation pulled from an artifact before publishing it to the portal.
 
 Responsibilities:
 
 - Sanitize incoming file paths.
 - Copy supporting assets into a sandbox directory.
-- Inject sync metadata into markdown and MDX files.
+- Inject sync metadata into Markdown and MDX files.
 - Generate a default index page and metadata manifest when missing.
 
 <!-- overview:end -->
@@ -69,14 +69,14 @@ Responsibilities:
 
 ## Inputs
 
-| **Input**               | **Description**                                                  | **Required** | **Default**              |
-| ----------------------- | ---------------------------------------------------------------- | ------------ | ------------------------ |
-| **`github-token`**      | GitHub token used to resolve workflow run metadata.              | **true**     | -                        |
-| **`source-repository`** | Source repository that produced the documentation.               | **true**     | -                        |
-| **`run-id`**            | Workflow run identifier associated with the documentation sync.  | **true**     | -                        |
-| **`artifact-path`**     | Directory where the documentation artifact was downloaded.       | **false**    | `documentation-download` |
-| **`docs-path`**         | Documentation path within the portal where the docs will live.   | **true**     | -                        |
-| **`static-path`**       | Static asset path for supporting files associated with the docs. | **true**     | -                        |
+| **Input**               | **Description**                                                            | **Required** | **Default**              |
+| ----------------------- | -------------------------------------------------------------------------- | ------------ | ------------------------ |
+| **`github-token`**      | GitHub token used to resolve workflow run metadata.                        | **true**     | -                        |
+| **`source-repository`** | Source repository that produced the documentation.                         | **true**     | -                        |
+| **`run-id`**            | Workflow run identifier associated with the documentation sync.            | **true**     | -                        |
+| **`artifact-path`**     | Directory where the documentation artifact was downloaded.                 | **false**    | `documentation-download` |
+| **`docs-path`**         | Documentation path within the portal where the docs will be injected.      | **true**     | -                        |
+| **`static-path`**       | Static asset path within the portal where supporting files will be stored. | **true**     | -                        |
 
 <!-- inputs:end -->
 <!-- secrets:start -->
