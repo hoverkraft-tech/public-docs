@@ -9,7 +9,7 @@ import styles from './projects.module.css';
 
 Welcome to the Hoverkraft project ecosystem! We maintain **32 open-source projects**
 with a combined **234 stars** across multiple technologies
-including Makefile, TypeScript, Smarty, Astro, Dockerfile, and more. 
+including TypeScript, Astro, Makefile, Smarty, Dockerfile, and more. 
 
 ## 📊 Quick Stats
 
@@ -28,7 +28,7 @@ including Makefile, TypeScript, Smarty, Astro, Dockerfile, and more.
     icon="🔧"
     title="docusaurus-theme"
     titleHref="https://github.com/hoverkraft-tech/docusaurus-theme"
-    meta="TypeScript • ⭐ 0 • Updated Oct 28, 2025"
+    meta="TypeScript • ⭐ 0 • Updated Oct 30, 2025"
     description="Hoverkraft theme for Docusaurus"
     tags={["branding", "docusaurus-theme", "hoverkraft-tech"]}
     actions={[
@@ -41,7 +41,7 @@ including Makefile, TypeScript, Smarty, Astro, Dockerfile, and more.
     icon="🔧"
     title="landing-page"
     titleHref="https://github.com/hoverkraft-tech/landing-page"
-    meta="Astro • ⭐ 2 • Updated Oct 27, 2025"
+    meta="Astro • ⭐ 2 • Updated Oct 30, 2025"
     description="Landing Page of hoverkraft organization"
     tags={["branding", "hoverkraft-tech"]}
     actions={[
