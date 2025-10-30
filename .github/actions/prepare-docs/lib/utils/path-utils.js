@@ -51,80 +51,6 @@ function didRewriteReadme(originalPath, rewrittenPath) {
   return Boolean(last && last.toLowerCase() === "readme.md");
 }
 
-function sanitizeLinkPath(targetPath) {
-  if (!targetPath) {
-    return targetPath;
-  }
-
-  const normalized = normalizeToPosix(targetPath);
-  const hasLeadingSlash = normalized.startsWith("/");
-  const hasTrailingSlash = normalized.length > 1 && normalized.endsWith("/");
-
-  const segments = normalized.split("/");
-  const sanitizedSegments = [];
-
-  segments.forEach((segment, index) => {
-    if (segment === "" && index === 0 && hasLeadingSlash) {
-      sanitizedSegments.push("");
-      return;
-    }
-
-    if (segment === "" && index === segments.length - 1 && hasTrailingSlash) {
-      sanitizedSegments.push("");
-      return;
-    }
-
-    if (segment === "." || segment === "..") {
-      sanitizedSegments.push(segment);
-      return;
-    }
-
-    if (!segment) {
-      return;
-    }
-
-    const sanitized = sanitizeSegment(segment);
-    if (sanitized) {
-      sanitizedSegments.push(sanitized);
-    }
-  });
-
-  let sanitizedPath = sanitizedSegments.join("/");
-
-  if (hasLeadingSlash && !sanitizedPath.startsWith("/")) {
-    sanitizedPath = `/${sanitizedPath}`;
-  }
-
-  if (hasTrailingSlash && !sanitizedPath.endsWith("/")) {
-    sanitizedPath = `${sanitizedPath}/`;
-  }
-
-  return rewriteReadmeToIndex(sanitizedPath);
-}
-
-function splitLinkPathAndSuffix(target) {
-  let cutIndex = -1;
-  const hashIndex = target.indexOf("#");
-  const queryIndex = target.indexOf("?");
-
-  if (hashIndex !== -1 && queryIndex !== -1) {
-    cutIndex = Math.min(hashIndex, queryIndex);
-  } else if (hashIndex !== -1) {
-    cutIndex = hashIndex;
-  } else if (queryIndex !== -1) {
-    cutIndex = queryIndex;
-  }
-
-  if (cutIndex === -1) {
-    return { path: target, suffix: "" };
-  }
-
-  return {
-    path: target.slice(0, cutIndex),
-    suffix: target.slice(cutIndex),
-  };
-}
-
 function deriveTitleFromReadmePath({ indexPath, sourceRepository }) {
   if (!indexPath) {
     return null;
@@ -188,8 +114,6 @@ module.exports = {
   sanitizeRelativePath,
   rewriteReadmeToIndex,
   didRewriteReadme,
-  sanitizeLinkPath,
-  splitLinkPathAndSuffix,
   deriveTitleFromReadmePath,
   formatTitleFromSlug,
   toSystemPath,

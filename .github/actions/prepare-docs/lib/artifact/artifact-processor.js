@@ -1,7 +1,11 @@
 "use strict";
 
 const path = require("path");
-const { MARKDOWN_EXTENSIONS, STATIC_DIRECTORY } = require("../constants");
+const {
+  MARKDOWN_EXTENSIONS,
+  STATIC_DIRECTORY,
+  STATIC_ASSET_PREFIX,
+} = require("../constants");
 const { iterateFiles } = require("../utils/file-iterator");
 const {
   normalizeToPosix,
@@ -11,7 +15,6 @@ const {
   toSystemPath,
   deriveTitleFromReadmePath,
 } = require("../utils/path-utils");
-const { registerAssetPath } = require("../utils/asset-registry");
 const { MarkdownProcessor } = require("../markdown/markdown-processor");
 
 class ArtifactProcessor {
@@ -62,11 +65,11 @@ class ArtifactProcessor {
       const normalizedSourcePath = normalizeToPosix(relativePath);
       const sanitizedRelativePathRaw = sanitizeRelativePath(relativePath);
       const sanitizedRelativePath = rewriteReadmeToIndex(
-        sanitizedRelativePathRaw,
+        sanitizedRelativePathRaw
       );
       const renamedFromReadme = didRewriteReadme(
         sanitizedRelativePathRaw,
-        sanitizedRelativePath,
+        sanitizedRelativePath
       );
       const derivedTitle = renamedFromReadme
         ? deriveTitleFromReadmePath({
@@ -80,7 +83,7 @@ class ArtifactProcessor {
       }
 
       const isMarkdown = MARKDOWN_EXTENSIONS.has(
-        path.extname(sanitizedRelativePath).toLowerCase(),
+        path.extname(sanitizedRelativePath).toLowerCase()
       );
 
       let targetRelativePath;
@@ -93,11 +96,11 @@ class ArtifactProcessor {
       } else {
         assetRegistration = registerAssetPath(
           this.assetMap,
-          sanitizedRelativePath,
+          sanitizedRelativePath
         );
         targetRelativePath = path.posix.join(
           STATIC_DIRECTORY,
-          assetRegistration.storageRelativePath,
+          assetRegistration.storageRelativePath
         );
         destination = toSystemPath(this.outputPath, targetRelativePath);
       }
@@ -119,7 +122,7 @@ class ArtifactProcessor {
         });
       } else {
         this.core.info(
-          `  Copied asset: ${targetRelativePath} (public ${assetRegistration.publicPath})`,
+          `  Copied asset: ${targetRelativePath} (public ${assetRegistration.publicPath})`
         );
       }
     }
@@ -140,6 +143,27 @@ class ArtifactProcessor {
 
     return Array.from(processedFiles);
   }
+}
+
+function registerAssetPath(assetMap, assetPath) {
+  const key = normalizeToPosix(assetPath);
+  const storageRelativePath = path.posix.join(STATIC_ASSET_PREFIX, key);
+  const publicPath = `/${storageRelativePath}`.replace(/\/+/g, "/");
+
+  if (!assetMap.has(key)) {
+    assetMap.set(key, {
+      storageRelativePath,
+      publicPath,
+    });
+  }
+
+  const registration = assetMap.get(key);
+
+  return {
+    key,
+    storageRelativePath: registration.storageRelativePath,
+    publicPath: registration.publicPath,
+  };
 }
 
 module.exports = {

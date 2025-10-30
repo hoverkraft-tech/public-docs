@@ -5,7 +5,6 @@ const {
   ensureArtifactDirectory,
   prepareOutputDirectory,
 } = require("./utils/fs-utils");
-const { parseRepositorySlug } = require("./utils/repository-utils");
 const { resolveSourceBranch } = require("./services/source-branch-resolver");
 const { ArtifactProcessor } = require("./artifact/artifact-processor");
 const { ensureIndexPage } = require("./artifact/index-page-writer");
@@ -29,7 +28,7 @@ class DocumentationPreparer {
     ensureArtifactDirectory(this.artifactPath);
 
     this.core.info(
-      `Preparing documentation bundle for ${this.sourceRepository}`,
+      `Preparing documentation bundle for ${this.sourceRepository}`
     );
 
     await prepareOutputDirectory(this.outputPath, this.io);
@@ -66,7 +65,7 @@ class DocumentationPreparer {
     });
 
     this.core.info(
-      `Documentation bundle prepared with ${processedFiles.length} files.`,
+      `Documentation bundle prepared with ${processedFiles.length} files.`
     );
 
     return {
@@ -74,6 +73,15 @@ class DocumentationPreparer {
       sourceBranch,
     };
   }
+}
+
+function parseRepositorySlug(repository) {
+  const [owner, name] = (repository || "").split("/");
+  if (!owner || !name) {
+    throw new Error(`Invalid repository slug "${repository}".`);
+  }
+
+  return { owner, name };
 }
 
 module.exports = {

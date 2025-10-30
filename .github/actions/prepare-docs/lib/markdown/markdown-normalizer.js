@@ -1,17 +1,19 @@
 "use strict";
 
-const {
-  splitLinkPathAndSuffix,
-  sanitizeLinkPath,
-} = require("../utils/path-utils");
-const { resolveAssetPublicPath } = require("../utils/asset-registry");
+const { AssetRewriter } = require("../services/asset-rewriter");
 
 function normalizeMarkdownBody(content, options = {}) {
   if (!content) {
     return content;
   }
 
-  return rewriteLocalLinks(convertAngleBracketLinks(content), options);
+  const assetRewriter = new AssetRewriter(options);
+  const convertedLinks = convertAngleBracketLinks(content);
+  const rewrittenMarkdownLinks = rewriteLocalLinks(
+    convertedLinks,
+    assetRewriter
+  );
+  return rewriteHtmlAttributes(rewrittenMarkdownLinks, assetRewriter);
 }
 
 function convertAngleBracketLinks(text) {
@@ -25,11 +27,11 @@ function convertAngleBracketLinks(text) {
       const isEmail = raw.includes("@");
       const href = isEmail ? `mailto:${raw}` : raw;
       return `[${raw}](${href})`;
-    },
+    }
   );
 }
 
-function rewriteLocalLinks(text, options = {}) {
+function rewriteLocalLinks(text, assetRewriter) {
   if (!text) {
     return text;
   }
@@ -109,7 +111,7 @@ function rewriteLocalLinks(text, options = {}) {
     }
 
     const target = text.slice(afterBracket + 1, parenEnd);
-    const rewrittenTarget = rewriteLinkTarget(target, options);
+    const rewrittenTarget = rewriteLinkTarget(target, assetRewriter);
 
     result += text.slice(bracketIndex, afterBracket + 1);
     result += rewrittenTarget;
@@ -118,14 +120,14 @@ function rewriteLocalLinks(text, options = {}) {
     index = parenEnd + 1;
   }
 
-  return rewriteReferenceLinks(result, options);
+  return rewriteReferenceLinks(result, assetRewriter);
 }
 
-function rewriteReferenceLinks(text, options = {}) {
+function rewriteReferenceLinks(text, assetRewriter) {
   const referencePattern = /^(\s*\[[^\]]+\]:\s*)(.+)$/gm;
 
   return text.replace(referencePattern, (match, prefix, target) => {
-    const rewritten = rewriteLinkTarget(target, options);
+    const rewritten = rewriteLinkTarget(target, assetRewriter);
     if (rewritten === target) {
       return match;
     }
@@ -133,7 +135,7 @@ function rewriteReferenceLinks(text, options = {}) {
   });
 }
 
-function rewriteLinkTarget(rawTarget, options = {}) {
+function rewriteLinkTarget(rawTarget, assetRewriter) {
   if (!rawTarget) {
     return rawTarget;
   }
@@ -167,48 +169,55 @@ function rewriteLinkTarget(rawTarget, options = {}) {
     }
   }
 
-  if (!urlPart || isExternalLink(urlPart)) {
+  const { value, changed } = assetRewriter.rewrite(urlPart);
+
+  if (!changed) {
     return rawTarget;
   }
 
-  const { path: targetPath, suffix } = splitLinkPathAndSuffix(urlPart);
-  if (!targetPath) {
-    return rawTarget;
-  }
-
-  const sanitizedPath = sanitizeLinkPath(targetPath);
-  const assetPublicPath = resolveAssetPublicPath({
-    assetMap: options.assetMap,
-    docRelativePath: options.docRelativePath,
-    targetPath: sanitizedPath,
-    docsPath: options.docsPath,
-    staticPath: options.staticPath,
-  });
-  const rewrittenPath = assetPublicPath || sanitizedPath;
-  const rebuiltTarget = `${rewrittenPath}${suffix}`;
-
-  if (rebuiltTarget === urlPart) {
-    return rawTarget;
-  }
-
-  return `${leadingWhitespace}${rebuiltTarget}${trailingTitle}`;
+  return `${leadingWhitespace}${value}${trailingTitle}`;
 }
 
-function isExternalLink(target) {
-  const trimmed = target.trim();
-  if (!trimmed) {
-    return true;
+function rewriteHtmlAttributes(text, assetRewriter) {
+  if (!text) {
+    return text;
   }
 
-  if (trimmed.startsWith("#")) {
-    return true;
+  const attributePattern = /(<[^>]+?\s)(src|href)(\s*=\s*)(["'])([^"']+?)\4/gi;
+
+  return text.replace(
+    attributePattern,
+    (match, prefix, attribute, equalsPart, quote, value) => {
+      const rewrittenValue = rewriteHtmlAttributeValue(value, assetRewriter);
+      if (rewrittenValue === value) {
+        return match;
+      }
+
+      return `${prefix}${attribute}${equalsPart}${quote}${rewrittenValue}${quote}`;
+    }
+  );
+}
+
+function rewriteHtmlAttributeValue(rawValue, assetRewriter) {
+  if (!rawValue) {
+    return rawValue;
   }
 
-  if (trimmed.startsWith("//")) {
-    return true;
+  const leadingWhitespace = rawValue.match(/^\s+/)?.[0] || "";
+  const trailingWhitespace = rawValue.match(/\s+$/)?.[0] || "";
+  const coreValue = rawValue.trim();
+
+  if (!coreValue) {
+    return rawValue;
   }
 
-  return /^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(trimmed);
+  const { value, changed } = assetRewriter.rewrite(coreValue);
+
+  if (!changed) {
+    return rawValue;
+  }
+
+  return `${leadingWhitespace}${value}${trailingWhitespace}`;
 }
 
 module.exports = {
