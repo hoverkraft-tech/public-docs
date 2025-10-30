@@ -66,10 +66,10 @@ class DocumentationGenerator {
 
     console.log("📄 Generated files:");
     console.log(
-      `   - ${path.relative(process.env.GITHUB_WORKSPACE, PROJECTS_MD_PATH)}`
+      `   - ${path.relative(process.env.GITHUB_WORKSPACE, PROJECTS_MD_PATH)}`,
     );
     console.log(
-      `   - ${path.relative(process.env.GITHUB_WORKSPACE, HOMEPAGE_PATH)}`
+      `   - ${path.relative(process.env.GITHUB_WORKSPACE, HOMEPAGE_PATH)}`,
     );
   }
 

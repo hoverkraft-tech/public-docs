@@ -15,7 +15,7 @@ const OWNER = process.env.GITHUB_REPOSITORY_OWNER;
 
 if (!OWNER) {
   throw new Error(
-    "GITHUB_REPOSITORY_OWNER environment variable must be set for documentation generation."
+    "GITHUB_REPOSITORY_OWNER environment variable must be set for documentation generation.",
   );
 }
 
@@ -23,7 +23,7 @@ const REPOSITORY_SLUG = process.env.GITHUB_REPOSITORY;
 
 if (!REPOSITORY_SLUG) {
   throw new Error(
-    "GITHUB_REPOSITORY environment variable must be set for documentation generation."
+    "GITHUB_REPOSITORY environment variable must be set for documentation generation.",
   );
 }
 
@@ -31,7 +31,7 @@ const [, REPOSITORY_NAME] = REPOSITORY_SLUG.split("/");
 
 if (!REPOSITORY_NAME) {
   throw new Error(
-    `Unable to determine repository name from GITHUB_REPOSITORY='${REPOSITORY_SLUG}'.`
+    `Unable to determine repository name from GITHUB_REPOSITORY='${REPOSITORY_SLUG}'.`,
   );
 }
 
