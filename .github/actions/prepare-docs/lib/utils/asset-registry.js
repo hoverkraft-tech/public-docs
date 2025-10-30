@@ -38,7 +38,7 @@ function resolveAssetPublicPath({
 
   const normalizedTarget = normalizeAssetLinkTarget(
     docRelativePath,
-    targetPath,
+    targetPath
   );
   if (!normalizedTarget) {
     return null;
@@ -47,6 +47,15 @@ function resolveAssetPublicPath({
   const registration = assetMap.get(normalizedTarget);
   if (!registration) {
     return null;
+  }
+
+  const namespacedAssetPath = deriveStaticPublicPath({
+    staticPath,
+    storageRelativePath: registration.storageRelativePath,
+  });
+
+  if (namespacedAssetPath) {
+    return namespacedAssetPath;
   }
 
   const relativePath = deriveRelativeAssetPath({
@@ -61,6 +70,60 @@ function resolveAssetPublicPath({
   }
 
   return registration.publicPath || null;
+}
+
+function deriveStaticPublicPath({ staticPath, storageRelativePath }) {
+  if (!staticPath || !storageRelativePath) {
+    return null;
+  }
+
+  const normalizedStaticRoot = normalizeToPosix(staticPath);
+  const normalizedStorage = normalizeToPosix(storageRelativePath);
+
+  if (!normalizedStaticRoot || !normalizedStorage) {
+    return null;
+  }
+
+  const namespace = extractStaticNamespace(normalizedStaticRoot);
+
+  const combinedPath = namespace
+    ? path.posix.join(namespace, normalizedStorage)
+    : normalizedStorage;
+
+  if (!combinedPath) {
+    return null;
+  }
+
+  return `/${combinedPath}`.replace(/\/+/g, "/");
+}
+
+function extractStaticNamespace(staticRoot) {
+  if (!staticRoot) {
+    return null;
+  }
+
+  const segments = staticRoot.split("/").filter(Boolean);
+  if (!segments.length) {
+    return "";
+  }
+
+  const staticIndex = segments.lastIndexOf("static");
+  if (staticIndex === -1) {
+    return path.posix.basename(staticRoot);
+  }
+
+  const namespaceSegments = segments.slice(staticIndex + 1).filter(Boolean);
+  if (!namespaceSegments.length) {
+    return "";
+  }
+
+  const namespace = namespaceSegments.join("/");
+
+  if (namespace.startsWith("..")) {
+    return "";
+  }
+
+  return namespace;
 }
 
 function deriveRelativeAssetPath({
@@ -96,12 +159,12 @@ function deriveRelativeAssetPath({
 
   const assetFullPath = path.posix.join(
     normalizedStaticRoot,
-    normalizeToPosix(storageRelativePath),
+    normalizeToPosix(storageRelativePath)
   );
 
   const relativePath = path.posix.relative(
     effectiveDocDirectory,
-    assetFullPath,
+    assetFullPath
   );
 
   if (!relativePath) {
