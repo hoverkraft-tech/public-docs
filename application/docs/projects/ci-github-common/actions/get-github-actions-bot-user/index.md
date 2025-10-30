@@ -3,8 +3,8 @@ title: Get Github Actions Bot User
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/get-github-actions-bot-user/README.md
 source_branch: main
-source_run_id: 18934441600
-last_synced: 2025-10-30T08:27:49.516Z
+source_run_id: 18937858045
+last_synced: 2025-10-30T10:40:17.371Z
 ---
 
 <!-- header:start -->
