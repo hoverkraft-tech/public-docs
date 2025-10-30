@@ -1,9 +1,10 @@
 ---
+title: Get Matrix Outputs
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/get-matrix-outputs/README.md
 source_branch: main
-source_run_id: 18916463155
-last_synced: 2025-10-29T17:19:20.032Z
+source_run_id: 18934441600
+last_synced: 2025-10-30T08:27:49.516Z
 ---
 
 <!-- header:start -->
