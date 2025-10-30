@@ -21,9 +21,14 @@ function HeroSection() {
       }
       actions={[
         {
-          label: 'Explore Projects',
+          label: 'Discover documentation',
           to: '/docs/intro',
           variant: 'primary',
+        },
+        {
+          label: 'Explore Projects',
+          to: '/docs/projects',
+          variant: 'secondary',
         },
         {
           label: 'View on GitHub',

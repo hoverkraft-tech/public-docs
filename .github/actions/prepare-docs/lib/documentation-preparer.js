@@ -29,7 +29,7 @@ class DocumentationPreparer {
     ensureArtifactDirectory(this.artifactPath);
 
     this.core.info(
-      `Preparing documentation bundle for ${this.sourceRepository}`
+      `Preparing documentation bundle for ${this.sourceRepository}`,
     );
 
     await prepareOutputDirectory(this.outputPath, this.io);
@@ -66,7 +66,7 @@ class DocumentationPreparer {
     });
 
     this.core.info(
-      `Documentation bundle prepared with ${processedFiles.length} files.`
+      `Documentation bundle prepared with ${processedFiles.length} files.`,
     );
 
     return {

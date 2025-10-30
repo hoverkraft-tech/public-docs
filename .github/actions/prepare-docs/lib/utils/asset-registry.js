@@ -38,7 +38,7 @@ function resolveAssetPublicPath({
 
   const normalizedTarget = normalizeAssetLinkTarget(
     docRelativePath,
-    targetPath
+    targetPath,
   );
   if (!normalizedTarget) {
     return null;
@@ -96,12 +96,12 @@ function deriveRelativeAssetPath({
 
   const assetFullPath = path.posix.join(
     normalizedStaticRoot,
-    normalizeToPosix(storageRelativePath)
+    normalizeToPosix(storageRelativePath),
   );
 
   const relativePath = path.posix.relative(
     effectiveDocDirectory,
-    assetFullPath
+    assetFullPath,
   );
 
   if (!relativePath) {

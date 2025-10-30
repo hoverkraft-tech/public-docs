@@ -25,7 +25,7 @@ function convertAngleBracketLinks(text) {
       const isEmail = raw.includes("@");
       const href = isEmail ? `mailto:${raw}` : raw;
       return `[${raw}](${href})`;
-    }
+    },
   );
 }
 
