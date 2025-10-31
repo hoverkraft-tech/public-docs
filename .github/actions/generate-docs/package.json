@@ -11,6 +11,6 @@
     "ejs": "^3.1.10"
   },
   "devDependencies": {
-    "vitest": "^4.0.5"
+    "vitest": "^4.0.6"
   }
 }
