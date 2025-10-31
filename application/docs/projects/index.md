@@ -9,7 +9,7 @@ import styles from './projects.module.css';
 
 Welcome to the Hoverkraft project ecosystem! We maintain **32 open-source projects**
 with a combined **234 stars** across multiple technologies
-including TypeScript, JavaScript, Makefile, Astro, Smarty, and more. 
+including JavaScript, TypeScript, Makefile, Astro, Smarty, and more. 
 
 ## 📊 Quick Stats
 
@@ -109,6 +109,19 @@ including TypeScript, JavaScript, Makefile, Astro, Smarty, and more.
   
   <HoverkraftProjectCard
     icon="⚡"
+    title="ci-github-publish"
+    titleHref="https://github.com/hoverkraft-tech/ci-github-publish"
+    meta="JavaScript • ⭐ 2 • Updated Oct 31, 2025"
+    description="Opinionated GitHub actions and workflows for streamlined release, deployment, and publishing."
+    tags={["continuous-delivery", "continuous-deployment", "continuous-integration", "github-actions", "open-source"]}
+    actions={[
+      { label: "View on GitHub", href: "https://github.com/hoverkraft-tech/ci-github-publish" },
+      { label: "Documentation", href: "https://hoverkraft-tech.github.io/ci-github-publish/" }
+    ]}
+  />
+  
+  <HoverkraftProjectCard
+    icon="⚡"
     title="compose-action"
     titleHref="https://github.com/hoverkraft-tech/compose-action"
     meta="TypeScript • ⭐ 192 • Updated Oct 31, 2025"
@@ -130,19 +143,6 @@ including TypeScript, JavaScript, Makefile, Astro, Smarty, and more.
     actions={[
       { label: "View on GitHub", href: "https://github.com/hoverkraft-tech/ci-dokumentor" },
       { label: "Documentation", href: "https://hoverkraft-tech.github.io/ci-dokumentor/" }
-    ]}
-  />
-  
-  <HoverkraftProjectCard
-    icon="⚡"
-    title="ci-github-publish"
-    titleHref="https://github.com/hoverkraft-tech/ci-github-publish"
-    meta="JavaScript • ⭐ 2 • Updated Oct 31, 2025"
-    description="Opinionated GitHub actions and workflows for streamlined release, deployment, and publishing."
-    tags={["continuous-delivery", "continuous-deployment", "continuous-integration", "github-actions", "open-source"]}
-    actions={[
-      { label: "View on GitHub", href: "https://github.com/hoverkraft-tech/ci-github-publish" },
-      { label: "Documentation", href: "https://hoverkraft-tech.github.io/ci-github-publish/" }
     ]}
   />
   
