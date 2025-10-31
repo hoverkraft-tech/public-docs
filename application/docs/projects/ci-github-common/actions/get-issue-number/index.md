@@ -3,8 +3,8 @@ title: Get Issue Number
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/get-issue-number/README.md
 source_branch: main
-source_run_id: 18939047536
-last_synced: 2025-10-30T11:26:17.632Z
+source_run_id: 18969557687
+last_synced: 2025-10-31T10:19:20.782Z
 ---
 
 <!-- header:start -->
@@ -12,7 +12,7 @@ last_synced: 2025-10-30T11:26:17.632Z
 # ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItaGFzaCIgY29sb3I9ImJsdWUiPjxsaW5lIHgxPSI0IiB5MT0iOSIgeDI9IjIwIiB5Mj0iOSI+PC9saW5lPjxsaW5lIHgxPSI0IiB5MT0iMTUiIHgyPSIyMCIgeTI9IjE1Ij48L2xpbmU+PGxpbmUgeDE9IjEwIiB5MT0iMyIgeDI9IjgiIHkyPSIyMSI+PC9saW5lPjxsaW5lIHgxPSIxNiIgeTE9IjMiIHgyPSIxNCIgeTI9IjIxIj48L2xpbmU+PC9zdmc+) GitHub Action: Get issue number
 
 <div align="center">
-  <img src="../../.github/logo.svg" width="60px" align="center" alt="Get issue number" />
+  <img src="/ci-github-common/assets/github/logo.svg" width="60px" align="center" alt="Get issue number" />
 </div>
 
 ---

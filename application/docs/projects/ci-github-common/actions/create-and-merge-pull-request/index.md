@@ -3,8 +3,8 @@ title: Create And Merge Pull Request
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/create-and-merge-pull-request/README.md
 source_branch: main
-source_run_id: 18939047536
-last_synced: 2025-10-30T11:26:17.632Z
+source_run_id: 18969557687
+last_synced: 2025-10-31T10:19:20.782Z
 ---
 
 <!-- header:start -->
@@ -12,7 +12,7 @@ last_synced: 2025-10-30T11:26:17.632Z
 # ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItZ2l0LXB1bGwtcmVxdWVzdCIgY29sb3I9ImJsdWUiPjxjaXJjbGUgY3g9IjE4IiBjeT0iMTgiIHI9IjMiPjwvY2lyY2xlPjxjaXJjbGUgY3g9IjYiIGN5PSI2IiByPSIzIj48L2NpcmNsZT48cGF0aCBkPSJNMTMgNmgzYTIgMiAwIDAgMSAyIDJ2NyI+PC9wYXRoPjxsaW5lIHgxPSI2IiB5MT0iOSIgeDI9IjYiIHkyPSIyMSI+PC9saW5lPjwvc3ZnPg==) GitHub Action: Create and merge Pull Request
 
 <div align="center">
-  <img src="../../.github/logo.svg" width="60px" align="center" alt="Create and merge Pull Request" />
+  <img src="/ci-github-common/assets/github/logo.svg" width="60px" align="center" alt="Create and merge Pull Request" />
 </div>
 
 ---

@@ -3,8 +3,8 @@ title: Slugify
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/slugify/README.md
 source_branch: main
-source_run_id: 18939047536
-last_synced: 2025-10-30T11:26:17.632Z
+source_run_id: 18969557687
+last_synced: 2025-10-31T10:19:20.782Z
 ---
 
 <!-- header:start -->
@@ -12,7 +12,7 @@ last_synced: 2025-10-30T11:26:17.632Z
 # ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItbGluay0yIiBjb2xvcj0iYmx1ZSI+PHBhdGggZD0iTTE1IDdoM2E1IDUgMCAwIDEgNSA1IDUgNSAwIDAgMS01IDVoLTNtLTYgMEg2YTUgNSAwIDAgMS01LTUgNSA1IDAgMCAxIDUtNWgzIj48L3BhdGg+PGxpbmUgeDE9IjgiIHkxPSIxMiIgeDI9IjE2IiB5Mj0iMTIiPjwvbGluZT48L3N2Zz4=) GitHub Action: Slugify
 
 <div align="center">
-  <img src="../../.github/logo.svg" width="60px" align="center" alt="Slugify" />
+  <img src="/ci-github-common/assets/github/logo.svg" width="60px" align="center" alt="Slugify" />
 </div>
 
 ---

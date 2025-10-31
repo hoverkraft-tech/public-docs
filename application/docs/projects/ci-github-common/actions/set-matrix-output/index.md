@@ -3,8 +3,8 @@ title: Set Matrix Output
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/set-matrix-output/README.md
 source_branch: main
-source_run_id: 18939047536
-last_synced: 2025-10-30T11:26:17.632Z
+source_run_id: 18969557687
+last_synced: 2025-10-31T10:19:20.782Z
 ---
 
 <!-- header:start -->
@@ -12,7 +12,7 @@ last_synced: 2025-10-30T11:26:17.632Z
 # ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItdXBsb2FkLWNsb3VkIiBjb2xvcj0iYmx1ZSI+PHBvbHlsaW5lIHBvaW50cz0iMTYgMTYgMTIgMTIgOCAxNiI+PC9wb2x5bGluZT48bGluZSB4MT0iMTIiIHkxPSIxMiIgeDI9IjEyIiB5Mj0iMjEiPjwvbGluZT48cGF0aCBkPSJNMjAuMzkgMTguMzlBNSA1IDAgMCAwIDE4IDloLTEuMjZBOCA4IDAgMSAwIDMgMTYuMyI+PC9wYXRoPjxwb2x5bGluZSBwb2ludHM9IjE2IDE2IDEyIDEyIDggMTYiPjwvcG9seWxpbmU+PC9zdmc+) GitHub Action: Set matrix ouput
 
 <div align="center">
-  <img src="../../.github/logo.svg" width="60px" align="center" alt="Set matrix ouput" />
+  <img src="/ci-github-common/assets/github/logo.svg" width="60px" align="center" alt="Set matrix ouput" />
 </div>
 
 ---

@@ -3,8 +3,8 @@ title: Get Matrix Outputs
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/get-matrix-outputs/README.md
 source_branch: main
-source_run_id: 18939047536
-last_synced: 2025-10-30T11:26:17.632Z
+source_run_id: 18969557687
+last_synced: 2025-10-31T10:19:20.782Z
 ---
 
 <!-- header:start -->
@@ -12,7 +12,7 @@ last_synced: 2025-10-30T11:26:17.632Z
 # ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItZG93bmxvYWQtY2xvdWQiIGNvbG9yPSJibHVlIj48cG9seWxpbmUgcG9pbnRzPSI4IDE3IDEyIDIxIDE2IDE3Ij48L3BvbHlsaW5lPjxsaW5lIHgxPSIxMiIgeTE9IjEyIiB4Mj0iMTIiIHkyPSIyMSI+PC9saW5lPjxwYXRoIGQ9Ik0yMC44OCAxOC4wOUE1IDUgMCAwIDAgMTggOWgtMS4yNkE4IDggMCAxIDAgMyAxNi4yOSI+PC9wYXRoPjwvc3ZnPg==) GitHub Action: Get matrix ouput
 
 <div align="center">
-  <img src="../../.github/logo.svg" width="60px" align="center" alt="Get matrix ouput" />
+  <img src="/ci-github-common/assets/github/logo.svg" width="60px" align="center" alt="Get matrix ouput" />
 </div>
 
 ---
