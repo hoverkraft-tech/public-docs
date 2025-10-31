@@ -9,7 +9,7 @@ import styles from './projects.module.css';
 
 Welcome to the Hoverkraft project ecosystem! We maintain **32 open-source projects**
 with a combined **234 stars** across multiple technologies
-including JavaScript, TypeScript, Makefile, Astro, Smarty, and more. 
+including Makefile, TypeScript, Astro, JavaScript, Smarty, and more. 
 
 ## 📊 Quick Stats
 
@@ -26,6 +26,19 @@ including JavaScript, TypeScript, Makefile, Astro, Smarty, and more.
   
   <HoverkraftProjectCard
     icon="🔧"
+    title="landing-page"
+    titleHref="https://github.com/hoverkraft-tech/landing-page"
+    meta="Astro • ⭐ 2 • Updated Oct 31, 2025"
+    description="Landing Page of hoverkraft organization"
+    tags={["branding", "hoverkraft-tech"]}
+    actions={[
+      { label: "View on GitHub", href: "https://github.com/hoverkraft-tech/landing-page" },
+      { label: "Documentation", href: "https://hoverkraft.cloud/" }
+    ]}
+  />
+  
+  <HoverkraftProjectCard
+    icon="🔧"
     title="docusaurus-theme"
     titleHref="https://github.com/hoverkraft-tech/docusaurus-theme"
     meta="TypeScript • ⭐ 0 • Updated Oct 30, 2025"
@@ -34,19 +47,6 @@ including JavaScript, TypeScript, Makefile, Astro, Smarty, and more.
     actions={[
       { label: "View on GitHub", href: "https://github.com/hoverkraft-tech/docusaurus-theme" },
       { label: "Documentation", href: "https://hoverkraft-tech.github.io/docusaurus-theme/" }
-    ]}
-  />
-  
-  <HoverkraftProjectCard
-    icon="🔧"
-    title="landing-page"
-    titleHref="https://github.com/hoverkraft-tech/landing-page"
-    meta="Astro • ⭐ 2 • Updated Oct 30, 2025"
-    description="Landing Page of hoverkraft organization"
-    tags={["branding", "hoverkraft-tech"]}
-    actions={[
-      { label: "View on GitHub", href: "https://github.com/hoverkraft-tech/landing-page" },
-      { label: "Documentation", href: "https://hoverkraft.cloud/" }
     ]}
   />
   
@@ -109,6 +109,32 @@ including JavaScript, TypeScript, Makefile, Astro, Smarty, and more.
   
   <HoverkraftProjectCard
     icon="⚡"
+    title="ci-github-common"
+    titleHref="https://github.com/hoverkraft-tech/ci-github-common"
+    meta="Makefile • ⭐ 3 • Updated Oct 31, 2025"
+    description="Opinionated GitHub actions and workflows for common continuous integration needs"
+    tags={["continuous-integration", "github-actions", "open-source", "workflow"]}
+    actions={[
+      { label: "View on GitHub", href: "https://github.com/hoverkraft-tech/ci-github-common" },
+      { label: "Documentation", href: "https://hoverkraft-tech.github.io/ci-github-common/" }
+    ]}
+  />
+  
+  <HoverkraftProjectCard
+    icon="⚡"
+    title="ci-dokumentor"
+    titleHref="https://github.com/hoverkraft-tech/ci-dokumentor"
+    meta="TypeScript • ⭐ 2 • Updated Oct 31, 2025"
+    description="Automated documentation generator for CI/CD components"
+    tags={["documentation", "github-actions", "open-source"]}
+    actions={[
+      { label: "View on GitHub", href: "https://github.com/hoverkraft-tech/ci-dokumentor" },
+      { label: "Documentation", href: "https://hoverkraft-tech.github.io/ci-dokumentor/" }
+    ]}
+  />
+  
+  <HoverkraftProjectCard
+    icon="⚡"
     title="ci-github-publish"
     titleHref="https://github.com/hoverkraft-tech/ci-github-publish"
     meta="JavaScript • ⭐ 2 • Updated Oct 31, 2025"
@@ -135,19 +161,6 @@ including JavaScript, TypeScript, Makefile, Astro, Smarty, and more.
   
   <HoverkraftProjectCard
     icon="⚡"
-    title="ci-dokumentor"
-    titleHref="https://github.com/hoverkraft-tech/ci-dokumentor"
-    meta="TypeScript • ⭐ 2 • Updated Oct 31, 2025"
-    description="Automated documentation generator for CI/CD components"
-    tags={["documentation", "github-actions", "open-source"]}
-    actions={[
-      { label: "View on GitHub", href: "https://github.com/hoverkraft-tech/ci-dokumentor" },
-      { label: "Documentation", href: "https://hoverkraft-tech.github.io/ci-dokumentor/" }
-    ]}
-  />
-  
-  <HoverkraftProjectCard
-    icon="⚡"
     title="ci-github-nodejs"
     titleHref="https://github.com/hoverkraft-tech/ci-github-nodejs"
     meta="Makefile • ⭐ 1 • Updated Oct 31, 2025"
@@ -156,19 +169,6 @@ including JavaScript, TypeScript, Makefile, Astro, Smarty, and more.
     actions={[
       { label: "View on GitHub", href: "https://github.com/hoverkraft-tech/ci-github-nodejs" },
       { label: "Documentation", href: "https://hoverkraft-tech.github.io/ci-github-nodejs/" }
-    ]}
-  />
-  
-  <HoverkraftProjectCard
-    icon="⚡"
-    title="ci-github-common"
-    titleHref="https://github.com/hoverkraft-tech/ci-github-common"
-    meta="Makefile • ⭐ 3 • Updated Oct 29, 2025"
-    description="Opinionated GitHub actions and workflows for common continuous integration needs"
-    tags={["continuous-integration", "github-actions", "open-source", "workflow"]}
-    actions={[
-      { label: "View on GitHub", href: "https://github.com/hoverkraft-tech/ci-github-common" },
-      { label: "Documentation", href: "https://hoverkraft-tech.github.io/ci-github-common/" }
     ]}
   />
   
