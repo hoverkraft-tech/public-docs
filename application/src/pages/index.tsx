@@ -128,6 +128,7 @@ function ProjectsSection() {
 
 
 
+
   return (
     <section style={{ padding: '4rem 0' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1rem' }}>
