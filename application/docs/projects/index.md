@@ -9,7 +9,7 @@ import styles from './projects.module.css';
 
 Welcome to the Hoverkraft project ecosystem! We maintain **32 open-source projects**
 with a combined **234 stars** across multiple technologies
-including TypeScript, Astro, Makefile, Smarty, Dockerfile, and more. 
+including TypeScript, JavaScript, Makefile, Astro, Smarty, and more. 
 
 ## 📊 Quick Stats
 
@@ -33,7 +33,7 @@ including TypeScript, Astro, Makefile, Smarty, Dockerfile, and more.
     tags={["branding", "docusaurus-theme", "hoverkraft-tech"]}
     actions={[
       { label: "View on GitHub", href: "https://github.com/hoverkraft-tech/docusaurus-theme" },
-      { label: "Live Demo", href: "https://hoverkraft-tech.github.io/docusaurus-theme/" }
+      { label: "Documentation", href: "https://hoverkraft-tech.github.io/docusaurus-theme/" }
     ]}
   />
   
@@ -46,7 +46,7 @@ including TypeScript, Astro, Makefile, Smarty, Dockerfile, and more.
     tags={["branding", "hoverkraft-tech"]}
     actions={[
       { label: "View on GitHub", href: "https://github.com/hoverkraft-tech/landing-page" },
-      { label: "Live Demo", href: "https://hoverkraft.cloud/" }
+      { label: "Documentation", href: "https://hoverkraft.cloud/" }
     ]}
   />
   
@@ -95,7 +95,7 @@ including TypeScript, Astro, Makefile, Smarty, Dockerfile, and more.
     tags={["forked-repo"]}
     actions={[
       { label: "View on GitHub", href: "https://github.com/hoverkraft-tech/devcontainers.github.io" },
-      { label: "Live Demo", href: "https://containers.dev" }
+      { label: "Documentation", href: "https://containers.dev" }
     ]}
   />
   
@@ -109,14 +109,40 @@ including TypeScript, Astro, Makefile, Smarty, Dockerfile, and more.
   
   <HoverkraftProjectCard
     icon="⚡"
-    title="ci-github-common"
-    titleHref="https://github.com/hoverkraft-tech/ci-github-common"
-    meta="Makefile • ⭐ 3 • Updated Oct 29, 2025"
-    description="Opinionated GitHub actions and workflows for common continuous integration needs"
-    tags={["continuous-integration", "github-actions", "open-source", "workflow"]}
+    title="compose-action"
+    titleHref="https://github.com/hoverkraft-tech/compose-action"
+    meta="TypeScript • ⭐ 192 • Updated Oct 31, 2025"
+    description="This action runs your docker-compose file and clean up before action finished"
+    tags={["continuous-integration", "docker-compose", "github-actions", "open-source"]}
     actions={[
-      { label: "View on GitHub", href: "https://github.com/hoverkraft-tech/ci-github-common" },
-      { label: "Live Demo", href: "https://hoverkraft-tech.github.io/ci-github-common/" }
+      { label: "View on GitHub", href: "https://github.com/hoverkraft-tech/compose-action" },
+      { label: "Documentation", href: "https://github.com/marketplace/actions/docker-compose-action" }
+    ]}
+  />
+  
+  <HoverkraftProjectCard
+    icon="⚡"
+    title="ci-dokumentor"
+    titleHref="https://github.com/hoverkraft-tech/ci-dokumentor"
+    meta="TypeScript • ⭐ 2 • Updated Oct 31, 2025"
+    description="Automated documentation generator for CI/CD components"
+    tags={["documentation", "github-actions", "open-source"]}
+    actions={[
+      { label: "View on GitHub", href: "https://github.com/hoverkraft-tech/ci-dokumentor" },
+      { label: "Documentation", href: "https://hoverkraft-tech.github.io/ci-dokumentor/" }
+    ]}
+  />
+  
+  <HoverkraftProjectCard
+    icon="⚡"
+    title="ci-github-publish"
+    titleHref="https://github.com/hoverkraft-tech/ci-github-publish"
+    meta="JavaScript • ⭐ 2 • Updated Oct 31, 2025"
+    description="Opinionated GitHub actions and workflows for streamlined release, deployment, and publishing."
+    tags={["continuous-delivery", "continuous-deployment", "continuous-integration", "github-actions", "open-source"]}
+    actions={[
+      { label: "View on GitHub", href: "https://github.com/hoverkraft-tech/ci-github-publish" },
+      { label: "Documentation", href: "https://hoverkraft-tech.github.io/ci-github-publish/" }
     ]}
   />
   
@@ -124,12 +150,25 @@ including TypeScript, Astro, Makefile, Smarty, Dockerfile, and more.
     icon="⚡"
     title="ci-github-nodejs"
     titleHref="https://github.com/hoverkraft-tech/ci-github-nodejs"
-    meta="Makefile • ⭐ 1 • Updated Oct 29, 2025"
+    meta="Makefile • ⭐ 1 • Updated Oct 31, 2025"
     description="Opinionated Github actions and workflows for continuous integration in NodeJs context"
     tags={["continuous-integration", "github-actions", "node", "open-source"]}
     actions={[
       { label: "View on GitHub", href: "https://github.com/hoverkraft-tech/ci-github-nodejs" },
-      { label: "Live Demo", href: "https://hoverkraft-tech.github.io/ci-github-nodejs/" }
+      { label: "Documentation", href: "https://hoverkraft-tech.github.io/ci-github-nodejs/" }
+    ]}
+  />
+  
+  <HoverkraftProjectCard
+    icon="⚡"
+    title="ci-github-common"
+    titleHref="https://github.com/hoverkraft-tech/ci-github-common"
+    meta="Makefile • ⭐ 3 • Updated Oct 29, 2025"
+    description="Opinionated GitHub actions and workflows for common continuous integration needs"
+    tags={["continuous-integration", "github-actions", "open-source", "workflow"]}
+    actions={[
+      { label: "View on GitHub", href: "https://github.com/hoverkraft-tech/ci-github-common" },
+      { label: "Documentation", href: "https://hoverkraft-tech.github.io/ci-github-common/" }
     ]}
   />
   
@@ -142,46 +181,7 @@ including TypeScript, Astro, Makefile, Smarty, Dockerfile, and more.
     tags={["build", "containers", "continuous-integration", "docker", "github-actions"]}
     actions={[
       { label: "View on GitHub", href: "https://github.com/hoverkraft-tech/ci-github-container" },
-      { label: "Live Demo", href: "https://hoverkraft-tech.github.io/ci-github-container/" }
-    ]}
-  />
-  
-  <HoverkraftProjectCard
-    icon="⚡"
-    title="ci-dokumentor"
-    titleHref="https://github.com/hoverkraft-tech/ci-dokumentor"
-    meta="TypeScript • ⭐ 2 • Updated Oct 28, 2025"
-    description="Automated documentation generator for CI/CD components"
-    tags={["documentation", "github-actions", "open-source"]}
-    actions={[
-      { label: "View on GitHub", href: "https://github.com/hoverkraft-tech/ci-dokumentor" },
-      { label: "Live Demo", href: "https://hoverkraft-tech.github.io/ci-dokumentor/" }
-    ]}
-  />
-  
-  <HoverkraftProjectCard
-    icon="⚡"
-    title="ci-github-publish"
-    titleHref="https://github.com/hoverkraft-tech/ci-github-publish"
-    meta="JavaScript • ⭐ 2 • Updated Oct 21, 2025"
-    description="Opinionated GitHub actions and workflows for streamlined release, deployment, and publishing."
-    tags={["continuous-delivery", "continuous-deployment", "continuous-integration", "github-actions", "open-source"]}
-    actions={[
-      { label: "View on GitHub", href: "https://github.com/hoverkraft-tech/ci-github-publish" },
-      { label: "Live Demo", href: "https://hoverkraft-tech.github.io/ci-github-publish/" }
-    ]}
-  />
-  
-  <HoverkraftProjectCard
-    icon="⚡"
-    title="compose-action"
-    titleHref="https://github.com/hoverkraft-tech/compose-action"
-    meta="TypeScript • ⭐ 192 • Updated Oct 17, 2025"
-    description="This action runs your docker-compose file and clean up before action finished"
-    tags={["continuous-integration", "docker-compose", "github-actions", "open-source"]}
-    actions={[
-      { label: "View on GitHub", href: "https://github.com/hoverkraft-tech/compose-action" },
-      { label: "Live Demo", href: "https://github.com/marketplace/actions/docker-compose-action" }
+      { label: "Documentation", href: "https://hoverkraft-tech.github.io/ci-github-container/" }
     ]}
   />
   
@@ -282,7 +282,7 @@ including TypeScript, Astro, Makefile, Smarty, Dockerfile, and more.
     tags={["aws", "boilerplate", "eks", "environments", "hoverkraft-tech"]}
     actions={[
       { label: "View on GitHub", href: "https://github.com/hoverkraft-tech/infrastructure-aws-template" },
-      { label: "Live Demo", href: "https://hoverkraft.cloud/" }
+      { label: "Documentation", href: "https://hoverkraft.cloud/" }
     ]}
   />
   
@@ -303,7 +303,7 @@ including TypeScript, Astro, Makefile, Smarty, Dockerfile, and more.
     tags={["chart", "email", "helm", "kubernetes", "postal"]}
     actions={[
       { label: "View on GitHub", href: "https://github.com/hoverkraft-tech/helm-chart-postal" },
-      { label: "Live Demo", href: "https://hoverkraft-tech.github.io/helm-chart-postal/" }
+      { label: "Documentation", href: "https://hoverkraft-tech.github.io/helm-chart-postal/" }
     ]}
   />
   
@@ -400,7 +400,7 @@ including TypeScript, Astro, Makefile, Smarty, Dockerfile, and more.
     tags={["bitnami", "charts", "depreciation", "helm", "kubernetes"]}
     actions={[
       { label: "View on GitHub", href: "https://github.com/hoverkraft-tech/bitnami-depreciation" },
-      { label: "Live Demo", href: "https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications" }
+      { label: "Documentation", href: "https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications" }
     ]}
   />
   
@@ -413,7 +413,7 @@ including TypeScript, Astro, Makefile, Smarty, Dockerfile, and more.
     tags={["chart", "dufs", "helm", "kubernetes"]}
     actions={[
       { label: "View on GitHub", href: "https://github.com/hoverkraft-tech/helm-chart-dufs" },
-      { label: "Live Demo", href: "https://github.com/sigoden/dufs" }
+      { label: "Documentation", href: "https://github.com/sigoden/dufs" }
     ]}
   />
   
@@ -467,4 +467,4 @@ including TypeScript, Astro, Makefile, Smarty, Dockerfile, and more.
 
 ---
 *This page is automatically generated from our GitHub repositories.
-Last updated: 2025-10-30*
+Last updated: 2025-10-31*
