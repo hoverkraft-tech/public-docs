@@ -18,16 +18,16 @@
         "digitalbrainstem.javascript-ejs-support",
         "unifiedjs.vscode-mdx"
       ],
-      "mcpServers": {
-        "playwright": {
-          "command": "npx",
-          "args": ["@playwright/mcp@latest"]
-        },
-        "lighthouse": {
-          "command": "npx",
-          "args": ["lighthouse-mcp"],
-          "disabled": false,
-          "autoApprove": []
+      "mcp": {
+        "servers": {
+          "playwright": {
+            "command": "npx",
+            "args": ["@playwright/mcp@latest"]
+          },
+          "lighthouse": {
+            "command": "npx",
+            "args": ["lighthouse-mcp"]
+          }
         }
       }
     }

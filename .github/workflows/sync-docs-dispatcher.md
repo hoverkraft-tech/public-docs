@@ -21,13 +21,16 @@
 
 ## Overview
 
-**Reusable workflow** (not an action) that bundles project docs and triggers public portal sync.
+Reusable workflow that bundles project docs and triggers public portal sync
 
-- This is a **workflow-level** component: use `uses:` at the **job level** in your workflow
 - Collects readme and docs Markdown, adds sync metadata, and uploads a short-lived artifact
 - Dispatches a repository event so hoverkraft-tech/public-docs can ingest and publish updates
 
 <!-- overview:end -->
+
+## Important Note
+
+**This is a reusable workflow** (job-level `uses:`), **not an action** (step-level `uses:`). It must be called at the job level in your workflow file.
 
 ## Quick Start
 
@@ -35,8 +38,9 @@
 
 1. **GitHub App Token** configured in your repository:
    - Required scopes: `repo` (for repository_dispatch) and artifact access
-   - Add `PUBLIC_DOCS_APP_ID` and `PUBLIC_DOCS_APP_PRIVATE_KEY` to repository secrets
-   - Settings → Secrets and variables → Actions → New repository secret
+   - Add `PUBLIC_DOCS_APP_ID` as a repository **variable**
+   - Add `PUBLIC_DOCS_APP_PRIVATE_KEY` as a repository **secret**
+   - Settings → Secrets and variables → Actions
 
 2. **Documentation files** in your project repository:
 
@@ -49,78 +53,50 @@ your-project/
 └── .github/workflows/*.md    # Workflow documentation (optional)
 ```
 
-<!-- usage:start -->
+### Complete Integration Example
 
-## Usage
-
-### Complete Workflow Example
-
-This is a **reusable workflow**, not an action. It must be called at the **job level** using `uses:`.
-
-```yaml
-name: Main CI
-
-on:
-  push:
-    branches: [main]
-  pull_request:
-
-permissions:
-  contents: read
-
-jobs:
-  ci:
-    name: Run CI
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Run tests
-        run: npm test
-
-  sync-docs:
-    name: Sync Documentation
-    needs: ci
-    if: github.event_name != 'schedule' && github.ref == 'refs/heads/main'
-    permissions:
-      contents: read
-    uses: hoverkraft-tech/public-docs/.github/workflows/sync-docs-dispatcher.yml@18facec04f2945f4d66d510e8a06568497b73c54 # 0.1.0
-    with:
-      github-app-id: ${{ vars.PUBLIC_DOCS_APP_ID }}
-      artifact-id: docs
-    secrets:
-      github-app-key: ${{ secrets.PUBLIC_DOCS_APP_PRIVATE_KEY }}
-```
+For a full example of integrating this workflow into your CI pipeline, see the [Examples](#examples) section below.
 
 ### Key Integration Points
 
-1. **Job-level usage**: Use `uses:` at the job level (not as a step)
+1. **Workflow vs Action**: This is a **reusable workflow** - use `uses:` at the **job level**, not as a step
 2. **Version pinning**: Always pin to a specific commit SHA for security
 3. **Conditional execution**: Skip on scheduled runs with `if: github.event_name != 'schedule'`
 4. **Main branch only**: Typically only sync from main/default branch
 5. **After CI**: Add as a job that runs after your primary CI job completes
+6. **Prepare first**: Use the prepare-docs action before calling this workflow
 
-### Input Parameters Reference
+<!-- usage:start -->
+
+## Usage
 
 ```yaml
-sync-docs:
-  uses: hoverkraft-tech/public-docs/.github/workflows/sync-docs-dispatcher.yml@<commit-sha>
-  with:
-    # GitHub App ID to generate GitHub token in place of github-token.
-    # See https://github.com/actions/create-github-app-token.
-    github-app-id: ${{ vars.PUBLIC_DOCS_APP_ID }}
+name: Push Documentation Helper
+on:
+  push:
+    branches:
+      - main
+jobs:
+  sync-docs-dispatcher:
+    uses: hoverkraft-tech/public-docs/.github/workflows/sync-docs-dispatcher.yml@cd3f060f4c823de3294a7498b8a8617723b8cf53 # 0.2.0
+    secrets:
+      # GitHub App private key to generate GitHub token in place of github-token.
+      # See https://github.com/actions/create-github-app-token.
+      github-app-key: ""
+    with:
+      # GitHub App ID to generate GitHub token in place of github-token.
+      # See https://github.com/actions/create-github-app-token.
+      github-app-id: ""
 
-    # ID of the uploaded documentation artifact.
-    # This input is required.
-    artifact-id: "docs"
-  secrets:
-    # GitHub App private key to generate GitHub token in place of github-token.
-    # See https://github.com/actions/create-github-app-token.
-    github-app-key: ${{ secrets.PUBLIC_DOCS_APP_PRIVATE_KEY }}
+      # ID of the uploaded documentation artifact.
+      #
+      # This input is required.
+      artifact-id: ""
 ```
 
 <!-- usage:end -->
 
-## Best Practices
+## Implementation Guide
 
 ### GitHub App Token Setup
 
@@ -172,7 +148,69 @@ uses: hoverkraft-tech/public-docs/.github/workflows/sync-docs-dispatcher.yml@18f
 # 3. Keeping version comment concise
 ```
 
-### Documentation Content Best Practices
+### Path Pattern Recommendations
+
+When using the prepare-docs action, use **specific glob patterns** for Markdown files only:
+
+```yaml
+# ✅ GOOD: Specific patterns for documentation files
+paths: |
+  README.md
+  docs/**/*.md
+  .github/workflows/*.md
+  actions/**/README.md
+
+# ❌ BAD: Too broad, includes non-documentation files
+paths: |
+  docs/
+  .github/workflows/
+  actions/
+```
+
+**Best practices**:
+
+- Always include file extensions (`.md`, `.mdx`)
+- Use `**/*.md` for recursive matching in directories
+- Explicitly list root-level files like `README.md`
+- Avoid matching entire directories without file patterns
+
+### Workflow Architecture
+
+The sync-docs system uses a two-workflow architecture:
+
+```txt
+┌─────────────────────────────────────────────────┐
+│  Your Project Repository                        │
+│  ┌───────────────────────────────────────────┐  │
+│  │ Step 1: Prepare Documentation             │  │
+│  │ - Collect Markdown files                  │  │
+│  │ - Add source metadata                     │  │
+│  │ - Upload as artifact                      │  │
+│  └─────────────┬─────────────────────────────┘  │
+│                │                                 │
+│  ┌─────────────▼─────────────────────────────┐  │
+│  │ Step 2: Dispatch (this workflow)          │  │
+│  │ - Send repository_dispatch event          │  │
+│  │ - Reference uploaded artifact             │  │
+│  └───────────────────────────────────────────┘  │
+└─────────────────┬───────────────────────────────┘
+                  │ repository_dispatch
+                  ▼
+┌─────────────────────────────────────────────────┐
+│  hoverkraft-tech/public-docs                    │
+│  ┌───────────────────────────────────────────┐  │
+│  │ Step 3: Receiver Workflow                 │  │
+│  │ - Download artifact from source repo      │  │
+│  │ - Extract and inject docs                 │  │
+│  │ - Create and auto-merge PR                │  │
+│  │ - Trigger build and deployment            │  │
+│  └───────────────────────────────────────────┘  │
+└─────────────────────────────────────────────────┘
+```
+
+## Best Practices
+
+### Documentation Content
 
 1. **Keep documentation with code**: Store docs in the same repository as your code
 2. **Use standard structure**: Place documentation in a `docs/` directory
@@ -271,102 +309,6 @@ After setting up sync-docs:
    - Verify deployment to GitHub Pages succeeds
    - Visit documentation portal to see live changes
 
-## Workflow Architecture
-
-### Understanding the Two-Step Process
-
-The sync-docs system uses a two-workflow architecture:
-
-```txt
-┌─────────────────────────────────────────────────┐
-│  Your Project Repository                        │
-│  ┌───────────────────────────────────────────┐  │
-│  │ Step 1: Prepare Documentation             │  │
-│  │ - Collect Markdown files                  │  │
-│  │ - Add source metadata                     │  │
-│  │ - Upload as artifact                      │  │
-│  └─────────────┬─────────────────────────────┘  │
-│                │                                 │
-│  ┌─────────────▼─────────────────────────────┐  │
-│  │ Step 2: Dispatch (this workflow)          │  │
-│  │ - Send repository_dispatch event          │  │
-│  │ - Reference uploaded artifact             │  │
-│  └───────────────────────────────────────────┘  │
-└─────────────────┬───────────────────────────────┘
-                  │ repository_dispatch
-                  ▼
-┌─────────────────────────────────────────────────┐
-│  hoverkraft-tech/public-docs                    │
-│  ┌───────────────────────────────────────────┐  │
-│  │ Step 3: Receiver Workflow                 │  │
-│  │ - Download artifact from source repo      │  │
-│  │ - Extract and inject docs                 │  │
-│  │ - Create and auto-merge PR                │  │
-│  │ - Trigger build and deployment            │  │
-│  └───────────────────────────────────────────┘  │
-└─────────────────────────────────────────────────┘
-```
-
-### Preparing Documentation Artifact
-
-Before calling this workflow, you must prepare and upload a documentation artifact. Use the [prepare-docs action](./../actions/prepare-docs/README.md):
-
-```yaml
-jobs:
-  prepare-docs:
-    name: Prepare Documentation
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Prepare documentation
-        id: prepare-docs
-        uses: hoverkraft-tech/public-docs/.github/actions/prepare-docs@18facec04f2945f4d66d510e8a06568497b73c54 # 0.1.0
-        with:
-          paths: |
-            README.md
-            docs/**/*.md
-            .github/workflows/*.md
-
-  sync-docs:
-    name: Sync Documentation
-    needs: prepare-docs
-    uses: hoverkraft-tech/public-docs/.github/workflows/sync-docs-dispatcher.yml@18facec04f2945f4d66d510e8a06568497b73c54 # 0.1.0
-    with:
-      github-app-id: ${{ vars.PUBLIC_DOCS_APP_ID }}
-      artifact-id: docs
-    secrets:
-      github-app-key: ${{ secrets.PUBLIC_DOCS_APP_PRIVATE_KEY }}
-```
-
-### Path Pattern Recommendations
-
-Use **specific glob patterns** for Markdown files only:
-
-```yaml
-# ✅ GOOD: Specific patterns for documentation files
-paths: |
-  README.md
-  docs/**/*.md
-  .github/workflows/*.md
-  actions/**/README.md
-
-# ❌ BAD: Too broad, includes non-documentation files
-paths: |
-  docs/
-  .github/workflows/
-  actions/
-```
-
-**Best practices**:
-
-- Always include file extensions (`.md`, `.mdx`)
-- Use `**/*.md` for recursive matching in directories
-- Explicitly list root-level files like `README.md`
-- Avoid matching entire directories without file patterns
-
 <!-- inputs:start -->
 
 ## Inputs
@@ -393,6 +335,62 @@ paths: |
 <!-- outputs:start -->
 <!-- outputs:end -->
 <!-- examples:start -->
+
+## Examples
+
+### Complete Integration
+
+```yaml
+name: Main CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    name: Run CI
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run tests
+        run: npm test
+
+  prepare-docs:
+    name: Prepare Documentation
+    needs: ci
+    if: github.event_name != 'schedule' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prepare documentation
+        uses: hoverkraft-tech/public-docs/.github/actions/prepare-docs@18facec04f2945f4d66d510e8a06568497b73c54 # 0.1.0
+        with:
+          paths: |
+            README.md
+            docs/**/*.md
+            .github/workflows/*.md
+
+  sync-docs:
+    name: Sync Documentation
+    needs: prepare-docs
+    permissions:
+      contents: read
+    uses: hoverkraft-tech/public-docs/.github/workflows/sync-docs-dispatcher.yml@18facec04f2945f4d66d510e8a06568497b73c54 # 0.1.0
+    with:
+      github-app-id: ${{ vars.PUBLIC_DOCS_APP_ID }}
+      artifact-id: docs
+    secrets:
+      github-app-key: ${{ secrets.PUBLIC_DOCS_APP_PRIVATE_KEY }}
+```
+
 <!-- examples:end -->
 <!-- contributing:start -->
 

@@ -40,83 +40,11 @@ The documentation build pulls repository information through scheduled jobs and 
 
 **For more details, see the [documentation generation action](.github/actions/generate-docs/README.md).**
 
-## 🛠️ Documentation Aggregation System
+## Documentation Aggregation System
 
 This portal uses an artifact-based push system with repository_dispatch to aggregate documentation from all Hoverkraft projects in real-time while keeping the source documentation atomic within each project repository.
 
 **To configure a project to sync its documentation to this portal, see the [workflow sync documentation](./.github/workflows/sync-docs-dispatcher.md).**
-
-### Architecture
-
-The documentation system uses a **two-workflow architecture**:
-
-1. **Source Documentation** remains in each project repository (atomic and versioned with code)
-2. **Dispatcher Workflow** (in project repos) prepares and sends documentation via repository_dispatch
-3. **Receiver Workflow** (in public-docs) receives, injects, builds, and publishes documentation
-4. **Automated Sync** happens in real-time when documentation changes
-
-### How It Works
-
-#### Workflow 1: Dispatcher (in Project Repositories)
-
-The reusable dispatcher workflow (`sync-docs-dispatcher.yml`) that projects call:
-
-```txt
-┌─────────────────────────────────────────────────────────┐
-│  Project Repository (e.g., compose-action)              │
-│  ┌────────────────────────────────────────────────────┐ │
-│  │ 1. On commit to docs/ or README.md                 │ │
-│  │ 2. Collects documentation files                    │ │
-│  │ 3. Adds source metadata frontmatter                │ │
-│  │ 4. Uploads documentation as artifact               │ │
-│  │ 5. Sends repository_dispatch event with metadata   │ │
-│  └────────────────────────────────────────────────────┘ │
-└───────────────┬─────────────────────────────────────────┘
-                │ repository_dispatch event (with artifact ref)
-                ↓
-┌─────────────────────────────────────────────────────────┐
-│  Documentation Portal (public-docs)                     │
-│  ┌──────────────────────────────────────────────────┐  │
-│  │ 6. Downloads artifact from source repository     │  │
-│  │ 7. Validates and injects into docs/               │  │
-│  │ 8. Creates and auto-merges PR                     │  │
-│  │ 9. Push to main triggers build & deploy workflow  │  │
-│  └──────────────────────────────────────────────────┘  │
-└─────────────────────────────────────────────────────────┘
-```
-
-#### Workflow 2: Receiver (in Public-Docs)
-
-The receiver workflow (`sync-docs-receiver.yml`) in public-docs:
-
-- Listens for `repository_dispatch` events with type `sync-documentation`
-- Downloads the documentation artifact from the source repository
-- Extracts and injects documentation into the appropriate location
-- Creates and auto-merges a pull request with the changes
-- The push to main workflow handles building and deployment
-
-**Advantages:**
-
-- Real-time updates when documentation changes
-- No size limitations (artifacts can handle large documentation bundles)
-- Build validation handled by push to main workflow
-- No direct write access to public-docs needed for project repos
-- Token only needs `repo` scope for repository_dispatch and artifact access
-- Clean separation of concerns (sync vs build/deploy)
-- Supports image-heavy documentation without payload size constraints
-
-### Source Metadata
-
-Each pushed document includes metadata about its source:
-
-```markdown
----
-source_repo: compose-action
-source_path: docs/usage.md
-source_branch: main
-last_synced: 2024-01-15T10:30:00.000Z
----
-```
 
 ## Development Workflow
 
