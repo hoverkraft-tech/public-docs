@@ -82,9 +82,9 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**     | **Description**                                                                    | **Required** | **Type**   | **Default**         |
-| ------------- | ---------------------------------------------------------------------------------- | ------------ | ---------- | ------------------- |
-| **`runs-on`** | JSON array of runner(s) to use.                                                    | **false**    | **string** | `["ubuntu-latest"]` |
+| **Input**     | **Description**                                                                                                                                                 | **Required** | **Type**   | **Default**         |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ---------- | ------------------- |
+| **`runs-on`** | JSON array of runner(s) to use.                                                                                                                                 | **false**    | **string** | `["ubuntu-latest"]` |
 |               | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job). |              |            |                     |
 
 <!-- inputs:end -->
