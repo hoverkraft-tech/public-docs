@@ -15,7 +15,6 @@
         "ms-vscode.makefile-tools",
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
-        "msjsdiag.vscode-react-native",
         "digitalbrainstem.javascript-ejs-support",
         "unifiedjs.vscode-mdx"
       ],

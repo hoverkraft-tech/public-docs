@@ -10,6 +10,8 @@ include .env
 
 prepare: ## Prepare stack to run
 	cd application && npm install
+	cd .github/actions/generate-docs && npm install
+	cd .github/actions/prepare-docs && npm install
 
 start: ## Start application in dev mode
 	cd application && npm run start
@@ -25,10 +27,15 @@ lint-fix: ## Run linters
 build: ## Build libs and applications
 	cd application && npm run build
 
+test: ## Run tests
+	cd .github/actions/generate-docs && npm run test:ci
+	cd .github/actions/prepare-docs && npm run test:ci
+
 ci: ## Run tests in CI mode
 	$(MAKE) prepare
 	$(MAKE) lint-fix
 	$(MAKE) build
+	$(MAKE) test
 
 linter-fix: ## Execute linting and fix
 	$(call run_linter, \

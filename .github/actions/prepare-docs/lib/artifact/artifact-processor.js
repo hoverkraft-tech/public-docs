@@ -65,11 +65,11 @@ class ArtifactProcessor {
       const normalizedSourcePath = normalizeToPosix(relativePath);
       const sanitizedRelativePathRaw = sanitizeRelativePath(relativePath);
       const sanitizedRelativePath = rewriteReadmeToIndex(
-        sanitizedRelativePathRaw
+        sanitizedRelativePathRaw,
       );
       const renamedFromReadme = didRewriteReadme(
         sanitizedRelativePathRaw,
-        sanitizedRelativePath
+        sanitizedRelativePath,
       );
       const derivedTitle = renamedFromReadme
         ? deriveTitleFromReadmePath({
@@ -83,7 +83,7 @@ class ArtifactProcessor {
       }
 
       const isMarkdown = MARKDOWN_EXTENSIONS.has(
-        path.extname(sanitizedRelativePath).toLowerCase()
+        path.extname(sanitizedRelativePath).toLowerCase(),
       );
 
       let targetRelativePath;
@@ -96,11 +96,11 @@ class ArtifactProcessor {
       } else {
         assetRegistration = registerAssetPath(
           this.assetMap,
-          sanitizedRelativePath
+          sanitizedRelativePath,
         );
         targetRelativePath = path.posix.join(
           STATIC_DIRECTORY,
-          assetRegistration.storageRelativePath
+          assetRegistration.storageRelativePath,
         );
         destination = toSystemPath(this.outputPath, targetRelativePath);
       }
@@ -122,7 +122,7 @@ class ArtifactProcessor {
         });
       } else {
         this.core.info(
-          `  Copied asset: ${targetRelativePath} (public ${assetRegistration.publicPath})`
+          `  Copied asset: ${targetRelativePath} (public ${assetRegistration.publicPath})`,
         );
       }
     }
