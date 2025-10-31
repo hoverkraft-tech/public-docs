@@ -3,8 +3,8 @@ title: Get Github Actions Bot User
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/get-github-actions-bot-user/README.md
 source_branch: main
-source_run_id: 18939047536
-last_synced: 2025-10-30T11:26:17.632Z
+source_run_id: 18969557687
+last_synced: 2025-10-31T10:19:20.782Z
 ---
 
 <!-- header:start -->
@@ -12,7 +12,7 @@ last_synced: 2025-10-30T11:26:17.632Z
 # ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItdXNlci1jaGVjayIgY29sb3I9ImJsdWUiPjxwYXRoIGQ9Ik0xNiAyMXYtMmE0IDQgMCAwIDAtNC00SDVhNCA0IDAgMCAwLTQgNHYyIj48L3BhdGg+PGNpcmNsZSBjeD0iOC41IiBjeT0iNyIgcj0iNCI+PC9jaXJjbGU+PHBvbHlsaW5lIHBvaW50cz0iMTcgMTEgMTkgMTMgMjMgOSI+PC9wb2x5bGluZT48L3N2Zz4=) GitHub Action: Get GitHub Actions bot user
 
 <div align="center">
-  <img src="../../.github/logo.svg" width="60px" align="center" alt="Get GitHub Actions bot user" />
+  <img src="/ci-github-common/assets/github/logo.svg" width="60px" align="center" alt="Get GitHub Actions bot user" />
 </div>
 
 ---

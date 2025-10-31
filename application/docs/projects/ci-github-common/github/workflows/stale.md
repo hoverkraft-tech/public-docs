@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-common
 source_path: .github/workflows/stale.md
 source_branch: main
-source_run_id: 18939047536
-last_synced: 2025-10-30T11:26:17.632Z
+source_run_id: 18969557687
+last_synced: 2025-10-31T10:19:20.782Z
 ---
 
 <!-- header:start -->
@@ -11,7 +11,7 @@ last_synced: 2025-10-30T11:26:17.632Z
 # GitHub Reusable Workflow: Mark stale issues and pull requests
 
 <div align="center">
-  <img src="../logo.svg" width="60px" align="center" alt="Mark stale issues and pull requests" />
+  <img src="/ci-github-common/assets/github/logo.svg" width="60px" align="center" alt="Mark stale issues and pull requests" />
 </div>
 
 ---

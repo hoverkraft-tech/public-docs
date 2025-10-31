@@ -3,14 +3,14 @@ title: Ci Github Common
 source_repo: hoverkraft-tech/ci-github-common
 source_path: README.md
 source_branch: main
-source_run_id: 18939047536
-last_synced: 2025-10-30T11:26:17.632Z
+source_run_id: 18969557687
+last_synced: 2025-10-31T10:19:20.782Z
 ---
 
 # Continuous Integration - GitHub - Common
 
 <div align="center">
- <img src=".github/logo.svg" width="60px" align="center" alt="Logo for Continuous Integration - GitHub - Common" />
+ <img src="/ci-github-common/assets/github/logo.svg" width="60px" align="center" alt="Logo for Continuous Integration - GitHub - Common" />
 </div>
 
 ---
