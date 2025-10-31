@@ -33,7 +33,7 @@ including <%= stats.languagesSummary %>, and more.
     tags={[<% repository.topics.forEach((topic, index) => { %>"<%= topic %>"<%= index < repository.topics.length - 1 ? ', ' : '' %><% }) %>]}
     actions={[
       { label: "View on GitHub", href: "<%= repository.htmlUrl %>" }<% if (repository.homepage) { %>,
-      { label: "Live Demo", href: "<%= repository.homepage %>" }<% } %>
+      { label: "Documentation", href: "<%= repository.homepage %>" }<% } %>
     ]}
   />
   <% }) %>

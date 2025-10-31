@@ -11,7 +11,7 @@ function normalizeMarkdownBody(content, options = {}) {
   const convertedLinks = convertAngleBracketLinks(content);
   const rewrittenMarkdownLinks = rewriteLocalLinks(
     convertedLinks,
-    assetRewriter
+    assetRewriter,
   );
   return rewriteHtmlAttributes(rewrittenMarkdownLinks, assetRewriter);
 }
@@ -27,7 +27,7 @@ function convertAngleBracketLinks(text) {
       const isEmail = raw.includes("@");
       const href = isEmail ? `mailto:${raw}` : raw;
       return `[${raw}](${href})`;
-    }
+    },
   );
 }
 
@@ -194,7 +194,7 @@ function rewriteHtmlAttributes(text, assetRewriter) {
       }
 
       return `${prefix}${attribute}${equalsPart}${quote}${rewrittenValue}${quote}`;
-    }
+    },
   );
 }
 

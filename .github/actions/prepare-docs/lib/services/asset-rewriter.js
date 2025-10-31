@@ -1,10 +1,12 @@
 "use strict";
 
+const path = require("path");
 const {
   normalizeToPosix,
   sanitizeSegment,
   rewriteReadmeToIndex,
-} = require("./path-utils");
+} = require("../utils/path-utils");
+const { MARKDOWN_EXTENSIONS } = require("../constants");
 
 class AssetRewriter {
   constructor({ assetMap, docRelativePath, docsPath, staticPath } = {}) {
@@ -29,6 +31,11 @@ class AssetRewriter {
       return { value, changed: false };
     }
 
+    const assetCandidate = looksLikeAssetTarget(sanitizedPath);
+    const normalizedAssetTarget = assetCandidate
+      ? normalizeAssetLinkTarget(this.docRelativePath, sanitizedPath)
+      : null;
+
     const assetPublicPath = resolveAssetPublicPath({
       assetMap: this.assetMap,
       docRelativePath: this.docRelativePath,
@@ -36,6 +43,20 @@ class AssetRewriter {
       docsPath: this.docsPath,
       staticPath: this.staticPath,
     });
+
+    if (
+      shouldThrowForMissingAsset({
+        assetCandidate,
+        assetPublicPath,
+      })
+    ) {
+      throw createMissingAssetError({
+        docRelativePath: this.docRelativePath,
+        normalizedAssetTarget,
+        originalTarget: value,
+        sanitizedPath,
+      });
+    }
 
     const rewrittenPath = assetPublicPath || sanitizedPath;
     const rebuiltTarget = `${rewrittenPath}${suffix}`;
@@ -151,7 +172,7 @@ function resolveAssetPublicPath({
 
   const normalizedTarget = normalizeAssetLinkTarget(
     docRelativePath,
-    targetPath
+    targetPath,
   );
   if (!normalizedTarget) {
     return null;
@@ -273,12 +294,12 @@ function deriveRelativeAssetPath({
 
   const assetFullPath = path.posix.join(
     normalizedStaticRoot,
-    normalizeToPosix(storageRelativePath)
+    normalizeToPosix(storageRelativePath),
   );
 
   const relativePath = path.posix.relative(
     effectiveDocDirectory,
-    assetFullPath
+    assetFullPath,
   );
 
   if (!relativePath) {
@@ -315,6 +336,37 @@ function extractStaticNamespace(staticRoot) {
   }
 
   return namespace;
+}
+
+function looksLikeAssetTarget(targetPath) {
+  if (!targetPath) {
+    return false;
+  }
+
+  const extension = path.posix.extname(targetPath).toLowerCase();
+  if (!extension) {
+    return false;
+  }
+
+  return !MARKDOWN_EXTENSIONS.has(extension);
+}
+
+function shouldThrowForMissingAsset({ assetCandidate, assetPublicPath }) {
+  return assetCandidate && !assetPublicPath;
+}
+
+function createMissingAssetError({
+  docRelativePath,
+  normalizedAssetTarget,
+  originalTarget,
+  sanitizedPath,
+}) {
+  const normalizedDisplay = normalizedAssetTarget || sanitizedPath;
+  const docDisplay = docRelativePath || "<unknown document>";
+
+  return new Error(
+    `Missing asset registration for "${normalizedDisplay}" referenced from "${docDisplay}" (original link "${originalTarget}").`,
+  );
 }
 
 module.exports = {

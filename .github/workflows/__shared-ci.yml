@@ -13,6 +13,20 @@ permissions:
   id-token: write
 
 jobs:
+  continuous-integration-prepare-docs:
+    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@4d7c1ed87c18493fc4c2dbae4dbde46cf251c9a7 # 0.16.1
+    strategy:
+      matrix:
+        working-directory:
+          - .github/actions/prepare-docs
+          - .github/actions/generate-docs
+    with:
+      working-directory: ${{ matrix.working-directory }}
+      build: null
+      lint: false
+      coverage: null
+      dependency-review: false
+
   continuous-integration:
     uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@4d7c1ed87c18493fc4c2dbae4dbde46cf251c9a7 # 0.16.1
     secrets:
