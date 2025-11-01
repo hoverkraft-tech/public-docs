@@ -3,7 +3,7 @@
 # GitHub Reusable Workflow: Push Documentation Helper
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/392208a94633c0260c7ae7b274696b5a1e132497f753109d18d6adc9caa47ad5/hoverkraft-tech/public-docs" width="60px" align="center" alt="Push Documentation Helper" />
+  <img src="https://opengraph.githubassets.com/cb313bb3653ccadfdfefcc7974c6b69c0711b983b7f7e8f07a6438ffa2f29ee6/hoverkraft-tech/public-docs" width="60px" align="center" alt="Push Documentation Helper" />
 </div>
 
 ---
@@ -383,7 +383,7 @@ jobs:
     needs: prepare-docs
     permissions:
       contents: read
-    uses: hoverkraft-tech/public-docs/.github/workflows/sync-docs-dispatcher.yml@18facec04f2945f4d66d510e8a06568497b73c54 # 0.1.0
+    uses: hoverkraft-tech/public-docs/.github/workflows/sync-docs-dispatcher.yml@cd3f060f4c823de3294a7498b8a8617723b8cf53 # 0.2.0
     with:
       github-app-id: ${{ vars.PUBLIC_DOCS_APP_ID }}
       artifact-id: docs
