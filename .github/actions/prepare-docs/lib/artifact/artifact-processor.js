@@ -51,8 +51,7 @@ class ArtifactProcessor {
   }
 
   async process(artifactPath) {
-    const processedFiles = new Set();
-    const markdownWorkItems = [];
+    const descriptors = [];
 
     for (const filePath of iterateFiles(artifactPath)) {
       const relativePath = path.relative(artifactPath, filePath);
@@ -65,11 +64,11 @@ class ArtifactProcessor {
       const normalizedSourcePath = normalizeToPosix(relativePath);
       const sanitizedRelativePathRaw = sanitizeRelativePath(relativePath);
       const sanitizedRelativePath = rewriteReadmeToIndex(
-        sanitizedRelativePathRaw,
+        sanitizedRelativePathRaw
       );
       const renamedFromReadme = didRewriteReadme(
         sanitizedRelativePathRaw,
-        sanitizedRelativePath,
+        sanitizedRelativePath
       );
       const derivedTitle = renamedFromReadme
         ? deriveTitleFromReadmePath({
@@ -83,34 +82,64 @@ class ArtifactProcessor {
       }
 
       const isMarkdown = MARKDOWN_EXTENSIONS.has(
-        path.extname(sanitizedRelativePath).toLowerCase(),
+        path.extname(sanitizedRelativePath).toLowerCase()
       );
 
       let targetRelativePath;
-      let destination;
       let assetRegistration;
 
       if (isMarkdown) {
         targetRelativePath = sanitizedRelativePath;
-        destination = toSystemPath(this.outputPath, targetRelativePath);
       } else {
         assetRegistration = registerAssetPath(
           this.assetMap,
-          sanitizedRelativePath,
+          sanitizedRelativePath
         );
         targetRelativePath = path.posix.join(
           STATIC_DIRECTORY,
-          assetRegistration.storageRelativePath,
+          assetRegistration.storageRelativePath
         );
-        destination = toSystemPath(this.outputPath, targetRelativePath);
       }
+
+      descriptors.push({
+        sourcePath: filePath,
+        normalizedSourcePath,
+        sanitizedRelativePath,
+        targetRelativePath,
+        isMarkdown,
+        assetRegistration,
+        derivedTitle,
+      });
+    }
+
+    if (!descriptors.length) {
+      throw new Error("No files discovered in downloaded artifact.");
+    }
+
+    const processedFiles = new Set();
+    const markdownWorkItems = [];
+
+    for (const descriptor of descriptors) {
+      const {
+        sourcePath,
+        normalizedSourcePath,
+        sanitizedRelativePath,
+        targetRelativePath,
+        isMarkdown,
+        assetRegistration,
+        derivedTitle,
+      } = descriptor;
 
       if (processedFiles.has(targetRelativePath)) {
         throw new Error(`Duplicate target detected: ${targetRelativePath}`);
       }
 
+      const destination = toSystemPath(this.outputPath, targetRelativePath);
       await this.io.mkdirP(path.dirname(destination));
-      await this.io.cp(filePath, destination, { recursive: true, force: true });
+      await this.io.cp(sourcePath, destination, {
+        recursive: true,
+        force: true,
+      });
       processedFiles.add(targetRelativePath);
 
       if (isMarkdown) {
@@ -122,7 +151,7 @@ class ArtifactProcessor {
         });
       } else {
         this.core.info(
-          `  Copied asset: ${targetRelativePath} (public ${assetRegistration.publicPath})`,
+          `  Copied asset: ${targetRelativePath} (public ${assetRegistration.publicPath})`
         );
       }
     }
@@ -135,10 +164,6 @@ class ArtifactProcessor {
         title: item.title,
       });
       this.core.info(`  Prepared markdown: ${item.docRelativePath}`);
-    }
-
-    if (!processedFiles.size) {
-      throw new Error("No files discovered in downloaded artifact.");
     }
 
     return Array.from(processedFiles);
