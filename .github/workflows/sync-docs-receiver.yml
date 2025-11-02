@@ -172,7 +172,7 @@ jobs:
           PROCESSED_FILES: ${{ steps.prepare-docs.outputs.processed-files }}
         with:
           script: |
-            const files = JSON.parse(process.env.PROCESSED_FILES);
+            const files = process.env.PROCESSED_FILES ? JSON.parse(process.env.PROCESSED_FILES) : [];
 
             const statusText = process.env.STATUS === 'success'
               ? 'Documentation committed to public-docs'
