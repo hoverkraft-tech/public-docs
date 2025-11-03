@@ -4,10 +4,8 @@ const ACTION_ROOT = path.join(__dirname, "..");
 const REPO_ROOT = path.join(ACTION_ROOT, "..", "..", "..");
 const APPLICATION_ROOT = path.join(REPO_ROOT, "application");
 const DOCS_DIR = path.join(APPLICATION_ROOT, "docs");
-const PROJECTS_MD_PATH = path.join(DOCS_DIR, "projects", "index.md");
+const PROJECTS_PAGE_PATH = path.join(DOCS_DIR, "projects", "index.mdx");
 const HOMEPAGE_PATH = path.join(APPLICATION_ROOT, "src", "pages", "index.tsx");
-const TEMPLATE_DIR = path.join(__dirname, "templates");
-const PROJECTS_MD_TEMPLATE = path.join(TEMPLATE_DIR, "projects.md.ejs");
 const FEATURED_REPOSITORY_LIMIT = 6;
 const HOMEPAGE_CARD_LIMIT = 3;
 
@@ -40,9 +38,8 @@ const IGNORED_REPOSITORIES = new Set([REPOSITORY_NAME]);
 module.exports = {
   OWNER,
   DOCS_DIR,
-  PROJECTS_MD_PATH,
+  PROJECTS_PAGE_PATH,
   HOMEPAGE_PATH,
-  PROJECTS_MD_TEMPLATE,
   IGNORED_REPOSITORIES,
   FEATURED_REPOSITORY_LIMIT,
   HOMEPAGE_CARD_LIMIT,
