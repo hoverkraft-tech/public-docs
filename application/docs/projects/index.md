@@ -9,7 +9,7 @@ import styles from './projects.module.css';
 
 Welcome to the Hoverkraft project ecosystem! We maintain **32 open-source projects**
 with a combined **234 stars** across multiple technologies
-including Astro, Makefile, TypeScript, JavaScript, Smarty, and more. 
+including JavaScript, TypeScript, Makefile, Astro, Smarty, and more. 
 
 ## 📊 Quick Stats
 
@@ -109,14 +109,14 @@ including Astro, Makefile, TypeScript, JavaScript, Smarty, and more.
   
   <HoverkraftProjectCard
     icon="⚡"
-    title="ci-github-common"
-    titleHref="https://github.com/hoverkraft-tech/ci-github-common"
-    meta="Makefile • ⭐ 3 • Updated Oct 31, 2025"
-    description="Opinionated GitHub actions and workflows for common continuous integration needs"
-    tags={["continuous-integration", "github-actions", "open-source", "workflow"]}
+    title="ci-github-publish"
+    titleHref="https://github.com/hoverkraft-tech/ci-github-publish"
+    meta="JavaScript • ⭐ 2 • Updated Nov 2, 2025"
+    description="Opinionated GitHub actions and workflows for streamlined release, deployment, and publishing."
+    tags={["continuous-delivery", "continuous-deployment", "continuous-integration", "github-actions", "open-source"]}
     actions={[
-      { label: "View on GitHub", href: "https://github.com/hoverkraft-tech/ci-github-common" },
-      { label: "Documentation", href: "https://hoverkraft-tech.github.io/ci-github-common/" }
+      { label: "View on GitHub", href: "https://github.com/hoverkraft-tech/ci-github-publish" },
+      { label: "Documentation", href: "https://hoverkraft-tech.github.io/ci-github-publish/" }
     ]}
   />
   
@@ -124,7 +124,7 @@ including Astro, Makefile, TypeScript, JavaScript, Smarty, and more.
     icon="⚡"
     title="ci-dokumentor"
     titleHref="https://github.com/hoverkraft-tech/ci-dokumentor"
-    meta="TypeScript • ⭐ 2 • Updated Oct 31, 2025"
+    meta="TypeScript • ⭐ 2 • Updated Nov 2, 2025"
     description="Automated documentation generator for CI/CD components"
     tags={["documentation", "github-actions", "open-source"]}
     actions={[
@@ -135,14 +135,14 @@ including Astro, Makefile, TypeScript, JavaScript, Smarty, and more.
   
   <HoverkraftProjectCard
     icon="⚡"
-    title="ci-github-publish"
-    titleHref="https://github.com/hoverkraft-tech/ci-github-publish"
-    meta="JavaScript • ⭐ 2 • Updated Oct 31, 2025"
-    description="Opinionated GitHub actions and workflows for streamlined release, deployment, and publishing."
-    tags={["continuous-delivery", "continuous-deployment", "continuous-integration", "github-actions", "open-source"]}
+    title="ci-github-common"
+    titleHref="https://github.com/hoverkraft-tech/ci-github-common"
+    meta="Makefile • ⭐ 3 • Updated Nov 2, 2025"
+    description="Opinionated GitHub actions and workflows for common continuous integration needs"
+    tags={["continuous-integration", "github-actions", "open-source", "workflow"]}
     actions={[
-      { label: "View on GitHub", href: "https://github.com/hoverkraft-tech/ci-github-publish" },
-      { label: "Documentation", href: "https://hoverkraft-tech.github.io/ci-github-publish/" }
+      { label: "View on GitHub", href: "https://github.com/hoverkraft-tech/ci-github-common" },
+      { label: "Documentation", href: "https://hoverkraft-tech.github.io/ci-github-common/" }
     ]}
   />
   
@@ -467,4 +467,4 @@ including Astro, Makefile, TypeScript, JavaScript, Smarty, and more.
 
 ---
 *This page is automatically generated from our GitHub repositories.
-Last updated: 2025-11-01*
+Last updated: 2025-11-03*
