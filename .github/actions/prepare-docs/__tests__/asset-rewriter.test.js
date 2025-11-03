@@ -1,4 +1,5 @@
 import { describe, it, expect } from "vitest";
+import mockFs from "mock-fs";
 import { createRequire } from "module";
 
 const require = createRequire(import.meta.url);
@@ -77,6 +78,50 @@ describe("AssetRewriter", () => {
     expect(() => rewriter.rewrite("../images/logo.png")).toThrow(
       /Missing asset registration/,
     );
+  });
+
+  it("uses an existing static asset when registration is missing", () => {
+    mockFs({
+      "/workspace/static/ci-github-common/assets/images": {
+        "logo.png": "binary",
+      },
+    });
+
+    try {
+      const rewriter = createRewriter();
+
+      const result = rewriter.rewrite("../images/logo.png");
+
+      expect(result).toEqual({
+        value: "/ci-github-common/assets/images/logo.png",
+        changed: true,
+      });
+    } finally {
+      mockFs.restore();
+    }
+  });
+
+  it("retains absolute static links when the asset already exists", () => {
+    mockFs({
+      "/workspace/static/ci-github-common/assets/images": {
+        "logo.png": "binary",
+      },
+    });
+
+    try {
+      const rewriter = createRewriter();
+
+      const result = rewriter.rewrite(
+        "/ci-github-common/assets/images/logo.png",
+      );
+
+      expect(result).toEqual({
+        value: "/ci-github-common/assets/images/logo.png",
+        changed: false,
+      });
+    } finally {
+      mockFs.restore();
+    }
   });
 
   it("falls back to the registered public path when no static namespace is configured", () => {

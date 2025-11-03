@@ -1,12 +1,13 @@
 "use strict";
 
+const fs = require("fs");
 const path = require("path");
 const {
   normalizeToPosix,
   sanitizeSegment,
   rewriteReadmeToIndex,
 } = require("../utils/path-utils");
-const { MARKDOWN_EXTENSIONS } = require("../constants");
+const { MARKDOWN_EXTENSIONS, STATIC_ASSET_PREFIX } = require("../constants");
 
 class AssetRewriter {
   constructor({ assetMap, docRelativePath, docsPath, staticPath } = {}) {
@@ -44,10 +45,22 @@ class AssetRewriter {
       staticPath: this.staticPath,
     });
 
+    let effectiveAssetPath = assetPublicPath;
+
+    if (!effectiveAssetPath && assetCandidate) {
+      effectiveAssetPath = resolveExistingAssetPublicPath({
+        sanitizedPath,
+        normalizedAssetTarget,
+        docRelativePath: this.docRelativePath,
+        docsPath: this.docsPath,
+        staticPath: this.staticPath,
+      });
+    }
+
     if (
       shouldThrowForMissingAsset({
         assetCandidate,
-        assetPublicPath,
+        assetPublicPath: effectiveAssetPath,
       })
     ) {
       throw createMissingAssetError({
@@ -58,7 +71,7 @@ class AssetRewriter {
       });
     }
 
-    const rewrittenPath = assetPublicPath || sanitizedPath;
+    const rewrittenPath = effectiveAssetPath || sanitizedPath;
     const rebuiltTarget = `${rewrittenPath}${suffix}`;
 
     return {
@@ -353,6 +366,237 @@ function looksLikeAssetTarget(targetPath) {
 
 function shouldThrowForMissingAsset({ assetCandidate, assetPublicPath }) {
   return assetCandidate && !assetPublicPath;
+}
+
+function resolveExistingAssetPublicPath({
+  sanitizedPath,
+  normalizedAssetTarget,
+  docRelativePath,
+  docsPath,
+  staticPath,
+}) {
+  const existingStaticAbsolute = resolveExistingAbsoluteStaticAsset({
+    sanitizedPath,
+    staticPath,
+  });
+
+  if (existingStaticAbsolute) {
+    return existingStaticAbsolute;
+  }
+
+  const normalizedTarget = normalizedAssetTarget?.replace(/^\/+/, "");
+
+  if (!normalizedTarget) {
+    return null;
+  }
+
+  if (assetExistsInDocs({ docsPath, normalizedTarget })) {
+    return sanitizedPath;
+  }
+
+  const staticFallback = resolveExistingStaticAsset({
+    normalizedTarget,
+    docRelativePath,
+    docsPath,
+    staticPath,
+  });
+
+  if (staticFallback) {
+    return staticFallback;
+  }
+
+  return null;
+}
+
+function resolveExistingAbsoluteStaticAsset({ sanitizedPath, staticPath }) {
+  if (!sanitizedPath || !staticPath || !sanitizedPath.startsWith("/")) {
+    return null;
+  }
+
+  const trimmed = sanitizedPath.replace(/^\/+/, "");
+  if (!trimmed) {
+    return null;
+  }
+
+  const normalizedStaticRoot = normalizeToPosix(staticPath);
+  if (!normalizedStaticRoot) {
+    return null;
+  }
+
+  const namespace = extractStaticNamespace(normalizedStaticRoot);
+
+  let storageRelativePath = trimmed;
+
+  if (namespace) {
+    if (!trimmed.startsWith(`${namespace}/`)) {
+      return null;
+    }
+    storageRelativePath = trimmed.slice(namespace.length).replace(/^\/+/, "");
+  }
+
+  if (!storageRelativePath) {
+    return null;
+  }
+
+  if (assetExistsOnDisk(toSystemSubPath(staticPath, storageRelativePath))) {
+    return sanitizedPath;
+  }
+
+  return null;
+}
+
+function resolveExistingStaticAsset({
+  normalizedTarget,
+  docRelativePath,
+  docsPath,
+  staticPath,
+}) {
+  if (!staticPath) {
+    return null;
+  }
+
+  const storageCandidates = deriveStaticStorageCandidates({
+    normalizedTarget,
+    docRelativePath,
+    docsPath,
+  });
+
+  for (const storageRelativePath of storageCandidates) {
+    if (!assetExistsOnDisk(toSystemSubPath(staticPath, storageRelativePath))) {
+      continue;
+    }
+
+    const namespacedAssetPath = deriveStaticPublicPath({
+      staticPath,
+      storageRelativePath,
+    });
+
+    if (namespacedAssetPath) {
+      return namespacedAssetPath;
+    }
+
+    const relativePath = deriveRelativeAssetPath({
+      docRelativePath,
+      docsPath,
+      staticPath,
+      storageRelativePath,
+    });
+
+    if (relativePath) {
+      return relativePath;
+    }
+
+    return `/${storageRelativePath}`.replace(/\/+/g, "/");
+  }
+
+  return null;
+}
+
+function deriveStaticStorageCandidates({
+  normalizedTarget,
+  docRelativePath,
+  docsPath,
+}) {
+  const normalized = normalizedTarget?.replace(/^\/+/, "");
+  if (!normalized) {
+    return [];
+  }
+
+  const segments = normalized.split("/").filter(Boolean);
+  if (!segments.length) {
+    return [];
+  }
+
+  const candidates = new Set();
+  candidates.add(path.posix.join(STATIC_ASSET_PREFIX, normalized));
+
+  const potentialRoots = [];
+  // Capture common root segments so we can also probe trimmed static paths.
+
+  if (docRelativePath) {
+    const docSegments = normalizeToPosix(docRelativePath)
+      .split("/")
+      .filter(Boolean);
+    if (docSegments.length) {
+      potentialRoots.push(docSegments[0]);
+    }
+  }
+
+  if (docsPath) {
+    const docsBase = path.posix.basename(normalizeToPosix(docsPath));
+    if (docsBase) {
+      potentialRoots.push(docsBase);
+    }
+  }
+
+  for (const root of potentialRoots) {
+    if (!root) {
+      continue;
+    }
+
+    const leading = segments[0];
+    if (leading && leading.toLowerCase() === root.toLowerCase()) {
+      const trimmedSegments = segments.slice(1);
+      if (trimmedSegments.length) {
+        candidates.add(
+          path.posix.join(STATIC_ASSET_PREFIX, trimmedSegments.join("/")),
+        );
+      }
+    }
+  }
+
+  return Array.from(candidates);
+}
+
+function assetExistsInDocs({ docsPath, normalizedTarget }) {
+  if (!docsPath || !normalizedTarget) {
+    return false;
+  }
+
+  const primaryCandidate = toSystemSubPath(docsPath, normalizedTarget);
+  if (assetExistsOnDisk(primaryCandidate)) {
+    return true;
+  }
+
+  const segments = normalizedTarget.split("/");
+  const docsBase = path.posix.basename(normalizeToPosix(docsPath));
+
+  if (segments.length > 1 && docsBase) {
+    const [first, ...rest] = segments;
+    if (first && first.toLowerCase() === docsBase.toLowerCase()) {
+      const trimmed = rest.join("/");
+      if (trimmed) {
+        return assetExistsOnDisk(toSystemSubPath(docsPath, trimmed));
+      }
+    }
+  }
+
+  return false;
+}
+
+function toSystemSubPath(root, posixPath) {
+  if (!root) {
+    return null;
+  }
+
+  if (!posixPath) {
+    return root;
+  }
+
+  const segments = posixPath.split("/").filter(Boolean);
+  return path.join(root, ...segments);
+}
+
+function assetExistsOnDisk(candidatePath) {
+  if (!candidatePath) {
+    return false;
+  }
+
+  try {
+    return fs.existsSync(candidatePath);
+  } catch (error) {
+    return false;
+  }
 }
 
 function createMissingAssetError({

@@ -113,4 +113,12 @@ Visit [https://example.com](https://example.com) or email [docs@example.com](mai
       /Missing asset registration/,
     );
   });
+
+  it("rewrites links for existing static assets even without registration", () => {
+    const input = "![Logo](../images/logo.png)";
+
+    const result = normalizeMarkdownBody(input, createOptions());
+
+    expect(result).toBe("![Logo](/ci-namespace/assets/images/logo.png)");
+  });
 });
