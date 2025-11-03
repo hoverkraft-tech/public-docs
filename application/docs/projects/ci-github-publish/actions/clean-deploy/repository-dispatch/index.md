@@ -1,0 +1,134 @@
+---
+title: Repository Dispatch
+source_repo: hoverkraft-tech/ci-github-publish
+source_path: actions/clean-deploy/repository-dispatch/README.md
+source_branch: main
+source_run_id: 19026425772
+last_synced: 2025-11-03T07:02:53.703Z
+---
+
+<!-- header:start -->
+
+# ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItdHJhc2gtMiIgY29sb3I9ImJsdWUiPjxwb2x5bGluZSBwb2ludHM9IjMgNiA1IDYgMjEgNiI+PC9wb2x5bGluZT48cGF0aCBkPSJNMTkgNnYxNGEyIDIgMCAwIDEtMiAySDdhMiAyIDAgMCAxLTItMlY2bTMgMFY0YTIgMiAwIDAgMSAyLTJoNGEyIDIgMCAwIDEgMiAydjIiPjwvcGF0aD48bGluZSB4MT0iMTAiIHkxPSIxMSIgeDI9IjEwIiB5Mj0iMTciPjwvbGluZT48bGluZSB4MT0iMTQiIHkxPSIxMSIgeDI9IjE0IiB5Mj0iMTciPjwvbGluZT48L3N2Zz4=) GitHub Action: Clean deploy - Via a repository dispatch
+
+<div align="center">
+  <img src="/ci-github-publish/assets/github/logo.svg" width="60px" align="center" alt="Clean deploy - Via a repository dispatch" />
+</div>
+
+---
+
+<!-- header:end -->
+
+<!-- badges:start -->
+
+[![Marketplace](https://img.shields.io/badge/Marketplace-clean--deploy------via--a--repository--dispatch-blue?logo=github-actions)](https://github.com/marketplace/actions/clean-deploy---via-a-repository-dispatch)
+[![Release](https://img.shields.io/github/v/release/hoverkraft-tech/ci-github-publish)](https://github.com/hoverkraft-tech/ci-github-publish/releases)
+[![License](https://img.shields.io/github/license/hoverkraft-tech/ci-github-publish)](http://choosealicense.com/licenses/mit/)
+[![Stars](https://img.shields.io/github/stars/hoverkraft-tech/ci-github-publish?style=social)](https://img.shields.io/github/stars/hoverkraft-tech/ci-github-publish?style=social)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/hoverkraft-tech/ci-github-publish/blob/main/CONTRIBUTING.md)
+
+<!-- badges:end -->
+
+<!-- overview:start -->
+
+## Overview
+
+Action to clean a deployment via GitHub repository dispatch event.
+See [https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#create-a-repository-dispatch-event](https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#create-a-repository-dispatch-event).
+See [https://github.com/peter-evans/repository-dispatch](https://github.com/peter-evans/repository-dispatch).
+
+The target repository should implement a workflow that handle this dispatch event.
+See [https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#repository_dispatch](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#repository_dispatch).
+
+<!-- overview:end -->
+
+<!-- usage:start -->
+
+## Usage
+
+```yaml
+- uses: hoverkraft-tech/ci-github-publish/actions/clean-deploy/repository-dispatch@b2a6d08d60e0adff6736caf6fdaa5fd3bcdd473a # 0.13.0
+  with:
+    # GitHub Token for dispatch an event to a remote repository.
+    # Permissions:
+    # - contents: write
+    # See https://github.com/peter-evans/repository-dispatch#usage.
+    #
+    # Default: `${{ github.token }}`
+    github-token: ${{ github.token }}
+
+    # Target repository where the deployment should be cleaned.
+    # This input is required.
+    repository: ""
+
+    # Environment where to clean the deployment.
+    # This input is required.
+    environment: ""
+```
+
+<!-- usage:end -->
+
+<!--
+// jscpd:ignore-start
+-->
+
+<!-- inputs:start -->
+
+## Inputs
+
+| **Input**          | **Description**                                                 | **Required** | **Default**             |
+| ------------------ | --------------------------------------------------------------- | ------------ | ----------------------- |
+| **`github-token`** | GitHub Token for dispatch an event to a remote repository.      | **false**    | `$\{\{ github.token }}` |
+|                    | Permissions:                                                    |              |                         |
+|                    | - contents: write                                               |              |                         |
+|                    | See [https://github.com/peter-evans/repository-dispatch#usage](https://github.com/peter-evans/repository-dispatch#usage). |              |                         |
+| **`repository`**   | Target repository where the deployment should be cleaned.       | **true**     | -                       |
+| **`environment`**  | Environment where to clean the deployment.                      | **true**     | -                       |
+
+<!-- inputs:end -->
+
+<!-- outputs:start -->
+<!-- outputs:end -->
+
+<!-- secrets:start -->
+<!-- secrets:end -->
+
+<!-- examples:start -->
+<!-- examples:end -->
+
+<!-- contributing:start -->
+
+## Contributing
+
+Contributions are welcome! Please see the [contributing guidelines](https://github.com/hoverkraft-tech/ci-github-publish/blob/main/CONTRIBUTING.md) for more details.
+
+<!-- contributing:end -->
+
+<!-- security:start -->
+<!-- security:end -->
+
+<!-- license:start -->
+
+## License
+
+This project is licensed under the MIT License.
+
+SPDX-License-Identifier: MIT
+
+Copyright © 2025 hoverkraft
+
+For more details, see the [license](http://choosealicense.com/licenses/mit/).
+
+<!-- license:end -->
+
+<!-- generated:start -->
+
+---
+
+This documentation was automatically generated by [CI Dokumentor](https://github.com/hoverkraft-tech/ci-dokumentor).
+
+<!-- generated:end -->
+
+<!--
+// jscpd:ignore-end
+-->
