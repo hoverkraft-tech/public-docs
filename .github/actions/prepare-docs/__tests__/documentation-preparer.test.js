@@ -25,7 +25,7 @@ function createIo() {
   return {
     mkdirP: vi.fn((dir) => fs.promises.mkdir(dir, { recursive: true })),
     rmRF: vi.fn((target) =>
-      fs.promises.rm(target, { recursive: true, force: true })
+      fs.promises.rm(target, { recursive: true, force: true }),
     ),
     cp: vi.fn((src, dest) => fs.promises.copyFile(src, dest)),
   };
@@ -134,32 +134,32 @@ describe("DocumentationPreparer", () => {
 
     const docContent = fs.readFileSync(
       path.join(options.outputPath, "docs/guide.md"),
-      "utf8"
+      "utf8",
     );
     expect(docContent).toContain("source_repo: hoverkraft-tech/example");
     expect(docContent).toContain("last_synced:");
 
     const indexContent = fs.readFileSync(
       path.join(options.outputPath, "_index.md"),
-      "utf8"
+      "utf8",
     );
     expect(indexContent).toContain("Documentation for the Example project.");
 
     const nestedIndexContent = fs.readFileSync(
       path.join(options.outputPath, "docs/nested/_index.md"),
-      "utf8"
+      "utf8",
     );
     expect(nestedIndexContent).toContain("title: Nested");
     expect(nestedIndexContent).toContain("# Nested");
 
     expect(options.core.info).toHaveBeenCalledWith(
-      "Preparing documentation bundle for hoverkraft-tech/example"
+      "Preparing documentation bundle for hoverkraft-tech/example",
     );
     expect(options.core.info).toHaveBeenCalledWith(
-      "  Generated nested index: docs/nested/_index.md"
+      "  Generated nested index: docs/nested/_index.md",
     );
     expect(options.core.info).toHaveBeenCalledWith(
-      "Documentation bundle prepared with 5 files."
+      "Documentation bundle prepared with 5 files.",
     );
   });
 
@@ -215,7 +215,7 @@ describe("DocumentationPreparer", () => {
     const preparer = new DocumentationPreparer(options);
 
     await expect(preparer.run()).rejects.toThrow(
-      'Invalid repository slug "hoverkraft-tech".'
+      'Invalid repository slug "hoverkraft-tech".',
     );
 
     expect(options.github.rest.actions.getWorkflowRun).not.toHaveBeenCalled();
