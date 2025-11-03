@@ -41,6 +41,7 @@ class ArtifactProcessor {
     this.staticPath = staticPath;
     this.syncTimestamp = syncTimestamp;
     this.assetMap = new Map();
+    this.docsRootSegment = deriveRootSegment(docsPath);
     this.markdownProcessor = new MarkdownProcessor({
       sourceRepository,
       sourceBranch,
@@ -67,11 +68,11 @@ class ArtifactProcessor {
       const normalizedSourcePath = normalizeToPosix(relativePath);
       const sanitizedRelativePathRaw = sanitizeRelativePath(relativePath);
       const sanitizedRelativePath = rewriteReadmeToIndex(
-        sanitizedRelativePathRaw,
+        sanitizedRelativePathRaw
       );
       const renamedFromReadme = didRewriteReadme(
         sanitizedRelativePathRaw,
-        sanitizedRelativePath,
+        sanitizedRelativePath
       );
       const derivedTitle = renamedFromReadme
         ? deriveTitleFromReadmePath({
@@ -85,7 +86,7 @@ class ArtifactProcessor {
       }
 
       const isMarkdown = MARKDOWN_EXTENSIONS.has(
-        path.extname(sanitizedRelativePath).toLowerCase(),
+        path.extname(sanitizedRelativePath).toLowerCase()
       );
 
       let targetRelativePath;
@@ -96,11 +97,11 @@ class ArtifactProcessor {
       } else {
         assetRegistration = registerAssetPath(
           this.assetMap,
-          sanitizedRelativePath,
+          sanitizedRelativePath
         );
         targetRelativePath = path.posix.join(
           STATIC_DIRECTORY,
-          assetRegistration.storageRelativePath,
+          assetRegistration.storageRelativePath
         );
       }
 
@@ -155,17 +156,20 @@ class ArtifactProcessor {
 
         const directoryPath = path.posix.dirname(sanitizedRelativePath);
         if (directoryPath && directoryPath !== ".") {
-          const segments = directoryPath.split("/").filter(Boolean);
-          if (segments.length > 1) {
-            for (let depth = 1; depth < segments.length; depth += 1) {
-              const nestedDirectory = segments.slice(0, depth + 1).join("/");
-              nestedDirectories.add(nestedDirectory);
+          const hierarchy = collectDirectoryHierarchy(directoryPath);
+          for (const nestedDirectory of hierarchy) {
+            if (
+              this.docsRootSegment &&
+              nestedDirectory.toLowerCase() === this.docsRootSegment
+            ) {
+              continue;
             }
+            nestedDirectories.add(nestedDirectory);
           }
         }
       } else {
         this.core.info(
-          `  Copied asset: ${targetRelativePath} (public ${assetRegistration.publicPath})`,
+          `  Copied asset: ${targetRelativePath} (public ${assetRegistration.publicPath})`
         );
       }
     }
@@ -230,6 +234,34 @@ class ArtifactProcessor {
       this.core.info(`  Generated nested index: ${underscoreIndexPath}`);
     }
   }
+}
+
+function deriveRootSegment(docsPath) {
+  if (!docsPath) {
+    return "";
+  }
+
+  const normalized = path.normalize(docsPath);
+  const base = path.basename(normalized);
+  return base ? base.toLowerCase() : "";
+}
+
+function collectDirectoryHierarchy(directory) {
+  if (!directory) {
+    return [];
+  }
+
+  const segments = directory.split("/").filter(Boolean);
+  const hierarchy = [];
+
+  for (let depth = 0; depth < segments.length; depth += 1) {
+    const candidate = segments.slice(0, depth + 1).join("/");
+    if (candidate) {
+      hierarchy.push(candidate);
+    }
+  }
+
+  return hierarchy;
 }
 
 function registerAssetPath(assetMap, assetPath) {
