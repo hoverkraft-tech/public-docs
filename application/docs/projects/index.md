@@ -111,7 +111,7 @@ including JavaScript, TypeScript, Makefile, Astro, Smarty, and more.
     icon="⚡"
     title="ci-github-publish"
     titleHref="https://github.com/hoverkraft-tech/ci-github-publish"
-    meta="JavaScript • ⭐ 2 • Updated Nov 2, 2025"
+    meta="JavaScript • ⭐ 2 • Updated Nov 3, 2025"
     description="Opinionated GitHub actions and workflows for streamlined release, deployment, and publishing."
     tags={["continuous-delivery", "continuous-deployment", "continuous-integration", "github-actions", "open-source"]}
     actions={[
