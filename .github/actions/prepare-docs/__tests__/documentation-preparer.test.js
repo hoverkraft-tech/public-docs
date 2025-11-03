@@ -85,6 +85,9 @@ describe("DocumentationPreparer", () => {
         artifact: {
           docs: {
             "guide.md": "# Guide\n\nContent",
+            nested: {
+              "overview.md": "# Overview\n\nDetails",
+            },
           },
           images: {
             "logo.png": "binary",
@@ -114,6 +117,8 @@ describe("DocumentationPreparer", () => {
     expect(processedFiles).toEqual([
       "_index.md",
       "docs/guide.md",
+      "docs/nested/_index.md",
+      "docs/nested/overview.md",
       "static/assets/images/logo.png",
     ]);
     expect(result.sourceBranch).toBe("main");
@@ -122,6 +127,8 @@ describe("DocumentationPreparer", () => {
     expect(outputFiles).toEqual([
       "_index.md",
       "docs/guide.md",
+      "docs/nested/_index.md",
+      "docs/nested/overview.md",
       "static/assets/images/logo.png",
     ]);
 
@@ -138,11 +145,21 @@ describe("DocumentationPreparer", () => {
     );
     expect(indexContent).toContain("Documentation for the Example project.");
 
+    const nestedIndexContent = fs.readFileSync(
+      path.join(options.outputPath, "docs/nested/_index.md"),
+      "utf8",
+    );
+    expect(nestedIndexContent).toContain("title: Nested");
+    expect(nestedIndexContent).toContain("# Nested");
+
     expect(options.core.info).toHaveBeenCalledWith(
       "Preparing documentation bundle for hoverkraft-tech/example",
     );
     expect(options.core.info).toHaveBeenCalledWith(
-      "Documentation bundle prepared with 3 files.",
+      "  Generated nested index: docs/nested/_index.md",
+    );
+    expect(options.core.info).toHaveBeenCalledWith(
+      "Documentation bundle prepared with 5 files.",
     );
   });
 

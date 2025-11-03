@@ -1,5 +1,6 @@
 "use strict";
 
+const fs = require("fs");
 const path = require("path");
 const {
   MARKDOWN_EXTENSIONS,
@@ -14,6 +15,7 @@ const {
   didRewriteReadme,
   toSystemPath,
   deriveTitleFromReadmePath,
+  formatTitleFromSlug,
 } = require("../utils/path-utils");
 const { MarkdownProcessor } = require("../markdown/markdown-processor");
 
@@ -52,6 +54,7 @@ class ArtifactProcessor {
 
   async process(artifactPath) {
     const descriptors = [];
+    const nestedDirectories = new Set();
 
     for (const filePath of iterateFiles(artifactPath)) {
       const relativePath = path.relative(artifactPath, filePath);
@@ -64,11 +67,11 @@ class ArtifactProcessor {
       const normalizedSourcePath = normalizeToPosix(relativePath);
       const sanitizedRelativePathRaw = sanitizeRelativePath(relativePath);
       const sanitizedRelativePath = rewriteReadmeToIndex(
-        sanitizedRelativePathRaw
+        sanitizedRelativePathRaw,
       );
       const renamedFromReadme = didRewriteReadme(
         sanitizedRelativePathRaw,
-        sanitizedRelativePath
+        sanitizedRelativePath,
       );
       const derivedTitle = renamedFromReadme
         ? deriveTitleFromReadmePath({
@@ -82,7 +85,7 @@ class ArtifactProcessor {
       }
 
       const isMarkdown = MARKDOWN_EXTENSIONS.has(
-        path.extname(sanitizedRelativePath).toLowerCase()
+        path.extname(sanitizedRelativePath).toLowerCase(),
       );
 
       let targetRelativePath;
@@ -93,11 +96,11 @@ class ArtifactProcessor {
       } else {
         assetRegistration = registerAssetPath(
           this.assetMap,
-          sanitizedRelativePath
+          sanitizedRelativePath,
         );
         targetRelativePath = path.posix.join(
           STATIC_DIRECTORY,
-          assetRegistration.storageRelativePath
+          assetRegistration.storageRelativePath,
         );
       }
 
@@ -149,9 +152,20 @@ class ArtifactProcessor {
           docRelativePath: sanitizedRelativePath,
           title: derivedTitle,
         });
+
+        const directoryPath = path.posix.dirname(sanitizedRelativePath);
+        if (directoryPath && directoryPath !== ".") {
+          const segments = directoryPath.split("/").filter(Boolean);
+          if (segments.length > 1) {
+            for (let depth = 1; depth < segments.length; depth += 1) {
+              const nestedDirectory = segments.slice(0, depth + 1).join("/");
+              nestedDirectories.add(nestedDirectory);
+            }
+          }
+        }
       } else {
         this.core.info(
-          `  Copied asset: ${targetRelativePath} (public ${assetRegistration.publicPath})`
+          `  Copied asset: ${targetRelativePath} (public ${assetRegistration.publicPath})`,
         );
       }
     }
@@ -166,7 +180,55 @@ class ArtifactProcessor {
       this.core.info(`  Prepared markdown: ${item.docRelativePath}`);
     }
 
+    await this.ensureDirectoryIndexes({
+      directories: nestedDirectories,
+      processedFiles,
+    });
+
     return Array.from(processedFiles);
+  }
+
+  async ensureDirectoryIndexes({ directories, processedFiles }) {
+    if (!directories.size) {
+      return;
+    }
+
+    for (const directory of directories) {
+      const indexPath = path.posix.join(directory, "index.md");
+      const underscoreIndexPath = path.posix.join(directory, "_index.md");
+
+      if (
+        processedFiles.has(indexPath) ||
+        processedFiles.has(underscoreIndexPath)
+      ) {
+        continue;
+      }
+
+      const label = formatTitleFromSlug(directory.split("/").pop());
+      if (!label) {
+        continue;
+      }
+
+      const destination = toSystemPath(this.outputPath, underscoreIndexPath);
+      await this.io.mkdirP(path.dirname(destination));
+
+      const contentLines = [
+        "---",
+        `title: ${label}`,
+        `description: Overview for ${label}`,
+        `sidebar_label: ${label}`,
+        "---",
+        "",
+        `# ${label}`,
+        "",
+        `This page is generated automatically to introduce the ${label} documentation section.`,
+        "",
+      ];
+
+      fs.writeFileSync(destination, `${contentLines.join("\n")}\n`);
+      processedFiles.add(underscoreIndexPath);
+      this.core.info(`  Generated nested index: ${underscoreIndexPath}`);
+    }
   }
 }
 

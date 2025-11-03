@@ -2,6 +2,26 @@ import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
+const escapeCurlyBracesInPreBlocks = (markdown: string): string => {
+  const preBlockRegex = /<pre\b[^>]*>[\s\S]*?<\/pre>/gi;
+
+  return markdown.replace(preBlockRegex, (preBlock) => {
+    const startTagEnd = preBlock.indexOf('>') + 1;
+    const endTagStart = preBlock.lastIndexOf('</pre>');
+
+    if (startTagEnd === 0 || endTagStart === -1) {
+      return preBlock;
+    }
+
+    const content = preBlock.slice(startTagEnd, endTagStart);
+    const escapedContent = content
+      .replace(/\{+/g, (match) => match.replace(/\{/g, '&#123;'))
+      .replace(/\}+/g, (match) => match.replace(/\}/g, '&#125;'));
+
+    return preBlock.slice(0, startTagEnd) + escapedContent + preBlock.slice(endTagStart);
+  });
+};
+
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
@@ -52,6 +72,10 @@ const config: Config = {
   ],
 
   themes: ['@hoverkraft/docusaurus-theme'],
+
+  markdown: {
+    preprocessor: ({ fileContent }) => escapeCurlyBracesInPreBlocks(fileContent),
+  },
 
   themeConfig: {
     // Replace with your project's social card
