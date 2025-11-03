@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/clean-deploy.md
 source_branch: main
-source_run_id: 19026425772
-last_synced: 2025-11-03T07:02:53.703Z
+source_run_id: 19037910455
+last_synced: 2025-11-03T14:28:25.572Z
 ---
 
 <!-- header:start -->
@@ -50,13 +50,13 @@ Behavior / outputs:
 
 ### Permissions
 
+- **`actions`**: `read`
 - **`contents`**: `write`
+- **`deployments`**: `write`
+- **`id-token`**: `write`
 - **`issues`**: `write`
 - **`packages`**: `write`
 - **`pull-requests`**: `write`
-- **`actions`**: `read`
-- **`deployments`**: `write`
-- **`id-token`**: `write`
 
 <!-- overview:end -->
 
@@ -80,7 +80,7 @@ permissions:
   id-token: write
 jobs:
   clean-deploy:
-    uses: hoverkraft-tech/ci-github-publish/.github/workflows/clean-deploy.yml@b2a6d08d60e0adff6736caf6fdaa5fd3bcdd473a # 0.13.0
+    uses: hoverkraft-tech/ci-github-publish/.github/workflows/clean-deploy.yml@0717eb404857b7e4a15dc0db5fbece52921e85fb # 0.13.1
     secrets:
       # GitHub token for deploying.
       # Permissions:
@@ -194,7 +194,7 @@ permissions:
 
 jobs:
   clean-deploy:
-    uses: hoverkraft-tech/ci-github-publish/.github/workflows/clean-deploy.yml@b2a6d08d60e0adff6736caf6fdaa5fd3bcdd473a # 0.13.0
+    uses: hoverkraft-tech/ci-github-publish/.github/workflows/clean-deploy.yml@0717eb404857b7e4a15dc0db5fbece52921e85fb # 0.13.1
     with:
       clean-deploy-parameters: |
         { "repository": "${{ github.repository_owner }}/argocd-app-of-apps" }
