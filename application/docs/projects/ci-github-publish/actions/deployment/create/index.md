@@ -3,8 +3,8 @@ title: Create
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/deployment/create/README.md
 source_branch: main
-source_run_id: 19026425772
-last_synced: 2025-11-03T07:02:53.703Z
+source_run_id: 19037910455
+last_synced: 2025-11-03T14:28:25.572Z
 ---
 
 <!-- header:start -->
@@ -55,7 +55,7 @@ permissions:
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/deployment/create@b2a6d08d60e0adff6736caf6fdaa5fd3bcdd473a # 0.13.0
+- uses: hoverkraft-tech/ci-github-publish/actions/deployment/create@0717eb404857b7e4a15dc0db5fbece52921e85fb # 0.13.1
   with:
     # The environment to deploy to
     # This input is required.
