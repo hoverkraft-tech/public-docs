@@ -54,7 +54,6 @@ runs:
         RUN_ID: ${{ inputs.run-id }}
         DOCS_PATH: ${{ inputs.docs-path }}
         STATIC_PATH: ${{ inputs.static-path }}
-        NODE_PATH: ${{ github.action_path }}/node_modules
       with:
         github-token: ${{ inputs.github-token }}
         script: |

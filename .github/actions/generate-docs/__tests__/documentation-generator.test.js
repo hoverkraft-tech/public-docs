@@ -1,14 +1,16 @@
-import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import fs from "fs";
+import mockFs from "mock-fs";
 import {
   describe,
   it,
   expect,
-  vi,
   beforeEach,
   afterEach,
+  beforeAll,
   afterAll,
+  vi,
 } from "vitest";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -19,6 +21,15 @@ const previousRepository = process.env.GITHUB_REPOSITORY;
 const previousWorkspace = process.env.GITHUB_WORKSPACE;
 
 const workspaceRoot = path.resolve(__dirname, "../../../..");
+const projectsPagePath = path.join(
+  workspaceRoot,
+  "application/docs/projects/index.mdx",
+);
+const homepagePath = path.join(
+  workspaceRoot,
+  "application/src/pages/index.tsx",
+);
+
 process.env.GITHUB_REPOSITORY_OWNER = "hoverkraft-tech";
 process.env.GITHUB_REPOSITORY = "hoverkraft-tech/public-docs";
 process.env.GITHUB_WORKSPACE = workspaceRoot;
@@ -26,111 +37,96 @@ process.env.GITHUB_WORKSPACE = workspaceRoot;
 const { DocumentationGenerator } = await import(
   "../lib/documentation-generator.js"
 );
-const { PROJECTS_MD_PATH, HOMEPAGE_PATH } = await import("../lib/constants.js");
+const { PROJECTS_PAGE_PATH, HOMEPAGE_PATH } = await import(
+  "../lib/constants.js"
+);
+
+function readFixture(absolutePath) {
+  return fs.readFileSync(absolutePath, "utf8");
+}
+
+beforeAll(() => {
+  if (!fs.existsSync(projectsPagePath) || !fs.existsSync(homepagePath)) {
+    throw new Error(
+      "Required fixture files for projects or homepage were not found.",
+    );
+  }
+});
 
 afterAll(() => {
   process.env.GITHUB_REPOSITORY_OWNER = previousOwner;
   process.env.GITHUB_REPOSITORY = previousRepository;
   process.env.GITHUB_WORKSPACE = previousWorkspace;
+  restoreMockFileSystem();
 });
 
 describe("DocumentationGenerator", () => {
+  let githubClient;
+
+  beforeEach(() => {
+    restoreMockFileSystem();
+    githubClient = createGithubClient();
+
+    const realProjectsContent = readFixture(PROJECTS_PAGE_PATH);
+    const realHomepageContent = readFixture(HOMEPAGE_PATH);
+
+    mockFs({
+      [PROJECTS_PAGE_PATH]: realProjectsContent,
+      [HOMEPAGE_PATH]: realHomepageContent,
+    });
+  });
+
   afterEach(() => {
     vi.restoreAllMocks();
+    restoreMockFileSystem();
   });
 
   describe("run", () => {
-    let generator;
-    let fetchRepositories;
-    let fetchPinned;
-    let filterRepositories;
-    let categorizeRepositories;
-    let homepageUpdate;
-
-    const rawRepositories = [
-      { name: "alpha", stargazers_count: 10 },
-      { name: "beta", stargazers_count: 7 },
-    ];
-
-    const showcaseRepositories = [{ name: "alpha", stargazers_count: 10 }];
-
-    const categorized = {
-      "Core Services": [{ name: "alpha" }],
-      Other: [],
-    };
-
-    beforeEach(() => {
-      generator = new DocumentationGenerator({ github: {} });
-
-      fetchRepositories = vi.fn().mockResolvedValue(rawRepositories);
-      fetchPinned = vi.fn().mockResolvedValue(["alpha"]);
-      generator.repositoryService = {
-        fetchOrganizationRepositories: fetchRepositories,
-        fetchOrganizationPinnedRepositories: fetchPinned,
-      };
-
-      filterRepositories = vi.fn().mockReturnValue(showcaseRepositories);
-      generator.repositoryFilter = { apply: filterRepositories };
-
-      categorizeRepositories = vi.fn().mockReturnValue(categorized);
-      generator.repositoryCategorizer = {
-        categorize: categorizeRepositories,
-      };
-
-      homepageUpdate = vi.fn().mockResolvedValue();
-      generator.homepageUpdater = { update: homepageUpdate };
-    });
-
-    it("orchestrates repository generation end-to-end", async () => {
-      const writeAssets = vi
-        .spyOn(generator, "writeProjectsAssets")
-        .mockResolvedValue();
-      const logSummary = vi
-        .spyOn(generator, "logSummary")
-        .mockImplementation(() => {});
+    it("orchestrates repository generation end-to-end without service stubs", async () => {
       const consoleLog = vi.spyOn(console, "log").mockImplementation(() => {});
+
+      const generator = new DocumentationGenerator({ github: githubClient });
 
       await generator.run();
 
-      expect(fetchRepositories).toHaveBeenCalledWith(
-        process.env.GITHUB_REPOSITORY_OWNER,
-      );
-      expect(filterRepositories).toHaveBeenCalledWith(rawRepositories);
-      expect(categorizeRepositories).toHaveBeenCalledWith(showcaseRepositories);
-
-      expect(writeAssets).toHaveBeenCalledTimes(1);
-      const callArgs = writeAssets.mock.calls[0][0];
-      expect(callArgs.categories).toBe(categorized);
-      expect(callArgs.repositories).toBe(showcaseRepositories);
-      expect(callArgs.generatedAt).toBeInstanceOf(Date);
-
-      expect(fetchPinned).toHaveBeenCalledWith(
-        process.env.GITHUB_REPOSITORY_OWNER,
-      );
-      expect(homepageUpdate).toHaveBeenCalledWith(rawRepositories, ["alpha"]);
-
-      expect(logSummary).toHaveBeenCalledWith(categorized);
       expect(consoleLog).toHaveBeenCalledWith(
         "🚀 Starting documentation generation...",
       );
       expect(consoleLog).toHaveBeenCalledWith(
         "✅ Documentation generation completed!",
       );
+
+      const projectsOutput = fs.readFileSync(PROJECTS_PAGE_PATH, "utf8");
+      const homepageOutput = fs.readFileSync(HOMEPAGE_PATH, "utf8");
+
+      expect(projectsOutput).toContain("const projectSections");
+      expect(homepageOutput).toContain("const projects = [");
     });
   });
 
   describe("writeProjectsAssets", () => {
-    it("writes generated markdown and logs relative paths", async () => {
-      const generator = new DocumentationGenerator({ github: {} });
-      const generatedAt = new Date("2025-01-01T00:00:00.000Z");
-      const categories = { Other: [] };
-      const repositories = [];
-
-      const buildContent = vi
-        .spyOn(generator.projectsContentBuilder, "build")
-        .mockReturnValue("# Projects");
-      const writeFile = vi.spyOn(fs.promises, "writeFile").mockResolvedValue();
+    it("updates projects page and logs relative paths without stubbing services", async () => {
       const consoleLog = vi.spyOn(console, "log").mockImplementation(() => {});
+
+      const generator = new DocumentationGenerator({ github: githubClient });
+
+      const categories = {
+        "Core Services": [
+          {
+            name: "alpha",
+            html_url: "https://github.com/hoverkraft-tech/alpha",
+            language: "TypeScript",
+            stargazers_count: 10,
+            updated_at: "2025-01-01T00:00:00.000Z",
+            description: "Alpha project",
+            topics: ["github-actions"],
+          },
+        ],
+      };
+
+      const repositories = Object.values(categories).flat();
+
+      const generatedAt = new Date("2025-01-02T00:00:00.000Z");
 
       await generator.writeProjectsAssets({
         categories,
@@ -138,20 +134,13 @@ describe("DocumentationGenerator", () => {
         generatedAt,
       });
 
-      expect(buildContent).toHaveBeenCalledWith({
-        categories,
-        repositories,
-        generatedAt,
-      });
-      expect(writeFile).toHaveBeenCalledWith(
-        PROJECTS_MD_PATH,
-        "# Projects",
-        "utf8",
-      );
+      const projectsOutput = fs.readFileSync(PROJECTS_PAGE_PATH, "utf8");
+      expect(projectsOutput).toContain("Alpha project");
+      expect(projectsOutput).toContain("const statsSummary");
 
       const projectsRelative = path.relative(
         process.env.GITHUB_WORKSPACE,
-        PROJECTS_MD_PATH,
+        PROJECTS_PAGE_PATH,
       );
       const homepageRelative = path.relative(
         process.env.GITHUB_WORKSPACE,
@@ -164,3 +153,51 @@ describe("DocumentationGenerator", () => {
     });
   });
 });
+
+function createGithubClient() {
+  return {
+    rest: {
+      repos: {
+        listForOrg: vi.fn().mockResolvedValue({
+          data: [
+            {
+              name: "alpha",
+              stargazers_count: 10,
+              language: "TypeScript",
+              updated_at: "2025-01-01T00:00:00.000Z",
+              html_url: "https://github.com/hoverkraft-tech/alpha",
+              description: "Alpha project",
+              topics: ["github-actions"],
+            },
+          ],
+        }),
+      },
+    },
+    paginate: vi.fn(async (method, params) => {
+      const response = await method(params);
+      return response.data;
+    }),
+    graphql: vi.fn(async () => ({
+      organization: {
+        pinnedItems: {
+          nodes: [
+            {
+              name: "alpha",
+            },
+          ],
+        },
+      },
+    })),
+  };
+}
+
+function restoreMockFileSystem() {
+  try {
+    mockFs.restore();
+  } catch (error) {
+    const message = String(error?.message || "");
+    if (!/not mocked/i.test(message)) {
+      throw error;
+    }
+  }
+}

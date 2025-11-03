@@ -1,9 +1,8 @@
 const path = require("path");
-const fs = require("fs").promises;
 const {
   OWNER,
   IGNORED_REPOSITORIES,
-  PROJECTS_MD_PATH,
+  PROJECTS_PAGE_PATH,
   HOMEPAGE_PATH,
 } = require("./constants");
 const { CATEGORY_RULES } = require("./rules");
@@ -13,11 +12,9 @@ const {
 const { RepositoryFilter } = require("./repository-filter");
 const { RepositoryCategorizer } = require("./repository-categorizer");
 const {
-  ProjectsContentBuilder,
-} = require("./builders/projects-content-builder");
-const {
   HomepageProjectsUpdater,
 } = require("./homepage/homepage-projects-updater");
+const { ProjectsIndexUpdater } = require("./projects/projects-index-updater");
 
 class DocumentationGenerator {
   constructor({ github }) {
@@ -26,8 +23,12 @@ class DocumentationGenerator {
       ignoredNames: IGNORED_REPOSITORIES,
     });
     this.repositoryCategorizer = new RepositoryCategorizer(CATEGORY_RULES);
-    this.projectsContentBuilder = new ProjectsContentBuilder();
-    this.homepageUpdater = new HomepageProjectsUpdater();
+    this.homepageUpdater = new HomepageProjectsUpdater({
+      homepagePath: HOMEPAGE_PATH,
+    });
+    this.projectsIndexUpdater = new ProjectsIndexUpdater({
+      projectsPagePath: PROJECTS_PAGE_PATH,
+    });
   }
 
   async run() {
@@ -39,38 +40,42 @@ class DocumentationGenerator {
     const showcaseRepositories = this.repositoryFilter.apply(rawRepositories);
     const categories =
       this.repositoryCategorizer.categorize(showcaseRepositories);
-
-    await this.writeProjectsAssets({
-      categories,
-      repositories: showcaseRepositories,
-      generatedAt: new Date(),
-    });
+    const generatedAt = new Date();
 
     const pinnedRepositoryNames =
       await this.repositoryService.fetchOrganizationPinnedRepositories(OWNER);
 
     await this.homepageUpdater.update(rawRepositories, pinnedRepositoryNames);
 
+    await this.writeProjectsAssets({
+      categories,
+      repositories: showcaseRepositories,
+      generatedAt,
+    });
+
     console.log("✅ Documentation generation completed!");
     this.logSummary(categories);
   }
 
   async writeProjectsAssets({ categories, repositories, generatedAt }) {
-    const markdown = this.projectsContentBuilder.build({
+    await this.projectsIndexUpdater.update({
       categories,
       repositories,
       generatedAt,
     });
 
-    await fs.writeFile(PROJECTS_MD_PATH, markdown, "utf8");
+    const projectsRelative = path.relative(
+      process.env.GITHUB_WORKSPACE,
+      PROJECTS_PAGE_PATH,
+    );
+    const homepageRelative = path.relative(
+      process.env.GITHUB_WORKSPACE,
+      HOMEPAGE_PATH,
+    );
 
     console.log("📄 Generated files:");
-    console.log(
-      `   - ${path.relative(process.env.GITHUB_WORKSPACE, PROJECTS_MD_PATH)}`,
-    );
-    console.log(
-      `   - ${path.relative(process.env.GITHUB_WORKSPACE, HOMEPAGE_PATH)}`,
-    );
+    console.log(`   - ${projectsRelative}`);
+    console.log(`   - ${homepageRelative}`);
   }
 
   logSummary(categories) {
