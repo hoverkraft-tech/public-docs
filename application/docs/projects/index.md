@@ -124,7 +124,7 @@ including JavaScript, TypeScript, Makefile, Astro, Smarty, and more.
     icon="⚡"
     title="ci-dokumentor"
     titleHref="https://github.com/hoverkraft-tech/ci-dokumentor"
-    meta="TypeScript • ⭐ 2 • Updated Nov 2, 2025"
+    meta="TypeScript • ⭐ 2 • Updated Nov 3, 2025"
     description="Automated documentation generator for CI/CD components"
     tags={["documentation", "github-actions", "open-source"]}
     actions={[

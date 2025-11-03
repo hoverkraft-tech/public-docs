@@ -3,7 +3,7 @@
 # GitHub Reusable Workflow: Push Documentation Helper
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/a3d20f7ff409c41b4b681908c17f81072b7f7966f4a54efb8b5f031dcf640dd6/hoverkraft-tech/public-docs" width="60px" align="center" alt="Push Documentation Helper" />
+  <img src="https://opengraph.githubassets.com/29e7375d604141a5ab6aad4c87093e141636504726ca230720b894582bf34151/hoverkraft-tech/public-docs" width="60px" align="center" alt="Push Documentation Helper" />
 </div>
 
 ---
@@ -25,6 +25,10 @@ Reusable workflow that bundles project docs and triggers public portal sync
 
 - Collects readme and docs Markdown, adds sync metadata, and uploads a short-lived artifact
 - Dispatches a repository event so hoverkraft-tech/public-docs can ingest and publish updates
+
+### Permissions
+
+- **`contents`**: `read`
 
 <!-- overview:end -->
 
