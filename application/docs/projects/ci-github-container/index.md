@@ -3,8 +3,8 @@ title: Ci Github Container
 source_repo: hoverkraft-tech/ci-github-container
 source_path: README.md
 source_branch: main
-source_run_id: 19070479364
-last_synced: 2025-11-04T13:43:13.509Z
+source_run_id: 19070960444
+last_synced: 2025-11-04T13:59:51.607Z
 ---
 
 <!-- markdownlint-disable-next-line first-line-heading -->
@@ -143,4 +143,6 @@ This project is licensed under the MIT License.
 
 SPDX-License-Identifier: MIT
 
-© 2025 hoverkraft-tech. See [LICENSE](LICENSE) for details.
+Copyright © 2025 hoverkraft-tech
+
+For more details, see the [license](http://choosealicense.com/licenses/mit/).
