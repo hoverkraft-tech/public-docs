@@ -3,8 +3,8 @@ title: Ci Github Container
 source_repo: hoverkraft-tech/ci-github-container
 source_path: README.md
 source_branch: main
-source_run_id: 19071416311
-last_synced: 2025-11-04T14:16:06.861Z
+source_run_id: 19191682808
+last_synced: 2025-11-08T10:23:16.933Z
 ---
 
 <!-- markdownlint-disable-next-line first-line-heading -->
@@ -129,6 +129,23 @@ make lint-fix             # Attempt auto-fixes for lint findings
 make test-build-application  # Build and push the sample test application image
 make test-ct-install         # Validate Helm charts via chart-testing
 ```
+
+#### CI Testing Strategy
+
+The repository includes comprehensive end-to-end tests for all local GitHub Actions. These tests follow an **Arrange-Act-Assert** pattern:
+
+1. **Arrange**: Set up test fixtures and inputs (e.g., checkout code, prepare test context)
+2. **Act**: Execute the action being tested with specific inputs
+3. **Assert**: Validate outputs match expected values using `actions/github-script`
+
+Test workflows are located in `.github/workflows/__test-action-*.yml` and `.github/workflows/__test-workflow-*.yml`. They run on:
+
+- Push to `main` branch
+- Push to tags (e.g., `v1.0.0`)
+- Pull request events
+- Scheduled runs (weekly)
+
+**Tag-specific behavior**: When tests run on tag pushes, assertions dynamically adapt to expect the tag name (e.g., `v1.0.0`) instead of branch names. This ensures tests pass in all trigger contexts without hardcoding expected values.
 
 ## Author
 
