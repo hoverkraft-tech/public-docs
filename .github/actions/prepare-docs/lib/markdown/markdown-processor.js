@@ -58,7 +58,7 @@ class MarkdownProcessor {
 
     fs.writeFileSync(
       filePath,
-      `${FRONTMATTER_HEADER}${mergedFrontmatter}${FRONTMATTER_FOOTER}${normalizedBody}`,
+      `${FRONTMATTER_HEADER}${mergedFrontmatter}${FRONTMATTER_FOOTER}${normalizedBody}`
     );
   }
 }
@@ -83,7 +83,7 @@ function buildMetadataLines({
     `source_path: ${sourcePath}`,
     `source_branch: ${sourceBranch}`,
     `source_run_id: ${runId}`,
-    `last_synced: ${syncTimestamp}`,
+    `last_synced: ${syncTimestamp}`
   );
 
   return lines;
@@ -100,7 +100,7 @@ function extractFrontmatter(content) {
 
   const endIndex = content.indexOf(
     FRONTMATTER_FOOTER,
-    FRONTMATTER_HEADER.length,
+    FRONTMATTER_HEADER.length
   );
 
   if (endIndex === -1) {
@@ -123,7 +123,7 @@ function hasFrontmatterField(frontmatter, fieldName) {
     return false;
   }
 
-  const pattern = new RegExp(`(^|\n)\s*${escapeRegExp(fieldName)}\s*:`, "i");
+  const pattern = new RegExp(`(^|\n)\\s*${escapeRegExp(fieldName)}\\s*:`, "i");
   return pattern.test(frontmatter);
 }
 

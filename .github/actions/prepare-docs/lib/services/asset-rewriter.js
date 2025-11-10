@@ -592,11 +592,7 @@ function assetExistsOnDisk(candidatePath) {
     return false;
   }
 
-  try {
-    return fs.existsSync(candidatePath);
-  } catch (error) {
-    return false;
-  }
+  return fs.existsSync(candidatePath);
 }
 
 function createMissingAssetError({

@@ -18,7 +18,7 @@ The portal aggregates technical guides, project overviews, and methodology notes
 
 The site is built with [Docusaurus](https://docusaurus.io/) and published as a static site from the `application/` workspace.
 
-```
+```txt
 application/
 ├── docs/                    # Markdown sources rendered by Docusaurus
 ├── src/                     # React components, pages, and styling modules

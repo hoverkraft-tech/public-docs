@@ -139,13 +139,13 @@ on:
 
 ### Workflow Call Inputs
 
-| **Input**               | **Description**                                                                    | **Required** | **Type**   | **Default**         |
-| ----------------------- | ---------------------------------------------------------------------------------- | ------------ | ---------- | ------------------- |
-| **`runs-on`**           | JSON array of runner(s) to use.                                                    | **false**    | **string** | `["ubuntu-latest"]` |
+| **Input**               | **Description**                                                                                                                                                 | **Required** | **Type**   | **Default**         |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ---------- | ------------------- |
+| **`runs-on`**           | JSON array of runner(s) to use.                                                                                                                                 | **false**    | **string** | `["ubuntu-latest"]` |
 |                         | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job). |              |            |                     |
-| **`template-filename`** | Filename of the template to use.                                                   | **false**    | **string** | `template.yml.tpl`  |
-| **`github-app-id`**     | GitHub App ID to generate GitHub token in place of github-token.                   | **false**    | **string** | -                   |
-|                         | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                          |              |            |                     |
+| **`template-filename`** | Filename of the template to use.                                                                                                                                | **false**    | **string** | `template.yml.tpl`  |
+| **`github-app-id`**     | GitHub App ID to generate GitHub token in place of github-token.                                                                                                | **false**    | **string** | -                   |
+|                         | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                                                   |              |            |                     |
 
 <!-- inputs:end -->
 
@@ -153,12 +153,12 @@ on:
 
 ## Secrets
 
-| **Secret**           | **Description**                                                                                                              | **Required** |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ------------ |
-| **`github-token`**   | GitHub token for creating and merging pull request (permissions contents: write and pull-requests: write, workflows: write). | **false**    |
-|                      | See [https://github.com/hoverkraft-tech/ci-github-common/blob/main/actions/create-and-merge-pull-request/README.md](https://github.com/hoverkraft-tech/ci-github-common/blob/main/actions/create-and-merge-pull-request/README.md).         |              |
-| **`github-app-key`** | GitHub App private key to generate GitHub token in place of github-token.                                                    | **false**    |
-|                      | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                                                                    |              |
+| **Secret**           | **Description**                                                                                                                                                                                                                     | **Required** |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
+| **`github-token`**   | GitHub token for creating and merging pull request (permissions contents: write and pull-requests: write, workflows: write).                                                                                                        | **false**    |
+|                      | See [https://github.com/hoverkraft-tech/ci-github-common/blob/main/actions/create-and-merge-pull-request/README.md](https://github.com/hoverkraft-tech/ci-github-common/blob/main/actions/create-and-merge-pull-request/README.md). |              |
+| **`github-app-key`** | GitHub App private key to generate GitHub token in place of github-token.                                                                                                                                                           | **false**    |
+|                      | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                                                                                                                       |              |
 
 <!-- secrets:end -->
 

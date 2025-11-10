@@ -71,11 +71,11 @@ the default `GITHUB_TOKEN` already has read access to Actions in typical workflo
 
 ## Inputs
 
-| **Input**          | **Description**                                                                       | **Required** | **Default**             |
-| ------------------ | ------------------------------------------------------------------------------------- | ------------ | ----------------------- |
-| **`github-token`** | GitHub Token to get workflow information.                                             | **false**    | `$\{\{ github.token }}` |
-|                    | Permissions:                                                                          |              |                         |
-|                    | - actions: read                                                                       |              |                         |
+| **Input**          | **Description**                                                                                                                                                       | **Required** | **Default**             |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------------------- |
+| **`github-token`** | GitHub Token to get workflow information.                                                                                                                             | **false**    | `$\{\{ github.token }}` |
+|                    | Permissions:                                                                                                                                                          |              |                         |
+|                    | - actions: read                                                                                                                                                       |              |                         |
 |                    | See [https://docs.github.com/en/rest/actions/workflows#list-jobs-for-a-workflow-run](https://docs.github.com/en/rest/actions/workflows#list-jobs-for-a-workflow-run). |              |                         |
 
 <!-- inputs:end -->
