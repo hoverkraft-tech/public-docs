@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/release-actions.md
 source_branch: main
-source_run_id: 19037910455
-last_synced: 2025-11-03T14:28:25.572Z
+source_run_id: 19227949751
+last_synced: 2025-11-10T10:10:29.137Z
 ---
 
 <!-- header:start -->
@@ -66,7 +66,7 @@ permissions:
   contents: read
 jobs:
   release-actions:
-    uses: hoverkraft-tech/ci-github-publish/.github/workflows/release-actions.yml@0717eb404857b7e4a15dc0db5fbece52921e85fb # 0.13.1
+    uses: hoverkraft-tech/ci-github-publish/.github/workflows/release-actions.yml@38963f37ef5be0b6ae84147f542d96d9eb02802b # 0.14.0
     secrets:
       # GitHub token for creating and merging pull request (permissions contents: write and pull-requests: write, workflows: write).
       # See https://github.com/hoverkraft-tech/ci-github-common/blob/main/actions/create-and-merge-pull-request/README.md.
@@ -98,13 +98,13 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**           | **Description**                                                                                                                                                 | **Required** | **Type**    | **Default**         |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------- | ------------------- |
-| **`runs-on`**       | JSON array of runner(s) to use.                                                                                                                                 | **false**    | **string**  | `["ubuntu-latest"]` |
+| **Input**           | **Description**                                                                    | **Required** | **Type**    | **Default**         |
+| ------------------- | ---------------------------------------------------------------------------------- | ------------ | ----------- | ------------------- |
+| **`runs-on`**       | JSON array of runner(s) to use.                                                    | **false**    | **string**  | `["ubuntu-latest"]` |
 |                     | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job). |              |             |                     |
-| **`update-all`**    | Update all actions and workflows, regardless of changes.                                                                                                        | **false**    | **boolean** | `false`             |
-| **`github-app-id`** | GitHub App ID to generate GitHub token in place of github-token.                                                                                                | **false**    | **string**  | -                   |
-|                     | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                                                   |              |             |                     |
+| **`update-all`**    | Update all actions and workflows, regardless of changes.                           | **false**    | **boolean** | `false`             |
+| **`github-app-id`** | GitHub App ID to generate GitHub token in place of github-token.                   | **false**    | **string**  | -                   |
+|                     | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                          |              |             |                     |
 
 <!-- inputs:end -->
 
@@ -112,12 +112,12 @@ jobs:
 
 ## Secrets
 
-| **Secret**           | **Description**                                                                                                                                                                                                                     | **Required** |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
-| **`github-token`**   | GitHub token for creating and merging pull request (permissions contents: write and pull-requests: write, workflows: write).                                                                                                        | **false**    |
-|                      | See [https://github.com/hoverkraft-tech/ci-github-common/blob/main/actions/create-and-merge-pull-request/README.md](https://github.com/hoverkraft-tech/ci-github-common/blob/main/actions/create-and-merge-pull-request/README.md). |              |
-| **`github-app-key`** | GitHub App private key to generate GitHub token in place of github-token.                                                                                                                                                           | **false**    |
-|                      | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                                                                                                                       |              |
+| **Secret**           | **Description**                                                                                                              | **Required** |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ------------ |
+| **`github-token`**   | GitHub token for creating and merging pull request (permissions contents: write and pull-requests: write, workflows: write). | **false**    |
+|                      | See [https://github.com/hoverkraft-tech/ci-github-common/blob/main/actions/create-and-merge-pull-request/README.md](https://github.com/hoverkraft-tech/ci-github-common/blob/main/actions/create-and-merge-pull-request/README.md).         |              |
+| **`github-app-key`** | GitHub App private key to generate GitHub token in place of github-token.                                                    | **false**    |
+|                      | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                                                                    |              |
 
 <!-- secrets:end -->
 
