@@ -1,6 +1,7 @@
 # build output
 application/build
 application/.docusaurus
+application/eslint-report.json
 
 # dependencies
 **/node_modules/

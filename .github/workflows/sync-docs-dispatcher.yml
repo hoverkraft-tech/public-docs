@@ -25,6 +25,8 @@ on:
           GitHub App private key to generate GitHub token in place of github-token.
           See https://github.com/actions/create-github-app-token.
 
+permissions: {}
+
 jobs:
   prepare-and-dispatch:
     runs-on: ubuntu-latest

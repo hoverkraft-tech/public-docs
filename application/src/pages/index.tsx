@@ -1,6 +1,7 @@
 import type {ReactNode} from 'react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
+import Heading from '@theme/Heading';
 import { HoverkraftProjectCard, HoverkraftFeatureList, HoverkraftHero, HoverkraftBrandHighlight, HoverkraftButton } from "@hoverkraft/docusaurus-theme/components";
 
 function HeroSection() {
@@ -12,13 +13,7 @@ function HeroSection() {
         </>
       }
       description="Your gateway to open-source innovation. Discover, contribute, and build amazing things with our developer-first ecosystem."
-      supportingVisual={
-        <img
-          src="/img/home.png"
-          alt="Hoverkraft Platform"
-          style={{ maxWidth: '100%', height: 'auto' }}
-        />
-      }
+      supportingVisual="/img/home.png"
       actions={[
         {
           label: 'Discover documentation',
@@ -70,7 +65,9 @@ function ValuePropsSection() {
   return (
     <section style={{ padding: '4rem 0', backgroundColor: 'var(--ifm-background-surface-color)' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1rem' }}>
-        <h2 style={{ textAlign: 'center', fontSize: '2.5rem', marginBottom: '3rem' }}>Why Choose Hoverkraft?</h2>
+        <Heading as="h2" style={{ textAlign: 'center', fontSize: '2.5rem', marginBottom: '3rem' }}>
+          Why Choose Hoverkraft?
+        </Heading>
         <HoverkraftFeatureList features={features} align="center" />
       </div>
     </section>
@@ -127,7 +124,9 @@ function ProjectsSection() {
     <section style={{ padding: '4rem 0' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1rem' }}>
         <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-          <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>Explore Our Ecosystem</h2>
+          <Heading as="h2" style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>
+            Explore Our Ecosystem
+          </Heading>
           <p style={{ fontSize: '1.125rem', color: 'var(--ifm-color-emphasis-700)' }}>
             Discover a curated collection of tools, libraries, and frameworks designed to accelerate your development workflow.
           </p>
