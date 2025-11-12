@@ -3,6 +3,7 @@
   "ignore": [
     "**/node_modules/**",
     "**/application/.docusaurus/**",
-    "**/application/build/**"
+    "**/application/build/**",
+    "**/coverage/**"
   ]
 }

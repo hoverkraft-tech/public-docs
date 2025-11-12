@@ -28,6 +28,7 @@ build: ## Build libs and applications
 	cd application && npm run build
 
 test: ## Run tests
+	cd application && npm run test:ci
 	cd .github/actions/generate-docs && npm run test:ci
 	cd .github/actions/prepare-docs && npm run test:ci
 

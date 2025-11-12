@@ -2,41 +2,51 @@ name: Common Continuous Integration tasks
 
 on:
   workflow_call:
+    outputs:
+      build-artifact-id:
+        description: "The build artifact id."
+        value: ${{ jobs.continuous-integration.outputs.build-artifact-id }}
     secrets:
       ALGOLIA_API_KEY:
         required: true
 
-permissions:
-  contents: read
-  security-events: write
-  # FIXME: This is a workaround for having workflow ref. See https://github.com/orgs/community/discussions/38659
-  id-token: write
+permissions: {}
 
 jobs:
   continuous-integration-prepare-docs:
-    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@4d7c1ed87c18493fc4c2dbae4dbde46cf251c9a7 # 0.16.1
+    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@37ee7d1c137ffbd033eb3710d8fd43b7ed82ef4a # 0.20.3
     strategy:
       matrix:
         working-directory:
           - .github/actions/prepare-docs
           - .github/actions/generate-docs
+    permissions:
+      contents: read
+      id-token: write
+      packages: read
+      pull-requests: write
+      security-events: write
     with:
       working-directory: ${{ matrix.working-directory }}
       build: null
-      lint: false
-      coverage: null
+      lint: null
       dependency-review: false
 
   continuous-integration:
-    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@4d7c1ed87c18493fc4c2dbae4dbde46cf251c9a7 # 0.16.1
+    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@37ee7d1c137ffbd033eb3710d8fd43b7ed82ef4a # 0.20.3
+    permissions:
+      contents: read
+      id-token: write
+      packages: read
+      pull-requests: write
+      security-events: write
     secrets:
       build-secrets: |
         ALGOLIA_API_KEY=${{ secrets.ALGOLIA_API_KEY }}
-
     with:
       working-directory: application
       build: |
         {
-          "artifact": ["application/build"],
+          "artifact": ["build"],
           "env": { "ALGOLIA_APP_ID": "${{ vars.ALGOLIA_APP_ID }}" }
         }
