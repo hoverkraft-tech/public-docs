@@ -4,7 +4,6 @@ description: Overview for Github
 sidebar_label: Github
 ---
 
-# Github
+# GitHub
 
-This page is generated automatically to introduce the Github documentation section.
-
+This page is generated automatically to introduce the GitHub documentation section.

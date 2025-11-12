@@ -77,14 +77,14 @@ permissions:
 
 ## Inputs
 
-| **Input**         | **Description**                                                                   | **Required** | **Default** |
-| ----------------- | --------------------------------------------------------------------------------- | ------------ | ----------- |
-| **`fetch-depth`** | Number of commits to fetch. 0 indicates all history for all branches and tags.    | **false**    | `1`         |
-|                   | See [https://github.com/actions/checkout#usage](https://github.com/actions/checkout#usage)                                   |              |             |
-| **`lfs`**         | Whether to download Git-LFS files.                                                | **false**    | `false`     |
-|                   | See [https://github.com/actions/checkout#usage](https://github.com/actions/checkout#usage)                                   |              |             |
-| **`token`**       | Token to use for checking out the repository instead of the default GITHUB_TOKEN. | **false**    | -           |
-|                   | If specified and not empty, persist-credentials in checkout will be false.        |              |             |
+| **Input**         | **Description**                                                                            | **Required** | **Default** |
+| ----------------- | ------------------------------------------------------------------------------------------ | ------------ | ----------- |
+| **`fetch-depth`** | Number of commits to fetch. 0 indicates all history for all branches and tags.             | **false**    | `1`         |
+|                   | See [https://github.com/actions/checkout#usage](https://github.com/actions/checkout#usage) |              |             |
+| **`lfs`**         | Whether to download Git-LFS files.                                                         | **false**    | `false`     |
+|                   | See [https://github.com/actions/checkout#usage](https://github.com/actions/checkout#usage) |              |             |
+| **`token`**       | Token to use for checking out the repository instead of the default GITHUB_TOKEN.          | **false**    | -           |
+|                   | If specified and not empty, persist-credentials in checkout will be false.                 |              |             |
 
 <!-- inputs:end -->
 
