@@ -1,9 +1,9 @@
 ---
 source_repo: hoverkraft-tech/ci-github-common
 source_path: .github/workflows/linter.md
-source_branch: 0.28.1
-source_run_id: 19288245785
-last_synced: 2025-11-12T06:17:43.276Z
+source_branch: main
+source_run_id: 19372726022
+last_synced: 2025-11-14T17:39:54.118Z
 ---
 
 <!-- header:start -->
@@ -46,6 +46,18 @@ Executes:
 - **`statuses`**: `write`
 
 <!-- overview:end -->
+
+### GitHub Actions Pinning
+
+**Tips:** To ensure that all GitHub Actions used in your workflows are pinned to a specific version,
+you can use the [Ratchet](https://github.com/sethvargo/ratchet) tool integrated into this workflow.
+
+```sh
+docker run -it --rm -v "${PWD}:${PWD}" -w "${PWD}" -u $(id -u):$(id -g) \
+  --env GITHUB_TOKEN=$(gh auth token) \
+  ghcr.io/sethvargo/ratchet:latest \
+  lint ".github/workflows/file-to-lint.yml"
+```
 
 <!-- usage:start -->
 
