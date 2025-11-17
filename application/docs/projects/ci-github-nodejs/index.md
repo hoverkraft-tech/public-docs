@@ -3,102 +3,116 @@ title: Ci Github Nodejs
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: README.md
 source_branch: main
-source_run_id: 19180451835
-last_synced: 2025-11-07T20:39:00.399Z
+source_run_id: 19438580891
+last_synced: 2025-11-17T17:35:07.037Z
 ---
 
-<!-- header:start -->
+# Continuous Integration - GitHub - Node.js
 
-# ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItcGFja2FnZSIgY29sb3I9ImdyYXktZGFyayI+PGxpbmUgeDE9IjE2LjUiIHkxPSI5LjQiIHgyPSI3LjUiIHkyPSI0LjIxIj48L2xpbmU+PHBhdGggZD0iTTIxIDE2VjhhMiAyIDAgMCAwLTEtMS43M2wtNy00YTIgMiAwIDAgMC0yIDBsLTcgNEEyIDIgMCAwIDAgMyA4djhhMiAyIDAgMCAwIDEgMS43M2w3IDRhMiAyIDAgMCAwIDIgMGw3LTRBMiAyIDAgMCAwIDIxIDE2eiI+PC9wYXRoPjxwb2x5bGluZSBwb2ludHM9IjMuMjcgNi45NiAxMiAxMi4wMSAyMC43MyA2Ljk2Ij48L3BvbHlsaW5lPjxsaW5lIHgxPSIxMiIgeTE9IjIyLjA4IiB4Mj0iMTIiIHkyPSIxMiI+PC9saW5lPjwvc3ZnPg==) GitHub Action: Get package manager
+[![Continuous Integration](https://github.com/hoverkraft-tech/ci-github-nodejs/actions/workflows/__main-ci.yml/badge.svg)](https://github.com/hoverkraft-tech/ci-github-nodejs/actions/workflows/__main-ci.yml)
+[![GitHub tag](https://img.shields.io/github/tag/hoverkraft-tech/ci-github-nodejs?include_prereleases=&sort=semver&color=blue)](https://github.com/hoverkraft-tech/ci-github-nodejs/releases/)
+[![License](https://img.shields.io/badge/License-MIT-blue)](#license)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-<div align="center">
-  <img src="https://opengraph.githubassets.com/8e00919892fa023eb16f8e05ec78d8cd17bf4dd71e2fa9378036094563b660f1/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Get package manager" />
-</div>
+Opinionated GitHub Actions and reusable workflows for Node.js continuous integration pipelines.
 
 ---
-
-<!-- header:end -->
-
-<!-- badges:start -->
-
-[![Marketplace](https://img.shields.io/badge/Marketplace-get--package--manager-blue?logo=github-actions)](https://github.com/marketplace/actions/get-package-manager)
-[![Release](https://img.shields.io/github/v/release/hoverkraft-tech/ci-github-nodejs)](https://github.com/hoverkraft-tech/ci-github-nodejs/releases)
-[![License](https://img.shields.io/github/license/hoverkraft-tech/ci-github-nodejs)](http://choosealicense.com/licenses/mit/)
-[![Stars](https://img.shields.io/github/stars/hoverkraft-tech/ci-github-nodejs?style=social)](https://img.shields.io/github/stars/hoverkraft-tech/ci-github-nodejs?style=social)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/hoverkraft-tech/ci-github-nodejs/blob/main/CONTRIBUTING.md)
-
-<!-- badges:end -->
-
-<!-- overview:start -->
 
 ## Overview
 
-Action to detect the package manager used. Supports Yarn, pnpm, and npm
+This repository centralizes the Hoverkraft toolkit for building, testing, and shipping Node.js projects on GitHub. It bundles:
 
-<!-- overview:end -->
+- Composite actions that detect project tooling, manage dependencies, and bootstrap runtimes.
+- Reusable workflows that apply those actions to deliver consistent CI pipelines across repositories.
 
-<!-- usage:start -->
+## Actions
 
-## Usage
+### CI Actions
 
-```yaml
-- uses: hoverkraft-tech/ci-github-nodejs/actions/get-package-manager@0264395060bbde4ec3276b6dca84f0db828070f3 # 0.17.0
-  with:
-    # Working directory where the dependencies are installed.
-    # Can be absolute or relative to the repository root.
-    #
-    # Default: `.`
-    working-directory: .
-```
+_Actions for continuous integration steps: build, lint, and test._
 
-<!-- usage:end -->
+#### - [Build](actions/build/index.md)
 
-<!-- inputs:start -->
+#### - [Lint](actions/lint/index.md)
 
-## Inputs
+#### - [Test](actions/test/index.md)
 
-| **Input**               | **Description**                                         | **Required** | **Default** |
-| ----------------------- | ------------------------------------------------------- | ------------ | ----------- |
-| **`working-directory`** | Working directory where the dependencies are installed. | **false**    | `.`         |
-|                         | Can be absolute or relative to the repository root.     |              |             |
+### Dependencies
 
-<!-- inputs:end -->
+_Actions dedicated to caching and validating Node.js dependencies._
 
-<!-- secrets:start -->
-<!-- secrets:end -->
+#### - [Dependencies cache](actions/dependencies-cache/index.md)
 
-<!-- outputs:start -->
+#### - [Has installed dependencies](actions/has-installed-dependencies/index.md)
 
-## Outputs
+### Environment setup
 
-| **Output**                  | **Description**                                       |
-| --------------------------- | ----------------------------------------------------- |
-| **`package-manager`**       | The package manager used.                             |
-| **`cache-dependency-path`** | The path to the dependency file for cache management. |
-| **`install-command`**       | The command to install dependencies.                  |
-| **`run-script-command`**    | The command to run a script in the package.json file. |
+_Actions focused on discovering and preparing the Node.js environment._
 
-<!-- outputs:end -->
+#### - [Get package manager](actions/get-package-manager/index.md)
 
-<!-- examples:start -->
-<!-- examples:end -->
+#### - [Setup node](actions/setup-node/index.md)
 
-<!--
-// jscpd:ignore-start
--->
+## Reusable Workflows
 
-<!-- contributing:start -->
+### Continuous Integration
+
+- [Continuous Integration](github/workflows/continuous-integration.md) — documentation for the reusable Node.js CI workflow.
 
 ## Contributing
 
-Contributions are welcome! Please see the [contributing guidelines](https://github.com/hoverkraft-tech/ci-github-nodejs/blob/main/CONTRIBUTING.md) for more details.
+Contributions are welcome! Please review the [contributing guidelines](CONTRIBUTING.md) before opening a PR.
 
-<!-- contributing:end -->
+### Action Structure Pattern
 
-<!-- security:start -->
-<!-- security:end -->
+All actions follow a consistent layout:
 
-<!-- license:start -->
+```text
+actions/{category}/{action-name}/
+├── action.yml          # Action definition with inputs/outputs
+├── README.md           # Usage documentation and examples
+└── index.js / scripts  # Optional Node.js helpers (when required)
+```
+
+### Development Standards
+
+#### Action Definition Standards
+
+1. **Consistent branding**: Use `author: hoverkraft` with `color: blue` and a meaningful `icon`.
+2. **Pinned dependencies**: Reference third-party actions via exact SHAs to guarantee reproducibility.
+3. **Input validation**: Validate critical inputs early within composite steps or supporting scripts.
+4. **Idempotent steps**: Ensure actions can run multiple times without leaving residual state in the workspace.
+5. **Multi-platform support**: Test actions in both `ubuntu-latest` and `windows-latest` runners when applicable.
+6. **Cross-platform compatibility**: Uses `actions/github-script` steps for cross-platform compatibility. Avoid `run` steps.
+7. **Logging**: Use structured logs with clear prefixes (`[build-image]`, `[helm-test-chart]`, …) to simplify debugging.
+8. **Security**: Avoid shell interpolation with untrusted inputs; prefer parameterized commands or `set -euo pipefail` wrappers.
+
+#### File Conventions
+
+- **Tests**: Located in `tests/` with fixtures for container builds and chart-testing scenarios.
+- **Workflows**: Reusable definitions live in `.github/workflows/`; internal/private workflows are prefixed with `__`.
+
+#### JavaScript Development Patterns
+
+- Encapsulate reusable logic in modules under the action directory (for example, `actions/my-action/index.js`).
+- Prefer async/await with explicit error handling when interacting with the GitHub API or filesystem.
+- Centralize environment variable parsing and validation to keep composite YAML lean.
+
+### Development Workflow
+
+#### Linting & Testing
+
+```bash
+make lint                 # Run the dockerized Super Linter
+make lint-fix             # Attempt auto-fixes for lint findings
+```
+
+## Author
+
+🏢 **Hoverkraft [contact@hoverkraft.cloud](mailto:contact@hoverkraft.cloud)**
+
+- Site: [https://hoverkraft.cloud](https://hoverkraft.cloud)
+- GitHub: [@hoverkraft-tech](https://github.com/hoverkraft-tech)
 
 ## License
 
@@ -106,20 +120,6 @@ This project is licensed under the MIT License.
 
 SPDX-License-Identifier: MIT
 
-Copyright © 2025 Hoverkraft
+Copyright © 2023 [Hoverkraft](https://hoverkraft.cloud).
 
 For more details, see the [license](http://choosealicense.com/licenses/mit/).
-
-<!-- license:end -->
-
-<!-- generated:start -->
-
----
-
-This documentation was automatically generated by [CI Dokumentor](https://github.com/hoverkraft-tech/ci-dokumentor).
-
-<!-- generated:end -->
-
-<!--
-// jscpd:ignore-end
--->
