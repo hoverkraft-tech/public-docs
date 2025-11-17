@@ -109,7 +109,7 @@ See [https://docs.github.com/en/actions/writing-workflows/choosing-when-your-wor
 | **`github-token`**  | GitHub Token for dispatch an event to a remote repository.                                                                          | **false**    | `$\{\{ github.token }}` |
 |                     | Permissions:                                                                                                                        |              |                         |
 |                     | - contents: write                                                                                                                   |              |                         |
-|                     | See [https://github.com/peter-evans/repository-dispatch#usage](https://github.com/peter-evans/repository-dispatch#usage).                                                                     |              |                         |
+|                     | See [https://github.com/peter-evans/repository-dispatch#usage](https://github.com/peter-evans/repository-dispatch#usage).           |              |                         |
 
 <!-- inputs:end -->
 
