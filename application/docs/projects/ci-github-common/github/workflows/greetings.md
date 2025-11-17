@@ -1,9 +1,9 @@
 ---
 source_repo: hoverkraft-tech/ci-github-common
 source_path: .github/workflows/greetings.md
-source_branch: main
-source_run_id: 19373535398
-last_synced: 2025-11-14T18:14:24.108Z
+source_branch: 0.28.2
+source_run_id: 19430120561
+last_synced: 2025-11-17T12:50:22.241Z
 ---
 
 <!-- header:start -->
@@ -58,13 +58,14 @@ on:
   pull_request_target:
     branches:
       - main
-permissions:
-  contents: read
-  issues: write
-  pull-requests: write
+permissions: {}
 jobs:
   greetings:
-    uses: hoverkraft-tech/ci-github-common/.github/workflows/greetings.yml@753288393de1f3d92f687a6761d236ca800f5306 # 0.28.1
+    uses: hoverkraft-tech/ci-github-common/.github/workflows/greetings.yml@b9383df8d7fe98beca6aca1b51bce96189d0b93f # 0.28.2
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
     secrets:
       # Token for the repository.
       # See https://github.com/actions/first-interaction#usage.
