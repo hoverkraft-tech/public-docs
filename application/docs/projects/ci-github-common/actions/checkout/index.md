@@ -2,9 +2,9 @@
 title: Checkout
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/checkout/README.md
-source_branch: main
-source_run_id: 19373535398
-last_synced: 2025-11-14T18:14:24.108Z
+source_branch: 0.28.2
+source_run_id: 19430120561
+last_synced: 2025-11-17T12:50:22.241Z
 ---
 
 <!-- header:start -->
@@ -52,7 +52,7 @@ permissions:
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-common/actions/checkout@753288393de1f3d92f687a6761d236ca800f5306 # 0.28.1
+- uses: hoverkraft-tech/ci-github-common/actions/checkout@b9383df8d7fe98beca6aca1b51bce96189d0b93f # 0.28.2
   with:
     # Number of commits to fetch. 0 indicates all history for all branches and tags.
     # See https://github.com/actions/checkout#usage
