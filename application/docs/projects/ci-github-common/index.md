@@ -2,9 +2,9 @@
 title: Ci Github Common
 source_repo: hoverkraft-tech/ci-github-common
 source_path: README.md
-source_branch: 0.28.2
-source_run_id: 19430120561
-last_synced: 2025-11-17T12:50:22.241Z
+source_branch: 0.29.0
+source_run_id: 19538134249
+last_synced: 2025-11-20T13:19:59.131Z
 ---
 
 # Continuous Integration - GitHub - Common
@@ -41,6 +41,7 @@ Opinionated GitHub Actions and reusable workflows for foundational continuous-in
 
 ### Repository insights & utilities
 
+- [Parse CI reports](actions/parse-ci-reports/index.md) — parses CI reports (tests, linting, coverage) into GitHub summaries and Markdown for PR comments.
 - [Repository owner is organization](actions/repository-owner-is-organization/index.md) — checks whether the repository owner is an organization.
 - [Slugify](actions/slugify/index.md) — converts free-form strings into GitHub-friendly slugs.
 

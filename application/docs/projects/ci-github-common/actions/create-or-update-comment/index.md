@@ -2,9 +2,9 @@
 title: Create Or Update Comment
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/create-or-update-comment/README.md
-source_branch: 0.28.2
-source_run_id: 19430120561
-last_synced: 2025-11-17T12:50:22.241Z
+source_branch: 0.29.0
+source_run_id: 19538134249
+last_synced: 2025-11-20T13:19:59.131Z
 ---
 
 <!-- header:start -->
@@ -50,7 +50,7 @@ permissions:
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-common/actions/create-or-update-comment@b9383df8d7fe98beca6aca1b51bce96189d0b93f # 0.28.2
+- uses: hoverkraft-tech/ci-github-common/actions/create-or-update-comment@d95c78dc4b10250a07e227d3ddf33b0ea093e28d # 0.29.0
   with:
     # The comment title.
     # Must be static and unique, will be used to retrieve the comment if exists already.
