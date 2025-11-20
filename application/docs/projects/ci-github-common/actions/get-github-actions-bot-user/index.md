@@ -2,9 +2,9 @@
 title: Get Github Actions Bot User
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/get-github-actions-bot-user/README.md
-source_branch: 0.29.0
-source_run_id: 19538134249
-last_synced: 2025-11-20T13:19:59.131Z
+source_branch: 0.30.0
+source_run_id: 19547865922
+last_synced: 2025-11-20T18:52:30.276Z
 ---
 
 <!-- header:start -->
@@ -43,7 +43,7 @@ Usefull to commit, comment, etc.
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-common/actions/get-github-actions-bot-user@d95c78dc4b10250a07e227d3ddf33b0ea093e28d # 0.29.0
+- uses: hoverkraft-tech/ci-github-common/actions/get-github-actions-bot-user@1127e708e4072515056a4b0d26bcb0653646cedc # 0.30.0
 ```
 
 <!-- usage:end -->

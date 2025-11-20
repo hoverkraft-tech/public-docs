@@ -1,9 +1,9 @@
 ---
 source_repo: hoverkraft-tech/ci-github-common
 source_path: .github/workflows/semantic-pull-request.md
-source_branch: 0.29.0
-source_run_id: 19538134249
-last_synced: 2025-11-20T13:19:59.131Z
+source_branch: 0.30.0
+source_run_id: 19547865922
+last_synced: 2025-11-20T18:52:30.276Z
 ---
 
 <!-- header:start -->
@@ -59,7 +59,7 @@ on:
 permissions: {}
 jobs:
   semantic-pull-request:
-    uses: hoverkraft-tech/ci-github-common/.github/workflows/semantic-pull-request.yml@d95c78dc4b10250a07e227d3ddf33b0ea093e28d # 0.29.0
+    uses: hoverkraft-tech/ci-github-common/.github/workflows/semantic-pull-request.yml@1127e708e4072515056a4b0d26bcb0653646cedc # 0.30.0
     permissions:
       contents: write
       pull-requests: write
