@@ -2,9 +2,9 @@
 title: Parse Ci Reports
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/parse-ci-reports/README.md
-source_branch: 0.30.0
-source_run_id: 19547865922
-last_synced: 2025-11-20T18:52:30.276Z
+source_branch: 0.30.1
+source_run_id: 19577732482
+last_synced: 2025-11-21T17:06:32.090Z
 ---
 
 <!-- header:start -->
@@ -64,11 +64,11 @@ It supports multiple common report standards out of the box.
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-common/actions/parse-ci-reports@1127e708e4072515056a4b0d26bcb0653646cedc # 0.30.0
+- uses: hoverkraft-tech/ci-github-common/actions/parse-ci-reports@c314229c3ca6914f7023ffca7afc26753ab99b41 # 0.30.1
   with:
     # Paths to report files (glob patterns supported, one per line or comma-separated).
     # Set to `auto:test`, `auto:coverage`, `auto:lint`, or `auto:all` for automatic detection.
-    # Examples: `**/junit.xml`, `coverage/lcov.info`, `eslint-report.json`, `auto:all`
+    # Examples: `**/junit.xml`, `coverage/lcov.info`, `eslint-report.json`, `auto:all`, `auto:test,coverage/lcov.info`, `auto:test,auto:coverage`
     #
     # Default: `auto:all`
     report-paths: auto:all
@@ -103,6 +103,12 @@ It supports multiple common report standards out of the box.
     # /app/src:./src
     # /app/tests:./tests
     path-mapping: ""
+
+    # Working directory where the action should operate.
+    # Can be absolute or relative to the repository root.
+    #
+    # Default: `.`
+    working-directory: .
 ```
 
 <!-- usage:end -->
@@ -110,24 +116,26 @@ It supports multiple common report standards out of the box.
 
 ## Inputs
 
-| **Input**            | **Description**                                                                                       | **Required** | **Default**      |
-| -------------------- | ----------------------------------------------------------------------------------------------------- | ------------ | ---------------- |
-| **`report-paths`**   | Paths to report files (glob patterns supported, one per line or comma-separated).                     | **false**    | `auto:all`       |
-|                      | Set to `auto:test`, `auto:coverage`, `auto:lint`, or `auto:all` for automatic detection.              |              |                  |
-|                      | Examples: `**/junit.xml`, `coverage/lcov.info`, `eslint-report.json`, `auto:all`                      |              |                  |
-| **`report-name`**    | Name to display in the summary (e.g., `Test Results`, `Coverage Report`).                             | **false**    | `Report Summary` |
-| **`include-passed`** | Whether to include passed tests in the summary.                                                       | **false**    | `false`          |
-| **`output-format`**  | Output format: comma-separated list of `summary`, `markdown`, `annotations`, or `all` for everything. | **false**    | `all`            |
-| **`fail-on-error`**  | Whether to fail the action if any test failures are detected.                                         | **false**    | `false`          |
-| **`path-mapping`**   | Path mapping(s) to rewrite file paths in reports (format: "from_path:to_path").                       | **false**    | -                |
-|                      | Useful when tests/lints run in a different directory or container.                                    |              |                  |
-|                      | Multiple mappings can be provided separated by newlines or commas.                                    |              |                  |
-|                      | Examples:                                                                                             |              |                  |
-|                      | - Single mapping: "/app/src:./src"                                                                    |              |                  |
-|                      | - Multiple mappings: "/app/src:./src,/app/tests:./tests"                                              |              |                  |
-|                      | - Multi-line: \|                                                                                      |              |                  |
-|                      | /app/src:./src                                                                                        |              |                  |
-|                      | /app/tests:./tests                                                                                    |              |                  |
+| **Input**               | **Description**                                                                                                                             | **Required** | **Default**      |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ---------------- |
+| **`report-paths`**      | Paths to report files (glob patterns supported, one per line or comma-separated).                                                           | **false**    | `auto:all`       |
+|                         | Set to `auto:test`, `auto:coverage`, `auto:lint`, or `auto:all` for automatic detection.                                                    |              |                  |
+|                         | Examples: `**/junit.xml`, `coverage/lcov.info`, `eslint-report.json`, `auto:all`, `auto:test,coverage/lcov.info`, `auto:test,auto:coverage` |              |                  |
+| **`report-name`**       | Name to display in the summary (e.g., `Test Results`, `Coverage Report`).                                                                   | **false**    | `Report Summary` |
+| **`include-passed`**    | Whether to include passed tests in the summary.                                                                                             | **false**    | `false`          |
+| **`output-format`**     | Output format: comma-separated list of `summary`, `markdown`, `annotations`, or `all` for everything.                                       | **false**    | `all`            |
+| **`fail-on-error`**     | Whether to fail the action if any test failures are detected.                                                                               | **false**    | `false`          |
+| **`path-mapping`**      | Path mapping(s) to rewrite file paths in reports (format: "from_path:to_path").                                                             | **false**    | -                |
+|                         | Useful when tests/lints run in a different directory or container.                                                                          |              |                  |
+|                         | Multiple mappings can be provided separated by newlines or commas.                                                                          |              |                  |
+|                         | Examples:                                                                                                                                   |              |                  |
+|                         | - Single mapping: "/app/src:./src"                                                                                                          |              |                  |
+|                         | - Multiple mappings: "/app/src:./src,/app/tests:./tests"                                                                                    |              |                  |
+|                         | - Multi-line: \|                                                                                                                            |              |                  |
+|                         | /app/src:./src                                                                                                                              |              |                  |
+|                         | /app/tests:./tests                                                                                                                          |              |                  |
+| **`working-directory`** | Working directory where the action should operate.                                                                                          | **false**    | `.`              |
+|                         | Can be absolute or relative to the repository root.                                                                                         |              |                  |
 
 <!-- inputs:end -->
 <!-- secrets:start -->
@@ -154,7 +162,7 @@ Let the action automatically find common report files:
 
 ```yaml
 - name: Parse all CI reports
-  uses: hoverkraft-tech/ci-github-common/actions/parse-ci-reports@1127e708e4072515056a4b0d26bcb0653646cedc # 0.30.0
+  uses: hoverkraft-tech/ci-github-common/actions/parse-ci-reports@c314229c3ca6914f7023ffca7afc26753ab99b41 # 0.30.1
   with:
     report-paths: "auto:all"
     report-name: "CI Results"
@@ -164,7 +172,7 @@ Or target specific report types:
 
 ```yaml
 - name: Parse test reports only
-  uses: hoverkraft-tech/ci-github-common/actions/parse-ci-reports@1127e708e4072515056a4b0d26bcb0653646cedc # 0.30.0
+  uses: hoverkraft-tech/ci-github-common/actions/parse-ci-reports@c314229c3ca6914f7023ffca7afc26753ab99b41 # 0.30.1
   with:
     report-paths: "auto:test"
     report-name: "Test Results"
@@ -185,7 +193,7 @@ Auto-detection modes:
 ```yaml
 - name: Parse test reports
   id: parse-reports
-  uses: hoverkraft-tech/ci-github-common/actions/parse-ci-reports@1127e708e4072515056a4b0d26bcb0653646cedc # 0.30.0
+  uses: hoverkraft-tech/ci-github-common/actions/parse-ci-reports@c314229c3ca6914f7023ffca7afc26753ab99b41 # 0.30.1
   with:
     report-paths: "**/test-results/*.xml"
     report-name: "Test Results"
@@ -202,7 +210,7 @@ Auto-detection modes:
 
 ```yaml
 - name: Parse coverage
-  uses: hoverkraft-tech/ci-github-common/actions/parse-ci-reports@1127e708e4072515056a4b0d26bcb0653646cedc # 0.30.0
+  uses: hoverkraft-tech/ci-github-common/actions/parse-ci-reports@c314229c3ca6914f7023ffca7afc26753ab99b41 # 0.30.1
   with:
     report-paths: "coverage/cobertura-coverage.xml"
     report-name: "Coverage Report"
@@ -213,7 +221,7 @@ Auto-detection modes:
 
 ```yaml
 - name: Parse test reports
-  uses: hoverkraft-tech/ci-github-common/actions/parse-ci-reports@1127e708e4072515056a4b0d26bcb0653646cedc # 0.30.0
+  uses: hoverkraft-tech/ci-github-common/actions/parse-ci-reports@c314229c3ca6914f7023ffca7afc26753ab99b41 # 0.30.1
   with:
     report-paths: "**/junit.xml"
     report-name: "Test Results"
@@ -226,7 +234,7 @@ Generate GitHub annotations for failed tests and linting issues:
 
 ```yaml
 - name: Parse reports with annotations
-  uses: hoverkraft-tech/ci-github-common/actions/parse-ci-reports@1127e708e4072515056a4b0d26bcb0653646cedc # 0.30.0
+  uses: hoverkraft-tech/ci-github-common/actions/parse-ci-reports@c314229c3ca6914f7023ffca7afc26753ab99b41 # 0.30.1
   with:
     report-paths: "auto:all"
     report-name: "CI Results"
@@ -239,7 +247,7 @@ Combine multiple output formats using comma-separated values:
 
 ```yaml
 - name: Parse reports with multiple outputs
-  uses: hoverkraft-tech/ci-github-common/actions/parse-ci-reports@1127e708e4072515056a4b0d26bcb0653646cedc # 0.30.0
+  uses: hoverkraft-tech/ci-github-common/actions/parse-ci-reports@c314229c3ca6914f7023ffca7afc26753ab99b41 # 0.30.1
   with:
     report-paths: "auto:all"
     report-name: "CI Results"
@@ -250,7 +258,7 @@ Or use "all" for all output formats:
 
 ```yaml
 - name: Parse reports with all outputs
-  uses: hoverkraft-tech/ci-github-common/actions/parse-ci-reports@1127e708e4072515056a4b0d26bcb0653646cedc # 0.30.0
+  uses: hoverkraft-tech/ci-github-common/actions/parse-ci-reports@c314229c3ca6914f7023ffca7afc26753ab99b41 # 0.30.1
   with:
     report-paths: "auto:test"
     report-name: "Test Results"
@@ -269,13 +277,28 @@ Parse test results, coverage, and linting in one action:
   run: npm run lint -- --format json --output-file eslint-report.json
 
 - name: Parse all reports
-  uses: hoverkraft-tech/ci-github-common/actions/parse-ci-reports@1127e708e4072515056a4b0d26bcb0653646cedc # 0.30.0
+  uses: hoverkraft-tech/ci-github-common/actions/parse-ci-reports@c314229c3ca6914f7023ffca7afc26753ab99b41 # 0.30.1
   with:
     report-paths: |
       test-results/junit.xml
       coverage/lcov.info
       eslint-report.json
     report-name: "CI Results"
+```
+
+### Run from a Subdirectory
+
+When working in a monorepo or nested package, set `working-directory` so glob patterns are evaluated relative to that folder:
+
+```yaml
+- name: Parse frontend reports
+  uses: hoverkraft-tech/ci-github-common/actions/parse-ci-reports@c314229c3ca6914f7023ffca7afc26753ab99b41 # 0.30.1
+  with:
+    working-directory: packages/frontend
+    report-paths: |
+      coverage/lcov.info
+      reports/junit.xml
+    report-name: "Frontend CI"
 ```
 
 ### Path Rewriting for Containers
@@ -288,7 +311,7 @@ When running tests in a container or different directory, use path-mapping to en
     docker run --rm -v ${{ github.workspace }}:/app myimage npm test
 
 - name: Parse test reports
-  uses: hoverkraft-tech/ci-github-common/actions/parse-ci-reports@1127e708e4072515056a4b0d26bcb0653646cedc # 0.30.0
+  uses: hoverkraft-tech/ci-github-common/actions/parse-ci-reports@c314229c3ca6914f7023ffca7afc26753ab99b41 # 0.30.1
   with:
     report-paths: "test-results/junit.xml"
     report-name: "Test Results"
@@ -304,7 +327,7 @@ When you have multiple source directories that need rewriting, provide multiple 
 
 ```yaml
 - name: Parse reports with multiple path mappings
-  uses: hoverkraft-tech/ci-github-common/actions/parse-ci-reports@1127e708e4072515056a4b0d26bcb0653646cedc # 0.30.0
+  uses: hoverkraft-tech/ci-github-common/actions/parse-ci-reports@c314229c3ca6914f7023ffca7afc26753ab99b41 # 0.30.1
   with:
     report-paths: "auto:all"
     report-name: "CI Results"
@@ -319,7 +342,7 @@ Or using comma-separated format:
 
 ```yaml
 - name: Parse reports with multiple path mappings
-  uses: hoverkraft-tech/ci-github-common/actions/parse-ci-reports@1127e708e4072515056a4b0d26bcb0653646cedc # 0.30.0
+  uses: hoverkraft-tech/ci-github-common/actions/parse-ci-reports@c314229c3ca6914f7023ffca7afc26753ab99b41 # 0.30.1
   with:
     report-paths: "auto:all"
     report-name: "CI Results"
@@ -333,7 +356,7 @@ Another example for complex Docker overlay paths:
 
 ```yaml
 - name: Parse reports with path rewriting
-  uses: hoverkraft-tech/ci-github-common/actions/parse-ci-reports@1127e708e4072515056a4b0d26bcb0653646cedc # 0.30.0
+  uses: hoverkraft-tech/ci-github-common/actions/parse-ci-reports@c314229c3ca6914f7023ffca7afc26753ab99b41 # 0.30.1
   with:
     report-paths: "auto:all"
     report-name: "CI Results"
@@ -347,7 +370,7 @@ Only comment on PRs if there are failures:
 ```yaml
 - name: Parse test reports
   id: parse-reports
-  uses: hoverkraft-tech/ci-github-common/actions/parse-ci-reports@1127e708e4072515056a4b0d26bcb0653646cedc # 0.30.0
+  uses: hoverkraft-tech/ci-github-common/actions/parse-ci-reports@c314229c3ca6914f7023ffca7afc26753ab99b41 # 0.30.1
   with:
     report-paths: "**/test-results/*.xml"
     report-name: "Test Results"
@@ -373,7 +396,7 @@ Only comment on PRs if there are failures:
   run: mvn test
 
 - name: Parse all test reports
-  uses: hoverkraft-tech/ci-github-common/actions/parse-ci-reports@1127e708e4072515056a4b0d26bcb0653646cedc # 0.30.0
+  uses: hoverkraft-tech/ci-github-common/actions/parse-ci-reports@c314229c3ca6914f7023ffca7afc26753ab99b41 # 0.30.1
   with:
     report-paths: |
       pytest-results.xml
