@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/deploy-argocd-app-of-apps.md
 source_branch: main
-source_run_id: 19227949751
-last_synced: 2025-11-10T10:10:29.137Z
+source_run_id: 19579976854
+last_synced: 2025-11-21T18:36:13.502Z
 ---
 
 <!-- header:start -->
@@ -90,13 +90,11 @@ on:
   push:
     branches:
       - main
-permissions:
-  contents: read
-  pull-requests: write
-  id-token: write
+permissions: {}
 jobs:
   deploy-argocd-app-of-apps:
-    uses: hoverkraft-tech/ci-github-publish/.github/workflows/deploy-argocd-app-of-apps.yml@38963f37ef5be0b6ae84147f542d96d9eb02802b # 0.14.0
+    uses: hoverkraft-tech/ci-github-publish/.github/workflows/deploy-argocd-app-of-apps.yml@ecafdeac18a6a6dcc01058cd53ac7431bedb5c3b # 0.14.1
+    permissions: {}
     secrets:
       # GitHub token for creating and merging pull request (permissions contents: write and pull-requests: write, workflows: write).
       # See https://github.com/hoverkraft-tech/ci-github-common/blob/main/actions/create-and-merge-pull-request/README.md.
