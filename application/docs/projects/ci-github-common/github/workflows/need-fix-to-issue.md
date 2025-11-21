@@ -1,9 +1,9 @@
 ---
 source_repo: hoverkraft-tech/ci-github-common
 source_path: .github/workflows/need-fix-to-issue.md
-source_branch: 0.30.0
-source_run_id: 19547865922
-last_synced: 2025-11-20T18:52:30.276Z
+source_branch: 0.30.1
+source_run_id: 19577732482
+last_synced: 2025-11-21T17:06:32.090Z
 ---
 
 <!-- header:start -->
@@ -54,10 +54,8 @@ on:
 permissions: {}
 jobs:
   need-fix-to-issue:
-    uses: hoverkraft-tech/ci-github-common/.github/workflows/need-fix-to-issue.yml@1127e708e4072515056a4b0d26bcb0653646cedc # 0.30.0
-    permissions:
-      contents: read
-      issues: write
+    uses: hoverkraft-tech/ci-github-common/.github/workflows/need-fix-to-issue.yml@c314229c3ca6914f7023ffca7afc26753ab99b41 # 0.30.1
+    permissions: {}
     with:
       # JSON array of runner(s) to use.
       # See https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job.
