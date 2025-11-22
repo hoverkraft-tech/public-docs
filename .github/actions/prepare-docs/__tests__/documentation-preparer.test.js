@@ -150,7 +150,9 @@ describe("DocumentationPreparer", () => {
       "utf8",
     );
     expect(nestedIndexContent).toContain("title: Nested");
-    expect(nestedIndexContent).toContain("# Nested");
+    expect(nestedIndexContent).toContain(
+      "This page is generated automatically to introduce the Nested documentation section.",
+    );
 
     expect(options.core.info).toHaveBeenCalledWith(
       "Preparing documentation bundle for hoverkraft-tech/example",

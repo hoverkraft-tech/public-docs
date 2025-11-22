@@ -223,8 +223,6 @@ class ArtifactProcessor {
         `sidebar_label: ${label}`,
         "---",
         "",
-        `# ${label}`,
-        "",
         `This page is generated automatically to introduce the ${label} documentation section.`,
         "",
       ];

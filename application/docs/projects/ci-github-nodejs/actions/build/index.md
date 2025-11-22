@@ -88,7 +88,7 @@ Action to build Node.js projects with support for custom commands, environment v
 | **`build-commands`**    | List of build commands to execute, one per line.                                                                                          | **true**     | -           |
 |                         | These are npm/pnpm/Yarn script names (e.g., "build", "compile").                                                                          |              |             |
 | **`build-env`**         | JSON object of environment variables to set during the build.                                                                             | **false**    | `\{}`       |
-|                         | Example: {"NODE_ENV": "production", "API_URL": "[https://api.example.com"}](https://api.example.com"})                                                               |              |             |
+|                         | Example: {"NODE_ENV": "production", "API_URL": "[https://api.example.com"}](https://api.example.com"})                                    |              |             |
 | **`build-secrets`**     | Multi-line string of secrets in env format (KEY=VALUE).                                                                                   | **false**    | -           |
 |                         | Example:                                                                                                                                  |              |             |
 |                         | <!-- textlint-disable --><pre>SECRET_KEY=$\{{ secrets.SECRET_KEY }}&#13;API_TOKEN=$\{{ secrets.API_TOKEN }}</pre><!-- textlint-enable --> |              |             |
