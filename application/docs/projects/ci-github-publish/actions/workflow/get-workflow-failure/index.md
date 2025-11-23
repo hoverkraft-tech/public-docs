@@ -3,8 +3,8 @@ title: Get Workflow Failure
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/workflow/get-workflow-failure/README.md
 source_branch: main
-source_run_id: 19581056755
-last_synced: 2025-11-21T19:22:49.925Z
+source_run_id: 19608374480
+last_synced: 2025-11-23T08:25:49.116Z
 ---
 
 <!-- header:start -->
@@ -71,11 +71,11 @@ the default `GITHUB_TOKEN` already has read access to Actions in typical workflo
 
 ## Inputs
 
-| **Input**          | **Description**                                                                                                                                                       | **Required** | **Default**             |
-| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------------------- |
-| **`github-token`** | GitHub Token to get workflow information.                                                                                                                             | **false**    | `$\{\{ github.token }}` |
-|                    | Permissions:                                                                                                                                                          |              |                         |
-|                    | - actions: read                                                                                                                                                       |              |                         |
+| **Input**          | **Description**                                                                       | **Required** | **Default**             |
+| ------------------ | ------------------------------------------------------------------------------------- | ------------ | ----------------------- |
+| **`github-token`** | GitHub Token to get workflow information.                                             | **false**    | `$\{\{ github.token }}` |
+|                    | Permissions:                                                                          |              |                         |
+|                    | - actions: read                                                                       |              |                         |
 |                    | See [https://docs.github.com/en/rest/actions/workflows#list-jobs-for-a-workflow-run](https://docs.github.com/en/rest/actions/workflows#list-jobs-for-a-workflow-run). |              |                         |
 
 <!-- inputs:end -->
