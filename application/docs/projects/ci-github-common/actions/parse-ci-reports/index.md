@@ -2,9 +2,9 @@
 title: Parse Ci Reports
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/parse-ci-reports/README.md
-source_branch: 0.30.1
-source_run_id: 19577732482
-last_synced: 2025-11-21T17:06:32.090Z
+source_branch: main
+source_run_id: 19607823380
+last_synced: 2025-11-23T07:32:13.139Z
 ---
 
 <!-- header:start -->
@@ -58,6 +58,7 @@ It supports multiple common report standards out of the box.
 
 - **ESLint JSON** - JavaScript/TypeScript linting
 - **CheckStyle XML** - Java and other language linting
+- **Prettier Check Logs** - Text output captured from `prettier --check`
 
 <!-- usage:start -->
 
@@ -214,6 +215,24 @@ Auto-detection modes:
   with:
     report-paths: "coverage/cobertura-coverage.xml"
     report-name: "Coverage Report"
+    output-format: "summary"
+```
+
+### Prettier Formatting Check
+
+Capture the output of `prettier --check` and feed it to the parser to surface
+formatting issues alongside other lint results:
+
+```yaml
+- name: Run Prettier check
+  run: |
+    npx prettier --check "src/**/*.{js,ts,tsx}" | tee prettier-check.log
+
+- name: Parse Prettier report
+  uses: hoverkraft-tech/ci-github-common/actions/parse-ci-reports@c314229c3ca6914f7023ffca7afc26753ab99b41 # 0.30.1
+  with:
+    report-paths: "prettier-check.log"
+    report-name: "Prettier Formatting"
     output-format: "summary"
 ```
 

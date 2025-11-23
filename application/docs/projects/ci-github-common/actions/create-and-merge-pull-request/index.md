@@ -2,9 +2,9 @@
 title: Create And Merge Pull Request
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/create-and-merge-pull-request/README.md
-source_branch: 0.30.1
-source_run_id: 19577732482
-last_synced: 2025-11-21T17:06:32.090Z
+source_branch: main
+source_run_id: 19607823380
+last_synced: 2025-11-23T07:32:13.139Z
 ---
 
 <!-- header:start -->
@@ -77,14 +77,14 @@ See [https://docs.github.com/en/repositories/managing-your-repositorys-settings-
 
 ## Inputs
 
-| **Input**            | **Description**                                                                                                                           | **Required** | **Default**             |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------------------- |
-| **`github-token`**   | GitHub token for creating and merging pull request (permissions contents: write and pull-requests: write).                                | **false**    | `$\{\{ github.token }}` |
-|                      | See [https://github.com/peter-evans/create-pull-request#action-inputs](https://github.com/peter-evans/create-pull-request#action-inputs). |              |                         |
-| **`branch`**         | The pull request branch name                                                                                                              | **true**     | -                       |
-| **`title`**          | The pull request title                                                                                                                    | **true**     | -                       |
-| **`body`**           | The pull request body                                                                                                                     | **true**     | -                       |
-| **`commit-message`** | The commit message for the pull request                                                                                                   | **true**     | -                       |
+| **Input**            | **Description**                                                                                            | **Required** | **Default**             |
+| -------------------- | ---------------------------------------------------------------------------------------------------------- | ------------ | ----------------------- |
+| **`github-token`**   | GitHub token for creating and merging pull request (permissions contents: write and pull-requests: write). | **false**    | `$\{\{ github.token }}` |
+|                      | See [https://github.com/peter-evans/create-pull-request#action-inputs](https://github.com/peter-evans/create-pull-request#action-inputs).                                    |              |                         |
+| **`branch`**         | The pull request branch name                                                                               | **true**     | -                       |
+| **`title`**          | The pull request title                                                                                     | **true**     | -                       |
+| **`body`**           | The pull request body                                                                                      | **true**     | -                       |
+| **`commit-message`** | The commit message for the pull request                                                                    | **true**     | -                       |
 
 <!-- inputs:end -->
 
