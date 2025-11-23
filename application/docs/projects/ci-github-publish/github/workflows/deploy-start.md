@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/deploy-start.md
 source_branch: main
-source_run_id: 19581056755
-last_synced: 2025-11-21T19:22:49.925Z
+source_run_id: 19608374480
+last_synced: 2025-11-23T08:25:49.116Z
 ---
 
 <!-- header:start -->
@@ -110,15 +110,15 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**                | **Description**                                                                                                                                                                                                                           | **Required** | **Type**   | **Default**         |
-| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ---------- | ------------------- |
-| **`runs-on`**            | JSON array of runner(s) to use.                                                                                                                                                                                                           | **false**    | **string** | `["ubuntu-latest"]` |
-|                          | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).                                                                           |              |            |                     |
-| **`environment`**        | Environment where to deploy.                                                                                                                                                                                                              | **false**    | **string** | -                   |
-|                          | If trigger is from an issue event (or pull-request), environment will be set to `environment:issue_number`.                                                                                                                               |              |            |                     |
+| **Input**                | **Description**                                                                                                         | **Required** | **Type**   | **Default**         |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------- | ------------ | ---------- | ------------------- |
+| **`runs-on`**            | JSON array of runner(s) to use.                                                                                         | **false**    | **string** | `["ubuntu-latest"]` |
+|                          | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).                                      |              |            |                     |
+| **`environment`**        | Environment where to deploy.                                                                                            | **false**    | **string** | -                   |
+|                          | If trigger is from an issue event (or pull-request), environment will be set to `environment:issue_number`.             |              |            |                     |
 |                          | See [https://docs.github.com/en/actions/deployment/deploying-to-your-cloud-provider/using-environments-for-deployment](https://docs.github.com/en/actions/deployment/deploying-to-your-cloud-provider/using-environments-for-deployment). |              |            |                     |
-| **`trigger-on-comment`** | Comment trigger to start the workflow.                                                                                                                                                                                                    | **false**    | **string** | `/deploy`           |
-|                          | See [https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#issue_comment](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#issue_comment).                                     |              |            |                     |
+| **`trigger-on-comment`** | Comment trigger to start the workflow.                                                                                  | **false**    | **string** | `/deploy`           |
+|                          | See [https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#issue_comment](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#issue_comment).                   |              |            |                     |
 
 <!-- inputs:end -->
 
