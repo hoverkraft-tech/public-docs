@@ -3,8 +3,8 @@ title: Jekyll
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/deploy/jekyll/README.md
 source_branch: main
-source_run_id: 19608374480
-last_synced: 2025-11-23T08:25:49.116Z
+source_run_id: 19608600643
+last_synced: 2025-11-23T08:45:57.587Z
 ---
 
 <!-- header:start -->
@@ -37,7 +37,15 @@ last_synced: 2025-11-23T08:25:49.116Z
 
 ## Overview
 
-This action builds a Jekyll site from the source files.
+Builds a Jekyll site from source files with automatic asset management and link rewriting.
+
+Main steps performed by this action:
+1. **Site Preparation**: Creates `_site` directory structure and generates `_config.yml` with the specified theme
+2. **Index Page Creation**: Converts README.md to index.md with Jekyll front matter if index doesn't exist
+3. **Additional Pages Processing**: Processes pages matching the `pages` input pattern, creating Jekyll pages with proper structure
+4. **Asset Management**: Copies images and media files to `assets/` directory, rewrites references in both Markdown and HTML formats
+5. **Link Rewriting**: Updates internal page links to maintain correct navigation after Jekyll structure transformation
+6. **Jekyll Build**: Executes official Jekyll build process to generate the final static site
 
 <!-- overview:end -->
 
@@ -45,16 +53,23 @@ This action builds a Jekyll site from the source files.
 
 ## Usage
 
-```yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/deploy/jekyll@ecafdeac18a6a6dcc01058cd53ac7431bedb5c3b # 0.14.1
+````yaml
+- uses: hoverkraft-tech/ci-github-publish/actions/deploy/jekyll@667d05650cefbf57afe043737ba5948601d76ec8 # 0.15.1
   with:
     # The Jekyll theme to use for the site.
     # Default: `jekyll-theme-cayman`
     theme: jekyll-theme-cayman
 
-    # The Jekyll pages path to build.
+    # The Jekyll pages path to build. Supports glob patterns and multiple paths (one per line).
+    #
+    # ```yml
+    # pages: |
+    # docs/**/*.md
+    # .github/workflows/*.md
+    # actions/*/README.md
+    # ```
     pages: ""
-```
+````
 
 <!-- usage:end -->
 
@@ -62,10 +77,12 @@ This action builds a Jekyll site from the source files.
 
 ## Inputs
 
-| **Input**   | **Description**                       | **Required** | **Default**           |
-| ----------- | ------------------------------------- | ------------ | --------------------- |
-| **`theme`** | The Jekyll theme to use for the site. | **false**    | `jekyll-theme-cayman` |
-| **`pages`** | The Jekyll pages path to build.       | **false**    | -                     |
+| **Input**   | **Description**                                                                                                                                          | **Required** | **Default**           |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------------- |
+| **`theme`** | The Jekyll theme to use for the site.                                                                                                                    | **false**    | `jekyll-theme-cayman` |
+| **`pages`** | The Jekyll pages path to build. Supports glob patterns and multiple paths (one per line).                                                                | **false**    | -                     |
+|             |                                                                                                                                                          |              |                       |
+|             | <!-- textlint-disable --><pre lang="yml"> pages: \|&#13; docs/**/*.md&#13; .github/workflows/*.md&#13; actions/*/README.md</pre><!-- textlint-enable --> |              |                       |
 
 <!-- inputs:end -->
 
