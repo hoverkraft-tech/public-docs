@@ -3,8 +3,8 @@ title: Test
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: actions/test/README.md
 source_branch: main
-source_run_id: 19637675224
-last_synced: 2025-11-24T14:31:28.424Z
+source_run_id: 19638551575
+last_synced: 2025-11-24T15:00:02.571Z
 ---
 
 <!-- header:start -->
@@ -12,7 +12,7 @@ last_synced: 2025-11-24T14:31:28.424Z
 # ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItY2hlY2stc3F1YXJlIiBjb2xvcj0iYmx1ZSI+PHBvbHlsaW5lIHBvaW50cz0iOSAxMSAxMiAxNCAyMiA0Ij48L3BvbHlsaW5lPjxwYXRoIGQ9Ik0yMSAxMnY3YTIgMiAwIDAgMS0yIDJINWEyIDIgMCAwIDEtMi0yVjVhMiAyIDAgMCAxIDItMmgxMSI+PC9wYXRoPjwvc3ZnPg==) GitHub Action: Test
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/203729381b8bd8150265e607baa2adaeb41827c57cd52a950f7f67848c0d8d5b/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Test" />
+  <img src="https://opengraph.githubassets.com/14c6c96a204bc3b2951cb1227cc64818dcd2c951c8ad95f96ebd7ec05f388e87/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Test" />
 </div>
 
 ---
@@ -39,7 +39,7 @@ Action to test Node.js projects with support for coverage reporting and pull req
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-nodejs/actions/test@80acfc9bc4dd87030d73006dee4c788ed9af1fb0 # 0.20.1
+- uses: hoverkraft-tech/ci-github-nodejs/actions/test@37ee7d1c137ffbd033eb3710d8fd43b7ed82ef4a # 0.20.3
   with:
     # Working directory where test commands are executed.
     # Can be absolute or relative to the repository root.
