@@ -3,8 +3,8 @@ title: Jekyll
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/deploy/jekyll/README.md
 source_branch: main
-source_run_id: 19649920031
-last_synced: 2025-11-24T21:35:17.960Z
+source_run_id: 19650261123
+last_synced: 2025-11-24T21:49:13.196Z
 ---
 
 <!-- header:start -->
@@ -78,12 +78,12 @@ Main steps performed by this action:
 
 ## Inputs
 
-| **Input**   | **Description**                                                                                                                                          | **Required** | **Default**           |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------------- |
-| **`theme`** | The Jekyll theme to use for the site.                                                                                                                    | **false**    | `jekyll-theme-cayman` |
-| **`pages`** | The Jekyll pages path to build. Supports glob patterns and multiple paths (one per line).                                                                | **false**    | -                     |
-|             |                                                                                                                                                          |              |                       |
-|             | <!-- textlint-disable --><pre lang="yml"> pages: \|&#13; docs/**/*.md&#13; .github/workflows/*.md&#13; actions/*/README.md</pre><!-- textlint-enable --> |              |                       |
+| **Input**   | **Description**                                                                                                                                           | **Required** | **Default**           |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------------- |
+| **`theme`** | The Jekyll theme to use for the site.                                                                                                                     | **false**    | `jekyll-theme-cayman` |
+| **`pages`** | The Jekyll pages path to build. Supports glob patterns and multiple paths (one per line).                                                                 | **false**    | -                     |
+|             |                                                                                                                                                           |              |                       |
+|             | <!-- textlint-disable --><pre lang="yml"> pages: \|&#13; docs/\*_/_.md&#13; .github/workflows/_.md&#13; actions/_/README.md</pre><!-- textlint-enable --> |              |                       |
 
 <!-- inputs:end -->
 

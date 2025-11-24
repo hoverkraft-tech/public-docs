@@ -3,8 +3,8 @@ title: Argocd Manifest Files
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/deploy/argocd-manifest-files/README.md
 source_branch: main
-source_run_id: 19649920031
-last_synced: 2025-11-24T21:35:17.960Z
+source_run_id: 19650261123
+last_synced: 2025-11-24T21:49:13.196Z
 ---
 
 <!-- header:start -->
@@ -70,6 +70,8 @@ It updates the application manifest with the provided values and deploys it to t
       - Chart values: custom values provided via the `chart-values` input, allowing dynamic configuration of the Helm chart (e.g., application URIs, feature flags).
       - Deployment ID: injected as a value to identify the deployment instance within the chart values.
       - Vendor-specific values: additional values set for integrations, such as updating `tags.datadoghq.com/version` for Datadog monitoring/versioning.
+  - Plugin (if exists):
+    - Environment variable `HOVERKRAFT_DEPLOYMENT_ID`: updated with the deployment ID to trigger sync detection
 
 Example:
 
@@ -94,6 +96,12 @@ spec:
           tags:
             datadoghq.com:
               version: 1.2.3
+  # If using ArgoCD plugin (optional):
+  plugin:
+    name: hoverkraft-deployment
+    env:
+      - name: HOVERKRAFT_DEPLOYMENT_ID
+        value: deploy-1234
 ```
 
 2. The extra manifest file (input `manifest-file`) is updated with:
@@ -162,6 +170,10 @@ metadata:
     # Path to the extra manifest file
     # This input is required.
     manifest-file: ""
+
+    # Username to record as having initiated the sync operation
+    # This input is required.
+    initiated-by: ""
 ````
 
 <!-- usage:end -->
@@ -187,6 +199,7 @@ metadata:
 | **`application-repository`** | Repository of the application                                                                                                                                               | **true**     | -           |
 | **`application-file`**       | Path to the application manifest file                                                                                                                                       | **true**     | -           |
 | **`manifest-file`**          | Path to the extra manifest file                                                                                                                                             | **true**     | -           |
+| **`initiated-by`**           | Username to record as having initiated the sync operation                                                                                                                   | **true**     | -           |
 
 <!-- inputs:end -->
 
