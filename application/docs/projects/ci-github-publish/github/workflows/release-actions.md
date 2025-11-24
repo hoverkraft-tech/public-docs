@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/release-actions.md
 source_branch: main
-source_run_id: 19608600643
-last_synced: 2025-11-23T08:45:57.587Z
+source_run_id: 19649920031
+last_synced: 2025-11-24T21:35:17.960Z
 ---
 
 <!-- header:start -->
@@ -65,7 +65,7 @@ on:
 permissions: {}
 jobs:
   release-actions:
-    uses: hoverkraft-tech/ci-github-publish/.github/workflows/release-actions.yml@667d05650cefbf57afe043737ba5948601d76ec8 # 0.15.1
+    uses: hoverkraft-tech/ci-github-publish/.github/workflows/release-actions.yml@dbdcce2870b33525ac1fa26069bf95b2dd586fda # 0.15.2
     permissions:
       contents: read
     secrets:
@@ -99,13 +99,13 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**           | **Description**                                                                                                                                                 | **Required** | **Type**    | **Default**         |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------- | ------------------- |
-| **`runs-on`**       | JSON array of runner(s) to use.                                                                                                                                 | **false**    | **string**  | `["ubuntu-latest"]` |
+| **Input**           | **Description**                                                                    | **Required** | **Type**    | **Default**         |
+| ------------------- | ---------------------------------------------------------------------------------- | ------------ | ----------- | ------------------- |
+| **`runs-on`**       | JSON array of runner(s) to use.                                                    | **false**    | **string**  | `["ubuntu-latest"]` |
 |                     | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job). |              |             |                     |
-| **`update-all`**    | Update all actions and workflows, regardless of changes.                                                                                                        | **false**    | **boolean** | `false`             |
-| **`github-app-id`** | GitHub App ID to generate GitHub token in place of github-token.                                                                                                | **false**    | **string**  | -                   |
-|                     | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                                                   |              |             |                     |
+| **`update-all`**    | Update all actions and workflows, regardless of changes.                           | **false**    | **boolean** | `false`             |
+| **`github-app-id`** | GitHub App ID to generate GitHub token in place of github-token.                   | **false**    | **string**  | -                   |
+|                     | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                          |              |             |                     |
 
 <!-- inputs:end -->
 
@@ -113,12 +113,12 @@ jobs:
 
 ## Secrets
 
-| **Secret**           | **Description**                                                                                                                                                                                                                     | **Required** |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
-| **`github-token`**   | GitHub token for creating and merging pull request (permissions contents: write and pull-requests: write, workflows: write).                                                                                                        | **false**    |
-|                      | See [https://github.com/hoverkraft-tech/ci-github-common/blob/main/actions/create-and-merge-pull-request/README.md](https://github.com/hoverkraft-tech/ci-github-common/blob/main/actions/create-and-merge-pull-request/README.md). |              |
-| **`github-app-key`** | GitHub App private key to generate GitHub token in place of github-token.                                                                                                                                                           | **false**    |
-|                      | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                                                                                                                       |              |
+| **Secret**           | **Description**                                                                                                              | **Required** |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ------------ |
+| **`github-token`**   | GitHub token for creating and merging pull request (permissions contents: write and pull-requests: write, workflows: write). | **false**    |
+|                      | See [https://github.com/hoverkraft-tech/ci-github-common/blob/main/actions/create-and-merge-pull-request/README.md](https://github.com/hoverkraft-tech/ci-github-common/blob/main/actions/create-and-merge-pull-request/README.md).         |              |
+| **`github-app-key`** | GitHub App private key to generate GitHub token in place of github-token.                                                    | **false**    |
+|                      | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                                                                    |              |
 
 <!-- secrets:end -->
 

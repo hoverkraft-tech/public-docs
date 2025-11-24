@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/deploy-chart.md
 source_branch: main
-source_run_id: 19608600643
-last_synced: 2025-11-23T08:45:57.587Z
+source_run_id: 19649920031
+last_synced: 2025-11-24T21:35:17.960Z
 ---
 
 <!-- header:start -->
@@ -94,7 +94,7 @@ on:
 permissions: {}
 jobs:
   deploy-chart:
-    uses: hoverkraft-tech/ci-github-publish/.github/workflows/deploy-chart.yml@ecafdeac18a6a6dcc01058cd53ac7431bedb5c3b # 0.14.1
+    uses: hoverkraft-tech/ci-github-publish/.github/workflows/deploy-chart.yml@dbdcce2870b33525ac1fa26069bf95b2dd586fda # 0.15.2
     permissions:
       actions: read
       contents: write
@@ -218,7 +218,7 @@ jobs:
 | **Input**               | **Description**                                                                                                                                                                                                                                                         | **Required** | **Type**   | **Default**                |
 | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ---------- | -------------------------- |
 | **`runs-on`**           | JSON array of runner(s) to use.                                                                                                                                                                                                                                         | **false**    | **string** | `["ubuntu-latest"]`        |
-|                         | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).                                                                                                         |              |            |                            |
+|                         | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).                                                                                                                                                                                      |              |            |                            |
 | **`environment`**       | Destination where to deploy given chart.                                                                                                                                                                                                                                | **true**     | **string** | -                          |
 |                         | Can be an environment name or an environment name with a dynamic identifier.                                                                                                                                                                                            |              |            |                            |
 |                         | Example: `review-apps:pr-1234`.                                                                                                                                                                                                                                         |              |            |                            |
@@ -231,20 +231,20 @@ jobs:
 |                         | Example: `https://{{ identifier }}.my-application.com`.                                                                                                                                                                                                                 |              |            |                            |
 | **`deploy-type`**       | Type of deployment to perform.                                                                                                                                                                                                                                          | **false**    | **string** | `helm-repository-dispatch` |
 |                         | Supported values:                                                                                                                                                                                                                                                       |              |            |                            |
-|                         | - [`helm-repository-dispatch`](../../actions/deploy/helm-repository-dispatch/index.md).                                                                                                                                                                                 |              |            |                            |
+|                         | - [`helm-repository-dispatch`](../../actions/deploy/helm-repository-dispatch/index.md).                                                                                                                                                                                |              |            |                            |
 | **`deploy-parameters`** | Inputs to pass to the deployment action.                                                                                                                                                                                                                                | **false**    | **string** | -                          |
 |                         | JSON object, depending on the deploy-type.                                                                                                                                                                                                                              |              |            |                            |
 |                         | For example, for `helm-repository-dispatch`:                                                                                                                                                                                                                            |              |            |                            |
 |                         | <!-- textlint-disable --><pre lang="json">{&#13; "repository": "my-org/my-repo"&#13;}</pre><!-- textlint-enable -->                                                                                                                                                     |              |            |                            |
 | **`oci-registry`**      | OCI registry where to pull and push images and chart.                                                                                                                                                                                                                   | **false**    | **string** | `ghcr.io`                  |
 | **`images`**            | Images to build parameters.                                                                                                                                                                                                                                             | **true**     | **string** | -                          |
-|                         | See [https://github.com/hoverkraft-tech/ci-github-container/blob/main/.github/workflows/docker-build-images.md](https://github.com/hoverkraft-tech/ci-github-container/blob/main/.github/workflows/docker-build-images.md).                                             |              |            |                            |
+|                         | See [https://github.com/hoverkraft-tech/ci-github-container/blob/main/.github/workflows/docker-build-images.md](https://github.com/hoverkraft-tech/ci-github-container/blob/main/.github/workflows/docker-build-images.md).                                                                                                                                                        |              |            |                            |
 | **`chart-name`**        | Chart name to release.                                                                                                                                                                                                                                                  | **false**    | **string** | `application`              |
-|                         | See [https://github.com/hoverkraft-tech/ci-github-container/blob/main/actions/helm/release-chart/README.md](https://github.com/hoverkraft-tech/ci-github-container/blob/main/actions/helm/release-chart/README.md).                                                     |              |            |                            |
+|                         | See [https://github.com/hoverkraft-tech/ci-github-container/blob/main/actions/helm/release-chart/README.md](https://github.com/hoverkraft-tech/ci-github-container/blob/main/actions/helm/release-chart/README.md).                                                                                                                                                            |              |            |                            |
 | **`chart-path`**        | Path to the chart to release.                                                                                                                                                                                                                                           | **false**    | **string** | `charts/application`       |
-|                         | See [https://github.com/hoverkraft-tech/ci-github-container/blob/main/actions/helm/release-chart/README.md](https://github.com/hoverkraft-tech/ci-github-container/blob/main/actions/helm/release-chart/README.md).                                                     |              |            |                            |
+|                         | See [https://github.com/hoverkraft-tech/ci-github-container/blob/main/actions/helm/release-chart/README.md](https://github.com/hoverkraft-tech/ci-github-container/blob/main/actions/helm/release-chart/README.md).                                                                                                                                                            |              |            |                            |
 | **`chart-values`**      | Define chart values to be filled.                                                                                                                                                                                                                                       | **false**    | **string** | `[]`                       |
-|                         | See [https://github.com/hoverkraft-tech/ci-github-container/blob/main/actions/helm/release-chart/README.md](https://github.com/hoverkraft-tech/ci-github-container/blob/main/actions/helm/release-chart/README.md).                                                     |              |            |                            |
+|                         | See [https://github.com/hoverkraft-tech/ci-github-container/blob/main/actions/helm/release-chart/README.md](https://github.com/hoverkraft-tech/ci-github-container/blob/main/actions/helm/release-chart/README.md).                                                                                                                                                            |              |            |                            |
 |                         | Accept placeholders:                                                                                                                                                                                                                                                    |              |            |                            |
 |                         | - `{{ tag }}`: will be replaced by the tag.                                                                                                                                                                                                                             |              |            |                            |
 |                         | - `{{ url }}`: will be replaced by the URL.                                                                                                                                                                                                                             |              |            |                            |
@@ -252,7 +252,7 @@ jobs:
 |                         | Example:                                                                                                                                                                                                                                                                |              |            |                            |
 |                         | <!-- textlint-disable --><pre lang="json">[&#13; { "path": ".image", "image": "application" },&#13; { "path": ".application.version", "value": "{{ tag }}" },&#13; { "path": "deploy.ingress.hosts[0].host", "value": "{{ url }}" }&#13;]</pre><!-- textlint-enable --> |              |            |                            |
 | **`github-app-id`**     | GitHub App ID to generate GitHub token in place of github-token.                                                                                                                                                                                                        | **false**    | **string** | -                          |
-|                         | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                                                                                                                                                           |              |            |                            |
+|                         | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                                                                                                                                                                                                               |              |            |                            |
 
 <!-- inputs:end -->
 
@@ -260,16 +260,16 @@ jobs:
 
 ## Secrets
 
-| **Secret**                  | **Description**                                                                                                           | **Required** |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------ |
-| **`oci-registry-password`** | OCI registry password.                                                                                                    | **true**     |
-| **`build-secrets`**         | List of secrets to expose to the build.                                                                                   | **false**    |
-|                             | See [https://docs.docker.com/build/ci/github-actions/secrets/](https://docs.docker.com/build/ci/github-actions/secrets/). |              |
-| **`github-token`**          | GitHub token for deploying.                                                                                               | **false**    |
-|                             | Permissions:                                                                                                              |              |
-|                             | - contents: write                                                                                                         |              |
-| **`github-app-key`**        | GitHub App private key to generate GitHub token in place of github-token.                                                 | **false**    |
-|                             | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).             |              |
+| **Secret**                  | **Description**                                                           | **Required** |
+| --------------------------- | ------------------------------------------------------------------------- | ------------ |
+| **`oci-registry-password`** | OCI registry password.                                                    | **true**     |
+| **`build-secrets`**         | List of secrets to expose to the build.                                   | **false**    |
+|                             | See [https://docs.docker.com/build/ci/github-actions/secrets/](https://docs.docker.com/build/ci/github-actions/secrets/).           |              |
+| **`github-token`**          | GitHub token for deploying.                                               | **false**    |
+|                             | Permissions:                                                              |              |
+|                             | - contents: write                                                         |              |
+| **`github-app-key`**        | GitHub App private key to generate GitHub token in place of github-token. | **false**    |
+|                             | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                 |              |
 
 <!-- secrets:end -->
 
@@ -314,7 +314,7 @@ permissions:
 jobs:
   deploy:
     name: Deploy
-    uses: hoverkraft-tech/ci-github-publish/.github/workflows/deploy-chart.yml@ecafdeac18a6a6dcc01058cd53ac7431bedb5c3b # 0.14.1
+    uses: hoverkraft-tech/ci-github-publish/.github/workflows/deploy-chart.yml@dbdcce2870b33525ac1fa26069bf95b2dd586fda # 0.15.2
     secrets:
       oci-registry-password: ${{ secrets.GITHUB_TOKEN }}
       github-app-key: ${{ secrets.CI_BOT_APP_PRIVATE_KEY }}

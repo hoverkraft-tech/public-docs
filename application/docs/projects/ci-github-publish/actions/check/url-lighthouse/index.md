@@ -3,8 +3,8 @@ title: Url Lighthouse
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/check/url-lighthouse/README.md
 source_branch: main
-source_run_id: 19608600643
-last_synced: 2025-11-23T08:45:57.587Z
+source_run_id: 19649920031
+last_synced: 2025-11-24T21:35:17.960Z
 ---
 
 <!-- header:start -->
@@ -63,9 +63,9 @@ Action to run Lighthouse audits on given URL.
 
 ## Inputs
 
-| **Input**         | **Description**                                                                                                                                                                  | **Required** | **Default**     |
-| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- |
-| **`url`**         | The URL to audit using Lighthouse.                                                                                                                                               | **true**     | -               |
+| **Input**         | **Description**                                                                                                 | **Required** | **Default**     |
+| ----------------- | --------------------------------------------------------------------------------------------------------------- | ------------ | --------------- |
+| **`url`**         | The URL to audit using Lighthouse.                                                                              | **true**     | -               |
 | **`budget-path`** | The path to the performance budget file. See [https://web.dev/articles/use-lighthouse-for-performance-budgets](https://web.dev/articles/use-lighthouse-for-performance-budgets). | **false**    | `./budget.json` |
 
 <!-- inputs:end -->
