@@ -3,8 +3,8 @@ title: Lint
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: actions/lint/README.md
 source_branch: main
-source_run_id: 19639139345
-last_synced: 2025-11-24T15:18:58.114Z
+source_run_id: 19647893684
+last_synced: 2025-11-24T20:22:11.393Z
 ---
 
 <!-- header:start -->
@@ -12,7 +12,7 @@ last_synced: 2025-11-24T15:18:58.114Z
 # ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItY2hlY2stY2lyY2xlIiBjb2xvcj0iYmx1ZSI+PHBhdGggZD0iTTIyIDExLjA4VjEyYTEwIDEwIDAgMSAxLTUuOTMtOS4xNCI+PC9wYXRoPjxwb2x5bGluZSBwb2ludHM9IjIyIDQgMTIgMTQuMDEgOSAxMS4wMSI+PC9wb2x5bGluZT48L3N2Zz4=) GitHub Action: Lint
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/671b0ea4350c2bc6b4d77231568b5cff82d03a757097ac80c75a7fc39b12901b/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Lint" />
+  <img src="https://opengraph.githubassets.com/9583af06e0716e1d6cf0f13319f864b9b10858c23c40a2073ed4ee97dc6dee98/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Lint" />
 </div>
 
 ---
@@ -39,7 +39,7 @@ Action to lint Node.js projects with support for pull request reporting and anno
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-nodejs/actions/lint@37ee7d1c137ffbd033eb3710d8fd43b7ed82ef4a # 0.20.3
+- uses: hoverkraft-tech/ci-github-nodejs/actions/lint@ce2467e5d41ff0abe85094dcc39c98288448065a # 0.20.4
   with:
     # Working directory where lint commands are executed.
     # Can be absolute or relative to the repository root.
@@ -54,6 +54,10 @@ Action to lint Node.js projects with support for pull request reporting and anno
     # npm/pnpm/Yarn script command to run for linting.
     # This should be a script defined in your `package.json`.
     # The command should generate lint report files in a standard format.
+    #
+    # ESLint: `eslint --format json -o eslint-report.json .`
+    # Prettier: `prettier --check . | tee prettier-report.txt`
+    # Astro: `astro check | tee astro-report.txt`
     #
     # Default: `lint:ci`
     command: lint:ci
@@ -81,6 +85,10 @@ Action to lint Node.js projects with support for pull request reporting and anno
 | **`command`**           | npm/pnpm/Yarn script command to run for linting.                                                                                         | **false**    | `lint:ci`   |
 |                         | This should be a script defined in your `package.json`.                                                                                  |              |             |
 |                         | The command should generate lint report files in a standard format.                                                                      |              |             |
+|                         |                                                                                                                                          |              |             |
+|                         | ESLint: `eslint --format json -o eslint-report.json .`                                                                                   |              |             |
+|                         | Prettier: `prettier --check . \| tee prettier-report.txt`                                                                                |              |             |
+|                         | Astro: `astro check \| tee astro-report.txt`                                                                                             |              |             |
 | **`report-file`**       | Optional lint report path forwarded to the [parse-ci-reports](https://hoverkraft-tech/ci-github-common/actions/parse-ci-reports) action. | **false**    | -           |
 |                         | Provide an absolute path or one relative to the working directory.                                                                       |              |             |
 |                         | When omitted, the action falls back to `auto:lint` detection.                                                                            |              |             |
