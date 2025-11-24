@@ -3,8 +3,8 @@ title: Helm Repository Dispatch
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/deploy/helm-repository-dispatch/README.md
 source_branch: main
-source_run_id: 19649920031
-last_synced: 2025-11-24T21:35:17.960Z
+source_run_id: 19650261123
+last_synced: 2025-11-24T21:49:13.196Z
 ---
 
 <!-- header:start -->
@@ -51,7 +51,7 @@ See [https://docs.github.com/en/actions/writing-workflows/choosing-when-your-wor
 ## Usage
 
 ````yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/deploy/helm-repository-dispatch@ecafdeac18a6a6dcc01058cd53ac7431bedb5c3b # 0.14.1
+- uses: hoverkraft-tech/ci-github-publish/actions/deploy/helm-repository-dispatch@dbdcce2870b33525ac1fa26069bf95b2dd586fda # 0.15.2
   with:
     # Deployment ID to be used in the ArgoCD application manifest
     # This input is required.
@@ -89,6 +89,10 @@ See [https://docs.github.com/en/actions/writing-workflows/choosing-when-your-wor
     #
     # Default: `${{ github.token }}`
     github-token: ${{ github.token }}
+
+    # Username to record as having initiated the sync operation
+    # This input is required.
+    initiated-by: ""
 ````
 
 <!-- usage:end -->
@@ -110,6 +114,7 @@ See [https://docs.github.com/en/actions/writing-workflows/choosing-when-your-wor
 |                     | Permissions:                                                                                                                        |              |                         |
 |                     | - contents: write                                                                                                                   |              |                         |
 |                     | See [https://github.com/peter-evans/repository-dispatch#usage](https://github.com/peter-evans/repository-dispatch#usage).                                                                     |              |                         |
+| **`initiated-by`**  | Username to record as having initiated the sync operation                                                                           | **true**     | -                       |
 
 <!-- inputs:end -->
 
