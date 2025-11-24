@@ -3,7 +3,7 @@
 # GitHub Reusable Workflow: Push Documentation Helper
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/65b5abf4066bd8b973ed35560de85a3f4ad6570e6cd750bbf4c33cbc5ff7c12b/hoverkraft-tech/public-docs" width="60px" align="center" alt="Push Documentation Helper" />
+  <img src="https://opengraph.githubassets.com/9dc51d58cb482a1093dc574ddeca0ed2042d3c867c1028f26fe99fae7481686f/hoverkraft-tech/public-docs" width="60px" align="center" alt="Push Documentation Helper" />
 </div>
 
 ---
@@ -84,6 +84,7 @@ permissions: {}
 jobs:
   sync-docs-dispatcher:
     uses: hoverkraft-tech/public-docs/.github/workflows/sync-docs-dispatcher.yml@c40c17f7d6a8090950b3ef4bfc70502707a6bb9f # 0.3.0
+    permissions: {}
     secrets:
       # GitHub App private key to generate GitHub token in place of github-token.
       # See https://github.com/actions/create-github-app-token.
