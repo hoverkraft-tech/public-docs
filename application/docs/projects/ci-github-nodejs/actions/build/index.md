@@ -3,8 +3,8 @@ title: Build
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: actions/build/README.md
 source_branch: main
-source_run_id: 19625892132
-last_synced: 2025-11-24T07:00:11.419Z
+source_run_id: 19627926737
+last_synced: 2025-11-24T08:36:19.867Z
 ---
 
 <!-- header:start -->
@@ -12,7 +12,7 @@ last_synced: 2025-11-24T07:00:11.419Z
 # ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItcGFja2FnZSIgY29sb3I9ImJsdWUiPjxsaW5lIHgxPSIxNi41IiB5MT0iOS40IiB4Mj0iNy41IiB5Mj0iNC4yMSI+PC9saW5lPjxwYXRoIGQ9Ik0yMSAxNlY4YTIgMiAwIDAgMC0xLTEuNzNsLTctNGEyIDIgMCAwIDAtMiAwbC03IDRBMiAyIDAgMCAwIDMgOHY4YTIgMiAwIDAgMCAxIDEuNzNsNyA0YTIgMiAwIDAgMCAyIDBsNy00QTIgMiAwIDAgMCAyMSAxNnoiPjwvcGF0aD48cG9seWxpbmUgcG9pbnRzPSIzLjI3IDYuOTYgMTIgMTIuMDEgMjAuNzMgNi45NiI+PC9wb2x5bGluZT48bGluZSB4MT0iMTIiIHkxPSIyMi4wOCIgeDI9IjEyIiB5Mj0iMTIiPjwvbGluZT48L3N2Zz4=) GitHub Action: Build
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/caf0c510696ca9a20e08c88b4de3d5ff8a34dc27f594c14de5944ec15161ce30/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Build" />
+  <img src="https://opengraph.githubassets.com/98cd3c0937ba0651cdfccc47c7abd139d028dc84a221572fb1f52a9dddf1ba43/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Build" />
 </div>
 
 ---
