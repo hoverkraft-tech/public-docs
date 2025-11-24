@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-container
 source_path: .github/workflows/prune-pull-requests-images-tags.md
 source_branch: main
-source_run_id: 19242040945
-last_synced: 2025-11-10T18:38:49.921Z
+source_run_id: 19648482986
+last_synced: 2025-11-24T20:43:45.459Z
 ---
 
 <!-- header:start -->
@@ -53,14 +53,15 @@ on:
   push:
     branches:
       - main
-permissions:
-  contents: read
-  pull-requests: read
-  packages: write
-  id-token: write
+permissions: {}
 jobs:
   prune-pull-requests-images-tags:
-    uses: hoverkraft-tech/ci-github-container/.github/workflows/prune-pull-requests-images-tags.yml@4f29319e02dd65152386c436e8c3136f380a0e71 # 0.28.0
+    uses: hoverkraft-tech/ci-github-container/.github/workflows/prune-pull-requests-images-tags.yml@0d92511a38c93e30ae0f8b82346116946987a9ca # 0.30.0
+    permissions:
+      contents: read
+      pull-requests: read
+      packages: write
+      id-token: write
     with:
       # JSON array of runner(s) to use.
       # See https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job.
@@ -95,17 +96,17 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**                     | **Description**                                                                                                                                                 | **Required** | **Type**    | **Default**            |
-| ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------- | ---------------------- |
-| **`runs-on`**                 | JSON array of runner(s) to use.                                                                                                                                 | **false**    | **string**  | `["ubuntu-latest"]`    |
-|                               | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job). |              |             |                        |
-| **`images`**                  | Images to clean.                                                                                                                                                | **true**     | **string**  | -                      |
-|                               | Example:                                                                                                                                                        |              |             |                        |
-|                               | <!-- textlint-disable --><pre lang="json"> ["application-1","application-2"]</pre><!-- textlint-enable -->                                                      |              |             |                        |
-| **`prune-cache-images`**      | Prune cache image tags (like `application-1/cache`).                                                                                                            | **false**    | **boolean** | `false`                |
-|                               | Useful when building image with "registry" cache backend.                                                                                                       |              |             |                        |
-| **`pull-request-tag-filter`** | The regular expression to match pull request tags.                                                                                                              | **false**    | **string**  | `^pr-([0-9]+)(?:-\|$)` |
-|                               | Must have a capture group for the pull request number.                                                                                                          |              |             |                        |
+| **Input**                     | **Description**                                                                                            | **Required** | **Type**    | **Default**            |
+| ----------------------------- | ---------------------------------------------------------------------------------------------------------- | ------------ | ----------- | ---------------------- |
+| **`runs-on`**                 | JSON array of runner(s) to use.                                                                            | **false**    | **string**  | `["ubuntu-latest"]`    |
+|                               | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).                         |              |             |                        |
+| **`images`**                  | Images to clean.                                                                                           | **true**     | **string**  | -                      |
+|                               | Example:                                                                                                   |              |             |                        |
+|                               | <!-- textlint-disable --><pre lang="json"> ["application-1","application-2"]</pre><!-- textlint-enable --> |              |             |                        |
+| **`prune-cache-images`**      | Prune cache image tags (like `application-1/cache`).                                                       | **false**    | **boolean** | `false`                |
+|                               | Useful when building image with "registry" cache backend.                                                  |              |             |                        |
+| **`pull-request-tag-filter`** | The regular expression to match pull request tags.                                                         | **false**    | **string**  | `^pr-([0-9]+)(?:-\|$)` |
+|                               | Must have a capture group for the pull request number.                                                     |              |             |                        |
 
 <!-- inputs:end -->
 <!-- secrets:start -->
