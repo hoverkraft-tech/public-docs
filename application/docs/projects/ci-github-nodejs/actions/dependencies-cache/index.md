@@ -3,8 +3,8 @@ title: Dependencies Cache
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: actions/dependencies-cache/README.md
 source_branch: main
-source_run_id: 19636493045
-last_synced: 2025-11-24T13:52:35.882Z
+source_run_id: 19637675224
+last_synced: 2025-11-24T14:31:28.424Z
 ---
 
 <!-- header:start -->
@@ -12,7 +12,7 @@ last_synced: 2025-11-24T13:52:35.882Z
 # ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItYXJjaGl2ZSIgY29sb3I9ImJsdWUiPjxwb2x5bGluZSBwb2ludHM9IjIxIDggMjEgMjEgMyAyMSAzIDgiPjwvcG9seWxpbmU+PHJlY3QgeD0iMSIgeT0iMyIgd2lkdGg9IjIyIiBoZWlnaHQ9IjUiPjwvcmVjdD48bGluZSB4MT0iMTAiIHkxPSIxMiIgeDI9IjE0IiB5Mj0iMTIiPjwvbGluZT48L3N2Zz4=) GitHub Action: Dependencies cache
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/caf0c510696ca9a20e08c88b4de3d5ff8a34dc27f594c14de5944ec15161ce30/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Dependencies cache" />
+  <img src="https://opengraph.githubassets.com/0b196831f2f5062b39524352aa4448b3101178c9792e3a2e57b57359d76b17a2/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Dependencies cache" />
 </div>
 
 ---
@@ -35,6 +35,16 @@ last_synced: 2025-11-24T13:52:35.882Z
 
 Action to setup dependencies cache managment.
 
+### Supported caches
+
+- NX (`node_modules/.cache/nx`)
+- Prettier (`node_modules/.cache/prettier`)
+- Docusaurus (`.docusaurus`, `node_modules/.cache/webpack`)
+- Astro (`node_modules/.astro`)
+- Gatsby (`.cache`, `public`)
+- Storybook (`node_modules/.cache/storybook`)
+- Jest (auto-detected `cacheDirectory`)
+
 <!-- overview:end -->
 
 <!-- usage:start -->
@@ -42,7 +52,7 @@ Action to setup dependencies cache managment.
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-nodejs/actions/dependencies-cache@80acfc9bc4dd87030d73006dee4c788ed9af1fb0 # 0.20.1
+- uses: hoverkraft-tech/ci-github-nodejs/actions/dependencies-cache@37ee7d1c137ffbd033eb3710d8fd43b7ed82ef4a # 0.20.3
   with:
     # List of dependencies for which the cache should be managed.
     # This input is required.
