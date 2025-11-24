@@ -2,9 +2,9 @@
 title: Set Matrix Output
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/set-matrix-output/README.md
-source_branch: main
-source_run_id: 19632531030
-last_synced: 2025-11-24T11:25:14.080Z
+source_branch: 0.30.2
+source_run_id: 19632706166
+last_synced: 2025-11-24T11:32:53.329Z
 ---
 
 <!-- header:start -->
@@ -47,7 +47,7 @@ This strategy effectively prevents any clashes or overwrites, maintaining the in
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-common/actions/set-matrix-output@c314229c3ca6914f7023ffca7afc26753ab99b41 # 0.30.1
+- uses: hoverkraft-tech/ci-github-common/actions/set-matrix-output@5e8d0e6d1e76d8577a070db6d0128a91b1c9d5ad # 0.30.2
   with:
     # The matrix output to set.
     # This input is required.
