@@ -3,8 +3,8 @@ title: Test
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: actions/test/README.md
 source_branch: main
-source_run_id: 19639139345
-last_synced: 2025-11-24T15:18:58.114Z
+source_run_id: 19647893684
+last_synced: 2025-11-24T20:22:11.393Z
 ---
 
 <!-- header:start -->
@@ -12,7 +12,7 @@ last_synced: 2025-11-24T15:18:58.114Z
 # ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItY2hlY2stc3F1YXJlIiBjb2xvcj0iYmx1ZSI+PHBvbHlsaW5lIHBvaW50cz0iOSAxMSAxMiAxNCAyMiA0Ij48L3BvbHlsaW5lPjxwYXRoIGQ9Ik0yMSAxMnY3YTIgMiAwIDAgMS0yIDJINWEyIDIgMCAwIDEtMi0yVjVhMiAyIDAgMCAxIDItMmgxMSI+PC9wYXRoPjwvc3ZnPg==) GitHub Action: Test
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/14c6c96a204bc3b2951cb1227cc64818dcd2c951c8ad95f96ebd7ec05f388e87/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Test" />
+  <img src="https://opengraph.githubassets.com/9583af06e0716e1d6cf0f13319f864b9b10858c23c40a2073ed4ee97dc6dee98/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Test" />
 </div>
 
 ---
@@ -39,7 +39,7 @@ Action to test Node.js projects with support for coverage reporting and pull req
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-nodejs/actions/test@37ee7d1c137ffbd033eb3710d8fd43b7ed82ef4a # 0.20.3
+- uses: hoverkraft-tech/ci-github-nodejs/actions/test@ce2467e5d41ff0abe85094dcc39c98288448065a # 0.20.4
   with:
     # Working directory where test commands are executed.
     # Can be absolute or relative to the repository root.
@@ -54,6 +54,9 @@ Action to test Node.js projects with support for coverage reporting and pull req
     # npm/pnpm/Yarn script command to run for testing.
     # This should be a script defined in your `package.json`.
     # The command should generate coverage report files in a standard format (Cobertura XML, lcov, etc.).
+    #
+    # Vitest: `vitest run --reporter=default --reporter=junit --outputFile=junit.xml --coverage.enabled --coverage.reporter=lcov --coverage.reporter=text`
+    # Jest: `jest --ci --reporters=default --reporters=jest-junit --coverage`
     #
     # Default: `test:ci`
     command: test:ci
@@ -95,6 +98,9 @@ Action to test Node.js projects with support for coverage reporting and pull req
 | **`command`**           | npm/pnpm/Yarn script command to run for testing.                                                                                                                       | **false**    | `test:ci`   |
 |                         | This should be a script defined in your `package.json`.                                                                                                                |              |             |
 |                         | The command should generate coverage report files in a standard format (Cobertura XML, lcov, etc.).                                                                    |              |             |
+|                         |                                                                                                                                                                        |              |             |
+|                         | Vitest: `vitest run --reporter=default --reporter=junit --outputFile=junit.xml --coverage.enabled --coverage.reporter=lcov --coverage.reporter=text`                   |              |             |
+|                         | Jest: `jest --ci --reporters=default --reporters=jest-junit --coverage`                                                                                                |              |             |
 | **`coverage`**          | Code coverage reporter to use. Supported values:                                                                                                                       | **false**    | `github`    |
 |                         | - `github`: Parse coverage reports via [parse-ci-reports](https://hoverkraft-tech/ci-github-common/actions/parse-ci-reports) action, with GitHub summaries/PR comments |              |             |
 |                         | - `codecov`: Upload coverage to Codecov                                                                                                                                |              |             |
