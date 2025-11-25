@@ -3,8 +3,8 @@ title: Argocd Manifest Files
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/deploy/argocd-manifest-files/README.md
 source_branch: main
-source_run_id: 19650261123
-last_synced: 2025-11-24T21:49:13.196Z
+source_run_id: 19666239500
+last_synced: 2025-11-25T10:28:32.404Z
 ---
 
 <!-- header:start -->
@@ -66,12 +66,12 @@ It updates the application manifest with the provided values and deploys it to t
     - Chart: set to the Helm chart name
     - RepoURL: set to the Helm chart repository URL
     - TargetRevision: set to the Helm chart version
+    - Plugin - hoverkraft-deployment (if exists):
+      - Environment variable `HOVERKRAFT_DEPLOYMENT_ID`: updated with the deployment ID to trigger sync detection
     - Helm Values:
       - Chart values: custom values provided via the `chart-values` input, allowing dynamic configuration of the Helm chart (e.g., application URIs, feature flags).
       - Deployment ID: injected as a value to identify the deployment instance within the chart values.
       - Vendor-specific values: additional values set for integrations, such as updating `tags.datadoghq.com/version` for Datadog monitoring/versioning.
-  - Plugin (if exists):
-    - Environment variable `HOVERKRAFT_DEPLOYMENT_ID`: updated with the deployment ID to trigger sync detection
 
 Example:
 
@@ -88,6 +88,12 @@ spec:
     - chart: my-chart
       repoURL: https://charts.example.com
       targetRevision: 1.2.3
+      # If using ArgoCD plugin (optional):
+      plugin:
+        name: hoverkraft-deployment
+        env:
+          - name: HOVERKRAFT_DEPLOYMENT_ID
+            value: deploy-1234
       helm:
         values:
           application:
@@ -96,12 +102,6 @@ spec:
           tags:
             datadoghq.com:
               version: 1.2.3
-  # If using ArgoCD plugin (optional):
-  plugin:
-    name: hoverkraft-deployment
-    env:
-      - name: HOVERKRAFT_DEPLOYMENT_ID
-        value: deploy-1234
 ```
 
 2. The extra manifest file (input `manifest-file`) is updated with:
@@ -128,7 +128,7 @@ metadata:
 ## Usage
 
 ````yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/deploy/argocd-manifest-files@dbdcce2870b33525ac1fa26069bf95b2dd586fda # 0.15.2
+- uses: hoverkraft-tech/ci-github-publish/actions/deploy/argocd-manifest-files@ed864a88ec8610dc2a1b9aab1dbde2864bf75df4 # 0.16.0
   with:
     # Deployment ID to be used in the ArgoCD application manifest
     # This input is required.
