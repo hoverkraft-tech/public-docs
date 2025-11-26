@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/docker-base-images
 source_path: .github/workflows/get-available-images-matrix.md
 source_branch: main
-source_run_id: 19712995478
-last_synced: 2025-11-26T17:57:53.447Z
+source_run_id: 19713583850
+last_synced: 2025-11-26T18:21:28.460Z
 ---
 
 <!-- header:start -->
