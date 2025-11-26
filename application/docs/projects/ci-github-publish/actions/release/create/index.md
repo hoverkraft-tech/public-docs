@@ -3,8 +3,8 @@ title: Create
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/release/create/README.md
 source_branch: main
-source_run_id: 19700238761
-last_synced: 2025-11-26T10:20:42.444Z
+source_run_id: 19706885310
+last_synced: 2025-11-26T14:24:35.254Z
 ---
 
 <!-- header:start -->
@@ -42,11 +42,16 @@ Action to create a new release
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/release/create@dbdcce2870b33525ac1fa26069bf95b2dd586fda # 0.15.2
+- uses: hoverkraft-tech/ci-github-publish/actions/release/create@ed864a88ec8610dc2a1b9aab1dbde2864bf75df4 # 0.16.0
   with:
     # Whether the release is a prerelease
     # Default: `false`
     prerelease: "false"
+
+    # Working directory for monorepo support.
+    # If specified, the release configuration file will be placed in `.github/release-configs/{slug}.yml` where slug is derived from the working directory path.
+    # The configuration will include `include-paths` to filter pull requests to only those that modified files in the specified directory.
+    working-directory: ""
 
     # GitHub Token for creating the release.
     # Permissions:
@@ -66,12 +71,15 @@ Action to create a new release
 
 ## Inputs
 
-| **Input**          | **Description**                        | **Required** | **Default**             |
-| ------------------ | -------------------------------------- | ------------ | ----------------------- |
-| **`prerelease`**   | Whether the release is a prerelease    | **false**    | `false`                 |
-| **`github-token`** | GitHub Token for creating the release. | **false**    | `$\{\{ github.token }}` |
-|                    | Permissions:                           |              |                         |
-|                    | - contents: write                      |              |                         |
+| **Input**               | **Description**                                                                                                                                            | **Required** | **Default**             |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------------------- |
+| **`prerelease`**        | Whether the release is a prerelease                                                                                                                        | **false**    | `false`                 |
+| **`working-directory`** | Working directory for monorepo support.                                                                                                                    | **false**    | -                       |
+|                         | If specified, the release configuration file will be placed in `.github/release-configs/{slug}.yml` where slug is derived from the working directory path. |              |                         |
+|                         | The configuration will include `include-paths` to filter pull requests to only those that modified files in the specified directory.                       |              |                         |
+| **`github-token`**      | GitHub Token for creating the release.                                                                                                                     | **false**    | `$\{\{ github.token }}` |
+|                         | Permissions:                                                                                                                                               |              |                         |
+|                         | - contents: write                                                                                                                                          |              |                         |
 
 <!-- inputs:end -->
 
