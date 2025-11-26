@@ -3,8 +3,8 @@ title: Ci Helm
 source_repo: hoverkraft-tech/docker-base-images
 source_path: images/ci-helm/README.md
 source_branch: main
-source_run_id: 19711539827
-last_synced: 2025-11-26T17:00:55.390Z
+source_run_id: 19711660232
+last_synced: 2025-11-26T17:06:51.235Z
 ---
 
 # ci-helm
@@ -24,3 +24,7 @@ All the scripts are located in /usr/local/bin (which is in the shell default pat
 | script    | purpose                                                    |
 | --------- | ---------------------------------------------------------- |
 | helm-deps | autmatically download helm dependencies in an arboressence |
+
+## Usage
+
+To use the image, you can pull it from the [OCI registry](https://github.com/orgs/hoverkraft-tech/packages/container/package/docker-base-images%2Fci-helm).
