@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/docker-base-images
 source_path: .github/workflows/docker-build-images.md
 source_branch: main
-source_run_id: 19711660232
-last_synced: 2025-11-26T17:06:51.235Z
+source_run_id: 19711774844
+last_synced: 2025-11-26T17:09:52.099Z
 ---
 
 <!-- header:start -->
