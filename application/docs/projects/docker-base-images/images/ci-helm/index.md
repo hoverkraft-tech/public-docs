@@ -3,8 +3,8 @@ title: Ci Helm
 source_repo: hoverkraft-tech/docker-base-images
 source_path: images/ci-helm/README.md
 source_branch: main
-source_run_id: 19712223761
-last_synced: 2025-11-26T17:26:00.711Z
+source_run_id: 19712300938
+last_synced: 2025-11-26T17:28:57.050Z
 ---
 
 # ci-helm
