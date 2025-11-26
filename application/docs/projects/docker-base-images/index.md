@@ -3,8 +3,8 @@ title: Docker Base Images
 source_repo: hoverkraft-tech/docker-base-images
 source_path: README.md
 source_branch: main
-source_run_id: 19711410406
-last_synced: 2025-11-26T16:56:00.112Z
+source_run_id: 19711539827
+last_synced: 2025-11-26T17:00:55.390Z
 ---
 
 # docker-base-images
@@ -28,7 +28,9 @@ An image with an opiniated mydumper command as entrypoint
 
 _Actions that you can plug directly into your own Docker images repository._
 
-### - [Should build image](actions/should-build-image/index.md)
+### - [Get available images](actions/get-available-images/index.md)
+
+### - [Should build images](actions/should-build-images/index.md)
 
 ## Reusable Workflows
 
