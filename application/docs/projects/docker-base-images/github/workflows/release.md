@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/docker-base-images
 source_path: .github/workflows/release.md
 source_branch: main
-source_run_id: 19712919367
-last_synced: 2025-11-26T17:54:32.880Z
+source_run_id: 19712995478
+last_synced: 2025-11-26T17:57:53.447Z
 ---
 
 <!-- header:start -->
@@ -11,7 +11,7 @@ last_synced: 2025-11-26T17:54:32.880Z
 # GitHub Reusable Workflow: Release
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/52dbae0db59b668ad85767d9a3bad4642d26b165d5b49092b2e44785aa8b13de/hoverkraft-tech/docker-base-images" width="60px" align="center" alt="Release" />
+  <img src="https://opengraph.githubassets.com/e45a7da487d30706064e839e55269220ff64910ea87d22446b1936e242d27352/hoverkraft-tech/docker-base-images" width="60px" align="center" alt="Release" />
 </div>
 
 ---
@@ -40,7 +40,7 @@ on:
 permissions: {}
 jobs:
   release:
-    uses: hoverkraft-tech/docker-base-images/.github/workflows/release.yml@238e113c0e3332aacb7f0c07c2d96453c01aa692 # main
+    uses: hoverkraft-tech/docker-base-images/.github/workflows/release.yml@67e15e3bc73162a931c72f3eb1e16c862b338e16 # main
     permissions: {}
     secrets:
       # GitHub token with permissions `contents: read`.
