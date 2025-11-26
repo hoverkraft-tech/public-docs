@@ -3,8 +3,8 @@ title: Get Manifest Files
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/argocd/get-manifest-files/README.md
 source_branch: main
-source_run_id: 19710946194
-last_synced: 2025-11-26T16:41:33.640Z
+source_run_id: 19713512588
+last_synced: 2025-11-26T18:20:41.962Z
 ---
 
 <!-- header:start -->
