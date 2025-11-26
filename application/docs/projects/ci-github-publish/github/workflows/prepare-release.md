@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/prepare-release.md
 source_branch: main
-source_run_id: 19699391715
-last_synced: 2025-11-26T09:50:52.149Z
+source_run_id: 19700238761
+last_synced: 2025-11-26T10:20:42.444Z
 ---
 
 <!-- header:start -->
@@ -60,10 +60,8 @@ on:
 permissions: {}
 jobs:
   prepare-release:
-    uses: hoverkraft-tech/ci-github-publish/.github/workflows/prepare-release.yml@418e2c3d36cd1ccabf8c15a5c5c3c4c7b146227f # main
-    permissions:
-      contents: read
-      pull-requests: write
+    uses: hoverkraft-tech/ci-github-publish/.github/workflows/prepare-release.yml@ed864a88ec8610dc2a1b9aab1dbde2864bf75df4 # 0.16.0
+    permissions: {}
     secrets:
       # GitHub token with permissions `contents: write`, `pull-requests: write`.
       github-token: ""
@@ -132,6 +130,34 @@ jobs:
 <!-- outputs:end -->
 
 <!-- examples:start -->
+
+## Examples
+
+### Basic usage
+
+```yaml
+name: Prepare Release
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+permissions: {}
+
+jobs:
+  prepare-release:
+    uses: hoverkraft-tech/ci-github-publish/.github/workflows/prepare-release.yml@ed864a88ec8610dc2a1b9aab1dbde2864bf75df4 # 0.16.0
+    permissions:
+      contents: read
+      pull-requests: write
+    with:
+      github-app-id: ${{ vars.CI_BOT_APP_ID }}
+    secrets:
+      github-app-key: ${{ secrets.CI_BOT_APP_PRIVATE_KEY }}
+```
+
 <!-- examples:end -->
 
 <!-- contributing:start -->
