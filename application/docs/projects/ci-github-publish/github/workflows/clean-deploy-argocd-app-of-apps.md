@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/clean-deploy-argocd-app-of-apps.md
 source_branch: main
-source_run_id: 19708595265
-last_synced: 2025-11-26T15:20:55.402Z
+source_run_id: 19709395391
+last_synced: 2025-11-26T15:47:31.815Z
 ---
 
 <!-- header:start -->
