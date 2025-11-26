@@ -3,8 +3,8 @@ title: Get Workflow Failure
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/workflow/get-workflow-failure/README.md
 source_branch: main
-source_run_id: 19666239500
-last_synced: 2025-11-25T10:28:32.404Z
+source_run_id: 19699391715
+last_synced: 2025-11-26T09:50:52.149Z
 ---
 
 <!-- header:start -->

@@ -3,8 +3,8 @@ title: Ci Github Publish
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: README.md
 source_branch: main
-source_run_id: 19666239500
-last_synced: 2025-11-25T10:28:32.404Z
+source_run_id: 19699391715
+last_synced: 2025-11-26T09:50:52.149Z
 ---
 
 # Continuous Integration - GitHub - Publish
@@ -94,9 +94,9 @@ _Actions for managing workflows._
 
 ### Cleaning deploy
 
-#### - [Clean deploy argocd app of apps](github/workflows/clean-deploy-argocd-app-of-apps.md)
-
 #### - [Clean deploy](github/workflows/clean-deploy.md)
+
+#### - [Clean deploy argocd app of apps](github/workflows/clean-deploy-argocd-app-of-apps.md)
 
 ### Performs deploy
 
@@ -117,6 +117,8 @@ _Actions for managing workflows._
 _Reusable workflows for managing release process._
 
 #### - [Prepare release](github/workflows/prepare-release.md)
+
+#### - [Release](github/workflows/release.md)
 
 #### - [Release actions](github/workflows/release-actions.md)
 

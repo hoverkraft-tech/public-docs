@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/prepare-release.md
 source_branch: main
-source_run_id: 19666239500
-last_synced: 2025-11-25T10:28:32.404Z
+source_run_id: 19699391715
+last_synced: 2025-11-26T09:50:52.149Z
 ---
 
 <!-- header:start -->
@@ -60,7 +60,7 @@ on:
 permissions: {}
 jobs:
   prepare-release:
-    uses: hoverkraft-tech/ci-github-publish/.github/workflows/prepare-release.yml@dbdcce2870b33525ac1fa26069bf95b2dd586fda # 0.15.2
+    uses: hoverkraft-tech/ci-github-publish/.github/workflows/prepare-release.yml@418e2c3d36cd1ccabf8c15a5c5c3c4c7b146227f # main
     permissions:
       contents: read
       pull-requests: write
@@ -78,6 +78,17 @@ jobs:
       # Default: `["ubuntu-latest"]`
       runs-on: '["ubuntu-latest"]'
 
+      # Working directory for monorepo support.
+      # If specified, the release configuration file will be placed in `.github/release-configs/{slug}.yml` where slug is derived from the working directory path.
+      # The configuration will include `include-paths` to filter pull requests to only those that modified files in the specified directory.
+      working-directory: ""
+
+      # Additional paths to include in the release notes filtering (JSON array).
+      # These paths are added to the `include-paths` configuration of release-drafter.
+      #
+      # Default: `[]`
+      include-paths: "[]"
+
       # GitHub App ID to generate GitHub token in place of github-token.
       # See https://github.com/actions/create-github-app-token.
       github-app-id: ""
@@ -91,12 +102,17 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**           | **Description**                                                                    | **Required** | **Type**   | **Default**         |
-| ------------------- | ---------------------------------------------------------------------------------- | ------------ | ---------- | ------------------- |
-| **`runs-on`**       | JSON array of runner(s) to use.                                                    | **false**    | **string** | `["ubuntu-latest"]` |
-|                     | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job). |              |            |                     |
-| **`github-app-id`** | GitHub App ID to generate GitHub token in place of github-token.                   | **false**    | **string** | -                   |
-|                     | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                          |              |            |                     |
+| **Input**               | **Description**                                                                                                                                            | **Required** | **Type**   | **Default**         |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ---------- | ------------------- |
+| **`runs-on`**           | JSON array of runner(s) to use.                                                                                                                            | **false**    | **string** | `["ubuntu-latest"]` |
+|                         | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).                                                                         |              |            |                     |
+| **`working-directory`** | Working directory for monorepo support.                                                                                                                    | **false**    | **string** | -                   |
+|                         | If specified, the release configuration file will be placed in `.github/release-configs/{slug}.yml` where slug is derived from the working directory path. |              |            |                     |
+|                         | The configuration will include `include-paths` to filter pull requests to only those that modified files in the specified directory.                       |              |            |                     |
+| **`include-paths`**     | Additional paths to include in the release notes filtering (JSON array).                                                                                   | **false**    | **string** | `[]`                |
+|                         | These paths are added to the `include-paths` configuration of release-drafter.                                                                             |              |            |                     |
+| **`github-app-id`**     | GitHub App ID to generate GitHub token in place of github-token.                                                                                           | **false**    | **string** | -                   |
+|                         | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                                                                                                  |              |            |                     |
 
 <!-- inputs:end -->
 
