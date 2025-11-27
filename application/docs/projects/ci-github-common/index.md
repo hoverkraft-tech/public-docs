@@ -3,8 +3,8 @@ title: Ci Github Common
 source_repo: hoverkraft-tech/ci-github-common
 source_path: README.md
 source_branch: main
-source_run_id: 19731735385
-last_synced: 2025-11-27T09:40:01.819Z
+source_run_id: 19733425034
+last_synced: 2025-11-27T10:42:03.456Z
 ---
 
 # Continuous Integration - GitHub - Common
@@ -38,6 +38,7 @@ Opinionated GitHub Actions and reusable workflows for foundational continuous-in
 
 - [Get matrix outputs](actions/get-matrix-outputs/index.md) — aggregates outputs across matrix jobs for downstream steps.
 - [Set matrix output](actions/set-matrix-output/index.md) — writes structured outputs that can be consumed by other matrix jobs.
+- [Local workflow actions](actions/local-workflow-actions/index.md) — loads reusable workflow actions from the current repository.
 
 ### Repository insights & utilities
 
