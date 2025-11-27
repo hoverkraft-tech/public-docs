@@ -25,6 +25,13 @@ Learn how to implement continuous integration and continuous deployment using mo
 
 - **[GitHub Actions](./ci-cd/github/)**: Step-by-step tutorial for structuring CI/CD pipelines with GitHub Actions, including comprehensive guides from getting started to deployment and troubleshooting.
 
+### Scaffolding
+
+Step-by-step guides for creating new repositories using Hoverkraft's reusable workflows:
+
+- **[Scaffolding Repositories](./scaffolding/)**: Overview of available scaffolding guides
+- **[Docker Base Images Repository](./scaffolding/docker-base-images/)**: Create your own Docker base images repository with automated builds and semantic versioning
+
 ## Key Principles
 
 ### 1. Infrastructure as Code
