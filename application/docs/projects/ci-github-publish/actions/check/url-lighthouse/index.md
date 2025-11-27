@@ -3,8 +3,8 @@ title: Url Lighthouse
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/check/url-lighthouse/README.md
 source_branch: main
-source_run_id: 19729834092
-last_synced: 2025-11-27T08:29:15.055Z
+source_run_id: 19729975878
+last_synced: 2025-11-27T08:35:03.090Z
 ---
 
 <!-- header:start -->
