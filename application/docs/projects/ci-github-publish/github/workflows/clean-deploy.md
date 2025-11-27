@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/clean-deploy.md
 source_branch: main
-source_run_id: 19733927373
-last_synced: 2025-11-27T11:00:30.423Z
+source_run_id: 19740015972
+last_synced: 2025-11-27T14:50:04.721Z
 ---
 
 <!-- header:start -->
@@ -51,11 +51,9 @@ Behavior / outputs:
 ### Permissions
 
 - **`actions`**: `read`
-- **`contents`**: `write`
 - **`deployments`**: `write`
 - **`id-token`**: `write`
 - **`issues`**: `write`
-- **`packages`**: `write`
 - **`pull-requests`**: `write`
 
 <!-- overview:end -->
@@ -74,14 +72,7 @@ permissions: {}
 jobs:
   clean-deploy:
     uses: hoverkraft-tech/ci-github-publish/.github/workflows/clean-deploy.yml@ed864a88ec8610dc2a1b9aab1dbde2864bf75df4 # 0.16.0
-    permissions:
-      contents: write
-      issues: write
-      packages: write
-      pull-requests: write
-      actions: read
-      deployments: write
-      id-token: write
+    permissions: {}
     secrets:
       # GitHub token for deploying.
       # Permissions:

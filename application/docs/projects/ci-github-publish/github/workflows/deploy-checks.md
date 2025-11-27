@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/deploy-checks.md
 source_branch: main
-source_run_id: 19733927373
-last_synced: 2025-11-27T11:00:30.423Z
+source_run_id: 19740015972
+last_synced: 2025-11-27T14:50:04.721Z
 ---
 
 <!-- header:start -->
@@ -59,10 +59,8 @@ on:
 permissions: {}
 jobs:
   deploy-checks:
-    uses: hoverkraft-tech/ci-github-publish/.github/workflows/deploy-checks.yml@ecafdeac18a6a6dcc01058cd53ac7431bedb5c3b # 0.14.1
-    permissions:
-      contents: read
-      id-token: write
+    uses: hoverkraft-tech/ci-github-publish/.github/workflows/deploy-checks.yml@ed864a88ec8610dc2a1b9aab1dbde2864bf75df4 # 0.16.0
+    permissions: {}
     with:
       # JSON array of runner(s) to use.
       # See https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job.

@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/prepare-release.md
 source_branch: main
-source_run_id: 19733927373
-last_synced: 2025-11-27T11:00:30.423Z
+source_run_id: 19740015972
+last_synced: 2025-11-27T14:50:04.721Z
 ---
 
 <!-- header:start -->
@@ -43,6 +43,7 @@ Reusable workflow that performs release preparation tasks:
 ### Permissions
 
 - **`contents`**: `read`
+- **`id-token`**: `write`
 - **`pull-requests`**: `write`
 
 <!-- overview:end -->

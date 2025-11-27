@@ -3,8 +3,8 @@ title: Github Pages
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/deploy/github-pages/README.md
 source_branch: main
-source_run_id: 19733927373
-last_synced: 2025-11-27T11:00:30.423Z
+source_run_id: 19740015972
+last_synced: 2025-11-27T14:50:04.721Z
 ---
 
 <!-- header:start -->
@@ -56,7 +56,7 @@ permissions:
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/deploy/github-pages@275b6d8500449d5653bce59c799e4f54c072929d # 0.15.0
+- uses: hoverkraft-tech/ci-github-publish/actions/deploy/github-pages@ed864a88ec8610dc2a1b9aab1dbde2864bf75df4 # 0.16.0
   with:
     # The path to the assets to deploy.
     # Can be absolute or relative $GITHUB_WORKSPACE.
@@ -77,7 +77,7 @@ permissions:
     # Permissions:
     # - pages: write
     # - id-token: write
-    # See https://github.com/actions/configure-pages.
+    # See https://github.com/actions/deploy-pages.
     #
     # Default: `${{ github.token }}`
     github-token: ${{ github.token }}
@@ -101,7 +101,7 @@ permissions:
 |                             | Permissions:                                                                                                          |              |                         |
 |                             | - pages: write                                                                                                        |              |                         |
 |                             | - id-token: write                                                                                                     |              |                         |
-|                             | See [https://github.com/actions/configure-pages](https://github.com/actions/configure-pages).                                                                     |              |                         |
+|                             | See [https://github.com/actions/deploy-pages](https://github.com/actions/deploy-pages).                                                                        |              |                         |
 
 <!-- inputs:end -->
 
