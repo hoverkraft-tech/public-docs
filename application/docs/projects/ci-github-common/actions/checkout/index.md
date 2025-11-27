@@ -2,9 +2,9 @@
 title: Checkout
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/checkout/README.md
-source_branch: 0.30.2
-source_run_id: 19632706166
-last_synced: 2025-11-24T11:32:53.329Z
+source_branch: main
+source_run_id: 19731735385
+last_synced: 2025-11-27T09:40:01.819Z
 ---
 
 <!-- header:start -->
@@ -66,8 +66,14 @@ permissions:
     # Default: `false`
     lfs: "false"
 
+    # Whether to persist the token credentials in the git config.
+    # Default to false for security reasons.
+    # See https://github.com/orgs/community/discussions/179107.
+    #
+    # Default: `false`
+    persist-credentials: "false"
+
     # Token to use for checking out the repository instead of the default GITHUB_TOKEN.
-    # If specified and not empty, persist-credentials in checkout will be false.
     token: ""
 ```
 
@@ -77,14 +83,16 @@ permissions:
 
 ## Inputs
 
-| **Input**         | **Description**                                                                            | **Required** | **Default** |
-| ----------------- | ------------------------------------------------------------------------------------------ | ------------ | ----------- |
-| **`fetch-depth`** | Number of commits to fetch. 0 indicates all history for all branches and tags.             | **false**    | `1`         |
-|                   | See [https://github.com/actions/checkout#usage](https://github.com/actions/checkout#usage) |              |             |
-| **`lfs`**         | Whether to download Git-LFS files.                                                         | **false**    | `false`     |
-|                   | See [https://github.com/actions/checkout#usage](https://github.com/actions/checkout#usage) |              |             |
-| **`token`**       | Token to use for checking out the repository instead of the default GITHUB_TOKEN.          | **false**    | -           |
-|                   | If specified and not empty, persist-credentials in checkout will be false.                 |              |             |
+| **Input**                 | **Description**                                                                   | **Required** | **Default** |
+| ------------------------- | --------------------------------------------------------------------------------- | ------------ | ----------- |
+| **`fetch-depth`**         | Number of commits to fetch. 0 indicates all history for all branches and tags.    | **false**    | `1`         |
+|                           | See [https://github.com/actions/checkout#usage](https://github.com/actions/checkout#usage)                                   |              |             |
+| **`lfs`**                 | Whether to download Git-LFS files.                                                | **false**    | `false`     |
+|                           | See [https://github.com/actions/checkout#usage](https://github.com/actions/checkout#usage)                                   |              |             |
+| **`persist-credentials`** | Whether to persist the token credentials in the git config.                       | **false**    | `false`     |
+|                           | Default to false for security reasons.                                            |              |             |
+|                           | See [https://github.com/orgs/community/discussions/179107](https://github.com/orgs/community/discussions/179107).                       |              |             |
+| **`token`**               | Token to use for checking out the repository instead of the default GITHUB_TOKEN. | **false**    | -           |
 
 <!-- inputs:end -->
 
