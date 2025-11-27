@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/release.md
 source_branch: main
-source_run_id: 19733927373
-last_synced: 2025-11-27T11:00:30.423Z
+source_run_id: 19740015972
+last_synced: 2025-11-27T14:50:04.721Z
 ---
 
 <!-- header:start -->
@@ -51,7 +51,7 @@ on:
 permissions: {}
 jobs:
   release:
-    uses: hoverkraft-tech/ci-github-publish/.github/workflows/release.yml@418e2c3d36cd1ccabf8c15a5c5c3c4c7b146227f # main
+    uses: hoverkraft-tech/ci-github-publish/.github/workflows/release.yml@ed864a88ec8610dc2a1b9aab1dbde2864bf75df4 # 0.16.0
     permissions: {}
     with:
       # JSON array of runner(s) to use.
