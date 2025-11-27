@@ -3,8 +3,8 @@ title: Docker Base Images
 source_repo: hoverkraft-tech/docker-base-images
 source_path: README.md
 source_branch: main
-source_run_id: 19713583850
-last_synced: 2025-11-26T18:21:28.460Z
+source_run_id: 19728202220
+last_synced: 2025-11-27T07:15:38.945Z
 ---
 
 # docker-base-images
