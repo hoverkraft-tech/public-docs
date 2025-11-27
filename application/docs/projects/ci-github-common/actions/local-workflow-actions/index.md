@@ -3,8 +3,8 @@ title: Local Workflow Actions
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/local-workflow-actions/README.md
 source_branch: main
-source_run_id: 19735341064
-last_synced: 2025-11-27T11:56:01.055Z
+source_run_id: 19738244213
+last_synced: 2025-11-27T13:47:20.570Z
 ---
 
 <!-- header:start -->
@@ -36,6 +36,7 @@ last_synced: 2025-11-27T11:56:01.055Z
 This action checks out the reusable workflow repository that triggered the current run and copies its local actions directory into the current workspace.
 It runs both during the main step and in the post step so that actions with cleanup hooks are also available.
 Use it when consuming reusable workflows that reference local actions from the same repository—they are not automatically available in the caller repository and must be synced manually.
+Add the `self-workflow` directory to your `.gitignore` and `.dockerignore` files to avoid committing it by mistake.
 
 Local actions will be available at `./<local-path>/<actions-path>` inside the current workspace.
 Example: if `local-path` is `./self-workflow` and `actions-path` is `.github/actions`, then local actions will be available at `./self-workflow/.github/actions`.
