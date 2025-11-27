@@ -3,8 +3,8 @@ title: Slugify
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/slugify/README.md
 source_branch: main
-source_run_id: 19738244213
-last_synced: 2025-11-27T13:47:20.570Z
+source_run_id: 19739224695
+last_synced: 2025-11-27T14:21:59.324Z
 ---
 
 <!-- header:start -->
