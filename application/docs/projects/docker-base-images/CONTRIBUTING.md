@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/docker-base-images
 source_path: CONTRIBUTING.md
 source_branch: main
-source_run_id: 19740338280
-last_synced: 2025-11-27T14:59:45.279Z
+source_run_id: 19740695227
+last_synced: 2025-11-27T15:12:30.938Z
 ---
 
 # Contributing
