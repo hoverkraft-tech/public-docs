@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/docker-base-images
 source_path: .github/workflows/docker-build-images.md
 source_branch: main
-source_run_id: 19740944286
-last_synced: 2025-11-27T15:21:29.670Z
+source_run_id: 19741307590
+last_synced: 2025-11-27T15:34:51.244Z
 ---
 
 <!-- header:start -->
@@ -11,7 +11,7 @@ last_synced: 2025-11-27T15:21:29.670Z
 # GitHub Reusable Workflow: Build Docker images
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/3d1e3a40e97a4cfb470094bdb90651ef465fca76512d2161e91a38e76a58493a/hoverkraft-tech/docker-base-images" width="60px" align="center" alt="Build Docker images" />
+  <img src="https://opengraph.githubassets.com/8e46a4fd7964de09e48ac9cccedbe654064290cd9d8e05daedf2335080c835be/hoverkraft-tech/docker-base-images" width="60px" align="center" alt="Build Docker images" />
 </div>
 
 ---
@@ -40,7 +40,7 @@ on:
 permissions: {}
 jobs:
   docker-build-images:
-    uses: hoverkraft-tech/docker-base-images/.github/workflows/docker-build-images.yml@27ad713234c23b8cf4a2c5a9e6d990e196251bed # main
+    uses: hoverkraft-tech/docker-base-images/.github/workflows/docker-build-images.yml@240e6840530c4de627c7fce340ffa78e2f600b9c # main
     permissions: {}
     secrets:
       # Password or GitHub token (packages:read and packages:write scopes) used to log against the OCI registry.
