@@ -25,6 +25,22 @@ Learn how to implement continuous integration and continuous deployment using mo
 
 - **[GitHub Actions](./ci-cd/github/)**: Step-by-step tutorial for structuring CI/CD pipelines with GitHub Actions, including comprehensive guides from getting started to deployment and troubleshooting.
 
+### Golden Paths
+
+What is a Golden Path?
+
+A golden path is an opinionated sequence for setting up a new repository with the correct structure, workflows, and configurations to follow Hoverkraft best practices from the start. Instead of starting from scratch, you can leverage our reusable components to:
+
+- **Get up and running quickly**: Pre-built workflows handle CI/CD, releases, and maintenance
+- **Follow best practices**: Consistent structure and patterns across all your projects
+- **Stay updated**: Dependabot keeps workflows and dependencies current
+- **Focus on your code**: Infrastructure and automation are already handled
+
+Step-by-step golden paths for creating new repositories using Hoverkraft's reusable workflows:
+
+- **[Golden Paths Overview](./golden-paths/)**: Opinionated journeys for bootstrapping new projects
+- **[Docker Base Images Golden Path](./golden-paths/docker-base-images/)**: Create your own Docker base images repository with automated builds and semantic versioning
+
 ## Key Principles
 
 ### 1. Infrastructure as Code
