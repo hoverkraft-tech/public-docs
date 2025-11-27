@@ -3,8 +3,8 @@ title: Url Ping
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/check/url-ping/README.md
 source_branch: main
-source_run_id: 19729975878
-last_synced: 2025-11-27T08:35:03.090Z
+source_run_id: 19730180527
+last_synced: 2025-11-27T08:43:01.195Z
 ---
 
 <!-- header:start -->
