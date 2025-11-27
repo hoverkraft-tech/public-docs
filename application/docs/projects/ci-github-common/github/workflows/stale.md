@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-common
 source_path: .github/workflows/stale.md
 source_branch: main
-source_run_id: 19735341064
-last_synced: 2025-11-27T11:56:01.055Z
+source_run_id: 19738244213
+last_synced: 2025-11-27T13:47:20.570Z
 ---
 
 <!-- header:start -->
