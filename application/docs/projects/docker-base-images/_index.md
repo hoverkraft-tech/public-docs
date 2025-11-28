@@ -8,4 +8,4 @@ description: Documentation for Docker Base Images
 Documentation for the Docker Base Images project.
 
 **Source Repository:** [hoverkraft-tech/docker-base-images](https://github.com/hoverkraft-tech/docker-base-images)
-**Last Synced:** 2025-11-27T16:06:30.462Z
+**Last Synced:** 2025-11-28T12:30:40.815Z
