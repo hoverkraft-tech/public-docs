@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/docker-base-images
 source_path: .github/workflows/docker-build-images.md
 source_branch: main
-source_run_id: 19763855650
-last_synced: 2025-11-28T12:30:40.815Z
+source_run_id: 19765889906
+last_synced: 2025-11-28T14:03:11.614Z
 ---
 
 <!-- header:start -->
@@ -70,6 +70,11 @@ jobs:
 ```
 
 <!-- usage:end -->
+
+<!--
+// jscpd:ignore-start
+-->
+
 <!-- inputs:start -->
 
 ## Inputs
@@ -88,6 +93,11 @@ jobs:
 |                    | Example: `["php-8", "nodejs-24"]`                                                      |              |            |                                 |
 
 <!-- inputs:end -->
+
+<!--
+// jscpd:ignore-end
+-->
+
 <!-- secrets:start -->
 
 ## Secrets

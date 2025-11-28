@@ -3,8 +3,8 @@ title: Docker Base Images
 source_repo: hoverkraft-tech/docker-base-images
 source_path: README.md
 source_branch: main
-source_run_id: 19763855650
-last_synced: 2025-11-28T12:30:40.815Z
+source_run_id: 19765889906
+last_synced: 2025-11-28T14:03:11.614Z
 ---
 
 # docker-base-images
@@ -49,7 +49,7 @@ _Orchestrated workflows you can plug directly into your own Docker images reposi
 
 ## Contributing
 
-Contributions are welcome! Please see the [contributing guidelines](https://github.com/hoverkraft-tech/ci-github-publish/blob/main/CONTRIBUTING.md) for more details.
+Contributions are welcome! Please see the [contributing guidelines](https://github.com/hoverkraft-tech/docker-base-images/blob/main/CONTRIBUTING.md) for more details.
 
 ### Action Structure Pattern
 
