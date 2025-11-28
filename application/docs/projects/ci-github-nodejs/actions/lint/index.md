@@ -3,8 +3,8 @@ title: Lint
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: actions/lint/README.md
 source_branch: main
-source_run_id: 19647893684
-last_synced: 2025-11-24T20:22:11.393Z
+source_run_id: 19756093619
+last_synced: 2025-11-28T06:41:44.990Z
 ---
 
 <!-- header:start -->
@@ -12,7 +12,7 @@ last_synced: 2025-11-24T20:22:11.393Z
 # ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItY2hlY2stY2lyY2xlIiBjb2xvcj0iYmx1ZSI+PHBhdGggZD0iTTIyIDExLjA4VjEyYTEwIDEwIDAgMSAxLTUuOTMtOS4xNCI+PC9wYXRoPjxwb2x5bGluZSBwb2ludHM9IjIyIDQgMTIgMTQuMDEgOSAxMS4wMSI+PC9wb2x5bGluZT48L3N2Zz4=) GitHub Action: Lint
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/9583af06e0716e1d6cf0f13319f864b9b10858c23c40a2073ed4ee97dc6dee98/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Lint" />
+  <img src="https://opengraph.githubassets.com/c4b24a64c2dd90a7b6c8c553224b44ae0e9235d524ea4bd0df4e421323d263a8/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Lint" />
 </div>
 
 ---
@@ -62,13 +62,13 @@ Action to lint Node.js projects with support for pull request reporting and anno
     # Default: `lint:ci`
     command: lint:ci
 
-    # Optional lint report path forwarded to the [parse-ci-reports](https://hoverkraft-tech/ci-github-common/actions/parse-ci-reports) action.
+    # Optional lint report path forwarded to the [parse-ci-reports](https://github.com/hoverkraft-tech/ci-github-common/tree/main/actions/parse-ci-reports) action.
     # Provide an absolute path or one relative to the working directory.
     # When omitted, the action falls back to `auto:lint` detection.
     report-file: ""
 
     # Optional path mapping to adjust file paths in test and coverage reports.
-    # See the [parse-ci-reports documentation](https://hoverkraft-tech/ci-github-common/actions/parse-ci-reports) for details.
+    # See the [parse-ci-reports documentation](https://github.com/hoverkraft-tech/ci-github-common/tree/main/actions/parse-ci-reports) for details.
     path-mapping: ""
 ```
 
@@ -77,23 +77,23 @@ Action to lint Node.js projects with support for pull request reporting and anno
 
 ## Inputs
 
-| **Input**               | **Description**                                                                                                                          | **Required** | **Default** |
-| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------- |
-| **`working-directory`** | Working directory where lint commands are executed.                                                                                      | **false**    | `.`         |
-|                         | Can be absolute or relative to the repository root.                                                                                      |              |             |
-| **`container`**         | Whether running in container mode (skips checkout and node setup)                                                                        | **false**    | `false`     |
-| **`command`**           | npm/pnpm/Yarn script command to run for linting.                                                                                         | **false**    | `lint:ci`   |
-|                         | This should be a script defined in your `package.json`.                                                                                  |              |             |
-|                         | The command should generate lint report files in a standard format.                                                                      |              |             |
-|                         |                                                                                                                                          |              |             |
-|                         | ESLint: `eslint --format json -o eslint-report.json .`                                                                                   |              |             |
-|                         | Prettier: `prettier --check . \| tee prettier-report.txt`                                                                                |              |             |
-|                         | Astro: `astro check \| tee astro-report.txt`                                                                                             |              |             |
-| **`report-file`**       | Optional lint report path forwarded to the [parse-ci-reports](https://hoverkraft-tech/ci-github-common/actions/parse-ci-reports) action. | **false**    | -           |
-|                         | Provide an absolute path or one relative to the working directory.                                                                       |              |             |
-|                         | When omitted, the action falls back to `auto:lint` detection.                                                                            |              |             |
-| **`path-mapping`**      | Optional path mapping to adjust file paths in test and coverage reports.                                                                 | **false**    | -           |
-|                         | See the [parse-ci-reports documentation](https://hoverkraft-tech/ci-github-common/actions/parse-ci-reports) for details.                 |              |             |
+| **Input**               | **Description**                                                                                                                                               | **Required** | **Default** |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------- |
+| **`working-directory`** | Working directory where lint commands are executed.                                                                                                           | **false**    | `.`         |
+|                         | Can be absolute or relative to the repository root.                                                                                                           |              |             |
+| **`container`**         | Whether running in container mode (skips checkout and node setup)                                                                                             | **false**    | `false`     |
+| **`command`**           | npm/pnpm/Yarn script command to run for linting.                                                                                                              | **false**    | `lint:ci`   |
+|                         | This should be a script defined in your `package.json`.                                                                                                       |              |             |
+|                         | The command should generate lint report files in a standard format.                                                                                           |              |             |
+|                         |                                                                                                                                                               |              |             |
+|                         | ESLint: `eslint --format json -o eslint-report.json .`                                                                                                        |              |             |
+|                         | Prettier: `prettier --check . \| tee prettier-report.txt`                                                                                                     |              |             |
+|                         | Astro: `astro check \| tee astro-report.txt`                                                                                                                  |              |             |
+| **`report-file`**       | Optional lint report path forwarded to the [parse-ci-reports](https://github.com/hoverkraft-tech/ci-github-common/tree/main/actions/parse-ci-reports) action. | **false**    | -           |
+|                         | Provide an absolute path or one relative to the working directory.                                                                                            |              |             |
+|                         | When omitted, the action falls back to `auto:lint` detection.                                                                                                 |              |             |
+| **`path-mapping`**      | Optional path mapping to adjust file paths in test and coverage reports.                                                                                      | **false**    | -           |
+|                         | See the [parse-ci-reports documentation](https://github.com/hoverkraft-tech/ci-github-common/tree/main/actions/parse-ci-reports) for details.                 |              |             |
 
 <!-- inputs:end -->
 <!-- secrets:start -->

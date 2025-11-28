@@ -3,8 +3,8 @@ title: Test
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: actions/test/README.md
 source_branch: main
-source_run_id: 19647893684
-last_synced: 2025-11-24T20:22:11.393Z
+source_run_id: 19756093619
+last_synced: 2025-11-28T06:41:44.990Z
 ---
 
 <!-- header:start -->
@@ -12,7 +12,7 @@ last_synced: 2025-11-24T20:22:11.393Z
 # ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItY2hlY2stc3F1YXJlIiBjb2xvcj0iYmx1ZSI+PHBvbHlsaW5lIHBvaW50cz0iOSAxMSAxMiAxNCAyMiA0Ij48L3BvbHlsaW5lPjxwYXRoIGQ9Ik0yMSAxMnY3YTIgMiAwIDAgMS0yIDJINWEyIDIgMCAwIDEtMi0yVjVhMiAyIDAgMCAxIDItMmgxMSI+PC9wYXRoPjwvc3ZnPg==) GitHub Action: Test
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/9583af06e0716e1d6cf0f13319f864b9b10858c23c40a2073ed4ee97dc6dee98/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Test" />
+  <img src="https://opengraph.githubassets.com/c4b24a64c2dd90a7b6c8c553224b44ae0e9235d524ea4bd0df4e421323d263a8/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Test" />
 </div>
 
 ---
@@ -62,14 +62,14 @@ Action to test Node.js projects with support for coverage reporting and pull req
     command: test:ci
 
     # Code coverage reporter to use. Supported values:
-    # - `github`: Parse coverage reports via [parse-ci-reports](https://hoverkraft-tech/ci-github-common/actions/parse-ci-reports) action, with GitHub summaries/PR comments
+    # - `github`: Parse coverage reports via [parse-ci-reports](https://github.com/hoverkraft-tech/ci-github-common/tree/main/actions/parse-ci-reports) action, with GitHub summaries/PR comments
     # - `codecov`: Upload coverage to Codecov
     # - `""` or `null`: No coverage reporting
     #
     # Default: `github`
     coverage: github
 
-    # Optional test and coverage report paths forwarded to the [parse-ci-reports](https://hoverkraft-tech/ci-github-common/actions/parse-ci-reports) action.
+    # Optional test and coverage report paths forwarded to the [parse-ci-reports](https://github.com/hoverkraft-tech/ci-github-common/tree/main/actions/parse-ci-reports) action.
     # Supports multiple formats (Cobertura, OpenCover, lcov, etc.).
     # Provide absolute paths or paths relative to the working directory.
     # Multiple entries can be separated by newlines, commas, or semicolons.
@@ -90,30 +90,30 @@ Action to test Node.js projects with support for coverage reporting and pull req
 
 ## Inputs
 
-| **Input**               | **Description**                                                                                                                                                        | **Required** | **Default** |
-| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------- |
-| **`working-directory`** | Working directory where test commands are executed.                                                                                                                    | **false**    | `.`         |
-|                         | Can be absolute or relative to the repository root.                                                                                                                    |              |             |
-| **`container`**         | Whether running in container mode (skips checkout and node setup)                                                                                                      | **false**    | `false`     |
-| **`command`**           | npm/pnpm/Yarn script command to run for testing.                                                                                                                       | **false**    | `test:ci`   |
-|                         | This should be a script defined in your `package.json`.                                                                                                                |              |             |
-|                         | The command should generate coverage report files in a standard format (Cobertura XML, lcov, etc.).                                                                    |              |             |
-|                         |                                                                                                                                                                        |              |             |
-|                         | Vitest: `vitest run --reporter=default --reporter=junit --outputFile=junit.xml --coverage.enabled --coverage.reporter=lcov --coverage.reporter=text`                   |              |             |
-|                         | Jest: `jest --ci --reporters=default --reporters=jest-junit --coverage`                                                                                                |              |             |
-| **`coverage`**          | Code coverage reporter to use. Supported values:                                                                                                                       | **false**    | `github`    |
-|                         | - `github`: Parse coverage reports via [parse-ci-reports](https://hoverkraft-tech/ci-github-common/actions/parse-ci-reports) action, with GitHub summaries/PR comments |              |             |
-|                         | - `codecov`: Upload coverage to Codecov                                                                                                                                |              |             |
-|                         | - `""` or `null`: No coverage reporting                                                                                                                                |              |             |
-| **`report-file`**       | Optional test and coverage report paths forwarded to the [parse-ci-reports](https://hoverkraft-tech/ci-github-common/actions/parse-ci-reports) action.                 | **false**    | -           |
-|                         | Supports multiple formats (Cobertura, OpenCover, lcov, etc.).                                                                                                          |              |             |
-|                         | Provide absolute paths or paths relative to the working directory.                                                                                                     |              |             |
-|                         | Multiple entries can be separated by newlines, commas, or semicolons.                                                                                                  |              |             |
-|                         | When omitted, the action falls back to `auto:test,auto:coverage` detection.                                                                                            |              |             |
-| **`path-mapping`**      | Optional path mapping to adjust file paths in test and coverage reports.                                                                                               | **false**    | -           |
-|                         | See the [parse-ci-reports documentation](https://hoverkraft-tech/ci-github-common/actions/parse-ci-reports) for details.                                               |              |             |
-| **`github-token`**      | GitHub token for coverage PR comments.                                                                                                                                 | **false**    | -           |
-|                         | Required when coverage is set to `github`.                                                                                                                             |              |             |
+| **Input**               | **Description**                                                                                                                                                                             | **Required** | **Default** |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------- |
+| **`working-directory`** | Working directory where test commands are executed.                                                                                                                                         | **false**    | `.`         |
+|                         | Can be absolute or relative to the repository root.                                                                                                                                         |              |             |
+| **`container`**         | Whether running in container mode (skips checkout and node setup)                                                                                                                           | **false**    | `false`     |
+| **`command`**           | npm/pnpm/Yarn script command to run for testing.                                                                                                                                            | **false**    | `test:ci`   |
+|                         | This should be a script defined in your `package.json`.                                                                                                                                     |              |             |
+|                         | The command should generate coverage report files in a standard format (Cobertura XML, lcov, etc.).                                                                                         |              |             |
+|                         |                                                                                                                                                                                             |              |             |
+|                         | Vitest: `vitest run --reporter=default --reporter=junit --outputFile=junit.xml --coverage.enabled --coverage.reporter=lcov --coverage.reporter=text`                                        |              |             |
+|                         | Jest: `jest --ci --reporters=default --reporters=jest-junit --coverage`                                                                                                                     |              |             |
+| **`coverage`**          | Code coverage reporter to use. Supported values:                                                                                                                                            | **false**    | `github`    |
+|                         | - `github`: Parse coverage reports via [parse-ci-reports](https://github.com/hoverkraft-tech/ci-github-common/tree/main/actions/parse-ci-reports) action, with GitHub summaries/PR comments |              |             |
+|                         | - `codecov`: Upload coverage to Codecov                                                                                                                                                     |              |             |
+|                         | - `""` or `null`: No coverage reporting                                                                                                                                                     |              |             |
+| **`report-file`**       | Optional test and coverage report paths forwarded to the [parse-ci-reports](https://github.com/hoverkraft-tech/ci-github-common/tree/main/actions/parse-ci-reports) action.                 | **false**    | -           |
+|                         | Supports multiple formats (Cobertura, OpenCover, lcov, etc.).                                                                                                                               |              |             |
+|                         | Provide absolute paths or paths relative to the working directory.                                                                                                                          |              |             |
+|                         | Multiple entries can be separated by newlines, commas, or semicolons.                                                                                                                       |              |             |
+|                         | When omitted, the action falls back to `auto:test,auto:coverage` detection.                                                                                                                 |              |             |
+| **`path-mapping`**      | Optional path mapping to adjust file paths in test and coverage reports.                                                                                                                    | **false**    | -           |
+|                         | See the [parse-ci-reports documentation](https://hoverkraft-tech/ci-github-common/actions/parse-ci-reports) for details.                                                                    |              |             |
+| **`github-token`**      | GitHub token for coverage PR comments.                                                                                                                                                      | **false**    | -           |
+|                         | Required when coverage is set to `github`.                                                                                                                                                  |              |             |
 
 <!-- inputs:end -->
 <!-- secrets:start -->
