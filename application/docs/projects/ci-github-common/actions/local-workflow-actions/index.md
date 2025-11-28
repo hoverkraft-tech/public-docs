@@ -3,8 +3,8 @@ title: Local Workflow Actions
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/local-workflow-actions/README.md
 source_branch: main
-source_run_id: 19739224695
-last_synced: 2025-11-27T14:21:59.324Z
+source_run_id: 19758277400
+last_synced: 2025-11-28T08:33:38.831Z
 ---
 
 <!-- header:start -->
@@ -67,7 +67,7 @@ Example: if `local-path` is `./self-workflow` and `actions-path` is `.github/act
     # If not provided, this is automatically filled by the OIDC action.
     repository: ""
 
-    # The git ref (branch, tag, or SHA) of the reusable workflow repository that triggered the current run.
+    # The Git ref (branch, tag, or SHA) of the reusable workflow repository that triggered the current run.
     # If not provided, this is automatically filled by the OIDC action.
     ref: ""
 ```
@@ -85,7 +85,7 @@ Example: if `local-path` is `./self-workflow` and `actions-path` is `.github/act
 | **`local-path`**   | Path inside the current workspace where to copy the local actions from the reusable workflow repository.           | **false**    | `./self-workflow` |
 | **`repository`**   | The reusable workflow repository that triggered the current run, in the format `owner/repo`.                       | **false**    | -                 |
 |                    | If not provided, this is automatically filled by the OIDC action.                                                  |              |                   |
-| **`ref`**          | The git ref (branch, tag, or SHA) of the reusable workflow repository that triggered the current run.              | **false**    | -                 |
+| **`ref`**          | The Git ref (branch, tag, or SHA) of the reusable workflow repository that triggered the current run.              | **false**    | -                 |
 |                    | If not provided, this is automatically filled by the OIDC action.                                                  |              |                   |
 
 <!-- inputs:end -->
@@ -100,7 +100,7 @@ Example: if `local-path` is `./self-workflow` and `actions-path` is `.github/act
 | **Output**       | **Description**                                                                             |
 | ---------------- | ------------------------------------------------------------------------------------------- |
 | **`repository`** | The reusable workflow repository that was checked out, in the format `owner/repo`.          |
-| **`ref`**        | The git ref (branch, tag, or SHA) of the reusable workflow repository that was checked out. |
+| **`ref`**        | The Git ref (branch, tag, or SHA) of the reusable workflow repository that was checked out. |
 
 <!-- outputs:end -->
 
