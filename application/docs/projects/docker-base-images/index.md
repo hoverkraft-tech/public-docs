@@ -3,8 +3,8 @@ title: Docker Base Images
 source_repo: hoverkraft-tech/docker-base-images
 source_path: README.md
 source_branch: main
-source_run_id: 19765889906
-last_synced: 2025-11-28T14:03:11.614Z
+source_run_id: 19805479106
+last_synced: 2025-11-30T22:09:15.460Z
 ---
 
 # docker-base-images
@@ -42,6 +42,8 @@ _Actions that you can plug directly into your own Docker images repository._
 ### Get available images matrix
 
 _Orchestrated workflows you can plug directly into your own Docker images repository._
+
+### - [Continuous Integration](github/workflows/continuous-integration.md)
 
 ### - [Prune pull requests images tags](github/workflows/prune-pull-requests-images-tags.md)
 
@@ -91,6 +93,13 @@ actions/{category}/{action-name}/
 make lint        # Run Super Linter (dockerized)
 make lint-fix    # Auto-fix issues where possible
 
+# Run tests for a specific image
+make test ci-helm      # Build and test ci-helm image
+make test mydumper     # Build and test mydumper image
+
+# Run tests for all images
+make test-all          # Build and test all images with tests
+
 # Use GitHub Actions locally with `act`
 gh act -W .github/workflows/workflow-file-to-test.yml
 ```
@@ -98,7 +107,7 @@ gh act -W .github/workflows/workflow-file-to-test.yml
 #### File Conventions
 
 - **Dockerfile**: Uses Super Linter slim image for consistent code quality
-- **Tests**: Located in `tests/` with expected vs actual file comparisons
+- **Tests**: Located in `images/<image-name>/container-structure-test.yaml` using [container-structure-test](https://github.com/GoogleContainerTools/container-structure-test)
 - **Workflows**: Private workflows prefixed with `__` (e.g., `__main-ci.yml`)
 
 #### Action Development Conventions
