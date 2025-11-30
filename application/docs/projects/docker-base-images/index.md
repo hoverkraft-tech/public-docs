@@ -3,8 +3,8 @@ title: Docker Base Images
 source_repo: hoverkraft-tech/docker-base-images
 source_path: README.md
 source_branch: main
-source_run_id: 19805479106
-last_synced: 2025-11-30T22:09:15.460Z
+source_run_id: 19805908509
+last_synced: 2025-11-30T22:44:48.522Z
 ---
 
 # docker-base-images
@@ -17,6 +17,8 @@ This repository offers:
 - GitHub Actions and reusable workflows to help you build and publish your own "Docker base images" repository.
 
 ## Our images
+
+### [argocd-cmp-hk-deployment](images/argocd-cmp-hk-deployment/index.md)
 
 ### [ci-helm](images/ci-helm/index.md)
 
