@@ -1,6 +1,6 @@
 ---
 source_repo: hoverkraft-tech/docker-base-images
-source_path: .github/workflows/docker-build-images.md
+source_path: .github/workflows/continuous-integration.md
 source_branch: main
 source_run_id: 19805479106
 last_synced: 2025-11-30T22:09:15.460Z
@@ -8,10 +8,10 @@ last_synced: 2025-11-30T22:09:15.460Z
 
 <!-- header:start -->
 
-# GitHub Reusable Workflow: Build Docker images
+# GitHub Reusable Workflow: Continuous Integration
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/a86ae1d763c977be3b15b6e627be14fbae27358b11b2746cd5403f5807fd3149/hoverkraft-tech/docker-base-images" width="60px" align="center" alt="Build Docker images" />
+  <img src="https://opengraph.githubassets.com/a86ae1d763c977be3b15b6e627be14fbae27358b11b2746cd5403f5807fd3149/hoverkraft-tech/docker-base-images" width="60px" align="center" alt="Continuous Integration" />
 </div>
 
 ---
@@ -26,21 +26,80 @@ last_synced: 2025-11-30T22:09:15.460Z
 
 <!-- badges:end -->
 <!-- overview:start -->
+
+## Overview
+
+A comprehensive CI workflow that performs linting, builds Docker images, and runs tests against the built images using [container-structure-test](https://github.com/GoogleContainerTools/container-structure-test).
+
+### Jobs
+
+1. **linter**: Runs code linting using the shared linter workflow
+2. **build-images**: Builds Docker images (depends on linter)
+3. **prepare-test-matrix**: Prepares the matrix for test jobs
+4. **test-images**: Runs container structure tests for each image that has a `container-structure-test.yaml` file
+
+### Permissions
+
+- **`actions`**: `read`
+- **`contents`**: `read`
+- **`id-token`**: `write`
+- **`issues`**: `write`
+- **`packages`**: `write`
+- **`pull-requests`**: `write`
+- **`security-events`**: `write`
+- **`statuses`**: `write`
+
 <!-- overview:end -->
+
+## Testing
+
+Tests are defined in `images/<image-name>/container-structure-test.yaml` using [container-structure-test](https://github.com/GoogleContainerTools/container-structure-test).
+
+### Test Configuration
+
+Each image can have a `container-structure-test.yaml` file with:
+
+- `commandTests` - Verify commands run correctly in the container
+- `fileExistenceTests` - Check files/directories exist
+- `fileContentTests` - Verify file contents
+- `metadataTest` - Validate container metadata (env vars, user, workdir, etc.)
+
+### Example Test Configuration
+
+```yaml
+schemaVersion: "2.0.0"
+
+commandTests:
+  - name: "helm is installed"
+    command: "helm"
+    args: ["version"]
+    exitCode: 0
+
+fileExistenceTests:
+  - name: "script exists"
+    path: "/usr/local/bin/script.sh"
+    shouldExist: true
+    isExecutableBy: "any"
+
+metadataTest:
+  user: "appuser"
+  workdir: "/app"
+```
+
 <!-- usage:start -->
 
 ## Usage
 
 ```yaml
-name: Build Docker images
+name: Continuous Integration
 on:
   push:
     branches:
       - main
 permissions: {}
 jobs:
-  docker-build-images:
-    uses: hoverkraft-tech/docker-base-images/.github/workflows/docker-build-images.yml@7e32f7efd335ebace32a5de08e8ce4c4d55227f2 # 0.1.0
+  continuous-integration:
+    uses: hoverkraft-tech/docker-base-images/.github/workflows/continuous-integration.yml@7e32f7efd335ebace32a5de08e8ce4c4d55227f2 # 0.1.0
     permissions: {}
     secrets:
       # Password or GitHub token (packages:read and packages:write scopes) used to log against the OCI registry.
@@ -76,11 +135,6 @@ jobs:
 ```
 
 <!-- usage:end -->
-
-<!--
-// jscpd:ignore-start
--->
-
 <!-- inputs:start -->
 
 ## Inputs
@@ -103,7 +157,7 @@ jobs:
 <!-- inputs:end -->
 
 <!--
-// jscpd:ignore-end
+// jscpd:ignore-start
 -->
 
 <!-- secrets:start -->
@@ -126,6 +180,11 @@ jobs:
 |                    | See [https://github.com/hoverkraft-tech/ci-github-container/blob/main/.github/workflows/docker-build-images.md#outputs](https://github.com/hoverkraft-tech/ci-github-container/blob/main/.github/workflows/docker-build-images.md#outputs). |
 
 <!-- outputs:end -->
+
+<!--
+// jscpd:ignore-end
+-->
+
 <!-- examples:start -->
 <!-- examples:end -->
 
