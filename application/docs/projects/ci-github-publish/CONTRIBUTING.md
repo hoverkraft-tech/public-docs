@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: CONTRIBUTING.md
 source_branch: main
-source_run_id: 19763139743
-last_synced: 2025-11-28T12:01:09.786Z
+source_run_id: 19831799702
+last_synced: 2025-12-01T17:39:50.758Z
 ---
 
 # Contributing

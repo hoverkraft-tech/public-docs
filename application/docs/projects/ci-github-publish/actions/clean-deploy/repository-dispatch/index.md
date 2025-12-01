@@ -3,8 +3,8 @@ title: Repository Dispatch
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/clean-deploy/repository-dispatch/README.md
 source_branch: main
-source_run_id: 19763139743
-last_synced: 2025-11-28T12:01:09.786Z
+source_run_id: 19831799702
+last_synced: 2025-12-01T17:39:50.758Z
 ---
 
 <!-- header:start -->
@@ -47,7 +47,7 @@ See [https://docs.github.com/en/actions/writing-workflows/choosing-when-your-wor
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/clean-deploy/repository-dispatch@ecafdeac18a6a6dcc01058cd53ac7431bedb5c3b # 0.14.1
+- uses: hoverkraft-tech/ci-github-publish/actions/clean-deploy/repository-dispatch@5358acdb08b912114974ecc06a057cda8d391aa5 # 0.17.0
   with:
     # GitHub Token for dispatch an event to a remote repository.
     # Permissions:

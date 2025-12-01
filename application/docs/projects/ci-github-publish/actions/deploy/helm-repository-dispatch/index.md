@@ -3,8 +3,8 @@ title: Helm Repository Dispatch
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/deploy/helm-repository-dispatch/README.md
 source_branch: main
-source_run_id: 19763139743
-last_synced: 2025-11-28T12:01:09.786Z
+source_run_id: 19831799702
+last_synced: 2025-12-01T17:39:50.758Z
 ---
 
 <!-- header:start -->
@@ -51,7 +51,7 @@ See [https://docs.github.com/en/actions/writing-workflows/choosing-when-your-wor
 ## Usage
 
 ````yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/deploy/helm-repository-dispatch@dbdcce2870b33525ac1fa26069bf95b2dd586fda # 0.15.2
+- uses: hoverkraft-tech/ci-github-publish/actions/deploy/helm-repository-dispatch@5358acdb08b912114974ecc06a057cda8d391aa5 # 0.17.0
   with:
     # Deployment ID to be used in the ArgoCD application manifest
     # This input is required.
