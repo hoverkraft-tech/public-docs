@@ -8,4 +8,4 @@ description: Documentation for Ci Github Container
 Documentation for the Ci Github Container project.
 
 **Source Repository:** [hoverkraft-tech/ci-github-container](https://github.com/hoverkraft-tech/ci-github-container)
-**Last Synced:** 2025-11-25T14:40:50.368Z
+**Last Synced:** 2025-12-01T19:30:00.415Z

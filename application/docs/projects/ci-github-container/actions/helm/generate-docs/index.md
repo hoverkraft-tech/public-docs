@@ -3,8 +3,8 @@ title: Generate Docs
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/helm/generate-docs/README.md
 source_branch: main
-source_run_id: 19673154420
-last_synced: 2025-11-25T14:40:50.368Z
+source_run_id: 19834709471
+last_synced: 2025-12-01T19:30:00.415Z
 ---
 
 <!-- header:start -->

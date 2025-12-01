@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-container
 source_path: .github/workflows/prune-pull-requests-images-tags.md
 source_branch: main
-source_run_id: 19673154420
-last_synced: 2025-11-25T14:40:50.368Z
+source_run_id: 19834709471
+last_synced: 2025-12-01T19:30:00.415Z
 ---
 
 <!-- header:start -->
@@ -57,11 +57,7 @@ permissions: {}
 jobs:
   prune-pull-requests-images-tags:
     uses: hoverkraft-tech/ci-github-container/.github/workflows/prune-pull-requests-images-tags.yml@0d92511a38c93e30ae0f8b82346116946987a9ca # 0.30.0
-    permissions:
-      contents: read
-      pull-requests: read
-      packages: write
-      id-token: write
+    permissions: {}
     with:
       # JSON array of runner(s) to use.
       # See https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job.
