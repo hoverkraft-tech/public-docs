@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/docker-base-images
 source_path: .github/workflows/get-available-images-matrix.md
 source_branch: main
-source_run_id: 19815671284
-last_synced: 2025-12-01T08:12:38.166Z
+source_run_id: 19816126245
+last_synced: 2025-12-01T08:31:43.357Z
 ---
 
 <!-- header:start -->
@@ -11,7 +11,7 @@ last_synced: 2025-12-01T08:12:38.166Z
 # GitHub Reusable Workflow: Get available images matrix
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/f8f4245df0bff268f81c356b96b6f07dd56f91e50b0b91f071c778fe040c27f1/hoverkraft-tech/docker-base-images" width="60px" align="center" alt="Get available images matrix" />
+  <img src="https://opengraph.githubassets.com/3496bbf9d0be273ecaaa93e49bc2529bc3334d2236136e39c3446a612c09b5d6/hoverkraft-tech/docker-base-images" width="60px" align="center" alt="Get available images matrix" />
 </div>
 
 ---
@@ -51,7 +51,7 @@ on:
 permissions: {}
 jobs:
   get-available-images-matrix:
-    uses: hoverkraft-tech/docker-base-images/.github/workflows/get-available-images-matrix.yml@7e32f7efd335ebace32a5de08e8ce4c4d55227f2 # 0.1.0
+    uses: hoverkraft-tech/docker-base-images/.github/workflows/get-available-images-matrix.yml@ad965683cf180fd7b09b6bd3948fdc1a164c6661 # 0.2.0
     permissions: {}
     with:
       # JSON array of runner(s) to use.
