@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-container
 source_path: .github/workflows/docker-build-images.md
 source_branch: main
-source_run_id: 19673154420
-last_synced: 2025-11-25T14:40:50.368Z
+source_run_id: 19834709471
+last_synced: 2025-12-01T19:30:00.415Z
 ---
 
 <!-- header:start -->
@@ -59,12 +59,7 @@ permissions: {}
 jobs:
   docker-build-images:
     uses: hoverkraft-tech/ci-github-container/.github/workflows/docker-build-images.yml@0d92511a38c93e30ae0f8b82346116946987a9ca # 0.30.0
-    permissions:
-      contents: read
-      issues: read
-      packages: write
-      pull-requests: read
-      id-token: write
+    permissions: {}
     secrets:
       # Password or GitHub token (`packages:read` and `packages:write` scopes) used to log against the OCI registry.
       # See https://github.com/docker/login-action#usage.
