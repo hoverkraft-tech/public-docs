@@ -3,8 +3,8 @@ title: Github Pages
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/deploy/github-pages/README.md
 source_branch: main
-source_run_id: 19831799702
-last_synced: 2025-12-01T17:39:50.758Z
+source_run_id: 19838025579
+last_synced: 2025-12-01T21:28:29.759Z
 ---
 
 <!-- header:start -->
