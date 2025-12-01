@@ -3,8 +3,8 @@ title: Get Available Images
 source_repo: hoverkraft-tech/docker-base-images
 source_path: actions/get-available-images/README.md
 source_branch: main
-source_run_id: 19805908509
-last_synced: 2025-11-30T22:44:48.522Z
+source_run_id: 19815671284
+last_synced: 2025-12-01T08:12:38.166Z
 ---
 
 <!-- header:start -->
