@@ -3,8 +3,8 @@ title: Generate Docs
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/helm/generate-docs/README.md
 source_branch: main
-source_run_id: 19837261493
-last_synced: 2025-12-01T21:04:52.767Z
+source_run_id: 19850202316
+last_synced: 2025-12-02T07:13:26.385Z
 ---
 
 <!-- header:start -->
@@ -44,7 +44,7 @@ Mainly using [losisin/helm-docs-github-action](https://github.com/losisin/helm-d
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-container/actions/helm/generate-docs@0d92511a38c93e30ae0f8b82346116946987a9ca # 0.30.0
+- uses: hoverkraft-tech/ci-github-container/actions/helm/generate-docs@6901a2c6c6f5fc6d75fc40f0fb216e6984093f4b # 0.30.1
   with:
     # Working directory
     # Default: `${{ github.workspace }}`
