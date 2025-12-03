@@ -3,8 +3,8 @@ title: Generate Docs
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/helm/generate-docs/README.md
 source_branch: main
-source_run_id: 19853262818
-last_synced: 2025-12-02T09:20:26.344Z
+source_run_id: 19887082691
+last_synced: 2025-12-03T08:26:30.588Z
 ---
 
 <!-- header:start -->
@@ -77,19 +77,19 @@ Mainly using [losisin/helm-docs-github-action](https://github.com/losisin/helm-d
 
 ## Inputs
 
-| **Input**               | **Description**                                                                                                             | **Required** | **Default**                 |
-| ----------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------------------- |
-| **`working-directory`** | Working directory                                                                                                           | **false**    | `$\{\{ github.workspace }}` |
-| **`values-file`**       | Path to the values file to use for generating the documentation.                                                            | **false**    | -                           |
-|                         | See [https://github.com/losisin/helm-values-schema-json-action](https://github.com/losisin/helm-values-schema-json-action). |              |                             |
-| **`github-token`**      | GitHub Token to create and merge pull request.                                                                              | **false**    | `$\{\{ github.token }}`     |
-|                         | Permissions:                                                                                                                |              |                             |
-|                         | - contents: write                                                                                                           |              |                             |
-|                         | - pull-requests: write                                                                                                      |              |                             |
-| **`github-app-id`**     | GitHub App ID to generate GitHub token in place of github-token.                                                            | **false**    | -                           |
-|                         | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).               |              |                             |
-| **`github-app-key`**    | GitHub App private key to generate GitHub token in place of github-token.                                                   | **false**    | -                           |
-|                         | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).               |              |                             |
+| **Input**               | **Description**                                                           | **Required** | **Default**                 |
+| ----------------------- | ------------------------------------------------------------------------- | ------------ | --------------------------- |
+| **`working-directory`** | Working directory                                                         | **false**    | `$\{\{ github.workspace }}` |
+| **`values-file`**       | Path to the values file to use for generating the documentation.          | **false**    | -                           |
+|                         | See [https://github.com/losisin/helm-values-schema-json-action](https://github.com/losisin/helm-values-schema-json-action).          |              |                             |
+| **`github-token`**      | GitHub Token to create and merge pull request.                            | **false**    | `$\{\{ github.token }}`     |
+|                         | Permissions:                                                              |              |                             |
+|                         | - contents: write                                                         |              |                             |
+|                         | - pull-requests: write                                                    |              |                             |
+| **`github-app-id`**     | GitHub App ID to generate GitHub token in place of github-token.          | **false**    | -                           |
+|                         | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                 |              |                             |
+| **`github-app-key`**    | GitHub App private key to generate GitHub token in place of github-token. | **false**    | -                           |
+|                         | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                 |              |                             |
 
 <!-- inputs:end -->
 
