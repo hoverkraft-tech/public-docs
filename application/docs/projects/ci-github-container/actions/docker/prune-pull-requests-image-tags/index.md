@@ -3,8 +3,8 @@ title: Prune Pull Requests Image Tags
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/docker/prune-pull-requests-image-tags/README.md
 source_branch: main
-source_run_id: 19853262818
-last_synced: 2025-12-02T09:20:26.344Z
+source_run_id: 19887082691
+last_synced: 2025-12-03T08:26:30.588Z
 ---
 
 <!-- header:start -->
@@ -53,7 +53,7 @@ permissions:
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-container/actions/docker/prune-pull-requests-image-tags@0d92511a38c93e30ae0f8b82346116946987a9ca # 0.30.0
+- uses: hoverkraft-tech/ci-github-container/actions/docker/prune-pull-requests-image-tags@6901a2c6c6f5fc6d75fc40f0fb216e6984093f4b # 0.30.1
   with:
     # Image name
     image: ""
@@ -75,11 +75,11 @@ permissions:
 
 ## Inputs
 
-| **Input**                     | **Description**                                                                                                                                                                                                                                                                                                 | **Required** | **Default**             |
-| ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------------------- |
-| **`image`**                   | Image name                                                                                                                                                                                                                                                                                                      | **false**    | -                       |
-| **`pull-request-tag-filter`** | The regular expression to match pull request tags. Must have a capture group for the pull request number.                                                                                                                                                                                                       | **false**    | `^pr-([0-9]+)(?:-\|$)`  |
-| **`github-token`**            | GitHub token with the folowing scopes: `pull-requests:read`, `packages:read` and `packages:delete`.                                                                                                                                                                                                             | **false**    | `$\{\{ github.token }}` |
+| **Input**                     | **Description**                                                                                                                                            | **Required** | **Default**             |
+| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------------------- |
+| **`image`**                   | Image name                                                                                                                                                 | **false**    | -                       |
+| **`pull-request-tag-filter`** | The regular expression to match pull request tags. Must have a capture group for the pull request number.                                                  | **false**    | `^pr-([0-9]+)(?:-\|$)`  |
+| **`github-token`**            | GitHub token with the folowing scopes: `pull-requests:read`, `packages:read` and `packages:delete`.                                                        | **false**    | `$\{\{ github.token }}` |
 |                               | See [https://docs.github.com/en/packages/learn-github-packages/about-permissions-for-github-packages#about-scopes-and-permissions-for-package-registries](https://docs.github.com/en/packages/learn-github-packages/about-permissions-for-github-packages#about-scopes-and-permissions-for-package-registries). |              |                         |
 
 <!-- inputs:end -->
