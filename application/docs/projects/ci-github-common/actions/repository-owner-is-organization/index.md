@@ -2,9 +2,9 @@
 title: Repository Owner Is Organization
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/repository-owner-is-organization/README.md
-source_branch: 0.31.2
-source_run_id: 19815761640
-last_synced: 2025-12-01T08:17:49.696Z
+source_branch: main
+source_run_id: 19886305876
+last_synced: 2025-12-03T07:50:01.778Z
 ---
 
 <!-- header:start -->
