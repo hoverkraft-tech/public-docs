@@ -3,8 +3,8 @@ title: Get Environment
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/deploy/get-environment/README.md
 source_branch: main
-source_run_id: 19852971165
-last_synced: 2025-12-02T09:07:23.786Z
+source_run_id: 19887977986
+last_synced: 2025-12-03T08:58:49.041Z
 ---
 
 <!-- header:start -->
@@ -50,7 +50,7 @@ Action to get the environment to deploy regarding the workflow context.
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/deploy/get-environment@5358acdb08b912114974ecc06a057cda8d391aa5 # 0.17.0
+- uses: hoverkraft-tech/ci-github-publish/actions/deploy/get-environment@d7f1c4c95181e34ac3bd6bd4ef46d463b2eb62ad # 0.17.1
   with:
     # Environment where to deploy.
     environment: ""
