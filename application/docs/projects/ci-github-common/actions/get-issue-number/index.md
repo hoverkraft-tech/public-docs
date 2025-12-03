@@ -2,9 +2,9 @@
 title: Get Issue Number
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/get-issue-number/README.md
-source_branch: main
-source_run_id: 19886305876
-last_synced: 2025-12-03T07:50:01.778Z
+source_branch: 0.31.3
+source_run_id: 19886500374
+last_synced: 2025-12-03T08:01:03.524Z
 ---
 
 <!-- header:start -->
@@ -42,7 +42,7 @@ Action to get Pull request or issue number
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-common/actions/get-issue-number@2d3c39a47c6af3b9d57a230bcaf57d03093e96db # 0.31.2
+- uses: hoverkraft-tech/ci-github-common/actions/get-issue-number@5ac504609f6ef35c5ac94bd8199063aa32104721 # 0.31.3
 ```
 
 <!-- usage:end -->
