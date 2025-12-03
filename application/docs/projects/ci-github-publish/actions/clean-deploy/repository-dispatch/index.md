@@ -3,8 +3,8 @@ title: Repository Dispatch
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/clean-deploy/repository-dispatch/README.md
 source_branch: main
-source_run_id: 19852971165
-last_synced: 2025-12-02T09:07:23.786Z
+source_run_id: 19887977986
+last_synced: 2025-12-03T08:58:49.041Z
 ---
 
 <!-- header:start -->
@@ -76,14 +76,14 @@ See [https://docs.github.com/en/actions/writing-workflows/choosing-when-your-wor
 
 ## Inputs
 
-| **Input**          | **Description**                                                                                                           | **Required** | **Default**             |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------------------- |
-| **`github-token`** | GitHub Token for dispatch an event to a remote repository.                                                                | **false**    | `$\{\{ github.token }}` |
-|                    | Permissions:                                                                                                              |              |                         |
-|                    | - contents: write                                                                                                         |              |                         |
+| **Input**          | **Description**                                                 | **Required** | **Default**             |
+| ------------------ | --------------------------------------------------------------- | ------------ | ----------------------- |
+| **`github-token`** | GitHub Token for dispatch an event to a remote repository.      | **false**    | `$\{\{ github.token }}` |
+|                    | Permissions:                                                    |              |                         |
+|                    | - contents: write                                               |              |                         |
 |                    | See [https://github.com/peter-evans/repository-dispatch#usage](https://github.com/peter-evans/repository-dispatch#usage). |              |                         |
-| **`repository`**   | Target repository where the deployment should be cleaned.                                                                 | **true**     | -                       |
-| **`environment`**  | Environment where to clean the deployment.                                                                                | **true**     | -                       |
+| **`repository`**   | Target repository where the deployment should be cleaned.       | **true**     | -                       |
+| **`environment`**  | Environment where to clean the deployment.                      | **true**     | -                       |
 
 <!-- inputs:end -->
 
