@@ -3,8 +3,8 @@ title: Setup Node
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: actions/setup-node/README.md
 source_branch: main
-source_run_id: 19805415468
-last_synced: 2025-11-30T22:05:02.570Z
+source_run_id: 19935123681
+last_synced: 2025-12-04T16:01:54.436Z
 ---
 
 <!-- header:start -->
@@ -12,7 +12,7 @@ last_synced: 2025-11-30T22:05:02.570Z
 # ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItc2V0dGluZ3MiIGNvbG9yPSJibHVlIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIzIj48L2NpcmNsZT48cGF0aCBkPSJNMTkuNCAxNWExLjY1IDEuNjUgMCAwIDAgLjMzIDEuODJsLjA2LjA2YTIgMiAwIDAgMSAwIDIuODMgMiAyIDAgMCAxLTIuODMgMGwtLjA2LS4wNmExLjY1IDEuNjUgMCAwIDAtMS44Mi0uMzMgMS42NSAxLjY1IDAgMCAwLTEgMS41MVYyMWEyIDIgMCAwIDEtMiAyIDIgMiAwIDAgMS0yLTJ2LS4wOUExLjY1IDEuNjUgMCAwIDAgOSAxOS40YTEuNjUgMS42NSAwIDAgMC0xLjgyLjMzbC0uMDYuMDZhMiAyIDAgMCAxLTIuODMgMCAyIDIgMCAwIDEgMC0yLjgzbC4wNi0uMDZhMS42NSAxLjY1IDAgMCAwIC4zMy0xLjgyIDEuNjUgMS42NSAwIDAgMC0xLjUxLTFIM2EyIDIgMCAwIDEtMi0yIDIgMiAwIDAgMSAyLTJoLjA5QTEuNjUgMS42NSAwIDAgMCA0LjYgOWExLjY1IDEuNjUgMCAwIDAtLjMzLTEuODJsLS4wNi0uMDZhMiAyIDAgMCAxIDAtMi44MyAyIDIgMCAwIDEgMi44MyAwbC4wNi4wNmExLjY1IDEuNjUgMCAwIDAgMS44Mi4zM0g5YTEuNjUgMS42NSAwIDAgMCAxLTEuNTFWM2EyIDIgMCAwIDEgMi0yIDIgMiAwIDAgMSAyIDJ2LjA5YTEuNjUgMS42NSAwIDAgMCAxIDEuNTEgMS42NSAxLjY1IDAgMCAwIDEuODItLjMzbC4wNi0uMDZhMiAyIDAgMCAxIDIuODMgMCAyIDIgMCAwIDEgMCAyLjgzbC0uMDYuMDZhMS42NSAxLjY1IDAgMCAwLS4zMyAxLjgyVjlhMS42NSAxLjY1IDAgMCAwIDEuNTEgMUgyMWEyIDIgMCAwIDEgMiAyIDIgMiAwIDAgMS0yIDJoLS4wOWExLjY1IDEuNjUgMCAwIDAtMS41MSAxeiI+PC9wYXRoPjwvc3ZnPg==) GitHub Action: Setup Node.js
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/37509d7404c261847696d98c678948e95b072f3217fcfba735757b21fad5b5d7/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Setup Node.js" />
+  <img src="https://opengraph.githubassets.com/8c7d895c661d9793e64c7551c409ca4fe0d8a9e400ec1aaa14400aa9a2b7a69a/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Setup Node.js" />
 </div>
 
 ---
@@ -42,7 +42,7 @@ Action to setup Node.js and install dependencies according to the package manage
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-nodejs/actions/setup-node@ce2467e5d41ff0abe85094dcc39c98288448065a # 0.20.4
+- uses: hoverkraft-tech/ci-github-nodejs/actions/setup-node@338755b95043af1f8aa17409529fd20a9d2ef659 # 0.20.6
   with:
     # List of dependencies for which the cache should be managed
     dependencies-cache: ""
@@ -52,6 +52,10 @@ Action to setup Node.js and install dependencies according to the package manage
     #
     # Default: `.`
     working-directory: .
+
+    # Optional registry to set up for auth.
+    # See https://github.com/actions/setup-node?tab=readme-ov-file#usage.
+    registry-url: ""
 ```
 
 <!-- usage:end -->
@@ -60,11 +64,13 @@ Action to setup Node.js and install dependencies according to the package manage
 
 ## Inputs
 
-| **Input**                | **Description**                                            | **Required** | **Default** |
-| ------------------------ | ---------------------------------------------------------- | ------------ | ----------- |
-| **`dependencies-cache`** | List of dependencies for which the cache should be managed | **false**    | -           |
-| **`working-directory`**  | Working directory where the dependencies are installed.    | **false**    | `.`         |
-|                          | Can be absolute or relative to the repository root.        |              |             |
+| **Input**                | **Description**                                                       | **Required** | **Default** |
+| ------------------------ | --------------------------------------------------------------------- | ------------ | ----------- |
+| **`dependencies-cache`** | List of dependencies for which the cache should be managed            | **false**    | -           |
+| **`working-directory`**  | Working directory where the dependencies are installed.               | **false**    | `.`         |
+|                          | Can be absolute or relative to the repository root.                   |              |             |
+| **`registry-url`**       | Optional registry to set up for auth.                                 | **false**    | -           |
+|                          | See [https://github.com/actions/setup-node?tab=readme-ov-file#usage](https://github.com/actions/setup-node?tab=readme-ov-file#usage). |              |             |
 
 <!-- inputs:end -->
 
