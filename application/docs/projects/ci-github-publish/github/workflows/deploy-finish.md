@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/deploy-finish.md
 source_branch: main
-source_run_id: 19923791550
-last_synced: 2025-12-04T09:21:58.171Z
+source_run_id: 19924144296
+last_synced: 2025-12-04T09:34:19.038Z
 ---
 
 <!-- header:start -->
@@ -68,7 +68,7 @@ on:
 permissions: {}
 jobs:
   deploy-finish:
-    uses: hoverkraft-tech/ci-github-publish/.github/workflows/deploy-finish.yml@d7f1c4c95181e34ac3bd6bd4ef46d463b2eb62ad # 0.17.1
+    uses: hoverkraft-tech/ci-github-publish/.github/workflows/deploy-finish.yml@55f6193fb7a9eaab81f5db18aa0c3400971d87b3 # 0.17.3
     permissions: {}
     with:
       # JSON array of runner(s) to use.
