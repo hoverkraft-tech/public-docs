@@ -3,8 +3,8 @@ title: Get Configuration
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/release/get-configuration/README.md
 source_branch: main
-source_run_id: 19923652299
-last_synced: 2025-12-04T09:17:04.509Z
+source_run_id: 19923791550
+last_synced: 2025-12-04T09:21:58.171Z
 ---
 
 <!-- header:start -->
