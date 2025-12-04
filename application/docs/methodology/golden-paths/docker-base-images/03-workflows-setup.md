@@ -35,7 +35,7 @@ permissions: {}
 
 jobs:
   build:
-    uses: hoverkraft-tech/docker-base-images/.github/workflows/docker-build-images.yml@a1b2c3d # 1.0.0
+    uses: hoverkraft-tech/docker-base-images/.github/workflows/docker-build-images.yml@<version-sha> # x.y.z
     permissions:
       contents: read
       id-token: write
@@ -49,7 +49,7 @@ The `docker-build-images.yml` workflow accepts these inputs:
 ```yaml
 jobs:
   build:
-    uses: hoverkraft-tech/docker-base-images/.github/workflows/docker-build-images.yml@a1b2c3d # 1.0.0
+    uses: hoverkraft-tech/docker-base-images/.github/workflows/docker-build-images.yml@<version-sha> # x.y.z
     permissions:
       contents: read
       id-token: write
@@ -140,7 +140,7 @@ jobs:
 
   prune-pr-images:
     needs: call-shared-ci
-    uses: hoverkraft-tech/docker-base-images/.github/workflows/prune-pull-requests-images-tags.yml@a1b2c3d # 1.0.0
+    uses: hoverkraft-tech/docker-base-images/.github/workflows/prune-pull-requests-images-tags.yml@<version-sha> # x.y.z
     permissions:
       contents: read
       id-token: write
@@ -176,7 +176,7 @@ permissions: {}
 
 jobs:
   semantic-pull-request:
-    uses: hoverkraft-tech/ci-github-common/.github/workflows/semantic-pull-request.yml@b2c3d4e # 2.0.0
+    uses: hoverkraft-tech/ci-github-common/.github/workflows/semantic-pull-request.yml@<version-sha> # x.y.z
     permissions:
       pull-requests: read
 ```
@@ -217,7 +217,7 @@ permissions: {}
 
 jobs:
   stale:
-    uses: hoverkraft-tech/ci-github-common/.github/workflows/stale.yml@c3d4e5f # 2.1.0
+    uses: hoverkraft-tech/ci-github-common/.github/workflows/stale.yml@<version-sha> # x.y.z
     permissions:
       issues: write
       pull-requests: write
@@ -250,7 +250,7 @@ permissions: {}
 jobs:
   need-fix-to-issue:
     if: github.event.label.name == 'need-fix'
-    uses: hoverkraft-tech/ci-github-common/.github/workflows/need-fix-to-issue.yml@c3d4e5f # 2.1.0
+    uses: hoverkraft-tech/ci-github-common/.github/workflows/need-fix-to-issue.yml@<version-sha> # x.y.z
     permissions:
       issues: write
       pull-requests: write
@@ -271,7 +271,7 @@ For production use, pin workflow versions to specific commits:
 
 ```yaml
 # Use the format @<version-sha> # x.y.z instead of @main
-uses: hoverkraft-tech/docker-base-images/.github/workflows/docker-build-images.yml@a1b2c3d # 1.0.0
+uses: hoverkraft-tech/docker-base-images/.github/workflows/docker-build-images.yml@<version-sha> # x.y.z
 ```
 
 To find the latest release SHA:
