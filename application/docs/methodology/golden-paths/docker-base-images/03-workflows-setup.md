@@ -10,12 +10,14 @@ This page covers setting up the GitHub Actions workflows for your Docker base im
 
 You'll create these workflow files:
 
-| Workflow                      | Purpose                               | Trigger                   |
-| ----------------------------- | ------------------------------------- | ------------------------- |
-| `__shared-ci.yml`             | Central CI logic (lint, build images) | Called by other workflows |
-| `__pull-request-ci.yml`       | PR validation and preview builds      | Pull requests             |
-| `__main-ci.yml`               | Main branch builds and cleanup        | Push to main              |
-| `__semantic-pull-request.yml` | PR title validation                   | Pull requests             |
+| Workflow                    | Purpose                               | Trigger                   |
+| --------------------------- | ------------------------------------- | ------------------------- |
+| `__shared-ci.yml`           | Central CI logic (lint, build images) | Called by other workflows |
+| `pull-request-ci.yml`       | PR validation and preview builds      | Pull requests             |
+| `main-ci.yml`               | Main branch builds and cleanup        | Push to main              |
+| `semantic-pull-request.yml` | PR title validation                   | Pull requests             |
+| `stale.yml`                 | Mark stale issues and PRs             | Scheduled                 |
+| `need-fix-to-issue.yml`     | Convert PRs with need-fix to issues   | Pull requests             |
 
 ## Step 1: Create the Shared CI Workflow
 
@@ -33,7 +35,7 @@ permissions: {}
 
 jobs:
   build:
-    uses: hoverkraft-tech/docker-base-images/.github/workflows/docker-build-images.yml@main
+    uses: hoverkraft-tech/docker-base-images/.github/workflows/docker-build-images.yml@a1b2c3d # 1.0.0
     permissions:
       contents: read
       id-token: write
@@ -47,7 +49,7 @@ The `docker-build-images.yml` workflow accepts these inputs:
 ```yaml
 jobs:
   build:
-    uses: hoverkraft-tech/docker-base-images/.github/workflows/docker-build-images.yml@main
+    uses: hoverkraft-tech/docker-base-images/.github/workflows/docker-build-images.yml@a1b2c3d # 1.0.0
     permissions:
       contents: read
       id-token: write
@@ -70,7 +72,7 @@ jobs:
 
 This workflow runs on every pull request to validate changes and build preview images.
 
-Create `.github/workflows/__pull-request-ci.yml`:
+Create `.github/workflows/pull-request-ci.yml`:
 
 ```yaml
 name: Pull request CI
@@ -112,7 +114,7 @@ When a PR is opened or updated:
 
 This workflow runs when changes are merged to main. It rebuilds images and cleans up PR tags.
 
-Create `.github/workflows/__main-ci.yml`:
+Create `.github/workflows/main-ci.yml`:
 
 ```yaml
 name: Main CI
@@ -138,7 +140,7 @@ jobs:
 
   prune-pr-images:
     needs: call-shared-ci
-    uses: hoverkraft-tech/docker-base-images/.github/workflows/prune-pull-requests-images-tags.yml@main
+    uses: hoverkraft-tech/docker-base-images/.github/workflows/prune-pull-requests-images-tags.yml@a1b2c3d # 1.0.0
     permissions:
       contents: read
       id-token: write
@@ -146,7 +148,7 @@ jobs:
       pull-requests: read
 ```
 
-### What This Does
+### Main Branch Workflow
 
 When code is pushed to main:
 
@@ -158,7 +160,7 @@ When code is pushed to main:
 
 This workflow ensures PR titles follow conventional commit format for proper release notes.
 
-Create `.github/workflows/__semantic-pull-request.yml`:
+Create `.github/workflows/semantic-pull-request.yml`:
 
 ```yaml
 name: Semantic pull request
@@ -174,7 +176,7 @@ permissions: {}
 
 jobs:
   semantic-pull-request:
-    uses: hoverkraft-tech/ci-github-common/.github/workflows/semantic-pull-request.yml@main
+    uses: hoverkraft-tech/ci-github-common/.github/workflows/semantic-pull-request.yml@b2c3d4e # 2.0.0
     permissions:
       pull-requests: read
 ```
@@ -197,20 +199,86 @@ PR titles must start with one of these prefixes:
 
 Example: `feat: add nodejs-22 base image`
 
-## Step 5: Pin Workflow Versions
+## Step 5: Create the Stale Workflow
+
+This workflow automatically marks inactive issues and pull requests as stale.
+
+Create `.github/workflows/stale.yml`:
+
+```yaml
+name: Stale
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # Daily at midnight
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  stale:
+    uses: hoverkraft-tech/ci-github-common/.github/workflows/stale.yml@c3d4e5f # 2.1.0
+    permissions:
+      issues: write
+      pull-requests: write
+```
+
+### Configuration
+
+The stale workflow automatically:
+
+- Marks issues/PRs as stale after a period of inactivity
+- Closes stale items after an additional grace period
+- Can be customized with labels and time periods
+
+## Step 6: Create the Need-Fix-to-Issue Workflow
+
+This workflow converts pull requests marked with a "need-fix" label into issues for tracking.
+
+Create `.github/workflows/need-fix-to-issue.yml`:
+
+```yaml
+name: Need fix to issue
+
+on:
+  pull_request:
+    types:
+      - labeled
+
+permissions: {}
+
+jobs:
+  need-fix-to-issue:
+    if: github.event.label.name == 'need-fix'
+    uses: hoverkraft-tech/ci-github-common/.github/workflows/need-fix-to-issue.yml@c3d4e5f # 2.1.0
+    permissions:
+      issues: write
+      pull-requests: write
+      contents: read
+```
+
+### How It Works
+
+When a PR is labeled with `need-fix`:
+
+1. Creates an issue with the PR details
+2. Links the issue to the original PR
+3. Helps track work that needs attention
+
+## Step 7: Pin Workflow Versions
 
 For production use, pin workflow versions to specific commits:
 
 ```yaml
-# Instead of @main, use a specific SHA
-uses: hoverkraft-tech/docker-base-images/.github/workflows/docker-build-images.yml@<commit-sha>
+# Use the format @<version-sha> # x.y.z instead of @main
+uses: hoverkraft-tech/docker-base-images/.github/workflows/docker-build-images.yml@a1b2c3d # 1.0.0
 ```
 
 To find the latest release SHA:
 
 1. Go to [hoverkraft-tech/docker-base-images releases](https://github.com/hoverkraft-tech/docker-base-images/releases)
 2. Find the commit SHA for the version you want
-3. Replace `@main` with `@<sha>`
+3. Replace `@main` with `@<sha>  # x.y.z`
 
 ## Complete Workflow Files
 
@@ -219,10 +287,12 @@ Here's a summary of what you should have:
 ```txt
 .github/
 └── workflows/
-    ├── __shared-ci.yml              # Central build logic
-    ├── __pull-request-ci.yml        # PR builds
-    ├── __main-ci.yml                # Main branch builds + cleanup
-    └── __semantic-pull-request.yml  # PR title validation
+    ├── __shared-ci.yml           # Central build logic
+    ├── pull-request-ci.yml       # PR builds
+    ├── main-ci.yml               # Main branch builds + cleanup
+    ├── semantic-pull-request.yml # PR title validation
+    ├── stale.yml                 # Mark stale issues and PRs
+    └── need-fix-to-issue.yml     # Convert PRs with need-fix to issues
 ```
 
 ## Testing Your Setup
