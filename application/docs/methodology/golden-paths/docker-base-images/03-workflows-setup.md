@@ -270,7 +270,6 @@ When a PR is labeled with `need-fix`:
 For production use, pin workflow versions to specific commits:
 
 ```yaml
-# Use the format @<version-sha> # x.y.z instead of @main
 uses: hoverkraft-tech/docker-base-images/.github/workflows/docker-build-images.yml@<version-sha> # x.y.z
 ```
 
