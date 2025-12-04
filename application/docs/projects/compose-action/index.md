@@ -3,8 +3,8 @@ title: Compose Action
 source_repo: hoverkraft-tech/compose-action
 source_path: README.md
 source_branch: main
-source_run_id: 19600928212
-last_synced: 2025-11-22T20:44:26.052Z
+source_run_id: 19931031054
+last_synced: 2025-12-04T13:46:11.940Z
 ---
 
 <!-- header:start -->
@@ -26,6 +26,7 @@ last_synced: 2025-11-22T20:44:26.052Z
 [![License](https://img.shields.io/github/license/hoverkraft-tech/compose-action)](http://choosealicense.com/licenses/mit/)
 [![Stars](https://img.shields.io/github/stars/hoverkraft-tech/compose-action?style=social)](https://img.shields.io/github/stars/hoverkraft-tech/compose-action?style=social)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/hoverkraft-tech/compose-action/blob/main/CONTRIBUTING.md)
+[![codecov](https://codecov.io/gh/hoverkraft-tech/compose-action/graph/badge.svg?token=90JXB7EIMA)](https://codecov.io/gh/hoverkraft-tech/compose-action)
 
 <!-- badges:end -->
 
