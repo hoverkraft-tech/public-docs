@@ -3,8 +3,8 @@ title: Release Chart
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/helm/release-chart/README.md
 source_branch: main
-source_run_id: 19887082691
-last_synced: 2025-12-03T08:26:30.588Z
+source_run_id: 19953994687
+last_synced: 2025-12-05T05:56:57.074Z
 ---
 
 <!-- header:start -->
