@@ -3,8 +3,8 @@ title: Get Available Images
 source_repo: hoverkraft-tech/docker-base-images
 source_path: actions/get-available-images/README.md
 source_branch: main
-source_run_id: 19816126245
-last_synced: 2025-12-01T08:31:43.357Z
+source_run_id: 19967234532
+last_synced: 2025-12-05T15:19:31.747Z
 ---
 
 <!-- header:start -->
@@ -12,7 +12,7 @@ last_synced: 2025-12-01T08:31:43.357Z
 # ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItbGF5ZXJzIiBjb2xvcj0iYmx1ZSI+PHBvbHlnb24gcG9pbnRzPSIxMiAyIDIgNyAxMiAxMiAyMiA3IDEyIDIiPjwvcG9seWdvbj48cG9seWxpbmUgcG9pbnRzPSIyIDE3IDEyIDIyIDIyIDE3Ij48L3BvbHlsaW5lPjxwb2x5bGluZSBwb2ludHM9IjIgMTIgMTIgMTcgMjIgMTIiPjwvcG9seWxpbmU+PC9zdmc+) GitHub Action: Get available images
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/e9f31c745507798697b7dc88225a7c0f70fdc7aa534f2536a575e4f5ea249d88/hoverkraft-tech/docker-base-images" width="60px" align="center" alt="Get available images" />
+  <img src="https://opengraph.githubassets.com/10452d0bb515a4aaceacc19b58ce0e051900f4314742301918c3c9603b87cbb1/hoverkraft-tech/docker-base-images" width="60px" align="center" alt="Get available images" />
 </div>
 
 ---
@@ -24,6 +24,7 @@ last_synced: 2025-12-01T08:31:43.357Z
 [![Release](https://img.shields.io/github/v/release/hoverkraft-tech/docker-base-images)](https://github.com/hoverkraft-tech/docker-base-images/releases)
 [![License](https://img.shields.io/github/license/hoverkraft-tech/docker-base-images)](http://choosealicense.com/licenses/mit/)
 [![Stars](https://img.shields.io/github/stars/hoverkraft-tech/docker-base-images?style=social)](https://img.shields.io/github/stars/hoverkraft-tech/docker-base-images?style=social)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/hoverkraft-tech/docker-base-images/blob/main/CONTRIBUTING.md)
 
 <!-- badges:end -->
 <!-- overview:start -->
@@ -38,7 +39,7 @@ Get the list of available images in the repository
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/docker-base-images/actions/get-available-images@65de0135fb3e798171322fcf37e6eb26ca40c93a # main
+- uses: hoverkraft-tech/docker-base-images/actions/get-available-images@ad965683cf180fd7b09b6bd3948fdc1a164c6661 # 0.2.0
 ```
 
 <!-- usage:end -->
@@ -72,6 +73,11 @@ Get the list of available images in the repository
 -->
 
 <!-- contributing:start -->
+
+## Contributing
+
+Contributions are welcome! Please see the [contributing guidelines](https://github.com/hoverkraft-tech/docker-base-images/blob/main/CONTRIBUTING.md) for more details.
+
 <!-- contributing:end -->
 <!-- security:start -->
 <!-- security:end -->
