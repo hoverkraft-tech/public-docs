@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/docker-base-images
 source_path: .github/workflows/prepare-release.md
 source_branch: main
-source_run_id: 19816126245
-last_synced: 2025-12-01T08:31:43.357Z
+source_run_id: 19967234532
+last_synced: 2025-12-05T15:19:31.747Z
 ---
 
 <!-- header:start -->
@@ -11,7 +11,7 @@ last_synced: 2025-12-01T08:31:43.357Z
 # GitHub Reusable Workflow: Prepare Release
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/01802cffe5fa3b6bf7501ed0132388abcdf93dca06d2f7dc9a0c058ee6749cbb/hoverkraft-tech/docker-base-images" width="60px" align="center" alt="Prepare Release" />
+  <img src="https://opengraph.githubassets.com/10452d0bb515a4aaceacc19b58ce0e051900f4314742301918c3c9603b87cbb1/hoverkraft-tech/docker-base-images" width="60px" align="center" alt="Prepare Release" />
 </div>
 
 ---
@@ -52,7 +52,7 @@ on:
 permissions: {}
 jobs:
   prepare-release:
-    uses: hoverkraft-tech/docker-base-images/.github/workflows/prepare-release.yml@7e32f7efd335ebace32a5de08e8ce4c4d55227f2 # 0.1.0
+    uses: hoverkraft-tech/docker-base-images/.github/workflows/prepare-release.yml@ad965683cf180fd7b09b6bd3948fdc1a164c6661 # 0.2.0
     permissions: {}
     secrets:
       # GitHub token with permissions `contents: write`, `pull-requests: write`.
@@ -80,23 +80,23 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**           | **Description**                                                                                                                                                 | **Required** | **Type**   | **Default**         |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ---------- | ------------------- |
-| **`runs-on`**       | JSON array of runner(s) to use.                                                                                                                                 | **false**    | **string** | `["ubuntu-latest"]` |
+| **Input**           | **Description**                                                                    | **Required** | **Type**   | **Default**         |
+| ------------------- | ---------------------------------------------------------------------------------- | ------------ | ---------- | ------------------- |
+| **`runs-on`**       | JSON array of runner(s) to use.                                                    | **false**    | **string** | `["ubuntu-latest"]` |
 |                     | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job). |              |            |                     |
-| **`github-app-id`** | GitHub App ID to generate GitHub token in place of github-token.                                                                                                | **false**    | **string** | -                   |
-|                     | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                                                   |              |            |                     |
+| **`github-app-id`** | GitHub App ID to generate GitHub token in place of github-token.                   | **false**    | **string** | -                   |
+|                     | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                          |              |            |                     |
 
 <!-- inputs:end -->
 <!-- secrets:start -->
 
 ## Secrets
 
-| **Secret**           | **Description**                                                                                               | **Required** |
-| -------------------- | ------------------------------------------------------------------------------------------------------------- | ------------ |
-| **`github-token`**   | GitHub token with permissions `contents: write`, `pull-requests: write`.                                      | **false**    |
-| **`github-app-key`** | GitHub App private key to generate GitHub token in place of github-token.                                     | **false**    |
-|                      | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token). |              |
+| **Secret**           | **Description**                                                           | **Required** |
+| -------------------- | ------------------------------------------------------------------------- | ------------ |
+| **`github-token`**   | GitHub token with permissions `contents: write`, `pull-requests: write`.  | **false**    |
+| **`github-app-key`** | GitHub App private key to generate GitHub token in place of github-token. | **false**    |
+|                      | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                 |              |
 
 <!-- secrets:end -->
 <!-- outputs:start -->

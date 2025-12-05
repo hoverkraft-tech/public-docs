@@ -3,8 +3,8 @@ title: Should Build Images
 source_repo: hoverkraft-tech/docker-base-images
 source_path: actions/should-build-images/README.md
 source_branch: main
-source_run_id: 19816126245
-last_synced: 2025-12-01T08:31:43.357Z
+source_run_id: 19967234532
+last_synced: 2025-12-05T15:19:31.747Z
 ---
 
 <!-- header:start -->
@@ -12,7 +12,7 @@ last_synced: 2025-12-01T08:31:43.357Z
 # ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItY2hlY2stc3F1YXJlIiBjb2xvcj0iYmx1ZSI+PHBvbHlsaW5lIHBvaW50cz0iOSAxMSAxMiAxNCAyMiA0Ij48L3BvbHlsaW5lPjxwYXRoIGQ9Ik0yMSAxMnY3YTIgMiAwIDAgMS0yIDJINWEyIDIgMCAwIDEtMi0yVjVhMiAyIDAgMCAxIDItMmgxMSI+PC9wYXRoPjwvc3ZnPg==) GitHub Action: Should build the given images
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/05f50a9e8e05e26a83c6b58f93bf905e300f6b5d6d5b868978f1bb9639b44367/hoverkraft-tech/docker-base-images" width="60px" align="center" alt="Should build the given images" />
+  <img src="https://opengraph.githubassets.com/10452d0bb515a4aaceacc19b58ce0e051900f4314742301918c3c9603b87cbb1/hoverkraft-tech/docker-base-images" width="60px" align="center" alt="Should build the given images" />
 </div>
 
 ---
@@ -39,7 +39,7 @@ Check if some files have changed requiring the build of the given images.
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/docker-base-images/actions/should-build-images@6f89fa3b4e2ff1b8dd7009d06dca2f28662e9de8 # main
+- uses: hoverkraft-tech/docker-base-images/actions/should-build-images@ad965683cf180fd7b09b6bd3948fdc1a164c6661 # 0.2.0
   with:
     # Image names located in the 'images' folder.
     # Formatted as a JSON array.
@@ -57,11 +57,11 @@ Check if some files have changed requiring the build of the given images.
 
 ## Inputs
 
-| **Input**      | **Description**                                                                                                                                                | **Required** | **Default** |
-| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------- |
-| **`images`**   | Image names located in the 'images' folder.                                                                                                                    | **true**     | -           |
-|                | Formatted as a JSON array.                                                                                                                                     |              |             |
-|                | Example: `["php-8", "nodejs-24"]`                                                                                                                              |              |             |
+| **Input**      | **Description**                                                                                                   | **Required** | **Default** |
+| -------------- | ----------------------------------------------------------------------------------------------------------------- | ------------ | ----------- |
+| **`images`**   | Image names located in the 'images' folder.                                                                       | **true**     | -           |
+|                | Formatted as a JSON array.                                                                                        |              |             |
+|                | Example: `["php-8", "nodejs-24"]`                                                                                 |              |             |
 | **`base-sha`** | Specify a different base commit SHA used for comparing changes. See [https://github.com/tj-actions/changed-files](https://github.com/tj-actions/changed-files) | **false**    | -           |
 
 <!-- inputs:end -->
