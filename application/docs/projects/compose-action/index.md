@@ -2,9 +2,9 @@
 title: Compose Action
 source_repo: hoverkraft-tech/compose-action
 source_path: README.md
-source_branch: v2.4.2
-source_run_id: 19935363371
-last_synced: 2025-12-04T16:06:58.065Z
+source_branch: main
+source_run_id: 19970552718
+last_synced: 2025-12-05T17:23:19.558Z
 ---
 
 <!-- header:start -->
@@ -58,7 +58,7 @@ Some extra options can be passed to the `docker compose down` command using the 
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/compose-action@3846bcd61da338e9eaaf83e7ed0234a12b099b72 # v2.4.1
+- uses: hoverkraft-tech/compose-action@248470ecc5ed40d8ed3d4480d8260d77179ef579 # v2.4.2
   with:
     # Additional options to pass to `docker` command.
     docker-flags: ""
@@ -148,7 +148,7 @@ jobs:
       - uses: actions/checkout@v4.2.2
 
       - name: Run docker compose
-        uses: hoverkraft-tech/compose-action@3846bcd61da338e9eaaf83e7ed0234a12b099b72 # v2.4.1
+        uses: hoverkraft-tech/compose-action@248470ecc5ed40d8ed3d4480d8260d77179ef579 # v2.4.2
         with:
           compose-file: "./docker/docker-compose.yml"
 
@@ -162,7 +162,7 @@ jobs:
 ```yaml
 steps:
   - uses: actions/checkout@v4.2.2
-  - uses: hoverkraft-tech/compose-action@3846bcd61da338e9eaaf83e7ed0234a12b099b72 # v2.4.1
+  - uses: hoverkraft-tech/compose-action@248470ecc5ed40d8ed3d4480d8260d77179ef579 # v2.4.2
     with:
       compose-file: "./docker/docker-compose.yml"
     env:
@@ -177,7 +177,7 @@ Perform `docker compose up` to some given service instead of all of them
 steps:
   # need checkout before using compose-action
   - uses: actions/checkout@v3
-  - uses: hoverkraft-tech/compose-action@3846bcd61da338e9eaaf83e7ed0234a12b099b72 # v2.4.1
+  - uses: hoverkraft-tech/compose-action@248470ecc5ed40d8ed3d4480d8260d77179ef579 # v2.4.2
     with:
       compose-file: "./docker/docker-compose.yml"
       services: |
@@ -215,7 +215,7 @@ A full list of flags can be found in the [Docker compose documentation](https://
 steps:
   # need checkout before using compose-action
   - uses: actions/checkout@v3
-  - uses: hoverkraft-tech/compose-action@3846bcd61da338e9eaaf83e7ed0234a12b099b72 # v2.4.1
+  - uses: hoverkraft-tech/compose-action@248470ecc5ed40d8ed3d4480d8260d77179ef579 # v2.4.2
     with:
       compose-file: "./docker/docker-compose.yml"
       compose-flags: "--profile profile-1"
@@ -229,7 +229,7 @@ This is useful when you have a base compose file and additional files for differ
 steps:
   # need checkout before using compose-action
   - uses: actions/checkout@v3
-  - uses: hoverkraft-tech/compose-action@3846bcd61da338e9eaaf83e7ed0234a12b099b72 # v2.4.1
+  - uses: hoverkraft-tech/compose-action@248470ecc5ed40d8ed3d4480d8260d77179ef579 # v2.4.2
     with:
       compose-file: |
         ./docker/docker-compose.yml
