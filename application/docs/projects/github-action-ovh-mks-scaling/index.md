@@ -3,8 +3,8 @@ title: Github Action Ovh Mks Scaling
 source_repo: hoverkraft-tech/github-action-ovh-mks-scaling
 source_path: README.md
 source_branch: main
-source_run_id: 19966331237
-last_synced: 2025-12-05T14:44:08.857Z
+source_run_id: 19966536794
+last_synced: 2025-12-05T14:51:20.112Z
 ---
 
 <!-- header:start -->
@@ -12,7 +12,7 @@ last_synced: 2025-12-05T14:44:08.857Z
 # ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItYWxpZ24tbGVmdCIgY29sb3I9ImJsdWUiPjxsaW5lIHgxPSIxNyIgeTE9IjEwIiB4Mj0iMyIgeTI9IjEwIj48L2xpbmU+PGxpbmUgeDE9IjIxIiB5MT0iNiIgeDI9IjMiIHkyPSI2Ij48L2xpbmU+PGxpbmUgeDE9IjIxIiB5MT0iMTQiIHgyPSIzIiB5Mj0iMTQiPjwvbGluZT48bGluZSB4MT0iMTciIHkxPSIxOCIgeDI9IjMiIHkyPSIxOCI+PC9saW5lPjwvc3ZnPg==) GitHub Action: OVH MKS Scaling
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/f53c3081e7f348cbdd2ec0924b1c40b9244710c55856359f049faeb8fe4cafb4/hoverkraft-tech/github-action-ovh-mks-scaling" width="60px" align="center" alt="OVH MKS Scaling" />
+  <img src="https://opengraph.githubassets.com/4288e97a374686ae79d4f7266c5da5451bcada534e1e6086875bd7799da83188/hoverkraft-tech/github-action-ovh-mks-scaling" width="60px" align="center" alt="OVH MKS Scaling" />
 </div>
 
 ---
@@ -25,6 +25,7 @@ last_synced: 2025-12-05T14:44:08.857Z
 [![License](https://img.shields.io/github/license/hoverkraft-tech/github-action-ovh-mks-scaling)](http://choosealicense.com/licenses/mit/)
 [![Stars](https://img.shields.io/github/stars/hoverkraft-tech/github-action-ovh-mks-scaling?style=social)](https://img.shields.io/github/stars/hoverkraft-tech/github-action-ovh-mks-scaling?style=social)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/hoverkraft-tech/github-action-ovh-mks-scaling/blob/main/CONTRIBUTING.md)
+[![codecov](https://codecov.io/gh/hoverkraft-tech/compose-action/graph/badge.svg?token=90JXB7EIMA)](https://codecov.io/gh/hoverkraft-tech/compose-action)
 
 <!-- badges:end -->
 <!-- overview:start -->
@@ -42,7 +43,7 @@ This action supports both Application Key/Application Secret and OAuth2 authenti
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/github-action-ovh-mks-scaling@b791bcd4e37aabc98d11a69ed28b8d418eaef1a8 # main
+- uses: hoverkraft-tech/github-action-ovh-mks-scaling@8193c116beecbb2c52f26f465e9f6b93db6b27eb # 0.2.0
   with:
     # The OVH endpoint to use.
     # See the [available endpoints](https://github.com/ovh/node-ovh/blob/master/lib/endpoints.js) list.
