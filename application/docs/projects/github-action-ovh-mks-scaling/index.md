@@ -3,8 +3,8 @@ title: Github Action Ovh Mks Scaling
 source_repo: hoverkraft-tech/github-action-ovh-mks-scaling
 source_path: README.md
 source_branch: main
-source_run_id: 19967617782
-last_synced: 2025-12-05T15:30:46.570Z
+source_run_id: 19968188345
+last_synced: 2025-12-05T15:51:10.244Z
 ---
 
 <!-- header:start -->
@@ -33,6 +33,7 @@ last_synced: 2025-12-05T15:30:46.570Z
 ## Overview
 
 Scale up or down your OVH MKS nodepool.
+
 Rely on the OVH API through the [OVH Node.js SDK](https://github.com/ovh/node-ovh) to manage your Kubernetes clusters.
 It allows you to scale the number of nodes in a specific nodepool of an OVH Managed Kubernetes Service (MKS) cluster.
 This action supports both Application Key/Application Secret and OAuth2 authentication methods.
