@@ -341,62 +341,6 @@ After setting up sync-docs:
 <!-- outputs:start -->
 <!-- outputs:end -->
 <!-- examples:start -->
-
-## Examples
-
-### Complete Integration
-
-```yaml
-name: Main CI
-
-on:
-  push:
-    branches: [main]
-  pull_request:
-
-permissions:
-  contents: read
-
-jobs:
-  ci:
-    name: Run CI
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Run tests
-        run: npm test
-
-  prepare-docs:
-    name: Prepare Documentation
-    needs: ci
-    if: github.event_name != 'schedule' && github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Prepare documentation
-        uses: hoverkraft-tech/public-docs/.github/actions/prepare-docs@18facec04f2945f4d66d510e8a06568497b73c54 # 0.1.0
-        with:
-          paths: |
-            README.md
-            docs/**/*.md
-            .github/workflows/*.md
-
-  sync-docs:
-    name: Sync Documentation
-    needs: prepare-docs
-    permissions:
-      contents: read
-    uses: hoverkraft-tech/public-docs/.github/workflows/sync-docs-dispatcher.yml@c40c17f7d6a8090950b3ef4bfc70502707a6bb9f # 0.3.0
-    with:
-      github-app-id: ${{ vars.PUBLIC_DOCS_APP_ID }}
-      artifact-id: docs
-    secrets:
-      github-app-key: ${{ secrets.PUBLIC_DOCS_APP_PRIVATE_KEY }}
-```
-
 <!-- examples:end -->
 <!-- contributing:start -->
 
