@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/docker-base-images
 source_path: .github/workflows/release.md
 source_branch: main
-source_run_id: 19970340694
-last_synced: 2025-12-05T17:13:39.153Z
+source_run_id: 20079749746
+last_synced: 2025-12-09T21:58:56.783Z
 ---
 
 <!-- header:start -->
@@ -88,16 +88,16 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**                   | **Description**                                                                                                                                                         | **Required** | **Type**    | **Default**                        |
-| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------- | ---------------------------------- |
-| **`runs-on`**               | JSON array of runner(s) to use.                                                                                                                                         | **false**    | **string**  | `["ubuntu-latest"]`                |
-|                             | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).         |              |             |                                    |
-| **`oci-registry`**          | OCI registry where to pull and push images.                                                                                                                             | **false**    | **string**  | `ghcr.io`                          |
-| **`oci-registry-username`** | Username used to log against the OCI registry.                                                                                                                          | **false**    | **string**  | `$\{\{ github.repository_owner }}` |
-|                             | See [https://github.com/docker/login-action#usage](https://github.com/docker/login-action#usage).                                                                       |              |             |                                    |
-| **`platforms`**             | JSON array of platforms to build images for.                                                                                                                            | **false**    | **string**  | `["linux/amd64","linux/arm64"]`    |
+| **Input**                   | **Description**                                                                        | **Required** | **Type**    | **Default**                        |
+| --------------------------- | -------------------------------------------------------------------------------------- | ------------ | ----------- | ---------------------------------- |
+| **`runs-on`**               | JSON array of runner(s) to use.                                                        | **false**    | **string**  | `["ubuntu-latest"]`                |
+|                             | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).     |              |             |                                    |
+| **`oci-registry`**          | OCI registry where to pull and push images.                                            | **false**    | **string**  | `ghcr.io`                          |
+| **`oci-registry-username`** | Username used to log against the OCI registry.                                         | **false**    | **string**  | `$\{\{ github.repository_owner }}` |
+|                             | See [https://github.com/docker/login-action#usage](https://github.com/docker/login-action#usage).                                    |              |             |                                    |
+| **`platforms`**             | JSON array of platforms to build images for.                                           | **false**    | **string**  | `["linux/amd64","linux/arm64"]`    |
 |                             | See [https://docs.docker.com/buildx/working-with-buildx/#build-multi-platform-images](https://docs.docker.com/buildx/working-with-buildx/#build-multi-platform-images). |              |             |                                    |
-| **`prerelease`**            | Whether the release is a prerelease                                                                                                                                     | **false**    | **boolean** | `false`                            |
+| **`prerelease`**            | Whether the release is a prerelease                                                    | **false**    | **boolean** | `false`                            |
 
 <!-- inputs:end -->
 

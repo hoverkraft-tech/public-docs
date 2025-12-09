@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/docker-base-images
 source_path: .github/workflows/get-available-images-matrix.md
 source_branch: main
-source_run_id: 19970340694
-last_synced: 2025-12-05T17:13:39.153Z
+source_run_id: 20079749746
+last_synced: 2025-12-09T21:58:56.783Z
 ---
 
 <!-- header:start -->
@@ -71,9 +71,9 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**     | **Description**                                                                                                                                                 | **Required** | **Type**   | **Default**         |
-| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ---------- | ------------------- |
-| **`runs-on`** | JSON array of runner(s) to use.                                                                                                                                 | **false**    | **string** | `["ubuntu-latest"]` |
+| **Input**     | **Description**                                                                    | **Required** | **Type**   | **Default**         |
+| ------------- | ---------------------------------------------------------------------------------- | ------------ | ---------- | ------------------- |
+| **`runs-on`** | JSON array of runner(s) to use.                                                    | **false**    | **string** | `["ubuntu-latest"]` |
 |               | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job). |              |            |                     |
 
 <!-- inputs:end -->

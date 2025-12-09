@@ -3,8 +3,8 @@ title: Argocd Cmp Hk Deployment
 source_repo: hoverkraft-tech/docker-base-images
 source_path: images/argocd-cmp-hk-deployment/README.md
 source_branch: main
-source_run_id: 19970340694
-last_synced: 2025-12-05T17:13:39.153Z
+source_run_id: 20079749746
+last_synced: 2025-12-09T21:58:56.783Z
 ---
 
 # argocd-cmp-hk-deployment
@@ -15,15 +15,17 @@ Docker base image for the Hoverkraft ArgoCD custom CMP (Config Management Plugin
 
 - **Image purpose:** Provides a containerized environment for ArgoCD to render and manage Hoverkraft deployments using Helm and Kustomize, with support for multi-source and single-source workflows.
 - **Key scripts:**
+  - `entrypoint.sh`: call correct script depending of the argocd context
   - `single-source.sh`: Renders a Helm chart and applies Kustomize overlays, outputting the final Kubernetes manifests. Supports injection of deployment ID and ArgoCD environment variables.
   - `multi-sources.sh`: Generates a ConfigMap manifest for multi-source deployments, propagating the deployment ID.
 - **Kustomize template:** `kustomize-template.yaml` is used by the scripts to inject deployment-specific configuration.
 
 ## Scripts
 
-- `single-source.sh`: Entrypoint for single-source ArgoCD CMP integration. Expects a Helm chart in the working directory and outputs manifests to stdout. Honors the following environment variables:
+- `entrypoint.sh`: Honors the following environment variables:
+  - `ARGOCD_APP_NAME`: name of the argocd application
+  - `ARGOCD_ENV_ARGOCD_MULTI_SOURCES`: is the argocd app multi-sources or not (0 or 1)
+  - `ARGOCD_ENV_DEBUG`: enable debug env output (0 or 1)
+- `single-source.sh`: Expects a Helm chart in the working directory and outputs manifests to stdout. Honors the following environment variables:
   - `ARGOCD_ENV_HOVERKRAFT_DEPLOYMENT_ID`
-  - `ARGOCD_APP_NAME`
-  - `ARGOCD_APP_NAMESPACE`
-  - `KUBE_VERSION`
-- `multi-sources.sh`: Outputs a ConfigMap manifest with the deployment ID, suitable for multi-source workflows.
+- `multi-sources.sh`: Outputs a ConfigMap manifest with the deployment ID, suitable for multi-source workflows. Honors the following environment variables:
