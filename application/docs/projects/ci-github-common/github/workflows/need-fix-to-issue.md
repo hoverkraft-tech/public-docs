@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-common
 source_path: .github/workflows/need-fix-to-issue.md
 source_branch: main
-source_run_id: 19956499312
-last_synced: 2025-12-05T08:01:04.644Z
+source_run_id: 20081144602
+last_synced: 2025-12-09T22:58:19.515Z
 ---
 
 <!-- header:start -->
@@ -101,12 +101,12 @@ workflow_dispatch:
 
 ### Workflow Call Inputs
 
-| **Input**               | **Description**                                                                                                                                                 | **Required** | **Type**   | **Default**         |
-| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ---------- | ------------------- |
-| **`runs-on`**           | JSON array of runner(s) to use.                                                                                                                                 | **false**    | **string** | `["ubuntu-latest"]` |
-|                         | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job). |              |            |                     |
-| **`manual-commit-ref`** | The SHA of the commit to get the diff for.                                                                                                                      | **false**    | **string** | -                   |
-| **`manual-base-ref`**   | By default, the commit entered above is compared to the one directly before it; to go back further, enter an earlier SHA here.                                  | **false**    | **string** | -                   |
+| **Input**               | **Description**                                                                                                                | **Required** | **Type**   | **Default**         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ------------ | ---------- | ------------------- |
+| **`runs-on`**           | JSON array of runner(s) to use.                                                                                                | **false**    | **string** | `["ubuntu-latest"]` |
+|                         | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).                                             |              |            |                     |
+| **`manual-commit-ref`** | The SHA of the commit to get the diff for.                                                                                     | **false**    | **string** | -                   |
+| **`manual-base-ref`**   | By default, the commit entered above is compared to the one directly before it; to go back further, enter an earlier SHA here. | **false**    | **string** | -                   |
 
 <!-- inputs:end -->
 
