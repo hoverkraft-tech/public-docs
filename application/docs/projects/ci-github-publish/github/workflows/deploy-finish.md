@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/deploy-finish.md
 source_branch: main
-source_run_id: 19941302357
-last_synced: 2025-12-04T19:29:55.515Z
+source_run_id: 20080772218
+last_synced: 2025-12-09T22:41:17.464Z
 ---
 
 <!-- header:start -->
@@ -102,16 +102,16 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**           | **Description**                                                                                                                                                                                       | **Required** | **Type**   | **Default**         |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ---------- | ------------------- |
-| **`runs-on`**       | JSON array of runner(s) to use.                                                                                                                                                                       | **false**    | **string** | `["ubuntu-latest"]` |
-|                     | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).                                       |              |            |                     |
-| **`deployment-id`** | Deployment ID to use for the deployment.                                                                                                                                                              | **true**     | **string** | -                   |
+| **Input**           | **Description**                                                                                       | **Required** | **Type**   | **Default**         |
+| ------------------- | ----------------------------------------------------------------------------------------------------- | ------------ | ---------- | ------------------- |
+| **`runs-on`**       | JSON array of runner(s) to use.                                                                       | **false**    | **string** | `["ubuntu-latest"]` |
+|                     | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).                    |              |            |                     |
+| **`deployment-id`** | Deployment ID to use for the deployment.                                                              | **true**     | **string** | -                   |
 |                     | See [https://docs.github.com/en/rest/deployments/deployments?apiVersion=2022-11-28#list-deployments](https://docs.github.com/en/rest/deployments/deployments?apiVersion=2022-11-28#list-deployments). |              |            |                     |
-| **`budget-path`**   | Path to the budget file to use for the Lighthouse check.                                                                                                                                              | **false**    | **string** | `./budget.json`     |
-|                     | See [`url-lighthouse`](../../actions/check/url-lighthouse/index.md).                                                                                                                                  |              |            |                     |
-| **`extra`**         | Extra information to send to the deployment summary.                                                                                                                                                  | **false**    | **string** | -                   |
-|                     | Should be a JSON object.                                                                                                                                                                              |              |            |                     |
+| **`budget-path`**   | Path to the budget file to use for the Lighthouse check.                                              | **false**    | **string** | `./budget.json`     |
+|                     | See [`url-lighthouse`](../../actions/check/url-lighthouse/index.md).                                 |              |            |                     |
+| **`extra`**         | Extra information to send to the deployment summary.                                                  | **false**    | **string** | -                   |
+|                     | Should be a JSON object.                                                                              |              |            |                     |
 
 <!-- inputs:end -->
 
