@@ -3,8 +3,8 @@ title: Create
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/release/create/README.md
 source_branch: main
-source_run_id: 20080772218
-last_synced: 2025-12-09T22:41:17.464Z
+source_run_id: 20095030622
+last_synced: 2025-12-10T10:19:06.094Z
 ---
 
 <!-- header:start -->
@@ -42,7 +42,7 @@ Action to create a new release
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/release/create@d7f1c4c95181e34ac3bd6bd4ef46d463b2eb62ad # 0.17.1
+- uses: hoverkraft-tech/ci-github-publish/actions/release/create@55f6193fb7a9eaab81f5db18aa0c3400971d87b3 # 0.17.3
   with:
     # Whether the release is a prerelease
     # Default: `false`
