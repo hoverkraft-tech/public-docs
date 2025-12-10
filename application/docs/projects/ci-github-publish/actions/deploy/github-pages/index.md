@@ -3,8 +3,8 @@ title: Github Pages
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/deploy/github-pages/README.md
 source_branch: main
-source_run_id: 20109567601
-last_synced: 2025-12-10T18:46:31.081Z
+source_run_id: 20109679808
+last_synced: 2025-12-10T18:50:55.651Z
 ---
 
 <!-- header:start -->
@@ -56,7 +56,7 @@ permissions:
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/deploy/github-pages@5358acdb08b912114974ecc06a057cda8d391aa5 # 0.17.0
+- uses: hoverkraft-tech/ci-github-publish/actions/deploy/github-pages@44e0f1bacebf3711bf90895fc45d815e9fe582e8 # 0.18.0
   with:
     # The path to the assets to deploy.
     # Can be absolute or relative $GITHUB_WORKSPACE.
@@ -72,6 +72,11 @@ permissions:
 
     # The static site generator used to build the site. See https://github.com/actions/configure-pages.
     static-site-generator: ""
+
+    # Whether to run URL checks after deployment.
+    #
+    # Default: `true`
+    checks: "true"
 
     # GitHub Token for deploying to GitHub Pages.
     # Permissions:
@@ -97,6 +102,7 @@ permissions:
 |                             | If not set, the action will use the local workspace files.                                                            |              |                         |
 | **`budget-path`**           | The path to the performance budget file. See action [Check - URL - Lighthouse](../../check/url-lighthouse/index.md). | **false**    | `./budget.json`         |
 | **`static-site-generator`** | The static site generator used to build the site. See [https://github.com/actions/configure-pages](https://github.com/actions/configure-pages).                   | **false**    | -                       |
+| **`checks`**                | Whether to run URL checks after deployment.                                                                           | **false**    | `true`                  |
 | **`github-token`**          | GitHub Token for deploying to GitHub Pages.                                                                           | **false**    | `$\{\{ github.token }}` |
 |                             | Permissions:                                                                                                          |              |                         |
 |                             | - pages: write                                                                                                        |              |                         |
