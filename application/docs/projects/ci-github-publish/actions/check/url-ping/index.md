@@ -3,8 +3,8 @@ title: Url Ping
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/check/url-ping/README.md
 source_branch: main
-source_run_id: 20109567601
-last_synced: 2025-12-10T18:46:31.081Z
+source_run_id: 20109679808
+last_synced: 2025-12-10T18:50:55.651Z
 ---
 
 <!-- header:start -->
@@ -42,7 +42,7 @@ Action to run ping check on given URL.
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/check/url-ping@5358acdb08b912114974ecc06a057cda8d391aa5 # 0.17.0
+- uses: hoverkraft-tech/ci-github-publish/actions/check/url-ping@44e0f1bacebf3711bf90895fc45d815e9fe582e8 # 0.18.0
   with:
     # The URL to check.
     # This input is required.
@@ -63,6 +63,10 @@ Action to run ping check on given URL.
     # Expected HTTP status codes. Comma separated list.
     # Default: `200`
     expected-statuses: "200"
+
+    # Optional Authorization header used to access private URLs.
+    # Examples: `Bearer xxx...`, `token xxx...`
+    authorization: ""
 ```
 
 <!-- usage:end -->
@@ -82,6 +86,8 @@ Action to run ping check on given URL.
 | **`timeout`**           | Timeout in seconds for the full URL check process.          | **false**    | `60`        |
 | **`retries`**           | Total number of attempts allowed for the URL check process. | **false**    | `3`         |
 | **`expected-statuses`** | Expected HTTP status codes. Comma separated list.           | **false**    | `200`       |
+| **`authorization`**     | Optional Authorization header used to access private URLs.  | **false**    | -           |
+|                         | Examples: `Bearer xxx...`, `token xxx...`                   |              |             |
 
 <!-- inputs:end -->
 
