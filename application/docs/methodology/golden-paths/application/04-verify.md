@@ -16,7 +16,7 @@ Confirm the repository works end-to-end before you ship. The checks below are pl
 
 ## Local smoke tests (portable)
 
-Run these from the repository root; adjust paths if your layout differs.
+Run these from the repository root; adjust paths if your layout differs. For multi-app repos with an umbrella chart, run the Docker build/test loop per service (e.g., set `SERVICE=backend` or `SERVICE=frontend` and swap the Dockerfile path, image name, and working directory accordingly), then render the single umbrella chart once with the per-service image tags/hosts.
 
 ```bash
 # 1) Build the tooling image and run checks inside it

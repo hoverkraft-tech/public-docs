@@ -22,17 +22,39 @@ your-app/
 └── README.md                   # Project overview
 ```
 
+For multi-application repositories, keep the same shape but repeat `application/` and `docker/` per service, while keeping a single umbrella chart under `charts/`:
+
+```txt
+your-app/
+├── .devcontainer/
+├── application/
+│   ├── backend/
+│   └── frontend/
+├── charts/
+│   └── application/          # Umbrella chart templating all services
+├── docker/
+│   ├── backend/
+│   │   ├── Dockerfile
+│   │   └── conf/nginx.conf
+│   └── frontend/
+│       ├── Dockerfile
+│       └── conf/nginx.conf
+└── ...
+```
+
 Create the skeleton:
 
 ```bash
 mkdir -p .devcontainer docker/application/conf charts/application application
+# Multi-app example
+mkdir -p docker/backend/conf docker/frontend/conf charts/application application/backend application/frontend
 ```
 
 ## Key files
 
 ### Dockerfile
 
-Use one Dockerfile to produce both the tooling image (`ci`) and the runtime image (`prod`). Example below is Node-based; adapt the base image and build commands to your runtime while keeping the `ci` and `prod` targets:
+Use one Dockerfile to produce both the tooling image (`ci`) and the runtime image (`prod`). Example below is Node-based; adapt the base image and build commands to your runtime while keeping the `ci` and `prod` targets. For multi-app repos, place one Dockerfile per service (e.g., `docker/backend/Dockerfile`, `docker/frontend/Dockerfile`) and set `APP_PATH` to the matching app folder.
 
 ```dockerfile
 # docker/application/Dockerfile (high level)
@@ -61,16 +83,16 @@ CMD ["tail", "-f", "/dev/null"]
 Requirements:
 
 - Keep the `ci` stage named exactly `ci`; the workflow references it.
-- Set `APP_PATH` to the folder that contains `package.json` (default `./application/`).
+- Set `APP_PATH` to the folder that contains `package.json` (e.g., `./application/` for a single app or `./application/backend/` for a multi-app service).
 - Ensure `prod` exposes port `8080` and ships the built `dist/` assets.
 
 ### Helm chart
 
-Add `charts/application/Chart.yaml` with `version` and `appVersion` starting at `0.0.0`. The deploy workflow injects the image tag and ingress host values; keep the chart minimal and let the workflow pass `image.*` and `deploy.ingress.hosts[0].host` via `chart-values`.
+Add `charts/application/Chart.yaml` with `version` and `appVersion` starting at `0.0.0`. The deploy workflow injects the image tag and ingress host values; keep the chart minimal and let the workflow pass `image.*` and `deploy.ingress.hosts[0].host` via `chart-values`. For multi-app repos, keep a single umbrella chart (e.g., `charts/application/`) and template one subchart or deployment per service (e.g., `services.backend.*`, `services.frontend.*` values). Each service still consumes its own image tag and ingress host values.
 
 ### Dev container (optional but recommended)
 
-Provide a `.devcontainer` that mirrors the tooling image (Node 24 + npm). CI will run inside the `ci` image built from `docker/application/Dockerfile`; using the same image locally avoids drift.
+Provide a `.devcontainer` that mirrors the tooling image (Node 24 + npm). CI will run inside the `ci` image built from each service Dockerfile (e.g., `docker/backend/Dockerfile`); using the same image locally avoids drift.
 
 ### Makefile (optional)
 
