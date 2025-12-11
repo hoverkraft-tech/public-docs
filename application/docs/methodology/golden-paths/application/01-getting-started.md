@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Getting Started
 
-Spin up a new application repository that matches the current Hoverkraft application stack. Examples show a Node/Astro app, but the pattern works for any containerized application—swap the build commands and Dockerfile base image for your stack. CI/CD and VCS tooling are platform-agnostic: use the same repository layout, Dockerfile targets, and Helm flow, and plug in your preferred CI provider and VCS host.
+Spin up a new application repository that matches the current Hoverkraft application stack. Examples show a Node/Astro app, but the pattern works for any containerized application—swap the build commands and Dockerfile base image for your stack. CI/CD and VCS tooling are platform-agnostic: use the same repository layout, Dockerfile targets, and Helm flow, and plug in your preferred CI provider and VCS host. For multi-application repos (e.g., `application/backend`, `application/frontend`, `application/microservice-*`), apply the same pattern per service: each service keeps its own app folder and Dockerfile, while a single umbrella Helm chart orchestrates all services under one release.
 
 ## What You'll Build
 

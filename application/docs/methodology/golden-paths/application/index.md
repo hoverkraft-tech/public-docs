@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Application Repository
 
-Create a production-ready application repository using the current Hoverkraft application pattern: containerized app (any stack) and Helm chart. The base steps are VCS/platform-agnostic. A GitHub Actions implementation is provided as an optional track; swap it for your preferred CI/CD platform while keeping the repository structure and Docker/Helm flow. The examples use a Node/Astro app, but you can swap the runtime and build commands while keeping the same structure.
+Create a production-ready application repository using the current Hoverkraft application pattern: containerized app (any stack) and Helm chart. The base steps are VCS/platform-agnostic. A GitHub Actions implementation is provided as an optional track; swap it for your preferred CI/CD platform while keeping the repository structure and Docker/Helm flow. The examples use a Node/Astro app, but you can swap the runtime and build commands while keeping the same structure. For multi-application repositories (for example `application/backend`, `application/frontend` or `application/microservice-*`), repeat the same pattern per service: each service gets its own app folder and Dockerfile targets, while an umbrella Helm chart wires the services together under one release.
 
 ## Tutorial Pages
 
