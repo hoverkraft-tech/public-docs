@@ -10,6 +10,7 @@ This is the GitHub Actions implementation of the pipeline. If you use another CI
 
 - Create a GitHub App for your organization with permissions to read/write contents, deployments, issues, pull requests, and `id-token` usage (for OIDC).
 - Store the app ID in variable `CI_BOT_APP_ID` and the private key in secret `CI_BOT_APP_PRIVATE_KEY`; install the app on the repository so workflows can authenticate.
+- Pin every reusable workflow and action to a released commit SHA (never `@main`). Use the latest release SHA from the repositories’ Releases page or `git ls-remote https://github.com/repo/action.git refs/tags/<version>` and record the exact commit in your workflows, annotating the `uses:` line with the human version (e.g., `@<sha> # v0.30.3`).
 
 ## Shared CI (`__shared-ci.yml`)
 
