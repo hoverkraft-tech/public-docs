@@ -17,6 +17,18 @@ A golden path is an opinionated sequence for setting up a new repository with th
 
 ## Available Golden Paths
 
+### Application Repository
+
+Build and ship a containerized web application with release automation, and Helm-based deployment:
+
+👉 **[Application Repository](./application/)**
+
+This tutorial covers:
+
+- Scaffolding the repository (application code, devcontainer, Dockerfile, Helm chart)
+- Adding CI/CD using Hoverkraft reusable connectors
+- Release and deploy flows (manual release + `/deploy` comments for previews)
+
 ### Docker Base Images Repository
 
 Create your own Docker base images repository with automated builds, multi-platform support, and semantic versioning:
@@ -26,7 +38,7 @@ Create your own Docker base images repository with automated builds, multi-platf
 This tutorial covers:
 
 - Repository structure for Docker images
-- Setting up reusable workflows from [hoverkraft-tech/docker-base-images](https://github.com/hoverkraft-tech/docker-base-images)
+- Setting up CI/CD using Hoverkraft reusable connectors from [hoverkraft-tech/docker-base-images](https://github.com/hoverkraft-tech/docker-base-images)
 - Automated PR builds and image tagging
 - Release workflows with semantic versioning
 - Multi-platform image builds (amd64, arm64)

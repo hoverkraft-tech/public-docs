@@ -19,12 +19,6 @@ The Hoverkraft methodology is a collection of proven practices, tools, and workf
 
 ## Documentation Sections
 
-### CI/CD
-
-Learn how to implement continuous integration and continuous deployment using modern DevOps practices:
-
-- **[GitHub Actions](./ci-cd/github/)**: Step-by-step tutorial for structuring CI/CD pipelines with GitHub Actions, including comprehensive guides from getting started to deployment and troubleshooting.
-
 ### Golden Paths
 
 What is a Golden Path?

@@ -275,9 +275,13 @@ uses: hoverkraft-tech/docker-base-images/.github/workflows/docker-build-images.y
 
 To find the latest release SHA:
 
-1. Go to [hoverkraft-tech/docker-base-images releases](https://github.com/hoverkraft-tech/docker-base-images/releases)
+1. Go to actions / workflows releases:
+
+- [hoverkraft-tech/docker-base-images](https://github.com/hoverkraft-tech/docker-base-images/releases)
+- [hoverkraft-tech/ci-github-common](https://github.com/hoverkraft-tech/ci-github-common/releases)
+
 2. Find the commit SHA for the version you want
-3. Replace `@main` with `@<sha>  # x.y.z`
+3. Replace `@<version-sha> # x.y.z`
 
 ## Complete Workflow Files
 
