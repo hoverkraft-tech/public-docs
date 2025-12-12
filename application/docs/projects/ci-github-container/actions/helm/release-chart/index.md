@@ -3,8 +3,8 @@ title: Release Chart
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/helm/release-chart/README.md
 source_branch: main
-source_run_id: 20092117933
-last_synced: 2025-12-10T08:33:59.503Z
+source_run_id: 20158807519
+last_synced: 2025-12-12T06:56:13.210Z
 ---
 
 <!-- header:start -->
@@ -122,22 +122,22 @@ This action requires the following permissions on the repository:
 | **Input**                   | **Description**                                                                                                                                                                                            | **Required** | **Default**                        |
 | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ---------------------------------- |
 | **`oci-registry`**          | OCI registry where to push chart.                                                                                                                                                                          | **true**     | `ghcr.io`                          |
-|                             | See [https://github.com/appany/helm-oci-chart-releaser#usage](https://github.com/appany/helm-oci-chart-releaser#usage).                                                                                    |              |                                    |
+|                             | See [https://github.com/appany/helm-oci-chart-releaser#usage](https://github.com/appany/helm-oci-chart-releaser#usage).                                                                                                                                             |              |                                    |
 | **`oci-registry-username`** | OCI registry username.                                                                                                                                                                                     | **true**     | `$\{\{ github.repository_owner }}` |
-|                             | See [https://github.com/appany/helm-oci-chart-releaser#usage](https://github.com/appany/helm-oci-chart-releaser#usage).                                                                                    |              |                                    |
+|                             | See [https://github.com/appany/helm-oci-chart-releaser#usage](https://github.com/appany/helm-oci-chart-releaser#usage).                                                                                                                                             |              |                                    |
 | **`oci-registry-password`** | OCI registry password.                                                                                                                                                                                     | **true**     | `$\{\{ github.token }}`            |
-|                             | See [https://github.com/appany/helm-oci-chart-releaser#usage](https://github.com/appany/helm-oci-chart-releaser#usage).                                                                                    |              |                                    |
+|                             | See [https://github.com/appany/helm-oci-chart-releaser#usage](https://github.com/appany/helm-oci-chart-releaser#usage).                                                                                                                                             |              |                                    |
 | **`chart`**                 | Chart name to release                                                                                                                                                                                      | **true**     | -                                  |
 | **`path`**                  | Path to the chart to release                                                                                                                                                                               | **true**     | -                                  |
 | **`values`**                | Define charts values to be filled.                                                                                                                                                                         | **false**    | -                                  |
-|                             | See [https://mikefarah.gitbook.io/yq/](https://mikefarah.gitbook.io/yq/).                                                                                                                                  |              |                                    |
+|                             | See [https://mikefarah.gitbook.io/yq/](https://mikefarah.gitbook.io/yq/).                                                                                                                                                                    |              |                                    |
 |                             | Format: `[{ file, path, value }]`.                                                                                                                                                                         |              |                                    |
 |                             |                                                                                                                                                                                                            |              |                                    |
 |                             | Example:                                                                                                                                                                                                   |              |                                    |
 |                             |                                                                                                                                                                                                            |              |                                    |
 |                             | <!-- textlint-disable --><pre lang="json">[&#13; {&#13; "file": "charts/application/charts/api/values.yaml",&#13; "path": ".image.registry", "value": "ghcr.io"&#13; }&#13;]</pre><!-- textlint-enable --> |              |                                    |
 | **`helm-repositories`**     | List of Helm repositories to add before release charts.                                                                                                                                                    | **false**    | -                                  |
-|                             | See [https://helm.sh/docs/helm/helm_repo_add/](https://helm.sh/docs/helm/helm_repo_add/).                                                                                                                  |              |                                    |
+|                             | See [https://helm.sh/docs/helm/helm_repo_add/](https://helm.sh/docs/helm/helm_repo_add/).                                                                                                                                                            |              |                                    |
 | **`tag`**                   | The release tag to set to chart                                                                                                                                                                            | **true**     | -                                  |
 | **`update-tag-paths`**      | List of YAML paths to update with the tag.                                                                                                                                                                 | **false**    | `.version,.appVersion`             |
 |                             | Comma separated list of paths.                                                                                                                                                                             |              |                                    |
@@ -151,10 +151,10 @@ This action requires the following permissions on the repository:
 
 ## Outputs
 
-| **Output**  | **Description**                                                                                             |
-| ----------- | ----------------------------------------------------------------------------------------------------------- |
-| **`image`** | Chart image (Format: `{registry}/{repository}/{image}:{tag}`).                                              |
-|             | See [https://github.com/appany/helm-oci-chart-releaser](https://github.com/appany/helm-oci-chart-releaser). |
+| **Output**  | **Description**                                                |
+| ----------- | -------------------------------------------------------------- |
+| **`image`** | Chart image (Format: `{registry}/{repository}/{image}:{tag}`). |
+|             | See [https://github.com/appany/helm-oci-chart-releaser](https://github.com/appany/helm-oci-chart-releaser).       |
 
 <!-- outputs:end -->
 

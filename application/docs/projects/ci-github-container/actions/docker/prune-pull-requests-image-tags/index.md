@@ -3,8 +3,8 @@ title: Prune Pull Requests Image Tags
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/docker/prune-pull-requests-image-tags/README.md
 source_branch: main
-source_run_id: 20092117933
-last_synced: 2025-12-10T08:33:59.503Z
+source_run_id: 20158807519
+last_synced: 2025-12-12T06:56:13.210Z
 ---
 
 <!-- header:start -->
@@ -75,11 +75,11 @@ permissions:
 
 ## Inputs
 
-| **Input**                     | **Description**                                                                                                                                                                                                                                                                                                 | **Required** | **Default**             |
-| ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------------------- |
-| **`image`**                   | Image name                                                                                                                                                                                                                                                                                                      | **false**    | -                       |
-| **`pull-request-tag-filter`** | The regular expression to match pull request tags. Must have a capture group for the pull request number.                                                                                                                                                                                                       | **false**    | `^pr-([0-9]+)(?:-\|$)`  |
-| **`github-token`**            | GitHub token with the folowing scopes: `pull-requests:read`, `packages:read` and `packages:delete`.                                                                                                                                                                                                             | **false**    | `$\{\{ github.token }}` |
+| **Input**                     | **Description**                                                                                                                                            | **Required** | **Default**             |
+| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------------------- |
+| **`image`**                   | Image name                                                                                                                                                 | **false**    | -                       |
+| **`pull-request-tag-filter`** | The regular expression to match pull request tags. Must have a capture group for the pull request number.                                                  | **false**    | `^pr-([0-9]+)(?:-\|$)`  |
+| **`github-token`**            | GitHub token with the folowing scopes: `pull-requests:read`, `packages:read` and `packages:delete`.                                                        | **false**    | `$\{\{ github.token }}` |
 |                               | See [https://docs.github.com/en/packages/learn-github-packages/about-permissions-for-github-packages#about-scopes-and-permissions-for-package-registries](https://docs.github.com/en/packages/learn-github-packages/about-permissions-for-github-packages#about-scopes-and-permissions-for-package-registries). |              |                         |
 
 <!-- inputs:end -->
