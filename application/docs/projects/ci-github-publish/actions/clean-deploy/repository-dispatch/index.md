@@ -3,8 +3,8 @@ title: Repository Dispatch
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/clean-deploy/repository-dispatch/README.md
 source_branch: main
-source_run_id: 20109679808
-last_synced: 2025-12-10T18:50:55.651Z
+source_run_id: 20162007310
+last_synced: 2025-12-12T09:19:02.767Z
 ---
 
 <!-- header:start -->
@@ -47,7 +47,7 @@ See [https://docs.github.com/en/actions/writing-workflows/choosing-when-your-wor
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/clean-deploy/repository-dispatch@5358acdb08b912114974ecc06a057cda8d391aa5 # 0.17.0
+- uses: hoverkraft-tech/ci-github-publish/actions/clean-deploy/repository-dispatch@44e0f1bacebf3711bf90895fc45d815e9fe582e8 # 0.18.0
   with:
     # GitHub Token for dispatch an event to a remote repository.
     # Permissions:
@@ -76,14 +76,14 @@ See [https://docs.github.com/en/actions/writing-workflows/choosing-when-your-wor
 
 ## Inputs
 
-| **Input**          | **Description**                                                                                                           | **Required** | **Default**             |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------------------- |
-| **`github-token`** | GitHub Token for dispatch an event to a remote repository.                                                                | **false**    | `$\{\{ github.token }}` |
-|                    | Permissions:                                                                                                              |              |                         |
-|                    | - contents: write                                                                                                         |              |                         |
+| **Input**          | **Description**                                                 | **Required** | **Default**             |
+| ------------------ | --------------------------------------------------------------- | ------------ | ----------------------- |
+| **`github-token`** | GitHub Token for dispatch an event to a remote repository.      | **false**    | `$\{\{ github.token }}` |
+|                    | Permissions:                                                    |              |                         |
+|                    | - contents: write                                               |              |                         |
 |                    | See [https://github.com/peter-evans/repository-dispatch#usage](https://github.com/peter-evans/repository-dispatch#usage). |              |                         |
-| **`repository`**   | Target repository where the deployment should be cleaned.                                                                 | **true**     | -                       |
-| **`environment`**  | Environment where to clean the deployment.                                                                                | **true**     | -                       |
+| **`repository`**   | Target repository where the deployment should be cleaned.       | **true**     | -                       |
+| **`environment`**  | Environment where to clean the deployment.                      | **true**     | -                       |
 
 <!-- inputs:end -->
 
