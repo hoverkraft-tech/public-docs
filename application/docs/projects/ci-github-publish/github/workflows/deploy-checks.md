@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/deploy-checks.md
 source_branch: main
-source_run_id: 20109679808
-last_synced: 2025-12-10T18:50:55.651Z
+source_run_id: 20162007310
+last_synced: 2025-12-12T09:19:02.767Z
 ---
 
 <!-- header:start -->
@@ -59,7 +59,7 @@ on:
 permissions: {}
 jobs:
   deploy-checks:
-    uses: hoverkraft-tech/ci-github-publish/.github/workflows/deploy-checks.yml@55f6193fb7a9eaab81f5db18aa0c3400971d87b3 # 0.17.3
+    uses: hoverkraft-tech/ci-github-publish/.github/workflows/deploy-checks.yml@44e0f1bacebf3711bf90895fc45d815e9fe582e8 # 0.18.0
     permissions: {}
     with:
       # JSON array of runner(s) to use.
@@ -91,14 +91,14 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**           | **Description**                                                                                                                                                 | **Required** | **Type**    | **Default**         |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------- | ------------------- |
-| **`runs-on`**       | JSON array of runner(s) to use.                                                                                                                                 | **false**    | **string**  | `["ubuntu-latest"]` |
+| **Input**           | **Description**                                                                    | **Required** | **Type**    | **Default**         |
+| ------------------- | ---------------------------------------------------------------------------------- | ------------ | ----------- | ------------------- |
+| **`runs-on`**       | JSON array of runner(s) to use.                                                    | **false**    | **string**  | `["ubuntu-latest"]` |
 |                     | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job). |              |             |                     |
-| **`url`**           | The URL to check.                                                                                                                                               | **true**     | **string**  | -                   |
-| **`budget-path`**   | Path to the budget file to use for the Lighthouse check.                                                                                                        | **false**    | **string**  | `./budget.json`     |
-|                     | See [`url-lighthouse`](../../actions/check/url-lighthouse/index.md).                                                                                            |              |             |                     |
-| **`print-summary`** | Whether to print a summary of the checks.                                                                                                                       | **false**    | **boolean** | `true`              |
+| **`url`**           | The URL to check.                                                                  | **true**     | **string**  | -                   |
+| **`budget-path`**   | Path to the budget file to use for the Lighthouse check.                           | **false**    | **string**  | `./budget.json`     |
+|                     | See [`url-lighthouse`](../../actions/check/url-lighthouse/index.md).              |              |             |                     |
+| **`print-summary`** | Whether to print a summary of the checks.                                          | **false**    | **boolean** | `true`              |
 
 <!-- inputs:end -->
 
