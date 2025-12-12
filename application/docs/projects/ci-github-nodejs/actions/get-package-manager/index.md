@@ -3,8 +3,8 @@ title: Get Package Manager
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: actions/get-package-manager/README.md
 source_branch: main
-source_run_id: 19935123681
-last_synced: 2025-12-04T16:01:54.436Z
+source_run_id: 20158497419
+last_synced: 2025-12-12T06:40:55.801Z
 ---
 
 <!-- header:start -->
@@ -12,7 +12,7 @@ last_synced: 2025-12-04T16:01:54.436Z
 # ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItcGFja2FnZSIgY29sb3I9ImJsdWUiPjxsaW5lIHgxPSIxNi41IiB5MT0iOS40IiB4Mj0iNy41IiB5Mj0iNC4yMSI+PC9saW5lPjxwYXRoIGQ9Ik0yMSAxNlY4YTIgMiAwIDAgMC0xLTEuNzNsLTctNGEyIDIgMCAwIDAtMiAwbC03IDRBMiAyIDAgMCAwIDMgOHY4YTIgMiAwIDAgMCAxIDEuNzNsNyA0YTIgMiAwIDAgMCAyIDBsNy00QTIgMiAwIDAgMCAyMSAxNnoiPjwvcGF0aD48cG9seWxpbmUgcG9pbnRzPSIzLjI3IDYuOTYgMTIgMTIuMDEgMjAuNzMgNi45NiI+PC9wb2x5bGluZT48bGluZSB4MT0iMTIiIHkxPSIyMi4wOCIgeDI9IjEyIiB5Mj0iMTIiPjwvbGluZT48L3N2Zz4=) GitHub Action: Get package manager
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/0e54b99e7f052e2a353659bcb048b76224cb355f919e9772252049df8eec3976/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Get package manager" />
+  <img src="https://opengraph.githubassets.com/8991905cd66969d6b61877b1a600c63e34df89082ea150a46b2096c3f9d58176/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Get package manager" />
 </div>
 
 ---
@@ -42,7 +42,7 @@ Action to detect the package manager used. Supports Yarn, pnpm, and npm
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-nodejs/actions/get-package-manager@338755b95043af1f8aa17409529fd20a9d2ef659 # 0.20.6
+- uses: hoverkraft-tech/ci-github-nodejs/actions/get-package-manager@25ef8d971c0a866fb9e5d90130c7aaa084619df6 # 0.21.0
   with:
     # Working directory where the dependencies are installed.
     # Can be absolute or relative to the repository root.
