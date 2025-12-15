@@ -68,7 +68,7 @@ jobs:
 
       - name: Download documentation artifact
         id: download-artifact
-        uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6.0.0
+        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           artifact-ids: ${{ steps.validate.outputs.artifact-id }}
@@ -151,7 +151,7 @@ jobs:
           app-id: ${{ vars.CI_BOT_APP_ID }}
           private-key: ${{ secrets.CI_BOT_APP_PRIVATE_KEY }}
 
-      - uses: hoverkraft-tech/ci-github-common/actions/create-and-merge-pull-request@5ac504609f6ef35c5ac94bd8199063aa32104721 # 0.30.21
+      - uses: hoverkraft-tech/ci-github-common/actions/create-and-merge-pull-request@666b7b6eb000db3e8614647871fa60c9f1eb7179 # 0.30.21
         with:
           github-token: ${{ steps.generate_token.outputs.token }}
           branch: docs/sync-documentation-${{ github.event.client_payload.repository }}
