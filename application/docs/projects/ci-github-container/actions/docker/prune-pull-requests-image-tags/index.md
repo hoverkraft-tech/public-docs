@@ -3,8 +3,8 @@ title: Prune Pull Requests Image Tags
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/docker/prune-pull-requests-image-tags/README.md
 source_branch: main
-source_run_id: 20158807519
-last_synced: 2025-12-12T06:56:13.210Z
+source_run_id: 20226060350
+last_synced: 2025-12-15T09:01:41.102Z
 ---
 
 <!-- header:start -->
