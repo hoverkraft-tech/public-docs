@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/prepare-release.md
 source_branch: main
-source_run_id: 20234772124
-last_synced: 2025-12-15T14:01:12.634Z
+source_run_id: 20329041923
+last_synced: 2025-12-18T07:15:52.567Z
 ---
 
 <!-- header:start -->
@@ -42,7 +42,7 @@ Reusable workflow that performs release preparation tasks:
 
 ### Permissions
 
-- **`contents`**: `read`
+- **`contents`**: `write`
 - **`id-token`**: `write`
 - **`pull-requests`**: `write`
 
@@ -64,7 +64,10 @@ jobs:
     uses: hoverkraft-tech/ci-github-publish/.github/workflows/prepare-release.yml@642cdb54493d05debdc1394f4bfd7365f82e7bf1 # 0.18.2
     permissions: {}
     secrets:
-      # GitHub token with permissions `contents: write`, `pull-requests: write`.
+      # GitHub token with following permissions:
+      #
+      # - `contents: write`
+      # - `pull-requests: write`
       github-token: ""
 
       # GitHub App private key to generate GitHub token in place of github-token.
@@ -121,7 +124,10 @@ jobs:
 
 | **Secret**           | **Description**                                                           | **Required** |
 | -------------------- | ------------------------------------------------------------------------- | ------------ |
-| **`github-token`**   | GitHub token with permissions `contents: write`, `pull-requests: write`.  | **false**    |
+| **`github-token`**   | GitHub token with following permissions:                                  | **false**    |
+|                      |                                                                           |              |
+|                      | - `contents: write`                                                       |              |
+|                      | - `pull-requests: write`                                                  |              |
 | **`github-app-key`** | GitHub App private key to generate GitHub token in place of github-token. | **false**    |
 |                      | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                 |              |
 
