@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/clean-deploy.md
 source_branch: main
-source_run_id: 20363796731
-last_synced: 2025-12-19T08:08:43.816Z
+source_run_id: 20367171828
+last_synced: 2025-12-19T10:29:15.841Z
 ---
 
 <!-- header:start -->
