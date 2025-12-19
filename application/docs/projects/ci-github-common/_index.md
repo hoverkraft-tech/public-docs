@@ -8,4 +8,4 @@ description: Documentation for Ci Github Common
 Documentation for the Ci Github Common project.
 
 **Source Repository:** [hoverkraft-tech/ci-github-common](https://github.com/hoverkraft-tech/ci-github-common)
-**Last Synced:** 2025-12-18T16:56:12.440Z
+**Last Synced:** 2025-12-19T07:03:25.715Z
