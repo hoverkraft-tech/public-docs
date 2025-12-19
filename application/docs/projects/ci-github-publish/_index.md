@@ -8,4 +8,4 @@ description: Documentation for Ci Github Publish
 Documentation for the Ci Github Publish project.
 
 **Source Repository:** [hoverkraft-tech/ci-github-publish](https://github.com/hoverkraft-tech/ci-github-publish)
-**Last Synced:** 2025-12-18T07:15:52.567Z
+**Last Synced:** 2025-12-19T08:08:43.816Z

@@ -3,8 +3,8 @@ title: Report
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/deploy/report/README.md
 source_branch: main
-source_run_id: 20329041923
-last_synced: 2025-12-18T07:15:52.567Z
+source_run_id: 20363796731
+last_synced: 2025-12-19T08:08:43.816Z
 ---
 
 <!-- header:start -->
@@ -105,18 +105,18 @@ permissions:
 
 ## Inputs
 
-| **Input**           | **Description**                                                                                              | **Required** | **Default**                             |
-| ------------------- | ------------------------------------------------------------------------------------------------------------ | ------------ | --------------------------------------- |
-| **`repository`**    | The repository where the deployment was made                                                                 | **false**    | `$\{\{ github.event.repository.name }}` |
-| **`deployment-id`** | Deployment ID to report.                                                                                     | **false**    | -                                       |
-| **`environment`**   | Environment where the deployment was made.                                                                   | **false**    | -                                       |
-| **`url`**           | URL where the deployment is available.                                                                       | **false**    | -                                       |
-| **`extra`**         | Extra outputs to be included in the summary. JSON object with key-value pairs.                               | **false**    | -                                       |
-| **`github-token`**  | GitHub Token to update the deployment.                                                                       | **false**    | `$\{\{ github.token }}`                 |
-|                     | Permissions:                                                                                                 |              |                                         |
-|                     | - actions: read                                                                                              |              |                                         |
-|                     | - deployments: write                                                                                         |              |                                         |
-|                     | See [https://docs.github.com/en/rest/deployments/statuses?apiVersion=2022-11-28#create-a-deployment-status](https://docs.github.com/en/rest/deployments/statuses?apiVersion=2022-11-28#create-a-deployment-status). |              |                                         |
+| **Input**           | **Description**                                                                                              | **Required** | **Default**                           |
+| ------------------- | ------------------------------------------------------------------------------------------------------------ | ------------ | ------------------------------------- |
+| **`repository`**    | The repository where the deployment was made                                                                 | **false**    | `${{ github.event.repository.name }}` |
+| **`deployment-id`** | Deployment ID to report.                                                                                     | **false**    | -                                     |
+| **`environment`**   | Environment where the deployment was made.                                                                   | **false**    | -                                     |
+| **`url`**           | URL where the deployment is available.                                                                       | **false**    | -                                     |
+| **`extra`**         | Extra outputs to be included in the summary. JSON object with key-value pairs.                               | **false**    | -                                     |
+| **`github-token`**  | GitHub Token to update the deployment.                                                                       | **false**    | `${{ github.token }}`                 |
+|                     | Permissions:                                                                                                 |              |                                       |
+|                     | - actions: read                                                                                              |              |                                       |
+|                     | - deployments: write                                                                                         |              |                                       |
+|                     | See [https://docs.github.com/en/rest/deployments/statuses?apiVersion=2022-11-28#create-a-deployment-status](https://docs.github.com/en/rest/deployments/statuses?apiVersion=2022-11-28#create-a-deployment-status). |              |                                       |
 
 <!-- inputs:end -->
 

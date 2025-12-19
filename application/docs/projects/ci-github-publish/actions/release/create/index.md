@@ -3,8 +3,8 @@ title: Create
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/release/create/README.md
 source_branch: main
-source_run_id: 20329041923
-last_synced: 2025-12-18T07:15:52.567Z
+source_run_id: 20363796731
+last_synced: 2025-12-19T08:08:43.816Z
 ---
 
 <!-- header:start -->
@@ -71,15 +71,15 @@ Action to create a new release
 
 ## Inputs
 
-| **Input**               | **Description**                                                                                                                                            | **Required** | **Default**             |
-| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------------------- |
-| **`prerelease`**        | Whether the release is a prerelease                                                                                                                        | **false**    | `false`                 |
-| **`working-directory`** | Working directory for monorepo support.                                                                                                                    | **false**    | -                       |
-|                         | If specified, the release configuration file will be placed in `.github/release-configs/{slug}.yml` where slug is derived from the working directory path. |              |                         |
-|                         | The configuration will include `include-paths` to filter pull requests to only those that modified files in the specified directory.                       |              |                         |
-| **`github-token`**      | GitHub Token for creating the release.                                                                                                                     | **false**    | `$\{\{ github.token }}` |
-|                         | Permissions:                                                                                                                                               |              |                         |
-|                         | - contents: write                                                                                                                                          |              |                         |
+| **Input**               | **Description**                                                                                                                                            | **Required** | **Default**           |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------------- |
+| **`prerelease`**        | Whether the release is a prerelease                                                                                                                        | **false**    | `false`               |
+| **`working-directory`** | Working directory for monorepo support.                                                                                                                    | **false**    | -                     |
+|                         | If specified, the release configuration file will be placed in `.github/release-configs/{slug}.yml` where slug is derived from the working directory path. |              |                       |
+|                         | The configuration will include `include-paths` to filter pull requests to only those that modified files in the specified directory.                       |              |                       |
+| **`github-token`**      | GitHub Token for creating the release.                                                                                                                     | **false**    | `${{ github.token }}` |
+|                         | Permissions:                                                                                                                                               |              |                       |
+|                         | - contents: write                                                                                                                                          |              |                       |
 
 <!-- inputs:end -->
 
