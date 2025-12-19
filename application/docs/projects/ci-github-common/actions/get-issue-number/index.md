@@ -2,9 +2,9 @@
 title: Get Issue Number
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/get-issue-number/README.md
-source_branch: 0.31.5
-source_run_id: 20362929592
-last_synced: 2025-12-19T07:25:43.538Z
+source_branch: main
+source_run_id: 20364335859
+last_synced: 2025-12-19T08:32:40.065Z
 ---
 
 <!-- header:start -->
