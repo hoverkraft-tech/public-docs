@@ -1,9 +1,9 @@
 ---
 source_repo: hoverkraft-tech/ci-github-common
 source_path: .github/workflows/semantic-pull-request.md
-source_branch: 0.31.5
-source_run_id: 20362929592
-last_synced: 2025-12-19T07:25:43.538Z
+source_branch: main
+source_run_id: 20364335859
+last_synced: 2025-12-19T08:32:40.065Z
 ---
 
 <!-- header:start -->
@@ -51,7 +51,7 @@ Workflow to ensure Pull Request provides semantic versionning assets:
 ```yaml
 name: Semantic Pull Request
 on:
-  pull_request_target:
+  pull_request:
     types:
       - opened
       - edited
