@@ -3,8 +3,8 @@ title: Lint
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: actions/lint/README.md
 source_branch: main
-source_run_id: 20360910811
-last_synced: 2025-12-19T05:45:37.785Z
+source_run_id: 20364342862
+last_synced: 2025-12-19T08:36:14.632Z
 ---
 
 <!-- header:start -->
@@ -12,7 +12,7 @@ last_synced: 2025-12-19T05:45:37.785Z
 # ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItY2hlY2stY2lyY2xlIiBjb2xvcj0iYmx1ZSI+PHBhdGggZD0iTTIyIDExLjA4VjEyYTEwIDEwIDAgMSAxLTUuOTMtOS4xNCI+PC9wYXRoPjxwb2x5bGluZSBwb2ludHM9IjIyIDQgMTIgMTQuMDEgOSAxMS4wMSI+PC9wb2x5bGluZT48L3N2Zz4=) GitHub Action: Lint
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/8991905cd66969d6b61877b1a600c63e34df89082ea150a46b2096c3f9d58176/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Lint" />
+  <img src="https://opengraph.githubassets.com/1dac1c32c1cc9c51b525caaa3c7a06224c6eaac137474c5334cac30a590e16a7/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Lint" />
 </div>
 
 ---
