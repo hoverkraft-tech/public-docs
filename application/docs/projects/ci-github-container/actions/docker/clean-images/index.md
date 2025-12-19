@@ -3,8 +3,8 @@ title: Clean Images
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/docker/clean-images/README.md
 source_branch: main
-source_run_id: 20226600859
-last_synced: 2025-12-15T09:18:50.642Z
+source_run_id: 20363213983
+last_synced: 2025-12-19T07:42:18.631Z
 ---
 
 <!-- header:start -->
