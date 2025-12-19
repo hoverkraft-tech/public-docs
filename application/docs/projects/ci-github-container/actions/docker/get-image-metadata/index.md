@@ -3,8 +3,8 @@ title: Get Image Metadata
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/docker/get-image-metadata/README.md
 source_branch: main
-source_run_id: 20226600859
-last_synced: 2025-12-15T09:18:50.642Z
+source_run_id: 20363213983
+last_synced: 2025-12-19T07:42:18.631Z
 ---
 
 <!-- header:start -->
@@ -44,7 +44,7 @@ It uses the [docker/metadata-action](https://github.com/docker/metadata-action) 
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-container/actions/docker/get-image-metadata@d706f273f42e4b4b0caf1b3a385cb8b9cb058fa0 # 0.30.2
+- uses: hoverkraft-tech/ci-github-container/actions/docker/get-image-metadata@67e5563d6681bb610c1c961eecb6dfcd5b3cc62f # 0.30.5
   with:
     # OCI registry where to pull and push images
     # This input is required.
@@ -68,12 +68,12 @@ It uses the [docker/metadata-action](https://github.com/docker/metadata-action) 
 
 ## Inputs
 
-| **Input**          | **Description**                                                                                                | **Required** | **Default**                  |
-| ------------------ | -------------------------------------------------------------------------------------------------------------- | ------------ | ---------------------------- |
-| **`oci-registry`** | OCI registry where to pull and push images                                                                     | **true**     | `ghcr.io`                    |
-| **`repository`**   | Repository name. Example: `my-org/my-repo`. See [Docker get-image-name action](../get-image-name/index.md)    | **false**    | `$\{\{ github.repository }}` |
-| **`image`**        | Additional image name. Example: `application`. See [Docker get-image-name action](../get-image-name/index.md) | **false**    | -                            |
-| **`tag`**          | Force image tag to publish                                                                                     | **false**    | -                            |
+| **Input**          | **Description**                                                                                                | **Required** | **Default**                |
+| ------------------ | -------------------------------------------------------------------------------------------------------------- | ------------ | -------------------------- |
+| **`oci-registry`** | OCI registry where to pull and push images                                                                     | **true**     | `ghcr.io`                  |
+| **`repository`**   | Repository name. Example: `my-org/my-repo`. See [Docker get-image-name action](../get-image-name/index.md)    | **false**    | `${{ github.repository }}` |
+| **`image`**        | Additional image name. Example: `application`. See [Docker get-image-name action](../get-image-name/index.md) | **false**    | -                          |
+| **`tag`**          | Force image tag to publish                                                                                     | **false**    | -                          |
 
 <!-- inputs:end -->
 
