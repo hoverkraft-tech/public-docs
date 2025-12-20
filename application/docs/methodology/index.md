@@ -35,6 +35,10 @@ Step-by-step golden paths for creating new repositories using Hoverkraft's reusa
 - **[Golden Paths Overview](./golden-paths/)**: Opinionated journeys for bootstrapping new projects
 - **[Docker Base Images Golden Path](./golden-paths/docker-base-images/)**: Create your own Docker base images repository with automated builds and semantic versioning
 
+### Best Practices
+
+- **[Best Practices](./best-practices/)**: Centralized guidance for coding standards, workflows, container builds, and Helm charts to keep recommendations consistent across repositories.
+
 ## Key Principles
 
 ### 1. Infrastructure as Code
