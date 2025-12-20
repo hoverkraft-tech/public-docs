@@ -15,4 +15,4 @@ Central place for Hoverkraft opinionated standards. Each theme below will host c
   - **[Dockerfile + BuildKit/Buildx](./docker-buildkit-buildx.md)**
   - **[Helm charts](./helm-chart.md)**
 - **Platform & Runtime**
-  - **[Kubernetes probes](./kubernetes-probes.md)**
+  - **[Kubernetes probes](./kubernetes-probes/)**
