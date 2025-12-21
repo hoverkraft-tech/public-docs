@@ -49,7 +49,7 @@ This guide is organized into the following sections:
 - **[Liveness Probes](./liveness-probes.md)** - Best practices for detecting unrecoverable states
 - **[Readiness Probes](./readiness-probes.md)** - Best practices for traffic readiness
 - **[Startup Probes](./startup-probes.md)** - Best practices for slow-starting containers
-- **[Real-World Examples](./real-world-examples.md)** - Complete implementation scenarios
+- **[Real-World Examples](./real-world-examples/)** - Complete implementation scenarios
 - **[Common Pitfalls](./common-pitfalls.md)** - Mistakes to avoid and solutions
 - **[Monitoring & Debugging](./monitoring-debugging.md)** - Observability and troubleshooting
 - **[Resources](./resources.md)** - Additional references and links
