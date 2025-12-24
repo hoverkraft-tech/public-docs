@@ -64,7 +64,7 @@ Without resource constraints, probes may fail due to CPU throttling or OOM condi
 
 ### Solution
 
-Always define resource requests and limits alongside probes.
+Always define resource requests and limits, then adjust probe timing accordingly to account for resource constraints.
 
 ```yaml
 containers:
@@ -77,8 +77,21 @@ containers:
         memory: "512Mi"
         cpu: "500m"
     livenessProbe:
-      # probe configuration
+      httpGet:
+        path: /healthz
+        port: 8080
+      # Adjust timing based on resources
+      # With limited CPU, allow more time for health checks
+      timeoutSeconds: 5
+      periodSeconds: 20
+      failureThreshold: 3
 ```
+
+**Key considerations:**
+
+- CPU limits can cause throttling - increase `timeoutSeconds` and `periodSeconds` if experiencing throttling
+- Memory pressure near limits may slow response times - adjust `timeoutSeconds` accordingly
+- Monitor actual resource usage and probe success rates to fine-tune both resources and probe configuration
 
 ## 4. Not Monitoring Probe Failures
 

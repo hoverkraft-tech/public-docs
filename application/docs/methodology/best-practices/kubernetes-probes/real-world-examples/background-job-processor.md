@@ -347,31 +347,9 @@ kubectl logs <pod-name> | grep "Processing"
 - Adjust the 5-minute threshold to match your longest job
 - Consider removing time-based liveness check if queue can be idle
 - Add separate "heartbeat" mechanism independent of job processing
-
-### Memory Leaks
-
-**Symptom**: Memory usage grows over time until OOM kill
-
-**Solutions**:
-
-```python
-# Add memory check to liveness
-import psutil
-
-@app.route('/healthz')
-def liveness():
-    # Check processing time
-    if time.time() - last_processed_time > 300:
-        return "Worker appears stuck", 503
-
-    # Check memory usage
-    process = psutil.Process()
-    mem_percent = process.memory_percent()
-    if mem_percent > 90:
-        return f"Memory usage too high: {mem_percent}%", 503
-
-    return "OK", 200
-```
+- Investigate and fix the root cause of memory leaks (use profiling tools)
+- Set appropriate memory limits and monitor OOM events
+- Use your observability stack (Prometheus, Grafana) to detect memory growth trends
 
 ## Sources
 
