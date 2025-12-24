@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/docker-base-images
 source_path: .github/workflows/continuous-integration.md
 source_branch: main
-source_run_id: 20360950494
-last_synced: 2025-12-19T05:40:44.943Z
+source_run_id: 20481487384
+last_synced: 2025-12-24T08:03:23.823Z
 ---
 
 <!-- header:start -->
@@ -11,7 +11,7 @@ last_synced: 2025-12-19T05:40:44.943Z
 # GitHub Reusable Workflow: Continuous Integration
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/d5e57cf16fc3d73dd526b00fb06db7c968f95945c1de6e550770a5e00494dceb/hoverkraft-tech/docker-base-images" width="60px" align="center" alt="Continuous Integration" />
+  <img src="https://opengraph.githubassets.com/f337774dd4cbfad54d7b0f131d22d8f3e576fc1b070ed5ed01a7a1a537760799/hoverkraft-tech/docker-base-images" width="60px" align="center" alt="Continuous Integration" />
 </div>
 
 ---
@@ -30,14 +30,14 @@ last_synced: 2025-12-19T05:40:44.943Z
 ## Overview
 
 A comprehensive CI workflow that performs linting, builds Docker images,
-and runs tests against the built images using [container-structure-test](https://github.com/GoogleContainerTools/container-structure-test).
+and runs tests against the built images using [testcontainers](https://testcontainers.com/).
 
 ### Jobs
 
 1. **linter**: Runs code linting using the shared linter workflow
 2. **build-images**: Builds Docker images (depends on linter)
 3. **prepare-test-matrix**: Prepares the matrix for test jobs
-4. **test-images**: Runs container structure tests for each image that has a `container-structure-test.yaml` file
+4. **test-images**: Runs testcontainers tests for each built image
 
 ### Permissions
 
@@ -54,37 +54,49 @@ and runs tests against the built images using [container-structure-test](https:/
 
 ## Testing
 
-Tests are defined in `images/<image-name>/container-structure-test.yaml` using [container-structure-test](https://github.com/GoogleContainerTools/container-structure-test).
+Tests are defined in the `tests/` directory using [testcontainers-go](https://golang.testcontainers.org/).
 
 ### Test Configuration
 
-Each image can have a `container-structure-test.yaml` file with:
+Each image has corresponding test files in Go that:
 
-- `commandTests` - Verify commands run correctly in the container
-- `fileExistenceTests` - Check files/directories exist
-- `fileContentTests` - Verify file contents
-- `metadataTest` - Validate container metadata (env vars, user, workdir, etc.)
+- Start containers and execute commands
+- Verify file existence and permissions
+- Validate container metadata (env vars, user, workdir, etc.)
+- Check command outputs and exit codes
 
-### Example Test Configuration
+### Example Test
 
-```yaml
-schemaVersion: "2.0.0"
+```go
+func TestCiHelm(t *testing.T) {
+    ctx := context.Background()
+    imageName := os.Getenv("IMAGE_NAME")
+    if imageName == "" {
+        imageName = "ci-helm:latest"
+    }
 
-commandTests:
-  - name: "helm is installed"
-    command: "helm"
-    args: ["version"]
-    exitCode: 0
+    req := testcontainers.ContainerRequest{
+        Image: imageName,
+        Cmd:   []string{"sleep", "infinity"},
+    }
 
-fileExistenceTests:
-  - name: "script exists"
-    path: "/usr/local/bin/script.sh"
-    shouldExist: true
-    isExecutableBy: "any"
+    container, err := testcontainers.GenericContainer(ctx, ...)
+    defer container.Terminate(ctx)
 
-metadataTest:
-  user: "appuser"
-  workdir: "/app"
+    t.Run("helm is installed", func(t *testing.T) {
+        code, reader, err := container.Exec(ctx, []string{"helm", "version"})
+        if err != nil {
+            t.Fatalf("Failed to execute command: %s", err)
+        }
+        if code != 0 {
+            t.Fatalf("Expected exit code 0, got %d", code)
+        }
+        output := readOutput(t, reader)
+        if !strings.Contains(output, "version") {
+            t.Errorf("Expected output to contain 'version'")
+        }
+    })
+}
 ```
 
 <!-- usage:start -->
@@ -142,18 +154,18 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**                   | **Description**                                                                        | **Required** | **Type**   | **Default**                        |
-| --------------------------- | -------------------------------------------------------------------------------------- | ------------ | ---------- | ---------------------------------- |
-| **`runs-on`**               | JSON array of runner(s) to use.                                                        | **false**    | **string** | `["ubuntu-latest"]`                |
-|                             | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).     |              |            |                                    |
-| **`oci-registry`**          | OCI registry where to pull and push images.                                            | **false**    | **string** | `ghcr.io`                          |
-| **`oci-registry-username`** | Username used to log against the OCI registry.                                         | **false**    | **string** | `$\{\{ github.repository_owner }}` |
-|                             | See [https://github.com/docker/login-action#usage](https://github.com/docker/login-action#usage).                                    |              |            |                                    |
-| **`platforms`**             | JSON array of platforms to build images for.                                           | **false**    | **string** | `["linux/amd64","linux/arm64"]`    |
-|                             | See [https://docs.docker.com/buildx/working-with-buildx/#build-multi-platform-images](https://docs.docker.com/buildx/working-with-buildx/#build-multi-platform-images). |              |            |                                    |
-| **`images`**                | JSON array of images to build.                                                         | **false**    | **string** | -                                  |
-|                             | If not provided, all available images will be considered.                              |              |            |                                    |
-|                             | Example: `["php-8", "nodejs-24"]`                                                      |              |            |                                    |
+| **Input**                   | **Description**                                                                        | **Required** | **Type**   | **Default**                      |
+| --------------------------- | -------------------------------------------------------------------------------------- | ------------ | ---------- | -------------------------------- |
+| **`runs-on`**               | JSON array of runner(s) to use.                                                        | **false**    | **string** | `["ubuntu-latest"]`              |
+|                             | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).     |              |            |                                  |
+| **`oci-registry`**          | OCI registry where to pull and push images.                                            | **false**    | **string** | `ghcr.io`                        |
+| **`oci-registry-username`** | Username used to log against the OCI registry.                                         | **false**    | **string** | `${{ github.repository_owner }}` |
+|                             | See [https://github.com/docker/login-action#usage](https://github.com/docker/login-action#usage).                                    |              |            |                                  |
+| **`platforms`**             | JSON array of platforms to build images for.                                           | **false**    | **string** | `["linux/amd64","linux/arm64"]`  |
+|                             | See [https://docs.docker.com/buildx/working-with-buildx/#build-multi-platform-images](https://docs.docker.com/buildx/working-with-buildx/#build-multi-platform-images). |              |            |                                  |
+| **`images`**                | JSON array of images to build.                                                         | **false**    | **string** | -                                |
+|                             | If not provided, all available images will be considered.                              |              |            |                                  |
+|                             | Example: `["php-8", "nodejs-24"]`                                                      |              |            |                                  |
 
 <!-- inputs:end -->
 

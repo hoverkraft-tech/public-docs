@@ -3,8 +3,8 @@ title: Docker Base Images
 source_repo: hoverkraft-tech/docker-base-images
 source_path: README.md
 source_branch: main
-source_run_id: 20360950494
-last_synced: 2025-12-19T05:40:44.943Z
+source_run_id: 20481487384
+last_synced: 2025-12-24T08:03:23.823Z
 ---
 
 # docker-base-images
@@ -30,6 +30,10 @@ A Docker image with all the tools needed to validate an helm chart
 ### [mydumper](images/mydumper/index.md)
 
 An image with an opiniated mydumper command as entrypoint
+
+### [testcontainers-node](images/testcontainers-node/index.md)
+
+A Docker image for running testcontainers tests with Node.js
 
 ## Actions
 
@@ -100,16 +104,26 @@ make test ci-helm      # Build and test ci-helm image
 make test mydumper     # Build and test mydumper image
 
 # Run tests for all images
-make test-all          # Build and test all images with tests
+make test-all          # Build and test all images
 
 # Use GitHub Actions locally with `act`
 gh act -W .github/workflows/workflow-file-to-test.yml
 ```
 
+**Testing Infrastructure:**
+
+Tests use [testcontainers](https://testcontainers.com/modules/nodejs/) for Node.js to validate Docker images. The test framework:
+
+- Requires only Docker and Make (no local Node.js installation needed for `make test`)
+- Runs tests in a containerized environment for consistency
+- Tests are colocated with their respective images (e.g., `images/ci-helm/test.spec.js`)
+- Each test validates: command availability, file existence, metadata, and environment variables
+- All tests share a single Node.js module in `images/testcontainers-node/`
+
 #### File Conventions
 
 - **Dockerfile**: Uses Super Linter slim image for consistent code quality
-- **Tests**: Located in `images/<image-name>/container-structure-test.yaml` using [container-structure-test](https://github.com/GoogleContainerTools/container-structure-test)
+- **Tests**: Located in each image directory (e.g., `images/*/test.spec.js`) using [testcontainers](https://testcontainers.com/modules/nodejs/) for Node.js
 - **Workflows**: Private workflows prefixed with `__` (e.g., `__main-ci.yml`)
 
 #### Action Development Conventions
