@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/docker-base-images
 source_path: .github/workflows/prune-pull-requests-images-tags.md
 source_branch: main
-source_run_id: 20481670361
-last_synced: 2025-12-24T08:12:32.676Z
+source_run_id: 20487068742
+last_synced: 2025-12-24T13:23:43.638Z
 ---
 
 <!-- header:start -->
