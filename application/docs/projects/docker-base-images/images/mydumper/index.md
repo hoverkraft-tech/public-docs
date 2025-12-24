@@ -3,8 +3,8 @@ title: Mydumper
 source_repo: hoverkraft-tech/docker-base-images
 source_path: images/mydumper/README.md
 source_branch: main
-source_run_id: 20481572791
-last_synced: 2025-12-24T08:08:33.924Z
+source_run_id: 20481670361
+last_synced: 2025-12-24T08:12:32.676Z
 ---
 
 # mydumper
