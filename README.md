@@ -34,6 +34,10 @@ Generated files in `application/build/` are artifacts only—never commit manual
 
 `application/docs/` is published publicly. Avoid adding internal runbooks or sensitive implementation notes there—document those at the repository root instead.
 
+### Authoring notes
+
+- Last update metadata is rendered automatically by Docusaurus (via `showLastUpdateAuthor` and `showLastUpdateTime`). Do not hardcode "**Last Updated**" or "**Maintained By**" lines inside docs; rely on Git history instead.
+
 ## Documentation generation
 
 The documentation build pulls repository information through scheduled jobs and manual syncs.
