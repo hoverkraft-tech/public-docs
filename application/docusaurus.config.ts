@@ -66,6 +66,8 @@ const config: Config = {
           // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/hoverkraft-tech/public-docs/blob/main/application/',
+          showLastUpdateAuthor: true,
+          showLastUpdateTime: true,
         },
       } satisfies Preset.Options,
     ],

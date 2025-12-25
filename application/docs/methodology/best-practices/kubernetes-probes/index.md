@@ -55,6 +55,3 @@ This guide is organized into the following sections:
 - **[Resources](./resources.md)** - Additional references and links
 
 ---
-
-**Last Updated**: 2025-12-20  
-**Maintained By**: Hoverkraft Platform Team
