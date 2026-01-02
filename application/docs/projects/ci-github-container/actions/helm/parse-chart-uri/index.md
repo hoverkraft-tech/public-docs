@@ -3,8 +3,8 @@ title: Parse Chart Uri
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/helm/parse-chart-uri/README.md
 source_branch: main
-source_run_id: 20517607217
-last_synced: 2025-12-26T06:42:23.043Z
+source_run_id: 20653328459
+last_synced: 2026-01-02T07:44:56.224Z
 ---
 
 <!-- header:start -->

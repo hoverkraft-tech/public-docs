@@ -3,8 +3,8 @@ title: Build Image
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/docker/build-image/README.md
 source_branch: main
-source_run_id: 20517607217
-last_synced: 2025-12-26T06:42:23.043Z
+source_run_id: 20653328459
+last_synced: 2026-01-02T07:44:56.224Z
 ---
 
 <!-- header:start -->
@@ -55,7 +55,7 @@ permissions:
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-container/actions/docker/build-image@67e5563d6681bb610c1c961eecb6dfcd5b3cc62f # 0.30.5
+- uses: hoverkraft-tech/ci-github-container/actions/docker/build-image@a0bab9151cc074af9f6c8204ab42a48d2d570379 # 0.30.6
   with:
     # OCI registry where to pull and push images
     # This input is required.
@@ -226,7 +226,7 @@ This project is licensed under the MIT License.
 
 SPDX-License-Identifier: MIT
 
-Copyright © 2025 hoverkraft
+Copyright © 2026 hoverkraft
 
 For more details, see the [license](http://choosealicense.com/licenses/mit/).
 
