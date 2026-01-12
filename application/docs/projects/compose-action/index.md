@@ -3,8 +3,8 @@ title: Compose Action
 source_repo: hoverkraft-tech/compose-action
 source_path: README.md
 source_branch: main
-source_run_id: 20654267977
-last_synced: 2026-01-02T08:50:16.764Z
+source_run_id: 20914993219
+last_synced: 2026-01-12T09:59:12.259Z
 ---
 
 <!-- header:start -->
@@ -257,7 +257,7 @@ This project is licensed under the MIT License.
 
 SPDX-License-Identifier: MIT
 
-Copyright © 2025 hoverkraft
+Copyright © 2026 hoverkraft
 
 For more details, see the [license](http://choosealicense.com/licenses/mit/).
 
