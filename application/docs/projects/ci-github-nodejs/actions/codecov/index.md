@@ -3,8 +3,8 @@ title: Codecov
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: actions/codecov/README.md
 source_branch: main
-source_run_id: 20373085070
-last_synced: 2025-12-19T14:39:42.683Z
+source_run_id: 21057444006
+last_synced: 2026-01-16T06:17:44.543Z
 ---
 
 <!-- header:start -->
