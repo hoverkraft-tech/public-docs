@@ -3,8 +3,8 @@ title: Generate Docs
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/helm/generate-docs/README.md
 source_branch: main
-source_run_id: 20893026154
-last_synced: 2026-01-11T09:42:31.345Z
+source_run_id: 21061400103
+last_synced: 2026-01-16T09:14:13.778Z
 ---
 
 <!-- header:start -->
@@ -125,7 +125,7 @@ This project is licensed under the MIT License.
 
 SPDX-License-Identifier: MIT
 
-Copyright © 2025 hoverkraft
+Copyright © 2026 hoverkraft
 
 For more details, see the [license](http://choosealicense.com/licenses/mit/).
 
