@@ -109,7 +109,7 @@ function ProjectsSection() {
       icon: '⚡',
       url: 'https://github.com/hoverkraft-tech/ci-github-container',
       stars: 4,
-      language: 'Smarty',
+      language: 'Go Template',
       description: 'Opinionated GitHub Actions and workflows for continuous integration in container (OCI) context',
       tags: [
         'build',
