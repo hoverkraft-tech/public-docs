@@ -136,7 +136,6 @@ function ProjectsSection() {
           {
             projects.map((project, index) => (
               <HoverkraftProjectCard
-                key={project.name}
                 icon={project.icon}
                 title={project.name}
                 titleHref={project.url}
