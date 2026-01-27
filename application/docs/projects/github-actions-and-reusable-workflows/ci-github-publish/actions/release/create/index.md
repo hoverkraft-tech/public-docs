@@ -3,8 +3,8 @@ title: Create
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/release/create/README.md
 source_branch: main
-source_run_id: 21057453072
-last_synced: 2026-01-16T06:13:56.417Z
+source_run_id: 21405951861
+last_synced: 2026-01-27T16:50:37.827Z
 ---
 
 <!-- header:start -->
@@ -42,7 +42,7 @@ Action to create a new release
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/release/create@1a70990f2168a7b322632383edf9ca29d8d8b173 # 0.19.0
+- uses: hoverkraft-tech/ci-github-publish/actions/release/create@84e8ace407055e7a40ba6670a8c697e1ce2dfafa # 0.20.1
   with:
     # Whether the release is a prerelease
     # Default: `false`
@@ -118,7 +118,7 @@ This project is licensed under the MIT License.
 
 SPDX-License-Identifier: MIT
 
-Copyright © 2025 hoverkraft
+Copyright © 2026 hoverkraft
 
 For more details, see the [license](http://choosealicense.com/licenses/mit/).
 
