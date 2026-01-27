@@ -5,7 +5,6 @@ const {
   PROJECTS_PAGE_PATH,
   HOMEPAGE_PATH,
 } = require("./constants");
-const { CATEGORY_RULES } = require("./rules");
 const {
   GitHubRepositoryService,
 } = require("./services/github-repository-service");
@@ -22,7 +21,7 @@ class DocumentationGenerator {
     this.repositoryFilter = new RepositoryFilter({
       ignoredNames: IGNORED_REPOSITORIES,
     });
-    this.repositoryCategorizer = new RepositoryCategorizer(CATEGORY_RULES);
+    this.repositoryCategorizer = new RepositoryCategorizer();
     this.homepageUpdater = new HomepageProjectsUpdater({
       homepagePath: HOMEPAGE_PATH,
     });

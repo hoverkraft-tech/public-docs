@@ -59,7 +59,8 @@ describe("inject-docs", () => {
       io,
       env: {
         SOURCE_REPOSITORY: "hoverkraft-tech/ci-github-common",
-        DOCS_PATH: "application/docs/projects/ci-github-common",
+        DOCS_PATH:
+          "application/docs/projects/github-actions-and-reusable-workflows/ci-github-common",
         STATIC_PATH: "application/static/ci-github-common",
         PREPARED_DIR: "/tmp/does-not-exist",
       },
@@ -75,7 +76,7 @@ describe("inject-docs", () => {
     const io = createIo();
 
     const preparedDir = "/tmp/prepared";
-    const docsPath = "application/docs/projects/demo";
+    const docsPath = "application/docs/projects/ci-cd-tools/demo";
     const staticPath = "application/static/demo";
 
     mockFs({
@@ -88,8 +89,10 @@ describe("inject-docs", () => {
       application: {
         docs: {
           projects: {
-            demo: {
-              "old.md": "old",
+            "ci-cd-tools": {
+              demo: {
+                "old.md": "old",
+              },
             },
           },
         },

@@ -1,10 +1,8 @@
-const { ICON_RULES } = require("../rules");
-const { buildProfile } = require("./repository-profile");
+const { RepositoryCategorizer } = require("../repository-categorizer");
 
 function resolveIcon(repository) {
-  const profile = buildProfile(repository);
-  const rule = ICON_RULES.find((candidate) => candidate.predicate(profile));
-  return rule ? rule.icon : "🔧";
+  const categorizer = new RepositoryCategorizer();
+  return categorizer.resolveCategory(repository).icon;
 }
 
 module.exports = {

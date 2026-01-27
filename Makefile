@@ -13,6 +13,7 @@ prepare: ## Prepare stack to run
 	npm --prefix .github/actions/generate-docs install
 	npm --prefix .github/actions/prepare-docs install
 	npm --prefix .github/actions/inject-docs install
+	npm --prefix .github/actions/resolve-docs-target install
 
 start: ## Start application in dev mode
 	npm --prefix application run start
@@ -27,6 +28,7 @@ lint-fix: ## Run linters
 	npm --prefix .github/actions/generate-docs audit fix
 	npm --prefix .github/actions/prepare-docs audit fix
 	npm --prefix .github/actions/inject-docs audit fix
+	npm --prefix .github/actions/resolve-docs-target audit fix
 	$(MAKE) linter-fix
 
 build: ## Build libs and applications
@@ -37,6 +39,7 @@ test: ## Run tests
 	npm --prefix .github/actions/generate-docs run test:ci
 	npm --prefix .github/actions/prepare-docs run test:ci
 	npm --prefix .github/actions/inject-docs run test:ci
+	npm --prefix .github/actions/resolve-docs-target run test:ci
 
 ci: ## Run tests in CI mode
 	$(MAKE) prepare

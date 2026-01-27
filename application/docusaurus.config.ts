@@ -77,6 +77,9 @@ const config: Config = {
 
   markdown: {
     preprocessor: ({ fileContent }) => escapeCurlyBracesInPreBlocks(fileContent),
+    hooks: {
+      onBrokenMarkdownLinks: 'throw',
+    },
   },
 
   themeConfig: {
