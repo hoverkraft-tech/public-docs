@@ -3,8 +3,8 @@ title: Create
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/deployment/create/README.md
 source_branch: main
-source_run_id: 21057453072
-last_synced: 2026-01-16T06:13:56.417Z
+source_run_id: 21405951861
+last_synced: 2026-01-27T16:50:37.827Z
 ---
 
 <!-- header:start -->
@@ -55,7 +55,7 @@ permissions:
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/deployment/create@642cdb54493d05debdc1394f4bfd7365f82e7bf1 # 0.18.2
+- uses: hoverkraft-tech/ci-github-publish/actions/deployment/create@84e8ace407055e7a40ba6670a8c697e1ce2dfafa # 0.20.1
   with:
     # The environment to deploy to
     # This input is required.
@@ -109,7 +109,7 @@ This project is licensed under the MIT License.
 
 SPDX-License-Identifier: MIT
 
-Copyright © 2025 hoverkraft
+Copyright © 2026 hoverkraft
 
 For more details, see the [license](http://choosealicense.com/licenses/mit/).
 
