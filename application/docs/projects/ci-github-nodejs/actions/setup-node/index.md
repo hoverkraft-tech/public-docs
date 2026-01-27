@@ -64,12 +64,12 @@ Action to setup Node.js and install dependencies according to the package manage
 
 ## Inputs
 
-| **Input**                | **Description**                                                       | **Required** | **Default** |
-| ------------------------ | --------------------------------------------------------------------- | ------------ | ----------- |
-| **`dependencies-cache`** | List of dependencies for which the cache should be managed            | **false**    | -           |
-| **`working-directory`**  | Working directory where the dependencies are installed.               | **false**    | `.`         |
-|                          | Can be absolute or relative to the repository root.                   |              |             |
-| **`registry-url`**       | Optional registry to set up for auth.                                 | **false**    | -           |
+| **Input**                | **Description**                                                                                                                       | **Required** | **Default** |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------- |
+| **`dependencies-cache`** | List of dependencies for which the cache should be managed                                                                            | **false**    | -           |
+| **`working-directory`**  | Working directory where the dependencies are installed.                                                                               | **false**    | `.`         |
+|                          | Can be absolute or relative to the repository root.                                                                                   |              |             |
+| **`registry-url`**       | Optional registry to set up for auth.                                                                                                 | **false**    | -           |
 |                          | See [https://github.com/actions/setup-node?tab=readme-ov-file#usage](https://github.com/actions/setup-node?tab=readme-ov-file#usage). |              |             |
 
 <!-- inputs:end -->

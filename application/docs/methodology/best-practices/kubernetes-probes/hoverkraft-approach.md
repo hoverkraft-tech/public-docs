@@ -50,7 +50,7 @@ When configuring probes, always ask:
 - **Readiness**: "Can this container safely handle production traffic right now?"
 - **Startup**: "Does this application need extra time to initialize before normal health checks begin?"
 
-## Anti-Patterns to Avoid
+## Antipatterns to Avoid
 
 ❌ Copying probe configurations from examples without understanding your app  
 ❌ Using the same health check for liveness and readiness  
