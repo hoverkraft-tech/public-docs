@@ -1,9 +1,9 @@
 <!-- header:start -->
 
-# GitHub Action: Generate Documentation
+# GitHub Action: Resolve Documentation Target
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/3061108a3a613dc98b3d831853f9516d43aaf4c4ad320e28a4bfd3b5079d4aa6/hoverkraft-tech/public-docs" width="60px" align="center" alt="Generate Documentation" />
+  <img src="https://opengraph.githubassets.com/3061108a3a613dc98b3d831853f9516d43aaf4c4ad320e28a4bfd3b5079d4aa6/hoverkraft-tech/public-docs" width="60px" align="center" alt="Resolve Documentation Target" />
 </div>
 
 ---
@@ -11,7 +11,7 @@
 <!-- header:end -->
 <!-- badges:start -->
 
-[![Marketplace](https://img.shields.io/badge/Marketplace-generate--documentation-blue?logo=github-actions)](https://github.com/marketplace/actions/generate-documentation)
+[![Marketplace](https://img.shields.io/badge/Marketplace-resolve--documentation--target-blue?logo=github-actions)](https://github.com/marketplace/actions/resolve-documentation-target)
 [![Release](https://img.shields.io/github/v/release/hoverkraft-tech/public-docs)](https://github.com/hoverkraft-tech/public-docs/releases)
 [![License](https://img.shields.io/github/license/hoverkraft-tech/public-docs)](http://choosealicense.com/licenses/mit/)
 [![Stars](https://img.shields.io/github/stars/hoverkraft-tech/public-docs?style=social)](https://img.shields.io/github/stars/hoverkraft-tech/public-docs?style=social)
@@ -22,14 +22,13 @@
 
 ## Overview
 
-Generate project metadata pages
+Resolve documentation and static paths for a repository dispatch payload.
 
-Features:
+Responsibilities:
 
-- Scans all repositories in the organization
-- Categorizes projects by type
-- Generates the projects overview page
-- Updates homepage with featured projects
+- Fetch repository metadata and topics.
+- Determine the repository category via RepositoryCategorizer.
+- Compute the destination docs/static paths.
 
 <!-- overview:end -->
 <!-- usage:start -->
@@ -37,11 +36,15 @@ Features:
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/public-docs/.github/actions/generate-docs@c40c17f7d6a8090950b3ef4bfc70502707a6bb9f # 0.3.0
+- uses: hoverkraft-tech/public-docs/.github/actions/resolve-docs-target@c40c17f7d6a8090950b3ef4bfc70502707a6bb9f # 0.3.0
   with:
     # GitHub token used to authenticate repository queries.
     # This input is required.
     github-token: ""
+
+    # Repository slug in the form owner/repo.
+    # This input is required.
+    repository: ""
 ```
 
 <!-- usage:end -->
@@ -52,11 +55,23 @@ Features:
 | **Input**          | **Description**                                       | **Required** | **Default** |
 | ------------------ | ----------------------------------------------------- | ------------ | ----------- |
 | **`github-token`** | GitHub token used to authenticate repository queries. | **true**     | -           |
+| **`repository`**   | Repository slug in the form owner/repo.               | **true**     | -           |
 
 <!-- inputs:end -->
 <!-- secrets:start -->
 <!-- secrets:end -->
 <!-- outputs:start -->
+
+## Outputs
+
+| **Output**                | **Description**                                                            |
+| ------------------------- | -------------------------------------------------------------------------- |
+| **`docs-path`**           | Documentation path within the portal where the docs will be injected.      |
+| **`static-path`**         | Static asset path within the portal where supporting files will be stored. |
+| **`category-name`**       | Resolved category name.                                                    |
+| **`category-slug`**       | Resolved category slug.                                                    |
+| **`sanitized-repo-name`** | Sanitized repository name used as the final path segment.                  |
+
 <!-- outputs:end -->
 <!-- examples:start -->
 <!-- examples:end -->
