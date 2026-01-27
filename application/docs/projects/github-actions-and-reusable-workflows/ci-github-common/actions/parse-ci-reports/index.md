@@ -2,9 +2,9 @@
 title: Parse Ci Reports
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/parse-ci-reports/README.md
-source_branch: 0.31.6
-source_run_id: 20371439871
-last_synced: 2025-12-19T13:32:13.510Z
+source_branch: main
+source_run_id: 21404740844
+last_synced: 2026-01-27T16:16:18.514Z
 ---
 
 <!-- header:start -->
@@ -508,7 +508,7 @@ This project is licensed under the MIT License.
 
 SPDX-License-Identifier: MIT
 
-Copyright © 2025 hoverkraft
+Copyright © 2026 hoverkraft
 
 For more details, see the [license](http://choosealicense.com/licenses/mit/).
 
