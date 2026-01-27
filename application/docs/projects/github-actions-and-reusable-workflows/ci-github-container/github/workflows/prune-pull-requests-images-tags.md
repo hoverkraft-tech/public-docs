@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-container
 source_path: .github/workflows/prune-pull-requests-images-tags.md
 source_branch: main
-source_run_id: 21061400103
-last_synced: 2026-01-16T09:14:13.778Z
+source_run_id: 21401907437
+last_synced: 2026-01-27T15:00:47.349Z
 ---
 
 <!-- header:start -->
@@ -92,17 +92,17 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**                     | **Description**                                                                                                                                                 | **Required** | **Type**    | **Default**            |
-| ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------- | ---------------------- |
-| **`runs-on`**                 | JSON array of runner(s) to use.                                                                                                                                 | **false**    | **string**  | `["ubuntu-latest"]`    |
-|                               | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job). |              |             |                        |
-| **`images`**                  | Images to clean.                                                                                                                                                | **true**     | **string**  | -                      |
-|                               | Example:                                                                                                                                                        |              |             |                        |
-|                               | <!-- textlint-disable --><pre lang="json"> ["application-1","application-2"]</pre><!-- textlint-enable -->                                                      |              |             |                        |
-| **`prune-cache-images`**      | Prune cache image tags (like `application-1/cache`).                                                                                                            | **false**    | **boolean** | `false`                |
-|                               | Useful when building image with "registry" cache backend.                                                                                                       |              |             |                        |
-| **`pull-request-tag-filter`** | The regular expression to match pull request tags.                                                                                                              | **false**    | **string**  | `^pr-([0-9]+)(?:-\|$)` |
-|                               | Must have a capture group for the pull request number.                                                                                                          |              |             |                        |
+| **Input**                     | **Description**                                                                                            | **Required** | **Type**    | **Default**            |
+| ----------------------------- | ---------------------------------------------------------------------------------------------------------- | ------------ | ----------- | ---------------------- |
+| **`runs-on`**                 | JSON array of runner(s) to use.                                                                            | **false**    | **string**  | `["ubuntu-latest"]`    |
+|                               | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).                         |              |             |                        |
+| **`images`**                  | Images to clean.                                                                                           | **true**     | **string**  | -                      |
+|                               | Example:                                                                                                   |              |             |                        |
+|                               | <!-- textlint-disable --><pre lang="json"> ["application-1","application-2"]</pre><!-- textlint-enable --> |              |             |                        |
+| **`prune-cache-images`**      | Prune cache image tags (like `application-1/cache`).                                                       | **false**    | **boolean** | `false`                |
+|                               | Useful when building image with "registry" cache backend.                                                  |              |             |                        |
+| **`pull-request-tag-filter`** | The regular expression to match pull request tags.                                                         | **false**    | **string**  | `^pr-([0-9]+)(?:-\|$)` |
+|                               | Must have a capture group for the pull request number.                                                     |              |             |                        |
 
 <!-- inputs:end -->
 <!-- secrets:start -->
