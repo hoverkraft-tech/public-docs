@@ -3,8 +3,8 @@ title: Dependencies Cache
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: actions/dependencies-cache/README.md
 source_branch: main
-source_run_id: 21276477605
-last_synced: 2026-01-23T06:17:16.256Z
+source_run_id: 21412740329
+last_synced: 2026-01-27T20:28:59.438Z
 ---
 
 <!-- header:start -->
