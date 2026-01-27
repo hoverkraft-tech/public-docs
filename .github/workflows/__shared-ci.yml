@@ -21,6 +21,7 @@ jobs:
           - .github/actions/prepare-docs
           - .github/actions/generate-docs
           - .github/actions/inject-docs
+          - .github/actions/resolve-docs-target
     permissions:
       contents: read
       id-token: write

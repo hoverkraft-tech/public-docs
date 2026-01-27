@@ -1,0 +1,63 @@
+name: Resolve Documentation Target
+description: |
+  Resolve documentation and static paths for a repository dispatch payload.
+
+  Responsibilities:
+
+  - Fetch repository metadata and topics.
+  - Determine the repository category via RepositoryCategorizer.
+  - Compute the destination docs/static paths.
+
+inputs:
+  github-token:
+    description: GitHub token used to authenticate repository queries.
+    required: true
+  repository:
+    description: Repository slug in the form owner/repo.
+    required: true
+
+outputs:
+  docs-path:
+    description: Documentation path within the portal where the docs will be injected.
+    value: ${{ steps.resolve.outputs.docs-path }}
+  static-path:
+    description: Static asset path within the portal where supporting files will be stored.
+    value: ${{ steps.resolve.outputs.static-path }}
+  category-name:
+    description: Resolved category name.
+    value: ${{ steps.resolve.outputs.category-name }}
+  category-slug:
+    description: Resolved category slug.
+    value: ${{ steps.resolve.outputs.category-slug }}
+  sanitized-repo-name:
+    description: Sanitized repository name used as the final path segment.
+    value: ${{ steps.resolve.outputs.sanitized-repo-name }}
+
+runs:
+  using: composite
+  steps:
+    - name: Resolve documentation target
+      id: resolve
+      uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+      env:
+        REPOSITORY: ${{ inputs.repository }}
+      with:
+        github-token: ${{ inputs.github-token }}
+        script: |
+          const { run } = require('${{ github.action_path }}/resolve-docs-target.js');
+
+          try {
+            const result = await run({
+              github,
+              core,
+              repository: process.env.REPOSITORY,
+            });
+
+            core.setOutput('docs-path', result.docsPath);
+            core.setOutput('static-path', result.staticPath);
+            core.setOutput('category-name', result.categoryName);
+            core.setOutput('category-slug', result.categorySlug);
+            core.setOutput('sanitized-repo-name', result.sanitizedRepoName);
+          } catch (error) {
+            core.setFailed(`Unable to resolve documentation target: ${error.message}`);
+          }

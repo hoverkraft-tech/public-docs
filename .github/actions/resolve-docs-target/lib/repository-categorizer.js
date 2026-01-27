@@ -1,3 +1,5 @@
+const { buildProfile } = require("./repository-profile");
+
 function hasTopic(profile, topic) {
   return profile.topics.has(topic);
 }
@@ -8,11 +10,13 @@ const hasAnyTopic = (profile, topics) =>
 const CATEGORY_RULES = [
   {
     name: "GitHub Actions and Reusable Workflows",
+    icon: "⚡",
     predicate: (profile) =>
       hasAnyTopic(profile, ["github-actions", "action", "workflow"]),
   },
   {
     name: "CI/CD Tools",
+    icon: "🐳",
     predicate: (profile) =>
       hasAnyTopic(profile, [
         "continuous-integration",
@@ -23,6 +27,7 @@ const CATEGORY_RULES = [
   },
   {
     name: "Infrastructure & DevOps",
+    icon: "🏗️",
     predicate: (profile) =>
       hasAnyTopic(profile, [
         "terraform",
@@ -34,6 +39,7 @@ const CATEGORY_RULES = [
   },
   {
     name: "Container & Kubernetes",
+    icon: "☸️",
     predicate: (profile) =>
       hasAnyTopic(profile, [
         "docker",
@@ -46,6 +52,7 @@ const CATEGORY_RULES = [
   },
   {
     name: "Development Tools",
+    icon: "🔧",
     predicate: (profile) =>
       hasAnyTopic(profile, [
         "developer-tools",
@@ -57,6 +64,7 @@ const CATEGORY_RULES = [
   },
   {
     name: "Documentation & Themes",
+    icon: "📚",
     predicate: (profile) =>
       hasAnyTopic(profile, [
         "documentation",
@@ -68,55 +76,52 @@ const CATEGORY_RULES = [
   },
   {
     name: "Libraries & Frameworks",
+    icon: "📦",
     predicate: (profile) =>
       hasAnyTopic(profile, ["library", "framework", "sdk", "api"]),
   },
 ];
 
-const ICON_RULES = [
-  {
-    icon: "⚡",
-    predicate: (profile) =>
-      hasAnyTopic(profile, ["github-actions", "action", "workflow"]),
-  },
-  {
-    icon: "☸️",
-    predicate: (profile) => hasAnyTopic(profile, ["helm", "kubernetes"]),
-  },
-  {
-    icon: "🐳",
-    predicate: (profile) => hasAnyTopic(profile, ["docker", "container"]),
-  },
-  {
-    icon: "🏗️",
-    predicate: (profile) => hasAnyTopic(profile, ["terraform", "iac"]),
-  },
-  {
-    icon: "📚",
-    predicate: (profile) =>
-      hasAnyTopic(profile, ["documentation", "docs", "docusaurus"]),
-  },
-  {
-    icon: "🎨",
-    predicate: (profile) => hasTopic(profile, "theme"),
-  },
-  {
-    icon: "📧",
-    predicate: (profile) => hasAnyTopic(profile, ["email", "mail"]),
-  },
-  {
-    icon: "💾",
-    predicate: (profile) =>
-      hasAnyTopic(profile, ["backup", "snapshot", "storage"]),
-  },
-  {
-    icon: "🔐",
-    predicate: (profile) =>
-      hasAnyTopic(profile, ["authentication", "auth", "security"]),
-  },
-];
+class RepositoryCategorizer {
+  constructor({ fallbackCategory = "Other", fallbackIcon = "🔧" } = {}) {
+    this.rules = CATEGORY_RULES;
+    this.fallbackCategory = fallbackCategory;
+    this.fallbackIcon = fallbackIcon;
+  }
+
+  resolveCategory(repository) {
+    const profile = buildProfile(repository);
+    const matchingRule = this.rules.find((rule) => rule.predicate(profile));
+
+    if (matchingRule) {
+      return { name: matchingRule.name, icon: matchingRule.icon };
+    }
+
+    return { name: this.fallbackCategory, icon: this.fallbackIcon };
+  }
+
+  categorize(repositories) {
+    const categories = this.initializeCategories();
+
+    repositories.forEach((repository) => {
+      const resolved = this.resolveCategory(repository);
+      categories[resolved.name].push(repository);
+    });
+
+    return categories;
+  }
+
+  initializeCategories() {
+    const categories = this.rules.reduce((accumulator, rule) => {
+      accumulator[rule.name] = [];
+      return accumulator;
+    }, {});
+
+    categories[this.fallbackCategory] = [];
+    return categories;
+  }
+}
 
 module.exports = {
-  CATEGORY_RULES,
-  ICON_RULES,
+  RepositoryCategorizer,
 };

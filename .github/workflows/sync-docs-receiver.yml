@@ -33,29 +33,9 @@ jobs:
               return core.setFailed(`Missing required inputs: ${missing.join(', ')}`);
             }
 
-            function sanitizeSegment(segment) {
-              return segment
-                .replace(/^[.\s]+/, '')
-                .replace(/[^a-zA-Z0-9._-]/g, '-')
-                .replace(/-+/g, '-')
-                .replace(/^-|-$/g, '')
-                .toLowerCase();
+            if (typeof payload.repository !== 'string' || !payload.repository.includes('/')) {
+              return core.setFailed(`Invalid repository slug: ${payload.repository}`);
             }
-
-            const repoName = payload.repository.split('/')[1] || payload.repository;
-            const sanitizedRepoName = sanitizeSegment(repoName);
-            if(!sanitizedRepoName) {
-              return core.setFailed(`Unable to sanitize repository ${repoName} name for documentation path.`);
-            }
-
-            const docsPath = `application/docs/projects/${sanitizedRepoName}`;
-            const staticPath = `application/static/${sanitizedRepoName}`;
-
-            core.debug(`Sanitized docs path: ${docsPath}`);
-            core.setOutput('docs-path', docsPath);
-
-            core.debug(`Static asset path: ${staticPath}`);
-            core.setOutput('static-path', staticPath);
 
             core.debug(`Repository: ${payload.repository}`);
             core.setOutput('repository', payload.repository);
@@ -65,6 +45,13 @@ jobs:
 
             core.debug(`Artifact ID: ${payload['artifact-id']}`);
             core.setOutput('artifact-id', payload['artifact-id']);
+
+      - name: Resolve documentation target
+        id: resolve
+        uses: ./.github/actions/resolve-docs-target
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ steps.validate.outputs.repository }}
 
       - name: Download documentation artifact
         id: download-artifact
@@ -84,15 +71,15 @@ jobs:
           artifact-path: ${{ steps.download-artifact.outputs.download-path }}
           source-repository: ${{ steps.validate.outputs.repository }}
           run-id: ${{ steps.validate.outputs.run-id }}
-          docs-path: ${{ steps.validate.outputs.docs-path }}
-          static-path: ${{ steps.validate.outputs.static-path }}
+          docs-path: ${{ steps.resolve.outputs.docs-path }}
+          static-path: ${{ steps.resolve.outputs.static-path }}
 
       - name: Inject documentation
         uses: ./.github/actions/inject-docs
         with:
           source-repository: ${{ steps.validate.outputs.repository }}
-          docs-path: ${{ steps.validate.outputs.docs-path }}
-          static-path: ${{ steps.validate.outputs.static-path }}
+          docs-path: ${{ steps.resolve.outputs.docs-path }}
+          static-path: ${{ steps.resolve.outputs.static-path }}
           prepared-dir: ${{ steps.prepare-docs.outputs.output-path }}
 
       - name: Generate Documentation
@@ -122,8 +109,10 @@ jobs:
           STATUS: ${{ job.status }}
           SOURCE_REPOSITORY: ${{ steps.validate.outputs.repository }}
           ARTIFACT_ID: ${{ steps.validate.outputs.artifact-id }}
-          DOCS_PATH: ${{ steps.validate.outputs.docs-path }}
-          STATIC_PATH: ${{ steps.validate.outputs.static-path }}
+          DOCS_PATH: ${{ steps.resolve.outputs.docs-path }}
+          STATIC_PATH: ${{ steps.resolve.outputs.static-path }}
+          CATEGORY_NAME: ${{ steps.resolve.outputs.category-name }}
+          CATEGORY_SLUG: ${{ steps.resolve.outputs.category-slug }}
           SOURCE_BRANCH: ${{ steps.prepare-docs.outputs.source-branch }}
           PROCESSED_FILES: ${{ steps.prepare-docs.outputs.processed-files }}
         with:
@@ -144,6 +133,7 @@ jobs:
               .addList([
                 `Source Repository: ${process.env.SOURCE_REPOSITORY}`,
                 `Source Branch: ${process.env.SOURCE_BRANCH}`,
+                `Category: ${process.env.CATEGORY_NAME} (${process.env.CATEGORY_SLUG})`,
                 `Docs Path: ${process.env.DOCS_PATH}`,
                 `Static Path: ${process.env.STATIC_PATH}`,
                 `Processed file(s): ${files.length}`,

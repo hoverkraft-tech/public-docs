@@ -1,0 +1,14 @@
+{
+  "name": "resolve-docs-target-action",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "type": "commonjs",
+  "scripts": {
+    "test": "vitest",
+    "test:ci": "vitest --run"
+  },
+  "devDependencies": {
+    "vitest": "^4.0.18"
+  }
+}

@@ -4,6 +4,7 @@ title: Projects
 ---
 
 import { HoverkraftProjectCard } from "@hoverkraft/docusaurus-theme/components";
+import Heading from "@theme/Heading";
 import styles from "./projects.module.css";
 
 export const projectSections = [
@@ -292,7 +293,7 @@ export const projectSections = [
 
             label: 'Documentation',
 
-            href: 'https://docs.hoverkraft.cloud/docs/projects/compose-action'
+            href: 'https://docs.hoverkraft.cloud/docs/projects/github-actions-and-reusable-workflows/compose-action/'
 
           }
 
@@ -386,7 +387,7 @@ export const projectSections = [
 
             label: 'Documentation',
 
-            href: 'https://docs.hoverkraft.cloud/docs/projects/ci-github-container'
+            href: 'https://docs.hoverkraft.cloud/docs/projects/github-actions-and-reusable-workflows/ci-github-container/'
 
           }
 
@@ -478,7 +479,7 @@ export const projectSections = [
 
             label: 'Documentation',
 
-            href: 'https://docs.hoverkraft.cloud/docs/projects/ci-github-publish'
+            href: 'https://docs.hoverkraft.cloud/docs/projects/github-actions-and-reusable-workflows/ci-github-publish/'
 
           }
 
@@ -524,7 +525,7 @@ export const projectSections = [
 
             label: 'Documentation',
 
-            href: 'https://docs.hoverkraft.cloud/docs/projects/ci-github-common/'
+            href: 'https://docs.hoverkraft.cloud/docs/projects/github-actions-and-reusable-workflows/ci-github-common/'
 
           }
 
@@ -572,7 +573,7 @@ export const projectSections = [
 
             label: 'Documentation',
 
-            href: 'https://docs.hoverkraft.cloud/docs/projects/github-action-ovh-mks-scaling/'
+            href: 'https://docs.hoverkraft.cloud/docs/projects/github-actions-and-reusable-workflows/github-action-ovh-mks-scaling/'
 
           }
 
@@ -666,7 +667,7 @@ export const projectSections = [
 
             label: 'Documentation',
 
-            href: 'https://docs.hoverkraft.cloud/docs/projects/docker-base-images/'
+            href: 'https://docs.hoverkraft.cloud/docs/projects/ci-cd-tools/docker-base-images/'
 
           }
 
@@ -1422,7 +1423,9 @@ export const projectSnapshot = {
 {projectSections.map(({ title, projects }) => (
 
 <section key={title}>
-  <h2>{title}</h2>
+  <Heading as="h2">
+    {title}
+  </Heading>
   <div className={styles.projectsGrid}>
     {projects.map((project) => (
       <HoverkraftProjectCard key={project.titleHref} {...project} />
