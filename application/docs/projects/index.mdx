@@ -1,6 +1,7 @@
 ---
 sidebar_position: 2
 title: Projects
+hide_table_of_contents: true
 ---
 
 import { HoverkraftProjectCard } from "@hoverkraft/docusaurus-theme/components";
@@ -1401,6 +1402,28 @@ export const projectSnapshot = {
 
 };
 
+export const projectSectionsWithIds = (() => {
+  const createSlug = (value) =>
+    value
+      .toLowerCase()
+      .trim()
+      .replace(/&/g, "and")
+      .replace(/[^a-z0-9\s-]/g, "")
+      .replace(/\s+/g, "-")
+      .replace(/-+/g, "-");
+
+  const seen = new Map();
+
+  return projectSections.map((section) => {
+    const baseId = createSlug(section.title);
+    const nextIndex = (seen.get(baseId) ?? 0) + 1;
+    seen.set(baseId, nextIndex);
+
+    const id = nextIndex === 1 ? baseId : `${baseId}-${nextIndex}`;
+    return { ...section, id };
+  });
+})();
+
 # Projects
 
 <p>
@@ -1410,7 +1433,9 @@ export const projectSnapshot = {
   technologies {projectSnapshot.technologiesSummary}
 </p>
 
-## 📊 Quick Stats
+<div className={styles.pageLayout}>
+  <div className={styles.mainContent}>
+    <Heading as="h2" id="quick-stats">📊 Quick Stats</Heading>
 
 <ul>
   {quickStats.map(({ label, value }) => (
@@ -1420,19 +1445,38 @@ export const projectSnapshot = {
   ))}
 </ul>
 
-{projectSections.map(({ title, projects }) => (
-
-<section key={title}>
-  <Heading as="h2">
-    {title}
-  </Heading>
-  <div className={styles.projectsGrid}>
-    {projects.map((project) => (
-      <HoverkraftProjectCard key={project.titleHref} {...project} />
+    {projectSectionsWithIds.map(({ title, id, projects }) => (
+      <section key={id}>
+        <Heading as="h2" id={id}>
+          {title}
+        </Heading>
+        <div className={styles.projectsGrid}>
+          {projects.map((project) => (
+            <HoverkraftProjectCard key={project.titleHref} {...project} />
+          ))}
+        </div>
+      </section>
     ))}
   </div>
-</section>
-))}
+
+  <aside className={styles.toc} aria-label="On this page">
+    <div className={styles.tocTitle}>On this page</div>
+    <ul className={styles.tocList}>
+      <li>
+        <a className={styles.tocLink} href="#quick-stats">
+          📊 Quick Stats
+        </a>
+      </li>
+      {projectSectionsWithIds.map(({ title, id }) => (
+        <li key={id}>
+          <a className={styles.tocLink} href={`#${id}`}>
+            {title}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </aside>
+</div>
 
 <hr />
 

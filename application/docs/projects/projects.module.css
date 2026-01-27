@@ -6,9 +6,64 @@
   margin: 2rem 0;
 }
 
+.pageLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  gap: 2rem;
+  align-items: start;
+}
+
+.mainContent {
+  min-width: 0;
+}
+
+.toc {
+  position: sticky;
+  top: calc(var(--ifm-navbar-height) + 1rem);
+  max-height: calc(100vh - var(--ifm-navbar-height) - 2rem);
+  overflow: auto;
+  padding: 1rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  background: var(--ifm-background-surface-color);
+}
+
+.tocTitle {
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--ifm-color-emphasis-900);
+}
+
+.tocList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.tocLink {
+  color: var(--ifm-color-emphasis-800);
+  text-decoration: none;
+  font-size: 0.9rem;
+  line-height: 1.25rem;
+}
+
+.tocLink:hover {
+  text-decoration: underline;
+}
+
 @media (max-width: 768px) {
   .projectsGrid {
     grid-template-columns: 1fr;
     gap: 1rem;
+  }
+
+  .pageLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .toc {
+    display: none;
   }
 }
