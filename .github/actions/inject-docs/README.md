@@ -3,7 +3,7 @@
 # GitHub Action: Inject Documentation
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/57afc2d0c8292d95c08304403ce683c606bf8b1ac89f43cc4e1c8abb42ba0f15/hoverkraft-tech/public-docs" width="60px" align="center" alt="Inject Documentation" />
+  <img src="https://opengraph.githubassets.com/f4a6638b5c69a81bac223d67f388f2a386b3e5686b469365b189fd7880007896/hoverkraft-tech/public-docs" width="60px" align="center" alt="Inject Documentation" />
 </div>
 
 ---
@@ -11,6 +11,7 @@
 <!-- header:end -->
 <!-- badges:start -->
 
+[![Marketplace](https://img.shields.io/badge/Marketplace-inject--documentation-blue?logo=github-actions)](https://github.com/marketplace/actions/inject-documentation)
 [![Release](https://img.shields.io/github/v/release/hoverkraft-tech/public-docs)](https://github.com/hoverkraft-tech/public-docs/releases)
 [![License](https://img.shields.io/github/license/hoverkraft-tech/public-docs)](http://choosealicense.com/licenses/mit/)
 [![Stars](https://img.shields.io/github/stars/hoverkraft-tech/public-docs?style=social)](https://img.shields.io/github/stars/hoverkraft-tech/public-docs?style=social)
@@ -26,7 +27,7 @@ Inject prepared documentation content into the portal.
 Responsibilities:
 
 - Replace the destination docs directory with prepared content.
-- Move prepared static assets (`docs/static`) into the portal static directory.
+- Move prepared static assets (docs/static) into the portal static directory.
 
 <!-- overview:end -->
 <!-- usage:start -->
@@ -34,8 +35,7 @@ Responsibilities:
 ## Usage
 
 ```yaml
-- name: Inject documentation
-  uses: hoverkraft-tech/public-docs/.github/actions/inject-docs@c40c17f7d6a8090950b3ef4bfc70502707a6bb9f # 0.3.0
+- uses: hoverkraft-tech/public-docs/.github/actions/inject-docs@c40c17f7d6a8090950b3ef4bfc70502707a6bb9f # 0.3.0
   with:
     # Source repository that produced the documentation.
     # This input is required.
