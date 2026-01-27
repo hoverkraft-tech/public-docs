@@ -1,0 +1,37 @@
+name: Inject Documentation
+description: |
+  Inject prepared documentation content into the portal.
+
+  Responsibilities:
+
+  - Replace the destination docs directory with prepared content.
+  - Move prepared static assets (docs/static) into the portal static directory.
+
+inputs:
+  source-repository:
+    description: Source repository that produced the documentation.
+    required: true
+  docs-path:
+    description: Documentation path within the portal where the docs will be injected.
+    required: true
+  static-path:
+    description: Static asset path within the portal where supporting files will be stored.
+    required: true
+  prepared-dir:
+    description: Directory containing the prepared documentation content.
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Inject documentation content
+      uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+      env:
+        SOURCE_REPOSITORY: ${{ inputs.source-repository }}
+        DOCS_PATH: ${{ inputs.docs-path }}
+        STATIC_PATH: ${{ inputs.static-path }}
+        PREPARED_DIR: ${{ inputs.prepared-dir }}
+      with:
+        script: |
+          const { run } = require('${{ github.action_path }}/inject-docs.js');
+          await run({ core, io, env: process.env });

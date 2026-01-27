@@ -12,19 +12,20 @@ For complete details on probe configuration parameters and mechanisms, refer to 
 
 ### Key Configuration Parameters
 
-| Parameter             | Default | Typical Values          | Purpose                                    |
-| --------------------- | ------- | ----------------------- | ------------------------------------------ |
-| `initialDelaySeconds` | 0       | 10-30s (or use startup) | Wait before first probe                    |
-| `periodSeconds`       | 10      | 10-30s                  | How often to probe                         |
-| `timeoutSeconds`      | 1       | 2-5s                    | Probe timeout                              |
-| `successThreshold`    | 1       | 1 (liveness), 1-3 (readiness) | Successes needed to mark healthy    |
-| `failureThreshold`    | 3       | 3-5                     | Failures before marking unhealthy          |
+| Parameter             | Default | Typical Values                | Purpose                           |
+| --------------------- | ------- | ----------------------------- | --------------------------------- |
+| `initialDelaySeconds` | 0       | 10-30s (or use startup)       | Wait before first probe           |
+| `periodSeconds`       | 10      | 10-30s                        | How often to probe                |
+| `timeoutSeconds`      | 1       | 2-5s                          | Probe timeout                     |
+| `successThreshold`    | 1       | 1 (liveness), 1-3 (readiness) | Successes needed to mark healthy  |
+| `failureThreshold`    | 3       | 3-5                           | Failures before marking unhealthy |
 
 ### Probe Mechanisms
 
 Kubernetes supports three probe mechanisms:
 
 **HTTP GET Probe** - For web applications and REST APIs
+
 ```yaml
 httpGet:
   path: /health
@@ -32,12 +33,14 @@ httpGet:
 ```
 
 **TCP Socket Probe** - For databases, caches, gRPC services
+
 ```yaml
 tcpSocket:
   port: 8080
 ```
 
 **Exec Probe** - For custom health logic or legacy applications
+
 ```yaml
 exec:
   command:

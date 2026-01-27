@@ -9,28 +9,34 @@ help: ## Show help message
 include .env
 
 prepare: ## Prepare stack to run
-	cd application && npm install
-	cd .github/actions/generate-docs && npm install
-	cd .github/actions/prepare-docs && npm install
+	npm --prefix application install
+	npm --prefix .github/actions/generate-docs install
+	npm --prefix .github/actions/prepare-docs install
+	npm --prefix .github/actions/inject-docs install
 
 start: ## Start application in dev mode
-	cd application && npm run start
+	npm --prefix application run start
 
 lint: ## Run linters
-	cd application && npm run lint -- $(filter-out $@,$(MAKECMDGOALS))
+	npm --prefix application run lint -- $(filter-out $@,$(MAKECMDGOALS))
 	$(call run_linter,)
 
 lint-fix: ## Run linters
-	cd application && npm run lint:fix
+	npm --prefix application run lint:fix
+	npm --prefix application audit fix
+	npm --prefix .github/actions/generate-docs audit fix
+	npm --prefix .github/actions/prepare-docs audit fix
+	npm --prefix .github/actions/inject-docs audit fix
 	$(MAKE) linter-fix
 
 build: ## Build libs and applications
-	cd application && npm run build
+	npm --prefix application run build
 
 test: ## Run tests
-	cd application && npm run test:ci
-	cd .github/actions/generate-docs && npm run test:ci
-	cd .github/actions/prepare-docs && npm run test:ci
+	npm --prefix application run test:ci
+	npm --prefix .github/actions/generate-docs run test:ci
+	npm --prefix .github/actions/prepare-docs run test:ci
+	npm --prefix .github/actions/inject-docs run test:ci
 
 ci: ## Run tests in CI mode
 	$(MAKE) prepare
