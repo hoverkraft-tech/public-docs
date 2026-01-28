@@ -3,7 +3,7 @@
 # GitHub Action: Resolve Documentation Target
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/33bd74995293bacb1e01c5c0a381a28d350561cae0edb8033afe3b151adb69c9/hoverkraft-tech/public-docs" width="60px" align="center" alt="Resolve Documentation Target" />
+  <img src="https://opengraph.githubassets.com/f509a231f0d518b3f027a162c4487a9c7bb73877ebf93909b3a10bc550230a6a/hoverkraft-tech/public-docs" width="60px" align="center" alt="Resolve Documentation Target" />
 </div>
 
 ---
@@ -55,7 +55,7 @@ Responsibilities:
 | **Input**          | **Description**                                       | **Required** | **Default** |
 | ------------------ | ----------------------------------------------------- | ------------ | ----------- |
 | **`github-token`** | GitHub token used to authenticate repository queries. | **true**     | -           |
-| **`repository`**   | Repository slug in the form owner/repository.         | **true**     | -           |
+| **`repository`**   | Repository slug in the form owner/repo.               | **true**     | -           |
 
 <!-- inputs:end -->
 <!-- secrets:start -->
