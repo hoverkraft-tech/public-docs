@@ -8,8 +8,10 @@ Central place for Hoverkraft opinionated standards. Each theme below will host c
 
 ## Themes
 
-- **Delivery workflow**
+- **Developer Experience**
+  - **[DevX Best Practices](./devx/)** - Comprehensive guide to exceptional developer experience
   - **[DevX coding rules](./devx-coding-rules.md)**
+- **Delivery workflow**
   - **[GitHub Actions & workflow practices](./github-actions.md)**
 - **Delivery assets**
   - **[Dockerfile + BuildKit/Buildx](./docker-buildkit-buildx.md)**
