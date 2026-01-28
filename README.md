@@ -14,6 +14,7 @@ The portal aggregates technical guides, project overviews, and methodology notes
 - **Projects** — Directory of open-source projects managed by Hoverkraft (`application/docs/projects/`)
   - Project docs are stored under category folders: `application/docs/projects/<category>/<project>/`.
   - Categories follow the rules in `.github/actions/resolve-docs-target/lib/repository-categorizer.js` (via `RepositoryCategorizer`).
+  - **⚠️ Project documentation must be syncronized from project repositories.** See [Documentation Aggregation System](##documentation-aggregation-system)
 - **Internal notes** — Keep internal or implementation-specific documentation concise in this root readme; `application/docs/` is limited to public-facing content.
 
 ## Site Structure
