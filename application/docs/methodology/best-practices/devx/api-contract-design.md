@@ -46,13 +46,13 @@ POST   /users/:id/orders      # Create order for user
 
 ### HTTP Methods & Status Codes
 
-| Method | Purpose | Success Status | Common Errors |
-|--------|---------|----------------|---------------|
-| GET    | Retrieve resource(s) | 200 OK | 404 Not Found |
-| POST   | Create resource | 201 Created | 400 Bad Request, 409 Conflict |
-| PUT    | Replace resource | 200 OK | 404 Not Found |
-| PATCH  | Update resource | 200 OK | 404 Not Found, 400 Bad Request |
-| DELETE | Remove resource | 204 No Content | 404 Not Found |
+| Method | Purpose              | Success Status | Common Errors                  |
+| ------ | -------------------- | -------------- | ------------------------------ |
+| GET    | Retrieve resource(s) | 200 OK         | 404 Not Found                  |
+| POST   | Create resource      | 201 Created    | 400 Bad Request, 409 Conflict  |
+| PUT    | Replace resource     | 200 OK         | 404 Not Found                  |
+| PATCH  | Update resource      | 200 OK         | 404 Not Found, 400 Bad Request |
+| DELETE | Remove resource      | 204 No Content | 404 Not Found                  |
 
 **Sources:**
 
@@ -118,6 +118,51 @@ https://api.example.com/v2/users
 **Sources:**
 
 - [Google API Design - Compatibility](https://cloud.google.com/apis/design/compatibility)
+
+## Tolerant Reader Strategy
+
+Design consumers to be resilient to change. Clients should ignore unknown fields, accept optional fields, and avoid strict schema assumptions whenever possible.
+
+✅ **DO**:
+
+- Ignore unknown response fields (forward compatibility)
+- Treat missing optional fields as defaults
+- Accept additional enum values gracefully (fall back to `unknown`)
+- Use additive changes first (new fields, new endpoints)
+
+❌ **DON'T**:
+
+- Fail parsing when extra fields appear
+- Assume arrays are always non-empty or ordered
+- Rely on undocumented fields or implied ordering
+
+**Sources:**
+
+- [Martin Fowler - Tolerant Reader](https://martinfowler.com/bliki/TolerantReader.html)
+- [Postel's Law (Robustness Principle)](https://www.rfc-editor.org/rfc/rfc1122)
+
+## Non-Breaking Database Migrations
+
+When APIs and databases evolve together, use expand/contract (a.k.a. parallel change) to avoid breaking consumers.
+
+✅ **DO**:
+
+- **Expand**: add new columns/tables first (nullable, defaulted, or backfilled)
+- **Dual-write** during transition (write both old and new fields)
+- **Read-compatibly** (read from new, fall back to old)
+- **Backfill** historical data before switching reads
+- **Contract**: remove old fields only after all consumers migrate
+
+❌ **DON'T**:
+
+- Rename/drop columns in a single deploy
+- Change data types without compatibility layers
+- Ship read changes before data is backfilled
+
+**Sources:**
+
+- [Martin Fowler - Parallel Change](https://martinfowler.com/bliki/ParallelChange.html)
+- [AWS Prescriptive Guidance - Zero-downtime database migrations](https://docs.aws.amazon.com/prescriptive-guidance/latest/zero-downtime-database-migrations/overview.html)
 
 ## Pagination, Filtering, Sorting
 
@@ -240,12 +285,12 @@ paths:
             type: integer
             default: 20
       responses:
-        '200':
+        "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserList'
+                $ref: "#/components/schemas/UserList"
 ```
 
 ✅ **DO**:
@@ -333,7 +378,7 @@ npm run graphql-codegen
 - Generate clients for major languages (TypeScript, Python, Go)
 - Publish SDKs to package registries
 - Version SDKs with API versions
-- Include usage examples in SDK README
+- Include usage examples in SDK readme
 
 ❌ **DON'T**:
 
@@ -370,6 +415,7 @@ npm run graphql-codegen
 **Migration**: Use `GET /v2/users` instead.
 
 **Breaking Changes**:
+
 - `created` field renamed to `created_at`
 - Pagination now uses cursors instead of offsets
 

@@ -75,7 +75,7 @@ Standardize scripts across projects:
 ✅ **DO**:
 
 - Use same script names across all projects
-- Document scripts in README
+- Document scripts in readme
 - Make scripts idempotent (safe to run multiple times)
 - Chain related commands
 
@@ -138,19 +138,19 @@ Use Terraform or Pulumi for infrastructure:
 
 ```typescript
 // pulumi/index.ts
-import * as aws from '@pulumi/aws';
+import * as aws from "@pulumi/aws";
 
 // Create S3 bucket
-const bucket = new aws.s3.Bucket('app-assets', {
-  acl: 'private',
+const bucket = new aws.s3.Bucket("app-assets", {
+  acl: "private",
   versioning: { enabled: true },
 });
 
 // Create RDS instance
-const db = new aws.rds.Instance('app-db', {
-  engine: 'postgres',
-  engineVersion: '15',
-  instanceClass: 'db.t3.micro',
+const db = new aws.rds.Instance("app-db", {
+  engine: "postgres",
+  engineVersion: "15",
+  instanceClass: "db.t3.micro",
   allocatedStorage: 20,
 });
 
@@ -212,14 +212,14 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        description: 'Environment to deploy to'
+        description: "Environment to deploy to"
         required: true
         type: choice
         options:
           - staging
           - production
       version:
-        description: 'Version to deploy (e.g., v1.2.3)'
+        description: "Version to deploy (e.g., v1.2.3)"
         required: true
 
 jobs:
@@ -412,13 +412,13 @@ Developer Portal
 
 Document all internal tools:
 
-| Tool | Purpose | Getting Started |
-|------|---------|-----------------|
-| **Hoverkraft CLI** | Deploy, manage environments | `brew install hk-cli` |
-| **Dev Portal** | Documentation hub | [portal.internal](https://portal.internal) |
-| **Grafana** | Metrics and dashboards | [grafana.internal](https://grafana.internal) |
-| **Sentry** | Error tracking | Auto-configured in apps |
-| **DataDog** | Logs and APM | [datadog.internal](https://datadog.internal) |
+| Tool               | Purpose                     | Getting Started                              |
+| ------------------ | --------------------------- | -------------------------------------------- |
+| **Hoverkraft CLI** | Deploy, manage environments | `brew install hk-cli`                        |
+| **Dev Portal**     | Documentation hub           | [portal.internal](https://portal.internal)   |
+| **Grafana**        | Metrics and dashboards      | [grafana.internal](https://grafana.internal) |
+| **Sentry**         | Error tracking              | Auto-configured in apps                      |
+| **DataDog**        | Logs and APM                | [datadog.internal](https://datadog.internal) |
 
 ✅ **DO**:
 

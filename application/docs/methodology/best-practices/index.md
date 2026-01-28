@@ -10,9 +10,9 @@ Central place for Hoverkraft opinionated standards. Each theme below will host c
 
 - **Developer Experience**
   - **[DevX Best Practices](./devx/)** - Comprehensive guide to exceptional developer experience
-  - **[DevX coding rules](./devx-coding-rules.md)**
 - **Delivery workflow**
-  - **[GitHub Actions & workflow practices](./github-actions.md)**
+  - **[GitHub Actions & workflow practices](./ci-cd/github-actions/)**
+  - **[CI/CD & Release Management](./ci-cd/cicd-release-management.md)**
 - **Delivery assets**
   - **[Dockerfile + BuildKit/Buildx](./docker-buildkit-buildx.md)**
   - **[Helm charts](./helm-chart.md)**

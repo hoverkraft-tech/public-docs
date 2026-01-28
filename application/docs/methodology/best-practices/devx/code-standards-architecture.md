@@ -114,12 +114,12 @@ Encapsulate behavior with data:
 class Order {
   constructor(
     private items: OrderItem[],
-    private status: OrderStatus
+    private status: OrderStatus,
   ) {}
 
   addItem(item: OrderItem): void {
     if (this.status !== OrderStatus.Draft) {
-      throw new Error('Cannot add items to non-draft order');
+      throw new Error("Cannot add items to non-draft order");
     }
     this.items.push(item);
   }
@@ -141,8 +141,8 @@ interface Order {
 
 // Business logic scattered in services
 function addItemToOrder(order: Order, item: OrderItem) {
-  if (order.status !== 'draft') {
-    throw new Error('Cannot add items');
+  if (order.status !== "draft") {
+    throw new Error("Cannot add items");
   }
   order.items.push(item);
 }
@@ -165,7 +165,7 @@ class AppError extends Error {
   constructor(
     message: string,
     public code: string,
-    public statusCode: number
+    public statusCode: number,
   ) {
     super(message);
     this.name = this.constructor.name;
@@ -175,13 +175,13 @@ class AppError extends Error {
 // Domain-specific errors
 class NotFoundError extends AppError {
   constructor(resource: string, id: string) {
-    super(`${resource} not found: ${id}`, 'NOT_FOUND', 404);
+    super(`${resource} not found: ${id}`, "NOT_FOUND", 404);
   }
 }
 
 class ValidationError extends AppError {
   constructor(message: string) {
-    super(message, 'VALIDATION_ERROR', 400);
+    super(message, "VALIDATION_ERROR", 400);
   }
 }
 ```
@@ -200,12 +200,12 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   }
 
   // Log unexpected errors
-  logger.error('Unexpected error', { err, req });
-  
+  logger.error("Unexpected error", { err, req });
+
   return res.status(500).json({
     error: {
-      code: 'INTERNAL_ERROR',
-      message: 'An unexpected error occurred',
+      code: "INTERNAL_ERROR",
+      message: "An unexpected error occurred",
     },
   });
 });
@@ -222,7 +222,7 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 Always use JSON logs with context:
 
 ```typescript
-logger.info('User authenticated', {
+logger.info("User authenticated", {
   userId: user.id,
   email: user.email,
   requestId: req.id,
@@ -253,10 +253,10 @@ logger.info('User authenticated', {
 Add trace IDs to correlate logs across services:
 
 ```typescript
-import { trace } from '@opentelemetry/api';
+import { trace } from "@opentelemetry/api";
 
 const span = trace.getActiveSpan();
-logger.info('Processing payment', {
+logger.info("Processing payment", {
   traceId: span?.spanContext().traceId,
   orderId,
   amount,
@@ -286,7 +286,7 @@ Use dependency injection to invert control:
 class CreateOrderUseCase {
   constructor(
     private orderRepository: OrderRepository,
-    private paymentGateway: PaymentGateway
+    private paymentGateway: PaymentGateway,
   ) {}
 
   async execute(input: CreateOrderInput): Promise<Order> {
@@ -318,16 +318,16 @@ const userProfile = fetchUserProfile(userId);
 const isAuthenticated = checkAuth();
 
 // Functions: verbs, camelCase
-function calculateTotal(items: Item[]): number { }
-async function fetchUser(id: string): Promise<User> { }
+function calculateTotal(items: Item[]): number {}
+async function fetchUser(id: string): Promise<User> {}
 
 // Constants: UPPER_SNAKE_CASE
 const MAX_RETRY_ATTEMPTS = 3;
-const API_BASE_URL = 'https://api.example.com';
+const API_BASE_URL = "https://api.example.com";
 
 // Classes: PascalCase, nouns
-class UserService { }
-class PaymentGateway { }
+class UserService {}
+class PaymentGateway {}
 ```
 
 ### API Endpoints
@@ -375,7 +375,7 @@ Use tools to enforce standards automatically:
 
 - Run linters in CI (fail builds on violations)
 - Use pre-commit hooks for instant feedback
-- Auto-format on save in IDE
+- Autoformat on save in IDE
 - Share IDE settings (`.vscode/settings.json`)
 
 ❌ **DON'T**:

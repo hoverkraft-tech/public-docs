@@ -107,7 +107,7 @@ FEATURE_X_ENABLED=true
 
 - [OWASP - Secrets Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html)
 
-## Repo Overview & Mental Model
+## Repository Overview & Mental Model
 
 ### Architecture Diagram
 
@@ -148,6 +148,7 @@ Provide a guided first contribution that touches all parts of the stack:
 **Goal**: Add a new API endpoint and display the result in the UI.
 
 1. **Backend** (5 min):
+
    ```bash
    # Add endpoint in src/routes/health.ts
    app.get('/api/health', (req, res) => {
@@ -156,22 +157,24 @@ Provide a guided first contribution that touches all parts of the stack:
    ```
 
 2. **Frontend** (5 min):
+
    ```jsx
    // Add component in src/components/HealthStatus.tsx
    export function HealthStatus() {
      const [data, setData] = useState(null);
-     
+
      useEffect(() => {
-       fetch('/api/health')
-         .then(res => res.json())
+       fetch("/api/health")
+         .then((res) => res.json())
          .then(setData);
      }, []);
-     
+
      return <div>Status: {data?.status}</div>;
    }
    ```
 
 3. **Test** (5 min):
+
    ```bash
    npm test -- health.test.ts
    ```
@@ -217,13 +220,13 @@ Document how to request access to:
 - **AWS Console**: Submit access request via internal portal
 - **Datadog/Monitoring**: Auto-granted after joining GitHub org
 - **Production Database**: Read-only access only; write access requires approval
-- **Secret Manager**: Request access via Slack #devops channel
+- **Secret Manager**: Request access via Slack #DevOps channel
 
 ### Permission Matrix
 
 | Resource          | New Dev | Senior Dev | Team Lead |
-|-------------------|---------|------------|-----------|
-| GitHub Repo       | Read    | Write      | Admin     |
+| ----------------- | ------- | ---------- | --------- |
+| GitHub repository | Read    | Write      | Admin     |
 | Dev Environment   | Admin   | Admin      | Admin     |
 | Staging           | Read    | Write      | Admin     |
 | Production        | None    | Read       | Write     |
@@ -236,13 +239,13 @@ Document how to request access to:
 
 Define critical terms to establish shared language:
 
-| Term | Definition |
-|------|------------|
-| **ADR** | Architecture Decision Record - Documents significant technical decisions |
-| **Golden Path** | Opinionated, recommended way to accomplish a common task |
-| **Runbook** | Step-by-step guide for operational tasks (deployments, debugging) |
-| **SLI/SLO** | Service Level Indicator/Objective - Measurable reliability targets |
-| **Blast Radius** | Impact scope of a potential failure or change |
+| Term             | Definition                                                               |
+| ---------------- | ------------------------------------------------------------------------ |
+| **ADR**          | Architecture Decision Record - Documents significant technical decisions |
+| **Golden Path**  | Opinionated, recommended way to accomplish a common task                 |
+| **Runbook**      | Step-by-step guide for operational tasks (deployments, debugging)        |
+| **SLI/SLO**      | Service Level Indicator/Objective - Measurable reliability targets       |
+| **Blast Radius** | Impact scope of a potential failure or change                            |
 
 **Sources:**
 

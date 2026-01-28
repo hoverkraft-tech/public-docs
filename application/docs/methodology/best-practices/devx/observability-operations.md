@@ -16,12 +16,12 @@ Reduce MTTR (Mean Time To Recovery) and on-call pain. You can't fix what you can
 
 Use appropriate log levels:
 
-| Level | When to Use | Examples |
-|-------|-------------|----------|
-| **ERROR** | Action failed, requires intervention | Payment processing failed, database unavailable |
-| **WARN** | Potential issue, doesn't block operation | Deprecated API used, retry limit approaching |
-| **INFO** | Significant events | User logged in, order created, deployment started |
-| **DEBUG** | Detailed diagnostic info | Variable values, function entry/exit |
+| Level     | When to Use                              | Examples                                          |
+| --------- | ---------------------------------------- | ------------------------------------------------- |
+| **ERROR** | Action failed, requires intervention     | Payment processing failed, database unavailable   |
+| **WARN**  | Potential issue, doesn't block operation | Deprecated API used, retry limit approaching      |
+| **INFO**  | Significant events                       | User logged in, order created, deployment started |
+| **DEBUG** | Detailed diagnostic info                 | Variable values, function entry/exit              |
 
 ✅ **DO**:
 
@@ -47,7 +47,7 @@ Always use structured JSON logs:
 
 ```typescript
 // ✅ Good - structured
-logger.info('User authenticated', {
+logger.info("User authenticated", {
   userId: user.id,
   email: user.email,
   requestId: req.id,
@@ -95,15 +95,15 @@ Use request IDs to trace requests across services:
 
 ```typescript
 // Generate ID at API gateway
-const requestId = req.headers['x-request-id'] || generateId();
+const requestId = req.headers["x-request-id"] || generateId();
 
 // Pass to downstream services
-await fetch('https://api.internal/users', {
-  headers: { 'x-request-id': requestId },
+await fetch("https://api.internal/users", {
+  headers: { "x-request-id": requestId },
 });
 
 // Include in all logs
-logger.info('Fetching user', { requestId, userId });
+logger.info("Fetching user", { requestId, userId });
 ```
 
 **Sources:**
@@ -122,13 +122,13 @@ Track these for every service:
 
 ```typescript
 // Increment counters
-metrics.increment('api.requests', { endpoint: '/users', method: 'GET' });
-metrics.increment('api.errors', { endpoint: '/users', statusCode: 500 });
+metrics.increment("api.requests", { endpoint: "/users", method: "GET" });
+metrics.increment("api.errors", { endpoint: "/users", statusCode: 500 });
 
 // Record duration
 const start = Date.now();
 // ... handle request
-metrics.timing('api.duration', Date.now() - start, { endpoint: '/users' });
+metrics.timing("api.duration", Date.now() - start, { endpoint: "/users" });
 ```
 
 **Sources:**
@@ -140,12 +140,12 @@ metrics.timing('api.duration', Date.now() - start, { endpoint: '/users' });
 
 Measure what users care about:
 
-| SLI | Target | Measurement |
-|-----|--------|-------------|
-| **Availability** | 99.9% | % of successful requests |
-| **Latency** | p95 < 200ms | 95th percentile response time |
-| **Error Rate** | < 0.1% | % of failed requests |
-| **Throughput** | 1000 req/s | Requests handled per second |
+| SLI              | Target      | Measurement                   |
+| ---------------- | ----------- | ----------------------------- |
+| **Availability** | 99.9%       | % of successful requests      |
+| **Latency**      | p95 < 200ms | 95th percentile response time |
+| **Error Rate**   | < 0.1%      | % of failed requests          |
+| **Throughput**   | 1000 req/s  | Requests handled per second   |
 
 ### Service Level Objectives (SLOs)
 
@@ -157,11 +157,11 @@ slos:
   - name: API Availability
     target: 99.9%
     window: 30 days
-    
+
   - name: API Latency
     target: p95 < 200ms
     window: 7 days
-    
+
   - name: Error Rate
     target: < 0.1%
     window: 1 day
@@ -179,26 +179,26 @@ slos:
 Use OpenTelemetry for tracing across services:
 
 ```typescript
-import { trace } from '@opentelemetry/api';
+import { trace } from "@opentelemetry/api";
 
-const tracer = trace.getTracer('user-service');
+const tracer = trace.getTracer("user-service");
 
 async function createUser(data: UserInput) {
-  const span = tracer.startSpan('createUser');
-  
+  const span = tracer.startSpan("createUser");
+
   try {
-    span.setAttribute('user.email', data.email);
-    
+    span.setAttribute("user.email", data.email);
+
     // Validate
-    const validationSpan = tracer.startSpan('validateUser', { parent: span });
+    const validationSpan = tracer.startSpan("validateUser", { parent: span });
     await validateUser(data);
     validationSpan.end();
-    
+
     // Save
-    const saveSpan = tracer.startSpan('saveUser', { parent: span });
+    const saveSpan = tracer.startSpan("saveUser", { parent: span });
     const user = await userRepository.save(data);
     saveSpan.end();
-    
+
     span.setStatus({ code: SpanStatusCode.OK });
     return user;
   } catch (error) {
@@ -276,31 +276,37 @@ Every alert should link to a runbook:
 # Runbook: High API Error Rate
 
 ## Symptoms
+
 - API error rate > 1%
 - Users reporting failed requests
 - Alert: "API Error Rate High"
 
 ## Impact
+
 - Customers cannot complete orders
 - Revenue impact: High
 
 ## Diagnosis
+
 1. Check recent deployments (last 30 min)
 2. Review error logs: `kubectl logs -l app=api --tail=100`
 3. Check database status: `SELECT pg_is_in_recovery()`
 4. Check external dependencies (payment gateway, auth service)
 
 ## Resolution Steps
+
 1. If recent deployment: Rollback with `npm run deploy:rollback`
 2. If database issue: Check connection pool, increase connections
 3. If external dependency: Enable circuit breaker, use fallback
 
 ## Prevention
+
 - Add retry logic for transient errors
 - Implement circuit breakers for external dependencies
 - Increase test coverage for error scenarios
 
 ## Escalation
+
 - Slack: #engineering-alerts
 - On-call: PagerDuty
 - Leadership: If impact > 10 minutes
@@ -315,6 +321,7 @@ Every alert should link to a runbook:
 ### When to Write a Post-Mortem
 
 Write post-mortems for:
+
 - User-impacting outages
 - Data loss or corruption
 - Security incidents
@@ -331,9 +338,11 @@ Write post-mortems for:
 **Severity**: SEV-2
 
 ## Summary
+
 Brief description of what happened and impact.
 
 ## Timeline (UTC)
+
 - 10:00 - Deployment started
 - 10:15 - Error rate increased to 5%
 - 10:18 - Alert triggered
@@ -343,28 +352,34 @@ Brief description of what happened and impact.
 - 10:45 - Service fully restored
 
 ## Root Cause
+
 Database migration introduced schema change incompatible with application code.
 
 ## Impact
+
 - 15% of users (5,000) unable to log in
 - Revenue loss: ~$1,000 (estimated)
 
 ## What Went Well
+
 - Alert triggered quickly (3 minutes)
 - Rollback process worked smoothly
 - Communication was clear and timely
 
 ## What Went Wrong
+
 - Migration not tested in staging
 - No backward compatibility check
 - Deployment happened during peak hours
 
 ## Action Items
+
 - [ ] Add migration testing to CI pipeline (Owner: @alice, Due: Feb 5)
 - [ ] Implement schema compatibility checks (Owner: @bob, Due: Feb 10)
 - [ ] Update deployment schedule to off-peak hours (Owner: @charlie, Due: Feb 1)
 
 ## Lessons Learned
+
 Always test migrations in staging with production-like data before deploying.
 ```
 

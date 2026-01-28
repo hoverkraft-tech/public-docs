@@ -55,7 +55,7 @@ Responsibilities:
 | **Input**          | **Description**                                       | **Required** | **Default** |
 | ------------------ | ----------------------------------------------------- | ------------ | ----------- |
 | **`github-token`** | GitHub token used to authenticate repository queries. | **true**     | -           |
-| **`repository`**   | Repository slug in the form owner/repo.               | **true**     | -           |
+| **`repository`**   | Repository slug in the form owner/repository.         | **true**     | -           |
 
 <!-- inputs:end -->
 <!-- secrets:start -->

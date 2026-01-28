@@ -2,7 +2,7 @@
 sidebar_position: 5
 ---
 
-# Kubernetes Probes Best Practices
+# Kubernetes Probes
 
 This guide provides Hoverkraft's opinionated approach to configuring Kubernetes liveness, readiness, and startup probes for production workloads.
 

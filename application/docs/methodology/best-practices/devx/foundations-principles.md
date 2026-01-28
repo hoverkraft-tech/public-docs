@@ -17,6 +17,7 @@ Align everyone on why things exist and how decisions are made. Without shared pr
 **"Developers focus on solving business problems, not fighting tooling."**
 
 Every developer should:
+
 - Ship their first PR on day one
 - Deploy to production confidently within their first week
 - Understand system architecture within their first month
@@ -88,6 +89,7 @@ Don't build features for hypothetical future needs. Ship the simplest thing that
 Separate business logic from infrastructure concerns. Core domain logic should be independent of frameworks, databases, and external systems.
 
 **Layers:**
+
 1. **Entities**: Core business rules
 2. **Use Cases**: Application business rules
 3. **Interface Adapters**: Controllers, presenters, gateways
@@ -134,17 +136,20 @@ Separate business logic from infrastructure concerns. Core domain logic should b
 Code is production-ready when:
 
 ✅ **Functional Requirements**:
+
 - Feature works as specified
 - Edge cases are handled
 - Error messages are actionable
 
 ✅ **Quality Requirements**:
-- Tests exist (unit, integration, E2E as appropriate)
+
+- Tests exist (unit, integration, end-to-end as appropriate)
 - Linting passes
 - Code review approved
 - No known security vulnerabilities
 
 ✅ **Operational Requirements**:
+
 - Logging includes request IDs and context
 - Metrics track key operations
 - Alerts exist for failure modes
@@ -152,8 +157,9 @@ Code is production-ready when:
 - Rollback procedure is tested
 
 ✅ **Documentation Requirements**:
+
 - API contracts documented (OpenAPI, GraphQL schema)
-- README updated with new behavior
+- Readme updated with new behavior
 - Architecture Decision Records (ADR) for significant changes
 
 **Sources:**
@@ -166,13 +172,15 @@ Code is production-ready when:
 ### When to Write an RFC
 
 Write a Request for Comments (RFC) for:
+
 - Architecture changes affecting multiple teams
 - New infrastructure or tooling standards
 - Breaking API changes
 - Security or compliance policy changes
 
 **Don't write an RFC for**:
-- Small bug fixes
+
+- Small bugfixes
 - Refactoring within a single service
 - Changes that are easily reversible
 
@@ -182,23 +190,29 @@ Write a Request for Comments (RFC) for:
 # RFC-XXX: [Title]
 
 ## Status
+
 [Proposed | Accepted | Rejected | Superseded]
 
 ## Context
+
 Why is this change needed? What problem does it solve?
 
 ## Decision
+
 What are we doing? Be specific.
 
 ## Consequences
+
 - Positive: What improves?
 - Negative: What gets harder?
 - Neutral: What changes without clear good/bad impact?
 
 ## Alternatives Considered
+
 What other options were evaluated and why were they rejected?
 
 ## References
+
 Links to related RFCs, documentation, or external resources.
 ```
 
