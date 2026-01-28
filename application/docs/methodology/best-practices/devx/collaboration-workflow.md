@@ -111,12 +111,14 @@ Any special deployment steps or configuration changes?
 
 ```markdown
 # Good comments
+
 ❓ Question: Why did we choose Redis over Memcached here?
 💡 Suggestion: Consider extracting this into a helper function
 ⚠️ Concern: This might cause a race condition if two users update simultaneously
 ✅ Looks good! Just one nit: could we rename `data` to `userData` for clarity?
 
 # Bad comments
+
 ❌ This is wrong. (Not helpful - explain why)
 ❌ We should use strategy pattern here. (Over-engineering)
 ❌ I would have done this differently. (Not actionable)
@@ -150,10 +152,12 @@ Any special deployment steps or configuration changes?
 
 ```markdown
 # Good Slack message
-Hey team! 👋 I'm working on the authentication refactor and noticed 
+
+Hey team! 👋 I'm working on the authentication refactor and noticed
 we're using two different JWT libraries. Should we standardize on one?
 
-Context: 
+Context:
+
 - `jsonwebtoken` in auth-service
 - `jose` in api-gateway
 
@@ -162,6 +166,7 @@ Suggestion: Migrate to `jose` (more actively maintained)
 Thoughts? No rush, respond when you can.
 
 # Bad Slack message
+
 hey
 (waits 2 hours)
 u there?
@@ -178,7 +183,7 @@ i have a question
 ✅ **DO**:
 
 - Document decisions in ADRs
-- Update README when behavior changes
+- Update readme when behavior changes
 - Write runbooks for operational tasks
 - Record meeting notes in shared docs
 - Link to documentation in code comments
@@ -198,12 +203,12 @@ i have a question
 
 ### Incident Severity Levels
 
-| Severity | Definition | Response Time | Examples |
-|----------|-----------|---------------|----------|
-| **SEV-1** | Critical customer impact | < 5 min | Payment processing down, complete outage |
-| **SEV-2** | Major degradation | < 15 min | Slow response times, partial outage |
-| **SEV-3** | Minor impact | < 1 hour | Non-critical feature broken |
-| **SEV-4** | Cosmetic issue | Next business day | UI glitch, typo |
+| Severity  | Definition               | Response Time     | Examples                                 |
+| --------- | ------------------------ | ----------------- | ---------------------------------------- |
+| **SEV-1** | Critical customer impact | < 5 min           | Payment processing down, complete outage |
+| **SEV-2** | Major degradation        | < 15 min          | Slow response times, partial outage      |
+| **SEV-3** | Minor impact             | < 1 hour          | Non-critical feature broken              |
+| **SEV-4** | Cosmetic issue           | Next business day | UI glitch, typo                          |
 
 ### Incident Communication Template
 
@@ -229,6 +234,7 @@ Next update in 15 minutes.
 Status: Identified - database connection pool exhausted
 Impact: Users cannot complete purchases (~5,000 affected)
 Actions:
+
 - Increased connection pool size
 - Restarting affected services
 - Monitoring recovery
@@ -261,12 +267,12 @@ Post-mortem: [Link to doc]
 
 Define roles for key processes:
 
-| Task | Responsible | Accountable | Consulted | Informed |
-|------|-------------|-------------|-----------|----------|
-| **Feature Development** | Engineer | Team Lead | Designer, PM | Stakeholders |
-| **Code Review** | Reviewer | Author | Tech Lead | Team |
-| **Deployment** | Engineer | Team Lead | DevOps | Stakeholders |
-| **Incident Response** | On-call | Incident Commander | Team | Leadership |
+| Task                    | Responsible | Accountable        | Consulted    | Informed     |
+| ----------------------- | ----------- | ------------------ | ------------ | ------------ |
+| **Feature Development** | Engineer    | Team Lead          | Designer, PM | Stakeholders |
+| **Code Review**         | Reviewer    | Author             | Tech Lead    | Team         |
+| **Deployment**          | Engineer    | Team Lead          | DevOps       | Stakeholders |
+| **Incident Response**   | On-call     | Incident Commander | Team         | Leadership   |
 
 **Sources:**
 
@@ -358,17 +364,21 @@ Before changing public APIs:
 # Team Sync - 2024-01-28
 
 ## Agenda
+
 - [ ] Deploy readiness for v2.0 (10 min)
 - [ ] Database migration strategy (15 min)
 - [ ] Q&A (5 min)
 
 ## Notes
+
 - [Take notes here]
 
 ## Decisions
+
 - [Document decisions]
 
 ## Action Items
+
 - [ ] @alice - Complete migration script by Friday
 - [ ] @bob - Review deployment checklist
 ```

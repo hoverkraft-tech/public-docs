@@ -10,7 +10,7 @@ Create a production-ready application repository using the current Hoverkraft ap
 
 1. **[Getting Started](./01-getting-started.md)** - Prerequisites and architecture
 2. **[Repository Scaffold](./02-repo-scaffold.md)** - Directory layout and key files
-3. **[CI/CD](./03-ci-cd.md)** - Generic entry point for your pipeline; see provider-specific implementations under `ci-cd/` (e.g., [GitHub](./ci-cd/github/)).
+3. **[CI/CD](./03-ci-cd/index.md)** - Generic entry point for your pipeline; see provider-specific implementations (e.g., [GitHub](./03-ci-cd/github/index.md)).
 4. **[Verify & Operate](./04-verify.md)** - Dry runs, release, and deployment checks (refer to your CI/CD platform).
 5. **[Hygiene & Maintenance](./05-hygiene.md)** (GitHub example) - Community workflows, Dependabot, and upkeep; adapt equivalents for your platform.
 

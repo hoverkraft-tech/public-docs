@@ -16,13 +16,13 @@ Avoid invisible technical debt. Poor performance and runaway costs compound over
 
 Set measurable performance targets:
 
-| Metric | Target | Measurement |
-|--------|--------|-------------|
-| **Page Load (p95)** | < 2s | Lighthouse, WebPageTest |
-| **Time to Interactive** | < 3s | Lighthouse |
-| **API Response (p95)** | < 200ms | Application metrics |
-| **Database Queries** | < 50ms | Query monitoring |
-| **Bundle Size** | < 200KB gzipped | Webpack Bundle Analyzer |
+| Metric                  | Target          | Measurement             |
+| ----------------------- | --------------- | ----------------------- |
+| **Page Load (p95)**     | < 2s            | Lighthouse, WebPageTest |
+| **Time to Interactive** | < 3s            | Lighthouse              |
+| **API Response (p95)**  | < 200ms         | Application metrics     |
+| **Database Queries**    | < 50ms          | Query monitoring        |
+| **Bundle Size**         | < 200KB gzipped | Webpack Bundle Analyzer |
 
 ✅ **DO**:
 
@@ -109,8 +109,8 @@ node --prof-process isolate-0x*.log > processed.txt
 
 ```typescript
 // Take heap snapshot
-import v8 from 'v8';
-import fs from 'fs';
+import v8 from "v8";
+import fs from "fs";
 
 function takeHeapSnapshot() {
   const filename = `heap-${Date.now()}.heapsnapshot`;
@@ -176,7 +176,7 @@ LIMIT 10;
 
 ✅ **DO**:
 
-- Add indexes for frequently queried columns
+- Add indices for frequently queried columns
 - Use `EXPLAIN ANALYZE` to understand query plans
 - Paginate large result sets
 - Use connection pooling
@@ -186,7 +186,7 @@ LIMIT 10;
 
 - Use `SELECT *` (select only needed columns)
 - Query in loops (N+1 problem)
-- Index every column (indexes have write cost)
+- Index every column (indices have write cost)
 
 **Example N+1 Fix:**
 
@@ -231,6 +231,7 @@ resource "aws_instance" "app" {
 ### Cost Allocation Dashboard
 
 Track costs by:
+
 - **Team**: Which team owns the resource?
 - **Project**: Which project is it for?
 - **Environment**: dev, staging, production
@@ -328,19 +329,19 @@ Reduce compute costs with caching:
 ```typescript
 async function getUser(id: string): Promise<User> {
   const cacheKey = `user:${id}`;
-  
+
   // Check cache first
   const cached = await redis.get(cacheKey);
   if (cached) {
     return JSON.parse(cached);
   }
-  
+
   // Fetch from database
   const user = await db.users.findById(id);
-  
+
   // Cache for 1 hour
   await redis.setex(cacheKey, 3600, JSON.stringify(user));
-  
+
   return user;
 }
 ```
@@ -353,10 +354,10 @@ async function getUser(id: string): Promise<User> {
 
 ### Horizontal vs. Vertical Scaling
 
-| Strategy | When to Use | Pros | Cons |
-|----------|-------------|------|------|
-| **Horizontal** | Stateless apps, high availability | Better redundancy, easier scaling | More complex, eventual consistency |
-| **Vertical** | Stateful apps, databases | Simple, strong consistency | Limited by hardware, single point of failure |
+| Strategy       | When to Use                       | Pros                              | Cons                                         |
+| -------------- | --------------------------------- | --------------------------------- | -------------------------------------------- |
+| **Horizontal** | Stateless apps, high availability | Better redundancy, easier scaling | More complex, eventual consistency           |
+| **Vertical**   | Stateful apps, databases          | Simple, strong consistency        | Limited by hardware, single point of failure |
 
 **Horizontal Scaling Example:**
 
@@ -392,31 +393,31 @@ Validate scaling before production traffic:
 
 ```javascript
 // k6 load test
-import http from 'k6/http';
-import { check, sleep } from 'k6';
+import http from "k6/http";
+import { check, sleep } from "k6";
 
 export let options = {
   stages: [
-    { duration: '2m', target: 100 },  // Ramp up
-    { duration: '5m', target: 100 },  // Steady state
-    { duration: '2m', target: 200 },  // Spike
-    { duration: '5m', target: 200 },  // High load
-    { duration: '2m', target: 0 },    // Ramp down
+    { duration: "2m", target: 100 }, // Ramp up
+    { duration: "5m", target: 100 }, // Steady state
+    { duration: "2m", target: 200 }, // Spike
+    { duration: "5m", target: 200 }, // High load
+    { duration: "2m", target: 0 }, // Ramp down
   ],
   thresholds: {
-    http_req_duration: ['p(95)<200'],  // 95% under 200ms
-    http_req_failed: ['rate<0.01'],    // < 1% errors
+    http_req_duration: ["p(95)<200"], // 95% under 200ms
+    http_req_failed: ["rate<0.01"], // < 1% errors
   },
 };
 
 export default function () {
-  const res = http.get('https://api.example.com/users');
-  
+  const res = http.get("https://api.example.com/users");
+
   check(res, {
-    'status is 200': (r) => r.status === 200,
-    'response time OK': (r) => r.timings.duration < 200,
+    "status is 200": (r) => r.status === 200,
+    "response time OK": (r) => r.timings.duration < 200,
   });
-  
+
   sleep(1);
 }
 ```
@@ -433,18 +434,18 @@ export default function () {
 ```typescript
 // Configure read replicas
 const db = {
-  write: createConnection('postgres://primary'),
-  read: createConnection('postgres://replica'),
+  write: createConnection("postgres://primary"),
+  read: createConnection("postgres://replica"),
 };
 
 // Use replica for reads
 async function getUsers() {
-  return db.read.query('SELECT * FROM users');
+  return db.read.query("SELECT * FROM users");
 }
 
 // Use primary for writes
 async function createUser(data: User) {
-  return db.write.query('INSERT INTO users ...', data);
+  return db.write.query("INSERT INTO users ...", data);
 }
 ```
 
@@ -459,7 +460,7 @@ function getShard(userId: string): Database {
 
 async function getUser(userId: string) {
   const shard = getShard(userId);
-  return shard.query('SELECT * FROM users WHERE id = $1', [userId]);
+  return shard.query("SELECT * FROM users WHERE id = $1", [userId]);
 }
 ```
 
@@ -469,14 +470,14 @@ async function getUser(userId: string) {
 
 ## Cost-Performance Trade-offs
 
-### Example Decisions:
+### Example Decisions
 
-| Scenario | Cheap | Balanced | Performance |
-|----------|-------|----------|-------------|
-| **Database** | Single instance | Primary + replica | Sharded cluster |
-| **Caching** | None | Redis single node | Redis cluster |
-| **Compute** | t3.micro | t3.medium | c6i.xlarge |
-| **Storage** | S3 Standard | S3 Intelligent-Tiering | S3 + CloudFront |
+| Scenario     | Cheap           | Balanced               | Performance     |
+| ------------ | --------------- | ---------------------- | --------------- |
+| **Database** | Single instance | Primary + replica      | Sharded cluster |
+| **Caching**  | None            | Redis single node      | Redis cluster   |
+| **Compute**  | t3.micro        | t3.medium              | c6i.xlarge      |
+| **Storage**  | S3 Standard     | S3 Intelligent-Tiering | S3 + CloudFront |
 
 **Decision Framework:**
 

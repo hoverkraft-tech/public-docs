@@ -22,21 +22,25 @@ Run quarterly developer satisfaction surveys:
 ## Developer Satisfaction Survey
 
 ### Onboarding (1-5 scale)
+
 - How easy was it to set up your local environment?
 - How long did it take to make your first commit?
 - How well did documentation prepare you?
 
 ### Daily Workflow (1-5 scale)
+
 - How often are you blocked by slow CI?
 - How confident are you deploying to production?
 - How easy is it to find answers to questions?
 
 ### Tools & Platform (1-5 scale)
+
 - How satisfied are you with internal tools?
 - How much time do you spend on toil vs. value work?
 - How well do monitoring tools help you debug issues?
 
 ### Open Feedback
+
 - What slows you down the most?
 - What's one thing we should improve?
 - What's working well that we should keep?
@@ -62,14 +66,17 @@ Capture feedback from team retrospectives:
 ## Retro Template
 
 ### What Went Well ✅
+
 - Fast PR reviews this sprint
 - New deployment pipeline saved time
 
 ### What Didn't Go Well ❌
+
 - Flaky tests blocked 3 PRs
 - Staging environment was down for 2 days
 
 ### Action Items 🎯
+
 - [ ] Fix top 5 flaky tests (@alice, by next sprint)
 - [ ] Set up staging environment monitoring (@bob, this week)
 ```
@@ -78,11 +85,11 @@ Capture feedback from team retrospectives:
 
 Track recurring issues across multiple retrospectives:
 
-| Issue | Frequency | Priority |
-|-------|-----------|----------|
-| Flaky tests | 8 retros | High |
-| Slow CI | 5 retros | Medium |
-| Unclear docs | 4 retros | Medium |
+| Issue        | Frequency | Priority |
+| ------------ | --------- | -------- |
+| Flaky tests  | 8 retros  | High     |
+| Slow CI      | 5 retros  | Medium   |
+| Unclear docs | 4 retros  | Medium   |
 
 **Sources:**
 
@@ -96,6 +103,7 @@ Track recurring issues across multiple retrospectives:
 Purpose: Quick feedback on developer experience
 
 Examples:
+
 - "The new CLI saved me 30 minutes today 🎉"
 - "Deployment docs are outdated for the new process"
 - "Can we add autocomplete to the internal API?"
@@ -119,12 +127,12 @@ SLA: Acknowledged within 24 hours
 
 Track the four key metrics:
 
-| Metric | Target | Measurement |
-|--------|--------|-------------|
-| **Deployment Frequency** | Multiple per day | CI/CD logs |
-| **Lead Time for Changes** | < 1 day | Time from commit to production |
-| **Change Failure Rate** | < 15% | Failed deployments / total deployments |
-| **Time to Restore Service** | < 1 hour | Incident duration |
+| Metric                      | Target           | Measurement                            |
+| --------------------------- | ---------------- | -------------------------------------- |
+| **Deployment Frequency**    | Multiple per day | CI/CD logs                             |
+| **Lead Time for Changes**   | < 1 day          | Time from commit to production         |
+| **Change Failure Rate**     | < 15%            | Failed deployments / total deployments |
+| **Time to Restore Service** | < 1 hour         | Incident duration                      |
 
 **Example Dashboard Query:**
 
@@ -220,7 +228,7 @@ Treat documentation like code:
 
 - Version control all docs
 - Require code review for doc changes
-- Run linters on markdown
+- Run linters on Markdown
 - Test code samples automatically
 - Deploy docs with CI/CD
 
@@ -243,17 +251,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       # Lint markdown
       - uses: DavidAnson/markdownlint-cli2-action@v13
         with:
-          globs: 'docs/**/*.md'
-      
+          globs: "docs/**/*.md"
+
       # Check for broken links
       - uses: gaurav-nelson/github-action-markdown-link-check@v1
         with:
-          folder-path: 'docs'
-      
+          folder-path: "docs"
+
       # Test code samples
       - run: npm run test:docs
 ```
@@ -272,14 +280,17 @@ Document the pain point:
 
 ```markdown
 ## Problem
+
 Developers spend 2-3 hours setting up local environment.
 
 ## Impact
+
 - New developers lose productive time
 - Inconsistent environments cause bugs
 - High frustration in onboarding surveys
 
 ## Evidence
+
 - Onboarding survey: 2.3/5 satisfaction
 - Average setup time: 2.5 hours (measured across 10 new hires)
 ```
@@ -288,17 +299,21 @@ Developers spend 2-3 hours setting up local environment.
 
 ```markdown
 ## Proposed Solution
+
 Create automated setup script that:
+
 - Detects OS and installs correct tools
 - Sets up pre-commit hooks
 - Starts local infrastructure (Docker)
 - Runs health checks
 
 ## Expected Outcome
+
 - Setup time: < 30 minutes
 - Onboarding satisfaction: > 4/5
 
 ## Effort Estimate
+
 - Development: 2-3 days
 - Testing: 1 day
 - Documentation: 1 day
@@ -349,25 +364,30 @@ Track all improvements to developer experience:
 ## 2024-01-28
 
 ### Added
+
 - 🚀 Automated local environment setup script
 - 📊 DORA metrics dashboard in Grafana
 - 🔍 Code search in developer portal
 
 ### Changed
+
 - ⚡ Reduced CI time from 20min to 12min (parallelized tests)
 - 📝 Updated onboarding guide with new team structure
 
 ### Fixed
+
 - 🐛 Fixed flaky test in payment-service
 - 🔧 Resolved staging environment connectivity issues
 
 ### Deprecated
+
 - ⚠️ Legacy deployment script (use `hk deploy` instead)
 - ⚠️ Manual secret management (migrate to 1Password)
 
 ## 2024-01-15
 
 ### Added
+
 - 🎯 Feature flag system with LaunchDarkly
 - 📚 ADR template and process
 
@@ -390,12 +410,12 @@ Track all improvements to developer experience:
 
 Share upcoming DevX improvements:
 
-| Quarter | Theme | Key Initiatives |
-|---------|-------|-----------------|
-| **Q1 2024** | Onboarding | Automated setup, improved docs, mentorship program |
-| **Q2 2024** | CI/CD Speed | Parallel tests, incremental builds, better caching |
-| **Q3 2024** | Observability | Distributed tracing, better error messages, runbooks |
-| **Q4 2024** | Developer Portal | Unified docs, API catalog, self-service tools |
+| Quarter     | Theme            | Key Initiatives                                      |
+| ----------- | ---------------- | ---------------------------------------------------- |
+| **Q1 2024** | Onboarding       | Automated setup, improved docs, mentorship program   |
+| **Q2 2024** | CI/CD Speed      | Parallel tests, incremental builds, better caching   |
+| **Q3 2024** | Observability    | Distributed tracing, better error messages, runbooks |
+| **Q4 2024** | Developer Portal | Unified docs, API catalog, self-service tools        |
 
 **Prioritization Criteria:**
 
@@ -445,12 +465,12 @@ Share upcoming DevX improvements:
 
 ## Metrics
 
-| Metric | Target | Actual | Status |
-|--------|--------|--------|--------|
-| Deployment Frequency | 10/day | 12/day | ✅ |
-| Lead Time | < 1 day | 8 hours | ✅ |
-| MTTR | < 1 hour | 45 min | ✅ |
-| Dev Satisfaction | > 4/5 | 4.2/5 | ✅ |
+| Metric               | Target   | Actual  | Status |
+| -------------------- | -------- | ------- | ------ |
+| Deployment Frequency | 10/day   | 12/day  | ✅     |
+| Lead Time            | < 1 day  | 8 hours | ✅     |
+| MTTR                 | < 1 hour | 45 min  | ✅     |
+| Dev Satisfaction     | > 4/5    | 4.2/5   | ✅     |
 
 ## Achievements
 

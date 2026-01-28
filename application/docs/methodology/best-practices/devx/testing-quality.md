@@ -12,7 +12,7 @@ Ship fast without fear. Tests are insurance—they let you refactor, upgrade dep
 
 ## Testing Pyramid & Expectations
 
-Follow the testing pyramid: many fast unit tests, fewer integration tests, minimal E2E tests.
+Follow the testing pyramid: many fast unit tests, fewer integration tests, minimal end-to-end tests.
 
 ```
         /\
@@ -25,16 +25,17 @@ Follow the testing pyramid: many fast unit tests, fewer integration tests, minim
 ```
 
 **Test Distribution:**
+
 - **Unit Tests**: 60-75% (milliseconds per test)
 - **Integration Tests**: 20-30% (seconds per test)
-- **E2E Tests**: 5-10% (minutes per test)
+- **End-to-end Tests**: 5-10% (minutes per test)
 
 **Sources:**
 
 - [Martin Fowler - Test Pyramid](https://martinfowler.com/bliki/TestPyramid.html)
 - [Google Testing Blog - Test Sizes](https://testing.googleblog.com/2010/12/test-sizes.html)
 
-## Unit / Integration / E2E Boundaries
+## Unit / Integration / end-to-end Boundaries
 
 ### Unit Tests
 
@@ -57,14 +58,14 @@ Test a single unit (function, class) in isolation.
 
 ```typescript
 // Unit test - pure logic
-describe('calculateDiscount', () => {
-  it('applies 10% discount for orders over $100', () => {
-    const total = calculateDiscount(150, 'PROMO10');
+describe("calculateDiscount", () => {
+  it("applies 10% discount for orders over $100", () => {
+    const total = calculateDiscount(150, "PROMO10");
     expect(total).toBe(135); // 150 - 15
   });
 
-  it('throws error for invalid promo code', () => {
-    expect(() => calculateDiscount(100, 'INVALID')).toThrow();
+  it("throws error for invalid promo code", () => {
+    expect(() => calculateDiscount(100, "INVALID")).toThrow();
   });
 });
 ```
@@ -86,7 +87,7 @@ Test interactions between components (database, API, message queue).
 
 ❌ **DON'T**:
 
-- Test UI flows (use E2E instead)
+- Test UI flows (use end-to-end instead)
 - Share state between tests
 - Use production databases
 
@@ -94,17 +95,17 @@ Test interactions between components (database, API, message queue).
 
 ```typescript
 // Integration test - database interaction
-describe('UserRepository', () => {
+describe("UserRepository", () => {
   beforeEach(async () => {
     await cleanDatabase();
   });
 
-  it('saves user to database', async () => {
-    const user = new User('john@example.com', 'John Doe');
+  it("saves user to database", async () => {
+    const user = new User("john@example.com", "John Doe");
     await userRepository.save(user);
 
     const found = await userRepository.findById(user.id);
-    expect(found.email).toBe('john@example.com');
+    expect(found.email).toBe("john@example.com");
   });
 });
 ```
@@ -113,7 +114,7 @@ describe('UserRepository', () => {
 
 - [Testing with Databases - Testcontainers](https://testcontainers.com/)
 
-### E2E Tests
+### End-to-end Tests
 
 Test complete user workflows through the UI or API.
 
@@ -134,18 +135,18 @@ Test complete user workflows through the UI or API.
 
 ```typescript
 // E2E test - full user flow
-test('user can sign up and place order', async ({ page }) => {
-  await page.goto('/signup');
-  await page.fill('[name=email]', 'test@example.com');
-  await page.fill('[name=password]', 'password123');
-  await page.click('button[type=submit]');
+test("user can sign up and place order", async ({ page }) => {
+  await page.goto("/signup");
+  await page.fill("[name=email]", "test@example.com");
+  await page.fill("[name=password]", "password123");
+  await page.click("button[type=submit]");
 
-  await expect(page).toHaveURL('/dashboard');
-  
-  await page.click('text=New Order');
+  await expect(page).toHaveURL("/dashboard");
+
+  await page.click("text=New Order");
   // ... complete order flow
-  
-  await expect(page.locator('.success-message')).toBeVisible();
+
+  await expect(page.locator(".success-message")).toBeVisible();
 });
 ```
 
@@ -161,10 +162,10 @@ Use descriptive, readable test names:
 
 ```typescript
 // Readable test names
-describe('Order', () => {
-  it('throws error when adding item to submitted order', () => {});
-  it('calculates correct total with discount', () => {});
-  it('sends confirmation email after successful payment', () => {});
+describe("Order", () => {
+  it("throws error when adding item to submitted order", () => {});
+  it("calculates correct total with discount", () => {});
+  it("sends confirmation email after successful payment", () => {});
 });
 ```
 
@@ -172,9 +173,9 @@ describe('Order', () => {
 
 ```typescript
 // Vague test names
-test('test1', () => {});
-test('order test', () => {});
-test('should work', () => {});
+test("test1", () => {});
+test("order test", () => {});
+test("should work", () => {});
 ```
 
 **Pattern**: `it('<action> <expected outcome> <context>')`
@@ -195,14 +196,14 @@ export function createUser(overrides?: Partial<User>): User {
   return {
     id: randomUUID(),
     email: `user-${randomInt()}@example.com`,
-    name: 'Test User',
+    name: "Test User",
     createdAt: new Date(),
     ...overrides,
   };
 }
 
 // In tests
-const user = createUser({ email: 'specific@example.com' });
+const user = createUser({ email: "specific@example.com" });
 ```
 
 ✅ **DO**:
@@ -214,7 +215,7 @@ const user = createUser({ email: 'specific@example.com' });
 
 ❌ **DON'T**:
 
-- Hard-code test data
+- Hardcode test data
 - Reuse data across tests
 - Leave data in database after tests
 
@@ -260,7 +261,7 @@ class InMemoryUserRepository implements UserRepository {
 
 Actual implementations (databases, APIs).
 
-**Use when**: Integration or E2E tests.
+**Use when**: Integration or end-to-end tests.
 
 ```typescript
 // Use Testcontainers for real database
@@ -280,10 +281,10 @@ Test API contracts between services.
 
 ```typescript
 // Verify API returns expected shape
-describe('GET /users/:id', () => {
-  it('returns user with expected fields', async () => {
-    const response = await request(app).get('/users/123');
-    
+describe("GET /users/:id", () => {
+  it("returns user with expected fields", async () => {
+    const response = await request(app).get("/users/123");
+
     expect(response.body).toMatchObject({
       id: expect.any(String),
       email: expect.stringMatching(/^.+@.+$/),
@@ -298,21 +299,23 @@ describe('GET /users/:id', () => {
 
 ```typescript
 // Verify client can handle API response
-describe('UserApiClient', () => {
-  it('parses user response correctly', async () => {
+describe("UserApiClient", () => {
+  it("parses user response correctly", async () => {
     mockServer.use(
-      rest.get('/users/:id', (req, res, ctx) => {
-        return res(ctx.json({
-          id: '123',
-          email: 'test@example.com',
-          name: 'Test',
-          created_at: '2024-01-01T00:00:00Z',
-        }));
-      })
+      rest.get("/users/:id", (req, res, ctx) => {
+        return res(
+          ctx.json({
+            id: "123",
+            email: "test@example.com",
+            name: "Test",
+            created_at: "2024-01-01T00:00:00Z",
+          }),
+        );
+      }),
     );
 
-    const user = await client.getUser('123');
-    expect(user.id).toBe('123');
+    const user = await client.getUser("123");
+    expect(user.id).toBe("123");
   });
 });
 ```
@@ -329,14 +332,14 @@ describe('UserApiClient', () => {
 Test performance of hot paths:
 
 ```typescript
-describe('performance', () => {
-  it('calculates discount in < 10ms', () => {
+describe("performance", () => {
+  it("calculates discount in < 10ms", () => {
     const start = Date.now();
-    
+
     for (let i = 0; i < 1000; i++) {
-      calculateDiscount(100, 'PROMO10');
+      calculateDiscount(100, "PROMO10");
     }
-    
+
     const duration = Date.now() - start;
     expect(duration).toBeLessThan(10);
   });
@@ -349,19 +352,19 @@ Use tools like k6, Artillery, or Gatling:
 
 ```javascript
 // k6 load test
-import http from 'k6/http';
-import { check } from 'k6';
+import http from "k6/http";
+import { check } from "k6";
 
 export let options = {
   vus: 50, // 50 virtual users
-  duration: '30s',
+  duration: "30s",
 };
 
 export default function () {
-  let res = http.get('https://api.example.com/users');
+  let res = http.get("https://api.example.com/users");
   check(res, {
-    'status is 200': (r) => r.status === 200,
-    'response time < 200ms': (r) => r.timings.duration < 200,
+    "status is 200": (r) => r.status === 200,
+    "response time < 200ms": (r) => r.timings.duration < 200,
   });
 }
 ```
@@ -388,16 +391,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-      
+
       # Linting
       - run: npm run lint
-      
+
       # Type checking
       - run: npm run type-check
-      
+
       # Tests with coverage
       - run: npm run test:coverage
-      
+
       # Fail if coverage < 80%
       - run: npm run check-coverage
 ```

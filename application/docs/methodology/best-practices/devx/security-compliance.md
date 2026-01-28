@@ -25,7 +25,7 @@ Avoid accidental vulnerabilities. Security should be built into processes, not b
 ❌ **DON'T**:
 
 - Commit `.env` files
-- Hard-code API keys or passwords
+- Hardcode API keys or passwords
 - Share secrets via Slack or email
 - Use production secrets in development
 - Log secrets (even accidentally)
@@ -33,9 +33,12 @@ Avoid accidental vulnerabilities. Security should be built into processes, not b
 **Example (Node.js with AWS Secrets Manager):**
 
 ```typescript
-import { SecretsManagerClient, GetSecretValueCommand } from '@aws-sdk/client-secrets-manager';
+import {
+  SecretsManagerClient,
+  GetSecretValueCommand,
+} from "@aws-sdk/client-secrets-manager";
 
-const client = new SecretsManagerClient({ region: 'us-east-1' });
+const client = new SecretsManagerClient({ region: "us-east-1" });
 
 async function getSecret(secretName: string): Promise<string> {
   const command = new GetSecretValueCommand({ SecretId: secretName });
@@ -43,7 +46,7 @@ async function getSecret(secretName: string): Promise<string> {
   return response.SecretString!;
 }
 
-const dbPassword = await getSecret('prod/database/password');
+const dbPassword = await getSecret("prod/database/password");
 ```
 
 **Sources:**
@@ -110,28 +113,28 @@ jobs:
 **Example (JWT Authentication):**
 
 ```typescript
-import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
+import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 
 async function login(email: string, password: string) {
   const user = await findUserByEmail(email);
-  
-  if (!user || !await bcrypt.compare(password, user.passwordHash)) {
-    throw new UnauthorizedError('Invalid credentials');
+
+  if (!user || !(await bcrypt.compare(password, user.passwordHash))) {
+    throw new UnauthorizedError("Invalid credentials");
   }
-  
+
   const token = jwt.sign(
     { userId: user.id, email: user.email },
     process.env.JWT_SECRET!,
-    { expiresIn: '1h' }
+    { expiresIn: "1h" },
   );
-  
+
   const refreshToken = jwt.sign(
     { userId: user.id },
     process.env.JWT_REFRESH_SECRET!,
-    { expiresIn: '30d' }
+    { expiresIn: "30d" },
   );
-  
+
   return { token, refreshToken };
 }
 ```
@@ -147,28 +150,28 @@ Implement Role-Based Access Control:
 
 ```typescript
 enum Role {
-  Admin = 'admin',
-  Editor = 'editor',
-  Viewer = 'viewer',
+  Admin = "admin",
+  Editor = "editor",
+  Viewer = "viewer",
 }
 
 const permissions = {
-  [Role.Admin]: ['read', 'write', 'delete'],
-  [Role.Editor]: ['read', 'write'],
-  [Role.Viewer]: ['read'],
+  [Role.Admin]: ["read", "write", "delete"],
+  [Role.Editor]: ["read", "write"],
+  [Role.Viewer]: ["read"],
 };
 
 function authorize(user: User, action: string) {
   const userPermissions = permissions[user.role];
-  
+
   if (!userPermissions.includes(action)) {
-    throw new ForbiddenError('Insufficient permissions');
+    throw new ForbiddenError("Insufficient permissions");
   }
 }
 
 // Usage in route handler
-app.delete('/users/:id', async (req, res) => {
-  authorize(req.user, 'delete');
+app.delete("/users/:id", async (req, res) => {
+  authorize(req.user, "delete");
   await deleteUser(req.params.id);
   res.status(204).send();
 });
@@ -182,12 +185,12 @@ app.delete('/users/:id', async (req, res) => {
 
 ### Classification Levels
 
-| Level | Examples | Requirements |
-|-------|----------|--------------|
-| **Public** | Marketing content, docs | No restrictions |
-| **Internal** | Code, designs, metrics | Require authentication |
-| **Confidential** | Customer data, financials | Encrypt at rest, audit access |
-| **Restricted** | PII, PHI, payment data | Encrypt in transit & at rest, limited access, audit all access |
+| Level            | Examples                  | Requirements                                                   |
+| ---------------- | ------------------------- | -------------------------------------------------------------- |
+| **Public**       | Marketing content, docs   | No restrictions                                                |
+| **Internal**     | Code, designs, metrics    | Require authentication                                         |
+| **Confidential** | Customer data, financials | Encrypt at rest, audit access                                  |
+| **Restricted**   | PII, PHI, payment data    | Encrypt in transit & at rest, limited access, audit all access |
 
 ### Handling Sensitive Data
 
@@ -209,36 +212,36 @@ app.delete('/users/:id', async (req, res) => {
 **Example (Encryption at Rest):**
 
 ```typescript
-import crypto from 'crypto';
+import crypto from "crypto";
 
-const algorithm = 'aes-256-gcm';
-const key = Buffer.from(process.env.ENCRYPTION_KEY!, 'hex');
+const algorithm = "aes-256-gcm";
+const key = Buffer.from(process.env.ENCRYPTION_KEY!, "hex");
 
 function encrypt(text: string): string {
   const iv = crypto.randomBytes(16);
   const cipher = crypto.createCipheriv(algorithm, key, iv);
-  
+
   const encrypted = Buffer.concat([
-    cipher.update(text, 'utf8'),
+    cipher.update(text, "utf8"),
     cipher.final(),
   ]);
-  
+
   const authTag = cipher.getAuthTag();
-  
-  return Buffer.concat([iv, authTag, encrypted]).toString('base64');
+
+  return Buffer.concat([iv, authTag, encrypted]).toString("base64");
 }
 
 function decrypt(encryptedText: string): string {
-  const buffer = Buffer.from(encryptedText, 'base64');
-  
+  const buffer = Buffer.from(encryptedText, "base64");
+
   const iv = buffer.slice(0, 16);
   const authTag = buffer.slice(16, 32);
   const encrypted = buffer.slice(32);
-  
+
   const decipher = crypto.createDecipheriv(algorithm, key, iv);
   decipher.setAuthTag(authTag);
-  
-  return decipher.update(encrypted) + decipher.final('utf8');
+
+  return decipher.update(encrypted) + decipher.final("utf8");
 }
 ```
 
@@ -250,18 +253,18 @@ function decrypt(encryptedText: string): string {
 
 ### OWASP Top 10 (2021)
 
-| Risk | Mitigation |
-|------|------------|
-| **Broken Access Control** | Implement RBAC, validate permissions server-side |
-| **Cryptographic Failures** | Use TLS, encrypt sensitive data, avoid weak algorithms |
-| **Injection** | Use parameterized queries, input validation |
-| **Insecure Design** | Security requirements in design phase, threat modeling |
+| Risk                          | Mitigation                                                 |
+| ----------------------------- | ---------------------------------------------------------- |
+| **Broken Access Control**     | Implement RBAC, validate permissions server-side           |
+| **Cryptographic Failures**    | Use TLS, encrypt sensitive data, avoid weak algorithms     |
+| **Injection**                 | Use parameterized queries, input validation                |
+| **Insecure Design**           | Security requirements in design phase, threat modeling     |
 | **Security Misconfiguration** | Secure defaults, disable unused features, update regularly |
-| **Vulnerable Components** | Scan dependencies, keep libraries updated |
-| **Authentication Failures** | MFA, secure session management, rate limiting |
-| **Software/Data Integrity** | Code signing, SRI for CDN assets, verify updates |
-| **Logging Failures** | Log security events, monitor for anomalies |
-| **SSRF** | Validate URLs, use allowlists, network segmentation |
+| **Vulnerable Components**     | Scan dependencies, keep libraries updated                  |
+| **Authentication Failures**   | MFA, secure session management, rate limiting              |
+| **Software/Data Integrity**   | Code signing, SRI for CDN assets, verify updates           |
+| **Logging Failures**          | Log security events, monitor for anomalies                 |
+| **SSRF**                      | Validate URLs, use allowlists, network segmentation        |
 
 **Sources:**
 
@@ -273,19 +276,14 @@ function decrypt(encryptedText: string): string {
 
 ```typescript
 // Safe - parameterized query
-const users = await db.query(
-  'SELECT * FROM users WHERE email = $1',
-  [email]
-);
+const users = await db.query("SELECT * FROM users WHERE email = $1", [email]);
 ```
 
 ❌ **DON'T - String Concatenation:**
 
 ```typescript
 // Vulnerable to SQL injection
-const users = await db.query(
-  `SELECT * FROM users WHERE email = '${email}'`
-);
+const users = await db.query(`SELECT * FROM users WHERE email = '${email}'`);
 ```
 
 **Sources:**
@@ -297,7 +295,7 @@ const users = await db.query(
 ✅ **DO - Escape Output:**
 
 ```typescript
-import escapeHtml from 'escape-html';
+import escapeHtml from "escape-html";
 
 // Safe - escaped output
 res.send(`<div>Welcome, ${escapeHtml(user.name)}</div>`);
@@ -315,8 +313,8 @@ res.send(`<div>Welcome, ${user.name}</div>`);
 ```typescript
 app.use((req, res, next) => {
   res.setHeader(
-    'Content-Security-Policy',
-    "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'"
+    "Content-Security-Policy",
+    "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'",
   );
   next();
 });
@@ -373,7 +371,7 @@ jobs:
 Always validate and sanitize input:
 
 ```typescript
-import Joi from 'joi';
+import Joi from "joi";
 
 const userSchema = Joi.object({
   email: Joi.string().email().required(),
@@ -383,11 +381,11 @@ const userSchema = Joi.object({
 
 function validateUser(data: unknown) {
   const { error, value } = userSchema.validate(data);
-  
+
   if (error) {
     throw new ValidationError(error.message);
   }
-  
+
   return value;
 }
 ```
@@ -401,15 +399,15 @@ function validateUser(data: unknown) {
 Prevent abuse with rate limiting:
 
 ```typescript
-import rateLimit from 'express-rate-limit';
+import rateLimit from "express-rate-limit";
 
 const loginLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 5, // 5 attempts
-  message: 'Too many login attempts, please try again later',
+  message: "Too many login attempts, please try again later",
 });
 
-app.post('/login', loginLimiter, async (req, res) => {
+app.post("/login", loginLimiter, async (req, res) => {
   // Handle login
 });
 ```
@@ -434,17 +432,17 @@ Key requirements:
 
 ```typescript
 // Export user data
-app.get('/users/:id/export', async (req, res) => {
-  authorize(req.user, 'read');
-  
+app.get("/users/:id/export", async (req, res) => {
+  authorize(req.user, "read");
+
   const userData = await exportUserData(req.params.id);
   res.json(userData);
 });
 
 // Delete user data
-app.delete('/users/:id', async (req, res) => {
-  authorize(req.user, 'delete');
-  
+app.delete("/users/:id", async (req, res) => {
+  authorize(req.user, "delete");
+
   await anonymizeUserData(req.params.id);
   res.status(204).send();
 });
@@ -461,7 +459,7 @@ Log security-relevant events:
 
 ```typescript
 function auditLog(event: string, user: User, details: object) {
-  logger.info('Security audit event', {
+  logger.info("Security audit event", {
     event,
     userId: user.id,
     email: user.email,
@@ -471,9 +469,9 @@ function auditLog(event: string, user: User, details: object) {
 }
 
 // Usage
-auditLog('user.login', user, { ipAddress: req.ip });
-auditLog('user.password_changed', user, {});
-auditLog('admin.user_deleted', admin, { deletedUserId: userId });
+auditLog("user.login", user, { ipAddress: req.ip });
+auditLog("user.password_changed", user, {});
+auditLog("admin.user_deleted", admin, { deletedUserId: userId });
 ```
 
 **Sources:**

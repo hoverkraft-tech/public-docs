@@ -71,13 +71,13 @@ Action to retrieve some deployment information.
 
 ## Inputs
 
-| **Input**           | **Description**                                                                                       | **Required** | **Default**                             |
-| ------------------- | ----------------------------------------------------------------------------------------------------- | ------------ | --------------------------------------- |
-| **`deployment-id`** | The ID of the deployment to update                                                                    | **true**     | -                                       |
-| **`repository`**    | The repository where the deployment was made                                                          | **false**    | `$\{\{ github.event.repository.name }}` |
-| **`github-token`**  | GitHub Token to get the deployment information.                                                       | **false**    | `$\{\{ github.token }}`                 |
-|                     | Permissions:                                                                                          |              |                                         |
-|                     | - deployments: read                                                                                   |              |                                         |
+| **Input**           | **Description**                                                                                                                                                                                       | **Required** | **Default**                             |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------------------------------- |
+| **`deployment-id`** | The ID of the deployment to update                                                                                                                                                                    | **true**     | -                                       |
+| **`repository`**    | The repository where the deployment was made                                                                                                                                                          | **false**    | `$\{\{ github.event.repository.name }}` |
+| **`github-token`**  | GitHub Token to get the deployment information.                                                                                                                                                       | **false**    | `$\{\{ github.token }}`                 |
+|                     | Permissions:                                                                                                                                                                                          |              |                                         |
+|                     | - deployments: read                                                                                                                                                                                   |              |                                         |
 |                     | See [https://docs.github.com/en/rest/deployments/deployments?apiVersion=2022-11-28#get-a-deployment](https://docs.github.com/en/rest/deployments/deployments?apiVersion=2022-11-28#get-a-deployment). |              |                                         |
 
 <!-- inputs:end -->

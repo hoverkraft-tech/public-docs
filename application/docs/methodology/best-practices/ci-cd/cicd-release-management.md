@@ -1,5 +1,5 @@
 ---
-sidebar_position: 7
+sidebar_position: 2
 ---
 
 # CI/CD & Release Management
@@ -109,31 +109,8 @@ Full Rollout (100% traffic)
 
 ### Automated Deployments
 
-```yaml
-# .github/workflows/deploy.yml
-name: Deploy
-on:
-  push:
-    branches: [main]
-
-jobs:
-  deploy-staging:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - run: npm run build
-      - run: npm run deploy:staging
-      - run: npm run smoke-test:staging
-
-  deploy-production:
-    needs: deploy-staging
-    runs-on: ubuntu-latest
-    environment: production
-    steps:
-      - uses: actions/checkout@v4
-      - run: npm run deploy:production
-      - run: npm run smoke-test:production
-```
+For a concrete workflow example, see the Golden Path CI/CD implementation:
+[GitHub CI/CD](../../../golden-paths/application/ci-cd/github/).
 
 **Sources:**
 
@@ -207,7 +184,7 @@ npm run deploy:production -- --version=v1.2.3
 
 ```typescript
 // Disable feature immediately
-featureFlags.set('newCheckout', { enabled: false });
+featureFlags.set("newCheckout", { enabled: false });
 ```
 
 ### Hotfix Process
@@ -238,7 +215,7 @@ Follow [Semantic Versioning](https://semver.org/): `MAJOR.MINOR.PATCH`
 
 - **MAJOR**: Breaking changes (v1.0.0 → v2.0.0)
 - **MINOR**: New features, backward-compatible (v1.0.0 → v1.1.0)
-- **PATCH**: Bug fixes, backward-compatible (v1.0.0 → v1.0.1)
+- **PATCH**: bugfixes, backward-compatible (v1.0.0 → v1.0.1)
 
 ### Conventional Commits
 
@@ -380,3 +357,7 @@ V2: ███████████ 100%
 - [Accelerate - Nicole Forsgren](https://itrevolution.com/product/accelerate/)
 - [Release It! - Michael Nygard](https://pragprog.com/titles/mnee2/release-it-second-edition/)
 - [Site Reliability Engineering - Google](https://sre.google/books/)
+
+```
+
+```

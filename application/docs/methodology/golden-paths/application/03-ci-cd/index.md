@@ -14,7 +14,7 @@ Generic entry point for your pipeline design. Keep these invariants regardless o
 
 Provider implementations:
 
-- **GitHub Actions (example):** see [ci-cd/GitHub](../ci-cd/github/).
+- **GitHub Actions (example):** see [GitHub CI/CD](./github/).
 - **Other providers:** mirror the same jobs/stages (build `ci` + `prod`, run tests in `ci`, publish artifacts, deploy with Helm). Reuse your platform’s reusable pipelines/templates for parity.
 
 The rest of this golden path (verify, operate, hygiene) assumes you’ve implemented these invariants on your chosen CI/CD platform.
