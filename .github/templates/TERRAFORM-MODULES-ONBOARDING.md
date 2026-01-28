@@ -137,7 +137,7 @@ If the sync workflow needs updates:
 
 ## Additional Resources
 
-- [Sync Documentation Dispatcher Workflow](..workflows/sync-docs-dispatcher.md)
+- [Sync Documentation Dispatcher Workflow](../workflows/sync-docs-dispatcher.md)
 - [Documentation Generation Action](../actions/generate-docs/README.md)
 - [Repository Categorizer](../actions/resolve-docs-target/lib/repository-categorizer.js)
 

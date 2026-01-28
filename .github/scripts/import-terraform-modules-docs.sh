@@ -38,7 +38,8 @@ git clone --depth=1 "$SOURCE_REPO" "$TEMP_DIR"
 # Create target directories
 echo "📁 Creating target directories..."
 mkdir -p "$DOCS_TARGET"
-mkdir -p "$STATIC_TARGET"
+# Note: STATIC_TARGET reserved for future use when importing images/assets
+# mkdir -p "$STATIC_TARGET"
 
 # Process main README
 echo "📄 Processing main README..."
