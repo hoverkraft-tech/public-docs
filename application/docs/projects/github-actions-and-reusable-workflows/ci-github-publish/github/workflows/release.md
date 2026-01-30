@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/release.md
 source_branch: main
-source_run_id: 21405951861
-last_synced: 2026-01-27T16:50:37.827Z
+source_run_id: 21508155871
+last_synced: 2026-01-30T07:40:01.195Z
 ---
 
 <!-- header:start -->
@@ -72,12 +72,12 @@ jobs:
 
 ### Workflow Dispatch Inputs
 
-| **Input**        | **Description**                                                                                                                                                 | **Required** | **Type**    | **Default**         |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------- | ------------------- |
-| **`runs-on`**    | JSON array of runner(s) to use.                                                                                                                                 | **false**    | **string**  | `["ubuntu-latest"]` |
+| **Input**        | **Description**                                                                    | **Required** | **Type**    | **Default**         |
+| ---------------- | ---------------------------------------------------------------------------------- | ------------ | ----------- | ------------------- |
+| **`runs-on`**    | JSON array of runner(s) to use.                                                    | **false**    | **string**  | `["ubuntu-latest"]` |
 |                  | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job). |              |             |                     |
-| **`prerelease`** | Whether to mark the release as a prerelease                                                                                                                     | **false**    | **boolean** | `false`             |
-|                  | See ../../actions/release/create/README.md for more information.                                                                                                |              |             |                     |
+| **`prerelease`** | Whether to mark the release as a prerelease                                        | **false**    | **boolean** | `false`             |
+|                  | See ../../actions/release/create/README.md for more information.                   |              |             |                     |
 
 <!-- inputs:end -->
 <!-- secrets:start -->
