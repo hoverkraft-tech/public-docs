@@ -3,8 +3,8 @@ title: Create Or Update Comment
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/create-or-update-comment/README.md
 source_branch: main
-source_run_id: 21404740844
-last_synced: 2026-01-27T16:16:18.514Z
+source_run_id: 21525209748
+last_synced: 2026-01-30T17:52:18.228Z
 ---
 
 <!-- header:start -->
@@ -81,17 +81,17 @@ permissions:
 
 ## Inputs
 
-| **Input**            | **Description**                                                                                                         | **Required** | **Default**           |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------ | --------------------- |
-| **`title`**          | The comment title.                                                                                                      | **true**     | -                     |
-|                      | Must be static and unique, will be used to retrieve the comment if exists already.                                      |              |                       |
-| **`body`**           | The comment body.                                                                                                       | **false**    | -                     |
-|                      | See [https://github.com/peter-evans/create-or-update-comment](https://github.com/peter-evans/create-or-update-comment). |              |                       |
-| **`reactions`**      | A comma separated list of reactions to add to the comment.                                                              | **false**    | -                     |
-|                      | See [https://github.com/peter-evans/create-or-update-comment](https://github.com/peter-evans/create-or-update-comment). |              |                       |
-| **`comment-author`** | The comment author.                                                                                                     | **false**    | `github-actions[bot]` |
-| **`token`**          | Optional token to interact with GitHub API.                                                                             | **false**    | -                     |
-|                      | If not defined or empty, the action will use the GITHUB_TOKEN provided by GitHub.                                       |              |                       |
+| **Input**            | **Description**                                                                    | **Required** | **Default**           |
+| -------------------- | ---------------------------------------------------------------------------------- | ------------ | --------------------- |
+| **`title`**          | The comment title.                                                                 | **true**     | -                     |
+|                      | Must be static and unique, will be used to retrieve the comment if exists already. |              |                       |
+| **`body`**           | The comment body.                                                                  | **false**    | -                     |
+|                      | See [https://github.com/peter-evans/create-or-update-comment](https://github.com/peter-evans/create-or-update-comment).                     |              |                       |
+| **`reactions`**      | A comma separated list of reactions to add to the comment.                         | **false**    | -                     |
+|                      | See [https://github.com/peter-evans/create-or-update-comment](https://github.com/peter-evans/create-or-update-comment).                     |              |                       |
+| **`comment-author`** | The comment author.                                                                | **false**    | `github-actions[bot]` |
+| **`token`**          | Optional token to interact with GitHub API.                                        | **false**    | -                     |
+|                      | If not defined or empty, the action will use the GITHUB_TOKEN provided by GitHub.  |              |                       |
 
 <!-- inputs:end -->
 

@@ -3,8 +3,8 @@ title: Checkout
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/checkout/README.md
 source_branch: main
-source_run_id: 21404740844
-last_synced: 2026-01-27T16:16:18.514Z
+source_run_id: 21525209748
+last_synced: 2026-01-30T17:52:18.228Z
 ---
 
 <!-- header:start -->
@@ -52,7 +52,7 @@ permissions:
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-common/actions/checkout@b17226e57c8ef31f860719766656ebb6df017218 # 0.31.6
+- uses: hoverkraft-tech/ci-github-common/actions/checkout@f24ce3360a8abf9bf386a62ab13d0ae5de5f9d13 # 0.31.7
   with:
     # Number of commits to fetch. 0 indicates all history for all branches and tags.
     # See https://github.com/actions/checkout#usage
@@ -83,16 +83,16 @@ permissions:
 
 ## Inputs
 
-| **Input**                 | **Description**                                                                                                   | **Required** | **Default** |
-| ------------------------- | ----------------------------------------------------------------------------------------------------------------- | ------------ | ----------- |
-| **`fetch-depth`**         | Number of commits to fetch. 0 indicates all history for all branches and tags.                                    | **false**    | `1`         |
-|                           | See [https://github.com/actions/checkout#usage](https://github.com/actions/checkout#usage)                        |              |             |
-| **`lfs`**                 | Whether to download Git-LFS files.                                                                                | **false**    | `false`     |
-|                           | See [https://github.com/actions/checkout#usage](https://github.com/actions/checkout#usage)                        |              |             |
-| **`persist-credentials`** | Whether to persist the token credentials in the Git config.                                                       | **false**    | `false`     |
-|                           | Default to false for security reasons.                                                                            |              |             |
-|                           | See [https://github.com/orgs/community/discussions/179107](https://github.com/orgs/community/discussions/179107). |              |             |
-| **`token`**               | Token to use for checking out the repository instead of the default GITHUB_TOKEN.                                 | **false**    | -           |
+| **Input**                 | **Description**                                                                   | **Required** | **Default** |
+| ------------------------- | --------------------------------------------------------------------------------- | ------------ | ----------- |
+| **`fetch-depth`**         | Number of commits to fetch. 0 indicates all history for all branches and tags.    | **false**    | `1`         |
+|                           | See [https://github.com/actions/checkout#usage](https://github.com/actions/checkout#usage)                                   |              |             |
+| **`lfs`**                 | Whether to download Git-LFS files.                                                | **false**    | `false`     |
+|                           | See [https://github.com/actions/checkout#usage](https://github.com/actions/checkout#usage)                                   |              |             |
+| **`persist-credentials`** | Whether to persist the token credentials in the Git config.                       | **false**    | `false`     |
+|                           | Default to false for security reasons.                                            |              |             |
+|                           | See [https://github.com/orgs/community/discussions/179107](https://github.com/orgs/community/discussions/179107).                       |              |             |
+| **`token`**               | Token to use for checking out the repository instead of the default GITHUB_TOKEN. | **false**    | -           |
 
 <!-- inputs:end -->
 
@@ -128,7 +128,7 @@ This project is licensed under the MIT License.
 
 SPDX-License-Identifier: MIT
 
-Copyright © 2025 hoverkraft
+Copyright © 2026 hoverkraft
 
 For more details, see the [license](http://choosealicense.com/licenses/mit/).
 
