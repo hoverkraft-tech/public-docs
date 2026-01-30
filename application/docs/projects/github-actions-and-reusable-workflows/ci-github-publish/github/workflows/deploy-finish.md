@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/deploy-finish.md
 source_branch: main
-source_run_id: 21508155871
-last_synced: 2026-01-30T07:40:01.195Z
+source_run_id: 21525577499
+last_synced: 2026-01-30T18:05:18.736Z
 ---
 
 <!-- header:start -->
@@ -70,7 +70,7 @@ on:
 permissions: {}
 jobs:
   deploy-finish:
-    uses: hoverkraft-tech/ci-github-publish/.github/workflows/deploy-finish.yml@3de7f6a470af924f6e6dbdead5c495fcc99ec6b6 # 0.20.0
+    uses: hoverkraft-tech/ci-github-publish/.github/workflows/deploy-finish.yml@84e8ace407055e7a40ba6670a8c697e1ce2dfafa # 0.20.1
     permissions: {}
     with:
       # JSON array of runner(s) to use.
@@ -145,7 +145,7 @@ This project is licensed under the MIT License.
 
 SPDX-License-Identifier: MIT
 
-Copyright © 2025 hoverkraft-tech
+Copyright © 2026 hoverkraft-tech
 
 For more details, see the [license](http://choosealicense.com/licenses/mit/).
 
