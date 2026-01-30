@@ -2,9 +2,9 @@
 title: Checkout
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/checkout/README.md
-source_branch: main
-source_run_id: 21525209748
-last_synced: 2026-01-30T17:52:18.228Z
+source_branch: 0.31.7
+source_run_id: 21525270982
+last_synced: 2026-01-30T17:54:59.047Z
 ---
 
 <!-- header:start -->
