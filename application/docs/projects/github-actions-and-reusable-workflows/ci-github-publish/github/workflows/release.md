@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/release.md
 source_branch: main
-source_run_id: 21525577499
-last_synced: 2026-01-30T18:05:18.736Z
+source_run_id: 21546589212
+last_synced: 2026-01-31T15:26:07.118Z
 ---
 
 <!-- header:start -->
@@ -36,6 +36,7 @@ This workflow delegates release tasks by reusing a shared release workflow, ensu
 
 - **`contents`**: `write`
 - **`id-token`**: `write`
+- **`pull-requests`**: `read`
 
 <!-- overview:end -->
 <!-- usage:start -->
