@@ -3,8 +3,8 @@ title: Create
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/release/create/README.md
 source_branch: main
-source_run_id: 21525577499
-last_synced: 2026-01-30T18:05:18.736Z
+source_run_id: 21546589212
+last_synced: 2026-01-31T15:26:07.118Z
 ---
 
 <!-- header:start -->
@@ -56,6 +56,7 @@ Action to create a new release
     # GitHub Token for creating the release.
     # Permissions:
     # - contents: write
+    # - pull-requests: read
     #
     # Default: `${{ github.token }}`
     github-token: ${{ github.token }}
@@ -80,6 +81,7 @@ Action to create a new release
 | **`github-token`**      | GitHub Token for creating the release.                                                                                                                     | **false**    | `${{ github.token }}` |
 |                         | Permissions:                                                                                                                                               |              |                       |
 |                         | - contents: write                                                                                                                                          |              |                       |
+|                         | - pull-requests: read                                                                                                                                      |              |                       |
 
 <!-- inputs:end -->
 
