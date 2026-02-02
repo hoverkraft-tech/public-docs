@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-container
 source_path: .github/workflows/docker-build-images.md
 source_branch: main
-source_run_id: 21508165544
-last_synced: 2026-01-30T07:43:48.475Z
+source_run_id: 21592101147
+last_synced: 2026-02-02T13:39:24.415Z
 ---
 
 <!-- header:start -->
@@ -58,7 +58,7 @@ on:
 permissions: {}
 jobs:
   docker-build-images:
-    uses: hoverkraft-tech/ci-github-container/.github/workflows/docker-build-images.yml@67e5563d6681bb610c1c961eecb6dfcd5b3cc62f # 0.30.5
+    uses: hoverkraft-tech/ci-github-container/.github/workflows/docker-build-images.yml@a0bab9151cc074af9f6c8204ab42a48d2d570379 # 0.30.6
     permissions: {}
     secrets:
       # Password or GitHub token (`packages:read` and `packages:write` scopes) used to log against the OCI registry.
@@ -279,7 +279,7 @@ This project is licensed under the MIT License.
 
 SPDX-License-Identifier: MIT
 
-Copyright © 2025 hoverkraft-tech
+Copyright © 2026 hoverkraft-tech
 
 For more details, see the [license](http://choosealicense.com/licenses/mit/).
 
