@@ -3,8 +3,8 @@ title: Setup Node
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: actions/setup-node/README.md
 source_branch: main
-source_run_id: 21412740329
-last_synced: 2026-01-27T20:28:59.438Z
+source_run_id: 21599082009
+last_synced: 2026-02-02T16:55:51.218Z
 ---
 
 <!-- header:start -->
@@ -64,12 +64,12 @@ Action to setup Node.js and install dependencies according to the package manage
 
 ## Inputs
 
-| **Input**                | **Description**                                                                                                                       | **Required** | **Default** |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------- |
-| **`dependencies-cache`** | List of dependencies for which the cache should be managed                                                                            | **false**    | -           |
-| **`working-directory`**  | Working directory where the dependencies are installed.                                                                               | **false**    | `.`         |
-|                          | Can be absolute or relative to the repository root.                                                                                   |              |             |
-| **`registry-url`**       | Optional registry to set up for auth.                                                                                                 | **false**    | -           |
+| **Input**                | **Description**                                                       | **Required** | **Default** |
+| ------------------------ | --------------------------------------------------------------------- | ------------ | ----------- |
+| **`dependencies-cache`** | List of dependencies for which the cache should be managed            | **false**    | -           |
+| **`working-directory`**  | Working directory where the dependencies are installed.               | **false**    | `.`         |
+|                          | Can be absolute or relative to the repository root.                   |              |             |
+| **`registry-url`**       | Optional registry to set up for auth.                                 | **false**    | -           |
 |                          | See [https://github.com/actions/setup-node?tab=readme-ov-file#usage](https://github.com/actions/setup-node?tab=readme-ov-file#usage). |              |             |
 
 <!-- inputs:end -->
