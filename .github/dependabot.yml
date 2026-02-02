@@ -20,6 +20,7 @@ updates:
           - "@mdx-js/react"
           - "clsx"
           - "prism-react-renderer"
+          - "@hoverkraft/docusaurus-theme"
 
   - package-ecosystem: github-actions
     open-pull-requests-limit: 20
