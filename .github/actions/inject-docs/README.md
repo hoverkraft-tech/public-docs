@@ -3,7 +3,7 @@
 # GitHub Action: Inject Documentation
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/804b04ab97ac0e67dde3cef64a5546b945e8f1fb0a8dc87b585244f0783eefa9/hoverkraft-tech/public-docs" width="60px" align="center" alt="Inject Documentation" />
+  <img src="https://opengraph.githubassets.com/ca215421c5d14e67189d297bf71f44e6e57a7ceb812d2dd7ec70919aae76aae3/hoverkraft-tech/public-docs" width="60px" align="center" alt="Inject Documentation" />
 </div>
 
 ---
@@ -35,7 +35,7 @@ Responsibilities:
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/public-docs/.github/actions/inject-docs@c40c17f7d6a8090950b3ef4bfc70502707a6bb9f # 0.3.0
+- uses: hoverkraft-tech/public-docs/.github/actions/inject-docs@8f3508b0c21c2481e66efa6eca82fed293faf990 # main
   with:
     # Source repository that produced the documentation.
     # This input is required.
