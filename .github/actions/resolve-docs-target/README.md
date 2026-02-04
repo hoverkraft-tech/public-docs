@@ -3,7 +3,7 @@
 # GitHub Action: Resolve Documentation Target
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/1077f36260bf6e799c10a65050da7e8da913ff9b5443ba0db546e996bc88aa48/hoverkraft-tech/public-docs" width="60px" align="center" alt="Resolve Documentation Target" />
+  <img src="https://opengraph.githubassets.com/a42c8abe4381b804c200aaa6427df6de7fec0b8285e5170842fb4c137248821c/hoverkraft-tech/public-docs" width="60px" align="center" alt="Resolve Documentation Target" />
 </div>
 
 ---
