@@ -3,8 +3,8 @@ title: Argocd Manifest Files
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/deploy/argocd-manifest-files/README.md
 source_branch: main
-source_run_id: 21688357865
-last_synced: 2026-02-04T21:09:36.287Z
+source_run_id: 21688605747
+last_synced: 2026-02-04T21:17:24.551Z
 ---
 
 <!-- header:start -->
@@ -159,7 +159,7 @@ metadata:
 ## Usage
 
 ````yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/deploy/argocd-manifest-files@642cdb54493d05debdc1394f4bfd7365f82e7bf1 # 0.18.2
+- uses: hoverkraft-tech/ci-github-publish/actions/deploy/argocd-manifest-files@5cb7c7655bd6ab95f4f6a2ef8b863a49228c42e8 # 0.21.0
   with:
     # Deployment ID to be used in the ArgoCD application manifest
     # This input is required.
@@ -262,7 +262,7 @@ This project is licensed under the MIT License.
 
 SPDX-License-Identifier: MIT
 
-Copyright © 2025 Hoverkraft
+Copyright © 2026 Hoverkraft
 
 For more details, see the [license](http://choosealicense.com/licenses/mit/).
 
