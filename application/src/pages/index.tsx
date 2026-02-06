@@ -80,7 +80,7 @@ function ProjectsSection() {
       name: 'compose-action',
       icon: '⚡',
       url: 'https://github.com/hoverkraft-tech/compose-action',
-      stars: 199,
+      stars: 204,
       language: 'TypeScript',
       description: 'This action runs your docker-compose file and clean up before action finished',
       tags: [
@@ -94,7 +94,7 @@ function ProjectsSection() {
       name: 'ci-dokumentor',
       icon: '⚡',
       url: 'https://github.com/hoverkraft-tech/ci-dokumentor',
-      stars: 2,
+      stars: 5,
       language: 'TypeScript',
       description: 'Automated documentation generator for CI/CD components',
       tags: [
