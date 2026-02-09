@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-container
 source_path: .github/workflows/prune-pull-requests-images-tags.md
 source_branch: main
-source_run_id: 21592563571
-last_synced: 2026-02-02T13:53:20.364Z
+source_run_id: 21819371477
+last_synced: 2026-02-09T09:32:22.723Z
 ---
 
 <!-- header:start -->
@@ -86,7 +86,7 @@ jobs:
 
       # Optional regular expression to match tags that should be preserved (not deleted).
       # Tags matching this pattern will never be deleted, even if they are on a package version with PR tags.
-      # Example: "^v.*" to preserve version tags like v1.0.0, v2.1.3, etc.
+      # Example: `^v.*` to preserve version tags like v1.0.0, v2.1.3, etc.
       preserve-tags-filter: ""
 ````
 
@@ -110,7 +110,7 @@ jobs:
 |                               | Must have a capture group for the pull request number.                                                     |              |             |                        |
 | **`preserve-tags-filter`**    | Optional regular expression to match tags that should be preserved (not deleted).                          | **false**    | **string**  | -                      |
 |                               | Tags matching this pattern will never be deleted, even if they are on a package version with PR tags.      |              |             |                        |
-|                               | Example: "^v.*" to preserve version tags like v1.0.0, v2.1.3, etc.                                         |              |             |                        |
+|                               | Example: `^v.*` to preserve version tags like v1.0.0, v2.1.3, etc.                                         |              |             |                        |
 
 <!-- inputs:end -->
 <!-- secrets:start -->
