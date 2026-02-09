@@ -1,0 +1,74 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Add your existing CI jobs here (lint, validate, etc.)
+  
+  prepare-docs:
+    name: Prepare Documentation
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: write
+    outputs:
+      artifact-id: ${{ steps.upload.outputs.artifact-id }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - name: Collect documentation files
+        id: collect
+        run: |
+          mkdir -p /tmp/docs-bundle
+          
+          # Copy README
+          if [ -f README.md ]; then
+            cp README.md /tmp/docs-bundle/
+          fi
+          
+          # Copy module READMEs - each module folder becomes a doc page
+          find . -mindepth 2 -maxdepth 3 -name "README.md" -type f ! -path "./.git/*" | while read -r readme; do
+            # Get the relative path and create directory structure
+            rel_path=$(dirname "$readme" | sed 's|^\./||')
+            mkdir -p "/tmp/docs-bundle/$rel_path"
+            cp "$readme" "/tmp/docs-bundle/$rel_path/"
+          done
+          
+          echo "Documentation files collected"
+          find /tmp/docs-bundle -type f
+
+      - name: Upload documentation artifact
+        id: upload
+        uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4.4.3
+        with:
+          name: documentation-${{ github.sha }}
+          path: /tmp/docs-bundle
+          retention-days: 1
+
+  sync-docs:
+    name: Sync Documentation to Portal
+    needs: prepare-docs
+    if: github.event_name != 'pull_request' && github.ref_name == github.event.repository.default_branch && needs.prepare-docs.outputs.artifact-id
+    uses: hoverkraft-tech/public-docs/.github/workflows/sync-docs-dispatcher.yml@c40c17f7d6a8090950b3ef4bfc70502707a6bb9f # 0.3.0
+    permissions:
+      contents: read
+    with:
+      artifact-id: ${{ needs.prepare-docs.outputs.artifact-id }}
+      github-app-id: ${{ vars.PUBLIC_DOCS_APP_ID }}
+    secrets:
+      github-app-key: ${{ secrets.PUBLIC_DOCS_APP_PRIVATE_KEY }}
