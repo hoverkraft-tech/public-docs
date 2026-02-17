@@ -2,9 +2,9 @@
 title: Create And Merge Pull Request
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/create-and-merge-pull-request/README.md
-source_branch: main
-source_run_id: 22102571047
-last_synced: 2026-02-17T14:38:22.080Z
+source_branch: 0.32.0
+source_run_id: 22102881354
+last_synced: 2026-02-17T14:47:31.672Z
 ---
 
 <!-- header:start -->
@@ -46,7 +46,7 @@ See [https://docs.github.com/en/repositories/managing-your-repositorys-settings-
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-common/actions/create-and-merge-pull-request@f24ce3360a8abf9bf386a62ab13d0ae5de5f9d13 # 0.31.7
+- uses: hoverkraft-tech/ci-github-common/actions/create-and-merge-pull-request@4bfbc05c189f1177cf7d47d3060cd1cbddf04ce2 # 0.32.0
   with:
     # GitHub token for creating and merging pull request (permissions contents: write and pull-requests: write).
     # See https://github.com/peter-evans/create-pull-request#action-inputs.

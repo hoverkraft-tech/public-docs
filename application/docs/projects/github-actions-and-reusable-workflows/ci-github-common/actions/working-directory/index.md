@@ -2,9 +2,9 @@
 title: Working Directory
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/working-directory/README.md
-source_branch: main
-source_run_id: 22102571047
-last_synced: 2026-02-17T14:38:22.080Z
+source_branch: 0.32.0
+source_run_id: 22102881354
+last_synced: 2026-02-17T14:47:31.672Z
 ---
 
 <!-- header:start -->
@@ -39,7 +39,7 @@ Action to resolve and validate a working directory path.
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-common/actions/working-directory@790306a64b804be99e388ca20b780fd3afa9295f # main
+- uses: hoverkraft-tech/ci-github-common/actions/working-directory@4bfbc05c189f1177cf7d47d3060cd1cbddf04ce2 # 0.32.0
   with:
     # Relative or absolute working directory path to resolve.
     # Default: `.`
