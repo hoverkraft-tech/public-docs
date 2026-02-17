@@ -3,8 +3,8 @@ title: Ci Github Common
 source_repo: hoverkraft-tech/ci-github-common
 source_path: README.md
 source_branch: main
-source_run_id: 22103601467
-last_synced: 2026-02-17T15:06:56.305Z
+source_run_id: 22106442003
+last_synced: 2026-02-17T16:26:32.736Z
 ---
 
 # Continuous Integration - GitHub - Common
@@ -45,7 +45,7 @@ Opinionated GitHub Actions and reusable workflows for foundational continuous-in
 
 - [Parse CI reports](actions/parse-ci-reports/index.md) - parses CI reports (tests, linting, coverage) into GitHub summaries and Markdown for PR comments.
 - [Repository owner is organization](actions/repository-owner-is-organization/index.md) - checks whether the repository owner is an organization.
-- [Working directory](actions/working-directory/index.md) - resolves and validates a working directory path as an absolute path.
+- [Working directory](actions/working-directory/index.md) - resolves and validates a working directory path, exposing absolute and workspace-relative outputs.
 - [Slugify](actions/slugify/index.md) - converts free-form strings into GitHub-friendly slugs.
 
 ## Reusable Workflows

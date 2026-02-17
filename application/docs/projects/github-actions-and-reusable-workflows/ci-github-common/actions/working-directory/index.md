@@ -3,8 +3,8 @@ title: Working Directory
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/working-directory/README.md
 source_branch: main
-source_run_id: 22103601467
-last_synced: 2026-02-17T15:06:56.305Z
+source_run_id: 22106442003
+last_synced: 2026-02-17T16:26:32.736Z
 ---
 
 <!-- header:start -->
@@ -44,6 +44,10 @@ Action to resolve and validate a working directory path.
     # Relative or absolute working directory path to resolve.
     # Default: `.`
     working-directory: .
+
+    # Whether to fail when the resolved path is outside GITHUB_WORKSPACE.
+    # Default: `true`
+    enforce-path-in-workspace: "true"
 ```
 
 <!-- usage:end -->
@@ -51,9 +55,10 @@ Action to resolve and validate a working directory path.
 
 ## Inputs
 
-| **Input**               | **Description**                                         | **Required** | **Default** |
-| ----------------------- | ------------------------------------------------------- | ------------ | ----------- |
-| **`working-directory`** | Relative or absolute working directory path to resolve. | **false**    | `.`         |
+| **Input**                       | **Description**                                                     | **Required** | **Default** |
+| ------------------------------- | ------------------------------------------------------------------- | ------------ | ----------- |
+| **`working-directory`**         | Relative or absolute working directory path to resolve.             | **false**    | `.`         |
+| **`enforce-path-in-workspace`** | Whether to fail when the resolved path is outside GITHUB_WORKSPACE. | **false**    | `true`      |
 
 <!-- inputs:end -->
 <!-- secrets:start -->
@@ -62,9 +67,10 @@ Action to resolve and validate a working directory path.
 
 ## Outputs
 
-| **Output**              | **Description**                               |
-| ----------------------- | --------------------------------------------- |
-| **`working-directory`** | The resolved absolute working directory path. |
+| **Output**                    | **Description**                                                   |
+| ----------------------------- | ----------------------------------------------------------------- |
+| **`absolute-path`**           | The resolved absolute working directory path.                     |
+| **`workspace-relative-path`** | The resolved working directory path relative to GITHUB_WORKSPACE. |
 
 <!-- outputs:end -->
 <!-- examples:start -->
