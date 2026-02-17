@@ -3,7 +3,7 @@
 # GitHub Action: Inject Documentation
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/d6693a6ce8ce06272b00e4a5f3921615f1214a788ff26a290b183363534e0148/hoverkraft-tech/public-docs" width="60px" align="center" alt="Inject Documentation" />
+  <img src="https://opengraph.githubassets.com/f94fb9e9e669f9e9d239c640daff2c18b1df9b10d4c88ef8bf42646fc494ebd2/hoverkraft-tech/public-docs" width="60px" align="center" alt="Inject Documentation" />
 </div>
 
 ---
