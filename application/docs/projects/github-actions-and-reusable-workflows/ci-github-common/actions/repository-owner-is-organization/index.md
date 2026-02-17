@@ -2,9 +2,9 @@
 title: Repository Owner Is Organization
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/repository-owner-is-organization/README.md
-source_branch: main
-source_run_id: 22102571047
-last_synced: 2026-02-17T14:38:22.080Z
+source_branch: 0.32.0
+source_run_id: 22102881354
+last_synced: 2026-02-17T14:47:31.672Z
 ---
 
 <!-- header:start -->
@@ -42,7 +42,7 @@ Action to check if the repository owner is an organization.
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-common/actions/repository-owner-is-organization@f24ce3360a8abf9bf386a62ab13d0ae5de5f9d13 # 0.31.7
+- uses: hoverkraft-tech/ci-github-common/actions/repository-owner-is-organization@4bfbc05c189f1177cf7d47d3060cd1cbddf04ce2 # 0.32.0
   with:
     # GitHub token for fetching users API.
     # Default: `${{ github.token }}`
