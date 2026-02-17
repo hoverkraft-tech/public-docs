@@ -3,8 +3,8 @@ title: Build
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: actions/build/README.md
 source_branch: main
-source_run_id: 21743382796
-last_synced: 2026-02-06T08:14:58.525Z
+source_run_id: 22110476859
+last_synced: 2026-02-17T18:32:01.456Z
 ---
 
 <!-- header:start -->
@@ -12,7 +12,7 @@ last_synced: 2026-02-06T08:14:58.525Z
 # ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItcGFja2FnZSIgY29sb3I9ImJsdWUiPjxsaW5lIHgxPSIxNi41IiB5MT0iOS40IiB4Mj0iNy41IiB5Mj0iNC4yMSI+PC9saW5lPjxwYXRoIGQ9Ik0yMSAxNlY4YTIgMiAwIDAgMC0xLTEuNzNsLTctNGEyIDIgMCAwIDAtMiAwbC03IDRBMiAyIDAgMCAwIDMgOHY4YTIgMiAwIDAgMCAxIDEuNzNsNyA0YTIgMiAwIDAgMCAyIDBsNy00QTIgMiAwIDAgMCAyMSAxNnoiPjwvcGF0aD48cG9seWxpbmUgcG9pbnRzPSIzLjI3IDYuOTYgMTIgMTIuMDEgMjAuNzMgNi45NiI+PC9wb2x5bGluZT48bGluZSB4MT0iMTIiIHkxPSIyMi4wOCIgeDI9IjEyIiB5Mj0iMTIiPjwvbGluZT48L3N2Zz4=) GitHub Action: Build
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/1777f8ca1d36fc26623719c6f1a1deaaac51279032bdeb744b5729ff86adadac/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Build" />
+  <img src="https://opengraph.githubassets.com/033722e286fffabbe95cf6b673dff8a7a81b4b664af7c12ba8ff8c5ddd0c1fec/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Build" />
 </div>
 
 ---
@@ -39,7 +39,7 @@ Action to build Node.js projects with support for custom commands, environment v
 ## Usage
 
 ````yaml
-- uses: hoverkraft-tech/ci-github-nodejs/actions/build@25ef8d971c0a866fb9e5d90130c7aaa084619df6 # 0.21.0
+- uses: hoverkraft-tech/ci-github-nodejs/actions/build@c9d9d041ba4ef35695ee469c4782fa6a8bbebbcc # 0.21.2
   with:
     # Working directory where the build commands are executed.
     # Can be absolute or relative to the repository root.
@@ -150,7 +150,7 @@ This project is licensed under the MIT License.
 
 SPDX-License-Identifier: MIT
 
-Copyright © 2025 hoverkraft
+Copyright © 2026 hoverkraft
 
 For more details, see the [license](http://choosealicense.com/licenses/mit/).
 

@@ -3,8 +3,8 @@ title: Dependencies Cache
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: actions/dependencies-cache/README.md
 source_branch: main
-source_run_id: 21743382796
-last_synced: 2026-02-06T08:14:58.525Z
+source_run_id: 22110476859
+last_synced: 2026-02-17T18:32:01.456Z
 ---
 
 <!-- header:start -->
@@ -12,7 +12,7 @@ last_synced: 2026-02-06T08:14:58.525Z
 # ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItYXJjaGl2ZSIgY29sb3I9ImJsdWUiPjxwb2x5bGluZSBwb2ludHM9IjIxIDggMjEgMjEgMyAyMSAzIDgiPjwvcG9seWxpbmU+PHJlY3QgeD0iMSIgeT0iMyIgd2lkdGg9IjIyIiBoZWlnaHQ9IjUiPjwvcmVjdD48bGluZSB4MT0iMTAiIHkxPSIxMiIgeDI9IjE0IiB5Mj0iMTIiPjwvbGluZT48L3N2Zz4=) GitHub Action: Dependencies cache
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/3c263d32c6e7f07d53cb2b2a17045789f1916eba8a83f30e3570f827363939e2/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Dependencies cache" />
+  <img src="https://opengraph.githubassets.com/033722e286fffabbe95cf6b673dff8a7a81b4b664af7c12ba8ff8c5ddd0c1fec/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Dependencies cache" />
 </div>
 
 ---
