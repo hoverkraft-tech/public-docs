@@ -3,8 +3,8 @@ title: Has Installed Dependencies
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: actions/has-installed-dependencies/README.md
 source_branch: main
-source_run_id: 22110476859
-last_synced: 2026-02-17T18:32:01.456Z
+source_run_id: 22112276413
+last_synced: 2026-02-17T19:25:20.421Z
 ---
 
 <!-- header:start -->
@@ -12,7 +12,7 @@ last_synced: 2026-02-17T18:32:01.456Z
 # ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItc2V0dGluZ3MiIGNvbG9yPSJibHVlIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIzIj48L2NpcmNsZT48cGF0aCBkPSJNMTkuNCAxNWExLjY1IDEuNjUgMCAwIDAgLjMzIDEuODJsLjA2LjA2YTIgMiAwIDAgMSAwIDIuODMgMiAyIDAgMCAxLTIuODMgMGwtLjA2LS4wNmExLjY1IDEuNjUgMCAwIDAtMS44Mi0uMzMgMS42NSAxLjY1IDAgMCAwLTEgMS41MVYyMWEyIDIgMCAwIDEtMiAyIDIgMiAwIDAgMS0yLTJ2LS4wOUExLjY1IDEuNjUgMCAwIDAgOSAxOS40YTEuNjUgMS42NSAwIDAgMC0xLjgyLjMzbC0uMDYuMDZhMiAyIDAgMCAxLTIuODMgMCAyIDIgMCAwIDEgMC0yLjgzbC4wNi0uMDZhMS42NSAxLjY1IDAgMCAwIC4zMy0xLjgyIDEuNjUgMS42NSAwIDAgMC0xLjUxLTFIM2EyIDIgMCAwIDEtMi0yIDIgMiAwIDAgMSAyLTJoLjA5QTEuNjUgMS42NSAwIDAgMCA0LjYgOWExLjY1IDEuNjUgMCAwIDAtLjMzLTEuODJsLS4wNi0uMDZhMiAyIDAgMCAxIDAtMi44MyAyIDIgMCAwIDEgMi44MyAwbC4wNi4wNmExLjY1IDEuNjUgMCAwIDAgMS44Mi4zM0g5YTEuNjUgMS42NSAwIDAgMCAxLTEuNTFWM2EyIDIgMCAwIDEgMi0yIDIgMiAwIDAgMSAyIDJ2LjA5YTEuNjUgMS42NSAwIDAgMCAxIDEuNTEgMS42NSAxLjY1IDAgMCAwIDEuODItLjMzbC4wNi0uMDZhMiAyIDAgMCAxIDIuODMgMCAyIDIgMCAwIDEgMCAyLjgzbC0uMDYuMDZhMS42NSAxLjY1IDAgMCAwLS4zMyAxLjgyVjlhMS42NSAxLjY1IDAgMCAwIDEuNTEgMUgyMWEyIDIgMCAwIDEgMiAyIDIgMiAwIDAgMS0yIDJoLS4wOWExLjY1IDEuNjUgMCAwIDAtMS41MSAxeiI+PC9wYXRoPjwvc3ZnPg==) GitHub Action: Has installed dependencies
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/033722e286fffabbe95cf6b673dff8a7a81b4b664af7c12ba8ff8c5ddd0c1fec/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Has installed dependencies" />
+  <img src="https://opengraph.githubassets.com/0b6ae3eedb6db1767aa580568b2b8537a53dce2d0080866a902253850c40f7bd/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Has installed dependencies" />
 </div>
 
 ---
@@ -42,7 +42,7 @@ Action to check if dependencies have been installed according to the package man
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-nodejs/actions/has-installed-dependencies@c9d9d041ba4ef35695ee469c4782fa6a8bbebbcc # 0.21.2
+- uses: hoverkraft-tech/ci-github-nodejs/actions/has-installed-dependencies@775ce0902c528062cc94141dd7d13261083b752a # 0.22.0
   with:
     # The dependencies to check.
     # This input is required.
