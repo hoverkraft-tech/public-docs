@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-common
 source_path: .github/workflows/semantic-pull-request.md
 source_branch: main
-source_run_id: 22101328929
-last_synced: 2026-02-17T14:02:59.401Z
+source_run_id: 22102571047
+last_synced: 2026-02-17T14:38:22.080Z
 ---
 
 <!-- header:start -->
