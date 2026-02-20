@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/deploy-start.md
 source_branch: main
-source_run_id: 22111656797
-last_synced: 2026-02-17T19:02:47.974Z
+source_run_id: 22214471798
+last_synced: 2026-02-20T06:54:14.698Z
 ---
 
 <!-- header:start -->
@@ -77,7 +77,7 @@ on:
 permissions: {}
 jobs:
   deploy-start:
-    uses: hoverkraft-tech/ci-github-publish/.github/workflows/deploy-start.yml@5cb7c7655bd6ab95f4f6a2ef8b863a49228c42e8 # 0.21.0
+    uses: hoverkraft-tech/ci-github-publish/.github/workflows/deploy-start.yml@5ff7d4c3910971ed53834becd5967271b4e228cf # 0.21.1
     permissions: {}
     with:
       # JSON array of runner(s) to use.
