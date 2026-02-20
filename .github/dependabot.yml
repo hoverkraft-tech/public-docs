@@ -10,8 +10,6 @@ updates:
     schedule:
       interval: "weekly"
     groups:
-      npm-development-dependencies:
-        dependency-type: "development"
       npm-docusaurus-dependencies:
         patterns:
           - "@docusaurus/*"
@@ -21,6 +19,14 @@ updates:
           - "clsx"
           - "prism-react-renderer"
           - "@hoverkraft/docusaurus-theme"
+      npm-development-dependencies:
+        dependency-type: "development"
+        patterns:
+          - "*"
+      npm-production-dependencies:
+        dependency-type: "production"
+        patterns:
+          - "*"
 
   - package-ecosystem: github-actions
     open-pull-requests-limit: 20
