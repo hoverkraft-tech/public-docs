@@ -3,8 +3,8 @@ title: Get Package Manager
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: actions/get-package-manager/README.md
 source_branch: main
-source_run_id: 22577199350
-last_synced: 2026-03-02T13:10:07.763Z
+source_run_id: 22616222825
+last_synced: 2026-03-03T09:23:08.839Z
 ---
 
 <!-- header:start -->
