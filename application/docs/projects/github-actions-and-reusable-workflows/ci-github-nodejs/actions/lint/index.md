@@ -3,8 +3,8 @@ title: Lint
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: actions/lint/README.md
 source_branch: main
-source_run_id: 22616222825
-last_synced: 2026-03-03T09:23:08.839Z
+source_run_id: 22643259817
+last_synced: 2026-03-03T21:28:33.943Z
 ---
 
 <!-- header:start -->
