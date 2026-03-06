@@ -3,7 +3,7 @@
 # GitHub Action: Prepare Documentation Bundle
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/780c172890cb445d0b402ff1a7e9c2061e38dd45c8343d45b44d943ace35192e/hoverkraft-tech/public-docs" width="60px" align="center" alt="Prepare Documentation Bundle" />
+  <img src="https://opengraph.githubassets.com/f09bd54797a3ad3041584be2083d47e5a3d72425f3e41c98afb4f0d13670b3cc/hoverkraft-tech/public-docs" width="60px" align="center" alt="Prepare Documentation Bundle" />
 </div>
 
 ---
