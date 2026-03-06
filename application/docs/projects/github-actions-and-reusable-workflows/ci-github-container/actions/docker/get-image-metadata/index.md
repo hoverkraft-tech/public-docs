@@ -3,8 +3,8 @@ title: Get Image Metadata
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/docker/get-image-metadata/README.md
 source_branch: main
-source_run_id: 22719879689
-last_synced: 2026-03-05T13:28:30.235Z
+source_run_id: 22751501752
+last_synced: 2026-03-06T06:16:37.063Z
 ---
 
 <!-- header:start -->
