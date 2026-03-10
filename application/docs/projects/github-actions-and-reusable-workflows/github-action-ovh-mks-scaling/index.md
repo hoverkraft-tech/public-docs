@@ -3,8 +3,8 @@ title: Github Action Ovh Mks Scaling
 source_repo: hoverkraft-tech/github-action-ovh-mks-scaling
 source_path: README.md
 source_branch: main
-source_run_id: 22760279518
-last_synced: 2026-03-06T10:56:55.699Z
+source_run_id: 22900437883
+last_synced: 2026-03-10T11:36:47.041Z
 ---
 
 <!-- header:start -->
@@ -151,7 +151,7 @@ This project is licensed under the MIT License.
 
 SPDX-License-Identifier: MIT
 
-Copyright © 2025 hoverkraft
+Copyright © 2026 hoverkraft
 
 For more details, see the [license](http://choosealicense.com/licenses/mit/).
 
