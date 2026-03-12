@@ -3,8 +3,8 @@ title: Ci Github Container
 source_repo: hoverkraft-tech/ci-github-container
 source_path: README.md
 source_branch: main
-source_run_id: 22751501752
-last_synced: 2026-03-06T06:16:37.063Z
+source_run_id: 23001397843
+last_synced: 2026-03-12T12:19:25.999Z
 ---
 
 <!-- markdownlint-disable-next-line first-line-heading -->
@@ -42,6 +42,8 @@ _Actions that operate on OCI images across their build, metadata, and lifecycle 
 #### - [Get image name](actions/docker/get-image-name/index.md)
 
 #### - [Prune pull requests image tags](actions/docker/prune-pull-requests-image-tags/index.md)
+
+#### - [Setup](actions/docker/setup/index.md)
 
 #### - [Sign images](actions/docker/sign-images/index.md)
 
