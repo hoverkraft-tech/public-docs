@@ -3,8 +3,8 @@ title: Url Lighthouse
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/check/url-lighthouse/README.md
 source_branch: main
-source_run_id: 22751482244
-last_synced: 2026-03-06T06:13:53.585Z
+source_run_id: 23038750420
+last_synced: 2026-03-13T06:18:13.798Z
 ---
 
 <!-- header:start -->
@@ -43,7 +43,7 @@ The action always sends `User-Agent: hoverkraft-tech-url-lighthouse-action` when
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/check/url-lighthouse@84e8ace407055e7a40ba6670a8c697e1ce2dfafa # 0.20.1
+- uses: hoverkraft-tech/ci-github-publish/actions/check/url-lighthouse@5ff7d4c3910971ed53834becd5967271b4e228cf # 0.21.1
   with:
     # The URL to audit using Lighthouse.
     # This input is required.
@@ -113,7 +113,7 @@ This project is licensed under the MIT License.
 
 SPDX-License-Identifier: MIT
 
-Copyright © 2025 hoverkraft
+Copyright © 2026 hoverkraft
 
 For more details, see the [license](http://choosealicense.com/licenses/mit/).
 
