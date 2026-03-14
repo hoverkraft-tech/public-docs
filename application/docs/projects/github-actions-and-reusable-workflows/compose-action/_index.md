@@ -8,4 +8,4 @@ description: Documentation for Compose Action
 Documentation for the Compose Action project.
 
 **Source Repository:** [hoverkraft-tech/compose-action](https://github.com/hoverkraft-tech/compose-action)
-**Last Synced:** 2026-03-05T10:26:15.321Z
+**Last Synced:** 2026-03-14T17:01:51.641Z
