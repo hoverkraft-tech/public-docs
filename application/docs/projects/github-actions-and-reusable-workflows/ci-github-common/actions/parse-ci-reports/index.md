@@ -3,8 +3,8 @@ title: Parse Ci Reports
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/parse-ci-reports/README.md
 source_branch: main
-source_run_id: 22617685474
-last_synced: 2026-03-03T10:01:13.252Z
+source_run_id: 23161870169
+last_synced: 2026-03-16T19:28:34.966Z
 ---
 
 <!-- header:start -->
