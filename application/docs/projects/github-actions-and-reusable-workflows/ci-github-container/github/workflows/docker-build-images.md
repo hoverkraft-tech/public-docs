@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-container
 source_path: .github/workflows/docker-build-images.md
 source_branch: main
-source_run_id: 23058570737
-last_synced: 2026-03-13T15:50:25.158Z
+source_run_id: 23136581693
+last_synced: 2026-03-16T09:30:15.586Z
 ---
 
 <!-- header:start -->
@@ -165,6 +165,16 @@ jobs:
       # Default: `gha`
       cache-type: gha
 
+      # Inline BuildKit daemon configuration.
+      # See https://github.com/docker/setup-buildx-action#inputs.
+      # Example for insecure registry:
+      # ```ini
+      # [registry."my-registry.local:5000"]
+      # http = true
+      # insecure = true
+      # ```
+      buildkitd-config-inline: ""
+
       # Sign built images.
       # See [sign-images](../../actions/docker/sign-images/index.md).
       #
@@ -215,6 +225,14 @@ jobs:
 |                                         | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                                                                                                                                                                                                                                                                                                                                                                                                                                                   |              |             |                                  |
 | **`cache-type`**                        | Cache type.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | **false**    | **string**  | `gha`                            |
 |                                         | See [https://docs.docker.com/build/cache/backends](https://docs.docker.com/build/cache/backends).                                                                                                                                                                                                                                                                                                                                                                                                                                                         |              |             |                                  |
+| **`buildkitd-config-inline`**           | Inline BuildKit daemon configuration.                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | **false**    | **string**  | -                                |
+|                                         | See [https://github.com/docker/setup-buildx-action#inputs](https://github.com/docker/setup-buildx-action#inputs).                                                                                                                                                                                                                                                                                                                                                                                                                                                 |              |             |                                  |
+|                                         | Example for insecure registry:                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |              |             |                                  |
+|                                         | ```ini
+  [registry."my-registry.local:5000"]
+    http = true
+    insecure = true
+  ```                                                                                                                                                                                                                                                                                                                                                                                                                      |              |             |                                  |
 | **`sign`**                              | Sign built images.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | **false**    | **boolean** | `true`                           |
 |                                         | See [sign-images](../../actions/docker/sign-images/index.md).                                                                                                                                                                                                                                                                                                                                                                                                                                              |              |             |                                  |
 
