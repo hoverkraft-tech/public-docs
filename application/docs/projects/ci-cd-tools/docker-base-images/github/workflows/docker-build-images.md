@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/docker-base-images
 source_path: .github/workflows/docker-build-images.md
 source_branch: main
-source_run_id: 22751570564
-last_synced: 2026-03-06T06:16:09.390Z
+source_run_id: 23331128898
+last_synced: 2026-03-20T06:04:39.967Z
 ---
 
 <!-- header:start -->
@@ -11,7 +11,7 @@ last_synced: 2026-03-06T06:16:09.390Z
 # GitHub Reusable Workflow: Build Docker images
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/c59fc9fcb3c06e02c25644e7521931caafcedb4bf8c8cee5d162f717557ba12e/hoverkraft-tech/docker-base-images" width="60px" align="center" alt="Build Docker images" />
+  <img src="https://opengraph.githubassets.com/1726a7f8e34adaef1a141d03b14c5ecad91d075ec083c634255f186f19cfa1e0/hoverkraft-tech/docker-base-images" width="60px" align="center" alt="Build Docker images" />
 </div>
 
 ---
