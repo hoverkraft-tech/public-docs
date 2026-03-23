@@ -3,8 +3,8 @@ title: Create
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/release/create/README.md
 source_branch: main
-source_run_id: 23038750420
-last_synced: 2026-03-13T06:18:13.798Z
+source_run_id: 23443019511
+last_synced: 2026-03-23T14:43:59.430Z
 ---
 
 <!-- header:start -->
@@ -57,6 +57,12 @@ Create or publish a release with Release Drafter, with optional monorepo scoping
     # The configuration will include `include-paths` to filter pull requests to only those that modified files in the specified directory.
     working-directory: ""
 
+    # Additional paths to include in the release notes filtering (JSON array).
+    # These paths are added to the `include-paths` configuration of release-drafter.
+    #
+    # Default: `[]`
+    include-paths: "[]"
+
     # GitHub Token for creating the release.
     # Permissions:
     # - contents: write
@@ -83,6 +89,8 @@ Create or publish a release with Release Drafter, with optional monorepo scoping
 | **`working-directory`** | Working directory for monorepo support.                                                                                                                    | **false**    | -                     |
 |                         | If specified, the release configuration file will be placed in `.github/release-configs/{slug}.yml` where slug is derived from the working directory path. |              |                       |
 |                         | The configuration will include `include-paths` to filter pull requests to only those that modified files in the specified directory.                       |              |                       |
+| **`include-paths`**     | Additional paths to include in the release notes filtering (JSON array).                                                                                   | **false**    | `[]`                  |
+|                         | These paths are added to the `include-paths` configuration of release-drafter.                                                                             |              |                       |
 | **`github-token`**      | GitHub Token for creating the release.                                                                                                                     | **false**    | `${{ github.token }}` |
 |                         | Permissions:                                                                                                                                               |              |                       |
 |                         | - contents: write                                                                                                                                          |              |                       |
