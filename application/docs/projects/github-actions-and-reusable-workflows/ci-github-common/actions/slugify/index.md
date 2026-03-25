@@ -2,9 +2,9 @@
 title: Slugify
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/slugify/README.md
-source_branch: main
-source_run_id: 23532333318
-last_synced: 2026-03-25T08:47:44.552Z
+source_branch: 0.33.0
+source_run_id: 23533305358
+last_synced: 2026-03-25T09:14:34.103Z
 ---
 
 <!-- header:start -->
@@ -42,7 +42,7 @@ Action to slugify a given string value.
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-common/actions/slugify@4bfbc05c189f1177cf7d47d3060cd1cbddf04ce2 # 0.32.0
+- uses: hoverkraft-tech/ci-github-common/actions/slugify@4b53189212d5810f710bed89711002626977215b # 0.33.0
   with:
     # The value to slugify.
     # This input is required.
