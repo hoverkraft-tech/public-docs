@@ -1,9 +1,9 @@
 ---
 source_repo: hoverkraft-tech/ci-github-common
 source_path: .github/workflows/semantic-pull-request.md
-source_branch: 0.33.0
-source_run_id: 23533305358
-last_synced: 2026-03-25T09:14:34.103Z
+source_branch: main
+source_run_id: 23536844885
+last_synced: 2026-03-25T10:44:09.743Z
 ---
 
 <!-- header:start -->
@@ -31,7 +31,7 @@ last_synced: 2026-03-25T09:14:34.103Z
 
 ## Overview
 
-Workflow to ensure Pull Request provides semantic versionning assets:
+Workflow to ensure Pull Request provides semantic versioning assets:
 
 - "Squash and merge" Pull Request strategy provides a valid commit message.
   Check that the title follows the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification.
