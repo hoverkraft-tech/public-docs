@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: .github/workflows/continuous-integration.md
 source_branch: main
-source_run_id: 22751457309
-last_synced: 2026-03-06T06:20:54.945Z
+source_run_id: 23634226491
+last_synced: 2026-03-27T06:36:32.850Z
 ---
 
 <!-- header:start -->
@@ -11,7 +11,7 @@ last_synced: 2026-03-06T06:20:54.945Z
 # GitHub Reusable Workflow: Node.js Continuous Integration
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/21453ee981269439806284277821cc7b22ff1f782fd36fd8856c7ed35b4a5b06/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Node.js Continuous Integration" />
+  <img src="https://opengraph.githubassets.com/15312464268df419471d56cd8e5188897e8a3907da76e3bcc37984f5597af097/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Node.js Continuous Integration" />
 </div>
 
 ---
