@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/prepare-release.md
 source_branch: main
-source_run_id: 23634037998
-last_synced: 2026-03-27T06:25:03.532Z
+source_run_id: 24148178161
+last_synced: 2026-04-08T17:09:31.725Z
 ---
 
 <!-- header:start -->
@@ -75,9 +75,9 @@ jobs:
       # Default: `["ubuntu-latest"]`
       runs-on: '["ubuntu-latest"]'
 
-      # Working directory for monorepo support.
-      # If specified, the release configuration file will be placed in `.github/release-configs/{slug}.yml` where slug is derived from the working directory path.
-      # The configuration will include `include-paths` to filter pull requests to only those that modified files in the specified directory.
+      # Working directory used to scope release preparation in a monorepo.
+      # If specified, the workflow looks for `.github/release-configs/{slug}.yml`, where `slug` is derived from the working directory basename.
+      # If that file does not exist, a temporary release configuration is generated with `include-paths` for the working directory and current workflow file.
       working-directory: ""
 ```
 
@@ -89,13 +89,13 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**               | **Description**                                                                                                                                            | **Required** | **Type**   | **Default**         |
-| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ---------- | ------------------- |
-| **`runs-on`**           | JSON array of runner(s) to use.                                                                                                                            | **false**    | **string** | `["ubuntu-latest"]` |
-|                         | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).                                                                         |              |            |                     |
-| **`working-directory`** | Working directory for monorepo support.                                                                                                                    | **false**    | **string** | -                   |
-|                         | If specified, the release configuration file will be placed in `.github/release-configs/{slug}.yml` where slug is derived from the working directory path. |              |            |                     |
-|                         | The configuration will include `include-paths` to filter pull requests to only those that modified files in the specified directory.                       |              |            |                     |
+| **Input**               | **Description**                                                                                                                                       | **Required** | **Type**   | **Default**         |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ---------- | ------------------- |
+| **`runs-on`**           | JSON array of runner(s) to use.                                                                                                                       | **false**    | **string** | `["ubuntu-latest"]` |
+|                         | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).                                                                    |              |            |                     |
+| **`working-directory`** | Working directory used to scope release preparation in a monorepo.                                                                                    | **false**    | **string** | -                   |
+|                         | If specified, the workflow looks for `.github/release-configs/{slug}.yml`, where `slug` is derived from the working directory basename.               |              |            |                     |
+|                         | If that file does not exist, a temporary release configuration is generated with `include-paths` for the working directory and current workflow file. |              |            |                     |
 
 <!-- inputs:end -->
 
