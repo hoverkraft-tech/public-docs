@@ -3,8 +3,8 @@ title: Url Lighthouse
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/check/url-lighthouse/README.md
 source_branch: main
-source_run_id: 24148178161
-last_synced: 2026-04-08T17:09:31.725Z
+source_run_id: 24227922022
+last_synced: 2026-04-10T05:29:10.713Z
 ---
 
 <!-- header:start -->
@@ -43,7 +43,7 @@ The action always sends `User-Agent: hoverkraft-tech-url-lighthouse-action` when
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/check/url-lighthouse@5ff7d4c3910971ed53834becd5967271b4e228cf # 0.21.1
+- uses: hoverkraft-tech/ci-github-publish/actions/check/url-lighthouse@b56be562f38e0e3e712f09691a8fe930aae9db1b # 0.22.0
   with:
     # The URL to audit using Lighthouse.
     # This input is required.

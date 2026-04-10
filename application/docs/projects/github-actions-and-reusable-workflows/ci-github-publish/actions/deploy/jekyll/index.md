@@ -3,8 +3,8 @@ title: Jekyll
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/deploy/jekyll/README.md
 source_branch: main
-source_run_id: 24148178161
-last_synced: 2026-04-08T17:09:31.725Z
+source_run_id: 24227922022
+last_synced: 2026-04-10T05:29:10.713Z
 ---
 
 <!-- header:start -->
@@ -55,7 +55,7 @@ Main steps performed by this action:
 ## Usage
 
 ````yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/deploy/jekyll@5ff7d4c3910971ed53834becd5967271b4e228cf # 0.21.1
+- uses: hoverkraft-tech/ci-github-publish/actions/deploy/jekyll@b56be562f38e0e3e712f09691a8fe930aae9db1b # 0.22.0
   with:
     # The Jekyll theme to use for the site.
     # Default: `jekyll-theme-cayman`

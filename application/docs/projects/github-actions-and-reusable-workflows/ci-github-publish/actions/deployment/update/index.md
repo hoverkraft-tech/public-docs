@@ -3,8 +3,8 @@ title: Update
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/deployment/update/README.md
 source_branch: main
-source_run_id: 24148178161
-last_synced: 2026-04-08T17:09:31.725Z
+source_run_id: 24227922022
+last_synced: 2026-04-10T05:29:10.713Z
 ---
 
 <!-- header:start -->
@@ -56,7 +56,7 @@ permissions:
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/deployment/update@642cdb54493d05debdc1394f4bfd7365f82e7bf1 # 0.18.2
+- uses: hoverkraft-tech/ci-github-publish/actions/deployment/update@b56be562f38e0e3e712f09691a8fe930aae9db1b # 0.22.0
   with:
     # The ID of the deployment to update
     # This input is required.
@@ -95,18 +95,18 @@ permissions:
 
 ## Inputs
 
-| **Input**            | **Description**                                                                                              | **Required** | **Default**                             |
-| -------------------- | ------------------------------------------------------------------------------------------------------------ | ------------ | --------------------------------------- |
-| **`deployment-id`**  | The ID of the deployment to update                                                                           | **true**     | -                                       |
-| **`repository`**     | The repository where the deployment was made                                                                 | **false**    | `$\{\{ github.event.repository.name }}` |
-| **`state`**          | The state of the deployment                                                                                  | **true**     | -                                       |
-| **`description`**    | The description of the deployment                                                                            | **false**    | -                                       |
-| **`url`**            | The URL of the deployment                                                                                    | **false**    | -                                       |
-| **`update-log-url`** | Update the log URL of the deployment                                                                         | **false**    | `true`                                  |
-| **`github-token`**   | GitHub Token to update the deployment.                                                                       | **false**    | `$\{\{ github.token }}`                 |
-|                      | Permissions:                                                                                                 |              |                                         |
-|                      | - deployments: write                                                                                         |              |                                         |
-|                      | See [https://docs.github.com/en/rest/deployments/statuses?apiVersion=2022-11-28#create-a-deployment-status](https://docs.github.com/en/rest/deployments/statuses?apiVersion=2022-11-28#create-a-deployment-status). |              |                                         |
+| **Input**            | **Description**                                                                                              | **Required** | **Default**                           |
+| -------------------- | ------------------------------------------------------------------------------------------------------------ | ------------ | ------------------------------------- |
+| **`deployment-id`**  | The ID of the deployment to update                                                                           | **true**     | -                                     |
+| **`repository`**     | The repository where the deployment was made                                                                 | **false**    | `${{ github.event.repository.name }}` |
+| **`state`**          | The state of the deployment                                                                                  | **true**     | -                                     |
+| **`description`**    | The description of the deployment                                                                            | **false**    | -                                     |
+| **`url`**            | The URL of the deployment                                                                                    | **false**    | -                                     |
+| **`update-log-url`** | Update the log URL of the deployment                                                                         | **false**    | `true`                                |
+| **`github-token`**   | GitHub Token to update the deployment.                                                                       | **false**    | `${{ github.token }}`                 |
+|                      | Permissions:                                                                                                 |              |                                       |
+|                      | - deployments: write                                                                                         |              |                                       |
+|                      | See [https://docs.github.com/en/rest/deployments/statuses?apiVersion=2022-11-28#create-a-deployment-status](https://docs.github.com/en/rest/deployments/statuses?apiVersion=2022-11-28#create-a-deployment-status). |              |                                       |
 
 <!-- inputs:end -->
 
@@ -138,7 +138,7 @@ This project is licensed under the MIT License.
 
 SPDX-License-Identifier: MIT
 
-Copyright © 2025 hoverkraft
+Copyright © 2026 hoverkraft
 
 For more details, see the [license](http://choosealicense.com/licenses/mit/).
 
