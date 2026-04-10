@@ -3,8 +3,8 @@ title: Setup
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/docker/setup/README.md
 source_branch: main
-source_run_id: 24227868893
-last_synced: 2026-04-10T05:29:38.456Z
+source_run_id: 24253765536
+last_synced: 2026-04-10T16:51:50.902Z
 ---
 
 <!-- header:start -->
@@ -75,6 +75,11 @@ Shared action to configure Docker tooling and OCI registry authentication.
     #
     # Default: `true`
     setup-buildx: true
+
+    # Whether the Buildx builder should be removed during post-job cleanup.
+    #
+    # Default: `true`
+    buildx-cleanup: true
 ````
 
 <!-- usage:end -->
@@ -98,6 +103,7 @@ Shared action to configure Docker tooling and OCI registry authentication.
 | **`built-images`**            | Optional built images payload used to resolve manifest publication registries.                                                                   | **false**    | -           |
 |                               | When provided, registry authentication targets are inferred from the built image data.                                                           |              |             |
 | **`setup-buildx`**            | Whether to install and configure Docker Buildx.                                                                                                  | **false**    | `true`      |
+| **`buildx-cleanup`**          | Whether the Buildx builder should be removed during post-job cleanup.                                                                            | **false**    | `true`      |
 
 <!-- inputs:end -->
 
