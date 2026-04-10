@@ -3,8 +3,8 @@ title: Ci Github Container
 source_repo: hoverkraft-tech/ci-github-container
 source_path: README.md
 source_branch: main
-source_run_id: 24227868893
-last_synced: 2026-04-10T05:29:38.456Z
+source_run_id: 24253765536
+last_synced: 2026-04-10T16:51:50.902Z
 ---
 
 <!-- markdownlint-disable-next-line first-line-heading -->
@@ -32,6 +32,8 @@ Opinionated GitHub Actions and reusable workflows to build, test, sign, and dist
 _Actions that operate on OCI images across their build, metadata, and lifecycle management phases._
 
 #### - [Build image](actions/docker/build-image/index.md)
+
+#### - [Cleanup builder](actions/docker/cleanup-builder/index.md)
 
 #### - [Clean images](actions/docker/clean-images/index.md)
 
