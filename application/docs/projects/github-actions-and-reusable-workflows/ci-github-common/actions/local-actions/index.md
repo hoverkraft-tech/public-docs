@@ -1,0 +1,133 @@
+---
+title: Local Actions
+source_repo: hoverkraft-tech/ci-github-common
+source_path: actions/local-actions/README.md
+source_branch: main
+source_run_id: 24252550091
+last_synced: 2026-04-10T16:19:24.628Z
+---
+
+<!-- header:start -->
+
+# ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItY29weSIgY29sb3I9ImJsdWUiPjxyZWN0IHg9IjkiIHk9IjkiIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgcng9IjIiIHJ5PSIyIj48L3JlY3Q+PHBhdGggZD0iTTUgMTVINGEyIDIgMCAwIDEtMi0yVjRhMiAyIDAgMCAxIDItMmg5YTIgMiAwIDAgMSAyIDJ2MSI+PC9wYXRoPjwvc3ZnPg==) GitHub Action: Local actions
+
+<div align="center">
+  <img src="/ci-github-common/assets/github/logo.svg" width="60px" align="center" alt="Local actions" />
+</div>
+
+---
+
+<!-- header:end -->
+
+## Overview
+
+Action to expose sibling local actions next to the current action directory.
+It creates a symlink to the parent actions directory at `../self-actions` relative to `github.workspace` during the main step and removes it automatically in the post step.
+
+## Usage
+
+```yaml
+- uses: ./../local-actions
+  with:
+    source-path: ${{ github.action_path }}/../..
+
+- uses: ./../self-actions/get-issue-number
+```
+
+## Inputs
+
+| **Input**         | **Description**                                                                | **Required** | **Default** |
+| ----------------- | ------------------------------------------------------------------------------ | ------------ | ----------- |
+| **`source-path`** | The actions root path. Pass `${{ github.action_path }}/../..` from the caller. | **true**     | -           |
+
+## Outputs
+
+| **Output** | **Description**                                      |
+| ---------- | ---------------------------------------------------- |
+| **`path`** | The resolved destination path for the copied actions |
+<!-- badges:start -->
+
+[![Marketplace](https://img.shields.io/badge/Marketplace-local--actions-blue?logo=github-actions)](https://github.com/marketplace/actions/local-actions)
+[![Release](https://img.shields.io/github/v/release/hoverkraft-tech/ci-github-common)](https://github.com/hoverkraft-tech/ci-github-common/releases)
+[![License](https://img.shields.io/github/license/hoverkraft-tech/ci-github-common)](http://choosealicense.com/licenses/mit/)
+[![Stars](https://img.shields.io/github/stars/hoverkraft-tech/ci-github-common?style=social)](https://img.shields.io/github/stars/hoverkraft-tech/ci-github-common?style=social)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/hoverkraft-tech/ci-github-common/blob/main/CONTRIBUTING.md)
+
+<!-- badges:end -->
+<!-- overview:start -->
+
+## Overview
+
+Action to expose sibling local actions next to the current action directory.
+It copies the parent actions directory into a configurable destination and cleans it up automatically in the post action.
+
+FIXME: This is a workaround until this issue is resolved: [https://github.com/actions/runner/issues/1348](https://github.com/actions/runner/issues/1348).
+
+<!-- overview:end -->
+<!-- usage:start -->
+
+## Usage
+
+```yaml
+- uses: hoverkraft-tech/ci-github-common/actions/local-actions@4b53189212d5810f710bed89711002626977215b # 0.33.0
+  with:
+    # The actions root path that contains the sibling local actions.
+    # Pass the caller actions root, typically by appending `/../..` to `github.action_path`.
+    #
+    # This input is required.
+    source-path: ""
+```
+
+<!-- usage:end -->
+<!-- inputs:start -->
+
+## Inputs
+
+| **Input**         | **Description**                                                                        | **Required** | **Default** |
+| ----------------- | -------------------------------------------------------------------------------------- | ------------ | ----------- |
+| **`source-path`** | The actions root path that contains the sibling local actions.                         | **true**     | -           |
+|                   | Pass the caller actions root, typically by appending `/../..` to `github.action_path`. |              |             |
+
+<!-- inputs:end -->
+<!-- secrets:start -->
+<!-- secrets:end -->
+<!-- outputs:start -->
+
+## Outputs
+
+| **Output** | **Description**                                             |
+| ---------- | ----------------------------------------------------------- |
+| **`path`** | The resolved destination path for the copied local actions. |
+
+<!-- outputs:end -->
+<!-- examples:start -->
+<!-- examples:end -->
+<!-- contributing:start -->
+
+## Contributing
+
+Contributions are welcome! Please see the [contributing guidelines](https://github.com/hoverkraft-tech/ci-github-common/blob/main/CONTRIBUTING.md) for more details.
+
+<!-- contributing:end -->
+<!-- security:start -->
+<!-- security:end -->
+<!-- license:start -->
+
+## License
+
+This project is licensed under the MIT License.
+
+SPDX-License-Identifier: MIT
+
+Copyright © 2026 hoverkraft
+
+For more details, see the [license](http://choosealicense.com/licenses/mit/).
+
+<!-- license:end -->
+<!-- generated:start -->
+
+---
+
+This documentation was automatically generated by [CI Dokumentor](https://github.com/hoverkraft-tech/ci-dokumentor).
+
+<!-- generated:end -->
