@@ -3,8 +3,8 @@ title: Parse Chart Uri
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/helm/parse-chart-uri/README.md
 source_branch: main
-source_run_id: 24192682372
-last_synced: 2026-04-09T13:33:00.919Z
+source_run_id: 24227868893
+last_synced: 2026-04-10T05:29:38.456Z
 ---
 
 <!-- header:start -->
@@ -49,7 +49,7 @@ The output will be:
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-container/actions/helm/parse-chart-uri@4f29319e02dd65152386c436e8c3136f380a0e71 # 0.28.0
+- uses: hoverkraft-tech/ci-github-container/actions/helm/parse-chart-uri@bcbbcaff24e053e38ebab02dd0e41442df196719 # 0.32.0
   with:
     # Chart URI to parse.
     # This input is required.
@@ -109,7 +109,7 @@ This project is licensed under the MIT License.
 
 SPDX-License-Identifier: MIT
 
-Copyright © 2025 hoverkraft
+Copyright © 2026 hoverkraft
 
 For more details, see the [license](http://choosealicense.com/licenses/mit/).
 
