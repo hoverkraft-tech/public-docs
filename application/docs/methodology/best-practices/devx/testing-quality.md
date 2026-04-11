@@ -14,7 +14,7 @@ Ship fast without fear. Tests are insurance—they let you refactor, upgrade dep
 
 Follow the testing pyramid: many fast unit tests, fewer integration tests, minimal end-to-end tests.
 
-```
+```text
         /\
        /  \      E2E Tests (Slow, brittle, expensive)
       /____\     - 5-10% of tests

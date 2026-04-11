@@ -113,7 +113,7 @@ jobs:
       github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-### What This Does
+### Release Publishing Behavior
 
 When a release is published:
 

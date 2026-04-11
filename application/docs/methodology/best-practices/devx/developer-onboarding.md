@@ -113,7 +113,7 @@ FEATURE_X_ENABLED=true
 
 Include a visual overview in `README.md` or `docs/architecture.md`:
 
-```
+```text
 ┌─────────────┐      ┌──────────────┐      ┌─────────────┐
 │   Frontend  │─────▶│  API Gateway │─────▶│   Backend   │
 │  (React)    │      │   (Node.js)  │      │  (Go/Python)│

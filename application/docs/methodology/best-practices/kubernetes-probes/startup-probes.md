@@ -100,7 +100,7 @@ app.listen(8080, () => {
 
 Calculate your `failureThreshold` based on maximum expected startup time:
 
-```
+```text
 Max Startup Time = failureThreshold × periodSeconds
 ```
 

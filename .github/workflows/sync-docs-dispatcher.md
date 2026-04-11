@@ -59,7 +59,7 @@ your-project/
 
 ### Complete Integration Example
 
-For a full example of integrating this workflow into your CI pipeline, see the [Examples](#examples) section below.
+For a full example of integrating this workflow into your CI pipeline, see the [Usage](#usage) section below.
 
 ### Key Integration Points
 

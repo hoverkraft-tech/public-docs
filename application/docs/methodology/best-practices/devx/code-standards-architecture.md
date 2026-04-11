@@ -16,7 +16,7 @@ Use a consistent, predictable structure across all projects:
 
 ### Backend (Node.js/TypeScript Example)
 
-```
+```text
 src/
 ├── domain/           # Business logic (framework-agnostic)
 │   ├── entities/     # Core domain models
@@ -42,7 +42,7 @@ src/
 
 ### Frontend (React Example)
 
-```
+```text
 src/
 ├── components/       # Reusable UI components
 │   ├── common/       # Shared across features
@@ -67,7 +67,7 @@ src/
 
 Dependencies point inward. Domain logic never depends on infrastructure.
 
-```
+```text
 ┌─────────────────────────────────────┐
 │  Frameworks & Drivers (Database,   │
 │  Web, External APIs)                │
@@ -271,7 +271,7 @@ logger.info("Processing payment", {
 
 ### Allowed Dependencies
 
-```
+```text
 Domain Layer:      ✅ Nothing (pure business logic)
 Use Case Layer:    ✅ Domain entities
 Interface Layer:   ✅ Use cases, domain entities
@@ -336,7 +336,7 @@ class PaymentGateway {}
 - Use plural for collections: `/orders` not `/order`
 - Use kebab-case: `/user-profiles` not `/user_profiles`
 
-```
+```text
 GET    /users           # List users
 POST   /users           # Create user
 GET    /users/:id       # Get user

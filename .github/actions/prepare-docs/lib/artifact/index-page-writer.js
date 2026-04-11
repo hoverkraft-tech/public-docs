@@ -5,6 +5,8 @@ const path = require("path");
 const { DEFAULT_INDEX_FILE } = require("../constants");
 const { formatTitleFromSlug } = require("../utils/path-utils");
 
+const ROOT_INDEX_FILE = "index.md";
+
 function ensureIndexPage({
   core,
   outputPath,
@@ -13,7 +15,10 @@ function ensureIndexPage({
   sourceRepository,
   syncTimestamp,
 }) {
-  if (processedFiles.includes(DEFAULT_INDEX_FILE)) {
+  if (
+    processedFiles.includes(DEFAULT_INDEX_FILE) ||
+    processedFiles.includes(ROOT_INDEX_FILE)
+  ) {
     return;
   }
 

@@ -6,11 +6,11 @@ sidebar_position: 7
 
 ## 1. Using the Same Endpoint for Liveness and Readiness
 
-### Problem
+### Problem: Shared Endpoint Logic
 
 When liveness and readiness share logic, a temporary dependency outage (like database maintenance) can cause Kubernetes to restart healthy pods, making the outage worse.
 
-### Solution
+### Solution: Split Liveness and Readiness Checks
 
 Separate the concerns. Liveness checks internal health; readiness checks external dependencies.
 
@@ -34,11 +34,11 @@ readinessProbe:
 
 ## 2. Overly Aggressive Probe Timing
 
-### Problem
+### Problem: Probe Timing Triggers Unnecessary Restarts
 
 Too frequent probes with low failure thresholds cause unnecessary restarts during normal load spikes or brief network hiccups.
 
-### Solution
+### Solution: Use Conservative Timing and Thresholds
 
 Use conservative timing and higher failure thresholds, especially in production.
 
@@ -58,11 +58,11 @@ livenessProbe:
 
 ## 3. Missing Resource Requests/Limits
 
-### Problem
+### Problem: Resource Starvation Masquerades as Health Failures
 
 Without resource constraints, probes may fail due to CPU throttling or OOM conditions, not actual application failures.
 
-### Solution
+### Solution: Define Resource Requests and Limits
 
 Always define resource requests and limits, then adjust probe timing accordingly to account for resource constraints.
 
@@ -95,11 +95,11 @@ containers:
 
 ## 4. Not Monitoring Probe Failures
 
-### Problem
+### Problem: Probe Issues Go Unnoticed
 
 Teams configure probes but don't monitor their effectiveness, missing opportunities to tune or identify real issues.
 
-### Solution
+### Solution: Alert on Probe Failures and Restarts
 
 Set up alerts for high restart counts and probe failure rates.
 
@@ -113,11 +113,11 @@ Set up alerts for high restart counts and probe failure rates.
 
 ## 5. Expensive Health Check Operations
 
-### Problem
+### Problem: Health Checks Add Excess Load
 
 Health checks that perform heavy operations (full database scans, external API calls) can timeout or add significant load.
 
-### Solution
+### Solution: Keep Health Checks Lightweight
 
 Keep health checks lightweight. Use connection pool pings, not full queries.
 
@@ -137,11 +137,11 @@ def readiness():
 
 ## 6. Checking Downstream Service Health in Liveness
 
-### Problem
+### Problem: Dependency Checks Cause Cascading Failures
 
 Making liveness probes depend on downstream services causes cascading failures.
 
-### Solution
+### Solution: Limit Liveness to Application Health
 
 Only check the application's own health in liveness probes. Check dependencies in readiness probes only.
 
@@ -160,11 +160,11 @@ app.get("/healthz", (req, res) => {
 
 ## 7. Ignoring Graceful Shutdown
 
-### Problem
+### Problem: Shutdown Traffic Is Still Routed to the Pod
 
 Applications don't signal unreadiness during shutdown, causing failed requests during pod termination.
 
-### Solution
+### Solution: Fail Readiness During Shutdown
 
 Implement graceful shutdown that fails readiness probes.
 

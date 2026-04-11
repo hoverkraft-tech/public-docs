@@ -4,7 +4,14 @@ sidebar_position: 1
 
 # Getting Started
 
-Spin up a new application repository that matches the current Hoverkraft application stack. Examples show a Node/Astro app, but the pattern works for any containerized application—swap the build commands and Dockerfile base image for your stack. CI/CD and VCS tooling are platform-agnostic: use the same repository layout, Dockerfile targets, and Helm flow, and plug in your preferred CI provider and VCS host. For multi-application repos (e.g., `application/backend`, `application/frontend`, `application/microservice-*`), apply the same pattern per service: each service keeps its own app folder and Dockerfile, while a single umbrella Helm chart orchestrates all services under one release.
+Spin up a new application repository that matches the current Hoverkraft application stack.
+Examples show a Node/Astro app, but the pattern works for any containerized application.
+Swap the build commands and Dockerfile base image for your stack. CI/CD and VCS tooling are
+platform-agnostic: use the same repository layout, Dockerfile targets, and Helm flow, and plug in
+your preferred CI provider and VCS host. For multi-application repos (e.g.,
+`application/backend`, `application/frontend`, `application/microservice-*`), apply the same
+pattern per service: each service keeps its own app folder and Dockerfile, while a single umbrella
+Helm chart orchestrates all services under one release.
 
 ## What You'll Build
 
@@ -20,7 +27,8 @@ Spin up a new application repository that matches the current Hoverkraft applica
 - Docker + Docker Compose available locally, or Visual Studio Code Dev Containers/Codespaces
 - Container base image for your stack (examples use Node 24; pick what matches your runtime)
 - Helm 3 for local chart checks (optional, CI covers it)
-  -### CI/CD settings (configure on your platform)
+
+## CI/CD settings (configure on your platform)
 
 Provide these as pipeline variables/secrets on your CI/CD platform (names can stay the same across providers):
 

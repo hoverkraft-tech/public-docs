@@ -13,7 +13,7 @@ inputs:
     description: GitHub token used to authenticate repository queries.
     required: true
   repository:
-    description: Repository slug in the form owner/repo.
+    description: Repository slug in the form `owner/repo`.
     required: true
 
 outputs:

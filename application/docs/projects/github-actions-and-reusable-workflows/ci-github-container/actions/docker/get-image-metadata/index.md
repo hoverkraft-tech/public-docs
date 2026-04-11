@@ -68,12 +68,12 @@ It uses the [docker/metadata-action](https://github.com/docker/metadata-action) 
 
 ## Inputs
 
-| **Input**          | **Description**                                                                                                | **Required** | **Default**                |
-| ------------------ | -------------------------------------------------------------------------------------------------------------- | ------------ | -------------------------- |
-| **`oci-registry`** | OCI registry where to pull and push images                                                                     | **true**     | `ghcr.io`                  |
+| **Input**          | **Description**                                                                                               | **Required** | **Default**                |
+| ------------------ | ------------------------------------------------------------------------------------------------------------- | ------------ | -------------------------- |
+| **`oci-registry`** | OCI registry where to pull and push images                                                                    | **true**     | `ghcr.io`                  |
 | **`repository`**   | Repository name. Example: `my-org/my-repo`. See [Docker get-image-name action](../get-image-name/index.md)    | **false**    | `${{ github.repository }}` |
 | **`image`**        | Additional image name. Example: `application`. See [Docker get-image-name action](../get-image-name/index.md) | **false**    | -                          |
-| **`tag`**          | Force image tag to publish                                                                                     | **false**    | -                          |
+| **`tag`**          | Force image tag to publish                                                                                    | **false**    | -                          |
 
 <!-- inputs:end -->
 

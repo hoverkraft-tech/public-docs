@@ -1,47 +1,68 @@
-import type { ComponentType, ReactElement, ReactNode } from "react";
-import { render, screen } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
-import { RouteContextProvider } from "@docusaurus/core/lib/client/routeContext";
-import { HelmetProvider } from "react-helmet-async";
-import { TitleFormatterProvider } from "@docusaurus/theme-common/internal";
+import React, { type PropsWithChildren, type ReactNode } from 'react';
+import { render, screen } from '@testing-library/react';
+import Home, { HeroSection, ProjectsSection, ValuePropsSection } from '../index';
 
-type TitleFormatterParams = {
-  title: string;
-  siteTitle: string;
-  titleDelimiter: string;
-  plugin: { id: string; name: string };
-};
+jest.mock('@docusaurus/useDocusaurusContext', () => ({
+  __esModule: true,
+  default: () => ({
+    siteConfig: {
+      tagline: 'Test tagline',
+    },
+  }),
+}));
 
-type TitleFormatterFnWithDefault = (
-  params: TitleFormatterParams & {
-    defaultFormatter: (params: TitleFormatterParams) => string;
-  }
-) => string;
-import Home, { HeroSection, ValuePropsSection, ProjectsSection } from "../index";
+jest.mock('@theme/Layout', () => ({
+  __esModule: true,
+  default: ({ children, description, title }: PropsWithChildren<{ description?: string; title?: string }>) => (
+    <div data-description={description} data-testid="layout" data-title={title}>
+      {children}
+    </div>
+  ),
+}));
 
-const TypedRouteProvider = RouteContextProvider as ComponentType<{
-  value: { plugin: { name: string; id: string }; data: Record<string, unknown> };
-  children?: ReactNode;
-}>;
+jest.mock('@theme/Heading', () => ({
+  __esModule: true,
+  default: ({ as: Tag = 'h2', children }: { as?: keyof JSX.IntrinsicElements; children?: ReactNode }) =>
+    <Tag>{children}</Tag>,
+}));
 
-const passthroughTitleFormatter: TitleFormatterFnWithDefault = ({ defaultFormatter, ...params }) =>
-  defaultFormatter(params);
-
-const RouterProviders = ({ children }: { children?: ReactNode }) => (
-  <HelmetProvider>
-    <MemoryRouter>
-      <TypedRouteProvider value={{ plugin: { name: "test", id: "default" }, data: {} }}>
-        <TitleFormatterProvider formatter={passthroughTitleFormatter} children={children ?? null} />
-      </TypedRouteProvider>
-    </MemoryRouter>
-  </HelmetProvider>
-);
-
-const renderWithRouter = (ui: ReactElement) => render(ui, { wrapper: RouterProviders });
+jest.mock('@hoverkraft/docusaurus-theme/components', () => ({
+  HoverkraftBrandHighlight: ({ children }: PropsWithChildren) => <span>{children}</span>,
+  HoverkraftButton: ({ label }: { href: string; label: string }) => <button type="button">{label}</button>,
+  HoverkraftFeatureList: ({ features }: { features: Array<{ description: string; title: string }> }) => (
+    <ul>
+      {features.map((feature) => (
+        <li key={feature.title}>
+          <span>{feature.title}</span>
+          <span>{feature.description}</span>
+        </li>
+      ))}
+    </ul>
+  ),
+  HoverkraftHero: ({ actions, description, title }: { actions: Array<{ href?: string; label: string; to?: string }>; description: string; title: ReactNode }) => (
+    <section>
+      <div>{title}</div>
+      <p>{description}</p>
+      {actions.map((action) => (
+        <button key={action.label} type="button">{action.label}</button>
+      ))}
+    </section>
+  ),
+  HoverkraftProjectCard: ({ description, meta, tags, title, titleHref }: { description: string; meta: string; tags: string[]; title: string; titleHref: string }) => (
+    <article>
+      <span data-title-href={titleHref}>{title}</span>
+      <div>{meta}</div>
+      <p>{description}</p>
+      {tags.map((tag) => (
+        <span key={tag}>{tag}</span>
+      ))}
+    </article>
+  ),
+}));
 
 describe("HeroSection", () => {
   it("renders all primary calls to action", () => {
-    renderWithRouter(<HeroSection />);
+    render(<HeroSection />);
 
     expect(screen.getByText("Discover documentation")).toBeInTheDocument();
     expect(screen.getByText("Explore Projects")).toBeInTheDocument();
@@ -51,7 +72,7 @@ describe("HeroSection", () => {
 
 describe("ValuePropsSection", () => {
   it("lists each Hoverkraft differentiator", () => {
-    renderWithRouter(<ValuePropsSection />);
+    render(<ValuePropsSection />);
 
     ["Open Source", "Developer First", "Community", "Innovation"].forEach((title) => {
       expect(screen.getByText(title)).toBeInTheDocument();
@@ -61,7 +82,7 @@ describe("ValuePropsSection", () => {
 
 describe("ProjectsSection", () => {
   it("describes the flagship projects", () => {
-    renderWithRouter(<ProjectsSection />);
+    render(<ProjectsSection />);
 
     ["compose-action", "ci-dokumentor", "ci-github-container"].forEach((project) => {
       expect(screen.getByText(project)).toBeInTheDocument();
@@ -71,8 +92,9 @@ describe("ProjectsSection", () => {
 
 describe("Home", () => {
   it("renders the hero section inside the composed layout", () => {
-    renderWithRouter(<Home />);
+    render(<Home />);
 
     expect(screen.getByText("Discover documentation")).toBeInTheDocument();
+    expect(screen.getByTestId("layout")).toHaveAttribute("data-description", "Test tagline");
   });
 });

@@ -306,7 +306,7 @@ Reduce compute costs with caching:
 
 **Cache Layers:**
 
-```
+```text
 ┌─────────────┐
 │   Browser   │ ← Cache-Control headers
 └─────────────┘

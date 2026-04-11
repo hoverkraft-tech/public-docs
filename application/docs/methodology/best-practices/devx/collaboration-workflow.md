@@ -280,7 +280,7 @@ Define roles for key processes:
 
 ### Escalation Path
 
-```
+```text
 Level 1: Team Lead (< 30 min)
    ↓
 Level 2: Engineering Manager (< 1 hour)
