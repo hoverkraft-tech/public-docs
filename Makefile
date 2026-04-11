@@ -8,15 +8,16 @@ help: ## Show help message
 
 include .env
 
-prepare: ## Prepare stack to run
-	npm --prefix application install
-	npm --prefix .github/actions/generate-docs install
-	npm --prefix .github/actions/prepare-docs install
-	npm --prefix .github/actions/inject-docs install
-	npm --prefix .github/actions/resolve-docs-target install
+setup: ## Install npm dependencies for all package.json files under actions/
+	@echo "Installing npm dependencies for all packages..."
+	$(call run_npm_for_packages,install)
 
 start: ## Start application in dev mode
 	npm --prefix application run start
+
+npm-audit-fix: ## Execute npm audit fix
+	@echo "Running npm audit fix for all packages..."
+	$(call run_npm_for_packages,audit fix)
 
 lint: ## Run linters
 	npm --prefix application run lint -- $(filter-out $@,$(MAKECMDGOALS))
@@ -24,26 +25,19 @@ lint: ## Run linters
 
 lint-fix: ## Run linters
 	npm --prefix application run lint:fix
-	npm --prefix application audit fix
-	npm --prefix .github/actions/generate-docs audit fix
-	npm --prefix .github/actions/prepare-docs audit fix
-	npm --prefix .github/actions/inject-docs audit fix
-	npm --prefix .github/actions/resolve-docs-target audit fix
 	$(MAKE) linter-fix
 
 build: ## Build libs and applications
 	npm --prefix application run build
 
 test: ## Run tests
-	npm --prefix application run test:ci
-	npm --prefix .github/actions/generate-docs run test:ci
-	npm --prefix .github/actions/prepare-docs run test:ci
-	npm --prefix .github/actions/inject-docs run test:ci
-	npm --prefix .github/actions/resolve-docs-target run test:ci
+	@echo "Running tests for all packages..."
+	$(call run_npm_for_packages,run test:ci)
 
 ci: ## Run tests in CI mode
-	$(MAKE) prepare
+	$(MAKE) setup
 	$(MAKE) lint-fix
+	$(MAKE) npm-audit-fix || true
 	$(MAKE) build
 	$(MAKE) test
 
@@ -68,22 +62,26 @@ define run_linter
 		-e IGNORE_GITIGNORED_FILES=true \
 		-e VALIDATE_TYPESCRIPT_PRETTIER=false \
 		-e VALIDATE_TYPESCRIPT_ES=false \
-        -e VALIDATE_CSS=false \
+		-e VALIDATE_CSS=false \
 		$(1) \
 		-v $$VOLUME \
 		--rm \
 		$$LINTER_IMAGE
 endef
 
-define docker-compose
-    COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker-compose -f docker-compose.yml -f docker-compose.local.yml -f docker-compose.$(1).yml $(2)
-endef
-
-define open-in-browser
-	@if command -v x-www-browser &> /dev/null ; then x-www-browser $(1); \
-	elif command -v xdg-open &> /dev/null ; then xdg-open $(1); \
-	elif command -v open &> /dev/null ; then open $(1); \
-	elif command -v start &> /dev/null ; then	start $(1);	fi;
+define run_npm_for_packages
+	@set -eu; \
+	overall_status=0; \
+	packages="$$(find application .github/actions -type f -name package.json -not -path '*/node_modules/*' -print | sort)"; \
+	for pkg in $$packages; do \
+		pkg_dir="$$(dirname "$$pkg")"; \
+		echo "---"; \
+		echo "npm $(1) in $$pkg_dir"; \
+		if ! npm --prefix "$$pkg_dir" $(1); then \
+			overall_status=1; \
+		fi; \
+	done; \
+	exit $$overall_status
 endef
 
 #############################

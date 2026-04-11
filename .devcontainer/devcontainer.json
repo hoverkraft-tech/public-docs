@@ -1,8 +1,11 @@
 {
-  "name": "Node.js & TypeScript",
-  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
+  "name": "public-docs",
+  "image": "mcr.microsoft.com/devcontainers/base:debian",
   "features": {
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+    "ghcr.io/devcontainers/features/node:1": {},
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "moby": false
+    }
   },
   "forwardPorts": [3000],
   "customizations": {
@@ -29,6 +32,9 @@
             "args": ["lighthouse-mcp"]
           }
         }
+      },
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "zsh"
       }
     }
   }

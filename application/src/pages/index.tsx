@@ -1,4 +1,4 @@
-import type {ReactNode} from 'react';
+import React, {type ReactNode} from 'react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
@@ -136,6 +136,7 @@ function ProjectsSection() {
           {
             projects.map((project, index) => (
               <HoverkraftProjectCard
+                key={project.name}
                 icon={project.icon}
                 title={project.name}
                 titleHref={project.url}
