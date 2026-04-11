@@ -198,7 +198,7 @@ Measure developer experience dimensions:
 
 Each team owns their documentation:
 
-```
+```text
 docs/
 ├── api-gateway/          # Owned by Platform team
 ├── auth-service/         # Owned by Identity team

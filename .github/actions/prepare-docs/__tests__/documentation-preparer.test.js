@@ -200,6 +200,39 @@ describe("DocumentationPreparer", () => {
     expect(content).toContain("title: Actions");
   });
 
+  it("does not create a fallback _index when the bundle already contains index.md", async () => {
+    mockFs({
+      "/workspace": {
+        artifact: {
+          "README.md": "# Example\n\nMain page",
+          actions: {
+            checkout: {
+              "README.md": "# Checkout\n\nDetails",
+            },
+          },
+        },
+        site: {
+          docs: {},
+          static: {},
+        },
+      },
+    });
+
+    const options = createOptions();
+    const preparer = new DocumentationPreparer(options);
+    const result = await preparer.run();
+
+    expect(result.processedFiles).toContain("index.md");
+    expect(result.processedFiles).not.toContain("_index.md");
+    expect(fs.existsSync(path.join(options.outputPath, "index.md"))).toBe(true);
+    expect(fs.existsSync(path.join(options.outputPath, "_index.md"))).toBe(
+      false,
+    );
+    expect(options.core.info).not.toHaveBeenCalledWith(
+      "Generated default index page for documentation bundle.",
+    );
+  });
+
   it("fails fast when the source repository slug is invalid", async () => {
     mockFs({
       "/workspace": {

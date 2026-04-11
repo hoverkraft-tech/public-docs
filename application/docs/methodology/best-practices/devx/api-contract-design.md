@@ -29,7 +29,7 @@ Prevent breaking changes and consumer pain. APIs outlive their implementationsâ€
 
 **Example:**
 
-```
+```text
 GET    /users                 # List users
 POST   /users                 # Create user
 GET    /users/:id             # Get specific user
@@ -64,7 +64,7 @@ POST   /users/:id/orders      # Create order for user
 
 Include version in the URL path:
 
-```
+```text
 https://api.example.com/v1/users
 https://api.example.com/v2/users
 ```
@@ -170,7 +170,7 @@ When APIs and databases evolve together, use expand/contract (a.k.a. parallel ch
 
 Use cursor-based pagination for large datasets:
 
-```
+```text
 GET /users?limit=20&cursor=eyJpZCI6MTAwfQ
 ```
 
@@ -207,7 +207,7 @@ GET /users?limit=20&cursor=eyJpZCI6MTAwfQ
 
 Support common filters via query parameters:
 
-```
+```text
 GET /users?status=active&role=admin&created_after=2024-01-01
 ```
 
@@ -215,7 +215,7 @@ GET /users?status=active&role=admin&created_after=2024-01-01
 
 Allow sorting with `sort` parameter:
 
-```
+```text
 GET /users?sort=-created_at,name
 ```
 
@@ -397,7 +397,7 @@ npm run graphql-codegen
 
 1. **Announce**: Add deprecation notice to docs (6 months minimum)
 2. **Header**: Return `Deprecation` header with sunset date
-   ```
+   ```text
    Deprecation: true
    Sunset: Sat, 31 Dec 2024 23:59:59 GMT
    ```

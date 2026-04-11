@@ -249,14 +249,14 @@ Every alert must be:
 
 **Bad Alert Example:**
 
-```
+```text
 Alert: CPU usage > 70%
 Problem: Not actionable, not urgent, may not impact users
 ```
 
 **Good Alert Example:**
 
-```
+```text
 Alert: API error rate > 1% for 5 minutes
 Action: Check logs, rollback recent deployment
 Impact: Users experiencing failed requests

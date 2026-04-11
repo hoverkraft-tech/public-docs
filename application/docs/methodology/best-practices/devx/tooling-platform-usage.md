@@ -246,7 +246,7 @@ cd my-api
 
 **2. Generated Structure:**
 
-```
+```text
 my-api/
 ├── src/
 │   ├── domain/        # Business logic
@@ -305,7 +305,7 @@ Maintain a living troubleshooting guide:
 
 **Symptoms:**
 
-```
+```text
 Error: listen EADDRINUSE: address already in use :::3000
 ```
 
@@ -326,7 +326,7 @@ PORT=3001 npm run dev
 
 **Symptoms:**
 
-```
+```text
 Error: connect ECONNREFUSED 127.0.0.1:5432
 ```
 
@@ -371,7 +371,7 @@ npm run test:ci
 
 Centralize all developer resources:
 
-```
+```text
 Developer Portal
 ├── Getting Started
 │   ├── Setup Guide

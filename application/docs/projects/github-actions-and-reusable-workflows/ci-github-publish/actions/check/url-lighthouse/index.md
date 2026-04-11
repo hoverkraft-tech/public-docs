@@ -68,12 +68,12 @@ The action always sends `User-Agent: hoverkraft-tech-url-lighthouse-action` when
 
 ## Inputs
 
-| **Input**           | **Description**                                                                                                 | **Required** | **Default**     |
-| ------------------- | --------------------------------------------------------------------------------------------------------------- | ------------ | --------------- |
-| **`url`**           | The URL to audit using Lighthouse.                                                                              | **true**     | -               |
+| **Input**           | **Description**                                                                                                                                                                  | **Required** | **Default**     |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- |
+| **`url`**           | The URL to audit using Lighthouse.                                                                                                                                               | **true**     | -               |
 | **`budget-path`**   | The path to the performance budget file. See [https://web.dev/articles/use-lighthouse-for-performance-budgets](https://web.dev/articles/use-lighthouse-for-performance-budgets). | **false**    | `./budget.json` |
-| **`authorization`** | Optional Authorization header used to access private URLs.                                                      | **false**    | -               |
-|                     | Example: `Bearer xxx...`, `token xxx...`                                                                        |              |                 |
+| **`authorization`** | Optional Authorization header used to access private URLs.                                                                                                                       | **false**    | -               |
+|                     | Example: `Bearer xxx...`, `token xxx...`                                                                                                                                         |              |                 |
 
 <!-- inputs:end -->
 

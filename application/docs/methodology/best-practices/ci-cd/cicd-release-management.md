@@ -14,7 +14,7 @@ Predictable, low-stress deployments. If deployments are scary, you'll do them le
 
 ### Pipeline Stages
 
-```
+```text
 ┌──────────┐   ┌────────┐   ┌──────────┐   ┌────────┐   ┌────────┐
 │  Commit  │──▶│  Lint  │──▶│   Test   │──▶│  Build │──▶│ Deploy │
 └──────────┘   └────────┘   └──────────┘   └────────┘   └────────┘
@@ -57,7 +57,7 @@ Predictable, low-stress deployments. If deployments are scary, you'll do them le
 - **Feature branches**: Short-lived (< 2 days)
 - **No long-lived branches**: Merge daily
 
-```
+```text
 main     ──●────●────●────●────●──▶
              \  /    /    /
 feature1      ●─────┘    /
@@ -87,7 +87,7 @@ feature2           ●────┘
 
 ### Deployment Pipeline
 
-```
+```text
 PR Created
     ↓
 CI Runs (lint, test, build)
@@ -221,7 +221,7 @@ Follow [Semantic Versioning](https://semver.org/): `MAJOR.MINOR.PATCH`
 
 Use conventional commit messages to automate versioning:
 
-```
+```text
 feat: add user profile endpoint      → MINOR bump
 fix: resolve null pointer exception  → PATCH bump
 feat!: remove deprecated API         → MAJOR bump
@@ -246,7 +246,7 @@ feat!: remove deprecated API         → MAJOR bump
 
 ### Environment Progression
 
-```
+```text
 Developer Laptop
     ↓
 CI (ephemeral)
@@ -311,7 +311,7 @@ After deploying to production:
 
 Run two identical production environments:
 
-```
+```text
 ┌─────────┐       ┌─────────┐
 │  Blue   │◀─────▶│  Green  │
 │ (Live)  │       │(Standby)│
@@ -333,7 +333,7 @@ Run two identical production environments:
 
 Gradually shift traffic to new version:
 
-```
+```text
 V1: ███████████ 90%
 V2: ██ 10%
 
@@ -357,7 +357,3 @@ V2: ███████████ 100%
 - [Accelerate - Nicole Forsgren](https://itrevolution.com/product/accelerate/)
 - [Release It! - Michael Nygard](https://pragprog.com/titles/mnee2/release-it-second-edition/)
 - [Site Reliability Engineering - Google](https://sre.google/books/)
-
-```
-
-```
