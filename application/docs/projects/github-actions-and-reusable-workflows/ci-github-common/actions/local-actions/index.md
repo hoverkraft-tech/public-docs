@@ -3,8 +3,8 @@ title: Local Actions
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/local-actions/README.md
 source_branch: main
-source_run_id: 24252550091
-last_synced: 2026-04-10T16:19:24.628Z
+source_run_id: 24344561437
+last_synced: 2026-04-13T13:01:24.956Z
 ---
 
 <!-- header:start -->
@@ -18,33 +18,6 @@ last_synced: 2026-04-10T16:19:24.628Z
 ---
 
 <!-- header:end -->
-
-## Overview
-
-Action to expose sibling local actions next to the current action directory.
-It creates a symlink to the parent actions directory at `../self-actions` relative to `github.workspace` during the main step and removes it automatically in the post step.
-
-## Usage
-
-```yaml
-- uses: ./../local-actions
-  with:
-    source-path: ${{ github.action_path }}/../..
-
-- uses: ./../self-actions/get-issue-number
-```
-
-## Inputs
-
-| **Input**         | **Description**                                                                | **Required** | **Default** |
-| ----------------- | ------------------------------------------------------------------------------ | ------------ | ----------- |
-| **`source-path`** | The actions root path. Pass `${{ github.action_path }}/../..` from the caller. | **true**     | -           |
-
-## Outputs
-
-| **Output** | **Description**                                      |
-| ---------- | ---------------------------------------------------- |
-| **`path`** | The resolved destination path for the copied actions |
 <!-- badges:start -->
 
 [![Marketplace](https://img.shields.io/badge/Marketplace-local--actions-blue?logo=github-actions)](https://github.com/marketplace/actions/local-actions)
@@ -59,9 +32,8 @@ It creates a symlink to the parent actions directory at `../self-actions` relati
 ## Overview
 
 Action to expose sibling local actions next to the current action directory.
-It copies the parent actions directory into a configurable destination and cleans it up automatically in the post action.
-
-FIXME: This is a workaround until this issue is resolved: [https://github.com/actions/runner/issues/1348](https://github.com/actions/runner/issues/1348).
+It creates a symlink to the parent actions directory at `../self-actions` relative to `github.workspace`
+during the main step and removes it automatically in the post step.
 
 <!-- overview:end -->
 <!-- usage:start -->
@@ -69,7 +41,7 @@ FIXME: This is a workaround until this issue is resolved: [https://github.com/ac
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-common/actions/local-actions@4b53189212d5810f710bed89711002626977215b # 0.33.0
+- uses: hoverkraft-tech/ci-github-common/actions/local-actions@03a5a2a3626b03434b19b79cdd2e141bea410bae # 0.34.1
   with:
     # The actions root path that contains the sibling local actions.
     # Pass the caller actions root, typically by appending `/../..` to `github.action_path`.

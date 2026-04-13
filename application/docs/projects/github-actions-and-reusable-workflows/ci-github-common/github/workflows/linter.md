@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-common
 source_path: .github/workflows/linter.md
 source_branch: main
-source_run_id: 24252550091
-last_synced: 2026-04-10T16:19:24.628Z
+source_run_id: 24344561437
+last_synced: 2026-04-13T13:01:24.956Z
 ---
 
 <!-- header:start -->
