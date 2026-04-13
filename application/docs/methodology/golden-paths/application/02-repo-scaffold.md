@@ -88,7 +88,12 @@ Requirements:
 
 ### Helm chart
 
-Add `charts/application/Chart.yaml` with `version` and `appVersion` starting at `0.0.0`. The deploy workflow injects the image tag and ingress host values; keep the chart minimal and let the workflow pass `image.*` and `deploy.ingress.hosts[0].host` via `chart-values`. For multi-app repos, keep a single umbrella chart (e.g., `charts/application/`) and template one subchart or deployment per service (e.g., `services.backend.*`, `services.frontend.*` values). Each service still consumes its own image tag and ingress host values.
+Add `charts/application/Chart.yaml` with `version` and `appVersion` starting at `0.0.0`.
+The deploy workflow injects the image tag and ingress host values; keep the chart minimal and let
+the workflow pass `image.*` and `deploy.ingress.hosts[0].host` via `chart-values`. For multi-app
+repos, keep a single umbrella chart (e.g., `charts/application/`) and template one subchart or
+deployment per service (e.g., `services.backend.*`, `services.frontend.*` values). Each service
+still consumes its own image tag and ingress host values.
 
 ### Dev container (optional but recommended)
 

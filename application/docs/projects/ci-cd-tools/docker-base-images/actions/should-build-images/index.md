@@ -57,11 +57,11 @@ Check if some files have changed requiring the build of the given images.
 
 ## Inputs
 
-| **Input**      | **Description**                                                                                                   | **Required** | **Default** |
-| -------------- | ----------------------------------------------------------------------------------------------------------------- | ------------ | ----------- |
-| **`images`**   | Image names located in the 'images' folder.                                                                       | **true**     | -           |
-|                | Formatted as a JSON array.                                                                                        |              |             |
-|                | Example: `["php-8", "nodejs-24"]`                                                                                 |              |             |
+| **Input**      | **Description**                                                                                                                                                | **Required** | **Default** |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------- |
+| **`images`**   | Image names located in the 'images' folder.                                                                                                                    | **true**     | -           |
+|                | Formatted as a JSON array.                                                                                                                                     |              |             |
+|                | Example: `["php-8", "nodejs-24"]`                                                                                                                              |              |             |
 | **`base-sha`** | Specify a different base commit SHA used for comparing changes. See [https://github.com/tj-actions/changed-files](https://github.com/tj-actions/changed-files) | **false**    | -           |
 
 <!-- inputs:end -->
