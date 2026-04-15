@@ -2,9 +2,9 @@
 title: Local Actions
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/local-actions/README.md
-source_branch: main
-source_run_id: 24344561437
-last_synced: 2026-04-13T13:01:24.956Z
+source_branch: 0.34.2
+source_run_id: 24441949898
+last_synced: 2026-04-15T07:32:42.397Z
 ---
 
 <!-- header:start -->
@@ -41,7 +41,7 @@ during the main step and removes it automatically in the post step.
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-common/actions/local-actions@03a5a2a3626b03434b19b79cdd2e141bea410bae # 0.34.1
+- uses: hoverkraft-tech/ci-github-common/actions/local-actions@71b85947453f32b5d147ff3ab37351439a92d840 # 0.34.2
   with:
     # The actions root path that contains the sibling local actions.
     # Pass the caller actions root, typically by appending `/../..` to `github.action_path`.

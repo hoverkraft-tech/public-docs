@@ -2,9 +2,9 @@
 title: Checkout
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/checkout/README.md
-source_branch: main
-source_run_id: 24344561437
-last_synced: 2026-04-13T13:01:24.956Z
+source_branch: 0.34.2
+source_run_id: 24441949898
+last_synced: 2026-04-15T07:32:42.397Z
 ---
 
 <!-- header:start -->
@@ -52,7 +52,7 @@ permissions:
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-common/actions/checkout@4b53189212d5810f710bed89711002626977215b # 0.33.0
+- uses: hoverkraft-tech/ci-github-common/actions/checkout@71b85947453f32b5d147ff3ab37351439a92d840 # 0.34.2
   with:
     # Number of commits to fetch. 0 indicates all history for all branches and tags.
     # See https://github.com/actions/checkout#usage
@@ -83,16 +83,16 @@ permissions:
 
 ## Inputs
 
-| **Input**                 | **Description**                                                                                                   | **Required** | **Default** |
-| ------------------------- | ----------------------------------------------------------------------------------------------------------------- | ------------ | ----------- |
-| **`fetch-depth`**         | Number of commits to fetch. 0 indicates all history for all branches and tags.                                    | **false**    | `1`         |
-|                           | See [https://github.com/actions/checkout#usage](https://github.com/actions/checkout#usage)                        |              |             |
-| **`lfs`**                 | Whether to download Git-LFS files.                                                                                | **false**    | `false`     |
-|                           | See [https://github.com/actions/checkout#usage](https://github.com/actions/checkout#usage)                        |              |             |
-| **`persist-credentials`** | Whether to persist the token credentials in the Git config.                                                       | **false**    | `false`     |
-|                           | Default to false for security reasons.                                                                            |              |             |
-|                           | See [https://github.com/orgs/community/discussions/179107](https://github.com/orgs/community/discussions/179107). |              |             |
-| **`token`**               | Token to use for checking out the repository instead of the default GITHUB_TOKEN.                                 | **false**    | -           |
+| **Input**                 | **Description**                                                                   | **Required** | **Default** |
+| ------------------------- | --------------------------------------------------------------------------------- | ------------ | ----------- |
+| **`fetch-depth`**         | Number of commits to fetch. 0 indicates all history for all branches and tags.    | **false**    | `1`         |
+|                           | See [https://github.com/actions/checkout#usage](https://github.com/actions/checkout#usage)                                   |              |             |
+| **`lfs`**                 | Whether to download Git-LFS files.                                                | **false**    | `false`     |
+|                           | See [https://github.com/actions/checkout#usage](https://github.com/actions/checkout#usage)                                   |              |             |
+| **`persist-credentials`** | Whether to persist the token credentials in the Git config.                       | **false**    | `false`     |
+|                           | Default to false for security reasons.                                            |              |             |
+|                           | See [https://github.com/orgs/community/discussions/179107](https://github.com/orgs/community/discussions/179107).                       |              |             |
+| **`token`**               | Token to use for checking out the repository instead of the default GITHUB_TOKEN. | **false**    | -           |
 
 <!-- inputs:end -->
 
