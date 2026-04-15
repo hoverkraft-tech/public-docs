@@ -2,9 +2,9 @@
 title: Create Or Update Comment
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/create-or-update-comment/README.md
-source_branch: main
-source_run_id: 24344561437
-last_synced: 2026-04-13T13:01:24.956Z
+source_branch: 0.34.2
+source_run_id: 24441949898
+last_synced: 2026-04-15T07:32:42.397Z
 ---
 
 <!-- header:start -->
@@ -50,7 +50,7 @@ permissions:
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-common/actions/create-or-update-comment@4b53189212d5810f710bed89711002626977215b # 0.33.0
+- uses: hoverkraft-tech/ci-github-common/actions/create-or-update-comment@71b85947453f32b5d147ff3ab37351439a92d840 # 0.34.2
   with:
     # The comment title.
     # Must be static and unique, will be used to retrieve the comment if exists already.
@@ -81,17 +81,17 @@ permissions:
 
 ## Inputs
 
-| **Input**            | **Description**                                                                                                         | **Required** | **Default**           |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------ | --------------------- |
-| **`title`**          | The comment title.                                                                                                      | **true**     | -                     |
-|                      | Must be static and unique, will be used to retrieve the comment if exists already.                                      |              |                       |
-| **`body`**           | The comment body.                                                                                                       | **false**    | -                     |
-|                      | See [https://github.com/peter-evans/create-or-update-comment](https://github.com/peter-evans/create-or-update-comment). |              |                       |
-| **`reactions`**      | A comma separated list of reactions to add to the comment.                                                              | **false**    | -                     |
-|                      | See [https://github.com/peter-evans/create-or-update-comment](https://github.com/peter-evans/create-or-update-comment). |              |                       |
-| **`comment-author`** | The comment author.                                                                                                     | **false**    | `github-actions[bot]` |
-| **`token`**          | Optional token to interact with GitHub API.                                                                             | **false**    | -                     |
-|                      | If not defined or empty, the action will use the GITHUB_TOKEN provided by GitHub.                                       |              |                       |
+| **Input**            | **Description**                                                                    | **Required** | **Default**           |
+| -------------------- | ---------------------------------------------------------------------------------- | ------------ | --------------------- |
+| **`title`**          | The comment title.                                                                 | **true**     | -                     |
+|                      | Must be static and unique, will be used to retrieve the comment if exists already. |              |                       |
+| **`body`**           | The comment body.                                                                  | **false**    | -                     |
+|                      | See [https://github.com/peter-evans/create-or-update-comment](https://github.com/peter-evans/create-or-update-comment).                     |              |                       |
+| **`reactions`**      | A comma separated list of reactions to add to the comment.                         | **false**    | -                     |
+|                      | See [https://github.com/peter-evans/create-or-update-comment](https://github.com/peter-evans/create-or-update-comment).                     |              |                       |
+| **`comment-author`** | The comment author.                                                                | **false**    | `github-actions[bot]` |
+| **`token`**          | Optional token to interact with GitHub API.                                        | **false**    | -                     |
+|                      | If not defined or empty, the action will use the GITHUB_TOKEN provided by GitHub.  |              |                       |
 
 <!-- inputs:end -->
 

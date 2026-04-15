@@ -1,9 +1,9 @@
 ---
 source_repo: hoverkraft-tech/ci-github-common
 source_path: .github/workflows/linter.md
-source_branch: main
-source_run_id: 24344561437
-last_synced: 2026-04-13T13:01:24.956Z
+source_branch: 0.34.2
+source_run_id: 24441949898
+last_synced: 2026-04-15T07:32:42.397Z
 ---
 
 <!-- header:start -->
@@ -72,7 +72,7 @@ on:
 permissions: {}
 jobs:
   linter:
-    uses: hoverkraft-tech/ci-github-common/.github/workflows/linter.yml@4b53189212d5810f710bed89711002626977215b # 0.33.0
+    uses: hoverkraft-tech/ci-github-common/.github/workflows/linter.yml@71b85947453f32b5d147ff3ab37351439a92d840 # 0.34.2
     permissions: {}
     secrets:
       # Token for marking the status of linter run in the Checks section.
@@ -123,19 +123,19 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**              | **Description**                                                                                                                                                               | **Required** | **Type**    | **Default**                                                                                                                                        |
-| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **`runs-on`**          | JSON array of runner(s) to use.                                                                                                                                               | **false**    | **string**  | `["ubuntu-latest"]`                                                                                                                                |
-|                        | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).               |              |             |                                                                                                                                                    |
-| **`linter-env`**       | Environment variables in multilines format "key=value" to pass to the linter.                                                                                                 | **false**    | **string**  | -                                                                                                                                                  |
-|                        | See [https://github.com/super-linter/super-linter](https://github.com/super-linter/super-linter).                                                                             |              |             |                                                                                                                                                    |
-| **`codeql-languages`** | JSON array of languages to analyze with CodeQL.                                                                                                                               | **false**    | **string**  | `["actions"]`                                                                                                                                      |
+| **Input**              | **Description**                                                                           | **Required** | **Type**    | **Default**                                                                                                                                        |
+| ---------------------- | ----------------------------------------------------------------------------------------- | ------------ | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`runs-on`**          | JSON array of runner(s) to use.                                                           | **false**    | **string**  | `["ubuntu-latest"]`                                                                                                                                |
+|                        | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).        |              |             |                                                                                                                                                    |
+| **`linter-env`**       | Environment variables in multilines format "key=value" to pass to the linter.             | **false**    | **string**  | -                                                                                                                                                  |
+|                        | See [https://github.com/super-linter/super-linter](https://github.com/super-linter/super-linter).                                       |              |             |                                                                                                                                                    |
+| **`codeql-languages`** | JSON array of languages to analyze with CodeQL.                                           | **false**    | **string**  | `["actions"]`                                                                                                                                      |
 |                        | See [https://codeql.github.com/docs/codeql-overview/supported-languages-and-frameworks/](https://codeql.github.com/docs/codeql-overview/supported-languages-and-frameworks/). |              |             |                                                                                                                                                    |
-|                        | Leave empty to disable the check.                                                                                                                                             |              |             |                                                                                                                                                    |
-| **`action-files`**     | List of files or directories where GitHub Actions and workflows are located.                                                                                                  | **false**    | **string**  | <!-- textlint-disable --><pre lang="text">./action.yml&#13;./.github/workflows/\*\*/\*.yml&#13;./actions/\*\*/\*.yml</pre><!-- textlint-enable --> |
-|                        | Supports glob patterns.                                                                                                                                                       |              |             |                                                                                                                                                    |
-|                        | Leave empty to disable the check.                                                                                                                                             |              |             |                                                                                                                                                    |
-| **`lint-all`**         | Run checks on all files, not just the changed ones.                                                                                                                           | **false**    | **boolean** | `${{ github.event_name != 'pull_request' }}`                                                                                                       |
+|                        | Leave empty to disable the check.                                                         |              |             |                                                                                                                                                    |
+| **`action-files`**     | List of files or directories where GitHub Actions and workflows are located.              | **false**    | **string**  | <!-- textlint-disable --><pre lang="text">./action.yml&#13;./.github/workflows/\*\*/\*.yml&#13;./actions/\*\*/\*.yml</pre><!-- textlint-enable --> |
+|                        | Supports glob patterns.                                                                   |              |             |                                                                                                                                                    |
+|                        | Leave empty to disable the check.                                                         |              |             |                                                                                                                                                    |
+| **`lint-all`**         | Run checks on all files, not just the changed ones.                                       | **false**    | **boolean** | `${{ github.event_name != 'pull_request' }}`                                                                                                       |
 
 <!-- inputs:end -->
 
@@ -143,11 +143,11 @@ jobs:
 
 ## Secrets
 
-| **Secret**         | **Description**                                                                                                         | **Required** |
-| ------------------ | ----------------------------------------------------------------------------------------------------------------------- | ------------ |
-| **`github-token`** | Token for marking the status of linter run in the Checks section.                                                       | **false**    |
-|                    | See [https://github.com/super-linter/super-linter#how-to-use](https://github.com/super-linter/super-linter#how-to-use). |              |
-|                    | Default GITHUB_TOKEN.                                                                                                   |              |
+| **Secret**         | **Description**                                                   | **Required** |
+| ------------------ | ----------------------------------------------------------------- | ------------ |
+| **`github-token`** | Token for marking the status of linter run in the Checks section. | **false**    |
+|                    | See [https://github.com/super-linter/super-linter#how-to-use](https://github.com/super-linter/super-linter#how-to-use).    |              |
+|                    | Default GITHUB_TOKEN.                                             |              |
 
 <!-- secrets:end -->
 
