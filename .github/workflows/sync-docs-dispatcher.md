@@ -3,7 +3,7 @@
 # GitHub Reusable Workflow: Push Documentation Helper
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/2a02d8d63b856a94e60178eff374fd909a5a86f56bc6cee66ffea2d24ba86468/hoverkraft-tech/public-docs" width="60px" align="center" alt="Push Documentation Helper" />
+  <img src="https://opengraph.githubassets.com/5a088cadf406da307cc56fe4e656d3e159842a11b206bd93433312f35ca6b035/hoverkraft-tech/public-docs" width="60px" align="center" alt="Push Documentation Helper" />
 </div>
 
 ---
@@ -83,16 +83,16 @@ on:
 permissions: {}
 jobs:
   sync-docs-dispatcher:
-    uses: hoverkraft-tech/public-docs/.github/workflows/sync-docs-dispatcher.yml@c40c17f7d6a8090950b3ef4bfc70502707a6bb9f # 0.3.0
+    uses: hoverkraft-tech/public-docs/.github/workflows/sync-docs-dispatcher.yml@88d526c66b61dd888b382018beeaff53a6540ed3 # main
     permissions: {}
     secrets:
       # GitHub App private key to generate GitHub token in place of github-token.
       # See https://github.com/actions/create-github-app-token.
       github-app-key: ""
     with:
-      # GitHub App ID to generate GitHub token in place of github-token.
+      # GitHub App Client ID to generate GitHub token in place of github-token.
       # See https://github.com/actions/create-github-app-token.
-      github-app-id: ""
+      github-app-client-id: ""
 
       # ID of the uploaded documentation artifact.
       #
@@ -321,11 +321,11 @@ After setting up sync-docs:
 
 ### Workflow Call Inputs
 
-| **Input**           | **Description**                                                  | **Required** | **Type**   | **Default** |
-| ------------------- | ---------------------------------------------------------------- | ------------ | ---------- | ----------- |
-| **`github-app-id`** | GitHub App ID to generate GitHub token in place of github-token. | **false**    | **string** | -           |
-|                     | See <https://github.com/actions/create-github-app-token>.        |              |            |             |
-| **`artifact-id`**   | ID of the uploaded documentation artifact.                       | **true**     | **string** | -           |
+| **Input**                  | **Description**                                                         | **Required** | **Type**   | **Default** |
+| -------------------------- | ----------------------------------------------------------------------- | ------------ | ---------- | ----------- |
+| **`github-app-client-id`** | GitHub App Client ID to generate GitHub token in place of github-token. | **false**    | **string** | -           |
+|                            | See <https://github.com/actions/create-github-app-token>.               |              |            |             |
+| **`artifact-id`**          | ID of the uploaded documentation artifact.                              | **true**     | **string** | -           |
 
 <!-- inputs:end -->
 <!-- secrets:start -->
