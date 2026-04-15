@@ -83,16 +83,16 @@ jobs:
 
 ### Workflow Dispatch Inputs
 
-| **Input**               | **Description**                                                                                                                                       | **Required** | **Type**    | **Default**         |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------- | ------------------- |
-| **`runs-on`**           | JSON array of runner(s) to use.                                                                                                                       | **false**    | **string**  | `["ubuntu-latest"]` |
-|                         | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).                                                                    |              |             |                     |
-| **`prerelease`**        | Whether to mark the release as a prerelease                                                                                                           | **false**    | **boolean** | `false`             |
-|                         | See ../../actions/release/create/README.md for more information.                                                                                      |              |             |                     |
-| **`working-directory`** | Working directory used to scope release automation in a monorepo.                                                                                     | **false**    | **string**  | -                   |
-|                         | If specified, the workflow looks for `.github/release-configs/{slug}.yml`, where `slug` is derived from the working directory basename.               |              |             |                     |
-|                         | If that file does not exist, a temporary release configuration is generated with `include-paths` for the working directory and current workflow file. |              |             |                     |
-| **`include-paths`**     | Additional paths to include in the generated release configuration (JSON array).                                                                      | **false**    | **string**  | `[]`                |
+| **Input**               | **Description**                                                                                                                                                 | **Required** | **Type**    | **Default**         |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------- | ------------------- |
+| **`runs-on`**           | JSON array of runner(s) to use.                                                                                                                                 | **false**    | **string**  | `["ubuntu-latest"]` |
+|                         | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job). |              |             |                     |
+| **`prerelease`**        | Whether to mark the release as a prerelease                                                                                                                     | **false**    | **boolean** | `false`             |
+|                         | See ../../actions/release/create/README.md for more information.                                                                                                |              |             |                     |
+| **`working-directory`** | Working directory used to scope release automation in a monorepo.                                                                                               | **false**    | **string**  | -                   |
+|                         | If specified, the workflow looks for `.github/release-configs/{slug}.yml`, where `slug` is derived from the working directory basename.                         |              |             |                     |
+|                         | If that file does not exist, a temporary release configuration is generated with `include-paths` for the working directory and current workflow file.           |              |             |                     |
+| **`include-paths`**     | Additional paths to include in the generated release configuration (JSON array).                                                                                | **false**    | **string**  | `[]`                |
 
 <!-- inputs:end -->
 <!-- secrets:start -->

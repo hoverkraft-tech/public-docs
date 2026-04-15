@@ -87,13 +87,13 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/create-github-app-token@f8d387b68d61c58ab83c6c016672934102569859 # v3.0.0
+      - uses: actions/create-github-app-token@1b10c78c7865c340bc4f6099eb2f838309f1e8c3 # v3.1.1
         id: generate_token
         with:
-          app-id: ${{ vars.CI_BOT_APP_ID }}
+          client-id: ${{ vars.CI_BOT_APP_CLIENT_ID }}
           private-key: ${{ secrets.CI_BOT_APP_PRIVATE_KEY }}
 
-      - uses: hoverkraft-tech/ci-github-common/actions/create-and-merge-pull-request@4b53189212d5810f710bed89711002626977215b # 0.30.21
+      - uses: hoverkraft-tech/ci-github-common/actions/create-and-merge-pull-request@71b85947453f32b5d147ff3ab37351439a92d840 # 0.30.21
         with:
           github-token: ${{ steps.generate_token.outputs.token }}
           branch: docs/sync-documentation-${{ github.event.client_payload.repository }}
