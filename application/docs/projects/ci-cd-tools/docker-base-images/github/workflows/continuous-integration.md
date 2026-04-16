@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/docker-base-images
 source_path: .github/workflows/continuous-integration.md
 source_branch: main
-source_run_id: 24227417015
-last_synced: 2026-04-10T05:09:48.620Z
+source_run_id: 24503915329
+last_synced: 2026-04-16T10:03:47.218Z
 ---
 
 <!-- header:start -->
@@ -11,7 +11,7 @@ last_synced: 2026-04-10T05:09:48.620Z
 # GitHub Reusable Workflow: Continuous Integration
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/2ebeafd13c82e4f07828a4a579aa245c17187494d18e2f1f0b24d2799381bddb/hoverkraft-tech/docker-base-images" width="60px" align="center" alt="Continuous Integration" />
+  <img src="https://opengraph.githubassets.com/65b59714118ba8a92454c0de211e504da183c8e72fedd2f4f63735579baca7f8/hoverkraft-tech/docker-base-images" width="60px" align="center" alt="Continuous Integration" />
 </div>
 
 ---
@@ -154,18 +154,18 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**                   | **Description**                                                                                                                                                         | **Required** | **Type**   | **Default**                      |
-| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ---------- | -------------------------------- |
-| **`runs-on`**               | JSON array of runner(s) to use.                                                                                                                                         | **false**    | **string** | `["ubuntu-latest"]`              |
-|                             | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).         |              |            |                                  |
-| **`oci-registry`**          | OCI registry where to pull and push images.                                                                                                                             | **false**    | **string** | `ghcr.io`                        |
-| **`oci-registry-username`** | Username used to log against the OCI registry.                                                                                                                          | **false**    | **string** | `${{ github.repository_owner }}` |
-|                             | See [https://github.com/docker/login-action#usage](https://github.com/docker/login-action#usage).                                                                       |              |            |                                  |
-| **`platforms`**             | JSON array of platforms to build images for.                                                                                                                            | **false**    | **string** | `["linux/amd64","linux/arm64"]`  |
+| **Input**                   | **Description**                                                                        | **Required** | **Type**   | **Default**                      |
+| --------------------------- | -------------------------------------------------------------------------------------- | ------------ | ---------- | -------------------------------- |
+| **`runs-on`**               | JSON array of runner(s) to use.                                                        | **false**    | **string** | `["ubuntu-latest"]`              |
+|                             | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).     |              |            |                                  |
+| **`oci-registry`**          | OCI registry where to pull and push images.                                            | **false**    | **string** | `ghcr.io`                        |
+| **`oci-registry-username`** | Username used to log against the OCI registry.                                         | **false**    | **string** | `${{ github.repository_owner }}` |
+|                             | See [https://github.com/docker/login-action#usage](https://github.com/docker/login-action#usage).                                    |              |            |                                  |
+| **`platforms`**             | JSON array of platforms to build images for.                                           | **false**    | **string** | `["linux/amd64","linux/arm64"]`  |
 |                             | See [https://docs.docker.com/buildx/working-with-buildx/#build-multi-platform-images](https://docs.docker.com/buildx/working-with-buildx/#build-multi-platform-images). |              |            |                                  |
-| **`images`**                | JSON array of images to build.                                                                                                                                          | **false**    | **string** | -                                |
-|                             | If not provided, all available images will be considered.                                                                                                               |              |            |                                  |
-|                             | Example: `["php-8", "nodejs-24"]`                                                                                                                                       |              |            |                                  |
+| **`images`**                | JSON array of images to build.                                                         | **false**    | **string** | -                                |
+|                             | If not provided, all available images will be considered.                              |              |            |                                  |
+|                             | Example: `["php-8", "nodejs-24"]`                                                      |              |            |                                  |
 
 <!-- inputs:end -->
 
@@ -187,9 +187,9 @@ jobs:
 
 ## Outputs
 
-| **Output**         | **Description**                                                                                                                                                                                                                             |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **`built-images`** | Built images data.                                                                                                                                                                                                                          |
+| **Output**         | **Description**                                                                                                          |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| **`built-images`** | Built images data.                                                                                                       |
 |                    | See [https://github.com/hoverkraft-tech/ci-github-container/blob/main/.github/workflows/docker-build-images.md#outputs](https://github.com/hoverkraft-tech/ci-github-container/blob/main/.github/workflows/docker-build-images.md#outputs). |
 
 <!-- outputs:end -->

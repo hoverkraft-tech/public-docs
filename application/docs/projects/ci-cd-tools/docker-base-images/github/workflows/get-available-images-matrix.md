@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/docker-base-images
 source_path: .github/workflows/get-available-images-matrix.md
 source_branch: main
-source_run_id: 24227417015
-last_synced: 2026-04-10T05:09:48.620Z
+source_run_id: 24503915329
+last_synced: 2026-04-16T10:03:47.218Z
 ---
 
 <!-- header:start -->
@@ -11,7 +11,7 @@ last_synced: 2026-04-10T05:09:48.620Z
 # GitHub Reusable Workflow: Get available images matrix
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/f051c92ae68ce2bd48db004356953e86384a1db8aab12955a0ff5b532c3e8855/hoverkraft-tech/docker-base-images" width="60px" align="center" alt="Get available images matrix" />
+  <img src="https://opengraph.githubassets.com/65b59714118ba8a92454c0de211e504da183c8e72fedd2f4f63735579baca7f8/hoverkraft-tech/docker-base-images" width="60px" align="center" alt="Get available images matrix" />
 </div>
 
 ---
@@ -71,9 +71,9 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**     | **Description**                                                                                                                                                 | **Required** | **Type**   | **Default**         |
-| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ---------- | ------------------- |
-| **`runs-on`** | JSON array of runner(s) to use.                                                                                                                                 | **false**    | **string** | `["ubuntu-latest"]` |
+| **Input**     | **Description**                                                                    | **Required** | **Type**   | **Default**         |
+| ------------- | ---------------------------------------------------------------------------------- | ------------ | ---------- | ------------------- |
+| **`runs-on`** | JSON array of runner(s) to use.                                                    | **false**    | **string** | `["ubuntu-latest"]` |
 |               | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job). |              |            |                     |
 
 <!-- inputs:end -->
