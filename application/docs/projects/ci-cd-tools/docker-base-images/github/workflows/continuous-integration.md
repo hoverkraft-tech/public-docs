@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/docker-base-images
 source_path: .github/workflows/continuous-integration.md
 source_branch: main
-source_run_id: 24503915329
-last_synced: 2026-04-16T10:03:47.218Z
+source_run_id: 24731018676
+last_synced: 2026-04-21T15:31:10.622Z
 ---
 
 <!-- header:start -->
@@ -11,7 +11,7 @@ last_synced: 2026-04-16T10:03:47.218Z
 # GitHub Reusable Workflow: Continuous Integration
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/65b59714118ba8a92454c0de211e504da183c8e72fedd2f4f63735579baca7f8/hoverkraft-tech/docker-base-images" width="60px" align="center" alt="Continuous Integration" />
+  <img src="https://opengraph.githubassets.com/524a537af1d7c7442a9b16a9bd78ee9728ce6075365c1baa51678b5720a9a9c7/hoverkraft-tech/docker-base-images" width="60px" align="center" alt="Continuous Integration" />
 </div>
 
 ---
@@ -54,7 +54,7 @@ and runs tests against the built images using [testcontainers](https://testconta
 
 ## Testing
 
-Tests are defined per image as `images/<image>/test.spec.js` and executed with Node.js built-in test runner (`node --test`) from inside the `testcontainers:latest` runner image.
+Tests are defined per image as `images/<image>/test.spec.js` and executed with Node.js built-in test runner (`node --test`) from inside the configured `ghcr.io/hoverkraft-tech/docker-base-images/testcontainers-node` runner image.
 
 ### Test Configuration
 
@@ -69,6 +69,8 @@ The workflow injects a few environment variables:
 
 - `IMAGE_NAME`: the image reference under test
 - `HOST_TESTS_DIR`: absolute host path to `images/<image>/tests` (useful for bind-mounting fixtures)
+
+The workflow pulls the published runner image with the configured `test-image-tag`.
 
 ### Example Test
 
@@ -112,7 +114,7 @@ on:
 permissions: {}
 jobs:
   continuous-integration:
-    uses: hoverkraft-tech/docker-base-images/.github/workflows/continuous-integration.yml@ad965683cf180fd7b09b6bd3948fdc1a164c6661 # 0.2.0
+    uses: hoverkraft-tech/docker-base-images/.github/workflows/continuous-integration.yml@750966723a23a979f7ea89b519e019b9fe0232a7 # 0.3.0
     permissions: {}
     secrets:
       # Password or GitHub token (packages:read and packages:write scopes) used to log against the OCI registry.
@@ -145,6 +147,11 @@ jobs:
       # If not provided, all available images will be considered.
       # Example: `["php-8", "nodejs-24"]`
       images: ""
+
+      # Tag of the published `testcontainers-node` runner image to use for tests.
+      #
+      # Default: `latest`
+      test-image-tag: latest
 ```
 
 <!-- usage:end -->
@@ -166,6 +173,7 @@ jobs:
 | **`images`**                | JSON array of images to build.                                                         | **false**    | **string** | -                                |
 |                             | If not provided, all available images will be considered.                              |              |            |                                  |
 |                             | Example: `["php-8", "nodejs-24"]`                                                      |              |            |                                  |
+| **`test-image-tag`**        | Tag of the published `testcontainers-node` runner image to use for tests.              | **false**    | **string** | `latest`                         |
 
 <!-- inputs:end -->
 
