@@ -3,8 +3,8 @@ title: Github Pages
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/deploy/github-pages/README.md
 source_branch: main
-source_run_id: 24454958056
-last_synced: 2026-04-15T12:43:42.769Z
+source_run_id: 24826353947
+last_synced: 2026-04-23T09:01:57.810Z
 ---
 
 <!-- header:start -->
@@ -56,15 +56,16 @@ permissions:
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/deploy/github-pages@b56be562f38e0e3e712f09691a8fe930aae9db1b # 0.22.0
+- uses: hoverkraft-tech/ci-github-publish/actions/deploy/github-pages@48e0c54489152b98d9e18f0454ccce120e9d0fd1 # 0.23.0
   with:
+    # The ID of the "build" artifact to download.
+    # The artifact must contain the full (absolute) build path.
+    # If not set, the action will use the local workspace files.
+    build-artifact-id: ""
+
     # The path to the assets to deploy.
     # Can be absolute or relative $GITHUB_WORKSPACE.
     build-path: ""
-
-    # The ID of the "build" artifact to download.
-    # If not set, the action will use the local workspace files.
-    build-artifact-id: ""
 
     # The path to the performance budget file. See action [Check - URL - Lighthouse](../../check/url-lighthouse/index.md).
     # Default: `./budget.json`
@@ -94,20 +95,21 @@ permissions:
 
 ## Inputs
 
-| **Input**                   | **Description**                                                                                                                                 | **Required** | **Default**           |
-| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------------- |
-| **`build-path`**            | The path to the assets to deploy.                                                                                                               | **false**    | -                     |
-|                             | Can be absolute or relative $GITHUB_WORKSPACE.                                                                                                  |              |                       |
-| **`build-artifact-id`**     | The ID of the "build" artifact to download.                                                                                                     | **false**    | -                     |
-|                             | If not set, the action will use the local workspace files.                                                                                      |              |                       |
-| **`budget-path`**           | The path to the performance budget file. See action [Check - URL - Lighthouse](../../check/url-lighthouse/index.md).                            | **false**    | `./budget.json`       |
-| **`static-site-generator`** | The static site generator used to build the site. See [https://github.com/actions/configure-pages](https://github.com/actions/configure-pages). | **false**    | -                     |
-| **`checks`**                | Whether to run URL checks after deployment.                                                                                                     | **false**    | `true`                |
-| **`github-token`**          | GitHub Token for deploying to GitHub Pages.                                                                                                     | **false**    | `${{ github.token }}` |
-|                             | Permissions:                                                                                                                                    |              |                       |
-|                             | - pages: write                                                                                                                                  |              |                       |
-|                             | - id-token: write                                                                                                                               |              |                       |
-|                             | See [https://github.com/actions/deploy-pages](https://github.com/actions/deploy-pages).                                                         |              |                       |
+| **Input**                   | **Description**                                                                                                       | **Required** | **Default**           |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------- | ------------ | --------------------- |
+| **`build-artifact-id`**     | The ID of the "build" artifact to download.                                                                           | **false**    | -                     |
+|                             | The artifact must contain the full (absolute) build path.                                                             |              |                       |
+|                             | If not set, the action will use the local workspace files.                                                            |              |                       |
+| **`build-path`**            | The path to the assets to deploy.                                                                                     | **false**    | -                     |
+|                             | Can be absolute or relative $GITHUB_WORKSPACE.                                                                        |              |                       |
+| **`budget-path`**           | The path to the performance budget file. See action [Check - URL - Lighthouse](../../check/url-lighthouse/index.md). | **false**    | `./budget.json`       |
+| **`static-site-generator`** | The static site generator used to build the site. See [https://github.com/actions/configure-pages](https://github.com/actions/configure-pages).                   | **false**    | -                     |
+| **`checks`**                | Whether to run URL checks after deployment.                                                                           | **false**    | `true`                |
+| **`github-token`**          | GitHub Token for deploying to GitHub Pages.                                                                           | **false**    | `${{ github.token }}` |
+|                             | Permissions:                                                                                                          |              |                       |
+|                             | - pages: write                                                                                                        |              |                       |
+|                             | - id-token: write                                                                                                     |              |                       |
+|                             | See [https://github.com/actions/deploy-pages](https://github.com/actions/deploy-pages).                                                                        |              |                       |
 
 <!-- inputs:end -->
 

@@ -3,8 +3,8 @@ title: Url Lighthouse
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/check/url-lighthouse/README.md
 source_branch: main
-source_run_id: 24454958056
-last_synced: 2026-04-15T12:43:42.769Z
+source_run_id: 24826353947
+last_synced: 2026-04-23T09:01:57.810Z
 ---
 
 <!-- header:start -->
@@ -68,12 +68,12 @@ The action always sends `User-Agent: hoverkraft-tech-url-lighthouse-action` when
 
 ## Inputs
 
-| **Input**           | **Description**                                                                                                                                                                  | **Required** | **Default**     |
-| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- |
-| **`url`**           | The URL to audit using Lighthouse.                                                                                                                                               | **true**     | -               |
+| **Input**           | **Description**                                                                                                 | **Required** | **Default**     |
+| ------------------- | --------------------------------------------------------------------------------------------------------------- | ------------ | --------------- |
+| **`url`**           | The URL to audit using Lighthouse.                                                                              | **true**     | -               |
 | **`budget-path`**   | The path to the performance budget file. See [https://web.dev/articles/use-lighthouse-for-performance-budgets](https://web.dev/articles/use-lighthouse-for-performance-budgets). | **false**    | `./budget.json` |
-| **`authorization`** | Optional Authorization header used to access private URLs.                                                                                                                       | **false**    | -               |
-|                     | Example: `Bearer xxx...`, `token xxx...`                                                                                                                                         |              |                 |
+| **`authorization`** | Optional Authorization header used to access private URLs.                                                      | **false**    | -               |
+|                     | Example: `Bearer xxx...`, `token xxx...`                                                                        |              |                 |
 
 <!-- inputs:end -->
 
