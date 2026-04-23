@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/deploy-checks.md
 source_branch: main
-source_run_id: 24454958056
-last_synced: 2026-04-15T12:43:42.769Z
+source_run_id: 24826353947
+last_synced: 2026-04-23T09:01:57.810Z
 ---
 
 <!-- header:start -->
@@ -91,14 +91,14 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**           | **Description**                                                                                                                                                 | **Required** | **Type**    | **Default**         |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------- | ------------------- |
-| **`runs-on`**       | JSON array of runner(s) to use.                                                                                                                                 | **false**    | **string**  | `["ubuntu-latest"]` |
+| **Input**           | **Description**                                                                    | **Required** | **Type**    | **Default**         |
+| ------------------- | ---------------------------------------------------------------------------------- | ------------ | ----------- | ------------------- |
+| **`runs-on`**       | JSON array of runner(s) to use.                                                    | **false**    | **string**  | `["ubuntu-latest"]` |
 |                     | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job). |              |             |                     |
-| **`url`**           | The URL to check.                                                                                                                                               | **true**     | **string**  | -                   |
-| **`budget-path`**   | Path to the budget file to use for the Lighthouse check.                                                                                                        | **false**    | **string**  | `./budget.json`     |
-|                     | See [`url-lighthouse`](../../actions/check/url-lighthouse/index.md).                                                                                            |              |             |                     |
-| **`print-summary`** | Whether to print a summary of the checks.                                                                                                                       | **false**    | **boolean** | `true`              |
+| **`url`**           | The URL to check.                                                                  | **true**     | **string**  | -                   |
+| **`budget-path`**   | Path to the budget file to use for the Lighthouse check.                           | **false**    | **string**  | `./budget.json`     |
+|                     | See [`url-lighthouse`](../../actions/check/url-lighthouse/index.md).              |              |             |                     |
+| **`print-summary`** | Whether to print a summary of the checks.                                          | **false**    | **boolean** | `true`              |
 
 <!-- inputs:end -->
 
