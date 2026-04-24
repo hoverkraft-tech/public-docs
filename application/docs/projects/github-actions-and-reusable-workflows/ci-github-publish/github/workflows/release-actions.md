@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/release-actions.md
 source_branch: main
-source_run_id: 24826353947
-last_synced: 2026-04-23T09:01:57.810Z
+source_run_id: 24884352598
+last_synced: 2026-04-24T10:19:52.326Z
 ---
 
 <!-- header:start -->
@@ -65,7 +65,7 @@ on:
 permissions: {}
 jobs:
   release-actions:
-    uses: hoverkraft-tech/ci-github-publish/.github/workflows/release-actions.yml@b56be562f38e0e3e712f09691a8fe930aae9db1b # 0.22.0
+    uses: hoverkraft-tech/ci-github-publish/.github/workflows/release-actions.yml@48e0c54489152b98d9e18f0454ccce120e9d0fd1 # 0.23.0
     permissions:
       contents: read
     secrets:
@@ -89,9 +89,9 @@ jobs:
       # List of extra documentation files to update (if any).
       documentation-files: ""
 
-      # GitHub App ID to generate GitHub token in place of github-token.
+      # GitHub App Client ID to generate GitHub token in place of github-token.
       # See https://github.com/actions/create-github-app-token.
-      github-app-id: ""
+      github-app-client-id: ""
 ```
 
 <!-- usage:end -->
@@ -102,14 +102,14 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**                 | **Description**                                                                    | **Required** | **Type**    | **Default**         |
-| ------------------------- | ---------------------------------------------------------------------------------- | ------------ | ----------- | ------------------- |
-| **`runs-on`**             | JSON array of runner(s) to use.                                                    | **false**    | **string**  | `["ubuntu-latest"]` |
-|                           | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job). |              |             |                     |
-| **`update-all`**          | Update all actions and workflows, regardless of changes.                           | **false**    | **boolean** | `false`             |
-| **`documentation-files`** | List of extra documentation files to update (if any).                              | **false**    | **string**  | -                   |
-| **`github-app-id`**       | GitHub App ID to generate GitHub token in place of github-token.                   | **false**    | **string**  | -                   |
-|                           | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                          |              |             |                     |
+| **Input**                  | **Description**                                                                    | **Required** | **Type**    | **Default**         |
+| -------------------------- | ---------------------------------------------------------------------------------- | ------------ | ----------- | ------------------- |
+| **`runs-on`**              | JSON array of runner(s) to use.                                                    | **false**    | **string**  | `["ubuntu-latest"]` |
+|                            | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job). |              |             |                     |
+| **`update-all`**           | Update all actions and workflows, regardless of changes.                           | **false**    | **boolean** | `false`             |
+| **`documentation-files`**  | List of extra documentation files to update (if any).                              | **false**    | **string**  | -                   |
+| **`github-app-client-id`** | GitHub App Client ID to generate GitHub token in place of github-token.            | **false**    | **string**  | -                   |
+|                            | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                          |              |             |                     |
 
 <!-- inputs:end -->
 
