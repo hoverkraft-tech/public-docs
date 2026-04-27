@@ -3,8 +3,8 @@ title: Cleanup Builder
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/docker/cleanup-builder/README.md
 source_branch: main
-source_run_id: 24276937924
-last_synced: 2026-04-11T06:50:48.129Z
+source_run_id: 24983437567
+last_synced: 2026-04-27T08:07:17.429Z
 ---
 
 <!-- header:start -->
@@ -30,7 +30,7 @@ Register a post-job step that removes a Docker Buildx builder after later post s
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-container/actions/docker/cleanup-builder@bcbbcaff24e053e38ebab02dd0e41442df196719 # 0.32.0
+- uses: hoverkraft-tech/ci-github-container/actions/docker/cleanup-builder@e4bf7a12228a2a4b5993d2d36b99b4dd0ec80bf5 # 0.32.1
   with:
     # Docker Buildx builder name to remove during post-job cleanup.
     builder: ""

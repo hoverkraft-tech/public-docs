@@ -3,8 +3,8 @@ title: Get Image Name
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/docker/get-image-name/README.md
 source_branch: main
-source_run_id: 24276937924
-last_synced: 2026-04-11T06:50:48.129Z
+source_run_id: 24983437567
+last_synced: 2026-04-27T08:07:17.429Z
 ---
 
 <!-- header:start -->
@@ -42,7 +42,7 @@ Action to forge the name of a given image including registry, repository and giv
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-container/actions/docker/get-image-name@4f29319e02dd65152386c436e8c3136f380a0e71 # 0.28.0
+- uses: hoverkraft-tech/ci-github-container/actions/docker/get-image-name@e4bf7a12228a2a4b5993d2d36b99b4dd0ec80bf5 # 0.32.1
   with:
     # OCI registry to prefix the image full name
     oci-registry: ""
@@ -61,11 +61,11 @@ Action to forge the name of a given image including registry, repository and giv
 
 ## Inputs
 
-| **Input**          | **Description**                            | **Required** | **Default**                  |
-| ------------------ | ------------------------------------------ | ------------ | ---------------------------- |
-| **`oci-registry`** | OCI registry to prefix the image full name | **false**    | -                            |
-| **`repository`**   | Repository name                            | **false**    | `$\{\{ github.repository }}` |
-| **`image`**        | Additional image name                      | **false**    | -                            |
+| **Input**          | **Description**                            | **Required** | **Default**                |
+| ------------------ | ------------------------------------------ | ------------ | -------------------------- |
+| **`oci-registry`** | OCI registry to prefix the image full name | **false**    | -                          |
+| **`repository`**   | Repository name                            | **false**    | `${{ github.repository }}` |
+| **`image`**        | Additional image name                      | **false**    | -                          |
 
 <!-- inputs:end -->
 
@@ -109,7 +109,7 @@ This project is licensed under the MIT License.
 
 SPDX-License-Identifier: MIT
 
-Copyright © 2025 hoverkraft
+Copyright © 2026 hoverkraft
 
 For more details, see the [license](http://choosealicense.com/licenses/mit/).
 

@@ -3,8 +3,8 @@ title: Generate Docs
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/helm/generate-docs/README.md
 source_branch: main
-source_run_id: 24276937924
-last_synced: 2026-04-11T06:50:48.129Z
+source_run_id: 24983437567
+last_synced: 2026-04-27T08:07:17.429Z
 ---
 
 <!-- header:start -->
@@ -44,7 +44,7 @@ Mainly using [losisin/helm-docs-github-action](https://github.com/losisin/helm-d
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-container/actions/helm/generate-docs@bcbbcaff24e053e38ebab02dd0e41442df196719 # 0.32.0
+- uses: hoverkraft-tech/ci-github-container/actions/helm/generate-docs@e4bf7a12228a2a4b5993d2d36b99b4dd0ec80bf5 # 0.32.1
   with:
     # Working directory
     # Default: `${{ github.workspace }}`
@@ -62,9 +62,9 @@ Mainly using [losisin/helm-docs-github-action](https://github.com/losisin/helm-d
     # Default: `${{ github.token }}`
     github-token: ${{ github.token }}
 
-    # GitHub App ID to generate GitHub token in place of github-token.
+    # GitHub App client ID to generate GitHub token in place of github-token.
     # See https://github.com/actions/create-github-app-token.
-    github-app-id: ""
+    github-app-client-id: ""
 
     # GitHub App private key to generate GitHub token in place of github-token.
     # See https://github.com/actions/create-github-app-token.
@@ -77,19 +77,19 @@ Mainly using [losisin/helm-docs-github-action](https://github.com/losisin/helm-d
 
 ## Inputs
 
-| **Input**               | **Description**                                                                                                             | **Required** | **Default**               |
-| ----------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------------ | ------------------------- |
-| **`working-directory`** | Working directory                                                                                                           | **false**    | `${{ github.workspace }}` |
-| **`values-file`**       | Path to the values file to use for generating the documentation.                                                            | **false**    | -                         |
-|                         | See [https://github.com/losisin/helm-values-schema-json-action](https://github.com/losisin/helm-values-schema-json-action). |              |                           |
-| **`github-token`**      | GitHub Token to create and merge pull request.                                                                              | **false**    | `${{ github.token }}`     |
-|                         | Permissions:                                                                                                                |              |                           |
-|                         | - contents: write                                                                                                           |              |                           |
-|                         | - pull-requests: write                                                                                                      |              |                           |
-| **`github-app-id`**     | GitHub App ID to generate GitHub token in place of github-token.                                                            | **false**    | -                         |
-|                         | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).               |              |                           |
-| **`github-app-key`**    | GitHub App private key to generate GitHub token in place of github-token.                                                   | **false**    | -                         |
-|                         | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).               |              |                           |
+| **Input**                  | **Description**                                                           | **Required** | **Default**               |
+| -------------------------- | ------------------------------------------------------------------------- | ------------ | ------------------------- |
+| **`working-directory`**    | Working directory                                                         | **false**    | `${{ github.workspace }}` |
+| **`values-file`**          | Path to the values file to use for generating the documentation.          | **false**    | -                         |
+|                            | See [https://github.com/losisin/helm-values-schema-json-action](https://github.com/losisin/helm-values-schema-json-action).          |              |                           |
+| **`github-token`**         | GitHub Token to create and merge pull request.                            | **false**    | `${{ github.token }}`     |
+|                            | Permissions:                                                              |              |                           |
+|                            | - contents: write                                                         |              |                           |
+|                            | - pull-requests: write                                                    |              |                           |
+| **`github-app-client-id`** | GitHub App client ID to generate GitHub token in place of github-token.   | **false**    | -                         |
+|                            | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                 |              |                           |
+| **`github-app-key`**       | GitHub App private key to generate GitHub token in place of github-token. | **false**    | -                         |
+|                            | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                 |              |                           |
 
 <!-- inputs:end -->
 
