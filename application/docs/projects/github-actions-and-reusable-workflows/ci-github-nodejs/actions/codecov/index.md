@@ -3,8 +3,8 @@ title: Codecov
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: actions/codecov/README.md
 source_branch: main
-source_run_id: 24443553836
-last_synced: 2026-04-15T08:15:15.777Z
+source_run_id: 25167680091
+last_synced: 2026-04-30T13:31:29.359Z
 ---
 
 <!-- header:start -->
@@ -12,7 +12,7 @@ last_synced: 2026-04-15T08:15:15.777Z
 # ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItdXBsb2FkLWNsb3VkIiBjb2xvcj0iYmx1ZSI+PHBvbHlsaW5lIHBvaW50cz0iMTYgMTYgMTIgMTIgOCAxNiI+PC9wb2x5bGluZT48bGluZSB4MT0iMTIiIHkxPSIxMiIgeDI9IjEyIiB5Mj0iMjEiPjwvbGluZT48cGF0aCBkPSJNMjAuMzkgMTguMzlBNSA1IDAgMCAwIDE4IDloLTEuMjZBOCA4IDAgMSAwIDMgMTYuMyI+PC9wYXRoPjxwb2x5bGluZSBwb2ludHM9IjE2IDE2IDEyIDEyIDggMTYiPjwvcG9seWxpbmU+PC9zdmc+) GitHub Action: Codecov
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/15312464268df419471d56cd8e5188897e8a3907da76e3bcc37984f5597af097/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Codecov" />
+  <img src="https://opengraph.githubassets.com/5cfdb085d41e25a10008bde097bb5b24d2c4f7dbb5717e118dc85afcb98bcadd/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Codecov" />
 </div>
 
 ---
@@ -38,13 +38,20 @@ Action to upload coverage to Codecov.
 - **Cleanup**: Uninstalls dependencies after Codecov upload is complete
 - **OIDC support**: Uses OIDC authentication with Codecov for secure uploads
 
+Note that this action must have write permission for id-token for this to work:
+
+```yml
+permissions:
+  id-token: write
+```
+
 <!-- overview:end -->
 <!-- usage:start -->
 
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-nodejs/actions/codecov@775ce0902c528062cc94141dd7d13261083b752a # 0.22.0
+- uses: hoverkraft-tech/ci-github-nodejs/actions/codecov@9d465a03741b287db18b242e0ec46990888cc6a3 # 0.23.0
   with:
     # Working directory where coverage files are located.
     # Can be absolute or relative to the repository root.
