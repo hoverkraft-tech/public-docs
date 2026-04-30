@@ -3,8 +3,8 @@ title: Dependencies Cache
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: actions/dependencies-cache/README.md
 source_branch: main
-source_run_id: 24443553836
-last_synced: 2026-04-15T08:15:15.777Z
+source_run_id: 25167680091
+last_synced: 2026-04-30T13:31:29.359Z
 ---
 
 <!-- header:start -->
@@ -12,7 +12,7 @@ last_synced: 2026-04-15T08:15:15.777Z
 # ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItYXJjaGl2ZSIgY29sb3I9ImJsdWUiPjxwb2x5bGluZSBwb2ludHM9IjIxIDggMjEgMjEgMyAyMSAzIDgiPjwvcG9seWxpbmU+PHJlY3QgeD0iMSIgeT0iMyIgd2lkdGg9IjIyIiBoZWlnaHQ9IjUiPjwvcmVjdD48bGluZSB4MT0iMTAiIHkxPSIxMiIgeDI9IjE0IiB5Mj0iMTIiPjwvbGluZT48L3N2Zz4=) GitHub Action: Dependencies cache
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/0a4e5160b251e448aaf795e927cf80c8467dda9dfe9959539f49d077c8eeb752/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Dependencies cache" />
+  <img src="https://opengraph.githubassets.com/5cfdb085d41e25a10008bde097bb5b24d2c4f7dbb5717e118dc85afcb98bcadd/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Dependencies cache" />
 </div>
 
 ---
@@ -53,7 +53,7 @@ Action to setup dependencies cache managment.
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-nodejs/actions/dependencies-cache@775ce0902c528062cc94141dd7d13261083b752a # 0.22.0
+- uses: hoverkraft-tech/ci-github-nodejs/actions/dependencies-cache@9d465a03741b287db18b242e0ec46990888cc6a3 # 0.23.0
   with:
     # List of dependencies for which the cache should be managed.
     # This input is required.

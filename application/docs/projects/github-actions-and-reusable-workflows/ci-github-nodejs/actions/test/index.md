@@ -3,8 +3,8 @@ title: Test
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: actions/test/README.md
 source_branch: main
-source_run_id: 24443553836
-last_synced: 2026-04-15T08:15:15.777Z
+source_run_id: 25167680091
+last_synced: 2026-04-30T13:31:29.359Z
 ---
 
 <!-- header:start -->
@@ -12,7 +12,7 @@ last_synced: 2026-04-15T08:15:15.777Z
 # ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItY2hlY2stc3F1YXJlIiBjb2xvcj0iYmx1ZSI+PHBvbHlsaW5lIHBvaW50cz0iOSAxMSAxMiAxNCAyMiA0Ij48L3BvbHlsaW5lPjxwYXRoIGQ9Ik0yMSAxMnY3YTIgMiAwIDAgMS0yIDJINWEyIDIgMCAwIDEtMi0yVjVhMiAyIDAgMCAxIDItMmgxMSI+PC9wYXRoPjwvc3ZnPg==) GitHub Action: Test
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/15312464268df419471d56cd8e5188897e8a3907da76e3bcc37984f5597af097/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Test" />
+  <img src="https://opengraph.githubassets.com/5cfdb085d41e25a10008bde097bb5b24d2c4f7dbb5717e118dc85afcb98bcadd/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Test" />
 </div>
 
 ---
@@ -33,13 +33,20 @@ last_synced: 2026-04-15T08:15:15.777Z
 
 Action to test Node.js projects with support for coverage reporting and pull request annotations
 
+Note that this action must have write permission for id-token for this to work when using Codecov coverage reporting:
+
+```yml
+permissions:
+  id-token: write
+```
+
 <!-- overview:end -->
 <!-- usage:start -->
 
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-nodejs/actions/test@775ce0902c528062cc94141dd7d13261083b752a # 0.22.0
+- uses: hoverkraft-tech/ci-github-nodejs/actions/test@9d465a03741b287db18b242e0ec46990888cc6a3 # 0.23.0
   with:
     # Working directory where test commands are executed.
     # Can be absolute or relative to the repository root.
