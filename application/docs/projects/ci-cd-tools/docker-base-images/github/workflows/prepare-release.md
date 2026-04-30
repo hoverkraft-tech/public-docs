@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/docker-base-images
 source_path: .github/workflows/prepare-release.md
 source_branch: main
-source_run_id: 24731954820
-last_synced: 2026-04-21T15:49:51.226Z
+source_run_id: 25186020815
+last_synced: 2026-04-30T20:00:21.944Z
 ---
 
 <!-- header:start -->
@@ -11,7 +11,7 @@ last_synced: 2026-04-21T15:49:51.226Z
 # GitHub Reusable Workflow: Prepare Release
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/65b59714118ba8a92454c0de211e504da183c8e72fedd2f4f63735579baca7f8/hoverkraft-tech/docker-base-images" width="60px" align="center" alt="Prepare Release" />
+  <img src="https://opengraph.githubassets.com/ae61a8b4d0fc9c9009d3cb42a17a1d30d5c20dbeef163f4f85cc9b94f67a9b25/hoverkraft-tech/docker-base-images" width="60px" align="center" alt="Prepare Release" />
 </div>
 
 ---
@@ -35,7 +35,6 @@ Prepare for all the available images
 ### Permissions
 
 - **`contents`**: `read`
-- **`id-token`**: `write`
 - **`pull-requests`**: `write`
 
 <!-- overview:end -->
@@ -52,7 +51,7 @@ on:
 permissions: {}
 jobs:
   prepare-release:
-    uses: hoverkraft-tech/docker-base-images/.github/workflows/prepare-release.yml@ad965683cf180fd7b09b6bd3948fdc1a164c6661 # 0.2.0
+    uses: hoverkraft-tech/docker-base-images/.github/workflows/prepare-release.yml@750966723a23a979f7ea89b519e019b9fe0232a7 # 0.3.0
     permissions: {}
     secrets:
       # GitHub token with permissions `contents: read`, `pull-requests: write`.

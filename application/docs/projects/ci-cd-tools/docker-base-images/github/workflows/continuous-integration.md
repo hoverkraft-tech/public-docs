@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/docker-base-images
 source_path: .github/workflows/continuous-integration.md
 source_branch: main
-source_run_id: 24731954820
-last_synced: 2026-04-21T15:49:51.226Z
+source_run_id: 25186020815
+last_synced: 2026-04-30T20:00:21.944Z
 ---
 
 <!-- header:start -->
@@ -11,7 +11,7 @@ last_synced: 2026-04-21T15:49:51.226Z
 # GitHub Reusable Workflow: Continuous Integration
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/524a537af1d7c7442a9b16a9bd78ee9728ce6075365c1baa51678b5720a9a9c7/hoverkraft-tech/docker-base-images" width="60px" align="center" alt="Continuous Integration" />
+  <img src="https://opengraph.githubassets.com/ae61a8b4d0fc9c9009d3cb42a17a1d30d5c20dbeef163f4f85cc9b94f67a9b25/hoverkraft-tech/docker-base-images" width="60px" align="center" alt="Continuous Integration" />
 </div>
 
 ---
