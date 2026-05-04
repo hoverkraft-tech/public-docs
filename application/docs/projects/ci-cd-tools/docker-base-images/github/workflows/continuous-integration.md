@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/docker-base-images
 source_path: .github/workflows/continuous-integration.md
 source_branch: main
-source_run_id: 25309945915
-last_synced: 2026-05-04T08:59:00.163Z
+source_run_id: 25326207236
+last_synced: 2026-05-04T15:04:37.196Z
 ---
 
 <!-- header:start -->
@@ -11,7 +11,7 @@ last_synced: 2026-05-04T08:59:00.163Z
 # GitHub Reusable Workflow: Continuous Integration
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/ae61a8b4d0fc9c9009d3cb42a17a1d30d5c20dbeef163f4f85cc9b94f67a9b25/hoverkraft-tech/docker-base-images" width="60px" align="center" alt="Continuous Integration" />
+  <img src="https://opengraph.githubassets.com/597ad6e08054ea71756fcce4fd56e9a6bb61db06186d306b7bffe05c57a67091/hoverkraft-tech/docker-base-images" width="60px" align="center" alt="Continuous Integration" />
 </div>
 
 ---
@@ -54,11 +54,11 @@ and runs tests against the built images using [testcontainers](https://testconta
 
 ## Testing
 
-Tests are defined per image as `images/<image>/test.spec.js` and executed with Node.js built-in test runner (`node --test`) from inside the configured `ghcr.io/hoverkraft-tech/docker-base-images/testcontainers-node` runner image.
+Tests are defined per image as `images/<image>/<image>.test.js` and executed with Node.js built-in test runner (`node --test`) from inside the configured `ghcr.io/hoverkraft-tech/docker-base-images/testcontainers-node` runner image.
 
 ### Test Configuration
 
-Each image has a `test.spec.js` file that typically:
+Each image has an `<image>.test.js` file that typically:
 
 - Start containers and execute commands
 - Verify file existence and permissions
@@ -67,8 +67,9 @@ Each image has a `test.spec.js` file that typically:
 
 The workflow injects a few environment variables:
 
-- `IMAGE_NAME`: the image reference under test
-- `HOST_TESTS_DIR`: absolute host path to `images/<image>/tests` (useful for bind-mounting fixtures)
+- `TESTED_IMAGE_REF`: the image reference under test
+
+The runner also writes a JUnit report to `images/<image>/junit.xml`, which is picked up by the CI report parsing step.
 
 The workflow pulls the published runner image with the configured `test-image-tag`.
 
@@ -80,11 +81,15 @@ import assert from "node:assert";
 import { GenericContainer } from "testcontainers";
 
 describe("CI Helm Image", () => {
-  const imageName = process.env.IMAGE_NAME || "ci-helm:latest";
+  const testedImageRef = process.env.TESTED_IMAGE_REF;
   let container;
 
+  if (!testedImageRef) {
+    throw new Error("TESTED_IMAGE_REF environment variable is required");
+  }
+
   before(async () => {
-    container = await new GenericContainer(imageName)
+    container = await new GenericContainer(testedImageRef)
       .withCommand(["sleep", "infinity"])
       .start();
   });
@@ -114,7 +119,7 @@ on:
 permissions: {}
 jobs:
   continuous-integration:
-    uses: hoverkraft-tech/docker-base-images/.github/workflows/continuous-integration.yml@750966723a23a979f7ea89b519e019b9fe0232a7 # 0.3.0
+    uses: hoverkraft-tech/docker-base-images/.github/workflows/continuous-integration.yml@5383038191ae7feeb42cc7f89279ca5e06de13b1 # 0.4.1
     permissions: {}
     secrets:
       # Password or GitHub token (packages:read and packages:write scopes) used to log against the OCI registry.
