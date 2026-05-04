@@ -38,10 +38,6 @@ Use this guide when creating or reviewing workflows in Hoverkraft repositories.
 - Duplicate complex CI logic across many repositories when a reusable workflow can
   own it.
 
-**Sources:**
-
-- [GitHub Actions CI/CD best practices - GitHub Awesome Copilot](https://github.com/github/awesome-copilot/blob/main/instructions/github-actions-ci-cd-best-practices.instructions.md)
-
 ## Token Permissions & Secrets
 
 Start from least privilege and grant write access only where a job proves it needs
@@ -76,11 +72,6 @@ jobs:
   reliably.
 - Reuse production secrets in pull request validation jobs.
 
-**Sources:**
-
-- [GitHub Docs - Secure use reference](https://docs.github.com/en/actions/reference/security/secure-use)
-- [GitHub Actions CI/CD best practices - GitHub Awesome Copilot](https://github.com/github/awesome-copilot/blob/main/instructions/github-actions-ci-cd-best-practices.instructions.md)
-
 ## Action & Dependency Supply Chain
 
 Treat Actions dependencies as executable third-party code. A compromised action can
@@ -108,12 +99,6 @@ use granted token permissions.
 - Ignore transitive tooling installed by setup scripts, package managers, or
   downloaded binaries.
 
-**Sources:**
-
-- [GitHub Docs - Secure use reference](https://docs.github.com/en/actions/reference/security/secure-use)
-- [GitHub Actions CI/CD best practices - GitHub Awesome Copilot](https://github.com/github/awesome-copilot/blob/main/instructions/github-actions-ci-cd-best-practices.instructions.md)
-- [CNCF - Securing GitHub Actions CI dependencies recipe card](https://www.cncf.io/blog/2026/05/04/securing-github-actions-ci-dependencies-recipe-card/)
-
 ## Pull Request & Untrusted Input Safety
 
 Pull requests, issue titles, branch names, commit messages, and many GitHub context
@@ -137,10 +122,6 @@ values are user-controlled input. Never place them directly inside shell scripts
 - Checkout and execute untrusted pull request code in privileged workflows.
 - Give forked pull request jobs access to deployment secrets.
 
-**Sources:**
-
-- [GitHub Docs - Secure use reference](https://docs.github.com/en/actions/reference/security/secure-use)
-
 ## Runners & Execution Environment
 
 Runner choice defines the trust boundary for a workflow.
@@ -162,10 +143,6 @@ Runner choice defines the trust boundary for a workflow.
   without a documented need.
 - Assume caches or artifacts are trustworthy without validating their producer.
 
-**Sources:**
-
-- [GitHub Docs - Secure use reference](https://docs.github.com/en/actions/reference/security/secure-use)
-
 ## Performance & Reliability
 
 Fast feedback keeps teams shipping safely. Optimize workflows without weakening
@@ -186,10 +163,6 @@ security controls.
 - Rebuild the same artifact separately for test and deployment when provenance
   matters.
 - Hide flaky tests behind retries without tracking and fixing the failure mode.
-
-**Sources:**
-
-- [GitHub Actions CI/CD best practices - GitHub Awesome Copilot](https://github.com/github/awesome-copilot/blob/main/instructions/github-actions-ci-cd-best-practices.instructions.md)
 
 ## Review Checklist
 
