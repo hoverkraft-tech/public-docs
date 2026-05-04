@@ -3,8 +3,8 @@ title: Testcontainers Node
 source_repo: hoverkraft-tech/docker-base-images
 source_path: images/testcontainers-node/README.md
 source_branch: main
-source_run_id: 25309945915
-last_synced: 2026-05-04T08:59:00.163Z
+source_run_id: 25326207236
+last_synced: 2026-05-04T15:04:37.196Z
 ---
 
 # Testcontainers Node.js
@@ -17,11 +17,11 @@ This image provides a consistent test execution environment for all Docker image
 
 ## Contents
 
-- **Node.js 20 Alpine**: Lightweight Node.js runtime
+- **Node.js 25 Alpine**: Lightweight Node.js runtime
 - **testcontainers**: Node.js library for container-based testing
 - **Pre-installed dependencies**: testcontainers module dependencies for faster test execution
 
-Test files are mounted at runtime from each image directory (e.g., `images/ci-helm/test.spec.js`).
+Test files are mounted at runtime from each image directory (e.g., `images/ci-helm/ci-helm.test.js`).
 
 ## Usage
 
@@ -37,7 +37,7 @@ This will:
 
 1. Build the image to test
 2. Build the testcontainers-node Docker image
-3. Mount the test file and run tests
+3. Mount the image directory, run tests, and write `junit.xml`
 
 ### CI/CD
 
@@ -45,16 +45,16 @@ Tests are automatically run in CI for each image. The testcontainers-node image 
 
 ## Test File Structure
 
-Each image that has tests should include a `test.spec.js` file in its directory:
+Each image that has tests should include an `<image-name>.test.js` file in its directory:
 
 ```text
 images/
 ├── ci-helm/
 │   ├── Dockerfile
-│   └── test.spec.js
+│   └── ci-helm.test.js
 ├── mydumper/
 │   ├── Dockerfile
-│   └── test.spec.js
+│   └── mydumper.test.js
 └── testcontainers-node/
     ├── Dockerfile
     ├── package.json
@@ -72,9 +72,13 @@ import { GenericContainer } from "testcontainers";
 
 describe("My Image", () => {
   it("should have required tool installed", async () => {
-    const imageName = process.env.IMAGE_NAME || "my-image:latest";
+    const testedImageRef = process.env.TESTED_IMAGE_REF;
 
-    const container = await new GenericContainer(imageName)
+    if (!testedImageRef) {
+      throw new Error("TESTED_IMAGE_REF environment variable is required");
+    }
+
+    const container = await new GenericContainer(testedImageRef)
       .withCommand(["sleep", "infinity"])
       .start();
 
@@ -95,6 +99,7 @@ describe("My Image", () => {
 - **Runtime mounting**: Test files are mounted at runtime, not copied into the image
 - **Single package.json**: All test dependencies managed in one place
 - **Docker-based execution**: Tests always run via Docker (both locally and in CI)
+- **JUnit output**: Each run emits `junit.xml` alongside the image tests for CI parsing
 
 This approach ensures:
 
