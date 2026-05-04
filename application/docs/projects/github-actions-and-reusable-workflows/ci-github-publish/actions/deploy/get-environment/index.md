@@ -3,8 +3,8 @@ title: Get Environment
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/deploy/get-environment/README.md
 source_branch: main
-source_run_id: 25172309191
-last_synced: 2026-04-30T14:57:02.258Z
+source_run_id: 25309137255
+last_synced: 2026-05-04T08:38:12.091Z
 ---
 
 <!-- header:start -->
