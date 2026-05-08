@@ -3,8 +3,8 @@ title: Get Image Name
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/docker/get-image-name/README.md
 source_branch: main
-source_run_id: 25213272302
-last_synced: 2026-05-01T11:58:14.792Z
+source_run_id: 25539334662
+last_synced: 2026-05-08T05:56:18.653Z
 ---
 
 <!-- header:start -->
@@ -42,7 +42,7 @@ Action to forge the name of a given image including registry, repository and giv
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-container/actions/docker/get-image-name@e4bf7a12228a2a4b5993d2d36b99b4dd0ec80bf5 # 0.32.1
+- uses: hoverkraft-tech/ci-github-container/actions/docker/get-image-name@2b647ed6f11d50cb6beb6d56333e68ba2c804826 # 0.33.1
   with:
     # OCI registry to prefix the image full name
     oci-registry: ""
