@@ -3,8 +3,8 @@ title: Delete
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/deployment/delete/README.md
 source_branch: main
-source_run_id: 25309137255
-last_synced: 2026-05-04T08:38:12.091Z
+source_run_id: 25540866680
+last_synced: 2026-05-08T06:36:17.044Z
 ---
 
 <!-- header:start -->
@@ -56,7 +56,7 @@ permissions:
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/deployment/delete@b56be562f38e0e3e712f09691a8fe930aae9db1b # 0.22.0
+- uses: hoverkraft-tech/ci-github-publish/actions/deployment/delete@2c8e24b416226074aea1e240468f043edefc5760 # 0.23.2
   with:
     # The token to use to delete the review apps environment(s). It needs the `repo` scope.
     token: ""
