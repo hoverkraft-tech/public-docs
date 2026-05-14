@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: .github/workflows/release.md
 source_branch: main
-source_run_id: 25849395125
-last_synced: 2026-05-14T08:19:51.088Z
+source_run_id: 25868184206
+last_synced: 2026-05-14T15:25:13.414Z
 ---
 
 <!-- header:start -->
@@ -11,7 +11,7 @@ last_synced: 2026-05-14T08:19:51.088Z
 # GitHub Reusable Workflow: Node.js Release
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/64be3a16895705ee5048b06c8850eeece9322d7a637127269eb768810b96a0ac/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Node.js Release" />
+  <img src="https://opengraph.githubassets.com/9c8929c94966c12376f44be8244f2644ab06a7edbd6c23fef13493d4565c4c61/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Node.js Release" />
 </div>
 
 ---
@@ -55,7 +55,10 @@ permissions: {}
 jobs:
   release:
     uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/release.yml@47891dc49a31209a88949e081d97a010f8cd20c4 # 0.23.2
-    permissions: {}
+    permissions:
+      contents: read
+      id-token: write
+      packages: write
     secrets:
       # GitHub token to use for authentication.
       # Defaults to `GITHUB_TOKEN` if not provided.
@@ -84,9 +87,9 @@ jobs:
 
       # npm distribution tag for the published package.
       # Common values:
-      # - `latest` — Default tag for stable releases
-      # - `next` — prerelease or beta versions
-      # - `canary` — Canary/nightly builds
+      # - `latest` - Default tag for stable releases
+      # - `next` - Prerelease or beta versions
+      # - `canary` - Canary/nightly builds
       #
       # See https://docs.npmjs.com/adding-dist-tags-to-packages.
       #
@@ -120,9 +123,9 @@ jobs:
 | **`access`**                      | Package access level passed to npm publish. Leave empty to use npm defaults.       | **false**    | **string**  | `public`                     |
 | **`tag`**                         | npm distribution tag for the published package.                                    | **false**    | **string**  | `latest`                     |
 |                                   | Common values:                                                                     |              |             |                              |
-|                                   | - `latest` — Default tag for stable releases                                     |              |             |                              |
-|                                   | - `next` — prerelease or beta versions                                           |              |             |                              |
-|                                   | - `canary` — Canary/nightly builds                                               |              |             |                              |
+|                                   | - `latest` - Default tag for stable releases                                       |              |             |                              |
+|                                   | - `next` - Prerelease or beta versions                                             |              |             |                              |
+|                                   | - `canary` - Canary/nightly builds                                                 |              |             |                              |
 |                                   |                                                                                    |              |             |                              |
 |                                   | See [https://docs.npmjs.com/adding-dist-tags-to-packages](https://docs.npmjs.com/adding-dist-tags-to-packages).                         |              |             |                              |
 | **`provenance`**                  | Whether to generate npm provenance for npmjs.org publishes.                        | **false**    | **boolean** | `true`                       |
@@ -143,6 +146,9 @@ jobs:
 | **`registry-token`** | Authentication token for the package registry. | **false**    |
 
 <!-- secrets:end -->
+
+<!-- outputs:start -->
+<!-- outputs:end -->
 
 <!-- examples:start -->
 
@@ -235,8 +241,6 @@ Copyright © 2026 hoverkraft-tech
 For more details, see the [license](http://choosealicense.com/licenses/mit/).
 
 <!-- license:end -->
-<!-- outputs:start -->
-<!-- outputs:end -->
 <!-- generated:start -->
 
 ---
