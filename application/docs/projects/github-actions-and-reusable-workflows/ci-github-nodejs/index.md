@@ -3,8 +3,8 @@ title: Ci Github Nodejs
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: README.md
 source_branch: main
-source_run_id: 25723095709
-last_synced: 2026-05-12T08:45:02.355Z
+source_run_id: 25848095654
+last_synced: 2026-05-14T07:51:28.577Z
 ---
 
 # Continuous Integration - GitHub - Node.js
@@ -62,6 +62,10 @@ _Actions focused on discovering and preparing the Node.js environment._
 ### Continuous Integration
 
 - [Continuous Integration](github/workflows/continuous-integration.md) — documentation for the reusable Node.js CI workflow.
+
+### Release
+
+- [Release](github/workflows/release.md) — documentation for the reusable Node.js release workflow that publishes CI-produced package tarballs.
 
 ## Contributing
 
