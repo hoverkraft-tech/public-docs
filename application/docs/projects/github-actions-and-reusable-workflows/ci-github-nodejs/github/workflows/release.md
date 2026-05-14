@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: .github/workflows/release.md
 source_branch: main
-source_run_id: 25848095654
-last_synced: 2026-05-14T07:51:28.577Z
+source_run_id: 25849395125
+last_synced: 2026-05-14T08:19:51.088Z
 ---
 
 <!-- header:start -->
@@ -11,7 +11,7 @@ last_synced: 2026-05-14T07:51:28.577Z
 # GitHub Reusable Workflow: Node.js Release
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/5d627588970f22174162eefe5c3159eb3bdc271c25b77ec0286fa7fb33c9a2f9/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Node.js Release" />
+  <img src="https://opengraph.githubassets.com/64be3a16895705ee5048b06c8850eeece9322d7a637127269eb768810b96a0ac/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Node.js Release" />
 </div>
 
 ---
@@ -85,7 +85,7 @@ jobs:
       # npm distribution tag for the published package.
       # Common values:
       # - `latest` — Default tag for stable releases
-      # - `next` — Pre-release or beta versions
+      # - `next` — prerelease or beta versions
       # - `canary` — Canary/nightly builds
       #
       # See https://docs.npmjs.com/adding-dist-tags-to-packages.
@@ -121,7 +121,7 @@ jobs:
 | **`tag`**                         | npm distribution tag for the published package.                                    | **false**    | **string**  | `latest`                     |
 |                                   | Common values:                                                                     |              |             |                              |
 |                                   | - `latest` — Default tag for stable releases                                     |              |             |                              |
-|                                   | - `next` — Pre-release or beta versions                                          |              |             |                              |
+|                                   | - `next` — prerelease or beta versions                                           |              |             |                              |
 |                                   | - `canary` — Canary/nightly builds                                               |              |             |                              |
 |                                   |                                                                                    |              |             |                              |
 |                                   | See [https://docs.npmjs.com/adding-dist-tags-to-packages](https://docs.npmjs.com/adding-dist-tags-to-packages).                         |              |             |                              |
