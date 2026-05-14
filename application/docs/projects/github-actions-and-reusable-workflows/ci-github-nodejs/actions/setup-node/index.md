@@ -3,8 +3,8 @@ title: Setup Node
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: actions/setup-node/README.md
 source_branch: main
-source_run_id: 25723095709
-last_synced: 2026-05-12T08:45:02.355Z
+source_run_id: 25848095654
+last_synced: 2026-05-14T07:51:28.577Z
 ---
 
 <!-- header:start -->
