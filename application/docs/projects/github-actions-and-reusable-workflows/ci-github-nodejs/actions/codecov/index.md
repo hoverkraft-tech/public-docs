@@ -3,8 +3,8 @@ title: Codecov
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: actions/codecov/README.md
 source_branch: main
-source_run_id: 25868184206
-last_synced: 2026-05-14T15:25:13.414Z
+source_run_id: 26052500755
+last_synced: 2026-05-18T18:35:30.944Z
 ---
 
 <!-- header:start -->
@@ -12,7 +12,7 @@ last_synced: 2026-05-14T15:25:13.414Z
 # ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItdXBsb2FkLWNsb3VkIiBjb2xvcj0iYmx1ZSI+PHBvbHlsaW5lIHBvaW50cz0iMTYgMTYgMTIgMTIgOCAxNiI+PC9wb2x5bGluZT48bGluZSB4MT0iMTIiIHkxPSIxMiIgeDI9IjEyIiB5Mj0iMjEiPjwvbGluZT48cGF0aCBkPSJNMjAuMzkgMTguMzlBNSA1IDAgMCAwIDE4IDloLTEuMjZBOCA4IDAgMSAwIDMgMTYuMyI+PC9wYXRoPjxwb2x5bGluZSBwb2ludHM9IjE2IDE2IDEyIDEyIDggMTYiPjwvcG9seWxpbmU+PC9zdmc+) GitHub Action: Codecov
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/5cfdb085d41e25a10008bde097bb5b24d2c4f7dbb5717e118dc85afcb98bcadd/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Codecov" />
+  <img src="https://opengraph.githubassets.com/c534c68c710cfc7e1d23e122caa18746289d5bddc0e2259982bcd0082e4dd53f/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Codecov" />
 </div>
 
 ---
@@ -51,7 +51,7 @@ permissions:
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-nodejs/actions/codecov@9d465a03741b287db18b242e0ec46990888cc6a3 # 0.23.0
+- uses: hoverkraft-tech/ci-github-nodejs/actions/codecov@a10d5e32daef8e060c49fe617833fb0d53476f22 # 0.24.0
   with:
     # Working directory where coverage files are located.
     # Can be absolute or relative to the repository root.
