@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: .github/workflows/release.md
 source_branch: main
-source_run_id: 25868184206
-last_synced: 2026-05-14T15:25:13.414Z
+source_run_id: 26052500755
+last_synced: 2026-05-18T18:35:30.944Z
 ---
 
 <!-- header:start -->
@@ -11,7 +11,7 @@ last_synced: 2026-05-14T15:25:13.414Z
 # GitHub Reusable Workflow: Node.js Release
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/9c8929c94966c12376f44be8244f2644ab06a7edbd6c23fef13493d4565c4c61/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Node.js Release" />
+  <img src="https://opengraph.githubassets.com/2c1962a2ad1825873a40535c101ae27231c1531f2a43494247013447176c1536/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Node.js Release" />
 </div>
 
 ---
@@ -54,18 +54,15 @@ on:
 permissions: {}
 jobs:
   release:
-    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/release.yml@47891dc49a31209a88949e081d97a010f8cd20c4 # 0.23.2
+    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/release.yml@a10d5e32daef8e060c49fe617833fb0d53476f22 # 0.24.0
     permissions:
       contents: read
       id-token: write
       packages: write
     secrets:
-      # GitHub token to use for authentication.
+      # GitHub token to use when downloading the package tarball artifact.
       # Defaults to `GITHUB_TOKEN` if not provided.
       github-token: ""
-
-      # Authentication token for the package registry.
-      registry-token: ""
     with:
       # JSON array of runner(s) to use.
       # See https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job.
@@ -85,16 +82,17 @@ jobs:
       # Default: `public`
       access: public
 
-      # npm distribution tag for the published package.
+      # npm distribution tag for the published package. Leave empty to use npm defaults.
       # Common values:
       # - `latest` - Default tag for stable releases
       # - `next` - Prerelease or beta versions
       # - `canary` - Canary/nightly builds
       #
-      # See https://docs.npmjs.com/adding-dist-tags-to-packages.
+      # If omitted for a pushed Git tag, the workflow tries to reuse the Git tag
+      # as the npm dist-tag unless it looks like a version tag such as `v1.2.3`.
       #
-      # Default: `latest`
-      tag: latest
+      # See https://docs.npmjs.com/adding-dist-tags-to-packages.
+      tag: ""
 
       # Whether to generate npm provenance for npmjs.org publishes.
       # Default: `true`
@@ -121,11 +119,14 @@ jobs:
 | **`package-tarball-artifact-id`** | Artifact ID of the package tarball produced by CI.                                 | **true**     | **string**  | -                            |
 | **`registry-url`**                | Registry URL used by npm publish.                                                  | **false**    | **string**  | `https://registry.npmjs.org` |
 | **`access`**                      | Package access level passed to npm publish. Leave empty to use npm defaults.       | **false**    | **string**  | `public`                     |
-| **`tag`**                         | npm distribution tag for the published package.                                    | **false**    | **string**  | `latest`                     |
+| **`tag`**                         | npm distribution tag for the published package. Leave empty to use npm defaults.   | **false**    | **string**  | -                            |
 |                                   | Common values:                                                                     |              |             |                              |
 |                                   | - `latest` - Default tag for stable releases                                       |              |             |                              |
 |                                   | - `next` - Prerelease or beta versions                                             |              |             |                              |
 |                                   | - `canary` - Canary/nightly builds                                                 |              |             |                              |
+|                                   |                                                                                    |              |             |                              |
+|                                   | If omitted for a pushed Git tag, the workflow tries to reuse the Git tag           |              |             |                              |
+|                                   | as the npm dist-tag unless it looks like a version tag such as `v1.2.3`.           |              |             |                              |
 |                                   |                                                                                    |              |             |                              |
 |                                   | See [https://docs.npmjs.com/adding-dist-tags-to-packages](https://docs.npmjs.com/adding-dist-tags-to-packages).                         |              |             |                              |
 | **`provenance`**                  | Whether to generate npm provenance for npmjs.org publishes.                        | **false**    | **boolean** | `true`                       |
@@ -139,11 +140,10 @@ jobs:
 
 ## Secrets
 
-| **Secret**           | **Description**                                | **Required** |
-| -------------------- | ---------------------------------------------- | ------------ |
-| **`github-token`**   | GitHub token to use for authentication.        | **false**    |
-|                      | Defaults to `GITHUB_TOKEN` if not provided.    |              |
-| **`registry-token`** | Authentication token for the package registry. | **false**    |
+| **Secret**         | **Description**                                                    | **Required** |
+| ------------------ | ------------------------------------------------------------------ | ------------ |
+| **`github-token`** | GitHub token to use when downloading the package tarball artifact. | **false**    |
+|                    | Defaults to `GITHUB_TOKEN` if not provided.                        |              |
 
 <!-- secrets:end -->
 
@@ -176,13 +176,11 @@ jobs:
 
   release:
     needs: ci
-    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/release.yml@47891dc49a31209a88949e081d97a010f8cd20c4 # 0.23.2
+    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/release.yml@a10d5e32daef8e060c49fe617833fb0d53476f22 # 0.24.0
     permissions:
       contents: read
       packages: write
       id-token: write
-    secrets:
-      registry-token: ${{ secrets.NPM_TOKEN }}
     with:
       package-tarball-artifact-id: ${{ needs.ci.outputs.package-tarball-artifact-id }}
 ```
@@ -204,7 +202,7 @@ permissions: {}
 
 jobs:
   dry-run:
-    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/release.yml@47891dc49a31209a88949e081d97a010f8cd20c4 # 0.23.2
+    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/release.yml@a10d5e32daef8e060c49fe617833fb0d53476f22 # 0.24.0
     permissions:
       contents: read
       packages: write

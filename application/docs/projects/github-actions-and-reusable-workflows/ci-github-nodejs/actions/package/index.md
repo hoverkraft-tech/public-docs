@@ -3,8 +3,8 @@ title: Package
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: actions/package/README.md
 source_branch: main
-source_run_id: 25868184206
-last_synced: 2026-05-14T15:25:13.414Z
+source_run_id: 26052500755
+last_synced: 2026-05-18T18:35:30.944Z
 ---
 
 <!-- header:start -->
@@ -12,7 +12,7 @@ last_synced: 2026-05-14T15:25:13.414Z
 # ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItcGFja2FnZSIgY29sb3I9ImJsdWUiPjxsaW5lIHgxPSIxNi41IiB5MT0iOS40IiB4Mj0iNy41IiB5Mj0iNC4yMSI+PC9saW5lPjxwYXRoIGQ9Ik0yMSAxNlY4YTIgMiAwIDAgMC0xLTEuNzNsLTctNGEyIDIgMCAwIDAtMiAwbC03IDRBMiAyIDAgMCAwIDMgOHY4YTIgMiAwIDAgMCAxIDEuNzNsNyA0YTIgMiAwIDAgMCAyIDBsNy00QTIgMiAwIDAgMCAyMSAxNnoiPjwvcGF0aD48cG9seWxpbmUgcG9pbnRzPSIzLjI3IDYuOTYgMTIgMTIuMDEgMjAuNzMgNi45NiI+PC9wb2x5bGluZT48bGluZSB4MT0iMTIiIHkxPSIyMi4wOCIgeDI9IjEyIiB5Mj0iMTIiPjwvbGluZT48L3N2Zz4=) GitHub Action: Package
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/5d627588970f22174162eefe5c3159eb3bdc271c25b77ec0286fa7fb33c9a2f9/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Package" />
+  <img src="https://opengraph.githubassets.com/c534c68c710cfc7e1d23e122caa18746289d5bddc0e2259982bcd0082e4dd53f/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Package" />
 </div>
 
 ---
@@ -39,7 +39,7 @@ Action to create and upload an npm package tarball from a Node.js project
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-nodejs/actions/package@47891dc49a31209a88949e081d97a010f8cd20c4 # 0.23.2
+- uses: hoverkraft-tech/ci-github-nodejs/actions/package@a10d5e32daef8e060c49fe617833fb0d53476f22 # 0.24.0
   with:
     # Working directory where dependencies are installed for packaging.
     # Can be absolute or relative to the repository root.
@@ -115,7 +115,7 @@ jobs:
       package-tarball-artifact-id: ${{ steps.package.outputs.package-tarball-artifact-id }}
     steps:
       - id: package
-        uses: hoverkraft-tech/ci-github-nodejs/actions/package@47891dc49a31209a88949e081d97a010f8cd20c4 # 0.23.2
+        uses: hoverkraft-tech/ci-github-nodejs/actions/package@a10d5e32daef8e060c49fe617833fb0d53476f22 # 0.24.0
 
   consume:
     needs: package
