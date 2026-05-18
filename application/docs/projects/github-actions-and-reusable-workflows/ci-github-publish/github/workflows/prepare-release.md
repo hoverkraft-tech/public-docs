@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/prepare-release.md
 source_branch: main
-source_run_id: 25540866680
-last_synced: 2026-05-08T06:36:17.044Z
+source_run_id: 26024249618
+last_synced: 2026-05-18T09:15:49.468Z
 ---
 
 <!-- header:start -->
@@ -60,7 +60,9 @@ permissions: {}
 jobs:
   prepare-release:
     uses: hoverkraft-tech/ci-github-publish/.github/workflows/prepare-release.yml@2c8e24b416226074aea1e240468f043edefc5760 # 0.23.2
-    permissions: {}
+    permissions:
+      contents: read
+      pull-requests: write
     secrets:
       # GitHub token with following permissions:
       #
