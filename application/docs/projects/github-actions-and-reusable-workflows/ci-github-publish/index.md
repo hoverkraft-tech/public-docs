@@ -3,8 +3,8 @@ title: Ci Github Publish
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: README.md
 source_branch: main
-source_run_id: 26025204675
-last_synced: 2026-05-18T09:35:37.351Z
+source_run_id: 26130150060
+last_synced: 2026-05-19T22:56:30.042Z
 ---
 
 # Continuous Integration - GitHub - Publish
@@ -82,7 +82,13 @@ _Actions for managing deployments._
 
 _Actions for managing releases._
 
-#### - [Create](actions/release/create/index.md)
+#### - [Create or publish release](actions/release/create/index.md)
+
+#### - [Create tag](actions/release/create-tag/index.md)
+
+#### - [Plan](actions/release/plan/index.md)
+
+#### - [Recommended release workflow](github/workflows/release.md)
 
 ### Workflow
 
@@ -117,8 +123,6 @@ _Actions for managing workflows._
 _Reusable workflows for managing release process._
 
 #### - [Prepare release](github/workflows/prepare-release.md)
-
-#### - [Release](github/workflows/release.md)
 
 #### - [Release actions](github/workflows/release-actions.md)
 
