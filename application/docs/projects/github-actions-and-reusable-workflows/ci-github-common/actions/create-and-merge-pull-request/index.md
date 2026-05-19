@@ -3,8 +3,8 @@ title: Create And Merge Pull Request
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/create-and-merge-pull-request/README.md
 source_branch: main
-source_run_id: 25207746012
-last_synced: 2026-05-01T08:19:54.258Z
+source_run_id: 26092151752
+last_synced: 2026-05-19T10:48:17.470Z
 ---
 
 <!-- header:start -->
@@ -46,7 +46,7 @@ See [https://docs.github.com/en/repositories/managing-your-repositorys-settings-
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-common/actions/create-and-merge-pull-request@71b85947453f32b5d147ff3ab37351439a92d840 # 0.34.2
+- uses: hoverkraft-tech/ci-github-common/actions/create-and-merge-pull-request@4c9d51717dc04d823dac2dc9ac2857e7b3069454 # 0.35.0
   with:
     # GitHub token for creating and merging pull request (permissions contents: write and pull-requests: write).
     # See https://github.com/peter-evans/create-pull-request#action-inputs.
@@ -92,6 +92,14 @@ See [https://docs.github.com/en/repositories/managing-your-repositorys-settings-
 <!-- secrets:end -->
 
 <!-- outputs:start -->
+
+## Outputs
+
+| **Output**       | **Description**                                             |
+| ---------------- | ----------------------------------------------------------- |
+| **`merged-ref`** | The fully qualified ref updated by the merge.               |
+| **`merged-sha`** | The commit SHA at the merged ref after the merge completes. |
+
 <!-- outputs:end -->
 
 <!-- examples:start -->
