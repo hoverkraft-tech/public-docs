@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/prepare-release.md
 source_branch: main
-source_run_id: 26130150060
-last_synced: 2026-05-19T22:56:30.042Z
+source_run_id: 26130867953
+last_synced: 2026-05-19T23:14:49.154Z
 ---
 
 <!-- header:start -->
@@ -59,7 +59,7 @@ on:
 permissions: {}
 jobs:
   prepare-release:
-    uses: hoverkraft-tech/ci-github-publish/.github/workflows/prepare-release.yml@2c8e24b416226074aea1e240468f043edefc5760 # 0.23.2
+    uses: hoverkraft-tech/ci-github-publish/.github/workflows/prepare-release.yml@281fe4959997eea619bf3a4be4fde2f16b8b6d0c # 0.23.3
     permissions:
       contents: read
       pull-requests: write
@@ -135,7 +135,7 @@ permissions: {}
 
 jobs:
   prepare-release:
-    uses: hoverkraft-tech/ci-github-publish/.github/workflows/prepare-release.yml@2c8e24b416226074aea1e240468f043edefc5760 # 0.23.2
+    uses: hoverkraft-tech/ci-github-publish/.github/workflows/prepare-release.yml@281fe4959997eea619bf3a4be4fde2f16b8b6d0c # 0.23.3
     permissions:
       contents: read
       pull-requests: write
