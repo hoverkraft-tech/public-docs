@@ -3,8 +3,8 @@ title: Get Finished
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/deployment/get-finished/README.md
 source_branch: main
-source_run_id: 26130150060
-last_synced: 2026-05-19T22:56:30.042Z
+source_run_id: 26130867953
+last_synced: 2026-05-19T23:14:49.154Z
 ---
 
 <!-- header:start -->
