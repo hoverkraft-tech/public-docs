@@ -3,8 +3,8 @@ title: Set Matrix Output
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/set-matrix-output/README.md
 source_branch: main
-source_run_id: 26092807333
-last_synced: 2026-05-19T11:02:09.766Z
+source_run_id: 26106027450
+last_synced: 2026-05-19T15:11:50.421Z
 ---
 
 <!-- header:start -->
