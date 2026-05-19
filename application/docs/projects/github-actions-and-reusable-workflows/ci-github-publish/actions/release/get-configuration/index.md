@@ -3,8 +3,8 @@ title: Get Configuration
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/release/get-configuration/README.md
 source_branch: main
-source_run_id: 26025204675
-last_synced: 2026-05-18T09:35:37.351Z
+source_run_id: 26130150060
+last_synced: 2026-05-19T22:56:30.042Z
 ---
 
 <!-- header:start -->
@@ -39,7 +39,7 @@ Action to get the release configuration details
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/release/get-configuration@2c8e24b416226074aea1e240468f043edefc5760 # 0.23.2
+- uses: hoverkraft-tech/ci-github-publish/actions/release/get-configuration@281fe4959997eea619bf3a4be4fde2f16b8b6d0c # 0.23.3
   with:
     # Working directory used to scope release automation in a monorepo.
     # If specified, the action looks for `.github/release-configs/{slug}.yml`, where `slug` is derived from the working directory basename.

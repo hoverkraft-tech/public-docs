@@ -1,7 +1,7 @@
 ---
-title: Create
+title: Plan
 source_repo: hoverkraft-tech/ci-github-publish
-source_path: actions/release/create/README.md
+source_path: actions/release/plan/README.md
 source_branch: main
 source_run_id: 26130150060
 last_synced: 2026-05-19T22:56:30.042Z
@@ -9,10 +9,10 @@ last_synced: 2026-05-19T22:56:30.042Z
 
 <!-- header:start -->
 
-# ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItYm9va21hcmsiIGNvbG9yPSJibHVlIj48cGF0aCBkPSJNMTkgMjFsLTctNS03IDVWNWEyIDIgMCAwIDEgMi0yaDEwYTIgMiAwIDAgMSAyIDJ6Ij48L3BhdGg+PC9zdmc+) GitHub Action: Release - Create
+# ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItYm9va21hcmsiIGNvbG9yPSJibHVlIj48cGF0aCBkPSJNMTkgMjFsLTctNS03IDVWNWEyIDIgMCAwIDEgMi0yaDEwYTIgMiAwIDAgMSAyIDJ6Ij48L3BhdGg+PC9zdmc+) GitHub Action: Release - Plan
 
 <div align="center">
-  <img src="/ci-github-publish/assets/github/logo.svg" width="60px" align="center" alt="Release - Create" />
+  <img src="/ci-github-publish/assets/github/logo.svg" width="60px" align="center" alt="Release - Plan" />
 </div>
 
 ---
@@ -21,7 +21,7 @@ last_synced: 2026-05-19T22:56:30.042Z
 
 <!-- badges:start -->
 
-[![Marketplace](https://img.shields.io/badge/Marketplace-release------create-blue?logo=github-actions)](https://github.com/marketplace/actions/release---create)
+[![Marketplace](https://img.shields.io/badge/Marketplace-release------plan-blue?logo=github-actions)](https://github.com/marketplace/actions/release---plan)
 [![Release](https://img.shields.io/github/v/release/hoverkraft-tech/ci-github-publish)](https://github.com/hoverkraft-tech/ci-github-publish/releases)
 [![License](https://img.shields.io/github/license/hoverkraft-tech/ci-github-publish)](http://choosealicense.com/licenses/mit/)
 [![Stars](https://img.shields.io/github/stars/hoverkraft-tech/ci-github-publish?style=social)](https://img.shields.io/github/stars/hoverkraft-tech/ci-github-publish?style=social)
@@ -33,7 +33,7 @@ last_synced: 2026-05-19T22:56:30.042Z
 
 ## Overview
 
-Create a GitHub release from Release Drafter or from an explicit tag, name, and target SHA.
+Plan a release identity without creating a Git tag or GitHub release.
 
 <!-- overview:end -->
 
@@ -42,9 +42,22 @@ Create a GitHub release from Release Drafter or from an explicit tag, name, and 
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/release/create@281fe4959997eea619bf3a4be4fde2f16b8b6d0c # 0.23.3
+- uses: hoverkraft-tech/ci-github-publish/actions/release/plan@281fe4959997eea619bf3a4be4fde2f16b8b6d0c # 0.23.3
   with:
-    # Whether the release is a prerelease
+    # Branch, tag, or commit SHA to release. Defaults to the workflow SHA.
+    source-ref: ""
+
+    # Explicit release tag. When empty, Release Drafter computes the tag.
+    tag: ""
+
+    # Explicit release name. When empty, the Release Drafter name or release tag is used.
+    name: ""
+
+    # Whether to fail when the planned release tag already exists remotely.
+    # Default: `true`
+    check-tag-exists: "true"
+
+    # Whether to plan the release as a prerelease
     # Default: `false`
     prerelease: "false"
 
@@ -59,18 +72,9 @@ Create a GitHub release from Release Drafter or from an explicit tag, name, and 
     # Default: `[]`
     include-paths: "[]"
 
-    # Tag name to associate with the GitHub release
-    tag: ""
-
-    # Name to use for the GitHub release
-    name: ""
-
-    # Commit SHA the GitHub release should target
-    target-sha: ""
-
-    # GitHub Token for creating the release.
+    # GitHub Token for planning the release.
     # Permissions:
-    # - contents: write
+    # - contents: read
     # - pull-requests: read
     #
     # Default: `${{ github.token }}`
@@ -79,28 +83,25 @@ Create a GitHub release from Release Drafter or from an explicit tag, name, and 
 
 <!-- usage:end -->
 
-<!--
-// jscpd:ignore-start
--->
-
 <!-- inputs:start -->
 
 ## Inputs
 
 | **Input**               | **Description**                                                                                                                                       | **Required** | **Default**           |
 | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------------- |
-| **`prerelease`**        | Whether the release is a prerelease                                                                                                                   | **false**    | `false`               |
+| **`source-ref`**        | Branch, tag, or commit SHA to release. Defaults to the workflow SHA.                                                                                  | **false**    | -                     |
+| **`tag`**               | Explicit release tag. When empty, Release Drafter computes the tag.                                                                                   | **false**    | -                     |
+| **`name`**              | Explicit release name. When empty, the Release Drafter name or release tag is used.                                                                   | **false**    | -                     |
+| **`check-tag-exists`**  | Whether to fail when the planned release tag already exists remotely.                                                                                 | **false**    | `true`                |
+| **`prerelease`**        | Whether to plan the release as a prerelease                                                                                                           | **false**    | `false`               |
 | **`working-directory`** | Working directory used to scope release automation in a monorepo.                                                                                     | **false**    | -                     |
 |                         | If specified, the action looks for `.github/release-configs/{slug}.yml`, where `slug` is derived from the working directory basename.                 |              |                       |
 |                         | If that file does not exist, a temporary release configuration is generated with `include-paths` for the working directory and current workflow file. |              |                       |
 | **`include-paths`**     | Additional paths to include in the release notes filtering (JSON array).                                                                              | **false**    | `[]`                  |
 |                         | These paths are added to the `include-paths` configuration of release-drafter.                                                                        |              |                       |
-| **`tag`**               | Tag name to associate with the GitHub release                                                                                                         | **false**    | -                     |
-| **`name`**              | Name to use for the GitHub release                                                                                                                    | **false**    | -                     |
-| **`target-sha`**        | Commit SHA the GitHub release should target                                                                                                           | **false**    | -                     |
-| **`github-token`**      | GitHub Token for creating the release.                                                                                                                | **false**    | `${{ github.token }}` |
+| **`github-token`**      | GitHub Token for planning the release.                                                                                                                | **false**    | `${{ github.token }}` |
 |                         | Permissions:                                                                                                                                          |              |                       |
-|                         | - contents: write                                                                                                                                     |              |                       |
+|                         | - contents: read                                                                                                                                      |              |                       |
 |                         | - pull-requests: read                                                                                                                                 |              |                       |
 
 <!-- inputs:end -->
@@ -109,9 +110,11 @@ Create a GitHub release from Release Drafter or from an explicit tag, name, and 
 
 ## Outputs
 
-| **Output** | **Description**        |
-| ---------- | ---------------------- |
-| **`tag`**  | The tag of the release |
+| **Output**        | **Description**                     |
+| ----------------- | ----------------------------------- |
+| **`tag`**         | The planned release tag             |
+| **`name`**        | The planned release name            |
+| **`release-sha`** | The commit SHA selected for release |
 
 <!-- outputs:end -->
 
@@ -153,7 +156,3 @@ For more details, see the [license](http://choosealicense.com/licenses/mit/).
 This documentation was automatically generated by [CI Dokumentor](https://github.com/hoverkraft-tech/ci-dokumentor).
 
 <!-- generated:end -->
-
-<!--
-// jscpd:ignore-end
--->
