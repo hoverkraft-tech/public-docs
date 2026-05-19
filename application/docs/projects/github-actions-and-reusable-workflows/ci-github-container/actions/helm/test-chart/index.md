@@ -3,8 +3,8 @@ title: Test Chart
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/helm/test-chart/README.md
 source_branch: main
-source_run_id: 25902373113
-last_synced: 2026-05-15T05:47:05.897Z
+source_run_id: 26111811104
+last_synced: 2026-05-19T16:54:46.054Z
 ---
 
 <!-- header:start -->
@@ -43,7 +43,7 @@ Mainly using [helm/chart-testing-action](https://github.com/helm/chart-testing-a
 ## Usage
 
 ````yaml
-- uses: hoverkraft-tech/ci-github-container/actions/helm/test-chart@2b647ed6f11d50cb6beb6d56333e68ba2c804826 # 0.33.1
+- uses: hoverkraft-tech/ci-github-container/actions/helm/test-chart@695db98d9afaa0ebd2ef427808c0c929ac347885 # 0.34.0
   with:
     # Working directory
     # Default: `${{ github.workspace }}`

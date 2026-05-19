@@ -3,8 +3,8 @@ title: Ci Github Container
 source_repo: hoverkraft-tech/ci-github-container
 source_path: README.md
 source_branch: main
-source_run_id: 25902373113
-last_synced: 2026-05-15T05:47:05.897Z
+source_run_id: 26111811104
+last_synced: 2026-05-19T16:54:46.054Z
 ---
 
 <!-- markdownlint-disable-next-line first-line-heading -->
@@ -56,6 +56,8 @@ _Actions dedicated to packaging, validating, and publishing Helm charts for Kube
 #### - [Generate chart documentation](actions/helm/generate-docs/index.md)
 
 #### - [Parse chart URI](actions/helm/parse-chart-uri/index.md)
+
+#### - [Update chart values](actions/helm/update-chart-values/index.md)
 
 #### - [Release chart](actions/helm/release-chart/index.md)
 

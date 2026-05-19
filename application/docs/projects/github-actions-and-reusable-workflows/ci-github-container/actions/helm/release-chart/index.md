@@ -3,8 +3,8 @@ title: Release Chart
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/helm/release-chart/README.md
 source_branch: main
-source_run_id: 25902373113
-last_synced: 2026-05-15T05:47:05.897Z
+source_run_id: 26111811104
+last_synced: 2026-05-19T16:54:46.054Z
 ---
 
 <!-- header:start -->
@@ -51,7 +51,7 @@ This action requires the following permissions on the repository:
 ## Usage
 
 ````yaml
-- uses: hoverkraft-tech/ci-github-container/actions/helm/release-chart@2b647ed6f11d50cb6beb6d56333e68ba2c804826 # 0.33.1
+- uses: hoverkraft-tech/ci-github-container/actions/helm/release-chart@695db98d9afaa0ebd2ef427808c0c929ac347885 # 0.34.0
   with:
     # OCI registry where to push chart.
     # See https://github.com/appany/helm-oci-chart-releaser#usage.
