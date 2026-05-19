@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-common
 source_path: .github/workflows/linter.md
 source_branch: main
-source_run_id: 26092151752
-last_synced: 2026-05-19T10:48:17.470Z
+source_run_id: 26092807333
+last_synced: 2026-05-19T11:02:09.766Z
 ---
 
 <!-- header:start -->
@@ -73,7 +73,11 @@ permissions: {}
 jobs:
   linter:
     uses: hoverkraft-tech/ci-github-common/.github/workflows/linter.yml@4c9d51717dc04d823dac2dc9ac2857e7b3069454 # 0.35.0
-    permissions: {}
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+      statuses: write
     secrets:
       # Token for marking the status of linter run in the Checks section.
       # See https://github.com/super-linter/super-linter#how-to-use.
