@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: .github/workflows/release.md
 source_branch: main
-source_run_id: 26056425153
-last_synced: 2026-05-18T19:52:13.562Z
+source_run_id: 26084799476
+last_synced: 2026-05-19T08:19:00.114Z
 ---
 
 <!-- header:start -->
@@ -11,7 +11,7 @@ last_synced: 2026-05-18T19:52:13.562Z
 # GitHub Reusable Workflow: Node.js Release
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/2c1962a2ad1825873a40535c101ae27231c1531f2a43494247013447176c1536/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Node.js Release" />
+  <img src="https://opengraph.githubassets.com/a13bac450e5a135f33d1583c03111837458cea565bf78f79b0bb27881fdf86f7/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Node.js Release" />
 </div>
 
 ---
@@ -54,7 +54,7 @@ on:
 permissions: {}
 jobs:
   release:
-    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/release.yml@a10d5e32daef8e060c49fe617833fb0d53476f22 # 0.24.0
+    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/release.yml@a11e4f1465b321b60ddfceeb06b0859f16d02b21 # 0.24.1
     permissions:
       contents: read
       id-token: write
@@ -87,9 +87,6 @@ jobs:
       # - `latest` - Default tag for stable releases
       # - `next` - Prerelease or beta versions
       # - `canary` - Canary/nightly builds
-      #
-      # If omitted for a pushed Git tag, the workflow tries to reuse the Git tag
-      # as the npm dist-tag unless it looks like a version tag such as `v1.2.3`.
       #
       # See https://docs.npmjs.com/adding-dist-tags-to-packages.
       tag: ""
@@ -124,9 +121,6 @@ jobs:
 |                                   | - `latest` - Default tag for stable releases                                       |              |             |                              |
 |                                   | - `next` - Prerelease or beta versions                                             |              |             |                              |
 |                                   | - `canary` - Canary/nightly builds                                                 |              |             |                              |
-|                                   |                                                                                    |              |             |                              |
-|                                   | If omitted for a pushed Git tag, the workflow tries to reuse the Git tag           |              |             |                              |
-|                                   | as the npm dist-tag unless it looks like a version tag such as `v1.2.3`.           |              |             |                              |
 |                                   |                                                                                    |              |             |                              |
 |                                   | See [https://docs.npmjs.com/adding-dist-tags-to-packages](https://docs.npmjs.com/adding-dist-tags-to-packages).                         |              |             |                              |
 | **`provenance`**                  | Whether to generate npm provenance for npmjs.org publishes.                        | **false**    | **boolean** | `true`                       |
@@ -176,7 +170,7 @@ jobs:
 
   release:
     needs: ci
-    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/release.yml@a10d5e32daef8e060c49fe617833fb0d53476f22 # 0.24.0
+    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/release.yml@a11e4f1465b321b60ddfceeb06b0859f16d02b21 # 0.24.1
     permissions:
       contents: read
       packages: write
@@ -202,7 +196,7 @@ permissions: {}
 
 jobs:
   dry-run:
-    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/release.yml@a10d5e32daef8e060c49fe617833fb0d53476f22 # 0.24.0
+    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/release.yml@a11e4f1465b321b60ddfceeb06b0859f16d02b21 # 0.24.1
     permissions:
       contents: read
       packages: write
