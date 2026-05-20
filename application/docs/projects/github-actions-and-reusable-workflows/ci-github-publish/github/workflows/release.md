@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/release.md
 source_branch: main
-source_run_id: 26130867953
-last_synced: 2026-05-19T23:14:49.154Z
+source_run_id: 26176996787
+last_synced: 2026-05-20T17:07:25.463Z
 ---
 
 # Release
@@ -137,6 +137,8 @@ jobs:
           name: ${{ needs.plan-release.outputs.name }}
           target-sha: ${{ needs.plan-release.outputs.release-sha }}
           github-token: ${{ github.token }}
+          changelog-summary: >-
+            {"llmAuth":"${{ secrets.OPENAI_API_KEY }}"}
 
   # Run final verification checks against the published release outputs.
   verify-release:
