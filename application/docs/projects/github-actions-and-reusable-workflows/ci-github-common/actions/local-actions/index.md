@@ -3,8 +3,8 @@ title: Local Actions
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/local-actions/README.md
 source_branch: main
-source_run_id: 26106027450
-last_synced: 2026-05-19T15:11:50.421Z
+source_run_id: 26133123435
+last_synced: 2026-05-20T00:15:50.379Z
 ---
 
 <!-- header:start -->
@@ -32,7 +32,7 @@ last_synced: 2026-05-19T15:11:50.421Z
 ## Overview
 
 Action to expose sibling local actions next to the current action directory.
-It creates a symlink to the parent actions directory at `../self-actions` relative to `github.workspace`
+It creates a symlink to the parent actions directory at `../<destination-directory-name>` relative to `github.workspace`
 during the main step and removes it automatically in the post step.
 
 <!-- overview:end -->
@@ -41,13 +41,19 @@ during the main step and removes it automatically in the post step.
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-common/actions/local-actions@71b85947453f32b5d147ff3ab37351439a92d840 # 0.34.2
+- uses: hoverkraft-tech/ci-github-common/actions/local-actions@ff815105ba418bd0203868c8b52e0e02fea3f1a4 # 0.35.2
   with:
     # The actions root path that contains the sibling local actions.
     # Pass the caller actions root, typically by appending `/../..` to `github.action_path`.
     #
     # This input is required.
     source-path: ""
+
+    # Destination directory name created next to `github.workspace`.
+    # Use only a directory name (no path separators).
+    #
+    # Default: `self-actions`
+    destination-directory-name: self-actions
 ```
 
 <!-- usage:end -->
@@ -55,10 +61,12 @@ during the main step and removes it automatically in the post step.
 
 ## Inputs
 
-| **Input**         | **Description**                                                                        | **Required** | **Default** |
-| ----------------- | -------------------------------------------------------------------------------------- | ------------ | ----------- |
-| **`source-path`** | The actions root path that contains the sibling local actions.                         | **true**     | -           |
-|                   | Pass the caller actions root, typically by appending `/../..` to `github.action_path`. |              |             |
+| **Input**                        | **Description**                                                                        | **Required** | **Default**    |
+| -------------------------------- | -------------------------------------------------------------------------------------- | ------------ | -------------- |
+| **`source-path`**                | The actions root path that contains the sibling local actions.                         | **true**     | -              |
+|                                  | Pass the caller actions root, typically by appending `/../..` to `github.action_path`. |              |                |
+| **`destination-directory-name`** | Destination directory name created next to `github.workspace`.                         | **false**    | `self-actions` |
+|                                  | Use only a directory name (no path separators).                                        |              |                |
 
 <!-- inputs:end -->
 <!-- secrets:start -->
