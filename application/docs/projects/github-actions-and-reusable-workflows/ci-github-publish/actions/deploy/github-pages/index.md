@@ -3,8 +3,8 @@ title: Github Pages
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/deploy/github-pages/README.md
 source_branch: main
-source_run_id: 26130867953
-last_synced: 2026-05-19T23:14:49.154Z
+source_run_id: 26176996787
+last_synced: 2026-05-20T17:07:25.463Z
 ---
 
 <!-- header:start -->
@@ -56,7 +56,7 @@ permissions:
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/deploy/github-pages@281fe4959997eea619bf3a4be4fde2f16b8b6d0c # 0.23.3
+- uses: hoverkraft-tech/ci-github-publish/actions/deploy/github-pages@6a2562a3f4409f39c7fab100636a90430ee0a8cf # 0.24.0
   with:
     # The ID of the "build" artifact to download.
     # The artifact must contain the full (absolute) build path.
