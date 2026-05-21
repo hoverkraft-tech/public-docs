@@ -3,8 +3,8 @@ title: Generate Docs
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/helm/generate-docs/README.md
 source_branch: main
-source_run_id: 26133662392
-last_synced: 2026-05-20T00:34:29.493Z
+source_run_id: 26243491870
+last_synced: 2026-05-21T17:59:29.961Z
 ---
 
 <!-- header:start -->
@@ -44,11 +44,18 @@ Mainly using [losisin/helm-docs-github-action](https://github.com/losisin/helm-d
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-container/actions/helm/generate-docs@676925b78f1970281b3f087bc3829eb1c6a9f4dc # 0.34.1
+- uses: hoverkraft-tech/ci-github-container/actions/helm/generate-docs@260358ba1fd405c57bc669823d89c625971a3431 # 0.34.2
   with:
     # Working directory
     # Default: `${{ github.workspace }}`
     working-directory: ${{ github.workspace }}
+
+    # The Git ref to checkout before generating documentation.
+    # Can be a branch, tag or commit SHA.
+    # Set to an empty string to skip checkout.
+    #
+    # Default: `${{ github.ref }}`
+    checkout-ref: ${{ github.ref }}
 
     # Path to the values file to use for generating the documentation.
     # See https://github.com/losisin/helm-values-schema-json-action.
@@ -80,6 +87,9 @@ Mainly using [losisin/helm-docs-github-action](https://github.com/losisin/helm-d
 | **Input**                  | **Description**                                                           | **Required** | **Default**               |
 | -------------------------- | ------------------------------------------------------------------------- | ------------ | ------------------------- |
 | **`working-directory`**    | Working directory                                                         | **false**    | `${{ github.workspace }}` |
+| **`checkout-ref`**         | The Git ref to checkout before generating documentation.                  | **false**    | `${{ github.ref }}`       |
+|                            | Can be a branch, tag or commit SHA.                                       |              |                           |
+|                            | Set to an empty string to skip checkout.                                  |              |                           |
 | **`values-file`**          | Path to the values file to use for generating the documentation.          | **false**    | -                         |
 |                            | See [https://github.com/losisin/helm-values-schema-json-action](https://github.com/losisin/helm-values-schema-json-action).          |              |                           |
 | **`github-token`**         | GitHub Token to create and merge pull request.                            | **false**    | `${{ github.token }}`     |
