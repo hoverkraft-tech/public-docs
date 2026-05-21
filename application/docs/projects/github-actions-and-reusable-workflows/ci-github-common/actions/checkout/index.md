@@ -3,8 +3,8 @@ title: Checkout
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/checkout/README.md
 source_branch: main
-source_run_id: 26133123435
-last_synced: 2026-05-20T00:15:50.379Z
+source_run_id: 26229636631
+last_synced: 2026-05-21T13:45:03.059Z
 ---
 
 <!-- header:start -->
@@ -52,7 +52,7 @@ permissions:
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-common/actions/checkout@b48521243b3ce4824d46bf414c32d8078171b48b # 0.35.1
+- uses: hoverkraft-tech/ci-github-common/actions/checkout@cacc6123a32780d507db04733e5a8c167917581d # 0.35.3
   with:
     # Number of commits to fetch. 0 indicates all history for all branches and tags.
     # See https://github.com/actions/checkout#usage
@@ -69,6 +69,10 @@ permissions:
     # Whether to enable sparse checkout and the list of files or directories to include in the checkout.
     # See https://github.com/actions/checkout#usage
     sparse-checkout: ""
+
+    # The branch, tag or SHA to checkout. For pull requests, the ref is set to the merge ref of the PR.
+    # See https://github.com/actions/checkout#usage
+    ref: ""
 
     # Whether to persist the token credentials in the Git config.
     # Default to false for security reasons.
@@ -94,6 +98,8 @@ permissions:
 | **`lfs`**                 | Whether to download Git-LFS files.                                                                 | **false**    | `false`     |
 |                           | See [https://github.com/actions/checkout#usage](https://github.com/actions/checkout#usage)                                                    |              |             |
 | **`sparse-checkout`**     | Whether to enable sparse checkout and the list of files or directories to include in the checkout. | **false**    | -           |
+|                           | See [https://github.com/actions/checkout#usage](https://github.com/actions/checkout#usage)                                                    |              |             |
+| **`ref`**                 | The branch, tag or SHA to checkout. For pull requests, the ref is set to the merge ref of the PR.  | **false**    | -           |
 |                           | See [https://github.com/actions/checkout#usage](https://github.com/actions/checkout#usage)                                                    |              |             |
 | **`persist-credentials`** | Whether to persist the token credentials in the Git config.                                        | **false**    | `false`     |
 |                           | Default to false for security reasons.                                                             |              |             |
