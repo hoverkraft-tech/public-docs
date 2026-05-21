@@ -3,8 +3,8 @@ title: Working Directory
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/working-directory/README.md
 source_branch: main
-source_run_id: 26133123435
-last_synced: 2026-05-20T00:15:50.379Z
+source_run_id: 26229636631
+last_synced: 2026-05-21T13:45:03.059Z
 ---
 
 <!-- header:start -->
