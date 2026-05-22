@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/prepare-release.md
 source_branch: main
-source_run_id: 26218238609
-last_synced: 2026-05-21T09:45:30.354Z
+source_run_id: 26270840287
+last_synced: 2026-05-22T05:52:38.524Z
 ---
 
 <!-- header:start -->
@@ -59,7 +59,7 @@ on:
 permissions: {}
 jobs:
   prepare-release:
-    uses: hoverkraft-tech/ci-github-publish/.github/workflows/prepare-release.yml@6a2562a3f4409f39c7fab100636a90430ee0a8cf # 0.24.0
+    uses: hoverkraft-tech/ci-github-publish/.github/workflows/prepare-release.yml@b27c38015a8265780329d229c841d057a18b8fae # 0.25.0
     permissions:
       contents: read
       pull-requests: write
@@ -90,13 +90,13 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**               | **Description**                                                                                                                                       | **Required** | **Type**   | **Default**         |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ---------- | ------------------- |
-| **`runs-on`**           | JSON array of runner(s) to use.                                                                                                                       | **false**    | **string** | `["ubuntu-latest"]` |
-|                         | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).                                                                    |              |            |                     |
-| **`working-directory`** | Working directory used to scope release preparation in a monorepo.                                                                                    | **false**    | **string** | -                   |
-|                         | If specified, the workflow looks for `.github/release-configs/{slug}.yml`, where `slug` is derived from the working directory basename.               |              |            |                     |
-|                         | If that file does not exist, a temporary release configuration is generated with `include-paths` for the working directory and current workflow file. |              |            |                     |
+| **Input**               | **Description**                                                                                                                                                 | **Required** | **Type**   | **Default**         |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ---------- | ------------------- |
+| **`runs-on`**           | JSON array of runner(s) to use.                                                                                                                                 | **false**    | **string** | `["ubuntu-latest"]` |
+|                         | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job). |              |            |                     |
+| **`working-directory`** | Working directory used to scope release preparation in a monorepo.                                                                                              | **false**    | **string** | -                   |
+|                         | If specified, the workflow looks for `.github/release-configs/{slug}.yml`, where `slug` is derived from the working directory basename.                         |              |            |                     |
+|                         | If that file does not exist, a temporary release configuration is generated with `include-paths` for the working directory and current workflow file.           |              |            |                     |
 
 <!-- inputs:end -->
 
@@ -135,7 +135,7 @@ permissions: {}
 
 jobs:
   prepare-release:
-    uses: hoverkraft-tech/ci-github-publish/.github/workflows/prepare-release.yml@6a2562a3f4409f39c7fab100636a90430ee0a8cf # 0.24.0
+    uses: hoverkraft-tech/ci-github-publish/.github/workflows/prepare-release.yml@b27c38015a8265780329d229c841d057a18b8fae # 0.25.0
     permissions:
       contents: read
       pull-requests: write

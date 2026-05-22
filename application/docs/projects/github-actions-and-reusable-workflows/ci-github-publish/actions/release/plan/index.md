@@ -3,8 +3,8 @@ title: Plan
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/release/plan/README.md
 source_branch: main
-source_run_id: 26218238609
-last_synced: 2026-05-21T09:45:30.354Z
+source_run_id: 26270840287
+last_synced: 2026-05-22T05:52:38.524Z
 ---
 
 <!-- header:start -->
@@ -42,7 +42,7 @@ Plan a release identity without creating a Git tag or GitHub release.
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/release/plan@6a2562a3f4409f39c7fab100636a90430ee0a8cf # 0.24.0
+- uses: hoverkraft-tech/ci-github-publish/actions/release/plan@b27c38015a8265780329d229c841d057a18b8fae # 0.25.0
   with:
     # Branch, tag, or commit SHA to release. Defaults to the workflow SHA.
     source-ref: ""
