@@ -3,8 +3,8 @@ title: Clean Images
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/docker/clean-images/README.md
 source_branch: main
-source_run_id: 26243491870
-last_synced: 2026-05-21T17:59:29.961Z
+source_run_id: 26270997040
+last_synced: 2026-05-22T05:58:59.309Z
 ---
 
 <!-- header:start -->
@@ -54,7 +54,7 @@ permissions:
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-container/actions/docker/clean-images@695db98d9afaa0ebd2ef427808c0c929ac347885 # 0.34.0
+- uses: hoverkraft-tech/ci-github-container/actions/docker/clean-images@260358ba1fd405c57bc669823d89c625971a3431 # 0.34.2
   with:
     # Comma-separated list of packages to cleanup.
     # Example: "application-1,application-2"
@@ -118,7 +118,7 @@ jobs:
     permissions:
       packages: write
     steps:
-      - uses: hoverkraft-tech/ci-github-container/actions/docker/clean-images@695db98d9afaa0ebd2ef427808c0c929ac347885 # 0.34.0
+      - uses: hoverkraft-tech/ci-github-container/actions/docker/clean-images@260358ba1fd405c57bc669823d89c625971a3431 # 0.34.2
         with:
           package: my-app
           delete-tags: pr-${{ github.event.pull_request.number }}-*
@@ -140,7 +140,7 @@ jobs:
     permissions:
       packages: write
     steps:
-      - uses: hoverkraft-tech/ci-github-container/actions/docker/clean-images@695db98d9afaa0ebd2ef427808c0c929ac347885 # 0.34.0
+      - uses: hoverkraft-tech/ci-github-container/actions/docker/clean-images@260358ba1fd405c57bc669823d89c625971a3431 # 0.34.2
         with:
           package: my-app
           delete-untagged: true
