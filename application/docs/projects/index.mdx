@@ -10,7 +10,7 @@ import styles from "./projects.module.css";
 
 export const projectSections = [
 
-  {
+{
 
     title: 'GitHub Actions and Reusable Workflows',
 
@@ -256,6 +256,52 @@ export const projectSections = [
 
         icon: '⚡',
 
+        title: 'compose-action',
+
+        titleHref: 'https://github.com/hoverkraft-tech/compose-action',
+
+        meta: 'TypeScript • ⭐ 210 • Updated May 22, 2026',
+
+        description: 'This action runs your docker-compose file and clean up before action finished',
+
+        tags: [
+
+          'continuous-integration',
+
+          'docker-compose',
+
+          'github-actions',
+
+          'open-source'
+
+        ],
+
+        actions: [
+
+          {
+
+            label: 'View on GitHub',
+
+            href: 'https://github.com/hoverkraft-tech/compose-action'
+
+          },
+
+          {
+
+            label: 'Documentation',
+
+            href: 'https://docs.hoverkraft.cloud/docs/projects/github-actions-and-reusable-workflows/compose-action/'
+
+          }
+
+        ]
+
+      },
+
+      {
+
+        icon: '⚡',
+
         title: 'ci-github-common',
 
         titleHref: 'https://github.com/hoverkraft-tech/ci-github-common',
@@ -382,9 +428,9 @@ export const projectSections = [
 
     ]
 
-  },
+},
 
-  {
+{
 
     title: 'CI/CD Tools',
 
@@ -478,9 +524,9 @@ export const projectSections = [
 
     ]
 
-  },
+},
 
-  {
+{
 
     title: 'Infrastructure & DevOps',
 
@@ -576,9 +622,9 @@ export const projectSections = [
 
     ]
 
-  },
+},
 
-  {
+{
 
     title: 'Container & Kubernetes',
 
@@ -1006,9 +1052,9 @@ export const projectSections = [
 
     ]
 
-  },
+},
 
-  {
+{
 
     title: 'Development Tools',
 
@@ -1090,9 +1136,9 @@ export const projectSections = [
 
     ]
 
-  },
+},
 
-  {
+{
 
     title: 'Other',
 
@@ -1358,19 +1404,19 @@ export const projectSections = [
 
     ]
 
-  }
+}
 
 ];
 
 export const statsSummary = {
 
-  activeProjects: 31,
+activeProjects: 31,
 
-  totalStars: 263,
+totalStars: 263,
 
-  programmingLanguages: 12,
+programmingLanguages: 12,
 
-  openSourcePercentage: 100
+openSourcePercentage: 100
 
 };
 
@@ -1386,9 +1432,9 @@ export const quickStats = [
 
 export const projectSnapshot = {
 
-  lastUpdated: '2026-05-22',
+lastUpdated: '2026-05-22',
 
-  technologiesSummary: 'including JavaScript, Makefile, TypeScript, Astro, Go, and more.'
+technologiesSummary: 'including JavaScript, Makefile, TypeScript, Astro, Go, and more.'
 
 };
 
@@ -1402,16 +1448,17 @@ export const projectSectionsWithIds = (() => {
       .replace(/\s+/g, "-")
       .replace(/-+/g, "-");
 
-  const seen = new Map();
+const seen = new Map();
 
-  return projectSections.map((section) => {
-    const baseId = createSlug(section.title);
-    const nextIndex = (seen.get(baseId) ?? 0) + 1;
-    seen.set(baseId, nextIndex);
+return projectSections.map((section) => {
+const baseId = createSlug(section.title);
+const nextIndex = (seen.get(baseId) ?? 0) + 1;
+seen.set(baseId, nextIndex);
 
     const id = nextIndex === 1 ? baseId : `${baseId}-${nextIndex}`;
     return { ...section, id };
-  });
+
+});
 })();
 
 # Projects
@@ -1447,6 +1494,7 @@ export const projectSectionsWithIds = (() => {
         </div>
       </section>
     ))}
+
   </div>
 
   <aside className={styles.toc} aria-label="On this page">

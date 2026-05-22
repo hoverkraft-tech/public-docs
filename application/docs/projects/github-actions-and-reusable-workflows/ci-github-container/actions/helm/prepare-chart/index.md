@@ -60,11 +60,11 @@ for all charts found under a path.
 
 ## Inputs
 
-| **Input**               | **Description**                                                      | **Required** | **Default** |
-| ----------------------- | -------------------------------------------------------------------- | ------------ | ----------- |
-| **`path`**              | Path containing the chart(s) to prepare                              | **true**     | -           |
-| **`helm-repositories`** | List of Helm repositories to add before building chart dependencies. | **false**    | -           |
-|                         | See [https://helm.sh/docs/helm/helm_repo_add/](https://helm.sh/docs/helm/helm_repo_add/).                      |              |             |
+| **Input**               | **Description**                                                                           | **Required** | **Default** |
+| ----------------------- | ----------------------------------------------------------------------------------------- | ------------ | ----------- |
+| **`path`**              | Path containing the chart(s) to prepare                                                   | **true**     | -           |
+| **`helm-repositories`** | List of Helm repositories to add before building chart dependencies.                      | **false**    | -           |
+|                         | See [https://helm.sh/docs/helm/helm_repo_add/](https://helm.sh/docs/helm/helm_repo_add/). |              |             |
 
 <!-- inputs:end -->
 
