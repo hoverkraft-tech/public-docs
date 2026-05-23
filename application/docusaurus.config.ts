@@ -2,25 +2,55 @@ import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
-const escapeCurlyBracesInPreBlocks = (markdown: string): string => {
-  const preBlockRegex = /<pre\b[^>]*>[\s\S]*?<\/pre>/gi;
+const preprocessMarkdownForMdx = (markdown: string): string => {
+  const protectedBlocks: string[] = [];
+  const placeholderPrefix = '@@HOVERKRAFT_PROTECTED_BLOCK_';
+  const protectedBlockRegex = /```[\s\S]*?```|<pre\b[^>]*>[\s\S]*?<\/pre>/gi;
 
-  return markdown.replace(preBlockRegex, (preBlock) => {
+  const protectedMarkdown = markdown.replace(protectedBlockRegex, (block) => {
+    if (!block.toLowerCase().startsWith('<pre')) {
+      const index = protectedBlocks.push(block) - 1;
+      return `${placeholderPrefix}${index}@@`;
+    }
+
+    const preBlock = block;
     const startTagEnd = preBlock.indexOf('>') + 1;
     const endTagStart = preBlock.lastIndexOf('</pre>');
 
     if (startTagEnd === 0 || endTagStart === -1) {
-      return preBlock;
+      const index = protectedBlocks.push(preBlock) - 1;
+      return `${placeholderPrefix}${index}@@`;
     }
 
     const content = preBlock.slice(startTagEnd, endTagStart);
     const escapedContent = content
       .replace(/\{+/g, (match) => match.replace(/\{/g, '&#123;'))
       .replace(/\}+/g, (match) => match.replace(/\}/g, '&#125;'));
+    const escapedPreBlock = preBlock.slice(0, startTagEnd) + escapedContent + preBlock.slice(endTagStart);
+    const index = protectedBlocks.push(escapedPreBlock) - 1;
 
-    return preBlock.slice(0, startTagEnd) + escapedContent + preBlock.slice(endTagStart);
+    return `${placeholderPrefix}${index}@@`;
+  });
+
+  const convertedMarkdown = protectedMarkdown.replace(/<!--([\s\S]*?)-->/g, (_match, commentContent: string) => {
+    return `{/*${commentContent}*/}`;
+  });
+
+  return convertedMarkdown.replace(new RegExp(`${placeholderPrefix}(\\d+)@@`, 'g'), (_match, index: string) => {
+    return protectedBlocks[Number(index)];
   });
 };
+
+const algoliaThemeConfig = process.env.ALGOLIA_APP_ID && process.env.ALGOLIA_API_KEY ? {
+  appId: process.env.ALGOLIA_APP_ID,
+  apiKey: process.env.ALGOLIA_API_KEY,
+  indexName: 'Hoverkraft Documentation Portal',
+  contextualSearch: true,
+  searchParameters: {},
+  searchPagePath: 'search',
+  insights: false,
+  askAi: process.env.ALGOLIA_ASK_AI_ASSISTANT_ID,
+} : undefined;
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -76,7 +106,7 @@ const config: Config = {
   themes: ['@hoverkraft/docusaurus-theme'],
 
   markdown: {
-    preprocessor: ({ fileContent }) => escapeCurlyBracesInPreBlocks(fileContent),
+    preprocessor: ({ fileContent }) => preprocessMarkdownForMdx(fileContent),
     hooks: {
       onBrokenMarkdownLinks: 'throw',
     },
@@ -160,31 +190,8 @@ const config: Config = {
       darkTheme: prismThemes.vsDark,
       additionalLanguages: ['bash', 'json', 'yaml', 'typescript', 'javascript'],
     },
-    ...process.env.ALGOLIA_APP_ID ? {
-      algolia: {
-        // The application ID provided by Algolia
-        appId: process.env.ALGOLIA_APP_ID,
-
-        // Public API key: it is safe to commit it
-        apiKey: process.env.ALGOLIA_API_KEY,
-
-        indexName: 'Hoverkraft Documentation Portal',
-
-        // Optional: see doc section below
-        contextualSearch: true,
-
-        // Optional: Algolia search parameters
-        searchParameters: {},
-
-        // Optional: path for search page that enabled by default (`false` to disable it)
-        searchPagePath: 'search',
-
-        // Optional: whether the insights feature is enabled or not on Docsearch (`false` by default)
-        insights: false,
-
-        // Optional: whether you want to use the new Ask AI feature (undefined by default)
-        askAi: process.env.ALGOLIA_ASK_AI_ASSISTANT_ID,
-      }
+    ...algoliaThemeConfig ? {
+      algolia: algoliaThemeConfig,
     } : {},
   } satisfies Preset.ThemeConfig,
 };

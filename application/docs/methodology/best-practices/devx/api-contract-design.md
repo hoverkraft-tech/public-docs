@@ -397,10 +397,12 @@ npm run graphql-codegen
 
 1. **Announce**: Add deprecation notice to docs (6 months minimum)
 2. **Header**: Return `Deprecation` header with sunset date
+
    ```text
    Deprecation: true
    Sunset: Sat, 31 Dec 2024 23:59:59 GMT
    ```
+
 3. **Monitor**: Track usage of deprecated endpoints
 4. **Migrate**: Provide migration guide and sample code
 5. **Remove**: Disable endpoint after sunset date
