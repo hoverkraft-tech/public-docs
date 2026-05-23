@@ -198,6 +198,7 @@ gh act -W .github/workflows/workflow-file-to-test.yml
    ```
 
 3. **Input Validation**: Always validate inputs early in GitHub Script steps:
+
    ```javascript
    const urlInput = ${{ toJson(inputs.url ) }};
    if (!urlInput) {

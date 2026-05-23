@@ -101,7 +101,7 @@ Provide a `.devcontainer` that mirrors the tooling image (Node 24 + npm). CI wil
 
 ### Makefile (optional)
 
-Expose thin wrappers like `make install`, `make lint`, `make test`, `make build` that call into the devcontainer or Docker Compose stack. CI invokes npm scripts directly inside the `ci` container, so keep the scripts in `application/package.json` up to date.
+Expose thin wrappers like `make setup`, `make lint`, `make test`, `make build` that call into the devcontainer or Docker Compose stack. CI invokes npm scripts directly inside the `ci` container, so keep the scripts in `application/package.json` up to date.
 
 ### GitHub repository assets (adapt equivalents on other platforms)
 
