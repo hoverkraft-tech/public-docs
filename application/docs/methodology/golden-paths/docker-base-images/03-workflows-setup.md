@@ -1,88 +1,94 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
 ---
 
-# Workflows Setup
+# Workflows setup
 
-This page covers setting up the GitHub Actions workflows for your Docker base images repository. You'll configure workflows that use reusable components from [hoverkraft-tech/docker-base-images](https://github.com/hoverkraft-tech/docker-base-images).
+This page wires the repository to the Hoverkraft reusable workflows using the current production-grade wrapper pattern. The important rule is simple: keep your repository workflows thin, pin released SHAs, and centralize shared CI logic in one internal wrapper.
 
-## Workflow Overview
+## Workflow overview
 
 You'll create these workflow files:
 
-| Workflow                    | Purpose                               | Trigger                   |
-| --------------------------- | ------------------------------------- | ------------------------- |
-| `__shared-ci.yml`           | Central CI logic (lint, build images) | Called by other workflows |
-| `pull-request-ci.yml`       | PR validation and preview builds      | Pull requests             |
-| `main-ci.yml`               | Main branch builds and cleanup        | Push to main              |
-| `semantic-pull-request.yml` | PR title validation                   | Pull requests             |
-| `stale.yml`                 | Mark stale issues and PRs             | Scheduled                 |
-| `need-fix-to-issue.yml`     | Convert PRs with need-fix to issues   | Pull requests             |
+| Workflow                    | Purpose                                                 | Trigger                                  |
+| --------------------------- | ------------------------------------------------------- | ---------------------------------------- |
+| `__shared-ci.yml`           | Internal repository contract for CI                     | `workflow_call`                          |
+| `pull-request-ci.yml`       | PR validation and preview image builds                  | `pull_request`                           |
+| `main-ci.yml`               | Main branch CI and PR tag cleanup                       | `push` on `main`                         |
+| `semantic-pull-request.yml` | Conventional commit title validation                    | `pull_request_target`                    |
+| `stale.yml`                 | Housekeeping for inactive issues and pull requests      | `schedule`                               |
+| `need-fix-to-issue.yml`     | Turn follow-up work into issues                         | `push` on `main` and `workflow_dispatch` |
+| `greetings.yml`             | Standard greeting messages for issues and pull requests | `issues` and `pull_request_target`       |
 
-## Step 1: Create the Shared CI Workflow
+`prepare-release.yml` and `release.yml` are covered on the next page because they deserve separate operational guidance.
 
-This workflow centralizes the build logic and is called by both PR and main workflows.
+## Step 1: Create the shared CI workflow
+
+This is the only internal workflow you need for CI. It pins the reusable `continuous-integration.yml` workflow and injects repository-specific configuration.
 
 Create `.github/workflows/__shared-ci.yml`:
 
 ```yaml
-name: Shared CI
+name: Shared - Continuous Integration for common tasks
 
 on:
   workflow_call:
+    outputs:
+      built-images:
+        description: "The name of built images"
+        value: ${{ jobs.continuous-integration.outputs.built-images }}
+    secrets:
+      oci-registry-password:
+        description: "Password or GitHub token (packages:read and packages:write scopes) used to log against the OCI registry."
+        required: true
 
 permissions: {}
 
 jobs:
-  build:
-    uses: hoverkraft-tech/docker-base-images/.github/workflows/docker-build-images.yml@<version-sha> # x.y.z
+  continuous-integration:
+    uses: hoverkraft-tech/docker-base-images/.github/workflows/continuous-integration.yml@<docker-base-images-sha> # x.y.z
     permissions:
+      actions: read
       contents: read
       id-token: write
+      issues: write
       packages: write
-```
-
-### Configuration Options
-
-The `docker-build-images.yml` workflow accepts these inputs:
-
-```yaml
-jobs:
-  build:
-    uses: hoverkraft-tech/docker-base-images/.github/workflows/docker-build-images.yml@<version-sha> # x.y.z
-    permissions:
-      contents: read
-      id-token: write
-      packages: write
+      pull-requests: write
+      security-events: write
+      statuses: write
     with:
-      # Custom runners (optional)
-      runs-on: '["ubuntu-latest"]'
-
-      # OCI registry (default: ghcr.io)
-      oci-registry: ghcr.io
-
-      # Platforms to build for
-      platforms: '["linux/amd64","linux/arm64"]'
-
-      # Specific images to build (optional - builds all if not specified)
-      # images: '["my-image-1", "my-image-2"]'
+      oci-registry-username: ${{ github.repository_owner }}
+      oci-registry: ${{ vars.OCI_REGISTRY }}
+      platforms: '["linux/amd64"]'
+    secrets:
+      oci-registry-password: ${{ secrets.oci-registry-password }}
 ```
 
-## Step 2: Create the Pull Request CI Workflow
+### Why this is the right anchor
 
-This workflow runs on every pull request to validate changes and build preview images.
+- It is the only place where you pin the Hoverkraft CI workflow SHA
+- It keeps registry setup out of every public workflow
+- It exposes `built-images` if you later want repository-specific follow-up jobs
+
+### Recommended inputs
+
+- `oci-registry`: set from `vars.OCI_REGISTRY` even when the value is `ghcr.io`
+- `platforms`: start with one platform unless you already need multi-architecture builds
+- `test-image-tag`: keep the default `latest`, or pin the shared `testcontainers-node` runner tag if you need repeatable historical runs
+- `oci-registry-password`: pass `GITHUB_TOKEN` for same-owner GHCR, or a dedicated registry credential when the built-in token is not enough
+
+## Step 2: Create the pull request CI workflow
+
+This workflow is a thin public entrypoint that delegates everything to `__shared-ci.yml`.
 
 Create `.github/workflows/pull-request-ci.yml`:
 
 ```yaml
-name: Pull request CI
+name: Pull request - Continuous Integration
 
 on:
   pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
+    branches: [main]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -91,38 +97,42 @@ concurrency:
 permissions: {}
 
 jobs:
-  call-shared-ci:
+  ci:
+    name: Continuous Integration
     uses: ./.github/workflows/__shared-ci.yml
     permissions:
+      actions: read
       contents: read
       id-token: write
+      issues: write
       packages: write
+      pull-requests: write
+      security-events: write
+      statuses: write
+    secrets:
+      oci-registry-password: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-### What This Does
+On pull requests, the reusable CI workflow will:
 
-When a PR is opened or updated:
+- Lint the repository
+- Build the images affected by the current diff
+- Push preview tags to the configured registry
+- Run `.test.js` suites for built images when present
+- Publish test reports and build summaries back to the pull request when supported
 
-1. Discovers all images in the `images/` directory
-2. Builds each image for all configured platforms
-3. Tags images with:
-   - `pr-<number>` (e.g., `pr-42`)
-   - `pr-<number>-<sha>` (e.g., `pr-42-abc1234`)
-4. Pushes images to the registry
+## Step 3: Create the main CI workflow
 
-## Step 3: Create the Main CI Workflow
-
-This workflow runs when changes are merged to main. It rebuilds images and cleans up PR tags.
+`main-ci.yml` reuses the same shared workflow, then prunes preview tags created for merged pull requests.
 
 Create `.github/workflows/main-ci.yml`:
 
 ```yaml
-name: Main CI
+name: Main - Continuous Integration
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -131,42 +141,43 @@ concurrency:
 permissions: {}
 
 jobs:
-  call-shared-ci:
+  # jscpd:ignore-start
+  ci:
+    name: Continuous Integration
     uses: ./.github/workflows/__shared-ci.yml
     permissions:
+      actions: read
       contents: read
       id-token: write
+      issues: write
       packages: write
+      pull-requests: write
+      security-events: write
+      statuses: write
+    secrets:
+      oci-registry-password: ${{ secrets.GITHUB_TOKEN }}
+  # jscpd:ignore-end
 
-  prune-pr-images:
-    needs: call-shared-ci
-    uses: hoverkraft-tech/docker-base-images/.github/workflows/prune-pull-requests-images-tags.yml@<version-sha> # x.y.z
+  clean:
     permissions:
       contents: read
-      id-token: write
       packages: write
       pull-requests: read
+    needs: ci
+    uses: hoverkraft-tech/docker-base-images/.github/workflows/prune-pull-requests-images-tags.yml@<docker-base-images-sha> # x.y.z
 ```
 
-### Main Branch Workflow
+## Step 4: Create the semantic PR workflow
 
-When code is pushed to main:
-
-1. Rebuilds all affected images
-2. Tags images with the commit SHA
-3. Cleans up image tags from merged PRs
-
-## Step 4: Create the Semantic PR Workflow
-
-This workflow ensures PR titles follow conventional commit format for proper release notes.
+Use the `pull_request_target` trigger and the current `ci-github-common` workflow contract. This matches the production repository and gives the workflow enough permission to update the pull request when needed.
 
 Create `.github/workflows/semantic-pull-request.yml`:
 
 ```yaml
-name: Semantic pull request
+name: Pull Request - Semantic Lint
 
 on:
-  pull_request:
+  pull_request_target:
     types:
       - opened
       - edited
@@ -175,13 +186,14 @@ on:
 permissions: {}
 
 jobs:
-  semantic-pull-request:
-    uses: hoverkraft-tech/ci-github-common/.github/workflows/semantic-pull-request.yml@<version-sha> # x.y.z
+  main:
+    uses: hoverkraft-tech/ci-github-common/.github/workflows/semantic-pull-request.yml@<ci-github-common-sha> # x.y.z
     permissions:
-      pull-requests: read
+      contents: write
+      pull-requests: write
 ```
 
-### Valid PR Title Prefixes
+### Valid PR title prefixes
 
 PR titles must start with one of these prefixes:
 
@@ -192,128 +204,135 @@ PR titles must start with one of these prefixes:
 - `refactor:` - Code refactoring
 - `perf:` - Performance improvements
 - `test:` - Test changes
-- `build:` - build tool changes
+- `build:` - Build tool changes
 - `ci:` - CI configuration changes
 - `chore:` - Maintenance tasks
 - `revert:` - Reverts
 
 Example: `feat: add nodejs-22 base image`
 
-## Step 5: Create the Stale Workflow
+## Step 5: Add repository hygiene workflows
 
-This workflow automatically marks inactive issues and pull requests as stale.
+These workflows are not required to build images, but they are part of the production implementation and keep repository operations tidy.
 
-Create `.github/workflows/stale.yml`:
+### `stale.yml`
 
 ```yaml
-name: Stale
+---
+name: Mark stale issues and pull requests
 
-on:
+on: # yamllint disable-line rule:truthy
   schedule:
-    - cron: "0 0 * * *" # Daily at midnight
-  workflow_dispatch:
+    - cron: "30 1 * * *"
 
 permissions: {}
 
 jobs:
-  stale:
-    uses: hoverkraft-tech/ci-github-common/.github/workflows/stale.yml@<version-sha> # x.y.z
+  main:
+    uses: hoverkraft-tech/ci-github-common/.github/workflows/stale.yml@<ci-github-common-sha> # x.y.z
     permissions:
       issues: write
       pull-requests: write
 ```
 
-### Configuration
+### `need-fix-to-issue.yml`
 
-The stale workflow automatically:
-
-- Marks issues/PRs as stale after a period of inactivity
-- Closes stale items after an additional grace period
-- Can be customized with labels and time periods
-
-## Step 6: Create the Need-Fix-to-Issue Workflow
-
-This workflow converts pull requests marked with a "need-fix" label into issues for tracking.
-
-Create `.github/workflows/need-fix-to-issue.yml`:
+The current production pattern no longer triggers this from a label event. It runs on `main` or by manual dispatch so the diff can be analyzed after merge.
 
 ```yaml
-name: Need fix to issue
+---
+name: Need fix to Issue
+
+on: # yamllint disable-line rule:truthy
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    # checkov:skip=CKV_GHA_7: required
+    inputs:
+      manual-commit-ref:
+        description: "The SHA of the commit to get the diff for"
+        required: true
+      manual-base-ref:
+        description: |
+          By default, the commit entered above is compared to the one directly before it;
+          to go back further, enter an earlier SHA here
+        required: false
+
+permissions: {}
+
+jobs:
+  main:
+    uses: hoverkraft-tech/ci-github-common/.github/workflows/need-fix-to-issue.yml@<ci-github-common-sha> # x.y.z
+    permissions:
+      contents: read
+      issues: write
+    with:
+      manual-commit-ref: ${{ inputs.manual-commit-ref }}
+      manual-base-ref: ${{ inputs.manual-base-ref }}
+```
+
+### `greetings.yml`
+
+```yaml
+name: Greetings
 
 on:
-  pull_request:
-    types:
-      - labeled
+  issues:
+    types: [opened]
+  pull_request_target:
+    branches: [main]
 
 permissions: {}
 
 jobs:
-  need-fix-to-issue:
-    if: github.event.label.name == 'need-fix'
-    uses: hoverkraft-tech/ci-github-common/.github/workflows/need-fix-to-issue.yml@<version-sha> # x.y.z
+  greetings:
+    uses: hoverkraft-tech/ci-github-common/.github/workflows/greetings.yml@<ci-github-common-sha> # x.y.z
     permissions:
+      contents: read
       issues: write
       pull-requests: write
-      contents: read
 ```
 
-### How It Works
+## Pin Workflow Versions
 
-When a PR is labeled with `need-fix`:
-
-1. Creates an issue with the PR details
-2. Links the issue to the original PR
-3. Helps track work that needs attention
-
-## Step 7: Pin Workflow Versions
-
-For production use, pin workflow versions to specific commits:
+Every external workflow must be pinned to a released commit SHA:
 
 ```yaml
-uses: hoverkraft-tech/docker-base-images/.github/workflows/docker-build-images.yml@<version-sha> # x.y.z
+uses: hoverkraft-tech/docker-base-images/.github/workflows/continuous-integration.yml@<docker-base-images-sha> # x.y.z
+uses: hoverkraft-tech/ci-github-common/.github/workflows/semantic-pull-request.yml@<ci-github-common-sha> # x.y.z
 ```
 
-To find the latest release SHA:
+Do not leave `@main` in documentation examples or production workflows.
 
-1. Go to actions / workflows releases:
+## Workflow Summary
 
-- [hoverkraft-tech/docker-base-images](https://github.com/hoverkraft-tech/docker-base-images/releases)
-- [hoverkraft-tech/ci-github-common](https://github.com/hoverkraft-tech/ci-github-common/releases)
-
-2. Find the commit SHA for the version you want
-3. Replace `@<version-sha> # x.y.z`
-
-## Complete Workflow Files
-
-Here's a summary of what you should have:
+Your `.github/workflows/` directory should now look like this:
 
 ```txt
 .github/
 └── workflows/
-    ├── __shared-ci.yml           # Central build logic
-    ├── pull-request-ci.yml       # PR builds
-    ├── main-ci.yml               # Main branch builds + cleanup
-    ├── semantic-pull-request.yml # PR title validation
-    ├── stale.yml                 # Mark stale issues and PRs
-    └── need-fix-to-issue.yml     # Convert PRs with need-fix to issues
+    ├── __shared-ci.yml
+    ├── greetings.yml
+    ├── main-ci.yml
+    ├── need-fix-to-issue.yml
+    ├── prepare-release.yml
+    ├── pull-request-ci.yml
+    ├── release.yml
+    ├── semantic-pull-request.yml
+    └── stale.yml
 ```
 
-## Testing Your Setup
+The release workflows are created on the next page, but they should be present before the repository is considered production-ready.
 
-1. **Create a test PR**:
+## Verification
 
-   ```bash
-   git checkout -b feat/test-ci
-   # Make a small change to a Dockerfile
-   git commit -m "test: verify CI workflow"
-   git push origin feat/test-ci
-   ```
+Create a small pull request that changes one Dockerfile or image readme, then verify:
 
-2. **Open a PR** with a semantic title like `feat: test CI workflow`
-
-3. **Check the Actions tab** to see the workflows running
-
-4. **Verify image was pushed** in the Packages section of your repository
+- `pull-request-ci.yml` runs and pushes preview tags
+- `semantic-pull-request.yml` validates the PR title
+- `main-ci.yml` runs after merge
+- The cleanup job removes stale pull-request preview tags
 
 ## Troubleshooting
 
@@ -321,23 +340,28 @@ Here's a summary of what you should have:
 
 - Check that Actions are enabled in repository settings
 - Verify workflow file syntax with a YAML linter
-- Ensure file is in `.github/workflows/` directory
+- Ensure files are in `.github/workflows/`
 
 ### Permission Denied
 
-- Verify "Read and write permissions" is enabled in Settings → Actions → General
-- Check that the workflow has the correct `permissions` block
+- Verify `Read and write permissions` is enabled in `Settings -> Actions -> General`
+- Check the `permissions` block in both your wrapper and the reusable workflow call
 
 ### Images Not Found
 
-- Ensure `images/` directory exists
+- Ensure `images/` exists
 - Verify each image has a `Dockerfile`
 - Check that directory names don't contain invalid characters
 
+### Preview Images Cannot Be Pushed
+
+- Verify `vars.OCI_REGISTRY` points to the intended registry host
+- Verify the job has `packages: write` and that `GITHUB_TOKEN` can publish to your target registry
+- If that still fails, switch `oci-registry-password` to a dedicated registry credential
+- Check the `packages: write` and `id-token: write` permissions in both the wrapper and reusable workflow call
+
 ## Ready?
 
-👉 **Next: [Release and Publishing →](./04-release-publishing.md)**
+Continue with **[Release and Publishing](./04-release-publishing.md)**.
 
----
-
-💡 **Tip**: Test with a simple Dockerfile first. Once CI is working, add more complex images.
+Keep the repository workflows boring. If you need custom logic, add it around the shared wrapper instead of forking the reusable workflows immediately.
