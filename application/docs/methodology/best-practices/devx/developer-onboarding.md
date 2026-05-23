@@ -180,6 +180,7 @@ Provide a guided first contribution that touches all parts of the stack:
    ```
 
 4. **Deploy** (5 min):
+
    ```bash
    git checkout -b feature/health-endpoint
    git add .

@@ -49,7 +49,8 @@ linter-fix: ## Execute linting and fix
 		-e FIX_YAML_PRETTIER=true \
 		-e FIX_MARKDOWN=true \
 		-e FIX_MARKDOWN_PRETTIER=true \
-		-e FIX_NATURAL_LANGUAGE=true)
+		-e FIX_NATURAL_LANGUAGE=true \
+	)
 
 define run_linter
 	DEFAULT_WORKSPACE="$(CURDIR)"; \
@@ -58,10 +59,10 @@ define run_linter
 	docker build --build-arg UID=$(shell id -u) --build-arg GID=$(shell id -g) --tag $$LINTER_IMAGE .; \
 	docker run \
 		-e DEFAULT_WORKSPACE="$$DEFAULT_WORKSPACE" \
+		-e TYPESCRIPT_ES_CONFIG_FILE=../../application/eslint.config.js \
 		-e FILTER_REGEX_INCLUDE="$(filter-out $@,$(MAKECMDGOALS))" \
 		-e IGNORE_GITIGNORED_FILES=true \
 		-e VALIDATE_TYPESCRIPT_PRETTIER=false \
-		-e VALIDATE_TYPESCRIPT_ES=false \
 		-e VALIDATE_CSS=false \
 		$(1) \
 		-v $$VOLUME \
