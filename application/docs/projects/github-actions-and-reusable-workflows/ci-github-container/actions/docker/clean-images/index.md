@@ -3,8 +3,8 @@ title: Clean Images
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/docker/clean-images/README.md
 source_branch: main
-source_run_id: 26270997040
-last_synced: 2026-05-22T05:58:59.309Z
+source_run_id: 26392537269
+last_synced: 2026-05-25T09:08:14.895Z
 ---
 
 <!-- header:start -->
@@ -81,13 +81,13 @@ permissions:
 
 ## Inputs
 
-| **Input**          | **Description**                                                                                                                                                                                                                                                                                                 | **Required** | **Default**           |
-| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------------- |
-| **`package`**      | Comma-separated list of packages to cleanup.                                                                                                                                                                                                                                                                    | **true**     | -                     |
-|                    | Example: "application-1,application-2"                                                                                                                                                                                                                                                                          |              |                       |
-| **`tags`**         | Comma-separated list of tags to delete (supports wildcard syntax).                                                                                                                                                                                                                                              | **true**     | -                     |
-|                    | Example: `pr-*,dev`                                                                                                                                                                                                                                                                                             |              |                       |
-| **`github-token`** | GitHub token with the packages:write and packages:delete scopes.                                                                                                                                                                                                                                                | **false**    | `${{ github.token }}` |
+| **Input**          | **Description**                                                                                                                                            | **Required** | **Default**           |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------------- |
+| **`package`**      | Comma-separated list of packages to cleanup.                                                                                                               | **true**     | -                     |
+|                    | Example: "application-1,application-2"                                                                                                                     |              |                       |
+| **`tags`**         | Comma-separated list of tags to delete (supports wildcard syntax).                                                                                         | **true**     | -                     |
+|                    | Example: `pr-*,dev`                                                                                                                                        |              |                       |
+| **`github-token`** | GitHub token with the packages:write and packages:delete scopes.                                                                                           | **false**    | `${{ github.token }}` |
 |                    | See [https://docs.github.com/en/packages/learn-github-packages/about-permissions-for-github-packages#about-scopes-and-permissions-for-package-registries](https://docs.github.com/en/packages/learn-github-packages/about-permissions-for-github-packages#about-scopes-and-permissions-for-package-registries). |              |                       |
 
 <!-- inputs:end -->

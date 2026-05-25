@@ -3,8 +3,8 @@ title: Setup
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/docker/setup/README.md
 source_branch: main
-source_run_id: 26270997040
-last_synced: 2026-05-22T05:58:59.309Z
+source_run_id: 26392537269
+last_synced: 2026-05-25T09:08:14.895Z
 ---
 
 <!-- header:start -->
@@ -39,7 +39,7 @@ Shared action to configure Docker tooling and OCI registry authentication.
 ## Usage
 
 ````yaml
-- uses: hoverkraft-tech/ci-github-container/actions/docker/setup@2b647ed6f11d50cb6beb6d56333e68ba2c804826 # 0.33.1
+- uses: hoverkraft-tech/ci-github-container/actions/docker/setup@260358ba1fd405c57bc669823d89c625971a3431 # 0.34.2
   with:
     # OCI registry configuration used to pull, push and cache images.
     # Accepts either a registry hostname string (default format) or a JSON object.
@@ -97,7 +97,7 @@ Shared action to configure Docker tooling and OCI registry authentication.
 | **`oci-registry-password`**   | Password or personal access token configuration used to log against OCI registries.                                                              | **false**    | -           |
 |                               | Accepts either a single password/token string (default format) or a JSON object using the same keys as `oci-registry`.                           |              |             |
 | **`buildkitd-config-inline`** | Inline BuildKit daemon configuration.                                                                                                            | **false**    | -           |
-|                               | See [https://github.com/docker/setup-buildx-action#inputs](https://github.com/docker/setup-buildx-action#inputs).                                |              |             |
+|                               | See [https://github.com/docker/setup-buildx-action#inputs](https://github.com/docker/setup-buildx-action#inputs).                                                                                      |              |             |
 |                               | Example for insecure registry:                                                                                                                   |              |             |
 |                               | <!-- textlint-disable --><pre lang="ini">[registry."my-registry.local:5000"]&#13; http = true&#13; insecure = true</pre><!-- textlint-enable --> |              |             |
 | **`built-images`**            | Optional built images payload used to resolve manifest publication registries.                                                                   | **false**    | -           |
