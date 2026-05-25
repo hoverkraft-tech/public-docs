@@ -3,8 +3,8 @@ title: Generate Docs
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/helm/generate-docs/README.md
 source_branch: main
-source_run_id: 26270997040
-last_synced: 2026-05-22T05:58:59.309Z
+source_run_id: 26392537269
+last_synced: 2026-05-25T09:08:14.895Z
 ---
 
 <!-- header:start -->
@@ -84,22 +84,22 @@ Mainly using [losisin/helm-docs-github-action](https://github.com/losisin/helm-d
 
 ## Inputs
 
-| **Input**                  | **Description**                                                                                                             | **Required** | **Default**               |
-| -------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------------ | ------------------------- |
-| **`working-directory`**    | Working directory                                                                                                           | **false**    | `${{ github.workspace }}` |
-| **`checkout-ref`**         | The Git ref to checkout before generating documentation.                                                                    | **false**    | `${{ github.ref }}`       |
-|                            | Can be a branch, tag or commit SHA.                                                                                         |              |                           |
-|                            | Set to an empty string to skip checkout.                                                                                    |              |                           |
-| **`values-file`**          | Path to the values file to use for generating the documentation.                                                            | **false**    | -                         |
-|                            | See [https://github.com/losisin/helm-values-schema-json-action](https://github.com/losisin/helm-values-schema-json-action). |              |                           |
-| **`github-token`**         | GitHub Token to create and merge pull request.                                                                              | **false**    | `${{ github.token }}`     |
-|                            | Permissions:                                                                                                                |              |                           |
-|                            | - contents: write                                                                                                           |              |                           |
-|                            | - pull-requests: write                                                                                                      |              |                           |
-| **`github-app-client-id`** | GitHub App client ID to generate GitHub token in place of github-token.                                                     | **false**    | -                         |
-|                            | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).               |              |                           |
-| **`github-app-key`**       | GitHub App private key to generate GitHub token in place of github-token.                                                   | **false**    | -                         |
-|                            | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).               |              |                           |
+| **Input**                  | **Description**                                                           | **Required** | **Default**               |
+| -------------------------- | ------------------------------------------------------------------------- | ------------ | ------------------------- |
+| **`working-directory`**    | Working directory                                                         | **false**    | `${{ github.workspace }}` |
+| **`checkout-ref`**         | The Git ref to checkout before generating documentation.                  | **false**    | `${{ github.ref }}`       |
+|                            | Can be a branch, tag or commit SHA.                                       |              |                           |
+|                            | Set to an empty string to skip checkout.                                  |              |                           |
+| **`values-file`**          | Path to the values file to use for generating the documentation.          | **false**    | -                         |
+|                            | See [https://github.com/losisin/helm-values-schema-json-action](https://github.com/losisin/helm-values-schema-json-action).          |              |                           |
+| **`github-token`**         | GitHub Token to create and merge pull request.                            | **false**    | `${{ github.token }}`     |
+|                            | Permissions:                                                              |              |                           |
+|                            | - contents: write                                                         |              |                           |
+|                            | - pull-requests: write                                                    |              |                           |
+| **`github-app-client-id`** | GitHub App client ID to generate GitHub token in place of github-token.   | **false**    | -                         |
+|                            | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                 |              |                           |
+| **`github-app-key`**       | GitHub App private key to generate GitHub token in place of github-token. | **false**    | -                         |
+|                            | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                 |              |                           |
 
 <!-- inputs:end -->
 
