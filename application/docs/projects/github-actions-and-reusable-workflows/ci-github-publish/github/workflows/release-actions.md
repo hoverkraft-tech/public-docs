@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/release-actions.md
 source_branch: main
-source_run_id: 26419920223
-last_synced: 2026-05-25T21:14:43.262Z
+source_run_id: 26420902323
+last_synced: 2026-05-25T21:46:26.329Z
 ---
 
 <!-- header:start -->
@@ -24,6 +24,7 @@ last_synced: 2026-05-25T21:14:43.262Z
 [![License](https://img.shields.io/github/license/hoverkraft-tech/ci-github-publish)](http://choosealicense.com/licenses/mit/)
 [![Stars](https://img.shields.io/github/stars/hoverkraft-tech/ci-github-publish?style=social)](https://img.shields.io/github/stars/hoverkraft-tech/ci-github-publish?style=social)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/hoverkraft-tech/ci-github-publish/blob/main/CONTRIBUTING.md)
+[![codecov](https://codecov.io/gh/hoverkraft-tech/compose-action/graph/badge.svg?token=90JXB7EIMA)](https://codecov.io/gh/hoverkraft-tech/compose-action)
 
 <!-- badges:end -->
 
@@ -89,6 +90,10 @@ jobs:
       # List of extra documentation files to update (if any).
       documentation-files: ""
 
+      # JSON array of extra badges to include in generated documentation.
+      # Each badge should have `label`, `url`, and optional `linkUrl` properties.
+      extra-badges: ""
+
       # GitHub App Client ID to generate GitHub token in place of github-token.
       # See https://github.com/actions/create-github-app-token.
       github-app-client-id: ""
@@ -108,6 +113,8 @@ jobs:
 |                            | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job). |              |             |                     |
 | **`update-all`**           | Update all actions and workflows, regardless of changes.                           | **false**    | **boolean** | `false`             |
 | **`documentation-files`**  | List of extra documentation files to update (if any).                              | **false**    | **string**  | -                   |
+| **`extra-badges`**         | JSON array of extra badges to include in generated documentation.                  | **false**    | **string**  | -                   |
+|                            | Each badge should have `label`, `url`, and optional `linkUrl` properties.          |              |             |                     |
 | **`github-app-client-id`** | GitHub App Client ID to generate GitHub token in place of github-token.            | **false**    | **string**  | -                   |
 |                            | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                          |              |             |                     |
 
