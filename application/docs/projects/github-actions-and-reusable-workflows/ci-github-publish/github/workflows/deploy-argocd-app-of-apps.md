@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/deploy-argocd-app-of-apps.md
 source_branch: main
-source_run_id: 26433304980
-last_synced: 2026-05-26T05:06:23.297Z
+source_run_id: 26446484989
+last_synced: 2026-05-26T10:23:56.938Z
 ---
 
 <!-- header:start -->
@@ -24,6 +24,7 @@ last_synced: 2026-05-26T05:06:23.297Z
 [![License](https://img.shields.io/github/license/hoverkraft-tech/ci-github-publish)](http://choosealicense.com/licenses/mit/)
 [![Stars](https://img.shields.io/github/stars/hoverkraft-tech/ci-github-publish?style=social)](https://img.shields.io/github/stars/hoverkraft-tech/ci-github-publish?style=social)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/hoverkraft-tech/ci-github-publish/blob/main/CONTRIBUTING.md)
+[![codecov](https://codecov.io/gh/hoverkraft-tech/compose-action/graph/badge.svg?token=90JXB7EIMA)](https://codecov.io/gh/hoverkraft-tech/compose-action)
 
 <!-- badges:end -->
 
