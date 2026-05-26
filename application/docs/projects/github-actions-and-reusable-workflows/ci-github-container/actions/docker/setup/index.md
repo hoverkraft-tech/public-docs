@@ -3,8 +3,8 @@ title: Setup
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/docker/setup/README.md
 source_branch: main
-source_run_id: 26392537269
-last_synced: 2026-05-25T09:08:14.895Z
+source_run_id: 26444532869
+last_synced: 2026-05-26T09:44:21.698Z
 ---
 
 <!-- header:start -->
@@ -39,7 +39,7 @@ Shared action to configure Docker tooling and OCI registry authentication.
 ## Usage
 
 ````yaml
-- uses: hoverkraft-tech/ci-github-container/actions/docker/setup@260358ba1fd405c57bc669823d89c625971a3431 # 0.34.2
+- uses: hoverkraft-tech/ci-github-container/actions/docker/setup@8e63086f032651bcd1d44c8f4fcd61b902ebb99f # 0.35.0
   with:
     # OCI registry configuration used to pull, push and cache images.
     # Accepts either a registry hostname string (default format) or a JSON object.
