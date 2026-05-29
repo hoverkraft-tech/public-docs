@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-container
 source_path: .github/workflows/prune-pull-requests-images-tags.md
 source_branch: main
-source_run_id: 26454323116
-last_synced: 2026-05-26T14:32:55.712Z
+source_run_id: 26645836510
+last_synced: 2026-05-29T15:28:46.326Z
 ---
 
 <!-- header:start -->
