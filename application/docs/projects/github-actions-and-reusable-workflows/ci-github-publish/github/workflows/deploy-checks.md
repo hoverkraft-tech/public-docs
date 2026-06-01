@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/deploy-checks.md
 source_branch: main
-source_run_id: 26453428028
-last_synced: 2026-05-26T14:15:33.262Z
+source_run_id: 26761325826
+last_synced: 2026-06-01T14:35:35.246Z
 ---
 
 <!-- header:start -->
