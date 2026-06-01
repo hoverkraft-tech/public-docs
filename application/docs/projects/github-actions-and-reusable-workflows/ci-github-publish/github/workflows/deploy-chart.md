@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/deploy-chart.md
 source_branch: main
-source_run_id: 26761325826
-last_synced: 2026-06-01T14:35:35.246Z
+source_run_id: 26762672045
+last_synced: 2026-06-01T14:58:08.699Z
 ---
 
 <!-- header:start -->
@@ -95,7 +95,7 @@ on:
 permissions: {}
 jobs:
   deploy-chart:
-    uses: hoverkraft-tech/ci-github-publish/.github/workflows/deploy-chart.yml@b27c38015a8265780329d229c841d057a18b8fae # 0.25.0
+    uses: hoverkraft-tech/ci-github-publish/.github/workflows/deploy-chart.yml@ba941863a698984b6596e760f4e7727beea81167 # 0.26.0
     permissions:
       actions: read
       contents: read
@@ -315,7 +315,7 @@ permissions:
 jobs:
   deploy:
     name: Deploy
-    uses: hoverkraft-tech/ci-github-publish/.github/workflows/deploy-chart.yml@b27c38015a8265780329d229c841d057a18b8fae # 0.25.0
+    uses: hoverkraft-tech/ci-github-publish/.github/workflows/deploy-chart.yml@ba941863a698984b6596e760f4e7727beea81167 # 0.26.0
     secrets:
       oci-registry-password: ${{ secrets.GITHUB_TOKEN }}
       github-app-key: ${{ secrets.CI_BOT_APP_PRIVATE_KEY }}

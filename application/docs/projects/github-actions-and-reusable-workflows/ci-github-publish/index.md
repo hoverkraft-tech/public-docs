@@ -3,8 +3,8 @@ title: Ci Github Publish
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: README.md
 source_branch: main
-source_run_id: 26761325826
-last_synced: 2026-06-01T14:35:35.246Z
+source_run_id: 26762672045
+last_synced: 2026-06-01T14:58:08.699Z
 ---
 
 # Continuous Integration - GitHub - Publish
