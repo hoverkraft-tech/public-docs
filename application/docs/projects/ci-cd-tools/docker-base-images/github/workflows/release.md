@@ -1,9 +1,9 @@
 ---
 source_repo: hoverkraft-tech/docker-base-images
 source_path: .github/workflows/release.md
-source_branch: main
-source_run_id: 26030683667
-last_synced: 2026-05-18T11:35:00.595Z
+source_branch: 0.5.0
+source_run_id: 26756020811
+last_synced: 2026-06-01T12:59:02.515Z
 ---
 
 <!-- header:start -->
@@ -11,7 +11,7 @@ last_synced: 2026-05-18T11:35:00.595Z
 # GitHub Reusable Workflow: Release
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/3eacf48c56c8cff87d3c540b08cc1247832c35bc41924dcfb1c4d1c5788f8a14/hoverkraft-tech/docker-base-images" width="60px" align="center" alt="Release" />
+  <img src="https://opengraph.githubassets.com/011878d54841f9c84a06cbaa2910e2fb7bff056d5d03763154b3c5c9a8564ae1/hoverkraft-tech/docker-base-images" width="60px" align="center" alt="Release" />
 </div>
 
 ---
@@ -29,9 +29,11 @@ last_synced: 2026-05-18T11:35:00.595Z
 
 ## Overview
 
-Reusable workflow to create releases for changed images and publish the corresponding tags.
+Reusable workflow to release changed images.
 Images are grouped by latest released tag SHA to detect which ones need a new release.
 Only images with changes since their latest image-specific tag are released and rebuilt.
+Release tags are planned before builds.
+Releases are created only after image publishing succeeds.
 Should be used from the main release workflow or manual dispatch entrypoint.
 
 ### Permissions
@@ -56,7 +58,7 @@ on:
 permissions: {}
 jobs:
   release:
-    uses: hoverkraft-tech/docker-base-images/.github/workflows/release.yml@43c81ed0c01b9ba140eaab2a07c5fc82eccce2bf # 0.4.3
+    uses: hoverkraft-tech/docker-base-images/.github/workflows/release.yml@9dd8369a53d244e239b53d8f84bb1338b58fc83e # 0.5.0
     permissions:
       contents: write
       id-token: write
@@ -64,7 +66,7 @@ jobs:
       packages: write
       pull-requests: write
     secrets:
-      # GitHub token with permissions `contents: read`, `pull-requests: read`.
+      # GitHub token with permissions `contents: write`, `pull-requests: read`.
       github-token: ""
 
       # Password or GitHub token (packages:read and packages:write scopes) used to log against the OCI registry.
@@ -109,16 +111,16 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**                   | **Description**                                                                                                                                                         | **Required** | **Type**    | **Default**                      |
-| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------- | -------------------------------- |
-| **`runs-on`**               | JSON array of runner(s) to use.                                                                                                                                         | **false**    | **string**  | `["ubuntu-latest"]`              |
-|                             | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).         |              |             |                                  |
-| **`oci-registry`**          | OCI registry where to pull and push images.                                                                                                                             | **false**    | **string**  | `ghcr.io`                        |
-| **`oci-registry-username`** | Username used to log against the OCI registry.                                                                                                                          | **false**    | **string**  | `${{ github.repository_owner }}` |
-|                             | See [https://github.com/docker/login-action#usage](https://github.com/docker/login-action#usage).                                                                       |              |             |                                  |
-| **`platforms`**             | JSON array of platforms to build images for.                                                                                                                            | **false**    | **string**  | `["linux/amd64","linux/arm64"]`  |
+| **Input**                   | **Description**                                                                        | **Required** | **Type**    | **Default**                      |
+| --------------------------- | -------------------------------------------------------------------------------------- | ------------ | ----------- | -------------------------------- |
+| **`runs-on`**               | JSON array of runner(s) to use.                                                        | **false**    | **string**  | `["ubuntu-latest"]`              |
+|                             | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).     |              |             |                                  |
+| **`oci-registry`**          | OCI registry where to pull and push images.                                            | **false**    | **string**  | `ghcr.io`                        |
+| **`oci-registry-username`** | Username used to log against the OCI registry.                                         | **false**    | **string**  | `${{ github.repository_owner }}` |
+|                             | See [https://github.com/docker/login-action#usage](https://github.com/docker/login-action#usage).                                    |              |             |                                  |
+| **`platforms`**             | JSON array of platforms to build images for.                                           | **false**    | **string**  | `["linux/amd64","linux/arm64"]`  |
 |                             | See [https://docs.docker.com/buildx/working-with-buildx/#build-multi-platform-images](https://docs.docker.com/buildx/working-with-buildx/#build-multi-platform-images). |              |             |                                  |
-| **`prerelease`**            | Whether the release is a prerelease                                                                                                                                     | **false**    | **boolean** | `false`                          |
+| **`prerelease`**            | Whether the release is a prerelease                                                    | **false**    | **boolean** | `false`                          |
 
 <!-- inputs:end -->
 
@@ -132,7 +134,7 @@ jobs:
 
 | **Secret**                  | **Description**                                                                                          | **Required** |
 | --------------------------- | -------------------------------------------------------------------------------------------------------- | ------------ |
-| **`github-token`**          | GitHub token with permissions `contents: read`, `pull-requests: read`.                                   | **false**    |
+| **`github-token`**          | GitHub token with permissions `contents: write`, `pull-requests: read`.                                  | **false**    |
 | **`oci-registry-password`** | Password or GitHub token (packages:read and packages:write scopes) used to log against the OCI registry. | **false**    |
 |                             | Defaults to GITHUB_TOKEN if not provided.                                                                |              |
 

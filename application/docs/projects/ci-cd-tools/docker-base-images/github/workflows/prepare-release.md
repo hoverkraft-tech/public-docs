@@ -1,9 +1,9 @@
 ---
 source_repo: hoverkraft-tech/docker-base-images
 source_path: .github/workflows/prepare-release.md
-source_branch: main
-source_run_id: 26030683667
-last_synced: 2026-05-18T11:35:00.595Z
+source_branch: 0.5.0
+source_run_id: 26756020811
+last_synced: 2026-06-01T12:59:02.515Z
 ---
 
 <!-- header:start -->
@@ -11,7 +11,7 @@ last_synced: 2026-05-18T11:35:00.595Z
 # GitHub Reusable Workflow: Prepare Release
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/3eacf48c56c8cff87d3c540b08cc1247832c35bc41924dcfb1c4d1c5788f8a14/hoverkraft-tech/docker-base-images" width="60px" align="center" alt="Prepare Release" />
+  <img src="https://opengraph.githubassets.com/011878d54841f9c84a06cbaa2910e2fb7bff056d5d03763154b3c5c9a8564ae1/hoverkraft-tech/docker-base-images" width="60px" align="center" alt="Prepare Release" />
 </div>
 
 ---
@@ -51,7 +51,7 @@ on:
 permissions: {}
 jobs:
   prepare-release:
-    uses: hoverkraft-tech/docker-base-images/.github/workflows/prepare-release.yml@43c81ed0c01b9ba140eaab2a07c5fc82eccce2bf # 0.4.3
+    uses: hoverkraft-tech/docker-base-images/.github/workflows/prepare-release.yml@9dd8369a53d244e239b53d8f84bb1338b58fc83e # 0.5.0
     permissions:
       contents: read
       pull-requests: write
@@ -76,9 +76,9 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**     | **Description**                                                                                                                                                 | **Required** | **Type**   | **Default**         |
-| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ---------- | ------------------- |
-| **`runs-on`** | JSON array of runner(s) to use.                                                                                                                                 | **false**    | **string** | `["ubuntu-latest"]` |
+| **Input**     | **Description**                                                                    | **Required** | **Type**   | **Default**         |
+| ------------- | ---------------------------------------------------------------------------------- | ------------ | ---------- | ------------------- |
+| **`runs-on`** | JSON array of runner(s) to use.                                                    | **false**    | **string** | `["ubuntu-latest"]` |
 |               | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job). |              |            |                     |
 
 <!-- inputs:end -->

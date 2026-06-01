@@ -2,9 +2,9 @@
 title: Docker Base Images
 source_repo: hoverkraft-tech/docker-base-images
 source_path: README.md
-source_branch: main
-source_run_id: 26030683667
-last_synced: 2026-05-18T11:35:00.595Z
+source_branch: 0.5.0
+source_run_id: 26756020811
+last_synced: 2026-06-01T12:59:02.515Z
 ---
 
 # docker-base-images
@@ -204,7 +204,6 @@ describe("My Image", () => {
    ```
 
 3. **Input Validation**: Always validate inputs early in GitHub Script steps:
-
    ```javascript
    const urlInput = ${{ toJson(inputs.url ) }};
    if (!urlInput) {
