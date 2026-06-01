@@ -3,8 +3,8 @@ title: Generate Docs
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/helm/generate-docs/README.md
 source_branch: main
-source_run_id: 26658030683
-last_synced: 2026-05-29T19:40:14.298Z
+source_run_id: 26761662454
+last_synced: 2026-06-01T14:42:47.131Z
 ---
 
 <!-- header:start -->
@@ -26,6 +26,7 @@ last_synced: 2026-05-29T19:40:14.298Z
 [![License](https://img.shields.io/github/license/hoverkraft-tech/ci-github-container)](http://choosealicense.com/licenses/mit/)
 [![Stars](https://img.shields.io/github/stars/hoverkraft-tech/ci-github-container?style=social)](https://img.shields.io/github/stars/hoverkraft-tech/ci-github-container?style=social)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/hoverkraft-tech/ci-github-container/blob/main/CONTRIBUTING.md)
+[![codecov](https://codecov.io/gh/hoverkraft-tech/compose-action/graph/badge.svg?token=90JXB7EIMA)](https://codecov.io/gh/hoverkraft-tech/compose-action)
 
 <!-- badges:end -->
 
@@ -44,7 +45,7 @@ Mainly using [losisin/helm-docs-github-action](https://github.com/losisin/helm-d
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-container/actions/helm/generate-docs@260358ba1fd405c57bc669823d89c625971a3431 # 0.34.2
+- uses: hoverkraft-tech/ci-github-container/actions/helm/generate-docs@6931f4886bf8af8570acbace09db06a639cbae6f # 0.36.0
   with:
     # Working directory
     # Default: `${{ github.workspace }}`
@@ -107,6 +108,13 @@ Mainly using [losisin/helm-docs-github-action](https://github.com/losisin/helm-d
 <!-- secrets:end -->
 
 <!-- outputs:start -->
+
+## Outputs
+
+| **Output**       | **Description**                                                                                                   |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------- |
+| **`merged-sha`** | The SHA of the commit that was merged to the base branch. Will be empty if no pull request was created or merged. |
+
 <!-- outputs:end -->
 
 <!-- examples:start -->

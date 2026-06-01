@@ -3,8 +3,8 @@ title: Build Image
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/docker/build-image/README.md
 source_branch: main
-source_run_id: 26658030683
-last_synced: 2026-05-29T19:40:14.298Z
+source_run_id: 26761662454
+last_synced: 2026-06-01T14:42:47.131Z
 ---
 
 <!-- header:start -->
@@ -56,7 +56,7 @@ permissions:
 ## Usage
 
 ````yaml
-- uses: hoverkraft-tech/ci-github-container/actions/docker/build-image@8e63086f032651bcd1d44c8f4fcd61b902ebb99f # 0.35.0
+- uses: hoverkraft-tech/ci-github-container/actions/docker/build-image@6931f4886bf8af8570acbace09db06a639cbae6f # 0.36.0
   with:
     # OCI registry configuration used to pull, push and cache images.
     # Accepts either a registry hostname string (default format) or a JSON object.
