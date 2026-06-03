@@ -1,9 +1,9 @@
 ---
 source_repo: hoverkraft-tech/docker-base-images
 source_path: .github/workflows/continuous-integration.md
-source_branch: main
-source_run_id: 26908221603
-last_synced: 2026-06-03T19:38:29.666Z
+source_branch: 0.6.0
+source_run_id: 26908587488
+last_synced: 2026-06-03T19:49:42.719Z
 ---
 
 <!-- header:start -->
@@ -120,7 +120,7 @@ on:
 permissions: {}
 jobs:
   continuous-integration:
-    uses: hoverkraft-tech/docker-base-images/.github/workflows/continuous-integration.yml@30a8796b459d64436a0fba25ab1667a244e218ed # 0.5.2
+    uses: hoverkraft-tech/docker-base-images/.github/workflows/continuous-integration.yml@75c563e455402a2aad0e925a8df78ecf719551c7 # 0.6.0
     permissions:
       actions: read
       contents: read
