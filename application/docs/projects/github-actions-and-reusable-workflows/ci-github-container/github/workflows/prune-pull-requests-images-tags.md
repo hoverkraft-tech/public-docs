@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-container
 source_path: .github/workflows/prune-pull-requests-images-tags.md
 source_branch: main
-source_run_id: 26761662454
-last_synced: 2026-06-01T14:42:47.131Z
+source_run_id: 26897018301
+last_synced: 2026-06-03T16:11:12.793Z
 ---
 
 <!-- header:start -->
@@ -56,7 +56,7 @@ on:
 permissions: {}
 jobs:
   prune-pull-requests-images-tags:
-    uses: hoverkraft-tech/ci-github-container/.github/workflows/prune-pull-requests-images-tags.yml@6931f4886bf8af8570acbace09db06a639cbae6f # 0.36.0
+    uses: hoverkraft-tech/ci-github-container/.github/workflows/prune-pull-requests-images-tags.yml@77f98ab8773b824eca7ed3f94e3e9c8b8af5875c # 0.36.1
     permissions:
       contents: read
       packages: write
@@ -100,20 +100,20 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**                     | **Description**                                                                                                                                                 | **Required** | **Type**    | **Default**            |
-| ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------- | ---------------------- |
-| **`runs-on`**                 | JSON array of runner(s) to use.                                                                                                                                 | **false**    | **string**  | `["ubuntu-latest"]`    |
-|                               | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job). |              |             |                        |
-| **`images`**                  | Images to clean.                                                                                                                                                | **true**     | **string**  | -                      |
-|                               | Example:                                                                                                                                                        |              |             |                        |
-|                               | <!-- textlint-disable --><pre lang="json"> ["application-1","application-2"]</pre><!-- textlint-enable -->                                                      |              |             |                        |
-| **`prune-cache-images`**      | Prune cache image tags (like `application-1/cache`).                                                                                                            | **false**    | **boolean** | `false`                |
-|                               | Useful when building image with "registry" cache backend.                                                                                                       |              |             |                        |
-| **`pull-request-tag-filter`** | The regular expression to match pull request tags.                                                                                                              | **false**    | **string**  | `^pr-([0-9]+)(?:-\|$)` |
-|                               | Must have a capture group for the pull request number.                                                                                                          |              |             |                        |
-| **`preserve-tags-filter`**    | Optional regular expression to match tags that should be preserved (not deleted).                                                                               | **false**    | **string**  | -                      |
-|                               | Tags matching this pattern will never be deleted, even if they are on a package version with PR tags.                                                           |              |             |                        |
-|                               | Example: `^v.*` to preserve version tags like v1.0.0, v2.1.3, etc.                                                                                              |              |             |                        |
+| **Input**                     | **Description**                                                                                            | **Required** | **Type**    | **Default**            |
+| ----------------------------- | ---------------------------------------------------------------------------------------------------------- | ------------ | ----------- | ---------------------- |
+| **`runs-on`**                 | JSON array of runner(s) to use.                                                                            | **false**    | **string**  | `["ubuntu-latest"]`    |
+|                               | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).                         |              |             |                        |
+| **`images`**                  | Images to clean.                                                                                           | **true**     | **string**  | -                      |
+|                               | Example:                                                                                                   |              |             |                        |
+|                               | <!-- textlint-disable --><pre lang="json"> ["application-1","application-2"]</pre><!-- textlint-enable --> |              |             |                        |
+| **`prune-cache-images`**      | Prune cache image tags (like `application-1/cache`).                                                       | **false**    | **boolean** | `false`                |
+|                               | Useful when building image with "registry" cache backend.                                                  |              |             |                        |
+| **`pull-request-tag-filter`** | The regular expression to match pull request tags.                                                         | **false**    | **string**  | `^pr-([0-9]+)(?:-\|$)` |
+|                               | Must have a capture group for the pull request number.                                                     |              |             |                        |
+| **`preserve-tags-filter`**    | Optional regular expression to match tags that should be preserved (not deleted).                          | **false**    | **string**  | -                      |
+|                               | Tags matching this pattern will never be deleted, even if they are on a package version with PR tags.      |              |             |                        |
+|                               | Example: `^v.*` to preserve version tags like v1.0.0, v2.1.3, etc.                                         |              |             |                        |
 
 <!-- inputs:end -->
 <!-- secrets:start -->

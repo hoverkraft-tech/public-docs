@@ -3,8 +3,8 @@ title: Clean Images
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/docker/clean-images/README.md
 source_branch: main
-source_run_id: 26761662454
-last_synced: 2026-06-01T14:42:47.131Z
+source_run_id: 26897018301
+last_synced: 2026-06-03T16:11:12.793Z
 ---
 
 <!-- header:start -->
@@ -55,7 +55,7 @@ permissions:
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-container/actions/docker/clean-images@6931f4886bf8af8570acbace09db06a639cbae6f # 0.36.0
+- uses: hoverkraft-tech/ci-github-container/actions/docker/clean-images@77f98ab8773b824eca7ed3f94e3e9c8b8af5875c # 0.36.1
   with:
     # Comma-separated list of packages to cleanup.
     # Example: "application-1,application-2"
@@ -82,13 +82,13 @@ permissions:
 
 ## Inputs
 
-| **Input**          | **Description**                                                                                                                                                                                                                                                                                                 | **Required** | **Default**           |
-| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------------- |
-| **`package`**      | Comma-separated list of packages to cleanup.                                                                                                                                                                                                                                                                    | **true**     | -                     |
-|                    | Example: "application-1,application-2"                                                                                                                                                                                                                                                                          |              |                       |
-| **`tags`**         | Comma-separated list of tags to delete (supports wildcard syntax).                                                                                                                                                                                                                                              | **true**     | -                     |
-|                    | Example: `pr-*,dev`                                                                                                                                                                                                                                                                                             |              |                       |
-| **`github-token`** | GitHub token with the packages:write and packages:delete scopes.                                                                                                                                                                                                                                                | **false**    | `${{ github.token }}` |
+| **Input**          | **Description**                                                                                                                                            | **Required** | **Default**           |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------------- |
+| **`package`**      | Comma-separated list of packages to cleanup.                                                                                                               | **true**     | -                     |
+|                    | Example: "application-1,application-2"                                                                                                                     |              |                       |
+| **`tags`**         | Comma-separated list of tags to delete (supports wildcard syntax).                                                                                         | **true**     | -                     |
+|                    | Example: `pr-*,dev`                                                                                                                                        |              |                       |
+| **`github-token`** | GitHub token with the packages:write and packages:delete scopes.                                                                                           | **false**    | `${{ github.token }}` |
 |                    | See [https://docs.github.com/en/packages/learn-github-packages/about-permissions-for-github-packages#about-scopes-and-permissions-for-package-registries](https://docs.github.com/en/packages/learn-github-packages/about-permissions-for-github-packages#about-scopes-and-permissions-for-package-registries). |              |                       |
 
 <!-- inputs:end -->
@@ -119,7 +119,7 @@ jobs:
     permissions:
       packages: write
     steps:
-      - uses: hoverkraft-tech/ci-github-container/actions/docker/clean-images@6931f4886bf8af8570acbace09db06a639cbae6f # 0.36.0
+      - uses: hoverkraft-tech/ci-github-container/actions/docker/clean-images@77f98ab8773b824eca7ed3f94e3e9c8b8af5875c # 0.36.1
         with:
           package: my-app
           delete-tags: pr-${{ github.event.pull_request.number }}-*
@@ -141,7 +141,7 @@ jobs:
     permissions:
       packages: write
     steps:
-      - uses: hoverkraft-tech/ci-github-container/actions/docker/clean-images@6931f4886bf8af8570acbace09db06a639cbae6f # 0.36.0
+      - uses: hoverkraft-tech/ci-github-container/actions/docker/clean-images@77f98ab8773b824eca7ed3f94e3e9c8b8af5875c # 0.36.1
         with:
           package: my-app
           delete-untagged: true
