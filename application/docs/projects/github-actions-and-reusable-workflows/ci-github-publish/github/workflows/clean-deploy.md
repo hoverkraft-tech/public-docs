@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/clean-deploy.md
 source_branch: main
-source_run_id: 26770551935
-last_synced: 2026-06-01T17:26:48.968Z
+source_run_id: 26896862976
+last_synced: 2026-06-03T16:03:50.280Z
 ---
 
 <!-- header:start -->
@@ -24,6 +24,7 @@ last_synced: 2026-06-01T17:26:48.968Z
 [![License](https://img.shields.io/github/license/hoverkraft-tech/ci-github-publish)](http://choosealicense.com/licenses/mit/)
 [![Stars](https://img.shields.io/github/stars/hoverkraft-tech/ci-github-publish?style=social)](https://img.shields.io/github/stars/hoverkraft-tech/ci-github-publish?style=social)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/hoverkraft-tech/ci-github-publish/blob/main/CONTRIBUTING.md)
+[![codecov](https://codecov.io/gh/hoverkraft-tech/compose-action/graph/badge.svg?token=90JXB7EIMA)](https://codecov.io/gh/hoverkraft-tech/compose-action)
 
 <!-- badges:end -->
 
@@ -70,7 +71,7 @@ on:
 permissions: {}
 jobs:
   clean-deploy:
-    uses: hoverkraft-tech/ci-github-publish/.github/workflows/clean-deploy.yml@b27c38015a8265780329d229c841d057a18b8fae # 0.25.0
+    uses: hoverkraft-tech/ci-github-publish/.github/workflows/clean-deploy.yml@84d583ba7b357f9476707f54cf5419d630ae0145 # 0.26.2
     permissions:
       actions: read
       deployments: write
@@ -128,21 +129,21 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**                     | **Description**                                                                                                                                                                                       | **Required** | **Type**   | **Default**           |
-| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ---------- | --------------------- |
-| **`runs-on`**                 | JSON array of runner(s) to use.                                                                                                                                                                       | **false**    | **string** | `["ubuntu-latest"]`   |
-|                               | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).                                       |              |            |                       |
-| **`github-app-client-id`**    | GitHub App Client ID to generate GitHub token in place of github-token.                                                                                                                               | **false**    | **string** | -                     |
-|                               | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                                                                                         |              |            |                       |
-| **`clean-deploy-type`**       | Type of clean-deploy action.                                                                                                                                                                          | **false**    | **string** | `repository-dispatch` |
-|                               | Supported values:                                                                                                                                                                                     |              |            |                       |
-|                               | - [`repository-dispatch`](../../actions/clean-deploy/repository-dispatch/index.md).                                                                                                                   |              |            |                       |
-| **`clean-deploy-parameters`** | Inputs to pass to the clean action.                                                                                                                                                                   | **false**    | **string** | -                     |
-|                               | JSON object, depending on the clean-deploy-type.                                                                                                                                                      |              |            |                       |
-|                               | For example, for `repository-dispatch`:                                                                                                                                                               |              |            |                       |
-|                               | <!-- textlint-disable --><pre lang="json">{&#13; "repository": "my-org/my-repo"&#13;}</pre><!-- textlint-enable -->                                                                                   |              |            |                       |
-| **`trigger-on-comment`**      | Comment trigger to start the workflow.                                                                                                                                                                | **false**    | **string** | `/undeploy`           |
-|                               | See [https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#issue_comment](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#issue_comment). |              |            |                       |
+| **Input**                     | **Description**                                                                                                     | **Required** | **Type**   | **Default**           |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------ | ---------- | --------------------- |
+| **`runs-on`**                 | JSON array of runner(s) to use.                                                                                     | **false**    | **string** | `["ubuntu-latest"]`   |
+|                               | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).                                  |              |            |                       |
+| **`github-app-client-id`**    | GitHub App Client ID to generate GitHub token in place of github-token.                                             | **false**    | **string** | -                     |
+|                               | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                                                           |              |            |                       |
+| **`clean-deploy-type`**       | Type of clean-deploy action.                                                                                        | **false**    | **string** | `repository-dispatch` |
+|                               | Supported values:                                                                                                   |              |            |                       |
+|                               | - [`repository-dispatch`](../../actions/clean-deploy/repository-dispatch/index.md).                                |              |            |                       |
+| **`clean-deploy-parameters`** | Inputs to pass to the clean action.                                                                                 | **false**    | **string** | -                     |
+|                               | JSON object, depending on the clean-deploy-type.                                                                    |              |            |                       |
+|                               | For example, for `repository-dispatch`:                                                                             |              |            |                       |
+|                               | <!-- textlint-disable --><pre lang="json">{&#13; "repository": "my-org/my-repo"&#13;}</pre><!-- textlint-enable --> |              |            |                       |
+| **`trigger-on-comment`**      | Comment trigger to start the workflow.                                                                              | **false**    | **string** | `/undeploy`           |
+|                               | See [https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#issue_comment](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#issue_comment).               |              |            |                       |
 
 <!-- inputs:end -->
 
@@ -150,13 +151,13 @@ jobs:
 
 ## Secrets
 
-| **Secret**           | **Description**                                                                                               | **Required** |
-| -------------------- | ------------------------------------------------------------------------------------------------------------- | ------------ |
-| **`github-token`**   | GitHub token for deploying.                                                                                   | **false**    |
-|                      | Permissions:                                                                                                  |              |
-|                      | - contents: write                                                                                             |              |
-| **`github-app-key`** | GitHub App private key to generate GitHub token in place of github-token.                                     | **false**    |
-|                      | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token). |              |
+| **Secret**           | **Description**                                                           | **Required** |
+| -------------------- | ------------------------------------------------------------------------- | ------------ |
+| **`github-token`**   | GitHub token for deploying.                                               | **false**    |
+|                      | Permissions:                                                              |              |
+|                      | - contents: write                                                         |              |
+| **`github-app-key`** | GitHub App private key to generate GitHub token in place of github-token. | **false**    |
+|                      | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                 |              |
 
 <!-- secrets:end -->
 
@@ -189,7 +190,7 @@ permissions:
 
 jobs:
   clean-deploy:
-    uses: hoverkraft-tech/ci-github-publish/.github/workflows/clean-deploy.yml@b27c38015a8265780329d229c841d057a18b8fae # 0.25.0
+    uses: hoverkraft-tech/ci-github-publish/.github/workflows/clean-deploy.yml@84d583ba7b357f9476707f54cf5419d630ae0145 # 0.26.2
     with:
       clean-deploy-parameters: |
         { "repository": "${{ github.repository_owner }}/argocd-app-of-apps" }

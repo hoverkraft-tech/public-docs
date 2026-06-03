@@ -3,8 +3,8 @@ title: Repository Dispatch
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/clean-deploy/repository-dispatch/README.md
 source_branch: main
-source_run_id: 26770551935
-last_synced: 2026-06-01T17:26:48.968Z
+source_run_id: 26896862976
+last_synced: 2026-06-03T16:03:50.280Z
 ---
 
 <!-- header:start -->
@@ -26,6 +26,7 @@ last_synced: 2026-06-01T17:26:48.968Z
 [![License](https://img.shields.io/github/license/hoverkraft-tech/ci-github-publish)](http://choosealicense.com/licenses/mit/)
 [![Stars](https://img.shields.io/github/stars/hoverkraft-tech/ci-github-publish?style=social)](https://img.shields.io/github/stars/hoverkraft-tech/ci-github-publish?style=social)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/hoverkraft-tech/ci-github-publish/blob/main/CONTRIBUTING.md)
+[![codecov](https://codecov.io/gh/hoverkraft-tech/compose-action/graph/badge.svg?token=90JXB7EIMA)](https://codecov.io/gh/hoverkraft-tech/compose-action)
 
 <!-- badges:end -->
 
@@ -47,7 +48,7 @@ See [https://docs.github.com/en/actions/writing-workflows/choosing-when-your-wor
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/clean-deploy/repository-dispatch@2c8e24b416226074aea1e240468f043edefc5760 # 0.23.2
+- uses: hoverkraft-tech/ci-github-publish/actions/clean-deploy/repository-dispatch@84d583ba7b357f9476707f54cf5419d630ae0145 # 0.26.2
   with:
     # GitHub Token for dispatch an event to a remote repository.
     # Permissions:
@@ -76,14 +77,14 @@ See [https://docs.github.com/en/actions/writing-workflows/choosing-when-your-wor
 
 ## Inputs
 
-| **Input**          | **Description**                                                                                                           | **Required** | **Default**           |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------------- |
-| **`github-token`** | GitHub Token for dispatch an event to a remote repository.                                                                | **false**    | `${{ github.token }}` |
-|                    | Permissions:                                                                                                              |              |                       |
-|                    | - contents: write                                                                                                         |              |                       |
+| **Input**          | **Description**                                                 | **Required** | **Default**           |
+| ------------------ | --------------------------------------------------------------- | ------------ | --------------------- |
+| **`github-token`** | GitHub Token for dispatch an event to a remote repository.      | **false**    | `${{ github.token }}` |
+|                    | Permissions:                                                    |              |                       |
+|                    | - contents: write                                               |              |                       |
 |                    | See [https://github.com/peter-evans/repository-dispatch#usage](https://github.com/peter-evans/repository-dispatch#usage). |              |                       |
-| **`repository`**   | Target repository where the deployment should be cleaned.                                                                 | **true**     | -                     |
-| **`environment`**  | Environment where to clean the deployment.                                                                                | **true**     | -                     |
+| **`repository`**   | Target repository where the deployment should be cleaned.       | **true**     | -                     |
+| **`environment`**  | Environment where to clean the deployment.                      | **true**     | -                     |
 
 <!-- inputs:end -->
 

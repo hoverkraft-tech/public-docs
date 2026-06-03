@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/deploy-finish.md
 source_branch: main
-source_run_id: 26770551935
-last_synced: 2026-06-01T17:26:48.968Z
+source_run_id: 26896862976
+last_synced: 2026-06-03T16:03:50.280Z
 ---
 
 <!-- header:start -->
@@ -24,6 +24,7 @@ last_synced: 2026-06-01T17:26:48.968Z
 [![License](https://img.shields.io/github/license/hoverkraft-tech/ci-github-publish)](http://choosealicense.com/licenses/mit/)
 [![Stars](https://img.shields.io/github/stars/hoverkraft-tech/ci-github-publish?style=social)](https://img.shields.io/github/stars/hoverkraft-tech/ci-github-publish?style=social)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/hoverkraft-tech/ci-github-publish/blob/main/CONTRIBUTING.md)
+[![codecov](https://codecov.io/gh/hoverkraft-tech/compose-action/graph/badge.svg?token=90JXB7EIMA)](https://codecov.io/gh/hoverkraft-tech/compose-action)
 
 <!-- badges:end -->
 
@@ -69,7 +70,7 @@ on:
 permissions: {}
 jobs:
   deploy-finish:
-    uses: hoverkraft-tech/ci-github-publish/.github/workflows/deploy-finish.yml@b27c38015a8265780329d229c841d057a18b8fae # 0.25.0
+    uses: hoverkraft-tech/ci-github-publish/.github/workflows/deploy-finish.yml@84d583ba7b357f9476707f54cf5419d630ae0145 # 0.26.2
     permissions:
       actions: read
       contents: read
@@ -108,16 +109,16 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**           | **Description**                                                                                                                                                                                       | **Required** | **Type**   | **Default**         |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ---------- | ------------------- |
-| **`runs-on`**       | JSON array of runner(s) to use.                                                                                                                                                                       | **false**    | **string** | `["ubuntu-latest"]` |
-|                     | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).                                       |              |            |                     |
-| **`deployment-id`** | Deployment ID to use for the deployment.                                                                                                                                                              | **true**     | **string** | -                   |
+| **Input**           | **Description**                                                                                       | **Required** | **Type**   | **Default**         |
+| ------------------- | ----------------------------------------------------------------------------------------------------- | ------------ | ---------- | ------------------- |
+| **`runs-on`**       | JSON array of runner(s) to use.                                                                       | **false**    | **string** | `["ubuntu-latest"]` |
+|                     | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).                    |              |            |                     |
+| **`deployment-id`** | Deployment ID to use for the deployment.                                                              | **true**     | **string** | -                   |
 |                     | See [https://docs.github.com/en/rest/deployments/deployments?apiVersion=2022-11-28#list-deployments](https://docs.github.com/en/rest/deployments/deployments?apiVersion=2022-11-28#list-deployments). |              |            |                     |
-| **`budget-path`**   | Path to the budget file to use for the Lighthouse check.                                                                                                                                              | **false**    | **string** | `./budget.json`     |
-|                     | See [`url-lighthouse`](../../actions/check/url-lighthouse/index.md).                                                                                                                                  |              |            |                     |
-| **`extra`**         | Extra information to send to the deployment summary.                                                                                                                                                  | **false**    | **string** | -                   |
-|                     | Should be a JSON object.                                                                                                                                                                              |              |            |                     |
+| **`budget-path`**   | Path to the budget file to use for the Lighthouse check.                                              | **false**    | **string** | `./budget.json`     |
+|                     | See [`url-lighthouse`](../../actions/check/url-lighthouse/index.md).                                 |              |            |                     |
+| **`extra`**         | Extra information to send to the deployment summary.                                                  | **false**    | **string** | -                   |
+|                     | Should be a JSON object.                                                                              |              |            |                     |
 
 <!-- inputs:end -->
 

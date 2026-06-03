@@ -3,8 +3,8 @@ title: Create
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/release/create/README.md
 source_branch: main
-source_run_id: 26770551935
-last_synced: 2026-06-01T17:26:48.968Z
+source_run_id: 26896862976
+last_synced: 2026-06-03T16:03:50.280Z
 ---
 
 <!-- header:start -->
@@ -26,6 +26,7 @@ last_synced: 2026-06-01T17:26:48.968Z
 [![License](https://img.shields.io/github/license/hoverkraft-tech/ci-github-publish)](http://choosealicense.com/licenses/mit/)
 [![Stars](https://img.shields.io/github/stars/hoverkraft-tech/ci-github-publish?style=social)](https://img.shields.io/github/stars/hoverkraft-tech/ci-github-publish?style=social)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/hoverkraft-tech/ci-github-publish/blob/main/CONTRIBUTING.md)
+[![codecov](https://codecov.io/gh/hoverkraft-tech/compose-action/graph/badge.svg?token=90JXB7EIMA)](https://codecov.io/gh/hoverkraft-tech/compose-action)
 
 <!-- badges:end -->
 
@@ -43,7 +44,7 @@ The release is published by default after optional changelog summarization and a
 ## Usage
 
 ````yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/release/create@b27c38015a8265780329d229c841d057a18b8fae # 0.25.0
+- uses: hoverkraft-tech/ci-github-publish/actions/release/create@84d583ba7b357f9476707f54cf5419d630ae0145 # 0.26.2
   with:
     # Whether the release is a prerelease
     # Default: `false`
@@ -153,7 +154,7 @@ The release is published by default after optional changelog summarization and a
 |                           | - workingDirectory (optional, default: `working-directory` input or `.`)                                                                                                                    |              |                       |
 |                           | - summaryTemplate (optional template forwarded to `release/summarize-changelog`)                                                                                                            |              |                       |
 |                           |                                                                                                                                                                                             |              |                       |
-|                           | See: [`release/summarize-changelog` action inputs](../summarize-changelog/index.md) for details on the summarization configuration.                                                         |              |                       |
+|                           | See: [`release/summarize-changelog` action inputs](../summarize-changelog/index.md) for details on the summarization configuration.                                                        |              |                       |
 |                           |                                                                                                                                                                                             |              |                       |
 |                           | Example value:                                                                                                                                                                              |              |                       |
 |                           |                                                                                                                                                                                             |              |                       |
