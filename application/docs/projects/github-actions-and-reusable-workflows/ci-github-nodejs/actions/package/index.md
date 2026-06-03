@@ -3,8 +3,8 @@ title: Package
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: actions/package/README.md
 source_branch: main
-source_run_id: 26878275724
-last_synced: 2026-06-03T10:25:18.781Z
+source_run_id: 26897079514
+last_synced: 2026-06-03T16:12:26.203Z
 ---
 
 <!-- header:start -->
