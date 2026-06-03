@@ -3,8 +3,8 @@ title: Build
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: actions/build/README.md
 source_branch: main
-source_run_id: 26270741717
-last_synced: 2026-05-22T05:52:15.210Z
+source_run_id: 26878275724
+last_synced: 2026-06-03T10:25:18.781Z
 ---
 
 <!-- header:start -->
