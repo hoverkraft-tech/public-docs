@@ -35,7 +35,7 @@ Responsibilities:
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/public-docs/.github/actions/inject-docs@f3c9291760d927e6214e8d5f0a376af2d537c369 # 0.4.0
+- uses: hoverkraft-tech/public-docs/.github/actions/inject-docs@c803f44a8bfeb0577e47a334505a34ea9834aca3 # main
   with:
     # Source repository that produced the documentation.
     # This input is required.
