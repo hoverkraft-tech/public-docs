@@ -3,8 +3,8 @@ title: Checkout
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/checkout/README.md
 source_branch: main
-source_run_id: 26229636631
-last_synced: 2026-05-21T13:45:03.059Z
+source_run_id: 26879287433
+last_synced: 2026-06-03T10:40:32.489Z
 ---
 
 <!-- header:start -->
@@ -91,20 +91,20 @@ permissions:
 
 ## Inputs
 
-| **Input**                 | **Description**                                                                                                   | **Required** | **Default** |
-| ------------------------- | ----------------------------------------------------------------------------------------------------------------- | ------------ | ----------- |
-| **`fetch-depth`**         | Number of commits to fetch. 0 indicates all history for all branches and tags.                                    | **false**    | `1`         |
-|                           | See [https://github.com/actions/checkout#usage](https://github.com/actions/checkout#usage)                        |              |             |
-| **`lfs`**                 | Whether to download Git-LFS files.                                                                                | **false**    | `false`     |
-|                           | See [https://github.com/actions/checkout#usage](https://github.com/actions/checkout#usage)                        |              |             |
-| **`sparse-checkout`**     | Whether to enable sparse checkout and the list of files or directories to include in the checkout.                | **false**    | -           |
-|                           | See [https://github.com/actions/checkout#usage](https://github.com/actions/checkout#usage)                        |              |             |
-| **`ref`**                 | The branch, tag or SHA to checkout. For pull requests, the ref is set to the merge ref of the PR.                 | **false**    | -           |
-|                           | See [https://github.com/actions/checkout#usage](https://github.com/actions/checkout#usage)                        |              |             |
-| **`persist-credentials`** | Whether to persist the token credentials in the Git config.                                                       | **false**    | `false`     |
-|                           | Default to false for security reasons.                                                                            |              |             |
-|                           | See [https://github.com/orgs/community/discussions/179107](https://github.com/orgs/community/discussions/179107). |              |             |
-| **`token`**               | Token to use for checking out the repository instead of the default GITHUB_TOKEN.                                 | **false**    | -           |
+| **Input**                 | **Description**                                                                                    | **Required** | **Default** |
+| ------------------------- | -------------------------------------------------------------------------------------------------- | ------------ | ----------- |
+| **`fetch-depth`**         | Number of commits to fetch. 0 indicates all history for all branches and tags.                     | **false**    | `1`         |
+|                           | See [https://github.com/actions/checkout#usage](https://github.com/actions/checkout#usage)                                                    |              |             |
+| **`lfs`**                 | Whether to download Git-LFS files.                                                                 | **false**    | `false`     |
+|                           | See [https://github.com/actions/checkout#usage](https://github.com/actions/checkout#usage)                                                    |              |             |
+| **`sparse-checkout`**     | Whether to enable sparse checkout and the list of files or directories to include in the checkout. | **false**    | -           |
+|                           | See [https://github.com/actions/checkout#usage](https://github.com/actions/checkout#usage)                                                    |              |             |
+| **`ref`**                 | The branch, tag or SHA to checkout. For pull requests, the ref is set to the merge ref of the PR.  | **false**    | -           |
+|                           | See [https://github.com/actions/checkout#usage](https://github.com/actions/checkout#usage)                                                    |              |             |
+| **`persist-credentials`** | Whether to persist the token credentials in the Git config.                                        | **false**    | `false`     |
+|                           | Default to false for security reasons.                                                             |              |             |
+|                           | See [https://github.com/orgs/community/discussions/179107](https://github.com/orgs/community/discussions/179107).                                        |              |             |
+| **`token`**               | Token to use for checking out the repository instead of the default GITHUB_TOKEN.                  | **false**    | -           |
 
 <!-- inputs:end -->
 
