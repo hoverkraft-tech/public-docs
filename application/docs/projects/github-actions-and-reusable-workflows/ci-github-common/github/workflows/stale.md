@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-common
 source_path: .github/workflows/stale.md
 source_branch: main
-source_run_id: 26229636631
-last_synced: 2026-05-21T13:45:03.059Z
+source_run_id: 26879287433
+last_synced: 2026-06-03T10:40:32.489Z
 ---
 
 <!-- header:start -->
@@ -53,8 +53,10 @@ on:
 permissions: {}
 jobs:
   stale:
-    uses: hoverkraft-tech/ci-github-common/.github/workflows/stale.yml@71b85947453f32b5d147ff3ab37351439a92d840 # 0.34.2
-    permissions: {}
+    uses: hoverkraft-tech/ci-github-common/.github/workflows/stale.yml@b553a696531fbd36743ccbb0c76c717971b8acdb # 0.35.4
+    permissions:
+      issues: write
+      pull-requests: write
     with:
       # JSON array of runner(s) to use.
       # See https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job.
@@ -101,28 +103,28 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**                 | **Description**                                                                                                                                                 | **Required** | **Type**   | **Default**         |
-| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ---------- | ------------------- |
-| **`runs-on`**             | JSON array of runner(s) to use.                                                                                                                                 | **false**    | **string** | `["ubuntu-latest"]` |
+| **Input**                 | **Description**                                                                    | **Required** | **Type**   | **Default**         |
+| ------------------------- | ---------------------------------------------------------------------------------- | ------------ | ---------- | ------------------- |
+| **`runs-on`**             | JSON array of runner(s) to use.                                                    | **false**    | **string** | `["ubuntu-latest"]` |
 |                           | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job). |              |            |                     |
-| **`stale-issue-message`** | Comment on the staled issues.                                                                                                                                   | **false**    | **string** | -                   |
-|                           | See [https://github.com/actions/stale#stale-issue-message](https://github.com/actions/stale#stale-issue-message).                                               |              |            |                     |
-|                           | Default: This issue is stale                                                                                                                                    |              |            |                     |
-| **`stale-pr-message`**    | Comment on the staled PRs.                                                                                                                                      | **false**    | **string** | -                   |
-|                           | See [https://github.com/actions/stale#stale-pr-message](https://github.com/actions/stale#stale-pr-message).                                                     |              |            |                     |
-|                           | Default: This PR is stale                                                                                                                                       |              |            |                     |
-| **`stale-issue-label`**   | Label to apply on staled issues.                                                                                                                                | **false**    | **string** | -                   |
-|                           | See [https://github.com/actions/stale#stale-issue-label](https://github.com/actions/stale#stale-issue-label).                                                   |              |            |                     |
-|                           | Default: no-issue-activity                                                                                                                                      |              |            |                     |
-| **`exempt-issue-labels`** | Labels on issues exempted from stale.                                                                                                                           | **false**    | **string** | -                   |
-|                           | See [https://github.com/actions/stale#exempt-issue-labels](https://github.com/actions/stale#exempt-issue-labels).                                               |              |            |                     |
-|                           | Default: awaiting-approval,work-in-progress                                                                                                                     |              |            |                     |
-| **`stale-pr-label`**      | Label to apply on staled PRs.                                                                                                                                   | **false**    | **string** | -                   |
-|                           | See [https://github.com/actions/stale#stale-pr-label](https://github.com/actions/stale#stale-pr-label).                                                         |              |            |                     |
-|                           | Default: no-pr-activity                                                                                                                                         |              |            |                     |
-| **`exempt-pr-labels`**    | Labels on PRs exempted from stale.                                                                                                                              | **false**    | **string** | -                   |
-|                           | See [https://github.com/actions/stale#exempt-pr-labels](https://github.com/actions/stale#exempt-pr-labels).                                                     |              |            |                     |
-|                           | Default: awaiting-approval,work-in-progress                                                                                                                     |              |            |                     |
+| **`stale-issue-message`** | Comment on the staled issues.                                                      | **false**    | **string** | -                   |
+|                           | See [https://github.com/actions/stale#stale-issue-message](https://github.com/actions/stale#stale-issue-message).                        |              |            |                     |
+|                           | Default: This issue is stale                                                       |              |            |                     |
+| **`stale-pr-message`**    | Comment on the staled PRs.                                                         | **false**    | **string** | -                   |
+|                           | See [https://github.com/actions/stale#stale-pr-message](https://github.com/actions/stale#stale-pr-message).                           |              |            |                     |
+|                           | Default: This PR is stale                                                          |              |            |                     |
+| **`stale-issue-label`**   | Label to apply on staled issues.                                                   | **false**    | **string** | -                   |
+|                           | See [https://github.com/actions/stale#stale-issue-label](https://github.com/actions/stale#stale-issue-label).                          |              |            |                     |
+|                           | Default: no-issue-activity                                                         |              |            |                     |
+| **`exempt-issue-labels`** | Labels on issues exempted from stale.                                              | **false**    | **string** | -                   |
+|                           | See [https://github.com/actions/stale#exempt-issue-labels](https://github.com/actions/stale#exempt-issue-labels).                        |              |            |                     |
+|                           | Default: awaiting-approval,work-in-progress                                        |              |            |                     |
+| **`stale-pr-label`**      | Label to apply on staled PRs.                                                      | **false**    | **string** | -                   |
+|                           | See [https://github.com/actions/stale#stale-pr-label](https://github.com/actions/stale#stale-pr-label).                             |              |            |                     |
+|                           | Default: no-pr-activity                                                            |              |            |                     |
+| **`exempt-pr-labels`**    | Labels on PRs exempted from stale.                                                 | **false**    | **string** | -                   |
+|                           | See [https://github.com/actions/stale#exempt-pr-labels](https://github.com/actions/stale#exempt-pr-labels).                           |              |            |                     |
+|                           | Default: awaiting-approval,work-in-progress                                        |              |            |                     |
 
 <!-- inputs:end -->
 
