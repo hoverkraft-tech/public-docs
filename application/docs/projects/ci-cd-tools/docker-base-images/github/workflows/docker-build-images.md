@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/docker-base-images
 source_path: .github/workflows/docker-build-images.md
 source_branch: main
-source_run_id: 26773264470
-last_synced: 2026-06-01T18:21:36.394Z
+source_run_id: 26900605621
+last_synced: 2026-06-03T17:13:59.561Z
 ---
 
 <!-- header:start -->
@@ -11,7 +11,7 @@ last_synced: 2026-06-01T18:21:36.394Z
 # GitHub Reusable Workflow: Build Docker images
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/525dc93f3c07690d12214b0a683311f206ece25ed0ebc1aa64188af96a1fb4cb/hoverkraft-tech/docker-base-images" width="60px" align="center" alt="Build Docker images" />
+  <img src="https://opengraph.githubassets.com/dfa2c35bf894ebe58ff6bd20114d96747247c0a5d4d132649d3448baafc32085/hoverkraft-tech/docker-base-images" width="60px" align="center" alt="Build Docker images" />
 </div>
 
 ---
@@ -51,7 +51,7 @@ on:
 permissions: {}
 jobs:
   docker-build-images:
-    uses: hoverkraft-tech/docker-base-images/.github/workflows/docker-build-images.yml@8bfc1b0d5b9e89305b0791b4986011ea25a815d8 # 0.5.1
+    uses: hoverkraft-tech/docker-base-images/.github/workflows/docker-build-images.yml@30a8796b459d64436a0fba25ab1667a244e218ed # 0.5.2
     permissions:
       contents: read
       id-token: write
@@ -79,15 +79,16 @@ jobs:
       # Default: `${{ github.repository_owner }}`
       oci-registry-username: ${{ github.repository_owner }}
 
-      # JSON array of platforms to build images for.
+      # JSON array of platforms to build images for by default.
+      # Can be overridden per image with `images/<image>/build.json` or an image object in `images`.
       # See https://docs.docker.com/buildx/working-with-buildx/#build-multi-platform-images.
       #
       # Default: `["linux/amd64","linux/arm64"]`
       platforms: '["linux/amd64","linux/arm64"]'
 
-      # JSON array of images to build.
+      # JSON array of image names or image objects to build.
       # If not provided, all available images will be considered.
-      # Example: `["php-8", "nodejs-24"]`
+      # Examples: `["php-8", "nodejs-24"]`, `[{"name":"ci-helm","platforms":["linux/amd64"]}]`
       images: ""
 ```
 
@@ -103,18 +104,19 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**                   | **Description**                                                                                                                                                         | **Required** | **Type**   | **Default**                      |
-| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ---------- | -------------------------------- |
-| **`runs-on`**               | JSON array of runner(s) to use.                                                                                                                                         | **false**    | **string** | `["ubuntu-latest"]`              |
-|                             | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).         |              |            |                                  |
-| **`oci-registry`**          | OCI registry where to pull and push images.                                                                                                                             | **false**    | **string** | `ghcr.io`                        |
-| **`oci-registry-username`** | Username used to log against the OCI registry.                                                                                                                          | **false**    | **string** | `${{ github.repository_owner }}` |
-|                             | See [https://github.com/docker/login-action#usage](https://github.com/docker/login-action#usage).                                                                       |              |            |                                  |
-| **`platforms`**             | JSON array of platforms to build images for.                                                                                                                            | **false**    | **string** | `["linux/amd64","linux/arm64"]`  |
-|                             | See [https://docs.docker.com/buildx/working-with-buildx/#build-multi-platform-images](https://docs.docker.com/buildx/working-with-buildx/#build-multi-platform-images). |              |            |                                  |
-| **`images`**                | JSON array of images to build.                                                                                                                                          | **false**    | **string** | -                                |
-|                             | If not provided, all available images will be considered.                                                                                                               |              |            |                                  |
-|                             | Example: `["php-8", "nodejs-24"]`                                                                                                                                       |              |            |                                  |
+| **Input**                   | **Description**                                                                              | **Required** | **Type**   | **Default**                      |
+| --------------------------- | -------------------------------------------------------------------------------------------- | ------------ | ---------- | -------------------------------- |
+| **`runs-on`**               | JSON array of runner(s) to use.                                                              | **false**    | **string** | `["ubuntu-latest"]`              |
+|                             | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).           |              |            |                                  |
+| **`oci-registry`**          | OCI registry where to pull and push images.                                                  | **false**    | **string** | `ghcr.io`                        |
+| **`oci-registry-username`** | Username used to log against the OCI registry.                                               | **false**    | **string** | `${{ github.repository_owner }}` |
+|                             | See [https://github.com/docker/login-action#usage](https://github.com/docker/login-action#usage).                                          |              |            |                                  |
+| **`platforms`**             | JSON array of platforms to build images for by default.                                      | **false**    | **string** | `["linux/amd64","linux/arm64"]`  |
+|                             | Can be overridden per image with `images/<image>/build.json` or an image object in `images`. |              |            |                                  |
+|                             | See [https://docs.docker.com/buildx/working-with-buildx/#build-multi-platform-images](https://docs.docker.com/buildx/working-with-buildx/#build-multi-platform-images).       |              |            |                                  |
+| **`images`**                | JSON array of image names or image objects to build.                                         | **false**    | **string** | -                                |
+|                             | If not provided, all available images will be considered.                                    |              |            |                                  |
+|                             | Examples: `["php-8", "nodejs-24"]`, `[{"name":"ci-helm","platforms":["linux/amd64"]}]`       |              |            |                                  |
 
 <!-- inputs:end -->
 
@@ -136,9 +138,9 @@ jobs:
 
 ## Outputs
 
-| **Output**         | **Description**                                                                                                                                                                                                                             |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **`built-images`** | Built images data.                                                                                                                                                                                                                          |
+| **Output**         | **Description**                                                                                                          |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| **`built-images`** | Built images data.                                                                                                       |
 |                    | See [https://github.com/hoverkraft-tech/ci-github-container/blob/main/.github/workflows/docker-build-images.md#outputs](https://github.com/hoverkraft-tech/ci-github-container/blob/main/.github/workflows/docker-build-images.md#outputs). |
 
 <!-- outputs:end -->
