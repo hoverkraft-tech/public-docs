@@ -3,8 +3,8 @@ title: Update Chart Values
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/helm/update-chart-values/README.md
 source_branch: main
-source_run_id: 26761662454
-last_synced: 2026-06-01T14:42:47.131Z
+source_run_id: 26897018301
+last_synced: 2026-06-03T16:11:12.793Z
 ---
 
 <!-- header:start -->
@@ -43,7 +43,7 @@ Updates Helm chart values files before release.
 ## Usage
 
 ````yaml
-- uses: hoverkraft-tech/ci-github-container/actions/helm/update-chart-values@6931f4886bf8af8570acbace09db06a639cbae6f # 0.36.0
+- uses: hoverkraft-tech/ci-github-container/actions/helm/update-chart-values@77f98ab8773b824eca7ed3f94e3e9c8b8af5875c # 0.36.1
   with:
     # Path to the chart to update
     # This input is required.
@@ -76,7 +76,7 @@ Updates Helm chart values files before release.
 | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------- |
 | **`path`**   | Path to the chart to update                                                                                                                                                                                | **true**     | -           |
 | **`values`** | Define charts values to be filled.                                                                                                                                                                         | **false**    | -           |
-|              | See [https://mikefarah.gitbook.io/yq/](https://mikefarah.gitbook.io/yq/).                                                                                                                                  |              |             |
+|              | See [https://mikefarah.gitbook.io/yq/](https://mikefarah.gitbook.io/yq/).                                                                                                                                                                    |              |             |
 |              | Format: `[{ file, path, value }]`.                                                                                                                                                                         |              |             |
 |              |                                                                                                                                                                                                            |              |             |
 |              | Example:                                                                                                                                                                                                   |              |             |
