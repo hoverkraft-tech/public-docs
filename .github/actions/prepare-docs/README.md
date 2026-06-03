@@ -3,7 +3,7 @@
 # GitHub Action: Prepare Documentation Bundle
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/db5cb336bc06dcaf79e2dd6b1040b7481ab29c3346bed1d0f0b495c7f3d642c0/hoverkraft-tech/public-docs" width="60px" align="center" alt="Prepare Documentation Bundle" />
+  <img src="https://opengraph.githubassets.com/e993128b3a20c2f46d9fb8462bb98bf46f981b976a4633544a7f0aabdcf79760/hoverkraft-tech/public-docs" width="60px" align="center" alt="Prepare Documentation Bundle" />
 </div>
 
 ---
@@ -37,7 +37,7 @@ Responsibilities:
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/public-docs/.github/actions/prepare-docs@c803f44a8bfeb0577e47a334505a34ea9834aca3 # main
+- uses: hoverkraft-tech/public-docs/.github/actions/prepare-docs@f3c9291760d927e6214e8d5f0a376af2d537c369 # 0.4.0
   with:
     # GitHub token used to resolve workflow run metadata.
     # This input is required.
