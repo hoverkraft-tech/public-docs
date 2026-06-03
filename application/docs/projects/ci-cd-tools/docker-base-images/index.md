@@ -3,8 +3,8 @@ title: Docker Base Images
 source_repo: hoverkraft-tech/docker-base-images
 source_path: README.md
 source_branch: main
-source_run_id: 26901997446
-last_synced: 2026-06-03T17:41:10.726Z
+source_run_id: 26905542333
+last_synced: 2026-06-03T18:53:20.181Z
 ---
 
 # Docker base images
@@ -44,6 +44,10 @@ A Docker image with all the tools needed to validate an helm chart
 ### [mydumper](images/mydumper/index.md)
 
 An image with an opiniated mydumper command as entrypoint
+
+### [super-linter](images/super-linter/index.md)
+
+An opinionated Super-Linter image with safer local defaults and toolchain-conflict guards
 
 ### [testcontainers-node](images/testcontainers-node/index.md)
 
