@@ -1,9 +1,9 @@
 ---
 source_repo: hoverkraft-tech/docker-base-images
 source_path: .github/workflows/continuous-integration.md
-source_branch: 0.6.0
-source_run_id: 26908587488
-last_synced: 2026-06-03T19:49:42.719Z
+source_branch: main
+source_run_id: 26950625610
+last_synced: 2026-06-04T12:12:27.481Z
 ---
 
 <!-- header:start -->
@@ -36,9 +36,10 @@ and runs tests against the built images using [testcontainers](https://testconta
 ### Jobs
 
 1. **linter**: Runs code linting using the shared linter workflow
-2. **build-images**: Builds Docker images (depends on linter)
-3. **prepare-test-matrix**: Prepares the matrix for test jobs
-4. **test-images**: Runs testcontainers tests for each built image
+2. **prepare-images-to-build**: Selects images to build for the current event
+3. **build-images**: Builds Docker images (depends on linter)
+4. **prepare-test-matrix**: Prepares the matrix for test jobs
+5. **test-images**: Runs testcontainers tests for each built image
 
 ### Permissions
 
@@ -158,11 +159,6 @@ jobs:
       # Default: `["linux/amd64","linux/arm64"]`
       platforms: '["linux/amd64","linux/arm64"]'
 
-      # JSON array of image names or image objects to build.
-      # If not provided, all available images will be considered.
-      # Examples: `["php-8", "nodejs-24"]`, `[{"name":"ci-helm","platforms":["linux/amd64"]}]`
-      images: ""
-
       # Tag of the published `testcontainers-node` runner image to use for tests.
       #
       # Default: `latest`
@@ -186,9 +182,6 @@ jobs:
 | **`platforms`**             | JSON array of platforms to build images for by default.                                      | **false**    | **string** | `["linux/amd64","linux/arm64"]`  |
 |                             | Can be overridden per image with `images/<image>/build.json` or an image object in `images`. |              |            |                                  |
 |                             | See [https://docs.docker.com/buildx/working-with-buildx/#build-multi-platform-images](https://docs.docker.com/buildx/working-with-buildx/#build-multi-platform-images).       |              |            |                                  |
-| **`images`**                | JSON array of image names or image objects to build.                                         | **false**    | **string** | -                                |
-|                             | If not provided, all available images will be considered.                                    |              |            |                                  |
-|                             | Examples: `["php-8", "nodejs-24"]`, `[{"name":"ci-helm","platforms":["linux/amd64"]}]`       |              |            |                                  |
 | **`test-image-tag`**        | Tag of the published `testcontainers-node` runner image to use for tests.                    | **false**    | **string** | `latest`                         |
 
 <!-- inputs:end -->

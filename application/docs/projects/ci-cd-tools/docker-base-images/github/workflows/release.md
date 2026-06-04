@@ -1,9 +1,9 @@
 ---
 source_repo: hoverkraft-tech/docker-base-images
 source_path: .github/workflows/release.md
-source_branch: 0.6.0
-source_run_id: 26908587488
-last_synced: 2026-06-03T19:49:42.719Z
+source_branch: main
+source_run_id: 26950625610
+last_synced: 2026-06-04T12:12:27.481Z
 ---
 
 <!-- header:start -->
@@ -29,13 +29,6 @@ last_synced: 2026-06-03T19:49:42.719Z
 <!-- overview:start -->
 
 ## Overview
-
-Reusable workflow to release changed images.
-Images are grouped by latest released tag SHA to detect which ones need a new release.
-Only images with changes since their latest image-specific tag are released and rebuilt.
-Release tags are planned before builds.
-Releases are created only after image publishing succeeds.
-Should be used from the main release workflow or manual dispatch entrypoint.
 
 ### Permissions
 

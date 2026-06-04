@@ -1,17 +1,17 @@
 ---
 source_repo: hoverkraft-tech/docker-base-images
 source_path: .github/workflows/prune-pull-requests-images-tags.md
-source_branch: 0.6.0
-source_run_id: 26908587488
-last_synced: 2026-06-03T19:49:42.719Z
+source_branch: main
+source_run_id: 26950625610
+last_synced: 2026-06-04T12:12:27.481Z
 ---
 
 <!-- header:start -->
 
-# GitHub Reusable Workflow: Clean images tags from pull requests
+# GitHub Reusable Workflow: Clean transient image tags
 
 <div align="center">
-  <img src="/docker-base-images/assets/github/logo.svg" width="60px" align="center" alt="Clean images tags from pull requests" />
+  <img src="/docker-base-images/assets/github/logo.svg" width="60px" align="center" alt="Clean transient image tags" />
 </div>
 
 ---
@@ -30,7 +30,7 @@ last_synced: 2026-06-03T19:49:42.719Z
 
 ## Overview
 
-Reusable workflow to clean up image tags created for pull requests
+Reusable workflow to clean up transient image tags created for pull requests and tag-push CI
 Gets the available images from the "images" folder dynamically.
 Cleanup is performed using the hoverkraft-tech/ci-github-container action.
 Should be used from main CI workflow after tests are done.
@@ -50,7 +50,7 @@ Should be used from main CI workflow after tests are done.
 ## Usage
 
 ```yaml
-name: Clean images tags from pull requests
+name: Clean transient image tags
 on:
   push:
     branches:
