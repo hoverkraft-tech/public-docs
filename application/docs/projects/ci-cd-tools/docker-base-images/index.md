@@ -3,8 +3,8 @@ title: Docker Base Images
 source_repo: hoverkraft-tech/docker-base-images
 source_path: README.md
 source_branch: main
-source_run_id: 26953854611
-last_synced: 2026-06-04T13:14:59.978Z
+source_run_id: 26954567298
+last_synced: 2026-06-04T13:32:41.116Z
 ---
 
 # Docker base images
@@ -40,6 +40,11 @@ A Docker image with all the tools needed to validate an helm chart
 
 - helm chart-testing (aka ct)
 - helm kubeconform plugin
+
+### [codespace-like](images/codespace-like/index.md)
+
+A tailored build of VS code-server instance.
+Used for our labs and workshops.
 
 ### [mydumper](images/mydumper/index.md)
 
