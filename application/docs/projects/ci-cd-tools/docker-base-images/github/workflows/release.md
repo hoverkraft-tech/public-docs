@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/docker-base-images
 source_path: .github/workflows/release.md
 source_branch: main
-source_run_id: 26953854611
-last_synced: 2026-06-04T13:14:59.978Z
+source_run_id: 26954567298
+last_synced: 2026-06-04T13:32:41.116Z
 ---
 
 <!-- header:start -->
