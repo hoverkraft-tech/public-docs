@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/docker-base-images
 source_path: .github/workflows/docker-build-images.md
 source_branch: main
-source_run_id: 26950625610
-last_synced: 2026-06-04T12:12:27.481Z
+source_run_id: 26952628223
+last_synced: 2026-06-04T12:50:54.494Z
 ---
 
 <!-- header:start -->
@@ -92,7 +92,7 @@ jobs:
       # Supported object fields here are:
       # - `name`: (required) the image name, corresponding to the folder in `images/` containing the Dockerfile.
       # - `tag`: (optional) explicit tag to use for the built image. If not provided, the default tagging strategy will be applied (usually `latest` and the Git SHA).
-      # - `platforms`:  (optional) array of platforms overriding the default platforms.
+      # - `platforms`: (optional) array of platforms overriding the default platforms.
       # Additional object fields are passed through to the downstream Docker build workflow.
       # Examples:
       # - `["php-8", "nodejs-24"]`
@@ -130,7 +130,7 @@ jobs:
 |                             | Supported object fields here are:                                                                                                                              |              |            |                                  |
 |                             | - `name`: (required) the image name, corresponding to the folder in `images/` containing the Dockerfile.                                                       |              |            |                                  |
 |                             | - `tag`: (optional) explicit tag to use for the built image. If not provided, the default tagging strategy will be applied (usually `latest` and the Git SHA). |              |            |                                  |
-|                             | - `platforms`:  (optional) array of platforms overriding the default platforms.                                                                                |              |            |                                  |
+|                             | - `platforms`: (optional) array of platforms overriding the default platforms.                                                                                 |              |            |                                  |
 |                             | Additional object fields are passed through to the downstream Docker build workflow.                                                                           |              |            |                                  |
 |                             | Examples:                                                                                                                                                      |              |            |                                  |
 |                             | - `["php-8", "nodejs-24"]`                                                                                                                                     |              |            |                                  |
