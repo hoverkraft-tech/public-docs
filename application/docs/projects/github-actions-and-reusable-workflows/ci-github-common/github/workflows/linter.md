@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-common
 source_path: .github/workflows/linter.md
 source_branch: main
-source_run_id: 26909518199
-last_synced: 2026-06-03T20:03:24.891Z
+source_run_id: 26952375018
+last_synced: 2026-06-04T12:47:00.774Z
 ---
 
 <!-- header:start -->
@@ -95,6 +95,12 @@ jobs:
       # See https://github.com/super-linter/super-linter.
       linter-env: ""
 
+      # Lint toolchain to use for Super-Linter frontend validators.
+      # Supported values: biome, eslint-prettier.
+      #
+      # Default: `biome`
+      linter-toolchain: biome
+
       # JSON array of languages to analyze with CodeQL.
       # See https://codeql.github.com/docs/codeql-overview/supported-languages-and-frameworks/.
       # Leave empty to disable the check.
@@ -134,6 +140,8 @@ jobs:
 |                        | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).        |              |             |                                                                                                                                                    |
 | **`linter-env`**       | Environment variables in multilines format "key=value" to pass to the linter.             | **false**    | **string**  | -                                                                                                                                                  |
 |                        | See [https://github.com/super-linter/super-linter](https://github.com/super-linter/super-linter).                                       |              |             |                                                                                                                                                    |
+| **`linter-toolchain`** | Lint toolchain to use for Super-Linter frontend validators.                               | **false**    | **string**  | `biome`                                                                                                                                            |
+|                        | Supported values: biome, eslint-prettier.                                                 |              |             |                                                                                                                                                    |
 | **`codeql-languages`** | JSON array of languages to analyze with CodeQL.                                           | **false**    | **string**  | `["actions"]`                                                                                                                                      |
 |                        | See [https://codeql.github.com/docs/codeql-overview/supported-languages-and-frameworks/](https://codeql.github.com/docs/codeql-overview/supported-languages-and-frameworks/). |              |             |                                                                                                                                                    |
 |                        | Leave empty to disable the check.                                                         |              |             |                                                                                                                                                    |
