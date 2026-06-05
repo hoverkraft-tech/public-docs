@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: .github/workflows/continuous-integration.md
 source_branch: main
-source_run_id: 26908153014
-last_synced: 2026-06-03T19:40:29.656Z
+source_run_id: 27005502535
+last_synced: 2026-06-05T09:06:16.828Z
 ---
 
 <!-- header:start -->
@@ -11,7 +11,7 @@ last_synced: 2026-06-03T19:40:29.656Z
 # GitHub Reusable Workflow: Node.js Continuous Integration
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/60888d7d7e501fc04b346e12f24da8bece0244fba94015e80c0231f55684c0aa/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Node.js Continuous Integration" />
+  <img src="https://opengraph.githubassets.com/3b5ad6e7d32de59674fbc36faf1a23922627bbe8bc7cbf314484c8f942adb6a5/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Node.js Continuous Integration" />
 </div>
 
 ---
@@ -32,7 +32,7 @@ last_synced: 2026-06-03T19:40:29.656Z
 
 ## Overview
 
-Workflow to performs continuous integration steps agains a Node.js project:
+Workflow to performs continuous integration steps against a Node.js project:
 
 - CodeQL analysis
 - Linting
