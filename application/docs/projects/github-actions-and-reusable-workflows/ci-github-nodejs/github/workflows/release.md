@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: .github/workflows/release.md
 source_branch: main
-source_run_id: 27005502535
-last_synced: 2026-06-05T09:06:16.828Z
+source_run_id: 27017888816
+last_synced: 2026-06-05T13:39:16.451Z
 ---
 
 <!-- header:start -->
