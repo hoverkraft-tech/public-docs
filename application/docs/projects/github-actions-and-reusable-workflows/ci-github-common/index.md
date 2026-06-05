@@ -2,9 +2,9 @@
 title: Ci Github Common
 source_repo: hoverkraft-tech/ci-github-common
 source_path: README.md
-source_branch: 0.36.0
-source_run_id: 26953071339
-last_synced: 2026-06-04T13:02:43.440Z
+source_branch: 0.36.1
+source_run_id: 27030085319
+last_synced: 2026-06-05T17:36:50.321Z
 ---
 
 # Continuous Integration - GitHub - Common

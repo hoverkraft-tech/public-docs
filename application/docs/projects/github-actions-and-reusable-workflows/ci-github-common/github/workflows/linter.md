@@ -1,9 +1,9 @@
 ---
 source_repo: hoverkraft-tech/ci-github-common
 source_path: .github/workflows/linter.md
-source_branch: 0.36.0
-source_run_id: 26953071339
-last_synced: 2026-06-04T13:02:43.440Z
+source_branch: 0.36.1
+source_run_id: 27030085319
+last_synced: 2026-06-05T17:36:50.321Z
 ---
 
 <!-- header:start -->
@@ -73,7 +73,7 @@ on:
 permissions: {}
 jobs:
   linter:
-    uses: hoverkraft-tech/ci-github-common/.github/workflows/linter.yml@4bb7594b1bf3696c54b2bbae970376056853f8ea # 0.36.0
+    uses: hoverkraft-tech/ci-github-common/.github/workflows/linter.yml@84d0148d9447a6f542fb8ff29b384eddca4184bf # 0.36.1
     permissions:
       actions: read
       contents: read
