@@ -3,8 +3,8 @@ title: Super Linter
 source_repo: hoverkraft-tech/docker-base-images
 source_path: images/super-linter/README.md
 source_branch: main
-source_run_id: 26958345565
-last_synced: 2026-06-04T14:35:57.389Z
+source_run_id: 27029496322
+last_synced: 2026-06-05T17:28:09.993Z
 ---
 
 # super-linter
@@ -22,6 +22,7 @@ For direct local use, the image still supports `UID` and `GID` build args so the
 - defaults `LOG_LEVEL=WARN`
 - defaults `LOG_FILE=/github/home/logs`
 - defaults `IGNORE_GITIGNORED_FILES=true`
+- defaults `KUBERNETES_KUBECONFORM_OPTIONS="-schema-location default -schema-location https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json"`
 - defaults `VALIDATE_JAVASCRIPT_TOOLCHAIN=biome`
 - defaults `VALIDATE_PYTHON_TOOLCHAIN=ruff-format`
 - supports overriding `VALIDATE_JAVASCRIPT_TOOLCHAIN=biome|eslint-prettier`
