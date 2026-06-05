@@ -3,8 +3,8 @@ title: Lint
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: actions/lint/README.md
 source_branch: main
-source_run_id: 26908153014
-last_synced: 2026-06-03T19:40:29.656Z
+source_run_id: 27005502535
+last_synced: 2026-06-05T09:06:16.828Z
 ---
 
 <!-- header:start -->
@@ -12,7 +12,7 @@ last_synced: 2026-06-03T19:40:29.656Z
 # ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItY2hlY2stY2lyY2xlIiBjb2xvcj0iYmx1ZSI+PHBhdGggZD0iTTIyIDExLjA4VjEyYTEwIDEwIDAgMSAxLTUuOTMtOS4xNCI+PC9wYXRoPjxwb2x5bGluZSBwb2ludHM9IjIyIDQgMTIgMTQuMDEgOSAxMS4wMSI+PC9wb2x5bGluZT48L3N2Zz4=) GitHub Action: Lint
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/60888d7d7e501fc04b346e12f24da8bece0244fba94015e80c0231f55684c0aa/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Lint" />
+  <img src="https://opengraph.githubassets.com/3b5ad6e7d32de59674fbc36faf1a23922627bbe8bc7cbf314484c8f942adb6a5/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Lint" />
 </div>
 
 ---
@@ -58,6 +58,7 @@ Action to lint Node.js projects with support for pull request reporting and anno
     #
     # ESLint: `eslint --format json -o eslint-report.json .`
     # Prettier: `prettier --check . | tee prettier-report.txt`
+    # Biome: `biome lint --error-on-warnings . --reporter=sarif | tee biome-report.sarif`
     # Astro: `astro check | tee astro-report.txt`
     #
     # Default: `lint:ci`
@@ -89,6 +90,7 @@ Action to lint Node.js projects with support for pull request reporting and anno
 |                         |                                                                                                                                                               |              |             |
 |                         | ESLint: `eslint --format json -o eslint-report.json .`                                                                                                        |              |             |
 |                         | Prettier: `prettier --check . \| tee prettier-report.txt`                                                                                                     |              |             |
+|                         | Biome: `biome lint --error-on-warnings . --reporter=sarif \| tee biome-report.sarif`                                                                          |              |             |
 |                         | Astro: `astro check \| tee astro-report.txt`                                                                                                                  |              |             |
 | **`report-file`**       | Optional lint report path forwarded to the [parse-ci-reports](https://github.com/hoverkraft-tech/ci-github-common/tree/main/actions/parse-ci-reports) action. | **false**    | -           |
 |                         | Provide an absolute path or one relative to the working directory.                                                                                            |              |             |
