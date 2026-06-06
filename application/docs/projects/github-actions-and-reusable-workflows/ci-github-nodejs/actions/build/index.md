@@ -3,8 +3,8 @@ title: Build
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: actions/build/README.md
 source_branch: main
-source_run_id: 27017888816
-last_synced: 2026-06-05T13:39:16.451Z
+source_run_id: 27055302207
+last_synced: 2026-06-06T06:50:14.639Z
 ---
 
 <!-- header:start -->
@@ -12,7 +12,7 @@ last_synced: 2026-06-05T13:39:16.451Z
 # ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItcGFja2FnZSIgY29sb3I9ImJsdWUiPjxsaW5lIHgxPSIxNi41IiB5MT0iOS40IiB4Mj0iNy41IiB5Mj0iNC4yMSI+PC9saW5lPjxwYXRoIGQ9Ik0yMSAxNlY4YTIgMiAwIDAgMC0xLTEuNzNsLTctNGEyIDIgMCAwIDAtMiAwbC03IDRBMiAyIDAgMCAwIDMgOHY4YTIgMiAwIDAgMCAxIDEuNzNsNyA0YTIgMiAwIDAgMCAyIDBsNy00QTIgMiAwIDAgMCAyMSAxNnoiPjwvcGF0aD48cG9seWxpbmUgcG9pbnRzPSIzLjI3IDYuOTYgMTIgMTIuMDEgMjAuNzMgNi45NiI+PC9wb2x5bGluZT48bGluZSB4MT0iMTIiIHkxPSIyMi4wOCIgeDI9IjEyIiB5Mj0iMTIiPjwvbGluZT48L3N2Zz4=) GitHub Action: Build
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/3b5ad6e7d32de59674fbc36faf1a23922627bbe8bc7cbf314484c8f942adb6a5/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Build" />
+  <img src="https://opengraph.githubassets.com/e9def6ec6615dab87fd438f61892a3f4e35fb37a5ed4d5f52f6827b8f7a35d19/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Build" />
 </div>
 
 ---
@@ -40,7 +40,7 @@ Action to build Node.js projects with support for custom commands, environment v
 ## Usage
 
 ````yaml
-- uses: hoverkraft-tech/ci-github-nodejs/actions/build@6b74a8f070140f5c120f78026d58e4c00d1b1e37 # 0.24.2
+- uses: hoverkraft-tech/ci-github-nodejs/actions/build@37a362e984a1841a2be36e2f85b68755dc01d056 # 0.24.3
   with:
     # Working directory where the build commands are executed.
     # Can be absolute or relative to the repository root.
