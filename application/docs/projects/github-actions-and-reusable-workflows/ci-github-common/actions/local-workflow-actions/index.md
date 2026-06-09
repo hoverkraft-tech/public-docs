@@ -2,9 +2,9 @@
 title: Local Workflow Actions
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/local-workflow-actions/README.md
-source_branch: 0.36.3
-source_run_id: 27164964967
-last_synced: 2026-06-08T20:33:57.606Z
+source_branch: main
+source_run_id: 27234489865
+last_synced: 2026-06-09T20:46:06.316Z
 ---
 
 <!-- header:start -->
@@ -53,6 +53,12 @@ Example: if `actions-path` is `.github/actions`, then local actions will be avai
     #
     # Default: `.github/actions`
     actions-path: .github/actions
+
+    # A GitHub token with permissions to checkout the reusable workflow repository.
+    # This is required when the repository is private. For public repositories, this can be left empty and the checkout will be attempted anonymously.
+    #
+    # Default: `${{ github.token }}`
+    github-token: ${{ github.token }}
 ```
 
 <!-- usage:end -->
@@ -61,10 +67,12 @@ Example: if `actions-path` is `.github/actions`, then local actions will be avai
 
 ## Inputs
 
-| **Input**          | **Description**                                                                                                                                    | **Required** | **Default**       |
-| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------------- |
-| **`actions-path`** | Relative path(s) (inside the workflow repository) containing the local actions to expose in the current workspace.                                 | **false**    | `.github/actions` |
-|                    | The same relative path will be available under `../self-workflow` relative to `github.workspace` (for example `../self-workflow/.github/actions`). |              |                   |
+| **Input**          | **Description**                                                                                                                                    | **Required** | **Default**           |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------------- |
+| **`actions-path`** | Relative path(s) (inside the workflow repository) containing the local actions to expose in the current workspace.                                 | **false**    | `.github/actions`     |
+|                    | The same relative path will be available under `../self-workflow` relative to `github.workspace` (for example `../self-workflow/.github/actions`). |              |                       |
+| **`github-token`** | A GitHub token with permissions to checkout the reusable workflow repository.                                                                      | **false**    | `${{ github.token }}` |
+|                    | This is required when the repository is private. For public repositories, this can be left empty and the checkout will be attempted anonymously.   |              |                       |
 
 <!-- inputs:end -->
 
