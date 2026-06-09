@@ -3,8 +3,8 @@ title: Read
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/deployment/read/README.md
 source_branch: main
-source_run_id: 26902721697
-last_synced: 2026-06-03T17:53:55.891Z
+source_run_id: 27227868169
+last_synced: 2026-06-09T18:46:45.300Z
 ---
 
 <!-- header:start -->
