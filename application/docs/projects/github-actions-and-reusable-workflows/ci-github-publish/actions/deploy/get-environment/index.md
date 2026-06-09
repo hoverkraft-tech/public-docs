@@ -3,8 +3,8 @@ title: Get Environment
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/deploy/get-environment/README.md
 source_branch: main
-source_run_id: 26902721697
-last_synced: 2026-06-03T17:53:55.891Z
+source_run_id: 27227868169
+last_synced: 2026-06-09T18:46:45.300Z
 ---
 
 <!-- header:start -->
@@ -40,8 +40,8 @@ last_synced: 2026-06-03T17:53:55.891Z
 Action to get the environment to deploy regarding the workflow context.
 
 - If the workflow is triggered by an issue event (or pull-request):
-  If an environement is given, the environment will be set to `environment:issue_number`.
-  If no environment is given, the environment will be set to `review-apps:issue_number`.
+  If an environment is given, the environment will be set to `<environment>:pr-<issue_number>`.
+  If no environment is given, the environment will be set to `review-apps:pr-<issue_number>`.
 - Else if no environment is given, the action will fail.
 
 <!-- overview:end -->

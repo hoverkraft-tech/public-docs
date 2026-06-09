@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/deploy-chart.md
 source_branch: main
-source_run_id: 26902721697
-last_synced: 2026-06-03T17:53:55.891Z
+source_run_id: 27227868169
+last_synced: 2026-06-09T18:46:45.300Z
 ---
 
 <!-- header:start -->
@@ -190,7 +190,7 @@ jobs:
       # Accept placeholders:
       # - `{{ tag }}`: will be replaced by the tag.
       # - `{{ url }}`: will be replaced by the URL.
-      # If "path" starts with "deploy", the chart value wil be passed to the deploy action.
+      # If "path" starts with "deploy", the chart value will be passed to the deploy action.
       # Example:
       # ```json
       # [
@@ -249,7 +249,7 @@ jobs:
 |                            | Accept placeholders:                                                                                                                                                                                                                                                    |              |            |                            |
 |                            | - `{{ tag }}`: will be replaced by the tag.                                                                                                                                                                                                                             |              |            |                            |
 |                            | - `{{ url }}`: will be replaced by the URL.                                                                                                                                                                                                                             |              |            |                            |
-|                            | If "path" starts with "deploy", the chart value wil be passed to the deploy action.                                                                                                                                                                                     |              |            |                            |
+|                            | If "path" starts with "deploy", the chart value will be passed to the deploy action.                                                                                                                                                                                    |              |            |                            |
 |                            | Example:                                                                                                                                                                                                                                                                |              |            |                            |
 |                            | <!-- textlint-disable --><pre lang="json">[&#13; { "path": ".image", "image": "application" },&#13; { "path": ".application.version", "value": "{{ tag }}" },&#13; { "path": "deploy.ingress.hosts[0].host", "value": "{{ url }}" }&#13;]</pre><!-- textlint-enable --> |              |            |                            |
 | **`github-app-client-id`** | GitHub App Client ID to generate GitHub token in place of github-token.                                                                                                                                                                                                 | **false**    | **string** | -                          |
