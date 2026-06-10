@@ -3,8 +3,8 @@ title: Prepare Chart
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/helm/prepare-chart/README.md
 source_branch: main
-source_run_id: 27294435628
-last_synced: 2026-06-10T17:46:52.672Z
+source_run_id: 27304288155
+last_synced: 2026-06-10T20:36:30.756Z
 ---
 
 <!-- header:start -->
