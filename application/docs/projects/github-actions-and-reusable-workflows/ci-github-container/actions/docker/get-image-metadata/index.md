@@ -3,8 +3,8 @@ title: Get Image Metadata
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/docker/get-image-metadata/README.md
 source_branch: main
-source_run_id: 27294435628
-last_synced: 2026-06-10T17:46:52.672Z
+source_run_id: 27304288155
+last_synced: 2026-06-10T20:36:30.756Z
 ---
 
 <!-- header:start -->
@@ -45,7 +45,7 @@ It uses the [docker/metadata-action](https://github.com/docker/metadata-action) 
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-container/actions/docker/get-image-metadata@77f7324c534748f90cc191746164e0099e19e69a # 0.37.0
+- uses: hoverkraft-tech/ci-github-container/actions/docker/get-image-metadata@c9088e8447c5a8be45157e17701023fc50ccb1c0 # 0.37.2
   with:
     # OCI registry where to pull and push images
     # This input is required.
