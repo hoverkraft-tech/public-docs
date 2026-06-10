@@ -2,9 +2,9 @@
 title: Local Workflow Actions
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/local-workflow-actions/README.md
-source_branch: 0.37.0
-source_run_id: 27289654971
-last_synced: 2026-06-10T16:26:19.821Z
+source_branch: 0.37.1
+source_run_id: 27302644609
+last_synced: 2026-06-10T20:05:59.107Z
 ---
 
 <!-- header:start -->
@@ -46,7 +46,7 @@ Example: if `actions-path` is `.github/actions`, then local actions will be avai
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-common/actions/local-workflow-actions@59c06291a1619e383a38f2006f15627aa528bb95 # 0.37.0
+- uses: hoverkraft-tech/ci-github-common/actions/local-workflow-actions@624be17604ee0a7378488191aacb35851e7cf001 # 0.37.1
   with:
     # Relative path(s) (inside the workflow repository) containing the local actions to expose in the current workspace.
     # The same relative path will be available under `../self-workflow` relative to `github.workspace` (for example `../self-workflow/.github/actions`).
