@@ -2,9 +2,9 @@
 title: Get Matrix Outputs
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/get-matrix-outputs/README.md
-source_branch: 0.36.4
-source_run_id: 27235601344
-last_synced: 2026-06-09T21:06:22.036Z
+source_branch: 0.37.0
+source_run_id: 27289654971
+last_synced: 2026-06-10T16:26:19.821Z
 ---
 
 <!-- header:start -->
@@ -44,7 +44,7 @@ Workaround for [https://github.com/orgs/community/discussions/26639](https://git
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-common/actions/get-matrix-outputs@6a0fdae9e2598eccf7a9ec2bc20e7ce8e7c10c48 # 0.36.4
+- uses: hoverkraft-tech/ci-github-common/actions/get-matrix-outputs@59c06291a1619e383a38f2006f15627aa528bb95 # 0.37.0
   with:
     # The name of the artifact to download.
     # This input is required.
