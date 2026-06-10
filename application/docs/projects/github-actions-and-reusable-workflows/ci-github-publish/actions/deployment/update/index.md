@@ -3,8 +3,8 @@ title: Update
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/deployment/update/README.md
 source_branch: main
-source_run_id: 27227868169
-last_synced: 2026-06-09T18:46:45.300Z
+source_run_id: 27263038364
+last_synced: 2026-06-10T08:25:01.918Z
 ---
 
 <!-- header:start -->
@@ -57,7 +57,7 @@ permissions:
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/deployment/update@84d583ba7b357f9476707f54cf5419d630ae0145 # 0.26.2
+- uses: hoverkraft-tech/ci-github-publish/actions/deployment/update@b2562b46714e535a0113f90f554b55e1248212c1 # 0.26.3
   with:
     # The ID of the deployment to update
     # This input is required.
@@ -83,6 +83,7 @@ permissions:
 
     # GitHub Token to update the deployment.
     # Permissions:
+    # - actions: read
     # - deployments: write
     # See https://docs.github.com/en/rest/deployments/statuses?apiVersion=2022-11-28#create-a-deployment-status.
     #
@@ -106,6 +107,7 @@ permissions:
 | **`update-log-url`** | Update the log URL of the deployment                                                                         | **false**    | `true`                                |
 | **`github-token`**   | GitHub Token to update the deployment.                                                                       | **false**    | `${{ github.token }}`                 |
 |                      | Permissions:                                                                                                 |              |                                       |
+|                      | - actions: read                                                                                              |              |                                       |
 |                      | - deployments: write                                                                                         |              |                                       |
 |                      | See [https://docs.github.com/en/rest/deployments/statuses?apiVersion=2022-11-28#create-a-deployment-status](https://docs.github.com/en/rest/deployments/statuses?apiVersion=2022-11-28#create-a-deployment-status). |              |                                       |
 
