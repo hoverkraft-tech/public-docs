@@ -3,8 +3,8 @@ title: Create Images Manifests
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/docker/create-images-manifests/README.md
 source_branch: main
-source_run_id: 27304288155
-last_synced: 2026-06-10T20:36:30.756Z
+source_run_id: 27414074625
+last_synced: 2026-06-12T12:03:44.895Z
 ---
 
 <!-- header:start -->
@@ -256,7 +256,7 @@ jobs:
                 ...originalImage,
                 tags: ["1.0.0"],
                 images: [`${originalImage.registry}/${originalImage.repository}:1.0.0-rc.0`],
-                "multi-platform": true,
+                "multi-platform": true, // Force multi-platform to force create tag
               },
             };
 
