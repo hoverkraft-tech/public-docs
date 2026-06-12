@@ -76,8 +76,6 @@ _Orchestrated workflows you can plug directly into your own Docker images reposi
 
 ### - [Prune pull requests images tags](github/workflows/prune-pull-requests-images-tags.md)
 
-### - [Get available images matrix](github/workflows/get-available-images-matrix.md)
-
 ## Contributing
 
 Contributions are welcome! Please see the [contributing guidelines](https://github.com/hoverkraft-tech/docker-base-images/blob/main/CONTRIBUTING.md) for more details.
@@ -227,6 +225,7 @@ describe("My Image", () => {
    ```
 
 3. **Input Validation**: Always validate inputs early in GitHub Script steps:
+
    ```javascript
    const urlInput = ${{ toJson(inputs.url ) }};
    if (!urlInput) {

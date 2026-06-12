@@ -110,22 +110,22 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**                         | **Description**                                                                    | **Required** | **Type**    | **Default**                  |
-| --------------------------------- | ---------------------------------------------------------------------------------- | ------------ | ----------- | ---------------------------- |
-| **`runs-on`**                     | JSON array of runner(s) to use.                                                    | **false**    | **string**  | `["ubuntu-latest"]`          |
+| **Input**                         | **Description**                                                                                                                                                 | **Required** | **Type**    | **Default**                  |
+| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------- | ---------------------------- |
+| **`runs-on`**                     | JSON array of runner(s) to use.                                                                                                                                 | **false**    | **string**  | `["ubuntu-latest"]`          |
 |                                   | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job). |              |             |                              |
-| **`package-tarball-artifact-id`** | Artifact ID of the package tarball produced by CI.                                 | **true**     | **string**  | -                            |
-| **`registry-url`**                | Registry URL used by npm publish.                                                  | **false**    | **string**  | `https://registry.npmjs.org` |
-| **`access`**                      | Package access level passed to npm publish. Leave empty to use npm defaults.       | **false**    | **string**  | `public`                     |
-| **`tag`**                         | npm distribution tag for the published package. Leave empty to use npm defaults.   | **false**    | **string**  | -                            |
-|                                   | Common values:                                                                     |              |             |                              |
-|                                   | - `latest` - Default tag for stable releases                                       |              |             |                              |
-|                                   | - `next` - Prerelease or beta versions                                             |              |             |                              |
-|                                   | - `canary` - Canary/nightly builds                                                 |              |             |                              |
-|                                   |                                                                                    |              |             |                              |
-|                                   | See [https://docs.npmjs.com/adding-dist-tags-to-packages](https://docs.npmjs.com/adding-dist-tags-to-packages).                         |              |             |                              |
-| **`provenance`**                  | Whether to generate npm provenance for npmjs.org publishes.                        | **false**    | **boolean** | `true`                       |
-| **`dry-run`**                     | Whether to run npm publish without publishing the package.                         | **false**    | **boolean** | `false`                      |
+| **`package-tarball-artifact-id`** | Artifact ID of the package tarball produced by CI.                                                                                                              | **true**     | **string**  | -                            |
+| **`registry-url`**                | Registry URL used by npm publish.                                                                                                                               | **false**    | **string**  | `https://registry.npmjs.org` |
+| **`access`**                      | Package access level passed to npm publish. Leave empty to use npm defaults.                                                                                    | **false**    | **string**  | `public`                     |
+| **`tag`**                         | npm distribution tag for the published package. Leave empty to use npm defaults.                                                                                | **false**    | **string**  | -                            |
+|                                   | Common values:                                                                                                                                                  |              |             |                              |
+|                                   | - `latest` - Default tag for stable releases                                                                                                                    |              |             |                              |
+|                                   | - `next` - Prerelease or beta versions                                                                                                                          |              |             |                              |
+|                                   | - `canary` - Canary/nightly builds                                                                                                                              |              |             |                              |
+|                                   |                                                                                                                                                                 |              |             |                              |
+|                                   | See [https://docs.npmjs.com/adding-dist-tags-to-packages](https://docs.npmjs.com/adding-dist-tags-to-packages).                                                 |              |             |                              |
+| **`provenance`**                  | Whether to generate npm provenance for npmjs.org publishes.                                                                                                     | **false**    | **boolean** | `true`                       |
+| **`dry-run`**                     | Whether to run npm publish without publishing the package.                                                                                                      | **false**    | **boolean** | `false`                      |
 
 <!-- inputs:end -->
 

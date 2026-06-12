@@ -47,7 +47,7 @@ It updates the application manifest with the provided values and deploys it to t
 - The deployment ID is automatically added to the chart values as `.deploymentId`, allowing the chart to reference the current deployment instance.
 - The step validates that each chart value entry contains both `path` and `value` properties, ensuring correct input structure.
 
-2. Vendor-specific updates for the chart version and other properties:
+1. Vendor-specific updates for the chart version and other properties:
 
 - Updates the `tags.datadoghq.com/version` key to the chart version in Helm values.
 
@@ -136,7 +136,7 @@ spec:
               version: 1.2.3
 ```
 
-2. The extra manifest file (input `manifest-file`) is updated with:
+1. The extra manifest file (input `manifest-file`) is updated with:
 
 - Metadata:
   - Name: set to the target namespace (if the `metadata.name` field exists)

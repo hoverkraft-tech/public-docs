@@ -19,7 +19,7 @@ jobs:
       contents: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
           persist-credentials: false
 
@@ -39,9 +39,9 @@ jobs:
         id: generate-token
         with:
           client-id: ${{ vars.CI_BOT_APP_CLIENT_ID }}
-          private-key: ${{ secrets.CI_BOT_APP_PRIVATE_KEY }}
+          private-key: ${{ secrets.CI_BOT_APP_PRIVATE_KEY }} # zizmor: ignore[secrets-outside-env]
 
-      - uses: hoverkraft-tech/ci-github-common/actions/create-and-merge-pull-request@4c9d51717dc04d823dac2dc9ac2857e7b3069454 # 0.35.0
+      - uses: hoverkraft-tech/ci-github-common/actions/create-and-merge-pull-request@624be17604ee0a7378488191aacb35851e7cf001 # 0.37.1
         with:
           github-token: ${{ steps.generate-token.outputs.token }}
           branch: docs/action-documentation-update
@@ -56,13 +56,17 @@ jobs:
     name: Run CI Checks
     needs: generate-docs
     uses: ./.github/workflows/__shared-ci.yml
-    secrets: inherit
     permissions:
+      actions: read
       contents: read
       id-token: write
+      issues: write
       packages: read
       pull-requests: write
       security-events: write
+      statuses: write
+    secrets:
+      ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
 
   deploy:
     if: github.ref_name == github.event.repository.default_branch
@@ -77,7 +81,7 @@ jobs:
       url: ${{ steps.deployment.outputs.url }}
     steps:
       - id: deployment
-        uses: hoverkraft-tech/ci-github-publish/actions/deploy/github-pages@2c8e24b416226074aea1e240468f043edefc5760 # 0.23.2
+        uses: hoverkraft-tech/ci-github-publish/actions/deploy/github-pages@b2562b46714e535a0113f90f554b55e1248212c1 # 0.26.3
         with:
           build-path: application/build
           build-artifact-id: ${{ needs.ci.outputs.build-artifact-id }}

@@ -43,30 +43,27 @@ ci: ## Run tests in CI mode
 
 linter-fix: ## Execute linting and fix
 	$(call run_linter, \
-		-e FIX_CSS_PRETTIER=true \
-		-e FIX_JSON_PRETTIER=true \
-		-e FIX_JAVASCRIPT_PRETTIER=true \
-		-e FIX_YAML_PRETTIER=true \
 		-e FIX_MARKDOWN=true \
 		-e FIX_MARKDOWN_PRETTIER=true \
 		-e FIX_NATURAL_LANGUAGE=true \
+		-e FIX_SPELL_CODESPELL=true \
+		-e FIX_SHELL_SHFMT=true \
+		-e FIX_BIOME_LINT=true \
+		-e FIX_BIOME_FORMAT=true \
 	)
 
 define run_linter
 	DEFAULT_WORKSPACE="$(CURDIR)"; \
 	LINTER_IMAGE="linter:latest"; \
 	VOLUME="$$DEFAULT_WORKSPACE:$$DEFAULT_WORKSPACE"; \
-	docker build --build-arg UID=$(shell id -u) --build-arg GID=$(shell id -g) --tag $$LINTER_IMAGE .; \
+	docker build --platform linux/amd64 --build-arg UID=$(shell id -u) --build-arg GID=$(shell id -g) --tag $$LINTER_IMAGE .; \
 	docker run \
-		-e DEFAULT_WORKSPACE="$$DEFAULT_WORKSPACE" \
-		-e TYPESCRIPT_ES_CONFIG_FILE=../../application/eslint.config.js \
-		-e FILTER_REGEX_INCLUDE="$(filter-out $@,$(MAKECMDGOALS))" \
-		-e IGNORE_GITIGNORED_FILES=true \
-		-e VALIDATE_TYPESCRIPT_PRETTIER=false \
-		-e VALIDATE_CSS=false \
-		$(1) \
+		--platform linux/amd64 \
 		-v $$VOLUME \
 		--rm \
+		-e DEFAULT_WORKSPACE="$$DEFAULT_WORKSPACE" \
+		-e FILTER_REGEX_INCLUDE="$(filter-out $@,$(MAKECMDGOALS))" \
+		$(1) \
 		$$LINTER_IMAGE
 endef
 

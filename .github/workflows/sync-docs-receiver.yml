@@ -15,7 +15,7 @@ jobs:
       pull-requests: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
           persist-credentials: false
 
@@ -91,9 +91,9 @@ jobs:
         id: generate_token
         with:
           client-id: ${{ vars.CI_BOT_APP_CLIENT_ID }}
-          private-key: ${{ secrets.CI_BOT_APP_PRIVATE_KEY }}
+          private-key: ${{ secrets.CI_BOT_APP_PRIVATE_KEY }} # zizmor: ignore[secrets-outside-env]
 
-      - uses: hoverkraft-tech/ci-github-common/actions/create-and-merge-pull-request@4c9d51717dc04d823dac2dc9ac2857e7b3069454 # 0.30.21
+      - uses: hoverkraft-tech/ci-github-common/actions/create-and-merge-pull-request@624be17604ee0a7378488191aacb35851e7cf001 # 0.30.21
         with:
           github-token: ${{ steps.generate_token.outputs.token }}
           branch: docs/sync-documentation-${{ github.event.client_payload.repository }}
