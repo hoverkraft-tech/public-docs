@@ -1,4 +1,4 @@
 export default {
-    version: "1.0.0",
-    routes: [],
+	version: "1.0.0",
+	routes: [],
 };

@@ -13,8 +13,19 @@ on:
 permissions: {}
 
 jobs:
+  linter:
+    uses: hoverkraft-tech/ci-github-common/.github/workflows/linter.yml@624be17604ee0a7378488191aacb35851e7cf001 # 0.37.1
+    permissions:
+      actions: read
+      contents: read
+      issues: write
+      packages: read
+      pull-requests: write
+      security-events: write
+      statuses: write
+
   continuous-integration-prepare-docs:
-    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@a10d5e32daef8e060c49fe617833fb0d53476f22 # 0.24.0
+    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@df348077afa4e79725151d50606e9dc63f86dcb6 # 0.24.4
     strategy:
       matrix:
         working-directory:
@@ -35,7 +46,7 @@ jobs:
       dependency-review: false
 
   continuous-integration:
-    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@a10d5e32daef8e060c49fe617833fb0d53476f22 # 0.24.0
+    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@df348077afa4e79725151d50606e9dc63f86dcb6 # 0.24.4
     permissions:
       contents: read
       id-token: write

@@ -149,6 +149,7 @@ For repositories with strict yamllint rules (e.g., line length limits):
 # Single line format (preferred for yamllint compatibility)
 uses: hoverkraft-tech/public-docs/.github/workflows/sync-docs-dispatcher.yml@18facec04f2945f4d66d510e8a06568497b73c54 # 0.1.0
 
+
 # If line is too long, yamllint may still complain - consider:
 # 1. Disabling line-length for specific lines
 # 2. Using shorter variable names

@@ -5,4 +5,3 @@ sidebar_label: User
 ---
 
 This page is generated automatically to introduce the User documentation section.
-
