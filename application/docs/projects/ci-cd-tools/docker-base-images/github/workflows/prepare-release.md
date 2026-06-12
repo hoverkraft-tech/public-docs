@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/docker-base-images
 source_path: .github/workflows/prepare-release.md
 source_branch: main
-source_run_id: 27029496322
-last_synced: 2026-06-05T17:28:09.993Z
+source_run_id: 27414146137
+last_synced: 2026-06-12T12:10:08.328Z
 ---
 
 <!-- header:start -->
@@ -30,7 +30,7 @@ last_synced: 2026-06-05T17:28:09.993Z
 
 ## Overview
 
-Reuseable workflow to prepare a release using the hoverkraft-tech/ci-github-publish workflow
+Reusable workflow to prepare a release using the hoverkraft-tech/ci-github-publish workflow
 Prepare for all the available images
 
 ### Permissions

@@ -3,8 +3,8 @@ title: Super Linter
 source_repo: hoverkraft-tech/docker-base-images
 source_path: images/super-linter/README.md
 source_branch: main
-source_run_id: 27029496322
-last_synced: 2026-06-05T17:28:09.993Z
+source_run_id: 27414146137
+last_synced: 2026-06-12T12:10:08.328Z
 ---
 
 # super-linter
@@ -35,6 +35,7 @@ Build the image with the current host UID and GID so bind-mounted files stay wri
 
 ```bash
 docker build \
+  --platform linux/amd64 \
   --build-arg UID="$(id -u)" \
   --build-arg GID="$(id -g)" \
   --tag linter:latest \
@@ -49,6 +50,7 @@ FROM ghcr.io/hoverkraft-tech/docker-base-images/super-linter:latest
 
 ```bash
 docker build \
+  --platform linux/amd64 \
   --build-arg UID="$(id -u)" \
   --build-arg GID="$(id -g)" \
   --tag my-super-linter-child:latest \
@@ -62,10 +64,11 @@ DEFAULT_WORKSPACE="$(pwd)"; \
 LINTER_IMAGE="linter:latest"; \
 VOLUME="$DEFAULT_WORKSPACE:$DEFAULT_WORKSPACE"; \
 docker run \
-  -e DEFAULT_WORKSPACE="$DEFAULT_WORKSPACE" \
-  -e FILTER_REGEX_INCLUDE='.*' \
+  --platform linux/amd64 \
   -v "$VOLUME" \
   --rm \
+  -e DEFAULT_WORKSPACE="$DEFAULT_WORKSPACE" \
+  -e FILTER_REGEX_INCLUDE='.*' \
   "$LINTER_IMAGE"
 ```
 
@@ -75,12 +78,13 @@ That matches the intended Makefile-style invocation:
 DEFAULT_WORKSPACE="$(CURDIR)"; \
 LINTER_IMAGE="linter:latest"; \
 VOLUME="$$DEFAULT_WORKSPACE:$$DEFAULT_WORKSPACE"; \
-docker build --build-arg UID=$(shell id -u) --build-arg GID=$(shell id -g) --tag $$LINTER_IMAGE images/super-linter; \
+docker build --platform linux/amd64 --build-arg UID=$(shell id -u) --build-arg GID=$(shell id -g) --tag $$LINTER_IMAGE images/super-linter; \
 docker run \
- -e DEFAULT_WORKSPACE="$$DEFAULT_WORKSPACE" \
- -e FILTER_REGEX_INCLUDE="$(filter-out $@,$(MAKECMDGOALS))" \
+ --platform linux/amd64 \
  -v $$VOLUME \
  --rm \
+ -e DEFAULT_WORKSPACE="$$DEFAULT_WORKSPACE" \
+ -e FILTER_REGEX_INCLUDE="$(filter-out $@,$(MAKECMDGOALS))" \
  $$LINTER_IMAGE
 ```
 
@@ -90,6 +94,7 @@ Set one of these environment variables when you want the image to disable confli
 
 ```bash
 docker run \
+  --platform linux/amd64 \
   -e DEFAULT_WORKSPACE="$(pwd)" \
   -e VALIDATE_JAVASCRIPT_TOOLCHAIN=biome \
   -v "$(pwd):$(pwd)" \

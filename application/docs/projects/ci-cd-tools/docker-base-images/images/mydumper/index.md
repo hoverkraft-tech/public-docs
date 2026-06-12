@@ -3,8 +3,8 @@ title: Mydumper
 source_repo: hoverkraft-tech/docker-base-images
 source_path: images/mydumper/README.md
 source_branch: main
-source_run_id: 27029496322
-last_synced: 2026-06-05T17:28:09.993Z
+source_run_id: 27414146137
+last_synced: 2026-06-12T12:10:08.328Z
 ---
 
 # mydumper
@@ -20,8 +20,8 @@ You can override the following variables to fit your needs
 | MYSQL_HOST             | MySQL                                       | MySQL server                                         |
 | MYSQL_PORT             | 3306                                        | MySQL port to connect                                |
 | MYSQL_USER             | root                                        | MySQL user used to connect                           |
-| MYSQL_PASSWORD         | root                                        | MySQL password used to connect                       |
-| MYSQL_DATABASE         | "app"                                       | MySQL database to dump                               |
+| MYSQL_PASSWORD         | empty                                       | MySQL password used to connect                       |
+| MYSQL_DATABASE         | required                                    | MySQL database to dump                               |
 | MYDUMPER_THREADS       | 4                                           | number of CPU threads used to dump data              |
 | MYDUMPER_COMPRESS      | 1                                           | compress dump files (evaluated as true if not empty) |
 | MYDUMPER_EXTRA_OPTIONS | "-e -F 100 --use-savepoints --less-locking" | extra options passed to the mydumper command         |
@@ -32,4 +32,4 @@ You can override the following variables to fit your needs
 To use the image, you can pull it from the [OCI registry](https://github.com/orgs/hoverkraft-tech/packages/container/package/docker-base-images%2Fmydumper).
 
 - `/entrypoint.sh` is run at the container startup and creates dumps in `/backups` with a timestamped directory
-- `KEEP_BACKUPS` backuos are kept at the same time to avoid filling up `/backups`
+- `KEEP_BACKUPS` backups are kept at the same time to avoid filling up `/backups`
