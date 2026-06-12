@@ -2,9 +2,9 @@
 title: Get Available Images
 source_repo: hoverkraft-tech/docker-base-images
 source_path: actions/get-available-images/README.md
-source_branch: main
-source_run_id: 27414146137
-last_synced: 2026-06-12T12:10:08.328Z
+source_branch: 0.7.0
+source_run_id: 27417510062
+last_synced: 2026-06-12T13:15:54.758Z
 ---
 
 <!-- header:start -->
@@ -40,7 +40,7 @@ Get the list of available images in the repository
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/docker-base-images/actions/get-available-images@75c563e455402a2aad0e925a8df78ecf719551c7 # 0.6.0
+- uses: hoverkraft-tech/docker-base-images/actions/get-available-images@536aff60442c9d70714c247aeb392dc762d84b4e # 0.7.0
 ```
 
 <!-- usage:end -->

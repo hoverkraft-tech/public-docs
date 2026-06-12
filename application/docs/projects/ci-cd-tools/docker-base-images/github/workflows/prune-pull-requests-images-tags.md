@@ -1,9 +1,9 @@
 ---
 source_repo: hoverkraft-tech/docker-base-images
 source_path: .github/workflows/prune-pull-requests-images-tags.md
-source_branch: main
-source_run_id: 27414146137
-last_synced: 2026-06-12T12:10:08.328Z
+source_branch: 0.7.0
+source_run_id: 27417510062
+last_synced: 2026-06-12T13:15:54.758Z
 ---
 
 <!-- header:start -->
@@ -58,7 +58,7 @@ on:
 permissions: {}
 jobs:
   prune-pull-requests-images-tags:
-    uses: hoverkraft-tech/docker-base-images/.github/workflows/prune-pull-requests-images-tags.yml@75c563e455402a2aad0e925a8df78ecf719551c7 # 0.6.0
+    uses: hoverkraft-tech/docker-base-images/.github/workflows/prune-pull-requests-images-tags.yml@536aff60442c9d70714c247aeb392dc762d84b4e # 0.7.0
     permissions:
       contents: read
       packages: write
