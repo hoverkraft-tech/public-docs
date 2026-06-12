@@ -3,8 +3,8 @@ title: Argocd Cmp Hk Deployment
 source_repo: hoverkraft-tech/docker-base-images
 source_path: images/argocd-cmp-hk-deployment/README.md
 source_branch: main
-source_run_id: 27029496322
-last_synced: 2026-06-05T17:28:09.993Z
+source_run_id: 27414146137
+last_synced: 2026-06-12T12:10:08.328Z
 ---
 
 # argocd-cmp-hk-deployment
@@ -18,7 +18,7 @@ Docker base image for the Hoverkraft ArgoCD custom CMP (Config Management Plugin
   - `entrypoint.sh`: call correct script depending of the argocd context
   - `single-source.sh`: Renders a Helm chart and applies Kustomize overlays, outputting the final Kubernetes manifests. Supports injection of deployment ID and ArgoCD environment variables.
   - `multi-sources.sh`: Generates a ConfigMap manifest for multi-source deployments, propagating the deployment ID.
-- **Kustomize template:** `kustomize-template.yaml` is used by the scripts to inject deployment-specific configuration.
+- **Kustomize template:** `kustomize-template.tpl` is used by the scripts to inject deployment-specific configuration.
 
 ## Scripts
 

@@ -3,8 +3,8 @@ title: Docker Base Images
 source_repo: hoverkraft-tech/docker-base-images
 source_path: README.md
 source_branch: main
-source_run_id: 27029496322
-last_synced: 2026-06-05T17:28:09.993Z
+source_run_id: 27414146137
+last_synced: 2026-06-12T12:10:08.328Z
 ---
 
 # Docker base images
@@ -296,7 +296,7 @@ images/                               # Docker images (each image is self-contai
 ##### Release build
 
 - Build images that have been modified
-- Tag respecting sementic versioning
+- Tag respecting semantic versioning
 
 ## Author
 
