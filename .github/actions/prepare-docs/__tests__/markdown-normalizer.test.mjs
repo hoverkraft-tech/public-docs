@@ -4,72 +4,72 @@ import { afterEach, beforeEach, describe, expect, it } from "vitest";
 
 const require = createRequire(import.meta.url);
 const {
-	normalizeMarkdownBody,
+  normalizeMarkdownBody,
 } = require("../lib/markdown/markdown-normalizer");
 
 function createOptions(overrides = {}) {
-	return {
-		assetMap: overrides.assetMap ?? new Map(),
-		docRelativePath: overrides.docRelativePath ?? "docs/guide/index.md",
-		docsPath: overrides.docsPath ?? "/workspace/docs",
-		staticPath: overrides.staticPath ?? "/workspace/static/ci-namespace",
-	};
+  return {
+    assetMap: overrides.assetMap ?? new Map(),
+    docRelativePath: overrides.docRelativePath ?? "docs/guide/index.md",
+    docsPath: overrides.docsPath ?? "/workspace/docs",
+    staticPath: overrides.staticPath ?? "/workspace/static/ci-namespace",
+  };
 }
 
 describe("normalizeMarkdownBody", () => {
-	beforeEach(() => {
-		mockFs({
-			"/workspace": {
-				docs: {
-					guide: {
-						"index.md": "",
-					},
-				},
-				static: {
-					"ci-namespace": {
-						assets: {
-							images: {
-								"logo.png": "image-bytes",
-							},
-							"photo.jpg": "image-bytes",
-						},
-					},
-				},
-			},
-		});
-	});
+  beforeEach(() => {
+    mockFs({
+      "/workspace": {
+        docs: {
+          guide: {
+            "index.md": "",
+          },
+        },
+        static: {
+          "ci-namespace": {
+            assets: {
+              images: {
+                "logo.png": "image-bytes",
+              },
+              "photo.jpg": "image-bytes",
+            },
+          },
+        },
+      },
+    });
+  });
 
-	afterEach(() => {
-		mockFs.restore();
-	});
+  afterEach(() => {
+    mockFs.restore();
+  });
 
-	it("returns the original content when input is empty", () => {
-		const result = normalizeMarkdownBody("", createOptions());
+  it("returns the original content when input is empty", () => {
+    const result = normalizeMarkdownBody("", createOptions());
 
-		expect(result).toBe("");
-	});
+    expect(result).toBe("");
+  });
 
-	it("converts angle bracket links and rewrites local asset references", () => {
-		const assetMap = new Map([
-			[
-				"docs/images/logo.png",
-				{
-					storageRelativePath: "assets/images/logo.png",
-					publicPath: "/assets/images/logo.png",
-				},
-			],
-			[
-				"docs/assets/photo.jpg",
-				{
-					storageRelativePath: "assets/photo.jpg",
-					publicPath: "/assets/photo.jpg",
-				},
-			],
-		]);
+  it("converts angle bracket links and rewrites local asset references", () => {
+    const assetMap = new Map([
+      [
+        "docs/images/logo.png",
+        {
+          storageRelativePath: "assets/images/logo.png",
+          publicPath: "/assets/images/logo.png",
+        },
+      ],
+      [
+        "docs/assets/photo.jpg",
+        {
+          storageRelativePath: "assets/photo.jpg",
+          publicPath: "/assets/photo.jpg",
+        },
+      ],
+    ]);
 
-		const options = createOptions({ assetMap });
+    const options = createOptions({ assetMap });
 
-		const input = `
+    const input = `
 Visit <https://example.com> or email <docs@example.com>.
 ![Logo](../images/logo.png "Logo")
 [Docs][docs-link]
@@ -79,9 +79,9 @@ Visit <https://example.com> or email <docs@example.com>.
 <a href="../docs/start.md">Start</a>
 `;
 
-		const result = normalizeMarkdownBody(input, options);
+    const result = normalizeMarkdownBody(input, options);
 
-		expect(result).toBe(`
+    expect(result).toBe(`
 Visit [https://example.com](https://example.com) or email [docs@example.com](mailto:docs@example.com).
 ![Logo](/ci-namespace/assets/images/logo.png "Logo")
 [Docs][docs-link]
@@ -90,57 +90,57 @@ Visit [https://example.com](https://example.com) or email [docs@example.com](mai
 <img src="/ci-namespace/assets/photo.jpg" alt="Photo">
 <a href="../docs/start.md">Start</a>
 `);
-	});
+  });
 
-	it("preserves original targets when the asset map has no matches", () => {
-		const input = `
+  it("preserves original targets when the asset map has no matches", () => {
+    const input = `
 [External](https://example.com "Example")
 <img src=" https://cdn.example.com/logo.svg " alt="Logo">
 `;
 
-		const result = normalizeMarkdownBody(input, createOptions());
+    const result = normalizeMarkdownBody(input, createOptions());
 
-		expect(result).toBe(`
+    expect(result).toBe(`
 [External](https://example.com "Example")
 <img src=" https://cdn.example.com/logo.svg " alt="Logo">
 `);
-	});
+  });
 
-	it("throws when markdown references an unregistered asset", () => {
-		const input = "![Missing](../images/missing.png)";
+  it("throws when markdown references an unregistered asset", () => {
+    const input = "![Missing](../images/missing.png)";
 
-		expect(() => normalizeMarkdownBody(input, createOptions())).toThrow(
-			/Missing asset registration/,
-		);
-	});
+    expect(() => normalizeMarkdownBody(input, createOptions())).toThrow(
+      /Missing asset registration/,
+    );
+  });
 
-	it("rewrites links for existing static assets even without registration", () => {
-		const input = "![Logo](../images/logo.png)";
+  it("rewrites links for existing static assets even without registration", () => {
+    const input = "![Logo](../images/logo.png)";
 
-		const result = normalizeMarkdownBody(input, createOptions());
+    const result = normalizeMarkdownBody(input, createOptions());
 
-		expect(result).toBe("![Logo](/ci-namespace/assets/images/logo.png)");
-	});
+    expect(result).toBe("![Logo](/ci-namespace/assets/images/logo.png)");
+  });
 
-	it("normalizes GitHub casing and ordered list markers", () => {
-		const input = `
+  it("normalizes GitHub casing and ordered list markers", () => {
+    const input = `
 1. First item
 2. Second item in Github docs
 `;
 
-		const result = normalizeMarkdownBody(input, createOptions());
+    const result = normalizeMarkdownBody(input, createOptions());
 
-		expect(result).toBe(`
+    expect(result).toBe(`
 1. First item
 1. Second item in GitHub docs
 `);
-	});
+  });
 
-	it("removes trailing whitespace and trailing blank lines", () => {
-		const input = "Line with spaces   \n\n\n";
+  it("removes trailing whitespace and trailing blank lines", () => {
+    const input = "Line with spaces   \n\n\n";
 
-		const result = normalizeMarkdownBody(input, createOptions());
+    const result = normalizeMarkdownBody(input, createOptions());
 
-		expect(result).toBe("Line with spaces\n");
-	});
+    expect(result).toBe("Line with spaces\n");
+  });
 });
