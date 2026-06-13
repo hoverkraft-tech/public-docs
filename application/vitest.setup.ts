@@ -13,11 +13,7 @@ class MockIntersectionObserver {
 if (typeof window !== "undefined") {
 	if (!("IntersectionObserver" in window)) {
 		// Provide a minimal stub so components using lazy-loading hooks do not crash in tests.
-		(
-			window as unknown as {
-				IntersectionObserver: typeof MockIntersectionObserver;
-			}
-		).IntersectionObserver =
+		(window as Window & typeof globalThis).IntersectionObserver =
 			MockIntersectionObserver as unknown as typeof IntersectionObserver;
 	}
 

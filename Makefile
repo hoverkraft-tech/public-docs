@@ -36,8 +36,8 @@ test: ## Run tests
 
 ci: ## Run tests in CI mode
 	$(MAKE) setup
-	$(MAKE) lint-fix
 	$(MAKE) npm-audit-fix || true
+	$(MAKE) lint-fix
 	$(MAKE) build
 	$(MAKE) test
 

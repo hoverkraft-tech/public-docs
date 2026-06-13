@@ -1,4 +1,3 @@
-import path from "node:path";
 import { defineConfig } from "vitest/config";
 
 export default defineConfig({
@@ -14,18 +13,18 @@ export default defineConfig({
 	},
 	resolve: {
 		alias: {
-			"@docusaurus/useDocusaurusContext": path.resolve(
-				__dirname,
+			"@docusaurus/useDocusaurusContext": new URL(
 				"src/__mocks__/useDocusaurusContextMock.ts",
-			),
-			"@theme/Layout": path.resolve(
-				__dirname,
+				import.meta.url,
+			).pathname,
+			"@theme/Layout": new URL(
 				"src/__mocks__/themeLayoutMock.tsx",
-			),
-			"@theme/Heading": path.resolve(
-				__dirname,
+				import.meta.url,
+			).pathname,
+			"@theme/Heading": new URL(
 				"src/__mocks__/themeHeadingMock.tsx",
-			),
+				import.meta.url,
+			).pathname,
 		},
 	},
 });
