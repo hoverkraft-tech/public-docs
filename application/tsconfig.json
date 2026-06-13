@@ -1,17 +1,17 @@
 {
-	"compilerOptions": {
-		"allowJs": true,
-		"esModuleInterop": true,
-		"jsx": "react-jsx",
-		"target": "ES2022",
-		"lib": ["ES2022", "DOM"],
-		"moduleResolution": "bundler",
-		"module": "esnext",
-		"noEmit": true,
-		"paths": {
-			"@site/*": ["./*"]
-		},
-		"skipLibCheck": true
-	},
-	"exclude": [".docusaurus", "build"]
+  "compilerOptions": {
+    "allowJs": true,
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM"],
+    "moduleResolution": "bundler",
+    "module": "esnext",
+    "noEmit": true,
+    "paths": {
+      "@site/*": ["./*"]
+    },
+    "skipLibCheck": true
+  },
+  "exclude": [".docusaurus", "build"]
 }
