@@ -1,5 +1,4 @@
-import type { ElementType, ReactNode } from "react";
-import React from "react";
+import type { ElementType, JSX, ReactNode } from "react";
 
 export default function Heading({
 	as = "h2",

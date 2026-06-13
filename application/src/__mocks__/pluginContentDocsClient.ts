@@ -1,7 +1,8 @@
-const React = require("react");
+import type { ReactNode } from "react";
+import { createElement, Fragment } from "react";
 
-const passthroughProvider = ({ children }: { children?: React.ReactNode }) =>
-	React.createElement(React.Fragment, null, children);
+const passthroughProvider = ({ children }: { children?: ReactNode }) =>
+	createElement(Fragment, null, children);
 
 const baseExports: Record<string, unknown> = {
 	__esModule: true,
