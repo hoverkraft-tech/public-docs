@@ -1,9 +1,9 @@
 ---
 source_repo: hoverkraft-tech/docker-base-images
 source_path: .github/workflows/release.md
-source_branch: 0.7.0
-source_run_id: 27417510062
-last_synced: 2026-06-12T13:15:54.758Z
+source_branch: main
+source_run_id: 27626819614
+last_synced: 2026-06-16T15:12:39.356Z
 ---
 
 <!-- header:start -->
@@ -106,17 +106,17 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**                   | **Description**                                                                                                                                                         | **Required** | **Type**    | **Default**                      |
-| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------- | -------------------------------- |
-| **`runs-on`**               | JSON array of runner(s) to use.                                                                                                                                         | **false**    | **string**  | `["ubuntu-latest"]`              |
-|                             | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).         |              |             |                                  |
-| **`oci-registry`**          | OCI registry where to pull and push images.                                                                                                                             | **false**    | **string**  | `ghcr.io`                        |
-| **`oci-registry-username`** | Username used to log against the OCI registry.                                                                                                                          | **false**    | **string**  | `${{ github.repository_owner }}` |
-|                             | See [https://github.com/docker/login-action#usage](https://github.com/docker/login-action#usage).                                                                       |              |             |                                  |
-| **`platforms`**             | JSON array of platforms to build images for by default.                                                                                                                 | **false**    | **string**  | `["linux/amd64","linux/arm64"]`  |
-|                             | Can be overridden per image with `images/<image>/build.json`.                                                                                                           |              |             |                                  |
+| **Input**                   | **Description**                                                                        | **Required** | **Type**    | **Default**                      |
+| --------------------------- | -------------------------------------------------------------------------------------- | ------------ | ----------- | -------------------------------- |
+| **`runs-on`**               | JSON array of runner(s) to use.                                                        | **false**    | **string**  | `["ubuntu-latest"]`              |
+|                             | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).     |              |             |                                  |
+| **`oci-registry`**          | OCI registry where to pull and push images.                                            | **false**    | **string**  | `ghcr.io`                        |
+| **`oci-registry-username`** | Username used to log against the OCI registry.                                         | **false**    | **string**  | `${{ github.repository_owner }}` |
+|                             | See [https://github.com/docker/login-action#usage](https://github.com/docker/login-action#usage).                                    |              |             |                                  |
+| **`platforms`**             | JSON array of platforms to build images for by default.                                | **false**    | **string**  | `["linux/amd64","linux/arm64"]`  |
+|                             | Can be overridden per image with `images/<image>/build.json`.                          |              |             |                                  |
 |                             | See [https://docs.docker.com/buildx/working-with-buildx/#build-multi-platform-images](https://docs.docker.com/buildx/working-with-buildx/#build-multi-platform-images). |              |             |                                  |
-| **`prerelease`**            | Whether the release is a prerelease                                                                                                                                     | **false**    | **boolean** | `false`                          |
+| **`prerelease`**            | Whether the release is a prerelease                                                    | **false**    | **boolean** | `false`                          |
 
 <!-- inputs:end -->
 

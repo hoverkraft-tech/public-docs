@@ -1,9 +1,9 @@
 ---
 source_repo: hoverkraft-tech/docker-base-images
 source_path: CONTRIBUTING.md
-source_branch: 0.7.0
-source_run_id: 27417510062
-last_synced: 2026-06-12T13:15:54.758Z
+source_branch: main
+source_run_id: 27626819614
+last_synced: 2026-06-16T15:12:39.356Z
 ---
 
 # Contributing
@@ -17,11 +17,11 @@ Please note we have a code of conduct, please follow it in all your interactions
 
 1. Ensure any install or build dependencies are removed before the end of the layer when doing a
    build.
-2. Update the README.md with details of changes to the interface, this includes new environment
+1. Update the README.md with details of changes to the interface, this includes new environment
    variables, exposed ports, useful file locations and container parameters.
-3. Increase the version numbers in any examples files and the README.md to the new version that this
+1. Increase the version numbers in any examples files and the README.md to the new version that this
    Pull Request would represent. The versioning scheme we use is [SemVer](http://semver.org/).
-4. You may merge the Pull Request in once you have the sign-off of two other developers, or if you
+1. You may merge the Pull Request in once you have the sign-off of two other developers, or if you
    do not have permission to do that, you may request the second reviewer to merge it for you.
 
 ## Code of Conduct

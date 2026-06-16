@@ -2,9 +2,9 @@
 title: Testcontainers Node
 source_repo: hoverkraft-tech/docker-base-images
 source_path: images/testcontainers-node/README.md
-source_branch: 0.7.0
-source_run_id: 27417510062
-last_synced: 2026-06-12T13:15:54.758Z
+source_branch: main
+source_run_id: 27626819614
+last_synced: 2026-06-16T15:12:39.356Z
 ---
 
 # Testcontainers Node.js
@@ -36,8 +36,8 @@ make test <image-name>
 This will:
 
 1. Build the image to test
-2. Build the testcontainers-node Docker image
-3. Mount the image directory, run tests, and write `junit.xml`
+1. Build the testcontainers-node Docker image
+1. Mount the image directory, run tests, and write `junit.xml`
 
 ### CI/CD
 

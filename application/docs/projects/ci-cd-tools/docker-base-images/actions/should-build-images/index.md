@@ -2,9 +2,9 @@
 title: Should Build Images
 source_repo: hoverkraft-tech/docker-base-images
 source_path: actions/should-build-images/README.md
-source_branch: 0.7.0
-source_run_id: 27417510062
-last_synced: 2026-06-12T13:15:54.758Z
+source_branch: main
+source_run_id: 27626819614
+last_synced: 2026-06-16T15:12:39.356Z
 ---
 
 <!-- header:start -->
@@ -58,11 +58,11 @@ Check if some files have changed requiring the build of the given images.
 
 ## Inputs
 
-| **Input**      | **Description**                                                                                                                                                | **Required** | **Default** |
-| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------- |
-| **`images`**   | Image names located in the 'images' folder.                                                                                                                    | **true**     | -           |
-|                | Formatted as a JSON array.                                                                                                                                     |              |             |
-|                | Example: `["php-8", "nodejs-24"]`                                                                                                                              |              |             |
+| **Input**      | **Description**                                                                                                   | **Required** | **Default** |
+| -------------- | ----------------------------------------------------------------------------------------------------------------- | ------------ | ----------- |
+| **`images`**   | Image names located in the 'images' folder.                                                                       | **true**     | -           |
+|                | Formatted as a JSON array.                                                                                        |              |             |
+|                | Example: `["php-8", "nodejs-24"]`                                                                                 |              |             |
 | **`base-sha`** | Specify a different base commit SHA used for comparing changes. See [https://github.com/tj-actions/changed-files](https://github.com/tj-actions/changed-files) | **false**    | -           |
 
 <!-- inputs:end -->
