@@ -2,9 +2,9 @@
 title: Super Linter
 source_repo: hoverkraft-tech/docker-base-images
 source_path: images/super-linter/README.md
-source_branch: 0.7.0
-source_run_id: 27417510062
-last_synced: 2026-06-12T13:15:54.758Z
+source_branch: main
+source_run_id: 27626819614
+last_synced: 2026-06-16T15:12:39.356Z
 ---
 
 # super-linter
@@ -22,7 +22,8 @@ For direct local use, the image still supports `UID` and `GID` build args so the
 - defaults `LOG_LEVEL=WARN`
 - defaults `LOG_FILE=/github/home/logs`
 - defaults `IGNORE_GITIGNORED_FILES=true`
-- defaults `KUBERNETES_KUBECONFORM_OPTIONS="-schema-location default -schema-location https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json"`
+- defaults `KUBERNETES_KUBECONFORM_SCHEMA_LOCATIONS="https://raw.githubusercontent.com/hoverkraft-tech/crds-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json"`
+- defaults `KUBERNETES_KUBECONFORM_OPTIONS` from `KUBERNETES_KUBECONFORM_SCHEMA_LOCATIONS` as `-schema-location default` plus one `-schema-location` per entry
 - defaults `VALIDATE_JAVASCRIPT_TOOLCHAIN=biome`
 - defaults `VALIDATE_PYTHON_TOOLCHAIN=ruff-format`
 - supports overriding `VALIDATE_JAVASCRIPT_TOOLCHAIN=biome|eslint-prettier`

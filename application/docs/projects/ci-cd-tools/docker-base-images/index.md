@@ -2,9 +2,9 @@
 title: Docker Base Images
 source_repo: hoverkraft-tech/docker-base-images
 source_path: README.md
-source_branch: 0.7.0
-source_run_id: 27417510062
-last_synced: 2026-06-12T13:15:54.758Z
+source_branch: main
+source_run_id: 27626819614
+last_synced: 2026-06-16T15:12:39.356Z
 ---
 
 # Docker base images
@@ -76,6 +76,8 @@ _Orchestrated workflows you can plug directly into your own Docker images reposi
 
 ### - [Prune pull requests images tags](github/workflows/prune-pull-requests-images-tags.md)
 
+### - [Get available images matrix](github/workflows/get-available-images-matrix.md)
+
 ## Contributing
 
 Contributions are welcome! Please see the [contributing guidelines](https://github.com/hoverkraft-tech/docker-base-images/blob/main/CONTRIBUTING.md) for more details.
@@ -96,9 +98,9 @@ actions/{category}/{action-name}/
 #### Action Definition Standards
 
 1. **Consistent branding**: All actions use `author: hoverkraft`, `icon: <specific-icon>`, `color: blue`
-2. **Composite actions**: Use `using: "composite"` with GitHub Script for complex logic
-3. **Pinned dependencies**: Always pin action versions with SHA (e.g., `@ed597411d8f924073f98dfc5c65a23a2325f34cd`)
-4. **Input validation**: Validate inputs early in GitHub Script steps
+1. **Composite actions**: Use `using: "composite"` with GitHub Script for complex logic
+1. **Pinned dependencies**: Always pin action versions with SHA (e.g., `@ed597411d8f924073f98dfc5c65a23a2325f34cd`)
+1. **Input validation**: Validate inputs early in GitHub Script steps
 
 #### JavaScript Patterns
 
@@ -215,7 +217,7 @@ describe("My Image", () => {
    uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
    ```
 
-2. **Consistent Branding**: Every action.yml must include:
+1. **Consistent Branding**: Every action.yml must include:
 
    ```yaml
    author: hoverkraft
@@ -224,8 +226,7 @@ describe("My Image", () => {
      color: blue
    ```
 
-3. **Input Validation**: Always validate inputs early in GitHub Script steps:
-
+1. **Input Validation**: Always validate inputs early in GitHub Script steps:
    ```javascript
    const urlInput = ${{ toJson(inputs.url ) }};
    if (!urlInput) {

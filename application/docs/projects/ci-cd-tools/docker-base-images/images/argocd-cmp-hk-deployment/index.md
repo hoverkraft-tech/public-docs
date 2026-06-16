@@ -1,10 +1,10 @@
 ---
-title: Argocd Cmp Hk Deployment
+title: ArgoCD Cmp Hk Deployment
 source_repo: hoverkraft-tech/docker-base-images
 source_path: images/argocd-cmp-hk-deployment/README.md
-source_branch: 0.7.0
-source_run_id: 27417510062
-last_synced: 2026-06-12T13:15:54.758Z
+source_branch: main
+source_run_id: 27626819614
+last_synced: 2026-06-16T15:12:39.356Z
 ---
 
 # argocd-cmp-hk-deployment
