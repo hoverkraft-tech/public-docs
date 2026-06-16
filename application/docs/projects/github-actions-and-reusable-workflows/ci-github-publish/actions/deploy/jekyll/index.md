@@ -3,8 +3,8 @@ title: Jekyll
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/deploy/jekyll/README.md
 source_branch: main
-source_run_id: 27263038364
-last_synced: 2026-06-10T08:25:01.918Z
+source_run_id: 27618453467
+last_synced: 2026-06-16T12:51:06.943Z
 ---
 
 <!-- header:start -->
@@ -43,11 +43,11 @@ Builds a Jekyll site from source files with automatic asset management and link 
 Main steps performed by this action:
 
 1. **Site Preparation**: Creates the site directory (configurable via `site-path`) and generates `_config.yml` with the specified theme
-2. **Index Page Creation**: Converts README.md to index.md with Jekyll front matter if index doesn't exist
-3. **Additional Pages Processing**: Processes pages (Markdown or HTML) matching the `pages` input pattern, creating Jekyll pages with proper structure
-4. **Asset Management**: Copies images and media files referenced by pages plus any files matched by `assets` input into `assets/`, rewriting references in Markdown and HTML
-5. **Link Rewriting**: Updates internal page links to maintain correct navigation after Jekyll structure transformation
-6. **Jekyll Build**: Executes official Jekyll build process to generate the final static site
+1. **Index Page Creation**: Converts README.md to index.md with Jekyll front matter if index doesn't exist
+1. **Additional Pages Processing**: Processes pages (Markdown or HTML) matching the `pages` input pattern, creating Jekyll pages with proper structure
+1. **Asset Management**: Copies images and media files referenced by pages plus any files matched by `assets` input into `assets/`, rewriting references in Markdown and HTML
+1. **Link Rewriting**: Updates internal page links to maintain correct navigation after Jekyll structure transformation
+1. **Jekyll Build**: Executes official Jekyll build process to generate the final static site
 
 <!-- overview:end -->
 
