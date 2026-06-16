@@ -3,8 +3,8 @@ title: Delete
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/deployment/delete/README.md
 source_branch: main
-source_run_id: 27618453467
-last_synced: 2026-06-16T12:51:06.943Z
+source_run_id: 27620132870
+last_synced: 2026-06-16T13:20:11.983Z
 ---
 
 <!-- header:start -->

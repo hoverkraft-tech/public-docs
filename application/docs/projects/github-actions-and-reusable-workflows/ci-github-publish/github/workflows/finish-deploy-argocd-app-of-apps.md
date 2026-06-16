@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/finish-deploy-argocd-app-of-apps.md
 source_branch: main
-source_run_id: 27618453467
-last_synced: 2026-06-16T12:51:06.943Z
+source_run_id: 27620132870
+last_synced: 2026-06-16T13:20:11.983Z
 ---
 
 <!-- header:start -->
@@ -79,7 +79,7 @@ on:
 permissions: {}
 jobs:
   finish-deploy-argocd-app-of-apps:
-    uses: hoverkraft-tech/ci-github-publish/.github/workflows/finish-deploy-argocd-app-of-apps.yml@84d583ba7b357f9476707f54cf5419d630ae0145 # 0.26.2
+    uses: hoverkraft-tech/ci-github-publish/.github/workflows/finish-deploy-argocd-app-of-apps.yml@b2562b46714e535a0113f90f554b55e1248212c1 # 0.26.3
     permissions:
       actions: read
       contents: read

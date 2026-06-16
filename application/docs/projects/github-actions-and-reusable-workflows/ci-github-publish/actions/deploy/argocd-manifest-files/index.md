@@ -3,8 +3,8 @@ title: ArgoCD Manifest Files
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/deploy/argocd-manifest-files/README.md
 source_branch: main
-source_run_id: 27618453467
-last_synced: 2026-06-16T12:51:06.943Z
+source_run_id: 27620132870
+last_synced: 2026-06-16T13:20:11.983Z
 ---
 
 <!-- header:start -->
@@ -160,7 +160,7 @@ metadata:
 ## Usage
 
 ````yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/deploy/argocd-manifest-files@84d583ba7b357f9476707f54cf5419d630ae0145 # 0.26.2
+- uses: hoverkraft-tech/ci-github-publish/actions/deploy/argocd-manifest-files@b2562b46714e535a0113f90f554b55e1248212c1 # 0.26.3
   with:
     # Deployment ID to be used in the ArgoCD application manifest
     # This input is required.
