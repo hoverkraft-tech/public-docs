@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/release.md
 source_branch: main
-source_run_id: 27263038364
-last_synced: 2026-06-10T08:25:01.918Z
+source_run_id: 27618453467
+last_synced: 2026-06-16T12:51:06.943Z
 ---
 
 # Release
@@ -303,8 +303,8 @@ Typical examples to surface from the release:
 Recommended placement:
 
 1. draft the GitHub release with `actions/release/create`
-2. publish and sign artifacts
-3. publish the release and upload assets with `actions/release/update`
+1. publish and sign artifacts
+1. publish the release and upload assets with `actions/release/update`
 
 ## Artifact Timing
 
@@ -313,10 +313,10 @@ Publish an artifact before the final release draft only when its immutable metad
 Otherwise, prefer this order:
 
 1. plan the release
-2. validate the source
-3. prepare and merge release-owned files when needed
-4. draft the GitHub release from the final release identity
-5. publish artifacts from that final identity
-6. publish the GitHub release with `update` after assets and final metadata are ready
+1. validate the source
+1. prepare and merge release-owned files when needed
+1. draft the GitHub release from the final release identity
+1. publish artifacts from that final identity
+1. publish the GitHub release with `update` after assets and final metadata are ready
 
 That ordering keeps the release, source archive, and published artifacts aligned while avoiding a partially published release.

@@ -1,7 +1,7 @@
 ---
-title: Argocd
-description: Overview for Argocd
-sidebar_label: Argocd
+title: ArgoCD
+description: Overview for ArgoCD
+sidebar_label: ArgoCD
 ---
 
-This page is generated automatically to introduce the Argocd documentation section.
+This page is generated automatically to introduce the ArgoCD documentation section.

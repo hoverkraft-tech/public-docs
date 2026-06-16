@@ -3,8 +3,8 @@ title: Create
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/release/create/README.md
 source_branch: main
-source_run_id: 27263038364
-last_synced: 2026-06-10T08:25:01.918Z
+source_run_id: 27618453467
+last_synced: 2026-06-16T12:51:06.943Z
 ---
 
 <!-- header:start -->
@@ -64,7 +64,7 @@ The release is published by default after optional changelog summarization and a
     # Release tag name to use in explicit mode
     tag: ""
 
-    # Optional commit SHA or branch name to target when explicit mode creates a release for a tag that does not already exist. Forwarded to Release Drafter as `committish`.
+    # Optional commit SHA or branch name to target when explicit mode creates a release for a tag that does not already exist. Forwarded to Release Drafter as `commitish`.
     target-sha: ""
 
     # GitHub Token for creating the draft release.
@@ -135,7 +135,7 @@ The release is published by default after optional changelog summarization and a
 | **`include-paths`**       | Additional paths to include in the release notes filtering (JSON array).                                                                                                                    | **false**    | `[]`                  |
 |                           | These paths are added to the `include-paths` configuration of release-drafter.                                                                                                              |              |                       |
 | **`tag`**                 | Release tag name to use in explicit mode                                                                                                                                                    | **false**    | -                     |
-| **`target-sha`**          | Optional commit SHA or branch name to target when explicit mode creates a release for a tag that does not already exist. Forwarded to Release Drafter as `committish`.                      | **false**    | -                     |
+| **`target-sha`**          | Optional commit SHA or branch name to target when explicit mode creates a release for a tag that does not already exist. Forwarded to Release Drafter as `commitish`.                       | **false**    | -                     |
 | **`github-token`**        | GitHub Token for creating the draft release.                                                                                                                                                | **false**    | `${{ github.token }}` |
 |                           | Permissions:                                                                                                                                                                                |              |                       |
 |                           | - contents: write                                                                                                                                                                           |              |                       |
@@ -152,7 +152,7 @@ The release is published by default after optional changelog summarization and a
 |                           | - workingDirectory (optional, default: `working-directory` input or `.`)                                                                                                                    |              |                       |
 |                           | - summaryTemplate (optional template forwarded to `release/summarize-changelog`)                                                                                                            |              |                       |
 |                           |                                                                                                                                                                                             |              |                       |
-|                           | See: [`release/summarize-changelog` action inputs](../summarize-changelog/index.md) for details on the summarization configuration.                                                         |              |                       |
+|                           | See: [`release/summarize-changelog` action inputs](../summarize-changelog/index.md) for details on the summarization configuration.                                                        |              |                       |
 |                           |                                                                                                                                                                                             |              |                       |
 |                           | Example value:                                                                                                                                                                              |              |                       |
 |                           |                                                                                                                                                                                             |              |                       |

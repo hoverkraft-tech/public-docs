@@ -1,10 +1,10 @@
 ---
-title: Ci Github Publish
+title: Ci GitHub Publish
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: README.md
 source_branch: main
-source_run_id: 27263038364
-last_synced: 2026-06-10T08:25:01.918Z
+source_run_id: 27618453467
+last_synced: 2026-06-16T12:51:06.943Z
 ---
 
 # Continuous Integration - GitHub - Publish
@@ -149,9 +149,9 @@ actions/{category}/{action-name}/
 #### Action Definition Standards
 
 1. **Consistent branding**: All actions use `author: hoverkraft`, `icon: <specific-icon>`, `color: blue`
-2. **Composite actions**: Use `using: "composite"` with GitHub Script for complex logic
-3. **Pinned dependencies**: Always pin action versions with SHA (e.g., `@ed597411d8f924073f98dfc5c65a23a2325f34cd`)
-4. **Input validation**: Validate inputs early in GitHub Script steps
+1. **Composite actions**: Use `using: "composite"` with GitHub Script for complex logic
+1. **Pinned dependencies**: Always pin action versions with SHA (e.g., `@ed597411d8f924073f98dfc5c65a23a2325f34cd`)
+1. **Input validation**: Validate inputs early in GitHub Script steps
 
 #### JavaScript Patterns
 
@@ -188,7 +188,7 @@ gh act -W .github/workflows/workflow-file-to-test.yml
    uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
    ```
 
-2. **Consistent Branding**: Every action.yml must include:
+1. **Consistent Branding**: Every action.yml must include:
 
    ```yaml
    author: hoverkraft
@@ -197,8 +197,7 @@ gh act -W .github/workflows/workflow-file-to-test.yml
      color: blue
    ```
 
-3. **Input Validation**: Always validate inputs early in GitHub Script steps:
-
+1. **Input Validation**: Always validate inputs early in GitHub Script steps:
    ```javascript
    const urlInput = ${{ toJson(inputs.url ) }};
    if (!urlInput) {
