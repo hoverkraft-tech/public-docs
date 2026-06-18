@@ -1,9 +1,9 @@
 ---
 source_repo: hoverkraft-tech/ci-github-common
 source_path: .github/workflows/greetings.md
-source_branch: main
-source_run_id: 27395707742
-last_synced: 2026-06-12T05:08:33.390Z
+source_branch: 0.37.2
+source_run_id: 27771947510
+last_synced: 2026-06-18T15:58:22.470Z
 ---
 
 <!-- header:start -->
@@ -64,7 +64,7 @@ on:
 permissions: {}
 jobs:
   greetings:
-    uses: hoverkraft-tech/ci-github-common/.github/workflows/greetings.yml@624be17604ee0a7378488191aacb35851e7cf001 # 0.37.1
+    uses: hoverkraft-tech/ci-github-common/.github/workflows/greetings.yml@7034f6ae5bae1ec46a0108e8efb60d102e88961d # 0.37.2
     permissions:
       contents: read
       issues: write
@@ -102,14 +102,14 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**           | **Description**                                                                                                                                                 | **Required** | **Type**   | **Default**                                                          |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ---------- | -------------------------------------------------------------------- |
-| **`runs-on`**       | JSON array of runner(s) to use.                                                                                                                                 | **false**    | **string** | `["ubuntu-latest"]`                                                  |
+| **Input**           | **Description**                                                                    | **Required** | **Type**   | **Default**                                                          |
+| ------------------- | ---------------------------------------------------------------------------------- | ------------ | ---------- | -------------------------------------------------------------------- |
+| **`runs-on`**       | JSON array of runner(s) to use.                                                    | **false**    | **string** | `["ubuntu-latest"]`                                                  |
 |                     | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job). |              |            |                                                                      |
-| **`issue_message`** | Comment to post on an individual's first issue.                                                                                                                 | **false**    | **string** | `Hi, thank for reporting an issue, we will check it out very soon`   |
-|                     | See [https://github.com/actions/first-interaction#usage](https://github.com/actions/first-interaction#usage).                                                   |              |            |                                                                      |
-| **`pr_message`**    | Comment to post on an individual's first pull request.                                                                                                          | **false**    | **string** | `Hi, thank you for creating your PR, we will check it out very soon` |
-|                     | See [https://github.com/actions/first-interaction#usage](https://github.com/actions/first-interaction#usage).                                                   |              |            |                                                                      |
+| **`issue_message`** | Comment to post on an individual's first issue.                                    | **false**    | **string** | `Hi, thank for reporting an issue, we will check it out very soon`   |
+|                     | See [https://github.com/actions/first-interaction#usage](https://github.com/actions/first-interaction#usage).                          |              |            |                                                                      |
+| **`pr_message`**    | Comment to post on an individual's first pull request.                             | **false**    | **string** | `Hi, thank you for creating your PR, we will check it out very soon` |
+|                     | See [https://github.com/actions/first-interaction#usage](https://github.com/actions/first-interaction#usage).                          |              |            |                                                                      |
 
 <!-- inputs:end -->
 
@@ -117,11 +117,11 @@ jobs:
 
 ## Secrets
 
-| **Secret**         | **Description**                                                                                               | **Required** |
-| ------------------ | ------------------------------------------------------------------------------------------------------------- | ------------ |
-| **`github-token`** | Token for the repository.                                                                                     | **false**    |
+| **Secret**         | **Description**                                           | **Required** |
+| ------------------ | --------------------------------------------------------- | ------------ |
+| **`github-token`** | Token for the repository.                                 | **false**    |
 |                    | See [https://github.com/actions/first-interaction#usage](https://github.com/actions/first-interaction#usage). |              |
-|                    | Defaults to the GITHUB_TOKEN secret.                                                                          |              |
+|                    | Defaults to the GITHUB_TOKEN secret.                      |              |
 
 <!-- secrets:end -->
 
