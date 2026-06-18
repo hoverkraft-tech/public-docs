@@ -2,9 +2,9 @@
 title: Create And Merge Pull Request
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/create-and-merge-pull-request/README.md
-source_branch: main
-source_run_id: 27395707742
-last_synced: 2026-06-12T05:08:33.390Z
+source_branch: 0.37.2
+source_run_id: 27771947510
+last_synced: 2026-06-18T15:58:22.470Z
 ---
 
 <!-- header:start -->
@@ -47,7 +47,7 @@ See [https://docs.github.com/en/repositories/managing-your-repositorys-settings-
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-common/actions/create-and-merge-pull-request@624be17604ee0a7378488191aacb35851e7cf001 # 0.37.1
+- uses: hoverkraft-tech/ci-github-common/actions/create-and-merge-pull-request@7034f6ae5bae1ec46a0108e8efb60d102e88961d # 0.37.2
   with:
     # GitHub token for creating and merging pull request (permissions contents: write and pull-requests: write).
     # See https://github.com/peter-evans/create-pull-request#action-inputs.
@@ -78,14 +78,14 @@ See [https://docs.github.com/en/repositories/managing-your-repositorys-settings-
 
 ## Inputs
 
-| **Input**            | **Description**                                                                                                                           | **Required** | **Default**           |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------------- |
-| **`github-token`**   | GitHub token for creating and merging pull request (permissions contents: write and pull-requests: write).                                | **false**    | `${{ github.token }}` |
-|                      | See [https://github.com/peter-evans/create-pull-request#action-inputs](https://github.com/peter-evans/create-pull-request#action-inputs). |              |                       |
-| **`branch`**         | The pull request branch name                                                                                                              | **true**     | -                     |
-| **`title`**          | The pull request title                                                                                                                    | **true**     | -                     |
-| **`body`**           | The pull request body                                                                                                                     | **true**     | -                     |
-| **`commit-message`** | The commit message for the pull request                                                                                                   | **true**     | -                     |
+| **Input**            | **Description**                                                                                            | **Required** | **Default**           |
+| -------------------- | ---------------------------------------------------------------------------------------------------------- | ------------ | --------------------- |
+| **`github-token`**   | GitHub token for creating and merging pull request (permissions contents: write and pull-requests: write). | **false**    | `${{ github.token }}` |
+|                      | See [https://github.com/peter-evans/create-pull-request#action-inputs](https://github.com/peter-evans/create-pull-request#action-inputs).                                    |              |                       |
+| **`branch`**         | The pull request branch name                                                                               | **true**     | -                     |
+| **`title`**          | The pull request title                                                                                     | **true**     | -                     |
+| **`body`**           | The pull request body                                                                                      | **true**     | -                     |
+| **`commit-message`** | The commit message for the pull request                                                                    | **true**     | -                     |
 
 <!-- inputs:end -->
 

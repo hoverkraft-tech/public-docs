@@ -1,9 +1,9 @@
 ---
 source_repo: hoverkraft-tech/ci-github-common
 source_path: .github/workflows/linter.md
-source_branch: main
-source_run_id: 27395707742
-last_synced: 2026-06-12T05:08:33.390Z
+source_branch: 0.37.2
+source_run_id: 27771947510
+last_synced: 2026-06-18T15:58:22.470Z
 ---
 
 <!-- header:start -->
@@ -76,7 +76,7 @@ on:
 permissions: {}
 jobs:
   linter:
-    uses: hoverkraft-tech/ci-github-common/.github/workflows/linter.yml@624be17604ee0a7378488191aacb35851e7cf001 # 0.37.1
+    uses: hoverkraft-tech/ci-github-common/.github/workflows/linter.yml@7034f6ae5bae1ec46a0108e8efb60d102e88961d # 0.37.2
     permissions:
       actions: read
       contents: read
@@ -146,23 +146,23 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**                         | **Description**                                                                                                                                                               | **Required** | **Type**    | **Default**                                                                                                                                        |
-| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **`runs-on`**                     | JSON array of runner(s) to use.                                                                                                                                               | **false**    | **string**  | `["ubuntu-latest"]`                                                                                                                                |
-|                                   | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).               |              |             |                                                                                                                                                    |
-| **`linter-env`**                  | Environment variables in multilines format "key=value" to pass to the linter.                                                                                                 | **false**    | **string**  | -                                                                                                                                                  |
-|                                   | See [https://github.com/super-linter/super-linter](https://github.com/super-linter/super-linter).                                                                             |              |             |                                                                                                                                                    |
-| **`javascript-linter-toolchain`** | Lint toolchain to use for Super-Linter JavaScript and frontend validators.                                                                                                    | **false**    | **string**  | `biome`                                                                                                                                            |
-|                                   | Supported values: biome, eslint-prettier.                                                                                                                                     |              |             |                                                                                                                                                    |
-| **`python-linter-toolchain`**     | Lint toolchain to use for Super-Linter Python format validators.                                                                                                              | **false**    | **string**  | `ruff-format`                                                                                                                                      |
-|                                   | Supported values: black, ruff-format.                                                                                                                                         |              |             |                                                                                                                                                    |
-| **`codeql-languages`**            | JSON array of languages to analyze with CodeQL.                                                                                                                               | **false**    | **string**  | `["actions"]`                                                                                                                                      |
+| **Input**                         | **Description**                                                                           | **Required** | **Type**    | **Default**                                                                                                                                        |
+| --------------------------------- | ----------------------------------------------------------------------------------------- | ------------ | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`runs-on`**                     | JSON array of runner(s) to use.                                                           | **false**    | **string**  | `["ubuntu-latest"]`                                                                                                                                |
+|                                   | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).        |              |             |                                                                                                                                                    |
+| **`linter-env`**                  | Environment variables in multilines format "key=value" to pass to the linter.             | **false**    | **string**  | -                                                                                                                                                  |
+|                                   | See [https://github.com/super-linter/super-linter](https://github.com/super-linter/super-linter).                                       |              |             |                                                                                                                                                    |
+| **`javascript-linter-toolchain`** | Lint toolchain to use for Super-Linter JavaScript and frontend validators.                | **false**    | **string**  | `biome`                                                                                                                                            |
+|                                   | Supported values: biome, eslint-prettier.                                                 |              |             |                                                                                                                                                    |
+| **`python-linter-toolchain`**     | Lint toolchain to use for Super-Linter Python format validators.                          | **false**    | **string**  | `ruff-format`                                                                                                                                      |
+|                                   | Supported values: black, ruff-format.                                                     |              |             |                                                                                                                                                    |
+| **`codeql-languages`**            | JSON array of languages to analyze with CodeQL.                                           | **false**    | **string**  | `["actions"]`                                                                                                                                      |
 |                                   | See [https://codeql.github.com/docs/codeql-overview/supported-languages-and-frameworks/](https://codeql.github.com/docs/codeql-overview/supported-languages-and-frameworks/). |              |             |                                                                                                                                                    |
-|                                   | Leave empty to disable the check.                                                                                                                                             |              |             |                                                                                                                                                    |
-| **`action-files`**                | List of files or directories where GitHub Actions and workflows are located.                                                                                                  | **false**    | **string**  | <!-- textlint-disable --><pre lang="text">./action.yml&#13;./.github/workflows/\*\*/\*.yml&#13;./actions/\*\*/\*.yml</pre><!-- textlint-enable --> |
-|                                   | Supports glob patterns.                                                                                                                                                       |              |             |                                                                                                                                                    |
-|                                   | Leave empty to disable the check.                                                                                                                                             |              |             |                                                                                                                                                    |
-| **`lint-all`**                    | Run checks on all files, not just the changed ones.                                                                                                                           | **false**    | **boolean** | `${{ github.event_name != 'pull_request' }}`                                                                                                       |
+|                                   | Leave empty to disable the check.                                                         |              |             |                                                                                                                                                    |
+| **`action-files`**                | List of files or directories where GitHub Actions and workflows are located.              | **false**    | **string**  | <!-- textlint-disable --><pre lang="text">./action.yml&#13;./.github/workflows/\*\*/\*.yml&#13;./actions/\*\*/\*.yml</pre><!-- textlint-enable --> |
+|                                   | Supports glob patterns.                                                                   |              |             |                                                                                                                                                    |
+|                                   | Leave empty to disable the check.                                                         |              |             |                                                                                                                                                    |
+| **`lint-all`**                    | Run checks on all files, not just the changed ones.                                       | **false**    | **boolean** | `${{ github.event_name != 'pull_request' }}`                                                                                                       |
 
 <!-- inputs:end -->
 
@@ -170,11 +170,11 @@ jobs:
 
 ## Secrets
 
-| **Secret**         | **Description**                                                                                                         | **Required** |
-| ------------------ | ----------------------------------------------------------------------------------------------------------------------- | ------------ |
-| **`github-token`** | Token for marking the status of linter run in the Checks section.                                                       | **false**    |
-|                    | See [https://github.com/super-linter/super-linter#how-to-use](https://github.com/super-linter/super-linter#how-to-use). |              |
-|                    | Default GITHUB_TOKEN.                                                                                                   |              |
+| **Secret**         | **Description**                                                   | **Required** |
+| ------------------ | ----------------------------------------------------------------- | ------------ |
+| **`github-token`** | Token for marking the status of linter run in the Checks section. | **false**    |
+|                    | See [https://github.com/super-linter/super-linter#how-to-use](https://github.com/super-linter/super-linter#how-to-use).    |              |
+|                    | Default GITHUB_TOKEN.                                             |              |
 
 <!-- secrets:end -->
 

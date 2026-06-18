@@ -1,10 +1,10 @@
 ---
-title: Ci Github Common
+title: Ci GitHub Common
 source_repo: hoverkraft-tech/ci-github-common
 source_path: README.md
-source_branch: main
-source_run_id: 27395707742
-last_synced: 2026-06-12T05:08:33.390Z
+source_branch: 0.37.2
+source_run_id: 27771947510
+last_synced: 2026-06-18T15:58:22.470Z
 ---
 
 # Continuous Integration - GitHub - Common
@@ -80,9 +80,9 @@ actions/{action-name}/
 ### Development standards
 
 1. **Pinned dependencies** - reference external actions by commit SHA (for example `actions/checkout@08c6903c…`).
-2. **Composite-first** - encapsulate logic in composite actions and keep scripts minimal.
-3. **Early validation** - validate inputs up front using GitHub Script or shell guards and fail fast with helpful messages.
-4. **Consistent branding** - set `author: hoverkraft` and `branding.color: blue` with an appropriate icon in every `action.yml`.
+1. **Composite-first** - encapsulate logic in composite actions and keep scripts minimal.
+1. **Early validation** - validate inputs up front using GitHub Script or shell guards and fail fast with helpful messages.
+1. **Consistent branding** - set `author: hoverkraft` and `branding.color: blue` with an appropriate icon in every `action.yml`.
 
 ## Development Workflow
 
