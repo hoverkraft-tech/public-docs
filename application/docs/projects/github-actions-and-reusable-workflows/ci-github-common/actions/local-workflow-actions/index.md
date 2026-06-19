@@ -2,9 +2,9 @@
 title: Local Workflow Actions
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/local-workflow-actions/README.md
-source_branch: 0.37.2
-source_run_id: 27771947510
-last_synced: 2026-06-18T15:58:22.470Z
+source_branch: main
+source_run_id: 27836167030
+last_synced: 2026-06-19T16:07:28.480Z
 ---
 
 <!-- header:start -->
