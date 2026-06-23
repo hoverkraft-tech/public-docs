@@ -3,8 +3,8 @@ title: Docker Base Images
 source_repo: hoverkraft-tech/docker-base-images
 source_path: README.md
 source_branch: main
-source_run_id: 27626819614
-last_synced: 2026-06-16T15:12:39.356Z
+source_run_id: 28048445699
+last_synced: 2026-06-23T18:40:25.474Z
 ---
 
 # Docker base images
@@ -75,8 +75,6 @@ _Orchestrated workflows you can plug directly into your own Docker images reposi
 ### - [Continuous Integration](github/workflows/continuous-integration.md)
 
 ### - [Prune pull requests images tags](github/workflows/prune-pull-requests-images-tags.md)
-
-### - [Get available images matrix](github/workflows/get-available-images-matrix.md)
 
 ## Contributing
 
