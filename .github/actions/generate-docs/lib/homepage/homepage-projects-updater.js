@@ -6,11 +6,16 @@ const { resolveIcon } = require("../builders/resolve-icon");
 const {
   ConstDeclarationUpdater,
 } = require("../builders/const-declaration-updater");
+const {
+  ApplicationBiomeFormatter,
+} = require("../builders/application-biome-formatter");
 
 class HomepageProjectsUpdater {
-  constructor({ homepagePath }) {
+  constructor({ homepagePath, constDeclarationUpdater, formatter }) {
     this.homepagePath = homepagePath;
-    this.constDeclarationUpdater = new ConstDeclarationUpdater();
+    this.constDeclarationUpdater =
+      constDeclarationUpdater ?? new ConstDeclarationUpdater();
+    this.formatter = formatter ?? new ApplicationBiomeFormatter();
   }
 
   async update(repositories, pinnedRepositoryNames = []) {
@@ -24,9 +29,14 @@ class HomepageProjectsUpdater {
     }
 
     const projectsModel = this.buildProjectsModel(featured);
-    await this.constDeclarationUpdater.update(this.homepagePath, [
-      { name: "projects", value: projectsModel },
-    ]);
+    const hasChanges = await this.constDeclarationUpdater.update(
+      this.homepagePath,
+      [{ name: "projects", value: projectsModel }],
+    );
+
+    if (hasChanges) {
+      await this.formatter.format(this.homepagePath);
+    }
   }
 
   pickFeaturedRepositories(repositories, pinnedRepositoryNames) {

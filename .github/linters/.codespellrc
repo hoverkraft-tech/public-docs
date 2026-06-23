@@ -1,4 +1,4 @@
 [codespell]
-skip = *.svg,**/package-lock.json,**/node_modules/**,**/coverage/**,**/application/.docusaurus/**,**/application/build/**
+skip = *.svg,**/package-lock.json,**/node_modules/**,**/coverage/**,**/application/.docusaurus/**,**/application/build/**,**/application/docs/projects/**/*.md
 # Keep common camelCase code identifiers untouched.
 ignore-words-list = afterall,beforeall,aftereach,beforeeach
