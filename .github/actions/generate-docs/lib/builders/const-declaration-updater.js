@@ -13,7 +13,7 @@ class ConstDeclarationUpdater {
     }
 
     if (declarations.length === 0) {
-      return;
+      return false;
     }
 
     const originalContent = await this.fileSystem.readFile(filePath, "utf8");
@@ -37,6 +37,8 @@ class ConstDeclarationUpdater {
     if (hasChanges) {
       await this.fileSystem.writeFile(filePath, updatedContent, "utf8");
     }
+
+    return hasChanges;
   }
 
   resolveSerializedValue(declaration) {

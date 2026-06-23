@@ -1,3 +1,7 @@
+globs:
+  - "**/*.md"
+  - "!**/application/docs/projects/**/*.md"
+
 config:
   MD025:
     front_matter_title: ""
