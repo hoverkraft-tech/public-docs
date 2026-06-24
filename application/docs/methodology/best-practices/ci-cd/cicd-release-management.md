@@ -109,8 +109,10 @@ Full Rollout (100% traffic)
 
 ### Automated Deployments
 
-For a concrete workflow example, see the Golden Path CI/CD implementation:
-[GitHub CI/CD](../../../golden-paths/application/ci-cd/github/).
+For a concrete workflow example, see the Golden Path application pipeline:
+[GitHub Actions](../../golden-paths/application/03-ci-cd/github/index.md),
+[GitHub CI](../../golden-paths/application/03-ci-cd/github/ci.md), and
+[GitHub CD](../../golden-paths/application/03-ci-cd/github/cd.md).
 
 **Sources:**
 

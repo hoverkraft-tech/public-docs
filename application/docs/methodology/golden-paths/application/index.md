@@ -18,7 +18,7 @@ release.
 
 1. **[Getting Started](./01-getting-started.md)** - Prerequisites and architecture
 2. **[Repository Scaffold](./02-repo-scaffold.md)** - Directory layout and key files
-3. **[CI/CD](./03-ci-cd/index.md)** - Generic entry point for your pipeline; see provider-specific implementations (e.g., [GitHub](./03-ci-cd/github/index.md)).
+3. **[CI/CD](./03-ci-cd/index.md)** - Split continuous integration from continuous deployment, then pick the provider-specific implementation (for example [GitHub Actions](./03-ci-cd/github/index.md)).
 4. **[Verify & Operate](./04-verify.md)** - Dry runs, release, and deployment checks (refer to your CI/CD platform).
 5. **[Hygiene & Maintenance](./05-hygiene.md)** (GitHub example) - Community workflows, Dependabot, and upkeep; adapt equivalents for your platform.
 
@@ -38,9 +38,10 @@ release.
 
 ✅ Containerized web app with `ci` and `prod` images built from one Dockerfile  
 ✅ Feature-branch and main branch CI that runs inside the built `ci` image  
-✅ Helm chart docs/tests kept in sync with images  
-✅ Manual release workflow that tags and deploys to UAT/production  
-✅ `/deploy` comment flow for review apps  
+✅ Helm chart docs/tests kept in sync with the published images  
+✅ Separate release-preparation and deployment workflows  
+✅ Manual promotion flow that tags and deploys to UAT or production  
+✅ `/deploy` comment flow and cleanup hooks for review apps  
 ✅ Automatic cleanup of review app deployments when feature branches are merged/closed
 
 ## Next Steps

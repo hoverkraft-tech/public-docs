@@ -2,57 +2,62 @@
 sidebar_position: 1
 ---
 
-# GitHub CI/CD
+# GitHub Actions
 
-This is the GitHub Actions implementation of the pipeline. If you use another CI/CD platform,
-mirror the same structure: build `ci` and runtime images, run tests inside the `ci` image, and
-drive deploy/release jobs with the built artifacts. The defaults below use the Node.js reusable
-workflow; if you ship another stack, swap `hoverkraft-tech/ci-github-nodejs` for the appropriate
-reusable workflow while keeping the same calling pattern, or translate the jobs into your
-platform's templates. Replace `<version-sha>` / `x.y.z` with your pinned commit and released
-version.
+This is the GitHub Actions implementation of the golden-path application pipeline.
+It reflects two reference application shapes:
+
+- A single-application repository with one Dockerfile and one chart.
+- A multi-application repository with several Dockerfiles and an umbrella chart.
+
+Use another CI/CD platform if you want, but preserve the same contracts:
+
+1. Build immutable images first.
+2. Run CI inside dedicated `ci` images.
+3. Prepare release metadata continuously.
+4. Deploy tagged artifacts through GitOps rather than rebuilding during deploy.
 
 ## Prerequisites
 
 - Create a GitHub App for your organization with permissions to read/write contents, deployments, issues, pull requests, and `id-token` usage (for OIDC).
-- Store the app ID in variable `CI_BOT_APP_ID` and the private key in secret `CI_BOT_APP_PRIVATE_KEY`; install the app on the repository so workflows can authenticate.
+- Store the GitHub App client ID in variable `CI_BOT_APP_CLIENT_ID` and the private key in secret `CI_BOT_APP_PRIVATE_KEY`.
+- Configure `OCI_REGISTRY` plus environment URLs such as `REVIEW_APPS_URL`, `UAT_URL`, and `PRODUCTION_URL` when you use preview and promoted environments.
 - Pin every reusable workflow and action to a released commit SHA (never `@main`). Use the latest release SHA from the repositories' Releases page or `git ls-remote https://github.com/repo/action.git refs/tags/<version>` and record the exact commit in your workflows, annotating the `uses:` line with the human version (e.g., `@<sha> # v0.30.3`).
 
-## Repository layout
+## Guides
 
-Choose the guide that matches your repository structure:
+- **[Single application](./single-app.md)** is the primary walkthrough for a repository with one deployable application image and one chart.
+- **[Multi-application](./multi-app.md)** is the primary walkthrough for a repository with several deployable services and one umbrella chart.
+- **[GitHub CI](./ci.md)** is the reusable CI reference across both shapes.
+- **[GitHub CD](./cd.md)** is the reusable CD reference across both shapes.
 
-- **[Single application](./single-app.md)** — one Dockerfile, one service, one chart.
-- **[Multi-application](./multi-app.md)** — multiple services (e.g., `backend` + `frontend`), one Dockerfile per service, umbrella chart.
+## Recommended path
 
-## Pull requests (`pull-request-ci.yml`)
+Start with the page that matches your repository shape:
 
-```yaml title=".github/workflows/pull-request-ci.yml"
-name: Pull request - Continuous Integration
+- **Single application**
+  One Dockerfile with `ci` and `prod` targets, one runtime image, and one chart release.
+- **Multi-application**
+  One Dockerfile per service, one `ci` image per service, and one coordinated umbrella-chart release.
 
-on: # yamllint disable-line rule:truthy
-  pull_request:
-    branches: [main]
+Read the generic CI and CD pages after that when you want the reusable workflow contract without the repository-specific details.
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+## Shared model
 
-permissions: {}
+Both reference shapes use the same workflow families, but the repository shape changes the image matrix:
 
-jobs:
-  ci:
-    name: Continuous Integration
-    uses: ./.github/workflows/__shared-ci.yml
-    permissions:
-      actions: read
-      checks: write
-      contents: read
-      id-token: write
-      issues: read
-      packages: write
-      pull-requests: write
-      security-events: write
-      statuses: write
-    secrets: inherit
-```
+- **Single application**
+  Build one `ci` image and one runtime image from the same Dockerfile, then map a single chart image.
+- **Multi-application**
+  Build one `ci` image per service, run CI per service in a matrix, then publish one runtime image per service and map all of them into the umbrella chart.
+
+## Release model
+
+The GitHub implementation separates release preparation from deployment:
+
+1. `prepare-release.yml` keeps release metadata ready on pull requests and on `main`.
+2. `release.yml` creates the immutable tag to promote.
+3. `deploy.yml` updates the GitOps delivery repository for review, UAT, or production.
+4. `clean-deploy.yml` removes temporary deployments when a pull request closes.
+
+That split is the main thing to preserve if you translate these workflows to another platform.
