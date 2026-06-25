@@ -44,4 +44,14 @@ This guide is organized into core areas of CI/CD practice:
 - **[GitHub Actions & Workflow Practices](./github-actions/)** - Platform patterns and reusable workflow guidance
 - **[CI/CD & Release Management](./cicd-release-management.md)** - Pipeline design, releases, and deployment strategy
 
+## Need the concrete workflow files?
+
+The pages in this section explain the principles and guardrails.
+If you need the actual Hoverkraft workflow shape for an application repository, use the golden-path GitHub Actions guides:
+
+- **[GitHub Actions overview](../../golden-paths/application/03-ci-cd/github/index.md)** - entrypoint for the application CI/CD shape
+- **[GitHub CI](../../golden-paths/application/03-ci-cd/github/ci.md)** - shared CI contract
+- **[GitHub CD](../../golden-paths/application/03-ci-cd/github/cd.md)** - shared CD contract
+- **[Multi-application](../../golden-paths/application/03-ci-cd/github/multi-app.md)** - concrete shape for repositories with several services and one umbrella chart
+
 ---
