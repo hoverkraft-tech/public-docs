@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/docker-base-images
 source_path: .github/workflows/continuous-integration.md
 source_branch: main
-source_run_id: 28048445699
-last_synced: 2026-06-23T18:40:25.474Z
+source_run_id: 28220594715
+last_synced: 2026-06-26T06:25:15.506Z
 ---
 
 <!-- header:start -->
@@ -172,17 +172,17 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**                   | **Description**                                                                                                                                                         | **Required** | **Type**   | **Default**                      |
-| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ---------- | -------------------------------- |
-| **`runs-on`**               | JSON array of runner(s) to use.                                                                                                                                         | **false**    | **string** | `["ubuntu-latest"]`              |
-|                             | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).         |              |            |                                  |
-| **`oci-registry`**          | OCI registry where to pull and push images.                                                                                                                             | **false**    | **string** | `ghcr.io`                        |
-| **`oci-registry-username`** | Username used to log against the OCI registry.                                                                                                                          | **false**    | **string** | `${{ github.repository_owner }}` |
-|                             | See [https://github.com/docker/login-action#usage](https://github.com/docker/login-action#usage).                                                                       |              |            |                                  |
-| **`platforms`**             | JSON array of platforms to build images for by default.                                                                                                                 | **false**    | **string** | `["linux/amd64","linux/arm64"]`  |
-|                             | Can be overridden per image with `images/<image>/build.json` or an image object in `images`.                                                                            |              |            |                                  |
-|                             | See [https://docs.docker.com/buildx/working-with-buildx/#build-multi-platform-images](https://docs.docker.com/buildx/working-with-buildx/#build-multi-platform-images). |              |            |                                  |
-| **`test-image-tag`**        | Tag of the published `testcontainers-node` runner image to use for tests.                                                                                               | **false**    | **string** | `latest`                         |
+| **Input**                   | **Description**                                                                              | **Required** | **Type**   | **Default**                      |
+| --------------------------- | -------------------------------------------------------------------------------------------- | ------------ | ---------- | -------------------------------- |
+| **`runs-on`**               | JSON array of runner(s) to use.                                                              | **false**    | **string** | `["ubuntu-latest"]`              |
+|                             | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).           |              |            |                                  |
+| **`oci-registry`**          | OCI registry where to pull and push images.                                                  | **false**    | **string** | `ghcr.io`                        |
+| **`oci-registry-username`** | Username used to log against the OCI registry.                                               | **false**    | **string** | `${{ github.repository_owner }}` |
+|                             | See [https://github.com/docker/login-action#usage](https://github.com/docker/login-action#usage).                                          |              |            |                                  |
+| **`platforms`**             | JSON array of platforms to build images for by default.                                      | **false**    | **string** | `["linux/amd64","linux/arm64"]`  |
+|                             | Can be overridden per image with `images/<image>/build.json` or an image object in `images`. |              |            |                                  |
+|                             | See [https://docs.docker.com/buildx/working-with-buildx/#build-multi-platform-images](https://docs.docker.com/buildx/working-with-buildx/#build-multi-platform-images).       |              |            |                                  |
+| **`test-image-tag`**        | Tag of the published `testcontainers-node` runner image to use for tests.                    | **false**    | **string** | `latest`                         |
 
 <!-- inputs:end -->
 
@@ -204,9 +204,9 @@ jobs:
 
 ## Outputs
 
-| **Output**         | **Description**                                                                                                                                                                                                                             |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **`built-images`** | Built images data.                                                                                                                                                                                                                          |
+| **Output**         | **Description**                                                                                                          |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| **`built-images`** | Built images data.                                                                                                       |
 |                    | See [https://github.com/hoverkraft-tech/ci-github-container/blob/main/.github/workflows/docker-build-images.md#outputs](https://github.com/hoverkraft-tech/ci-github-container/blob/main/.github/workflows/docker-build-images.md#outputs). |
 
 <!-- outputs:end -->
