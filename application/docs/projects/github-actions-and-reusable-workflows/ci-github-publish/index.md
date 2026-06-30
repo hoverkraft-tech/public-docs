@@ -3,8 +3,8 @@ title: Ci GitHub Publish
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: README.md
 source_branch: main
-source_run_id: 27985182580
-last_synced: 2026-06-22T21:33:27.954Z
+source_run_id: 28471528368
+last_synced: 2026-06-30T19:53:48.172Z
 ---
 
 # Continuous Integration - GitHub - Publish
@@ -198,7 +198,6 @@ gh act -W .github/workflows/workflow-file-to-test.yml
    ```
 
 1. **Input Validation**: Always validate inputs early in GitHub Script steps:
-
    ```javascript
    const urlInput = ${{ toJson(inputs.url ) }};
    if (!urlInput) {
