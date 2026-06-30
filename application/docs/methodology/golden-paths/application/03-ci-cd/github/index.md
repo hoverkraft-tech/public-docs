@@ -22,7 +22,7 @@ Use another CI/CD platform if you want, but preserve the same contracts:
 - Create a GitHub App for your organization with permissions to read/write contents, deployments, issues, pull requests, and `id-token` usage (for OIDC).
 - Store the GitHub App client ID in variable `CI_BOT_APP_CLIENT_ID` and the private key in secret `CI_BOT_APP_PRIVATE_KEY`.
 - Configure `OCI_REGISTRY` plus environment URLs such as `REVIEW_APPS_URL`, `UAT_URL`, and `PRODUCTION_URL` when you use preview and promoted environments.
-- Pin every reusable workflow and action to a released commit SHA (never `@main`). Use the latest release SHA from the repositories' Releases page or `git ls-remote https://github.com/repo/action.git refs/tags/<version>` and record the exact commit in your workflows, annotating the `uses:` line with the human version (e.g., `@<sha> # v0.30.3`).
+- Pin every reusable workflow and action to a released commit SHA (never `@main`). The snippets in this section keep placeholders such as `@<version-sha>` because exact SHAs change over time. In a real repository, replace those placeholders with the release tag you want to track, run [Pin workflow refs with Ratchet](../../../../best-practices/ci-cd/github-actions/pinning-with-ratchet.md), and commit the rewritten SHA pins.
 
 ## Guides
 

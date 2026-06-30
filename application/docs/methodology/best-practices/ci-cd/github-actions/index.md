@@ -78,10 +78,17 @@ Treat Actions dependencies as executable third-party code. A compromised action 
 read the repository checkout, inspect runner files, access available secrets, and
 use granted token permissions.
 
+When you need the latest safe pin for a workflow ref, start from a readable
+version such as `@v4`, then use [Pin workflow refs with
+Ratchet](./pinning-with-ratchet.md) to rewrite it to a full SHA and keep the
+generated `# ratchet:` constraint comment so later `ratchet update` runs remain
+predictable.
+
 ✅ **DO**:
 
 - Pin third-party actions and reusable workflows to full-length commit SHAs.
 - Keep a readable version comment next to pinned SHAs when useful for maintenance.
+- Use Ratchet to upgrade workflow refs and regenerate SHA pins through reviewed pull requests.
 - Review the source, ownership, release history, and permissions of new actions.
 - Keep Actions dependencies up to date through reviewed pull requests.
 - Enable Dependabot updates for GitHub Actions dependencies.

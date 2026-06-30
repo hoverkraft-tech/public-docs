@@ -13,6 +13,18 @@ In the reference application shapes, CI is handled by three workflow entrypoints
 
 Use [Single application](./single-app.md) for the one-image shape and [Multi-application](./multi-app.md) for the multi-service umbrella-chart shape. This page only describes the shared CI contract.
 
+:::tip Pin copied refs with Ratchet
+These workflow snippets use placeholders such as `@<version-sha>` because the
+exact commit changes over time. In a real repository, replace the placeholder
+with the release tag you want to track, run [Pin workflow refs with
+Ratchet](../../../../best-practices/ci-cd/github-actions/pinning-with-ratchet.md),
+and commit the rewritten SHA pins.
+
+For lines shaped like `uses: repo/.github/workflows/file.yml@<version-sha> # x.y.z`,
+replace the whole placeholder ref with a real release tag first, for example
+`@0.37.1` or `@v7.0.0`, before running Ratchet.
+:::
+
 The core pattern is stable across both supported application shapes:
 
 1. Run repository-wide linting first.

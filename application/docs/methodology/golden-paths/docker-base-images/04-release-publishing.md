@@ -6,6 +6,14 @@ sidebar_position: 5
 
 The current release model is image-centric, not repository-centric. You prepare release pull requests for image directories, then manually dispatch the release workflow to create and publish releases only for images that changed.
 
+:::tip Pin copied refs with Ratchet
+These workflow snippets use placeholders such as `@<docker-base-images-sha>`
+because the exact commit changes over time. In a real repository, replace the
+placeholder with the release tag you want to track, run [Pin workflow refs with
+Ratchet](../../best-practices/ci-cd/github-actions/pinning-with-ratchet.md), and
+commit the rewritten SHA pins.
+:::
+
 ## Release workflow overview
 
 The release process follows this flow:

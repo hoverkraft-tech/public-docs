@@ -231,6 +231,12 @@ feat!: remove deprecated API         → MAJOR bump
 
 **Automated Versioning:**
 
+:::tip Pin real workflow refs with Ratchet
+This example uses a readable tag for clarity. In a real repository, run [Pin
+workflow refs with Ratchet](./github-actions/pinning-with-ratchet.md) on your
+workflow files and commit the rewritten SHA pins.
+:::
+
 ```yaml
 # .github/workflows/release.yml
 - name: Semantic Release

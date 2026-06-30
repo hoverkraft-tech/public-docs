@@ -6,6 +6,14 @@ sidebar_position: 4
 
 This page wires the repository to the Hoverkraft reusable workflows using the current production-grade wrapper pattern. The important rule is simple: keep your repository workflows thin, pin released SHAs, and centralize shared CI logic in one internal wrapper.
 
+:::tip Pin copied refs with Ratchet
+These workflow snippets use placeholders such as `@<docker-base-images-sha>` and
+`@<ci-github-common-sha>` because the exact commit changes over time. In a real
+repository, replace the placeholder with the release tag you want to track, run
+[Pin workflow refs with Ratchet](../../best-practices/ci-cd/github-actions/pinning-with-ratchet.md),
+and commit the rewritten SHA pins.
+:::
+
 ## Workflow overview
 
 You'll create these workflow files:
@@ -304,6 +312,8 @@ uses: hoverkraft-tech/ci-github-common/.github/workflows/semantic-pull-request.y
 ```
 
 Do not leave `@main` in documentation examples or production workflows.
+Use [Pin workflow refs with Ratchet](../../best-practices/ci-cd/github-actions/pinning-with-ratchet.md)
+to turn version tags into reviewed SHA pins.
 
 ## Workflow Summary
 

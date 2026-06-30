@@ -45,6 +45,12 @@ Set measurable performance targets:
 
 ### CI Performance Checks
 
+:::tip Pin real workflow refs with Ratchet
+This example uses readable tags for clarity. In a real repository, run [Pin
+workflow refs with Ratchet](../ci-cd/github-actions/pinning-with-ratchet.md)
+on your workflow files and commit the rewritten SHA pins.
+:::
+
 ```yaml
 # .github/workflows/performance.yml
 name: Performance
