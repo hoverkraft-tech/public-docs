@@ -3,8 +3,8 @@ title: Read
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/deployment/read/README.md
 source_branch: main
-source_run_id: 27985182580
-last_synced: 2026-06-22T21:33:27.954Z
+source_run_id: 28471528368
+last_synced: 2026-06-30T19:53:48.172Z
 ---
 
 <!-- header:start -->
@@ -72,13 +72,13 @@ Action to retrieve some deployment information.
 
 ## Inputs
 
-| **Input**           | **Description**                                                                                                                                                                                       | **Required** | **Default**                           |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ------------------------------------- |
-| **`deployment-id`** | The ID of the deployment to update                                                                                                                                                                    | **true**     | -                                     |
-| **`repository`**    | The repository where the deployment was made                                                                                                                                                          | **false**    | `${{ github.event.repository.name }}` |
-| **`github-token`**  | GitHub Token to get the deployment information.                                                                                                                                                       | **false**    | `${{ github.token }}`                 |
-|                     | Permissions:                                                                                                                                                                                          |              |                                       |
-|                     | - deployments: read                                                                                                                                                                                   |              |                                       |
+| **Input**           | **Description**                                                                                       | **Required** | **Default**                           |
+| ------------------- | ----------------------------------------------------------------------------------------------------- | ------------ | ------------------------------------- |
+| **`deployment-id`** | The ID of the deployment to update                                                                    | **true**     | -                                     |
+| **`repository`**    | The repository where the deployment was made                                                          | **false**    | `${{ github.event.repository.name }}` |
+| **`github-token`**  | GitHub Token to get the deployment information.                                                       | **false**    | `${{ github.token }}`                 |
+|                     | Permissions:                                                                                          |              |                                       |
+|                     | - deployments: read                                                                                   |              |                                       |
 |                     | See [https://docs.github.com/en/rest/deployments/deployments?apiVersion=2022-11-28#get-a-deployment](https://docs.github.com/en/rest/deployments/deployments?apiVersion=2022-11-28#get-a-deployment). |              |                                       |
 
 <!-- inputs:end -->

@@ -3,8 +3,8 @@ title: Create
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/release/create/README.md
 source_branch: main
-source_run_id: 27985182580
-last_synced: 2026-06-22T21:33:27.954Z
+source_run_id: 28471528368
+last_synced: 2026-06-30T19:53:48.172Z
 ---
 
 <!-- header:start -->
@@ -152,7 +152,7 @@ The release is published by default after optional changelog summarization and a
 |                           | - workingDirectory (optional, default: `working-directory` input or `.`)                                                                                                                    |              |                       |
 |                           | - summaryTemplate (optional template forwarded to `release/summarize-changelog`)                                                                                                            |              |                       |
 |                           |                                                                                                                                                                                             |              |                       |
-|                           | See: [`release/summarize-changelog` action inputs](../summarize-changelog/index.md) for details on the summarization configuration.                                                         |              |                       |
+|                           | See: [`release/summarize-changelog` action inputs](../summarize-changelog/index.md) for details on the summarization configuration.                                                        |              |                       |
 |                           |                                                                                                                                                                                             |              |                       |
 |                           | Example value:                                                                                                                                                                              |              |                       |
 |                           |                                                                                                                                                                                             |              |                       |
