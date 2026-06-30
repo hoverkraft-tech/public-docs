@@ -3,8 +3,8 @@ title: Get Image Metadata
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/docker/get-image-metadata/README.md
 source_branch: main
-source_run_id: 27414074625
-last_synced: 2026-06-12T12:03:44.895Z
+source_run_id: 28464638836
+last_synced: 2026-06-30T17:55:19.125Z
 ---
 
 <!-- header:start -->
@@ -69,12 +69,12 @@ It uses the [docker/metadata-action](https://github.com/docker/metadata-action) 
 
 ## Inputs
 
-| **Input**          | **Description**                                                                                               | **Required** | **Default**                |
-| ------------------ | ------------------------------------------------------------------------------------------------------------- | ------------ | -------------------------- |
-| **`oci-registry`** | OCI registry where to pull and push images                                                                    | **true**     | `ghcr.io`                  |
+| **Input**          | **Description**                                                                                                | **Required** | **Default**                |
+| ------------------ | -------------------------------------------------------------------------------------------------------------- | ------------ | -------------------------- |
+| **`oci-registry`** | OCI registry where to pull and push images                                                                     | **true**     | `ghcr.io`                  |
 | **`repository`**   | Repository name. Example: `my-org/my-repo`. See [Docker get-image-name action](../get-image-name/index.md)    | **false**    | `${{ github.repository }}` |
 | **`image`**        | Additional image name. Example: `application`. See [Docker get-image-name action](../get-image-name/index.md) | **false**    | -                          |
-| **`tag`**          | Force image tag to publish                                                                                    | **false**    | -                          |
+| **`tag`**          | Force image tag to publish                                                                                     | **false**    | -                          |
 
 <!-- inputs:end -->
 

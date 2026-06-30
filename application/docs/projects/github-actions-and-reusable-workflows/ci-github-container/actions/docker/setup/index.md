@@ -3,8 +3,8 @@ title: Setup
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/docker/setup/README.md
 source_branch: main
-source_run_id: 27414074625
-last_synced: 2026-06-12T12:03:44.895Z
+source_run_id: 28464638836
+last_synced: 2026-06-30T17:55:19.125Z
 ---
 
 <!-- header:start -->
@@ -108,7 +108,7 @@ Shared action to configure Docker tooling and OCI registry authentication.
 | **`oci-registry-password`**   | Password or personal access token configuration used to log against OCI registries.                                                              | **false**    | -                       |
 |                               | Accepts either a single password/token string (default format) or a JSON object using the same keys as `oci-registry`.                           |              |                         |
 | **`buildkitd-config-inline`** | Inline BuildKit daemon configuration.                                                                                                            | **false**    | -                       |
-|                               | See [https://github.com/docker/setup-buildx-action#inputs](https://github.com/docker/setup-buildx-action#inputs).                                |              |                         |
+|                               | See [https://github.com/docker/setup-buildx-action#inputs](https://github.com/docker/setup-buildx-action#inputs).                                                                                      |              |                         |
 |                               | Example for insecure registry:                                                                                                                   |              |                         |
 |                               | <!-- textlint-disable --><pre lang="ini">[registry."my-registry.local:5000"]&#13; http = true&#13; insecure = true</pre><!-- textlint-enable --> |              |                         |
 | **`built-images`**            | Optional built images payload used to resolve manifest publication registries.                                                                   | **false**    | -                       |

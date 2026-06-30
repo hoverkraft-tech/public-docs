@@ -3,8 +3,8 @@ title: Get Image Name
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/docker/get-image-name/README.md
 source_branch: main
-source_run_id: 27414074625
-last_synced: 2026-06-12T12:03:44.895Z
+source_run_id: 28464638836
+last_synced: 2026-06-30T17:55:19.125Z
 ---
 
 <!-- header:start -->
