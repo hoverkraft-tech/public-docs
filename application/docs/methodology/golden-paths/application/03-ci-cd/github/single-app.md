@@ -8,6 +8,14 @@ Use this page when your repository has one application, one Dockerfile, one runt
 
 This is the primary GitHub walkthrough for the single-application shape. Use [GitHub CI](./ci.md) and [GitHub CD](./cd.md) afterward if you want the reusable workflow contracts without the repository-specific details.
 
+:::tip Pin copied refs with Ratchet
+These workflow snippets use placeholders such as `@<version-sha>` because the
+exact commit changes over time. In a real repository, replace the placeholder
+with the release tag you want to track, run [Pin workflow refs with
+Ratchet](../../../../best-practices/ci-cd/github-actions/pinning-with-ratchet.md),
+and commit the rewritten SHA pins.
+:::
+
 ## When this shape fits
 
 - One deployable service per repository

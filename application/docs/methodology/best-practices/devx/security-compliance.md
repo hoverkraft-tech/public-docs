@@ -72,6 +72,13 @@ git secrets --scan-history
 
 Use GitHub secret scanning:
 
+:::tip Pin real workflow refs with Ratchet
+This example uses readable refs for clarity. In a real repository, run [Pin
+workflow refs with Ratchet](../ci-cd/github-actions/pinning-with-ratchet.md)
+on your workflow files and commit the rewritten SHA pins instead of leaving
+floating refs in place.
+:::
+
 ```yaml
 # .github/workflows/security.yml
 name: Security Scan
