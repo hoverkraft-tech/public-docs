@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-container
 source_path: CONTRIBUTING.md
 source_branch: main
-source_run_id: 28464638836
-last_synced: 2026-06-30T17:55:19.125Z
+source_run_id: 28465751049
+last_synced: 2026-06-30T18:15:11.365Z
 ---
 
 # Contributing
