@@ -1,10 +1,10 @@
 ---
-title: Ci Github Container
+title: Ci GitHub Container
 source_repo: hoverkraft-tech/ci-github-container
 source_path: README.md
 source_branch: main
-source_run_id: 27414074625
-last_synced: 2026-06-12T12:03:44.895Z
+source_run_id: 28464638836
+last_synced: 2026-06-30T17:55:19.125Z
 ---
 
 <!-- markdownlint-disable-next-line first-line-heading -->
@@ -92,13 +92,13 @@ actions/{category}/{action-name}/
 #### Action Definition Standards
 
 1. **Consistent branding**: Use `author: hoverkraft` with `color: blue` and a meaningful `icon`.
-2. **Pinned dependencies**: Reference third-party actions via exact SHAs to guarantee reproducibility.
-3. **Input validation**: Validate critical inputs early within composite steps or supporting scripts.
-4. **Idempotent steps**: Ensure actions can run multiple times without leaving residual state in the workspace.
-5. **Multi-platform support**: Test actions in both `ubuntu-latest` and `windows-latest` runners when applicable.
-6. **Cross-platform compatibility**: Uses `actions/github-script` steps for cross-platform compatibility. Avoid `run` steps.
-7. **Logging**: Use structured logs with clear prefixes (`[build-image]`, `[helm-test-chart]`, …) to simplify debugging.
-8. **Security**: Avoid shell interpolation with untrusted inputs; prefer parameterized commands or `set -euo pipefail` wrappers.
+1. **Pinned dependencies**: Reference third-party actions via exact SHAs to guarantee reproducibility.
+1. **Input validation**: Validate critical inputs early within composite steps or supporting scripts.
+1. **Idempotent steps**: Ensure actions can run multiple times without leaving residual state in the workspace.
+1. **Multi-platform support**: Test actions in both `ubuntu-latest` and `windows-latest` runners when applicable.
+1. **Cross-platform compatibility**: Uses `actions/github-script` steps for cross-platform compatibility. Avoid `run` steps.
+1. **Logging**: Use structured logs with clear prefixes (`[build-image]`, `[helm-test-chart]`, …) to simplify debugging.
+1. **Security**: Avoid shell interpolation with untrusted inputs; prefer parameterized commands or `set -euo pipefail` wrappers.
 
 #### File Conventions
 
@@ -146,8 +146,8 @@ make test-ct-install         # Validate Helm charts via chart-testing
 The repository includes comprehensive end-to-end tests for all local GitHub Actions. These tests follow an **Arrange-Act-Assert** pattern:
 
 1. **Arrange**: Set up test fixtures and inputs (e.g., checkout code, prepare test context)
-2. **Act**: Execute the action being tested with specific inputs
-3. **Assert**: Validate outputs match expected values using `actions/github-script`
+1. **Act**: Execute the action being tested with specific inputs
+1. **Assert**: Validate outputs match expected values using `actions/github-script`
 
 Test workflows are located in `.github/workflows/__test-action-*.yml` and `.github/workflows/__test-workflow-*.yml`. They run on:
 
