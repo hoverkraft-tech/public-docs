@@ -81,7 +81,7 @@ use granted token permissions.
 When you need the latest safe pin for a workflow ref, start from a readable
 version such as `@v4`, then use [Pin workflow refs with
 Ratchet](./pinning-with-ratchet.md) to rewrite it to a full SHA and keep the
-generated `# ratchet:` constraint comment so later `ratchet update` runs remain
+generated `# ratchet:` constraint comment so later `ratchet upgrade` runs remain
 predictable.
 
 ✅ **DO**:

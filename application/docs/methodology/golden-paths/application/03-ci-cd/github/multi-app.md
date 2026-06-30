@@ -117,10 +117,7 @@ jobs:
         [
           { "name": "api-ci", "context": ".", "dockerfile": "./docker/api/Dockerfile", "target": "ci", "platforms": ["linux/amd64"] },
           { "name": "web-ci", "context": ".", "dockerfile": "./docker/web/Dockerfile", "target": "ci", "platforms": ["linux/amd64"] },
-          { "name": "worker-ci", "context": ".", "dockerfile": "./docker/worker/Dockerfile", "target": "ci", "platforms": ["linux/amd64"] },
-          { "name": "api", "context": ".", "dockerfile": "./docker/api/Dockerfile", "target": "prod", "platforms": ["linux/amd64"] },
-          { "name": "web", "context": ".", "dockerfile": "./docker/web/Dockerfile", "target": "prod", "platforms": ["linux/amd64"] },
-          { "name": "worker", "context": ".", "dockerfile": "./docker/worker/Dockerfile", "target": "prod", "platforms": ["linux/amd64"] }
+          { "name": "worker-ci", "context": ".", "dockerfile": "./docker/worker/Dockerfile", "target": "ci", "platforms": ["linux/amd64"] }
         ]
 
   continuous-integration:
@@ -172,6 +169,15 @@ jobs:
       pull-requests: read
     secrets:
       oci-registry-password: ${{ secrets.GITHUB_TOKEN }}
+    with:
+      oci-registry: ${{ vars.OCI_REGISTRY }}
+      sign: false
+      images: |
+        [
+          { "name": "api", "context": ".", "dockerfile": "./docker/api/Dockerfile", "target": "prod", "platforms": ["linux/amd64"] },
+          { "name": "web", "context": ".", "dockerfile": "./docker/web/Dockerfile", "target": "prod", "platforms": ["linux/amd64"] },
+          { "name": "worker", "context": ".", "dockerfile": "./docker/worker/Dockerfile", "target": "prod", "platforms": ["linux/amd64"] }
+        ]
 
   tests-charts:
     name: Tests - Charts
