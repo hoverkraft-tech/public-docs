@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/deploy-checks.md
 source_branch: main
-source_run_id: 28523328578
-last_synced: 2026-07-01T14:08:40.085Z
+source_run_id: 28531136524
+last_synced: 2026-07-01T16:11:32.157Z
 ---
 
 <!-- header:start -->
@@ -59,7 +59,7 @@ on:
 permissions: {}
 jobs:
   deploy-checks:
-    uses: hoverkraft-tech/ci-github-publish/.github/workflows/deploy-checks.yml@2d72bc5fabd9f74402b62915a21582cdc22e654b # 0.27.0
+    uses: hoverkraft-tech/ci-github-publish/.github/workflows/deploy-checks.yml@de91953dd118099667dcfccaeead703889ae33d8 # 0.27.0
     permissions:
       contents: read
     with:
@@ -78,6 +78,12 @@ jobs:
       #
       # Default: `./budget.json`
       budget-path: ./budget.json
+
+      # Timeout in seconds for the URL ping check.
+      # See [`url-ping`](../../actions/check/url-ping/index.md).
+      #
+      # Default: `60`
+      ping-timeout: "60"
 
       # Whether to print a summary of the checks.
       # Default: `true`
@@ -99,6 +105,8 @@ jobs:
 | **`url`**           | The URL to check.                                                                  | **true**     | **string**  | -                   |
 | **`budget-path`**   | Path to the budget file to use for the Lighthouse check.                           | **false**    | **string**  | `./budget.json`     |
 |                     | See [`url-lighthouse`](../../actions/check/url-lighthouse/index.md).              |              |             |                     |
+| **`ping-timeout`**  | Timeout in seconds for the URL ping check.                                         | **false**    | **string**  | `60`                |
+|                     | See [`url-ping`](../../actions/check/url-ping/index.md).                          |              |             |                     |
 | **`print-summary`** | Whether to print a summary of the checks.                                          | **false**    | **boolean** | `true`              |
 
 <!-- inputs:end -->
