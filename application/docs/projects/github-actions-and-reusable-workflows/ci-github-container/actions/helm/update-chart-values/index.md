@@ -3,8 +3,8 @@ title: Update Chart Values
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/helm/update-chart-values/README.md
 source_branch: main
-source_run_id: 28514459168
-last_synced: 2026-07-01T11:38:55.507Z
+source_run_id: 28518653656
+last_synced: 2026-07-01T12:55:05.115Z
 ---
 
 <!-- header:start -->
@@ -43,7 +43,7 @@ Updates Helm chart values files before release.
 ## Usage
 
 ````yaml
-- uses: hoverkraft-tech/ci-github-container/actions/helm/update-chart-values@c9088e8447c5a8be45157e17701023fc50ccb1c0 # 0.37.2
+- uses: hoverkraft-tech/ci-github-container/actions/helm/update-chart-values@cfc7074e26bbfbdf33f163d209d2c14957358152 # 0.38.0
   with:
     # Path to the chart to update
     # This input is required.
