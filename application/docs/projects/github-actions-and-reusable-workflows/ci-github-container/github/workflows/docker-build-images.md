@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-container
 source_path: .github/workflows/docker-build-images.md
 source_branch: main
-source_run_id: 28466540932
-last_synced: 2026-06-30T18:28:00.427Z
+source_run_id: 28514459168
+last_synced: 2026-07-01T11:38:55.507Z
 ---
 
 <!-- header:start -->
@@ -61,6 +61,7 @@ jobs:
   docker-build-images:
     uses: hoverkraft-tech/ci-github-container/.github/workflows/docker-build-images.yml@c9088e8447c5a8be45157e17701023fc50ccb1c0 # 0.37.2
     permissions:
+      actions: write
       contents: read
       id-token: write
       issues: read
