@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/release-actions.md
 source_branch: main
-source_run_id: 28516769902
-last_synced: 2026-07-01T12:20:26.705Z
+source_run_id: 28522878432
+last_synced: 2026-07-01T14:02:01.696Z
 ---
 
 <!-- header:start -->
@@ -66,7 +66,7 @@ on:
 permissions: {}
 jobs:
   release-actions:
-    uses: hoverkraft-tech/ci-github-publish/.github/workflows/release-actions.yml@5ecd2fc186b55220581879d996a311c9bb875c58 # 0.26.4
+    uses: hoverkraft-tech/ci-github-publish/.github/workflows/release-actions.yml@2d72bc5fabd9f74402b62915a21582cdc22e654b # 0.27.0
     permissions:
       contents: read
     secrets:

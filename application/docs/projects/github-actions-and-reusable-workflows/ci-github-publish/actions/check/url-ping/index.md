@@ -3,8 +3,8 @@ title: Url Ping
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/check/url-ping/README.md
 source_branch: main
-source_run_id: 28516769902
-last_synced: 2026-07-01T12:20:26.705Z
+source_run_id: 28522878432
+last_synced: 2026-07-01T14:02:01.696Z
 ---
 
 <!-- header:start -->
@@ -43,7 +43,7 @@ Action to run ping check on given URL.
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/check/url-ping@84d583ba7b357f9476707f54cf5419d630ae0145 # 0.26.2
+- uses: hoverkraft-tech/ci-github-publish/actions/check/url-ping@2d72bc5fabd9f74402b62915a21582cdc22e654b # 0.27.0
   with:
     # The URL to check.
     # This input is required.
