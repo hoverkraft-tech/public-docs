@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/release-actions.md
 source_branch: main
-source_run_id: 28471528368
-last_synced: 2026-06-30T19:53:48.172Z
+source_run_id: 28516769902
+last_synced: 2026-07-01T12:20:26.705Z
 ---
 
 <!-- header:start -->
