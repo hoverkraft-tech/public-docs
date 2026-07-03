@@ -6,14 +6,18 @@ const { APPLICATION_ROOT } = require("../constants");
 const execFileAsync = promisify(execFile);
 
 class ApplicationBiomeFormatter {
-  constructor({ applicationRoot = APPLICATION_ROOT } = {}) {
+  constructor({
+    applicationRoot = APPLICATION_ROOT,
+    exec = execFileAsync,
+  } = {}) {
     this.applicationRoot = applicationRoot;
+    this.exec = exec;
   }
 
   async format(filePath) {
     const relativePath = path.relative(this.applicationRoot, filePath);
 
-    await execFileAsync(
+    await this.exec(
       "npm",
       [
         "--prefix",
@@ -21,7 +25,7 @@ class ApplicationBiomeFormatter {
         "exec",
         "--",
         "biome",
-        "format",
+        "check",
         "--write",
         relativePath,
       ],
