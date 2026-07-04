@@ -1,7 +1,12 @@
 import path from "node:path";
 import fs from "node:fs";
 import mockFs from "mock-fs";
+import { fileURLToPath } from "node:url";
 import { describe, expect, it, vi } from "vitest";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const workspaceRoot = path.resolve(__dirname, "../../../..");
 
 process.env.GITHUB_REPOSITORY_OWNER ??= "hoverkraft-tech";
 process.env.GITHUB_REPOSITORY ??= "hoverkraft-tech/public-docs";
@@ -14,7 +19,7 @@ const { ConstDeclarationUpdater } = await import(
 );
 
 const homepagePath = path.join(
-  process.cwd(),
+  workspaceRoot,
   "application/src/pages/index.tsx",
 );
 const repositories = [
@@ -121,6 +126,7 @@ describe("HomepageProjectsUpdater", () => {
       const updatedHomepage = fs.readFileSync(homepagePath, "utf8");
 
       expect(updatedHomepage).toContain('name: "compose-action"');
+      expect(updatedHomepage).toContain("const projects = [");
       expect(updatedHomepage).toContain(
         'tags: ["continuous-integration", "docker-compose", "github-actions"]',
       );

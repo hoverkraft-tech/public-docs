@@ -94,7 +94,7 @@ function serializeHomepageProjects(projects) {
     .map((project) => serializeHomepageProject(project, 1))
     .join(",\n");
 
-  return `\n${body}\n`;
+  return `[\n${body}\n]`;
 }
 
 function serializeHomepageProject(project, indentLevel) {
