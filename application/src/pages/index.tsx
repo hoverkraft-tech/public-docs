@@ -99,7 +99,7 @@ function ValuePropsSection() {
 }
 
 function ProjectsSection() {
-  const projects = 
+  const projects = [
     {
       name: "compose-action",
       icon: "⚡",
@@ -132,7 +132,7 @@ function ProjectsSection() {
       tags: ["build", "containers", "continuous-integration"],
       accent: "primary",
     }
-  ;
+  ];
 
   return (
     <section style={{ padding: "4rem 0" }}>
