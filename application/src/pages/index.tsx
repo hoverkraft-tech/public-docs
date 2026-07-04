@@ -101,37 +101,47 @@ function ValuePropsSection() {
 function ProjectsSection() {
   const projects = [
     {
-      name: "compose-action",
-      icon: "⚡",
-      url: "https://github.com/hoverkraft-tech/compose-action",
+      name: 'compose-action',
+      icon: '⚡',
+      url: 'https://github.com/hoverkraft-tech/compose-action',
       stars: 210,
-      language: "TypeScript",
-      description:
-        "This action runs your docker-compose file and clean up before action finished",
-      tags: ["continuous-integration", "docker-compose", "github-actions"],
-      accent: "primary",
+      language: 'TypeScript',
+      description: 'This action runs your docker-compose file and clean up before action finished',
+      tags: [
+        'continuous-integration',
+        'docker-compose',
+        'github-actions'
+      ],
+      accent: 'primary'
     },
     {
-      name: "ci-dokumentor",
-      icon: "⚡",
-      url: "https://github.com/hoverkraft-tech/ci-dokumentor",
+      name: 'ci-dokumentor',
+      icon: '⚡',
+      url: 'https://github.com/hoverkraft-tech/ci-dokumentor',
       stars: 5,
-      language: "TypeScript",
-      description: "Automated documentation generator for CI/CD components",
-      tags: ["documentation", "github-actions", "open-source"],
-      accent: "neutral",
+      language: 'TypeScript',
+      description: 'Automated documentation generator for CI/CD components',
+      tags: [
+        'documentation',
+        'github-actions',
+        'open-source'
+      ],
+      accent: 'neutral'
     },
     {
-      name: "ci-github-container",
-      icon: "⚡",
-      url: "https://github.com/hoverkraft-tech/ci-github-container",
+      name: 'ci-github-container',
+      icon: '⚡',
+      url: 'https://github.com/hoverkraft-tech/ci-github-container',
       stars: 5,
-      language: "Go Template",
-      description:
-        "Opinionated GitHub Actions and workflows for continuous integration in container (OCI) context",
-      tags: ["build", "containers", "continuous-integration"],
-      accent: "primary",
-    },
+      language: 'Go Template',
+      description: 'Opinionated GitHub Actions and workflows for continuous integration in container (OCI) context',
+      tags: [
+        'build',
+        'containers',
+        'continuous-integration'
+      ],
+      accent: 'primary'
+    }
   ];
 
   return (
