@@ -99,7 +99,7 @@ function ValuePropsSection() {
 }
 
 function ProjectsSection() {
-  const projects = [
+  const projects = 
     {
       name: "compose-action",
       icon: "⚡",
@@ -131,8 +131,8 @@ function ProjectsSection() {
         "Opinionated GitHub Actions and workflows for continuous integration in container (OCI) context",
       tags: ["build", "containers", "continuous-integration"],
       accent: "primary",
-    },
-  ];
+    }
+  ;
 
   return (
     <section style={{ padding: "4rem 0" }}>
