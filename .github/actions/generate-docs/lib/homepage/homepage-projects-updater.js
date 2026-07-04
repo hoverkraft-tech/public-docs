@@ -31,7 +31,13 @@ class HomepageProjectsUpdater {
     const projectsModel = this.buildProjectsModel(featured);
     const hasChanges = await this.constDeclarationUpdater.update(
       this.homepagePath,
-      [{ name: "projects", value: projectsModel }],
+      [
+        {
+          name: "projects",
+          value: projectsModel,
+          serialize: serializeHomepageProjects,
+        },
+      ],
     );
 
     if (hasChanges) {
@@ -77,6 +83,69 @@ class HomepageProjectsUpdater {
         accent: index % 2 === 0 ? "primary" : "neutral",
       }));
   }
+}
+
+function serializeHomepageProjects(projects) {
+  if (!Array.isArray(projects) || projects.length === 0) {
+    return "[]";
+  }
+
+  const body = projects
+    .map((project) => serializeHomepageProject(project, 1))
+    .join(",\n");
+
+  return `\n${body}\n`;
+}
+
+function serializeHomepageProject(project, indentLevel) {
+  const indent = "  ".repeat(indentLevel);
+  const propertyIndent = "  ".repeat(indentLevel + 1);
+
+  return [
+    `${indent}{`,
+    `${propertyIndent}name: ${serializeHomepageString(project.name)},`,
+    `${propertyIndent}icon: ${serializeHomepageString(project.icon)},`,
+    `${propertyIndent}url: ${serializeHomepageString(project.url)},`,
+    `${propertyIndent}stars: ${String(project.stars ?? 0)},`,
+    `${propertyIndent}language: ${serializeHomepageString(project.language)},`,
+    serializeHomepageDescription(project.description, propertyIndent),
+    `${propertyIndent}tags: ${serializeHomepageInlineStringArray(project.tags)},`,
+    `${propertyIndent}accent: ${serializeHomepageString(project.accent)},`,
+    `${indent}}`,
+  ].join("\n");
+}
+
+function serializeHomepageDescription(description, indent) {
+  const normalizedDescription = description ?? "";
+  const serialized = serializeHomepageString(normalizedDescription);
+  const singleLine = `${indent}description: ${serialized},`;
+
+  if (singleLine.length <= 80) {
+    return singleLine;
+  }
+
+  return `${indent}description:\n${indent}  ${serialized},`;
+}
+
+function serializeHomepageInlineStringArray(values) {
+  if (!Array.isArray(values) || values.length === 0) {
+    return "[]";
+  }
+
+  return `[${values.map((value) => serializeHomepageString(value)).join(", ")}]`;
+}
+
+function serializeHomepageString(value) {
+  return `"${escapeHomepageString(String(value ?? ""))}"`;
+}
+
+function escapeHomepageString(value) {
+  return value
+    .replace(/\\/g, "\\\\")
+    .replace(/\n/g, "\\n")
+    .replace(/\r/g, "\\r")
+    .replace(/\t/g, "\\t")
+    .replace(/"/g, '\\"');
 }
 
 module.exports = {

@@ -225,6 +225,7 @@ describe("My Image", () => {
    ```
 
 1. **Input Validation**: Always validate inputs early in GitHub Script steps:
+
    ```javascript
    const urlInput = ${{ toJson(inputs.url ) }};
    if (!urlInput) {
