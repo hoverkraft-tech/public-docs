@@ -130,6 +130,7 @@ describe("HomepageProjectsUpdater", () => {
       expect(updatedHomepage).toContain(
         'tags: ["continuous-integration", "docker-compose", "github-actions"]',
       );
+      expect(updatedHomepage).toContain('accent: "primary",\n    },\n  ];');
       expect(updatedHomepage).not.toContain("name: 'compose-action'");
       expect(updatedHomepage).not.toContain("'continuous-integration'");
     } finally {

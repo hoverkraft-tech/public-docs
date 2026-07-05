@@ -92,7 +92,7 @@ function serializeHomepageProjects(projects) {
 
   const body = projects
     .map((project) => serializeHomepageProject(project, 1))
-    .join(",\n");
+    .join("\n");
 
   return `[\n${body}\n]`;
 }
@@ -111,7 +111,7 @@ function serializeHomepageProject(project, indentLevel) {
     serializeHomepageDescription(project.description, propertyIndent),
     `${propertyIndent}tags: ${serializeHomepageInlineStringArray(project.tags)},`,
     `${propertyIndent}accent: ${serializeHomepageString(project.accent)},`,
-    `${indent}}`,
+    `${indent}},`,
   ].join("\n");
 }
 
