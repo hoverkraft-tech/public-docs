@@ -131,7 +131,7 @@ function ProjectsSection() {
         "Opinionated GitHub Actions and workflows for continuous integration in container (OCI) context",
       tags: ["build", "containers", "continuous-integration"],
       accent: "primary",
-    },
+    }
   ];
 
   return (
