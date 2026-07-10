@@ -1,10 +1,10 @@
 ---
-title: Ci Github Nodejs
+title: Ci GitHub Nodejs
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: README.md
 source_branch: main
-source_run_id: 27055302207
-last_synced: 2026-06-06T06:50:14.639Z
+source_run_id: 29105904746
+last_synced: 2026-07-10T16:11:09.572Z
 ---
 
 # Continuous Integration - GitHub - Node.js
@@ -88,13 +88,13 @@ actions/{category}/{action-name}/
 #### Action Definition Standards
 
 1. **Consistent branding**: Use `author: hoverkraft` with `color: blue` and a meaningful `icon`.
-2. **Pinned dependencies**: Reference third-party actions via exact SHAs to guarantee reproducibility.
-3. **Input validation**: Validate critical inputs early within composite steps or supporting scripts.
-4. **Idempotent steps**: Ensure actions can run multiple times without leaving residual state in the workspace.
-5. **Multi-platform support**: Test actions in both `ubuntu-latest` and `windows-latest` runners when applicable.
-6. **Cross-platform compatibility**: Uses `actions/github-script` steps for cross-platform compatibility. Avoid `run` steps.
-7. **Logging**: Use structured logs with clear prefixes (`[build-image]`, `[helm-test-chart]`, …) to simplify debugging.
-8. **Security**: Avoid shell interpolation with untrusted inputs; prefer parameterized commands or `set -euo pipefail` wrappers.
+1. **Pinned dependencies**: Reference third-party actions via exact SHAs to guarantee reproducibility.
+1. **Input validation**: Validate critical inputs early within composite steps or supporting scripts.
+1. **Idempotent steps**: Ensure actions can run multiple times without leaving residual state in the workspace.
+1. **Multi-platform support**: Test actions in both `ubuntu-latest` and `windows-latest` runners when applicable.
+1. **Cross-platform compatibility**: Uses `actions/github-script` steps for cross-platform compatibility. Avoid `run` steps.
+1. **Logging**: Use structured logs with clear prefixes (`[build-image]`, `[helm-test-chart]`, …) to simplify debugging.
+1. **Security**: Avoid shell interpolation with untrusted inputs; prefer parameterized commands or `set -euo pipefail` wrappers.
 
 #### File Conventions
 
