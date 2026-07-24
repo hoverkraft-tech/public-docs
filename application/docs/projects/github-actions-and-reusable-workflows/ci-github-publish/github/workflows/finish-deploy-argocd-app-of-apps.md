@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/finish-deploy-argocd-app-of-apps.md
 source_branch: main
-source_run_id: 28644999750
-last_synced: 2026-07-03T07:22:58.819Z
+source_run_id: 30074372274
+last_synced: 2026-07-24T07:12:57.386Z
 ---
 
 <!-- header:start -->
@@ -79,7 +79,7 @@ on:
 permissions: {}
 jobs:
   finish-deploy-argocd-app-of-apps:
-    uses: hoverkraft-tech/ci-github-publish/.github/workflows/finish-deploy-argocd-app-of-apps.yml@2d72bc5fabd9f74402b62915a21582cdc22e654b # 0.27.0
+    uses: hoverkraft-tech/ci-github-publish/.github/workflows/finish-deploy-argocd-app-of-apps.yml@ed354ada70b9f518c2bb663e18a80041c2cf5156 # 0.27.1
     permissions:
       actions: read
       contents: read
@@ -116,12 +116,12 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**                  | **Description**                                                                                                                                                 | **Required** | **Type**   | **Default**         |
-| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ---------- | ------------------- |
-| **`runs-on`**              | JSON array of runner(s) to use.                                                                                                                                 | **false**    | **string** | `["ubuntu-latest"]` |
+| **Input**                  | **Description**                                                                    | **Required** | **Type**   | **Default**         |
+| -------------------------- | ---------------------------------------------------------------------------------- | ------------ | ---------- | ------------------- |
+| **`runs-on`**              | JSON array of runner(s) to use.                                                    | **false**    | **string** | `["ubuntu-latest"]` |
 |                            | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job). |              |            |                     |
-| **`github-app-client-id`** | GitHub App Client ID to generate GitHub token in place of github-token.                                                                                         | **false**    | **string** | -                   |
-|                            | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                                                   |              |            |                     |
+| **`github-app-client-id`** | GitHub App Client ID to generate GitHub token in place of github-token.            | **false**    | **string** | -                   |
+|                            | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                          |              |            |                     |
 
 <!-- inputs:end -->
 
@@ -129,14 +129,14 @@ jobs:
 
 ## Secrets
 
-| **Secret**           | **Description**                                                                                                                                                                                                     | **Required** |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
-| **`github-token`**   | GitHub Token to update the deployment.                                                                                                                                                                              | **false**    |
-|                      | Permissions:                                                                                                                                                                                                        |              |
-|                      | - deployments: write                                                                                                                                                                                                |              |
+| **Secret**           | **Description**                                                                                              | **Required** |
+| -------------------- | ------------------------------------------------------------------------------------------------------------ | ------------ |
+| **`github-token`**   | GitHub Token to update the deployment.                                                                       | **false**    |
+|                      | Permissions:                                                                                                 |              |
+|                      | - deployments: write                                                                                         |              |
 |                      | See [https://docs.github.com/en/rest/deployments/statuses?apiVersion=2022-11-28#create-a-deployment-status](https://docs.github.com/en/rest/deployments/statuses?apiVersion=2022-11-28#create-a-deployment-status). |              |
-| **`github-app-key`** | GitHub App private key to generate GitHub token in place of github-token.                                                                                                                                           | **false**    |
-|                      | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                                                                                                       |              |
+| **`github-app-key`** | GitHub App private key to generate GitHub token in place of github-token.                                    | **false**    |
+|                      | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                                                    |              |
 
 <!-- secrets:end -->
 

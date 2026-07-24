@@ -3,8 +3,8 @@ title: Helm Repository Dispatch
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/deploy/helm-repository-dispatch/README.md
 source_branch: main
-source_run_id: 28644999750
-last_synced: 2026-07-03T07:22:58.819Z
+source_run_id: 30074372274
+last_synced: 2026-07-24T07:12:57.386Z
 ---
 
 <!-- header:start -->
@@ -114,7 +114,7 @@ See [https://docs.github.com/en/actions/writing-workflows/choosing-when-your-wor
 | **`github-token`**  | GitHub Token for dispatch an event to a remote repository.                                                                          | **false**    | `${{ github.token }}` |
 |                     | Permissions:                                                                                                                        |              |                       |
 |                     | - contents: write                                                                                                                   |              |                       |
-|                     | See [https://github.com/peter-evans/repository-dispatch#usage](https://github.com/peter-evans/repository-dispatch#usage).           |              |                       |
+|                     | See [https://github.com/peter-evans/repository-dispatch#usage](https://github.com/peter-evans/repository-dispatch#usage).                                                                     |              |                       |
 | **`initiated-by`**  | Username to record as having initiated the sync operation                                                                           | **true**     | -                     |
 
 <!-- inputs:end -->
