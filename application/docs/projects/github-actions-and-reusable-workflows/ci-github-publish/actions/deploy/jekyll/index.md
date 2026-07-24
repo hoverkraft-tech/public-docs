@@ -3,8 +3,8 @@ title: Jekyll
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/deploy/jekyll/README.md
 source_branch: main
-source_run_id: 28644999750
-last_synced: 2026-07-03T07:22:58.819Z
+source_run_id: 30074372274
+last_synced: 2026-07-24T07:12:57.386Z
 ---
 
 <!-- header:start -->
