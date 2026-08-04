@@ -3,7 +3,7 @@
 # GitHub Reusable Workflow: Push Documentation Helper
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/d1421dfc5ca9b405d6b1e94bb50628ec9584834281154bf9aee269ec84a7922e/hoverkraft-tech/public-docs" width="60px" align="center" alt="Push Documentation Helper" />
+  <img src="https://opengraph.githubassets.com/b901d32dffbe7bdac217b8cd940c90bbdc8e52352deeafd68f647c6307b9857e/hoverkraft-tech/public-docs" width="60px" align="center" alt="Push Documentation Helper" />
 </div>
 
 ---
