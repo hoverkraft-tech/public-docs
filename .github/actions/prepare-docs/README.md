@@ -37,7 +37,7 @@ Responsibilities:
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/public-docs/.github/actions/prepare-docs@f3c9291760d927e6214e8d5f0a376af2d537c369 # 0.4.0
+- uses: hoverkraft-tech/public-docs/.github/actions/prepare-docs@faa69317e8c0f81ffdd33eecb6f3f2dedaaf390d # main
   with:
     # GitHub token used to resolve workflow run metadata.
     # This input is required.
