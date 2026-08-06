@@ -3,8 +3,8 @@ title: Ci GitHub Common
 source_repo: hoverkraft-tech/ci-github-common
 source_path: README.md
 source_branch: main
-source_run_id: 31102965116
-last_synced: 2026-08-06T12:53:11.468Z
+source_run_id: 31105197680
+last_synced: 2026-08-06T13:22:13.035Z
 ---
 
 # Continuous Integration - GitHub - Common
@@ -30,7 +30,7 @@ Opinionated GitHub Actions and reusable workflows for foundational continuous-in
 ### Workflow & repository automation
 
 - [Checkout](actions/checkout/index.md) - event-aware drop-in replacement for `actions/checkout` that supports issue comment triggers.
-- [Create and merge pull request](actions/create-and-merge-pull-request/index.md) - opens a pull request, rebases, and merges it with the GitHub Actions bot identity.
+- [Create and merge pull request](actions/create-and-merge-pull-request/index.md) - opens a pull request and merges it with the configured strategy and GitHub Actions bot identity.
 - [Create or update comment](actions/create-or-update-comment/index.md) - adds or updates comments on issues and pull requests idempotently.
 - [Get GitHub Actions bot user](actions/get-github-actions-bot-user/index.md) - retrieves the profile information for the GitHub Actions bot.
 - [Get issue number](actions/get-issue-number/index.md) - extracts the relevant issue number from the current workflow context.
