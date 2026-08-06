@@ -2,9 +2,9 @@
 title: Set Matrix Output
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/set-matrix-output/README.md
-source_branch: 0.37.3
-source_run_id: 28027538184
-last_synced: 2026-06-23T12:57:02.286Z
+source_branch: main
+source_run_id: 31102965116
+last_synced: 2026-08-06T12:53:11.468Z
 ---
 
 <!-- header:start -->
