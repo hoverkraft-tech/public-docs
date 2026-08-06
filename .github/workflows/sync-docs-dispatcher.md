@@ -3,7 +3,7 @@
 # GitHub Reusable Workflow: Push Documentation Helper
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/b901d32dffbe7bdac217b8cd940c90bbdc8e52352deeafd68f647c6307b9857e/hoverkraft-tech/public-docs" width="60px" align="center" alt="Push Documentation Helper" />
+  <img src="https://opengraph.githubassets.com/7f370b12e936561a9b6e3905d50bc8df9d2ed5f913151e68368888da78c7552e/hoverkraft-tech/public-docs" width="60px" align="center" alt="Push Documentation Helper" />
 </div>
 
 ---
@@ -83,7 +83,7 @@ on:
 permissions: {}
 jobs:
   sync-docs-dispatcher:
-    uses: hoverkraft-tech/public-docs/.github/workflows/sync-docs-dispatcher.yml@faa69317e8c0f81ffdd33eecb6f3f2dedaaf390d # main
+    uses: hoverkraft-tech/public-docs/.github/workflows/sync-docs-dispatcher.yml@f3c9291760d927e6214e8d5f0a376af2d537c369 # 0.4.0
     permissions:
       contents: read
     secrets:
