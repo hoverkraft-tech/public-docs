@@ -3,8 +3,8 @@ title: Create And Merge Pull Request
 source_repo: hoverkraft-tech/ci-github-common
 source_path: actions/create-and-merge-pull-request/README.md
 source_branch: main
-source_run_id: 31102965116
-last_synced: 2026-08-06T12:53:11.468Z
+source_run_id: 31105197680
+last_synced: 2026-08-06T13:22:13.035Z
 ---
 
 <!-- header:start -->
@@ -35,7 +35,7 @@ last_synced: 2026-08-06T12:53:11.468Z
 ## Overview
 
 Action to create and merge Pull Request.
-Opinionated, set GitHub Actions bot as author, then rebase and merge.
+Opinionated, set GitHub Actions bot as author, then merge with the configured strategy.
 
 For this action to work you must explicitly allow GitHub Actions to create pull requests.
 See [https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository).
@@ -59,7 +59,7 @@ See [https://docs.github.com/en/repositories/managing-your-repositorys-settings-
     # This input is required.
     branch: ""
 
-    # The pull request title
+    # The pull request title and, for merge/squash merges, the merged commit title
     # This input is required.
     title: ""
 
@@ -67,9 +67,15 @@ See [https://docs.github.com/en/repositories/managing-your-repositorys-settings-
     # This input is required.
     body: ""
 
-    # The commit message for the pull request
+    # The commit message for the pull request and, for merge/squash merges, the merged commit body
     # This input is required.
     commit-message: ""
+
+    # Merge strategy for the created pull request.
+    # Valid values: `merge`, `rebase`, `squash`.
+    #
+    # Default: `rebase`
+    merge-method: rebase
 ```
 
 <!-- usage:end -->
@@ -83,9 +89,11 @@ See [https://docs.github.com/en/repositories/managing-your-repositorys-settings-
 | **`github-token`**   | GitHub token for creating and merging pull request (permissions contents: write and pull-requests: write). | **false**    | `${{ github.token }}` |
 |                      | See [https://github.com/peter-evans/create-pull-request#action-inputs](https://github.com/peter-evans/create-pull-request#action-inputs).                                    |              |                       |
 | **`branch`**         | The pull request branch name                                                                               | **true**     | -                     |
-| **`title`**          | The pull request title                                                                                     | **true**     | -                     |
+| **`title`**          | The pull request title and, for merge/squash merges, the merged commit title                               | **true**     | -                     |
 | **`body`**           | The pull request body                                                                                      | **true**     | -                     |
-| **`commit-message`** | The commit message for the pull request                                                                    | **true**     | -                     |
+| **`commit-message`** | The commit message for the pull request and, for merge/squash merges, the merged commit body               | **true**     | -                     |
+| **`merge-method`**   | Merge strategy for the created pull request.                                                               | **false**    | `rebase`              |
+|                      | Valid values: `merge`, `rebase`, `squash`.                                                                 |              |                       |
 
 <!-- inputs:end -->
 
