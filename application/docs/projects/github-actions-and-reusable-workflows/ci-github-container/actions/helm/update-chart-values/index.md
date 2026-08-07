@@ -3,8 +3,8 @@ title: Update Chart Values
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/helm/update-chart-values/README.md
 source_branch: main
-source_run_id: 28520234154
-last_synced: 2026-07-01T13:21:22.472Z
+source_run_id: 31191566184
+last_synced: 2026-08-07T15:21:44.114Z
 ---
 
 <!-- header:start -->
@@ -76,7 +76,7 @@ Updates Helm chart values files before release.
 | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------- |
 | **`path`**   | Path to the chart to update                                                                                                                                                                                | **true**     | -           |
 | **`values`** | Define charts values to be filled.                                                                                                                                                                         | **false**    | -           |
-|              | See [https://mikefarah.gitbook.io/yq/](https://mikefarah.gitbook.io/yq/).                                                                                                                                  |              |             |
+|              | See [https://mikefarah.gitbook.io/yq/](https://mikefarah.gitbook.io/yq/).                                                                                                                                                                    |              |             |
 |              | Format: `[{ file, path, value }]`.                                                                                                                                                                         |              |             |
 |              |                                                                                                                                                                                                            |              |             |
 |              | Example:                                                                                                                                                                                                   |              |             |
