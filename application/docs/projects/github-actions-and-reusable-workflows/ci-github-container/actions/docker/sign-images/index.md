@@ -3,8 +3,8 @@ title: Sign Images
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/docker/sign-images/README.md
 source_branch: main
-source_run_id: 31191566184
-last_synced: 2026-08-07T15:21:44.114Z
+source_run_id: 31198111608
+last_synced: 2026-08-07T16:41:28.785Z
 ---
 
 <!-- header:start -->
@@ -55,7 +55,7 @@ permissions:
 ## Usage
 
 ````yaml
-- uses: hoverkraft-tech/ci-github-container/actions/docker/sign-images@cfc7074e26bbfbdf33f163d209d2c14957358152 # 0.38.0
+- uses: hoverkraft-tech/ci-github-container/actions/docker/sign-images@f8255a6a37eb141fa331527f5aed9b9e1d598c77 # 0.38.0
   with:
     # Images to sign.
     # Can be a single image or a list of images separated by commas or newlines or spaces.
