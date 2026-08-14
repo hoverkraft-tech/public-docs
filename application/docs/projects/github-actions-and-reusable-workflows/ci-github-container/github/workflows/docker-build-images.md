@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-container
 source_path: .github/workflows/docker-build-images.md
 source_branch: main
-source_run_id: 31198111608
-last_synced: 2026-08-07T16:41:28.785Z
+source_run_id: 31814195899
+last_synced: 2026-08-14T15:31:42.161Z
 ---
 
 <!-- header:start -->
@@ -38,6 +38,7 @@ This includes [multi-platform](https://docs.docker.com/build/building/multi-plat
 
 ### Permissions
 
+- **`attestations`**: `write`
 - **`contents`**: `read`
 - **`id-token`**: `write`
 - **`issues`**: `read`
@@ -59,8 +60,9 @@ on:
 permissions: {}
 jobs:
   docker-build-images:
-    uses: hoverkraft-tech/ci-github-container/.github/workflows/docker-build-images.yml@cfc7074e26bbfbdf33f163d209d2c14957358152 # 0.38.0
+    uses: hoverkraft-tech/ci-github-container/.github/workflows/docker-build-images.yml@f8255a6a37eb141fa331527f5aed9b9e1d598c77 # 0.38.0
     permissions:
+      attestations: write
       contents: read
       id-token: write
       issues: read
@@ -186,6 +188,12 @@ jobs:
       #
       # Default: `true`
       sign: true
+
+      # Generate build provenance attestations for built images.
+      # See [attest-image](../../actions/docker/attest-image/index.md).
+      #
+      # Default: `true`
+      attest: true
 ````
 
 <!-- usage:end -->
@@ -237,6 +245,8 @@ jobs:
 |                                         | <!-- textlint-disable --><pre lang="ini">[registry."my-registry.local:5000"]&#13; http = true&#13; insecure = true</pre><!-- textlint-enable -->                                                                                                                                                                                                                                                                                                                                                            |              |             |                                  |
 | **`sign`**                              | Sign built images.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | **false**    | **boolean** | `true`                           |
 |                                         | See [sign-images](../../actions/docker/sign-images/index.md).                                                                                                                                                                                                                                                                                                                                                                                                                                              |              |             |                                  |
+| **`attest`**                            | Generate build provenance attestations for built images.                                                                                                                                                                                                                                                                                                                                                                                                                                                    | **false**    | **boolean** | `true`                           |
+|                                         | See [attest-image](../../actions/docker/attest-image/index.md).                                                                                                                                                                                                                                                                                                                                                                                                                                            |              |             |                                  |
 
 <!-- inputs:end -->
 
