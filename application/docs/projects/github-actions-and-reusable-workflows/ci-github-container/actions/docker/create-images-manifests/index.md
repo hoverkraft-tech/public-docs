@@ -3,8 +3,8 @@ title: Create Images Manifests
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/docker/create-images-manifests/README.md
 source_branch: main
-source_run_id: 31814195899
-last_synced: 2026-08-14T15:31:42.161Z
+source_run_id: 31816435278
+last_synced: 2026-08-14T15:59:57.716Z
 ---
 
 <!-- header:start -->
@@ -55,7 +55,7 @@ permissions:
 ## Usage
 
 ````yaml
-- uses: hoverkraft-tech/ci-github-container/actions/docker/create-images-manifests@cfc7074e26bbfbdf33f163d209d2c14957358152 # 0.38.0
+- uses: hoverkraft-tech/ci-github-container/actions/docker/create-images-manifests@f8255a6a37eb141fa331527f5aed9b9e1d598c77 # 0.38.0
   with:
     # OCI registry configuration used to pull, push and cache images.
     # Accepts either a registry hostname string (default format) or a JSON object.
@@ -263,7 +263,7 @@ jobs:
             core.setOutput("built-images", JSON.stringify(cloneInput));
 
       - id: clone-tag
-        uses: hoverkraft-tech/ci-github-container/actions/docker/create-images-manifests@cfc7074e26bbfbdf33f163d209d2c14957358152 # 0.38.0
+        uses: hoverkraft-tech/ci-github-container/actions/docker/create-images-manifests@f8255a6a37eb141fa331527f5aed9b9e1d598c77 # 0.38.0
         with:
           oci-registry: ghcr.io
           oci-registry-username: ${{ github.repository_owner }}
