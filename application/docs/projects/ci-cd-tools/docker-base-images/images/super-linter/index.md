@@ -3,8 +3,8 @@ title: Super Linter
 source_repo: hoverkraft-tech/docker-base-images
 source_path: images/super-linter/README.md
 source_branch: main
-source_run_id: 30074347911
-last_synced: 2026-07-24T07:11:43.196Z
+source_run_id: 32527995379
+last_synced: 2026-08-21T21:24:38.007Z
 ---
 
 # super-linter
