@@ -1,7 +1,7 @@
 ---
-title: Get Environment
+title: Delete
 source_repo: hoverkraft-tech/ci-github-publish
-source_path: actions/deploy/get-environment/README.md
+source_path: actions/release/delete/README.md
 source_branch: main
 source_run_id: 33265153646
 last_synced: 2026-08-29T17:21:17.836Z
@@ -9,18 +9,19 @@ last_synced: 2026-08-29T17:21:17.836Z
 
 <!-- header:start -->
 
-# ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItZmxhZyIgY29sb3I9ImJsdWUiPjxwYXRoIGQ9Ik00IDE1czEtMSA0LTEgNSAyIDggMiA0LTEgNC0xVjNzLTEgMS00IDEtNS0yLTgtMi00IDEtNCAxeiI+PC9wYXRoPjxsaW5lIHgxPSI0IiB5MT0iMjIiIHgyPSI0IiB5Mj0iMTUiPjwvbGluZT48L3N2Zz4=) GitHub Action: Deploy - Get Environment
+# ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItdHJhc2gtMiIgY29sb3I9ImJsdWUiPjxwb2x5bGluZSBwb2ludHM9IjMgNiA1IDYgMjEgNiI+PC9wb2x5bGluZT48cGF0aCBkPSJNMTkgNnYxNGEyIDIgMCAwIDEtMiAySDdhMiAyIDAgMCAxLTItMlY2bTMgMFY0YTIgMiAwIDAgMSAyLTJoNGEyIDIgMCAwIDEgMiAydjIiPjwvcGF0aD48bGluZSB4MT0iMTAiIHkxPSIxMSIgeDI9IjEwIiB5Mj0iMTciPjwvbGluZT48bGluZSB4MT0iMTQiIHkxPSIxMSIgeDI9IjE0IiB5Mj0iMTciPjwvbGluZT48L3N2Zz4=) GitHub Action: Release - Delete
 
 <div align="center">
-  <img src="/ci-github-publish/assets/github/logo.svg" width="60px" align="center" alt="Deploy - Get Environment" />
+  <img src="/ci-github-publish/assets/github/logo.svg" width="60px" align="center" alt="Release - Delete" />
 </div>
 
 ---
 
 <!-- header:end -->
+
 <!-- badges:start -->
 
-[![Marketplace](https://img.shields.io/badge/Marketplace-deploy------get--environment-blue?logo=github-actions)](https://github.com/marketplace/actions/deploy---get-environment)
+[![Marketplace](https://img.shields.io/badge/Marketplace-release------delete-blue?logo=github-actions)](https://github.com/marketplace/actions/release---delete)
 [![Release](https://img.shields.io/github/v/release/hoverkraft-tech/ci-github-publish)](https://github.com/hoverkraft-tech/ci-github-publish/releases)
 [![License](https://img.shields.io/github/license/hoverkraft-tech/ci-github-publish)](http://choosealicense.com/licenses/mit/)
 [![Stars](https://img.shields.io/github/stars/hoverkraft-tech/ci-github-publish?style=social)](https://img.shields.io/github/stars/hoverkraft-tech/ci-github-publish?style=social)
@@ -29,20 +30,11 @@ last_synced: 2026-08-29T17:21:17.836Z
 
 <!-- badges:end -->
 
-<!--
-// jscpd:ignore-start
--->
-
 <!-- overview:start -->
 
 ## Overview
 
-Action to get the environment to deploy regarding the workflow context.
-
-- If the workflow is triggered by an issue event (or pull-request):
-  If an environment is given, the environment will be set to `<environment>:pr-<issue_number>`.
-  If no environment is given, the environment will be set to `review-apps:pr-<issue_number>`.
-- Else if no environment is given, the action will fail.
+Delete an existing GitHub release for a tag, with optional draft-only cleanup behavior.
 
 <!-- overview:end -->
 
@@ -51,10 +43,24 @@ Action to get the environment to deploy regarding the workflow context.
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/deploy/get-environment@2d72bc5fabd9f74402b62915a21582cdc22e654b # 0.27.0
+- uses: hoverkraft-tech/ci-github-publish/actions/release/delete@ed354ada70b9f518c2bb663e18a80041c2cf5156 # 0.27.1
   with:
-    # Environment where to deploy.
-    environment: ""
+    # Existing tag name of the GitHub release to delete
+    # This input is required.
+    tag: ""
+
+    # Whether to delete the release only when it is still a draft.
+    # When enabled and the resolved release is already published, the action exits without deleting it.
+    #
+    # Default: `false`
+    draft-only: "false"
+
+    # GitHub Token for deleting the release.
+    # Permissions:
+    # - contents: write
+    #
+    # Default: `${{ github.token }}`
+    github-token: ${{ github.token }}
 ```
 
 <!-- usage:end -->
@@ -63,9 +69,14 @@ Action to get the environment to deploy regarding the workflow context.
 
 ## Inputs
 
-| **Input**         | **Description**              | **Required** | **Default** |
-| ----------------- | ---------------------------- | ------------ | ----------- |
-| **`environment`** | Environment where to deploy. | **false**    | -           |
+| **Input**          | **Description**                                                                                   | **Required** | **Default**           |
+| ------------------ | ------------------------------------------------------------------------------------------------- | ------------ | --------------------- |
+| **`tag`**          | Existing tag name of the GitHub release to delete                                                 | **true**     | -                     |
+| **`draft-only`**   | Whether to delete the release only when it is still a draft.                                      | **false**    | `false`               |
+|                    | When enabled and the resolved release is already published, the action exits without deleting it. |              |                       |
+| **`github-token`** | GitHub Token for deleting the release.                                                            | **false**    | `${{ github.token }}` |
+|                    | Permissions:                                                                                      |              |                       |
+|                    | - contents: write                                                                                 |              |                       |
 
 <!-- inputs:end -->
 
@@ -73,11 +84,17 @@ Action to get the environment to deploy regarding the workflow context.
 
 ## Outputs
 
-| **Output**        | **Description**                      |
-| ----------------- | ------------------------------------ |
-| **`environment`** | The proper environment to deploy to. |
+| **Output**          | **Description**                                  |
+| ------------------- | ------------------------------------------------ |
+| **`deleted`**       | Whether the release was deleted                  |
+| **`release-id`**    | The resolved release id when a release was found |
+| **`release-draft`** | Whether the resolved release was a draft         |
 
 <!-- outputs:end -->
+
+The action resolves the release by tag with a fallback to `repos.listReleases` because freshly drafted releases may temporarily return `404` from `repos.getReleaseByTag`.
+
+If no release exists for the tag, the action exits successfully without deleting anything.
 
 <!-- secrets:start -->
 <!-- secrets:end -->
@@ -109,7 +126,6 @@ Copyright © 2026 hoverkraft
 For more details, see the [license](http://choosealicense.com/licenses/mit/).
 
 <!-- license:end -->
-
 <!-- generated:start -->
 
 ---
@@ -117,7 +133,3 @@ For more details, see the [license](http://choosealicense.com/licenses/mit/).
 This documentation was automatically generated by [CI Dokumentor](https://github.com/hoverkraft-tech/ci-dokumentor).
 
 <!-- generated:end -->
-
-<!--
-// jscpd:ignore-end
--->
