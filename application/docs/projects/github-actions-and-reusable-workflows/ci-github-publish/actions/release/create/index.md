@@ -3,8 +3,8 @@ title: Create
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/release/create/README.md
 source_branch: main
-source_run_id: 30074372274
-last_synced: 2026-07-24T07:12:57.386Z
+source_run_id: 33265153646
+last_synced: 2026-08-29T17:21:17.836Z
 ---
 
 <!-- header:start -->
@@ -176,6 +176,8 @@ The release is published by default after optional changelog summarization and a
 <!-- outputs:end -->
 
 This action creates or refreshes the release as a draft first, then publishes it by default after all requested summary and asset updates succeed. Set `publish` to `false` to keep the release as a draft.
+
+If you set `publish` to `false` and perform additional jobs before a later `actions/release/update` publish step, add a fallback cleanup job with [release/delete](../delete/index.md) and `draft-only: "true"`. That avoids leaving a temporary dangling draft release behind.
 
 When `changelog-summary` is provided, the action summarizes the drafted changelog body with [release/summarize-changelog](../summarize-changelog/index.md) and prepends the generated summary above the drafted release notes.
 
