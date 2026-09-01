@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-container
 source_path: .github/workflows/prune-pull-requests-images-tags.md
 source_branch: main
-source_run_id: 33151334459
-last_synced: 2026-08-28T07:32:53.487Z
+source_run_id: 33481521462
+last_synced: 2026-09-01T07:26:31.332Z
 ---
 
 <!-- header:start -->
@@ -32,7 +32,7 @@ last_synced: 2026-08-28T07:32:53.487Z
 
 ## Overview
 
-Workflow to performs a clean of closed pull requests images tags.
+Workflow to prune closed pull request image tags for organization- and user-owned packages.
 See [prune-pull-requests-image-tags](../../actions/docker/prune-pull-requests-image-tags/index.md) for more information.
 
 ### Permissions
