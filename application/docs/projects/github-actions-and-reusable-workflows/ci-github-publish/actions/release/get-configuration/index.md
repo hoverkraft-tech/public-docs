@@ -3,8 +3,8 @@ title: Get Configuration
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/release/get-configuration/README.md
 source_branch: main
-source_run_id: 33265153646
-last_synced: 2026-08-29T17:21:17.836Z
+source_run_id: 33533446856
+last_synced: 2026-09-01T16:48:55.979Z
 ---
 
 <!-- header:start -->
@@ -40,11 +40,14 @@ Action to get the release configuration details
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/release/get-configuration@2d72bc5fabd9f74402b62915a21582cdc22e654b # 0.27.0
+- uses: hoverkraft-tech/ci-github-publish/actions/release/get-configuration@ed354ada70b9f518c2bb663e18a80041c2cf5156 # 0.27.1
   with:
     # Working directory used to scope release automation in a monorepo.
     # If specified, the action looks for `.github/release-configs/{slug}.yml`, where `slug` is derived from the working directory basename.
     # If that file does not exist, a temporary release configuration is generated with `include-paths` for the working directory and current workflow file.
+    # The generated defaults follow Conventional Commits and Semantic Versioning: breaking changes increment major, `feat` increments minor, and all other changes increment patch.
+    # They also define Conventional Commit labels.
+    # They credit co-authors and highlight new contributors, with an explicit empty state when there are none.
     working-directory: ""
 
     # Additional paths to include in the release notes filtering (JSON array).
@@ -59,22 +62,26 @@ Action to get the release configuration details
 
 ## Inputs
 
-| **Input**               | **Description**                                                                                                                                       | **Required** | **Default** |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------- |
-| **`working-directory`** | Working directory used to scope release automation in a monorepo.                                                                                     | **false**    | -           |
-|                         | If specified, the action looks for `.github/release-configs/{slug}.yml`, where `slug` is derived from the working directory basename.                 |              |             |
-|                         | If that file does not exist, a temporary release configuration is generated with `include-paths` for the working directory and current workflow file. |              |             |
-| **`include-paths`**     | Additional paths to include in the release notes filtering (JSON array).                                                                              | **false**    | `[]`        |
-|                         | These paths are added to the `include-paths` configuration of release-drafter.                                                                        |              |             |
+| **Input**               | **Description**                                                                                                                                                               | **Required** | **Default** |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------- |
+| **`working-directory`** | Working directory used to scope release automation in a monorepo.                                                                                                             | **false**    | -           |
+|                         | If specified, the action looks for `.github/release-configs/{slug}.yml`, where `slug` is derived from the working directory basename.                                         |              |             |
+|                         | If that file does not exist, a temporary release configuration is generated with `include-paths` for the working directory and current workflow file.                         |              |             |
+|                         | The generated defaults follow Conventional Commits and Semantic Versioning: breaking changes increment major, `feat` increments minor, and all other changes increment patch. |              |             |
+|                         | They also define Conventional Commit labels.                                                                                                                                  |              |             |
+|                         | They credit co-authors and highlight new contributors, with an explicit empty state when there are none.                                                                      |              |             |
+| **`include-paths`**     | Additional paths to include in the release notes filtering (JSON array).                                                                                                      | **false**    | `[]`        |
+|                         | These paths are added to the `include-paths` configuration of release-drafter.                                                                                                |              |             |
 
 <!-- inputs:end -->
 <!-- outputs:start -->
 
 ## Outputs
 
-| **Output**        | **Description**                                                    |
-| ----------------- | ------------------------------------------------------------------ |
-| **`config-path`** | The effective configuration path relative to the .github directory |
+| **Output**         | **Description**                                                    |
+| ------------------ | ------------------------------------------------------------------ |
+| **`config-path`**  | The effective configuration path relative to the .github directory |
+| **`is-generated`** | Whether a temporary configuration was generated                    |
 
 <!-- outputs:end -->
 <!-- secrets:start -->

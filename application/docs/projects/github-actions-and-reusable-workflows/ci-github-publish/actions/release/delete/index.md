@@ -3,8 +3,8 @@ title: Delete
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/release/delete/README.md
 source_branch: main
-source_run_id: 33265153646
-last_synced: 2026-08-29T17:21:17.836Z
+source_run_id: 33533446856
+last_synced: 2026-09-01T16:48:55.979Z
 ---
 
 <!-- header:start -->
@@ -87,7 +87,7 @@ Delete an existing GitHub release for a tag, with optional draft-only cleanup be
 | **Output**          | **Description**                                  |
 | ------------------- | ------------------------------------------------ |
 | **`deleted`**       | Whether the release was deleted                  |
-| **`release-id`**    | The resolved release id when a release was found |
+| **`release-id`**    | The resolved release ID when a release was found |
 | **`release-draft`** | Whether the resolved release was a draft         |
 
 <!-- outputs:end -->
