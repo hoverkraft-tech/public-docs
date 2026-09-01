@@ -3,8 +3,8 @@ title: Create
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/release/create/README.md
 source_branch: main
-source_run_id: 33265153646
-last_synced: 2026-08-29T17:21:17.836Z
+source_run_id: 33533446856
+last_synced: 2026-09-01T16:48:55.979Z
 ---
 
 <!-- header:start -->
@@ -53,6 +53,9 @@ The release is published by default after optional changelog summarization and a
     # Working directory used to scope release automation in a monorepo.
     # If specified, the action looks for `.github/release-configs/{slug}.yml`, where `slug` is derived from the working directory basename.
     # If that file does not exist, a temporary release configuration is generated with `include-paths` for the working directory and current workflow file.
+    # The generated defaults follow Conventional Commits and Semantic Versioning: breaking changes increment major, `feat` increments minor, and all other changes increment patch.
+    # They also define Conventional Commit labels.
+    # They credit co-authors and highlight new contributors, with an explicit empty state when there are none.
     working-directory: ""
 
     # Additional paths to include in the release notes filtering (JSON array).
@@ -64,7 +67,8 @@ The release is published by default after optional changelog summarization and a
     # Release tag name to use in explicit mode
     tag: ""
 
-    # Optional commit SHA or branch name to target when explicit mode creates a release for a tag that does not already exist. Forwarded to Release Drafter as `commitish`.
+    # Optional branch, commit SHA, fully qualified tag ref, or pull request ref to target when explicit mode creates a release for a tag that does not already exist.
+    # Forwarded to Release Drafter as `commitish`; tag and pull request refs are resolved to commit SHAs.
     target-sha: ""
 
     # GitHub Token for creating the draft release.
@@ -132,10 +136,14 @@ The release is published by default after optional changelog summarization and a
 | **`working-directory`**   | Working directory used to scope release automation in a monorepo.                                                                                                                           | **false**    | -                     |
 |                           | If specified, the action looks for `.github/release-configs/{slug}.yml`, where `slug` is derived from the working directory basename.                                                       |              |                       |
 |                           | If that file does not exist, a temporary release configuration is generated with `include-paths` for the working directory and current workflow file.                                       |              |                       |
+|                           | The generated defaults follow Conventional Commits and Semantic Versioning: breaking changes increment major, `feat` increments minor, and all other changes increment patch.               |              |                       |
+|                           | They also define Conventional Commit labels.                                                                                                                                                |              |                       |
+|                           | They credit co-authors and highlight new contributors, with an explicit empty state when there are none.                                                                                    |              |                       |
 | **`include-paths`**       | Additional paths to include in the release notes filtering (JSON array).                                                                                                                    | **false**    | `[]`                  |
 |                           | These paths are added to the `include-paths` configuration of release-drafter.                                                                                                              |              |                       |
 | **`tag`**                 | Release tag name to use in explicit mode                                                                                                                                                    | **false**    | -                     |
-| **`target-sha`**          | Optional commit SHA or branch name to target when explicit mode creates a release for a tag that does not already exist. Forwarded to Release Drafter as `commitish`.                       | **false**    | -                     |
+| **`target-sha`**          | Optional branch, commit SHA, fully qualified tag ref, or pull request ref to target when explicit mode creates a release for a tag that does not already exist.                             | **false**    | -                     |
+|                           | Forwarded to Release Drafter as `commitish`; tag and pull request refs are resolved to commit SHAs.                                                                                         |              |                       |
 | **`github-token`**        | GitHub Token for creating the draft release.                                                                                                                                                | **false**    | `${{ github.token }}` |
 |                           | Permissions:                                                                                                                                                                                |              |                       |
 |                           | - contents: write                                                                                                                                                                           |              |                       |
