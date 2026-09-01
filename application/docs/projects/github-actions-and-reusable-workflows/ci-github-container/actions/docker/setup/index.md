@@ -3,8 +3,8 @@ title: Setup
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/docker/setup/README.md
 source_branch: main
-source_run_id: 33481521462
-last_synced: 2026-09-01T07:26:31.332Z
+source_run_id: 33524082500
+last_synced: 2026-09-01T15:25:47.681Z
 ---
 
 <!-- header:start -->
@@ -77,10 +77,10 @@ Shared action to configure Docker tooling and OCI registry authentication.
     # Default: `true`
     setup-buildx: true
 
-    # Whether the Buildx builder should be removed during post-job cleanup.
+    # Required Docker version. The action installs it when the active Docker client or daemon reports a different version.
     #
-    # Default: `true`
-    buildx-cleanup: true
+    # Default: `29.7.2`
+    docker-version: 29.7.2
 
     # Buildx version used by docker/setup-buildx-action.
     #
@@ -114,7 +114,7 @@ Shared action to configure Docker tooling and OCI registry authentication.
 | **`built-images`**            | Optional built images payload used to resolve manifest publication registries.                                                                   | **false**    | -                       |
 |                               | When provided, registry authentication targets are inferred from the built image data.                                                           |              |                         |
 | **`setup-buildx`**            | Whether to install and configure Docker Buildx.                                                                                                  | **false**    | `true`                  |
-| **`buildx-cleanup`**          | Whether the Buildx builder should be removed during post-job cleanup.                                                                            | **false**    | `true`                  |
+| **`docker-version`**          | Required Docker version. The action installs it when the active Docker client or daemon reports a different version.                             | **false**    | `29.7.2`                |
 | **`buildx-version`**          | Buildx version used by docker/setup-buildx-action.                                                                                               | **false**    | `v0.36.1`               |
 | **`buildkit-image`**          | BuildKit image used by docker/setup-buildx-action.                                                                                               | **false**    | `moby/buildkit:v0.32.2` |
 
@@ -153,12 +153,12 @@ Optional pull registries without credentials are skipped, which is useful for pu
 
 ## Outputs
 
-| **Output**            | **Description**                                    |
-| --------------------- | -------------------------------------------------- |
-| **`push-registry`**   | Registry used for published images/manifests.      |
-| **`cache-registry`**  | Registry used for registry-backed build cache.     |
-| **`pull-registries`** | JSON array of registries used to pull base images. |
-| **`buildx-name`**     | Docker Buildx builder name.                        |
+| **Output**            | **Description**                                               |
+| --------------------- | ------------------------------------------------------------- |
+| **`push-registry`**   | Registry used for published images/manifests.                 |
+| **`cache-registry`**  | Registry used for registry-backed build cache.                |
+| **`pull-registries`** | JSON array of registries used to pull base images.            |
+| **`buildx-name`**     | Docker Buildx builder name. Empty when setup-buildx is false. |
 
 <!-- outputs:end -->
 <!-- examples:start -->

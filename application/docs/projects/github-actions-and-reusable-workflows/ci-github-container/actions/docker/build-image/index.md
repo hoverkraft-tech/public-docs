@@ -3,8 +3,8 @@ title: Build Image
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/docker/build-image/README.md
 source_branch: main
-source_run_id: 33481521462
-last_synced: 2026-09-01T07:26:31.332Z
+source_run_id: 33524082500
+last_synced: 2026-09-01T15:25:47.681Z
 ---
 
 <!-- header:start -->
