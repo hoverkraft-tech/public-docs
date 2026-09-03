@@ -3,8 +3,8 @@ title: Compose Action
 source_repo: hoverkraft-tech/compose-action
 source_path: README.md
 source_branch: main
-source_run_id: 33149209493
-last_synced: 2026-08-28T06:54:11.910Z
+source_run_id: 33717379300
+last_synced: 2026-09-03T05:11:45.633Z
 ---
 
 <!-- header:start -->
