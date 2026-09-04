@@ -3,8 +3,8 @@ title: Report
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/deploy/report/README.md
 source_branch: main
-source_run_id: 33533446856
-last_synced: 2026-09-01T16:48:55.979Z
+source_run_id: 33838615705
+last_synced: 2026-09-04T05:14:51.633Z
 ---
 
 <!-- header:start -->
@@ -72,7 +72,7 @@ permissions:
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/deploy/report@2d72bc5fabd9f74402b62915a21582cdc22e654b # 0.27.0
+- uses: hoverkraft-tech/ci-github-publish/actions/deploy/report@1ee0354c40e4cd0a46c69cbe305c74fc67338042 # 0.28.0
   with:
     # The repository where the deployment was made
     # Default: `${{ github.event.repository.name }}`
