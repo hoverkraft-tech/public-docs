@@ -104,7 +104,7 @@ function ProjectsSection() {
       name: "compose-action",
       icon: "⚡",
       url: "https://github.com/hoverkraft-tech/compose-action",
-      stars: 210,
+      stars: 211,
       language: "TypeScript",
       description:
         "This action runs your docker-compose file and clean up before action finished",
