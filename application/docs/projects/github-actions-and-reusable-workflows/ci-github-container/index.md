@@ -3,8 +3,8 @@ title: Ci GitHub Container
 source_repo: hoverkraft-tech/ci-github-container
 source_path: README.md
 source_branch: main
-source_run_id: 36473424779
-last_synced: 2026-09-28T19:46:02.877Z
+source_run_id: 36731910002
+last_synced: 2026-09-30T14:58:55.407Z
 ---
 
 <!-- markdownlint-disable-next-line first-line-heading -->
@@ -52,11 +52,13 @@ _Actions that operate on OCI images across their build, metadata, and lifecycle 
 
 ### Helm
 
-_Actions dedicated to packaging, validating, and publishing Helm charts for Kubernetes deployments._
+_Actions dedicated to packaging, validating, signing, and publishing Helm charts for Kubernetes deployments._
 
 #### - [Generate chart documentation](actions/helm/generate-docs/index.md)
 
 #### - [Parse chart URI](actions/helm/parse-chart-uri/index.md)
+
+#### - [Sign chart](actions/helm/sign-chart/index.md)
 
 #### - [Update chart values](actions/helm/update-chart-values/index.md)
 
@@ -71,6 +73,10 @@ _Orchestrated workflows you can plug directly into repositories to automate cont
 ### - [Docker build images](github/workflows/docker-build-images.md)
 
 ### - [Prune pull requests images tags](github/workflows/prune-pull-requests-images-tags.md)
+
+## Architecture Decisions
+
+- [ADR 0001 - Sign OCI Helm Charts With Keyless Cosign](docs/adr/0001-sign-oci-helm-charts-with-keyless-cosign.md)
 
 ## Contributing
 
