@@ -3,8 +3,8 @@ title: Package
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: actions/package/README.md
 source_branch: main
-source_run_id: 34573803867
-last_synced: 2026-09-11T07:31:57.884Z
+source_run_id: 36750297797
+last_synced: 2026-09-30T17:25:01.644Z
 ---
 
 <!-- header:start -->
@@ -107,6 +107,9 @@ Action to create and upload an npm package tarball from a Node.js project
 <!-- examples:start -->
 
 ## Examples
+
+Use the [Publish action](../publish/index.md) to publish the resulting tarball.
+See the [release guide](../../github/workflows/release.md) for version planning and GitHub release orchestration.
 
 ```yaml
 jobs:
