@@ -3,8 +3,8 @@ title: Plan
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/release/plan/README.md
 source_branch: main
-source_run_id: 33838615705
-last_synced: 2026-09-04T05:14:51.633Z
+source_run_id: 36739436560
+last_synced: 2026-09-30T15:53:26.908Z
 ---
 
 <!-- header:start -->
@@ -34,7 +34,7 @@ last_synced: 2026-09-04T05:14:51.633Z
 
 ## Overview
 
-Plan a release identity without creating a Git tag or GitHub release.
+Detect release changes and plan a release identity without creating a Git tag or GitHub release.
 
 <!-- overview:end -->
 
@@ -43,7 +43,7 @@ Plan a release identity without creating a Git tag or GitHub release.
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/release/plan@ed354ada70b9f518c2bb663e18a80041c2cf5156 # 0.27.1
+- uses: hoverkraft-tech/ci-github-publish/actions/release/plan@1ee0354c40e4cd0a46c69cbe305c74fc67338042 # 0.28.0
   with:
     # Whether to plan the release as a prerelease
     # Default: `false`
@@ -62,6 +62,10 @@ Plan a release identity without creating a Git tag or GitHub release.
     #
     # Default: `[]`
     include-paths: "[]"
+
+    # Optional branch, commit SHA, fully qualified tag ref, or pull request ref to plan from.
+    # Forwarded to Release Drafter as `commitish`; tag and pull request refs are resolved to commit SHAs.
+    target-sha: ""
 
     # GitHub Token for planning the release.
     # Permissions:
@@ -89,6 +93,8 @@ Plan a release identity without creating a Git tag or GitHub release.
 |                         | They credit co-authors and highlight new contributors, with an explicit empty state when there are none.                                                                      |              |                       |
 | **`include-paths`**     | Additional paths to include in the release notes filtering (JSON array).                                                                                                      | **false**    | `[]`                  |
 |                         | These paths are added to the `include-paths` configuration of release-drafter.                                                                                                |              |                       |
+| **`target-sha`**        | Optional branch, commit SHA, fully qualified tag ref, or pull request ref to plan from.                                                                                       | **false**    | -                     |
+|                         | Forwarded to Release Drafter as `commitish`; tag and pull request refs are resolved to commit SHAs.                                                                           |              |                       |
 | **`github-token`**      | GitHub Token for planning the release.                                                                                                                                        | **false**    | `${{ github.token }}` |
 |                         | Permissions:                                                                                                                                                                  |              |                       |
 |                         | - contents: read                                                                                                                                                              |              |                       |
@@ -100,10 +106,11 @@ Plan a release identity without creating a Git tag or GitHub release.
 
 ## Outputs
 
-| **Output** | **Description**          |
-| ---------- | ------------------------ |
-| **`tag`**  | The planned release tag  |
-| **`name`** | The planned release name |
+| **Output**        | **Description**                                                                                  |
+| ----------------- | ------------------------------------------------------------------------------------------------ |
+| **`has-changes`** | Whether the release has relevant changes, or no previous matching release exists (true or false) |
+| **`tag`**         | The planned release tag, including when there are no relevant changes                            |
+| **`name`**        | The planned release name, including when there are no relevant changes                           |
 
 <!-- outputs:end -->
 
@@ -111,6 +118,69 @@ Plan a release identity without creating a Git tag or GitHub release.
 <!-- secrets:end -->
 
 <!-- examples:start -->
+
+## Examples
+
+## Scheduled and manual releases
+
+```yaml
+name: Release
+
+on:
+  schedule:
+    - cron: "25 8 * * 1"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: Release even when no relevant changes are detected
+        type: boolean
+        required: false
+        default: false
+
+permissions: {}
+
+concurrency:
+  group: release-${{ github.repository }}
+  cancel-in-progress: false
+
+jobs:
+  plan:
+    if: github.ref_name == github.event.repository.default_branch
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      should-release: ${{ steps.plan.outputs.has-changes == 'true' || (github.event_name == 'workflow_dispatch' && inputs.force) }}
+      tag: ${{ steps.plan.outputs.tag }}
+    steps:
+      - id: plan
+        uses: hoverkraft-tech/ci-github-publish/actions/release/plan@1ee0354c40e4cd0a46c69cbe305c74fc67338042 # 0.28.0
+
+  release:
+    needs: plan
+    if: needs.plan.outputs.should-release == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: read
+    steps:
+      - uses: hoverkraft-tech/ci-github-publish/actions/release/create@ed354ada70b9f518c2bb663e18a80041c2cf5156 # 0.27.1
+        with:
+          tag: ${{ needs.plan.outputs.tag }}
+          target-sha: ${{ github.sha }}
+```
+
+Scheduled runs happen on Mondays at 08:25 UTC and skip unchanged releases.
+
+Manual runs skip unchanged releases by default; select `force` to request the planned version anyway.
+
+The `force` input and `should-release` job output belong to this caller workflow.
+
+Apply the same `should-release` guard to validation, packaging, and registry publishing jobs that depend on planning.
+
+A `skip-if-no-changes` check during release creation happens too late to prevent packages from being published by earlier steps.
+
 <!-- examples:end -->
 
 <!-- contributing:start -->
