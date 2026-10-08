@@ -3,7 +3,7 @@
 # GitHub Action: Resolve Documentation Target
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/72a531cefc52238bff29b7194ba9cd9a9454bafca53a2a14f9838097085ae895/hoverkraft-tech/public-docs" width="60px" align="center" alt="Resolve Documentation Target" />
+  <img src="https://opengraph.githubassets.com/ddb09507e340bee5f6a573bd85f60bad2addf839f3c32a8a09e83cf9f014f257/hoverkraft-tech/public-docs" width="60px" align="center" alt="Resolve Documentation Target" />
 </div>
 
 ---
@@ -36,7 +36,7 @@ Responsibilities:
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/public-docs/.github/actions/resolve-docs-target@875a45a7c65bd9dfff45c713992a5b09917e7c18 # main
+- uses: hoverkraft-tech/public-docs/.github/actions/resolve-docs-target@f3c9291760d927e6214e8d5f0a376af2d537c369 # 0.4.0
   with:
     # GitHub token used to authenticate repository queries.
     # This input is required.
