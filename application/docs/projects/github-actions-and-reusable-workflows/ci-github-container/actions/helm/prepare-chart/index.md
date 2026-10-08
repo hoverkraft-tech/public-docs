@@ -3,8 +3,8 @@ title: Prepare Chart
 source_repo: hoverkraft-tech/ci-github-container
 source_path: actions/helm/prepare-chart/README.md
 source_branch: main
-source_run_id: 36731910002
-last_synced: 2026-09-30T14:58:55.407Z
+source_run_id: 37787824009
+last_synced: 2026-10-08T14:03:52.207Z
 ---
 
 <!-- header:start -->
@@ -44,7 +44,7 @@ for all charts found under a path.
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-container/actions/helm/prepare-chart@cfc7074e26bbfbdf33f163d209d2c14957358152 # 0.38.0
+- uses: hoverkraft-tech/ci-github-container/actions/helm/prepare-chart@5ffc3c81daacc57700a14bb91d67edbc67eedc1d # 0.39.0
   with:
     # Path containing the chart(s) to prepare
     # This input is required.
