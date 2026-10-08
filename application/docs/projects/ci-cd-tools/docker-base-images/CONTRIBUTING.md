@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/docker-base-images
 source_path: CONTRIBUTING.md
 source_branch: main
-source_run_id: 34573974683
-last_synced: 2026-09-11T07:37:47.480Z
+source_run_id: 37789936949
+last_synced: 2026-10-08T14:11:44.819Z
 ---
 
 # Contributing
@@ -23,6 +23,18 @@ Please note we have a code of conduct, please follow it in all your interactions
    Pull Request would represent. The versioning scheme we use is [SemVer](http://semver.org/).
 1. You may merge the Pull Request in once you have the sign-off of two other developers, or if you
    do not have permission to do that, you may request the second reviewer to merge it for you.
+
+## Documentation and tests
+
+Documentation and tests must describe only the current supported codebase.
+
+- Write documentation and examples in the present tense, using supported configuration and APIs.
+  Do not include migration narratives, comparisons with previous versions, or descriptions of removed workarounds.
+- Name tests after observable behavior and assert the current contract.
+  Fixtures and assertions must not preserve unsupported behavior or check for deleted implementation details.
+  Keep regression coverage that verifies a current requirement.
+- Before submitting, review documentation, examples, test names, fixtures, and assertions for compliance with these rules.
+  Record change history in commit messages and pull request descriptions.
 
 ## Code of Conduct
 
