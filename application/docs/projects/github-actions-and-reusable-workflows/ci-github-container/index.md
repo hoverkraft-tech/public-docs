@@ -3,8 +3,8 @@ title: Ci GitHub Container
 source_repo: hoverkraft-tech/ci-github-container
 source_path: README.md
 source_branch: main
-source_run_id: 36731910002
-last_synced: 2026-09-30T14:58:55.407Z
+source_run_id: 37787824009
+last_synced: 2026-10-08T14:03:52.207Z
 ---
 
 <!-- markdownlint-disable-next-line first-line-heading -->
@@ -141,6 +141,7 @@ make ci                   # Run all CI checks
 make lint                 # Run the dockerized Super Linter
 make lint-fix             # Attempt auto-fixes for lint findings
 make npm-audit-fix        # Fix npm audit issues in action packages
+make npm-update           # Interactively update npm dependencies in action packages
 
 # Container & Helm validation helpers
 make test-build-application  # Build and push the sample test application image
