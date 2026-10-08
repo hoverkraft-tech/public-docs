@@ -44,6 +44,8 @@ jobs:
           client-id: ${{ inputs.github-app-client-id }}
           private-key: ${{ secrets.github-app-key }} # zizmor: ignore[secrets-outside-env]
           owner: ${{ github.repository_owner }}
+          repositories: public-docs
+          permission-contents: write
 
       - name: Dispatch to public-docs
         uses: peter-evans/repository-dispatch@28959ce8df70de7be546dd1250a005dd32156697 # v4.0.1

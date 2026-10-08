@@ -55,6 +55,8 @@ This portal uses an artifact-based push system with repository_dispatch to aggre
 
 ## Development Workflow
 
+Use Node.js `22.22.2` or newer on supported release lines when running the local toolchain.
+
 ```bash
 make prepare   # Install npm dependencies in application/
 make start     # Launch the Docusaurus dev server with live reload

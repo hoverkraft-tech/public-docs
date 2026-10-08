@@ -10,14 +10,18 @@ include .env
 
 setup: ## Install npm dependencies for all package.json files under actions/
 	@echo "Installing npm dependencies for all packages..."
-	$(call run_npm_for_packages,install)
+	$(call run_for_packages,npm install,npm install)
 
 start: ## Start application in dev mode
 	npm --prefix application run start
 
 npm-audit-fix: ## Execute npm audit fix
 	@echo "Running npm audit fix for all packages..."
-	$(call run_npm_for_packages,audit fix)
+	$(call run_for_packages,npm audit fix,npm audit fix)
+
+npm-update-interactive: ## Interactively update npm dependencies for all packages
+	@echo "Running interactive npm dependency updates for all packages..."
+	$(call run_for_packages,interactive npm update,npm exec --yes npm-check-updates -- -i && npm install)
 
 lint: ## Run linters
 	npm --prefix application run lint -- $(filter-out $@,$(MAKECMDGOALS))
@@ -32,7 +36,7 @@ build: ## Build libs and applications
 
 test: ## Run tests
 	@echo "Running tests for all packages..."
-	$(call run_npm_for_packages,run test:ci)
+	$(call run_for_packages,npm run test:ci,npm run test:ci)
 
 ci: ## Run tests in CI mode
 	$(MAKE) setup
@@ -67,15 +71,15 @@ define run_linter
 		$$LINTER_IMAGE
 endef
 
-define run_npm_for_packages
+define run_for_packages
 	@set -eu; \
 	overall_status=0; \
 	packages="$$(find application .github/actions -type f -name package.json -not -path '*/node_modules/*' -print | sort)"; \
 	for pkg in $$packages; do \
 		pkg_dir="$$(dirname "$$pkg")"; \
 		echo "---"; \
-		echo "npm $(1) in $$pkg_dir"; \
-		if ! npm --prefix "$$pkg_dir" $(1); then \
+		echo "$(1) in $$pkg_dir"; \
+		if ! (cd "$$pkg_dir" && $(2)); then \
 			overall_status=1; \
 		fi; \
 	done; \

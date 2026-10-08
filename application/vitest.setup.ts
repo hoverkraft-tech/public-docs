@@ -1,4 +1,4 @@
-import { afterEach, vi } from "vitest";
+import { vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
 
 class MockIntersectionObserver {
@@ -31,7 +31,3 @@ if (typeof window !== "undefined") {
     };
   }
 }
-
-afterEach(() => {
-  vi.clearAllMocks();
-});

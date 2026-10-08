@@ -34,22 +34,22 @@
     "react-dom": "^19.3.0"
   },
   "devDependencies": {
-    "@babel/core": "^8.0.1",
-    "@babel/preset-env": "^8.0.2",
+    "@babel/core": "^8.0.7",
+    "@babel/preset-env": "^8.0.7",
     "@babel/preset-react": "^8.0.1",
-    "@babel/preset-typescript": "^8.0.1",
-    "@biomejs/biome": "2.5.2",
+    "@babel/preset-typescript": "^8.0.7",
+    "@biomejs/biome": "2.5.15",
     "@docusaurus/module-type-aliases": "3.10.2",
     "@docusaurus/tsconfig": "3.10.2",
     "@docusaurus/types": "3.10.2",
-    "@testing-library/jest-dom": "^6.9.1",
-    "@testing-library/react": "^16.3.2",
-    "@vitest/coverage-v8": "^4.1.9",
-    "@vitest/ui": "^4.1.9",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@vitest/coverage-v8": "^5.0.3",
+    "@vitest/ui": "^5.0.3",
     "identity-obj-proxy": "^3.0.0",
-    "jsdom": "^29.1.1",
+    "jsdom": "^30.1.2",
     "typescript": "~6.0.3",
-    "vitest": "^4.1.9"
+    "vitest": "^5.0.3"
   },
   "browserslist": {
     "production": [
@@ -64,11 +64,12 @@
     ]
   },
   "engines": {
-    "node": ">=20.0"
+    "node": "^22.22.2 || ^24.15.0 || >=26.0.0"
   },
   "overrides": {
     "serialize-javascript": "7.0.5",
-    "js-yaml": "4.2.0",
+    "js-yaml": "4.3.2",
+    "webpack-dev-middleware": "7.4.6",
     "sockjs": {
       "uuid": "11.1.1"
     }

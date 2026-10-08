@@ -4,6 +4,8 @@
     "**/node_modules/**",
     "**/application/.docusaurus/**",
     "**/application/build/**",
+    "**/application/docs/projects/**",
+    "**/package-lock.json",
     "**/coverage/**"
   ]
 }
