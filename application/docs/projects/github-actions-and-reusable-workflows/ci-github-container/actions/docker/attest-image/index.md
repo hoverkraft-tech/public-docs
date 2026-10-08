@@ -46,10 +46,10 @@ See [sign-images](../sign-images/index.md) for registry-native image signing.
 
 This action is **complementary** to, and not a replacement for, image signing with `cosign`:
 
-| Control                    | Action                                    | What it proves                                                  |
-| -------------------------- | ----------------------------------------- | --------------------------------------------------------------- |
+| Control                    | Action                                   | What it proves                                                  |
+| -------------------------- | ---------------------------------------- | --------------------------------------------------------------- |
 | **Signature**              | [`sign-images`](../sign-images/index.md) | The image was signed by a trusted identity (registry-native)    |
-| **Provenance attestation** | `attest-image` (this action)              | The image was built by a specific workflow on a specific commit |
+| **Provenance attestation** | `attest-image` (this action)             | The image was built by a specific workflow on a specific commit |
 
 A secure container pipeline should use **both**:
 

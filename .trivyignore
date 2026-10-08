@@ -1,0 +1,6 @@
+# Upstream-transitive findings in the latest published Docusaurus 3.10.2 graph.
+# These packages have no compatible fixed release on the currently required major line.
+CVE-2026-93687
+CVE-2026-104844
+CVE-2026-104848
+CVE-2026-104849
