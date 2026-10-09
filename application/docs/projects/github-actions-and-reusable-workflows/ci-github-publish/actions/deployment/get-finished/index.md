@@ -3,8 +3,8 @@ title: Get Finished
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/deployment/get-finished/README.md
 source_branch: main
-source_run_id: 36739436560
-last_synced: 2026-09-30T15:53:26.908Z
+source_run_id: 37902096936
+last_synced: 2026-10-09T08:03:35.091Z
 ---
 
 <!-- header:start -->
@@ -64,7 +64,7 @@ permissions:
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/deployment/get-finished@de91953dd118099667dcfccaeead703889ae33d8 # 0.27.0
+- uses: hoverkraft-tech/ci-github-publish/actions/deployment/get-finished@a0a9d185c51c10710a5987822e78feb2b5ce1932 # 0.29.0
   with:
     # The ID of the GitHub deployment to wait for (numeric ID)
     # This input is required.
