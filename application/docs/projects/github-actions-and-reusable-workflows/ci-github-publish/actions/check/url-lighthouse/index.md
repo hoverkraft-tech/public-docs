@@ -3,8 +3,8 @@ title: Url Lighthouse
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/check/url-lighthouse/README.md
 source_branch: main
-source_run_id: 36739436560
-last_synced: 2026-09-30T15:53:26.908Z
+source_run_id: 37902096936
+last_synced: 2026-10-09T08:03:35.091Z
 ---
 
 <!-- header:start -->
@@ -44,7 +44,7 @@ The action always sends `User-Agent: hoverkraft-tech-url-lighthouse-action` when
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/check/url-lighthouse@2d72bc5fabd9f74402b62915a21582cdc22e654b # 0.27.0
+- uses: hoverkraft-tech/ci-github-publish/actions/check/url-lighthouse@a0a9d185c51c10710a5987822e78feb2b5ce1932 # 0.29.0
   with:
     # The URL to audit using Lighthouse.
     # This input is required.
@@ -69,12 +69,12 @@ The action always sends `User-Agent: hoverkraft-tech-url-lighthouse-action` when
 
 ## Inputs
 
-| **Input**           | **Description**                                                                                                                                                                  | **Required** | **Default**     |
-| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- |
-| **`url`**           | The URL to audit using Lighthouse.                                                                                                                                               | **true**     | -               |
+| **Input**           | **Description**                                                                                                 | **Required** | **Default**     |
+| ------------------- | --------------------------------------------------------------------------------------------------------------- | ------------ | --------------- |
+| **`url`**           | The URL to audit using Lighthouse.                                                                              | **true**     | -               |
 | **`budget-path`**   | The path to the performance budget file. See [https://web.dev/articles/use-lighthouse-for-performance-budgets](https://web.dev/articles/use-lighthouse-for-performance-budgets). | **false**    | `./budget.json` |
-| **`authorization`** | Optional Authorization header used to access private URLs.                                                                                                                       | **false**    | -               |
-|                     | Example: `Bearer xxx...`, `token xxx...`                                                                                                                                         |              |                 |
+| **`authorization`** | Optional Authorization header used to access private URLs.                                                      | **false**    | -               |
+|                     | Example: `Bearer xxx...`, `token xxx...`                                                                        |              |                 |
 
 <!-- inputs:end -->
 

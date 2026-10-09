@@ -3,8 +3,8 @@ title: Helm Repository Dispatch
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/deploy/helm-repository-dispatch/README.md
 source_branch: main
-source_run_id: 36739436560
-last_synced: 2026-09-30T15:53:26.908Z
+source_run_id: 37902096936
+last_synced: 2026-10-09T08:03:35.091Z
 ---
 
 <!-- header:start -->
@@ -52,7 +52,7 @@ See [https://docs.github.com/en/actions/writing-workflows/choosing-when-your-wor
 ## Usage
 
 ````yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/deploy/helm-repository-dispatch@2d72bc5fabd9f74402b62915a21582cdc22e654b # 0.27.0
+- uses: hoverkraft-tech/ci-github-publish/actions/deploy/helm-repository-dispatch@a0a9d185c51c10710a5987822e78feb2b5ce1932 # 0.29.0
   with:
     # Deployment ID to be used in the ArgoCD application manifest
     # This input is required.
@@ -114,7 +114,7 @@ See [https://docs.github.com/en/actions/writing-workflows/choosing-when-your-wor
 | **`github-token`**  | GitHub Token for dispatch an event to a remote repository.                                                                          | **false**    | `${{ github.token }}` |
 |                     | Permissions:                                                                                                                        |              |                       |
 |                     | - contents: write                                                                                                                   |              |                       |
-|                     | See [https://github.com/peter-evans/repository-dispatch#usage](https://github.com/peter-evans/repository-dispatch#usage).           |              |                       |
+|                     | See [https://github.com/peter-evans/repository-dispatch#usage](https://github.com/peter-evans/repository-dispatch#usage).                                                                     |              |                       |
 | **`initiated-by`**  | Username to record as having initiated the sync operation                                                                           | **true**     | -                     |
 
 <!-- inputs:end -->

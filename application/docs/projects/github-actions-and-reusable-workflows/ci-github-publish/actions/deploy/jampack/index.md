@@ -3,8 +3,8 @@ title: Jampack
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/deploy/jampack/README.md
 source_branch: main
-source_run_id: 36739436560
-last_synced: 2026-09-30T15:53:26.908Z
+source_run_id: 37902096936
+last_synced: 2026-10-09T08:03:35.091Z
 ---
 
 <!-- header:start -->
@@ -47,7 +47,7 @@ Action to run Jampack post-processing tool on given static assets.
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/deploy/jampack@ed354ada70b9f518c2bb663e18a80041c2cf5156 # 0.27.1
+- uses: hoverkraft-tech/ci-github-publish/actions/deploy/jampack@a0a9d185c51c10710a5987822e78feb2b5ce1932 # 0.29.0
   with:
     # Path of the directory containing the static assets.
     # This input is required.

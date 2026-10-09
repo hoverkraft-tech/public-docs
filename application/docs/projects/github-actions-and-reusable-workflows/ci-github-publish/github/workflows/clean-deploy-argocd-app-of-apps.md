@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: .github/workflows/clean-deploy-argocd-app-of-apps.md
 source_branch: main
-source_run_id: 36739436560
-last_synced: 2026-09-30T15:53:26.908Z
+source_run_id: 37902096936
+last_synced: 2026-10-09T08:03:35.091Z
 ---
 
 <!-- header:start -->
@@ -72,7 +72,7 @@ on:
 permissions: {}
 jobs:
   clean-deploy-argocd-app-of-apps:
-    uses: hoverkraft-tech/ci-github-publish/.github/workflows/clean-deploy-argocd-app-of-apps.yml@ed354ada70b9f518c2bb663e18a80041c2cf5156 # 0.27.1
+    uses: hoverkraft-tech/ci-github-publish/.github/workflows/clean-deploy-argocd-app-of-apps.yml@a0a9d185c51c10710a5987822e78feb2b5ce1932 # 0.29.0
     permissions:
       contents: read
       pull-requests: write
@@ -104,12 +104,12 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**                  | **Description**                                                                                                                                                 | **Required** | **Type**   | **Default**         |
-| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ---------- | ------------------- |
-| **`runs-on`**              | JSON array of runner(s) to use.                                                                                                                                 | **false**    | **string** | `["ubuntu-latest"]` |
+| **Input**                  | **Description**                                                                    | **Required** | **Type**   | **Default**         |
+| -------------------------- | ---------------------------------------------------------------------------------- | ------------ | ---------- | ------------------- |
+| **`runs-on`**              | JSON array of runner(s) to use.                                                    | **false**    | **string** | `["ubuntu-latest"]` |
 |                            | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job). |              |            |                     |
-| **`github-app-client-id`** | GitHub App Client ID to generate GitHub token in place of github-token.                                                                                         | **false**    | **string** | -                   |
-|                            | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                                                   |              |            |                     |
+| **`github-app-client-id`** | GitHub App Client ID to generate GitHub token in place of github-token.            | **false**    | **string** | -                   |
+|                            | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                          |              |            |                     |
 
 <!-- inputs:end -->
 
@@ -120,12 +120,12 @@ jobs:
 
 ## Secrets
 
-| **Secret**           | **Description**                                                                                                                                                                                                                     | **Required** |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
-| **`github-token`**   | GitHub token for creating and merging pull request (permissions contents: write and pull-requests: write, workflows: write).                                                                                                        | **false**    |
-|                      | See [https://github.com/hoverkraft-tech/ci-github-common/blob/main/actions/create-and-merge-pull-request/README.md](https://github.com/hoverkraft-tech/ci-github-common/blob/main/actions/create-and-merge-pull-request/README.md). |              |
-| **`github-app-key`** | GitHub App private key to generate GitHub token in place of github-token.                                                                                                                                                           | **false**    |
-|                      | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                                                                                                                       |              |
+| **Secret**           | **Description**                                                                                                              | **Required** |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ------------ |
+| **`github-token`**   | GitHub token for creating and merging pull request (permissions contents: write and pull-requests: write, workflows: write). | **false**    |
+|                      | See [https://github.com/hoverkraft-tech/ci-github-common/blob/main/actions/create-and-merge-pull-request/README.md](https://github.com/hoverkraft-tech/ci-github-common/blob/main/actions/create-and-merge-pull-request/README.md).         |              |
+| **`github-app-key`** | GitHub App private key to generate GitHub token in place of github-token.                                                    | **false**    |
+|                      | See [https://github.com/actions/create-github-app-token](https://github.com/actions/create-github-app-token).                                                                    |              |
 
 <!-- secrets:end -->
 
@@ -154,7 +154,7 @@ concurrency:
 
 jobs:
   deploy:
-    uses: hoverkraft-tech/ci-github-publish/.github/workflows/clean-deploy-argocd-app-of-apps.yml@ed354ada70b9f518c2bb663e18a80041c2cf5156 # 0.27.1
+    uses: hoverkraft-tech/ci-github-publish/.github/workflows/clean-deploy-argocd-app-of-apps.yml@a0a9d185c51c10710a5987822e78feb2b5ce1932 # 0.29.0
     secrets:
       github-token: ${{ secrets.GITHUB_TOKEN }}
       github-app-key: ${{ secrets.GITHUB_APP_KEY }}
