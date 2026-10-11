@@ -3,8 +3,8 @@ title: ArgoCD Manifest Files
 source_repo: hoverkraft-tech/ci-github-publish
 source_path: actions/deploy/argocd-manifest-files/README.md
 source_branch: main
-source_run_id: 38056739721
-last_synced: 2026-10-10T13:47:10.010Z
+source_run_id: 38146944006
+last_synced: 2026-10-11T14:28:36.231Z
 ---
 
 <!-- header:start -->
