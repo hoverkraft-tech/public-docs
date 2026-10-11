@@ -3,8 +3,8 @@ title: Testcontainers Node
 source_repo: hoverkraft-tech/docker-base-images
 source_path: images/testcontainers-node/README.md
 source_branch: main
-source_run_id: 37792417614
-last_synced: 2026-10-08T14:39:20.234Z
+source_run_id: 38119096121
+last_synced: 2026-10-11T06:55:02.758Z
 ---
 
 # Testcontainers Node.js
