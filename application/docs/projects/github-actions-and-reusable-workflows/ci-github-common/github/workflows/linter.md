@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-common
 source_path: .github/workflows/linter.md
 source_branch: main
-source_run_id: 37884581822
-last_synced: 2026-10-09T04:43:57.713Z
+source_run_id: 38206448606
+last_synced: 2026-10-12T05:10:13.039Z
 ---
 
 <!-- header:start -->
@@ -39,7 +39,7 @@ last_synced: 2026-10-09T04:43:57.713Z
 Reusable workflow that performs linting on the codebase.
 Executes:
 
-- [Super-Linter](https://github.com/super-linter/super-linter), with some opinionated defaults.
+- [Hoverkraft Super-Linter](https://github.com/hoverkraft-tech/docker-base-images/tree/main/images/super-linter), shared with local linting.
 - [CodeQL](https://docs.github.com/en/code-security/code-scanning/introduction-to-code-scanning/about-code-scanning-with-codeql) to analyze the code.
 - [Ratchet](https://github.com/sethvargo/ratchet) to check that GitHub Action versions are pinned.
 
@@ -54,6 +54,30 @@ Executes:
 - **`statuses`**: `write`
 
 <!-- overview:end -->
+
+### Shared linting image
+
+Super-Linter runs in the [Hoverkraft image](https://github.com/hoverkraft-tech/docker-base-images/tree/main/images/super-linter).
+The image owns toolchain selection, Kubernetes schema defaults, and fallback
+commitlint rules. Use the same image release for local linting to share
+these defaults and the bundled linter versions.
+
+The local Dockerfile and workflow pin the same image release and SHA256 digest.
+Update both references together when updating the image: Dependabot updates Dockerfiles but
+[does not update `docker://` workflow references](https://github.com/dependabot/dependabot-core/issues/8362).
+
+Values in `linter-env` override the toolchain inputs and image defaults. An empty
+`VALIDATE_JAVASCRIPT_TOOLCHAIN` or `VALIDATE_PYTHON_TOOLCHAIN` value disables the
+corresponding automatic toolchain exclusions. `VALIDATE_GIT_COMMITLINT=false`
+disables commitlint. With toolchain selectors enabled, explicit `true` keeps it
+enabled without restricting the other validators. Set both selectors to empty
+strings to use Super-Linter's native `VALIDATE_*=true` allowlist, including
+commitlint. Do not mix `true` and `false` validator flags in that mode.
+
+CI uses Git change detection according to `lint-all` and publishes GitHub
+summaries. Local runs use filesystem discovery by default. The workflow also
+installs project dependencies when `package.json` declares Prettier plugins;
+install those dependencies before running the image locally.
 
 ### GitHub Actions Pinning
 
