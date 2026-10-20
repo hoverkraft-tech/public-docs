@@ -3,8 +3,8 @@ title: Super Linter
 source_repo: hoverkraft-tech/docker-base-images
 source_path: images/super-linter/README.md
 source_branch: main
-source_run_id: 38166359258
-last_synced: 2026-10-11T19:09:02.845Z
+source_run_id: 39478011146
+last_synced: 2026-10-20T19:00:33.112Z
 ---
 
 # super-linter
@@ -80,34 +80,43 @@ docker build \
   .
 ```
 
-Run it against the current workspace:
+Run it against the current workspace using Git file discovery and the current
+branch as `DEFAULT_BRANCH`:
 
 ```bash
 DEFAULT_WORKSPACE="$(pwd)"; \
 LINTER_IMAGE="linter:latest"; \
 VOLUME="$DEFAULT_WORKSPACE:$DEFAULT_WORKSPACE"; \
+DEFAULT_BRANCH="$(git -C "$DEFAULT_WORKSPACE" rev-parse --abbrev-ref HEAD 2>/dev/null)"; \
 docker run \
-  --platform linux/amd64 \
+  --platform=linux/amd64 \
   -v "$VOLUME" \
   --rm \
   -e DEFAULT_WORKSPACE="$DEFAULT_WORKSPACE" \
+  -e DEFAULT_BRANCH="$DEFAULT_BRANCH" \
+  -e USE_FIND_ALGORITHM=false \
   -e FILTER_REGEX_INCLUDE='.*' \
   "$LINTER_IMAGE"
 ```
 
-That matches the intended Makefile-style invocation:
+For a Makefile helper, build the project's Dockerfile from the current directory
+(`.`) and use `$(1)` for additional Docker options:
 
 ```make
 DEFAULT_WORKSPACE="$(CURDIR)"; \
 LINTER_IMAGE="linter:latest"; \
 VOLUME="$$DEFAULT_WORKSPACE:$$DEFAULT_WORKSPACE"; \
-docker build --platform linux/amd64 --build-arg UID=$(shell id -u) --build-arg GID=$(shell id -g) --tag $$LINTER_IMAGE images/super-linter; \
+DEFAULT_BRANCH="$$(git -C "$$DEFAULT_WORKSPACE" rev-parse --abbrev-ref HEAD 2>/dev/null)"; \
+docker build --platform=linux/amd64 --build-arg UID=$(shell id -u) --build-arg GID=$(shell id -g) --tag $$LINTER_IMAGE .; \
 docker run \
- --platform linux/amd64 \
+ --platform=linux/amd64 \
  -v $$VOLUME \
  --rm \
  -e DEFAULT_WORKSPACE="$$DEFAULT_WORKSPACE" \
+ -e DEFAULT_BRANCH="$$DEFAULT_BRANCH" \
+ -e USE_FIND_ALGORITHM=false \
  -e FILTER_REGEX_INCLUDE="$(filter-out $@,$(MAKECMDGOALS))" \
+ $(1) \
  $$LINTER_IMAGE
 ```
 

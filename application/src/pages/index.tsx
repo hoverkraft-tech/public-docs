@@ -125,7 +125,7 @@ function ProjectsSection() {
       name: "ci-github-container",
       icon: "⚡",
       url: "https://github.com/hoverkraft-tech/ci-github-container",
-      stars: 5,
+      stars: 6,
       language: "Go Template",
       description:
         "Opinionated GitHub Actions and workflows for continuous integration in container (OCI) context",
