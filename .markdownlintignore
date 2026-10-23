@@ -1,0 +1,3 @@
+# Synced project documentation is generated from external repositories and
+# follows their own conventions, so it is excluded from Markdown linting.
+application/docs/projects/
