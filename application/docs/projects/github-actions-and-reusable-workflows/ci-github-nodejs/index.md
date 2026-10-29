@@ -3,8 +3,8 @@ title: Ci GitHub Nodejs
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: README.md
 source_branch: main
-source_run_id: 37016668578
-last_synced: 2026-10-02T14:07:41.806Z
+source_run_id: 40919563118
+last_synced: 2026-10-29T17:28:01.703Z
 ---
 
 # Continuous Integration - GitHub - Node.js
@@ -25,6 +25,10 @@ This repository centralizes the Hoverkraft toolkit for building, testing, and sh
 
 - Composite actions that detect project tooling, manage dependencies, and bootstrap runtimes.
 - Reusable workflows that apply those actions to deliver consistent CI pipelines across repositories.
+
+## Prerequisites
+
+Use these actions and workflows on GitHub.com with GitHub-hosted runners or self-hosted runners version 2.336.0 or newer. Internal action composition uses GitHub's native `$/` references, which are unavailable on GitHub Enterprise Server.
 
 ## Actions
 

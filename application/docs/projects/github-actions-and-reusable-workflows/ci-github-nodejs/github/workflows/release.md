@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: .github/workflows/release.md
 source_branch: main
-source_run_id: 37016668578
-last_synced: 2026-10-02T14:07:41.806Z
+source_run_id: 40919563118
+last_synced: 2026-10-29T17:28:01.703Z
 ---
 
 # Release a Node.js package
@@ -18,7 +18,7 @@ use [Commit the version before building](#commit-the-version-before-building).
 
 ## Set up
 
-1. Configure [release labels and version rules](https://github.com/hoverkraft-tech/ci-github-publish/blob/0.29.0/.github/workflows/prepare-release.md).
+1. Configure [release labels and version rules](https://github.com/hoverkraft-tech/ci-github-publish/blob/1.0.3/.github/workflows/prepare-release.md).
    These determine the version and release notes.
 1. Check the package's `package.json`: set `name`, `files`, and `repository.url`, and ensure `private` is not `true`.
 1. Configure [npm trusted publishing](../../actions/publish/index.md#npm-trusted-publishing) for your repository and workflow filename, `release.yml`.
@@ -26,7 +26,7 @@ use [Commit the version before building](#commit-the-version-before-building).
    For a new npm package, publish its first version before configuring the trusted publisher.
 1. Save the workflow below as `.github/workflows/release.yml` in your project. Before running it:
    - Replace every `<sha>` with the **same `ci-github-nodejs` commit containing `actions/publish`**.
-     The `ci-github-publish` actions are already pinned to `0.29.0`.
+     The `ci-github-publish` actions are already pinned to `1.0.3`.
    - Set the `build`, `lint:ci`, and `test:ci` script names and the `dist/` output path to match your project.
      See [CI options](continuous-integration.md) if you need a different setup.
 
@@ -66,7 +66,7 @@ jobs:
     steps:
       - name: Plan release
         id: plan
-        uses: hoverkraft-tech/ci-github-publish/actions/release/plan@a0a9d185c51c10710a5987822e78feb2b5ce1932 # 0.29.0
+        uses: hoverkraft-tech/ci-github-publish/actions/release/plan@ea6682de88070c254dac619a6623a242a6d57cd3 # 1.0.3
 
       - id: version
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
@@ -125,7 +125,7 @@ jobs:
 
       # Wrap the raw .tgz in a ZIP artifact for release/create.
       - id: release-assets
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: release-assets
           path: ${{ steps.package.outputs.package-tarball-path }}
@@ -139,7 +139,7 @@ jobs:
           tag: latest
 
       - name: Create GitHub release
-        uses: hoverkraft-tech/ci-github-publish/actions/release/create@a0a9d185c51c10710a5987822e78feb2b5ce1932 # 0.29.0
+        uses: hoverkraft-tech/ci-github-publish/actions/release/create@ea6682de88070c254dac619a6623a242a6d57cd3 # 1.0.3
         with:
           tag: ${{ needs.plan.outputs.tag }}
           target-sha: ${{ github.sha }}
@@ -151,6 +151,51 @@ jobs:
 and creates the tarball. [Publish](../../actions/publish/index.md) publishes that tarball.
 The package version is changed locally; it is not committed. GitHub's source archive therefore keeps the version from the source commit.
 If `package.json` already contains the planned version, omit the Package action's `version` input.
+
+## Generate the changelog
+
+`release/create` generates the GitHub release notes with Release Drafter from the merged pull requests since the previous matching release.
+No separate changelog command is needed for the workflow above. `release/plan` calculates the version without creating a release.
+
+Use the [prepare-release workflow](https://github.com/hoverkraft-tech/ci-github-publish/blob/1.0.3/.github/workflows/prepare-release.md)
+to label pull requests from their Conventional Commit titles. Its default rules select a major version for breaking changes,
+a minor version for features, and a patch version for other changes. Check the labels before merging.
+To customize categories, version rules, or the release-note template, add `.github/release-config.yml`.
+For monorepos, use the same `working-directory` and `include-paths` values in `release/plan` and `release/create`;
+an existing repository configuration takes precedence over those generated defaults.
+
+### Add an AI summary
+
+Store the provider credential as the `OPENAI_API_KEY` Actions secret, then add these entries to the **Create GitHub release** step.
+Merge `changelog-summary` into its existing `with` mapping:
+
+```yaml
+env:
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+with:
+  changelog-summary: |
+    {
+      "llmAuth": ${{ toJSON(env.OPENAI_API_KEY) }},
+      "llmProvider": "openai"
+    }
+```
+
+The action drafts the changelog, generates a release summary and breaking-change section, and prepends them to the full changelog before publishing.
+The summary also uses GitHub evidence, so keep `contents: write` and `pull-requests: read` on the release job.
+Use `toJSON` to encode the credential safely. Omit `changelog-summary` to publish the generated notes without an AI summary.
+See [summarizer inputs](https://github.com/hoverkraft-tech/ci-github-publish/blob/1.0.3/actions/release/summarize-changelog/README.md)
+for `llmModel`, `llmConfig`, and custom summary templates.
+
+To review the notes before publication, set `publish: "false"`, review the draft, then publish it with `release/update`.
+If summary generation fails, the action does not publish the GitHub release. The npm package may already be published;
+follow [Recover a failed release](#recover-a-failed-release) instead of rerunning npm publication.
+
+### Keep a changelog in the repository
+
+Release notes are stored in the GitHub release body; these actions do not write or commit `CHANGELOG.md`.
+If the source archive or npm tarball must contain it, generate and review the changelog on the release branch,
+commit it with the version update, and build from that merged commit as described in [Commit the version before building](#commit-the-version-before-building).
+Keep the planned tag fixed through preparation and publication.
 
 ## Run a release
 
@@ -183,7 +228,7 @@ and skip it when that version is already released.
 
 The Package action performs its own checkout of the workflow's source ref.
 Checking out the merged commit in an earlier step does not change that ref: start the packaging workflow at the merged commit.
-See the [release preparation example](https://github.com/hoverkraft-tech/ci-github-publish/blob/0.29.0/.github/workflows/release.md#example-3-validate-source-update-files-create-release-artifacts-and-release)
+See the [release preparation example](https://github.com/hoverkraft-tech/ci-github-publish/blob/1.0.3/.github/workflows/release.md#example-3-validate-source-update-files-create-release-artifacts-and-release)
 for automating the pull request and merge.
 
 ## Other setups
@@ -197,7 +242,7 @@ for automating the pull request and merge.
   For Package, set `working-directory` to the dependency installation root and `package-directory` to the package's relative path.
   Convert prefixed Git tags such as `my-package/v1.2.3` to npm versions, and use a separate concurrency group and artifact name per package.
 - **Drafts and signing:** create a draft with `publish: "false"`, then use `release/update` to attach assets and publish after npm publication succeeds.
-  See the [draft release example](https://github.com/hoverkraft-tech/ci-github-publish/blob/0.29.0/.github/workflows/release.md#example-2-validate-source-create-release-artifacts-and-release).
+  See the [draft release example](https://github.com/hoverkraft-tech/ci-github-publish/blob/1.0.3/.github/workflows/release.md#example-2-validate-source-create-release-artifacts-and-release).
   Use `release/delete` with `draft-only: "true"` to clean up a temporary draft on failure **only if the npm package has not been published**.
 
 ## Recover a failed release

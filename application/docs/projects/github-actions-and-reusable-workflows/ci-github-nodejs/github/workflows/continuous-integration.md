@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: .github/workflows/continuous-integration.md
 source_branch: main
-source_run_id: 37016668578
-last_synced: 2026-10-02T14:07:41.806Z
+source_run_id: 40919563118
+last_synced: 2026-10-29T17:28:01.703Z
 ---
 
 <!-- header:start -->
@@ -11,7 +11,7 @@ last_synced: 2026-10-02T14:07:41.806Z
 # GitHub Reusable Workflow: Node.js Continuous Integration
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/0985d9169d68b1e3b6128d321ac5b39cc163521568c33d9ad2724bb28994486b/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Node.js Continuous Integration" />
+  <img src="https://opengraph.githubassets.com/438ddeb2c21070c4705b9160e0565ec1a0c9852867a60806ea81459a5246fa2b/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Node.js Continuous Integration" />
 </div>
 
 ---
@@ -66,7 +66,7 @@ on:
 permissions: {}
 jobs:
   continuous-integration:
-    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@df348077afa4e79725151d50606e9dc63f86dcb6 # 0.24.4
+    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@1f81dd00d941680ab227a6eae5378790d6242e02 # 1.0.0
     permissions:
       contents: read
       id-token: write
@@ -145,8 +145,21 @@ jobs:
       # Default: `true`
       lint: "true"
 
-      # Code QL analysis language.
+      # CodeQL analysis language, or a JSON object with `languages` and optional `config-file`.
+      # Set to an empty string to disable CodeQL.
+      # In JSON form, `languages` must be a nonempty string and `config-file` must be a string.
+      # Omitting or leaving `config-file` empty keeps CodeQL's default configuration behavior.
+      # Unknown JSON properties and invalid field types fail before CodeQL initialization.
+      # Local configuration paths are relative to the caller repository root, not `working-directory`.
       # See https://github.com/github/codeql-action.
+      #
+      # Example:
+      # ```json
+      # {
+      # "languages": "javascript-typescript",
+      # "config-file": ".github/codeql/config.yml"
+      # }
+      # ```
       #
       # Default: `typescript`
       code-ql: typescript
@@ -237,7 +250,7 @@ jobs:
 | **Input**               | **Description**                                                                                                                                                                                                                                                                                                                                                                                     | **Required** | **Type**    | **Default**         |
 | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------- | ------------------- |
 | **`runs-on`**           | JSON array of runner(s) to use.                                                                                                                                                                                                                                                                                                                                                                     | **false**    | **string**  | `["ubuntu-latest"]` |
-|                         | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).                                                                                                                                                                                                                                     |              |             |                     |
+|                         | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).                                                                                                                                                                                                                                                                                                                  |              |             |                     |
 | **`build`**             | Build parameters. Must be a string or a JSON object.                                                                                                                                                                                                                                                                                                                                                | **false**    | **string**  | `build`             |
 |                         | For string, provide a list of commands to run during the build step, one per line.                                                                                                                                                                                                                                                                                                                  |              |             |                     |
 |                         | For JSON object, provide the following properties:                                                                                                                                                                                                                                                                                                                                                  |              |             |                     |
@@ -251,20 +264,28 @@ jobs:
 | **`checks`**            | Optional flag to enable check steps.                                                                                                                                                                                                                                                                                                                                                                | **false**    | **boolean** | `true`              |
 | **`lint`**              | Whether to enable linting.                                                                                                                                                                                                                                                                                                                                                                          | **false**    | **string**  | `true`              |
 |                         | Set to `null` or empty to disable.                                                                                                                                                                                                                                                                                                                                                                  |              |             |                     |
-|                         | Accepts a JSON object for lint options. See [lint action](../../actions/lint/index.md).                                                                                                                                                                                                                                                                                                             |              |             |                     |
+|                         | Accepts a JSON object for lint options. See [lint action](../../actions/lint/index.md).                                                                                                                                                                                                                                                                                                            |              |             |                     |
 |                         | It should generate lint reports in standard formats.                                                                                                                                                                                                                                                                                                                                                |              |             |                     |
 |                         |                                                                                                                                                                                                                                                                                                                                                                                                     |              |             |                     |
 |                         | Example:                                                                                                                                                                                                                                                                                                                                                                                            |              |             |                     |
 |                         |                                                                                                                                                                                                                                                                                                                                                                                                     |              |             |                     |
 |                         | <!-- textlint-disable --><pre lang="json:package.json">{&#13; "lint:ci": "eslint . --output-file eslint-report.json --format json"&#13;}</pre><!-- textlint-enable -->                                                                                                                                                                                                                              |              |             |                     |
-| **`code-ql`**           | Code QL analysis language.                                                                                                                                                                                                                                                                                                                                                                          | **false**    | **string**  | `typescript`        |
-|                         | See [https://github.com/github/codeql-action](https://github.com/github/codeql-action).                                                                                                                                                                                                                                                                                                             |              |             |                     |
+| **`code-ql`**           | CodeQL analysis language, or a JSON object with `languages` and optional `config-file`.                                                                                                                                                                                                                                                                                                             | **false**    | **string**  | `typescript`        |
+|                         | Set to an empty string to disable CodeQL.                                                                                                                                                                                                                                                                                                                                                           |              |             |                     |
+|                         | In JSON form, `languages` must be a nonempty string and `config-file` must be a string.                                                                                                                                                                                                                                                                                                             |              |             |                     |
+|                         | Omitting or leaving `config-file` empty keeps CodeQL's default configuration behavior.                                                                                                                                                                                                                                                                                                              |              |             |                     |
+|                         | Unknown JSON properties and invalid field types fail before CodeQL initialization.                                                                                                                                                                                                                                                                                                                  |              |             |                     |
+|                         | Local configuration paths are relative to the caller repository root, not `working-directory`.                                                                                                                                                                                                                                                                                                      |              |             |                     |
+|                         | See [https://github.com/github/codeql-action](https://github.com/github/codeql-action).                                                                                                                                                                                                                                                                                                                                                      |              |             |                     |
+|                         |                                                                                                                                                                                                                                                                                                                                                                                                     |              |             |                     |
+|                         | Example:                                                                                                                                                                                                                                                                                                                                                                                            |              |             |                     |
+|                         | <!-- textlint-disable --><pre lang="json">{&#13; "languages": "javascript-typescript",&#13; "config-file": ".github/codeql/config.yml"&#13;}</pre><!-- textlint-enable -->                                                                                                                                                                                                                          |              |             |                     |
 | **`dependency-review`** | Enable dependency review scan.                                                                                                                                                                                                                                                                                                                                                                      | **false**    | **boolean** | `true`              |
 |                         | Works with public repositories and private repositories with a GitHub Advanced Security license.                                                                                                                                                                                                                                                                                                    |              |             |                     |
-|                         | See [https://github.com/actions/dependency-review-action](https://github.com/actions/dependency-review-action).                                                                                                                                                                                                                                                                                     |              |             |                     |
+|                         | See [https://github.com/actions/dependency-review-action](https://github.com/actions/dependency-review-action).                                                                                                                                                                                                                                                                                                                                          |              |             |                     |
 | **`test`**              | Whether to enable testing.                                                                                                                                                                                                                                                                                                                                                                          | **false**    | **string**  | `true`              |
 |                         | Set to `null` or empty to disable.                                                                                                                                                                                                                                                                                                                                                                  |              |             |                     |
-|                         | Accepts a JSON object for test options. See [test action](../../actions/test/index.md).                                                                                                                                                                                                                                                                                                             |              |             |                     |
+|                         | Accepts a JSON object for test options. See [test action](../../actions/test/index.md).                                                                                                                                                                                                                                                                                                            |              |             |                     |
 |                         | If coverage is enabled, it should generate test and coverage reports in standard formats.                                                                                                                                                                                                                                                                                                           |              |             |                     |
 |                         |                                                                                                                                                                                                                                                                                                                                                                                                     |              |             |                     |
 |                         | Example:                                                                                                                                                                                                                                                                                                                                                                                            |              |             |                     |
@@ -290,7 +311,7 @@ jobs:
 |                         | - `credentials` (object with `username`).                                                                                                                                                                                                                                                                                                                                                           |              |             |                     |
 |                         | - `pathMapping` (object) path mapping from container paths to repository paths. Defaults is working directory is mapped with repository root.                                                                                                                                                                                                                                                       |              |             |                     |
 |                         |                                                                                                                                                                                                                                                                                                                                                                                                     |              |             |                     |
-|                         | See [https://docs.github.com/en/actions/how-tos/write-workflows/choose-where-workflows-run/run-jobs-in-a-container](https://docs.github.com/en/actions/how-tos/write-workflows/choose-where-workflows-run/run-jobs-in-a-container).                                                                                                                                                                 |              |             |                     |
+|                         | See [https://docs.github.com/en/actions/how-tos/write-workflows/choose-where-workflows-run/run-jobs-in-a-container](https://docs.github.com/en/actions/how-tos/write-workflows/choose-where-workflows-run/run-jobs-in-a-container).                                                                                                                                                                                                                                                                                |              |             |                     |
 |                         |                                                                                                                                                                                                                                                                                                                                                                                                     |              |             |                     |
 |                         | When specified, steps will execute inside this container instead of checking out code.                                                                                                                                                                                                                                                                                                              |              |             |                     |
 |                         | The container should have the project code and dependencies pre-installed.                                                                                                                                                                                                                                                                                                                          |              |             |                     |
@@ -343,7 +364,7 @@ For private container images, specify the username in the container input's `cre
 ```yaml
 jobs:
   continuous-integration:
-    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@main
+    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@81a4bca8445b7b273455ff26a9a5c3c31c86b2a1 # 0.25.0
     secrets:
       container-password: ${{ secrets.REGISTRY_PASSWORD }}
     with:
@@ -364,17 +385,17 @@ When specified, steps will execute inside this container instead of checking out
 
 ## Secrets
 
-| **Secret**               | **Description**                                                                                                                                                                                                                                                                                                                 | **Required** |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
-| **`build-secrets`**      | Secrets to be used during the build step.                                                                                                                                                                                                                                                                                       | **false**    |
-|                          | Must be a multi-line env formatted string.                                                                                                                                                                                                                                                                                      |              |
-|                          | Example:                                                                                                                                                                                                                                                                                                                        |              |
-|                          | <!-- textlint-disable --><pre lang="txt">SECRET_EXAMPLE=$\{{ secrets.SECRET_EXAMPLE }}</pre><!-- textlint-enable -->                                                                                                                                                                                                            |              |
-| **`container-password`** | Password for container registry authentication, if required.                                                                                                                                                                                                                                                                    | **false**    |
-|                          | Used when the container image is hosted in a private registry.                                                                                                                                                                                                                                                                  |              |
+| **Secret**               | **Description**                                                                                                                                                    | **Required** |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------ |
+| **`build-secrets`**      | Secrets to be used during the build step.                                                                                                                          | **false**    |
+|                          | Must be a multi-line env formatted string.                                                                                                                         |              |
+|                          | Example:                                                                                                                                                           |              |
+|                          | <!-- textlint-disable --><pre lang="txt">SECRET_EXAMPLE=$\{{ secrets.SECRET_EXAMPLE }}</pre><!-- textlint-enable -->                                               |              |
+| **`container-password`** | Password for container registry authentication, if required.                                                                                                       | **false**    |
+|                          | Used when the container image is hosted in a private registry.                                                                                                     |              |
 |                          | See [https://docs.github.com/en/actions/how-tos/write-workflows/choose-where-workflows-run/run-jobs-in-a-container#defining-credentials-for-a-container-registry](https://docs.github.com/en/actions/how-tos/write-workflows/choose-where-workflows-run/run-jobs-in-a-container#defining-credentials-for-a-container-registry). |              |
-| **`github-token`**       | GitHub token to use for authentication.                                                                                                                                                                                                                                                                                         | **false**    |
-|                          | Defaults to `GITHUB_TOKEN` if not provided.                                                                                                                                                                                                                                                                                     |              |
+| **`github-token`**       | GitHub token to use for authentication.                                                                                                                            | **false**    |
+|                          | Defaults to `GITHUB_TOKEN` if not provided.                                                                                                                        |              |
 
 <!-- secrets:end -->
 
@@ -405,7 +426,7 @@ on:
 
 jobs:
   continuous-integration:
-    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@df348077afa4e79725151d50606e9dc63f86dcb6 # 0.24.4
+    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@1f81dd00d941680ab227a6eae5378790d6242e02 # 1.0.0
     permissions:
       id-token: write
       security-events: write
@@ -422,13 +443,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Setup NodeJS
-        uses: hoverkraft-tech/ci-github-nodejs/actions/setup-node@0.2.2
+        uses: hoverkraft-tech/ci-github-nodejs/actions/setup-node@81a4bca8445b7b273455ff26a9a5c3c31c86b2a1 # 0.25.0
 
       - name: Download build artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
         with:
           artifact-ids: ${{ needs.continuous-integration.outputs.build-artifact-id }}
           path: /
@@ -457,7 +478,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Build Docker image
         run: |
@@ -471,7 +492,7 @@ jobs:
   # Run CI checks inside the Docker container
   continuous-integration:
     needs: build-image
-    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@df348077afa4e79725151d50606e9dc63f86dcb6 # 0.24.4
+    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@1f81dd00d941680ab227a6eae5378790d6242e02 # 1.0.0
     permissions:
       id-token: write
       security-events: write
@@ -495,7 +516,7 @@ on:
     branches: [main]
 jobs:
   continuous-integration:
-    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@df348077afa4e79725151d50606e9dc63f86dcb6 # 0.24.4
+    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@1f81dd00d941680ab227a6eae5378790d6242e02 # 1.0.0
     permissions:
       id-token: write
       security-events: write
@@ -523,7 +544,7 @@ on:
 
 jobs:
   continuous-integration:
-    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@df348077afa4e79725151d50606e9dc63f86dcb6 # 0.24.4
+    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@1f81dd00d941680ab227a6eae5378790d6242e02 # 1.0.0
     permissions:
       id-token: write
       security-events: write

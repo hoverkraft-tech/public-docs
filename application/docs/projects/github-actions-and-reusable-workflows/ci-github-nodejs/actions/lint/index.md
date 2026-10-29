@@ -3,8 +3,8 @@ title: Lint
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: actions/lint/README.md
 source_branch: main
-source_run_id: 37016668578
-last_synced: 2026-10-02T14:07:41.806Z
+source_run_id: 40919563118
+last_synced: 2026-10-29T17:28:01.703Z
 ---
 
 <!-- header:start -->
@@ -12,7 +12,7 @@ last_synced: 2026-10-02T14:07:41.806Z
 # ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItY2hlY2stY2lyY2xlIiBjb2xvcj0iYmx1ZSI+PHBhdGggZD0iTTIyIDExLjA4VjEyYTEwIDEwIDAgMSAxLTUuOTMtOS4xNCI+PC9wYXRoPjxwb2x5bGluZSBwb2ludHM9IjIyIDQgMTIgMTQuMDEgOSAxMS4wMSI+PC9wb2x5bGluZT48L3N2Zz4=) GitHub Action: Lint
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/fe78244ee4e7fcfcb2521a211f0029bce75b9857e6e280a0697b2812e32234d4/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Lint" />
+  <img src="https://opengraph.githubassets.com/d3cfc8b5e0d32c7bbee8e143f24dda679c080d2de26953e5a85b8ea744ddf609/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Lint" />
 </div>
 
 ---
@@ -44,7 +44,7 @@ Action to lint Node.js projects with support for pull request reporting and anno
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-nodejs/actions/lint@df348077afa4e79725151d50606e9dc63f86dcb6 # 0.24.4
+- uses: hoverkraft-tech/ci-github-nodejs/actions/lint@81a4bca8445b7b273455ff26a9a5c3c31c86b2a1 # 0.25.0
   with:
     # Working directory where lint commands are executed.
     # Can be absolute or relative to the repository root.
@@ -62,7 +62,7 @@ Action to lint Node.js projects with support for pull request reporting and anno
     #
     # ESLint: `eslint --format json -o eslint-report.json .`
     # Prettier: `prettier --check . | tee prettier-report.txt`
-    # Biome: `biome lint --error-on-warnings . --reporter=sarif | tee biome-report.sarif`
+    # Biome: `biome check --assist-enabled=false . --reporter=sarif --reporter-file=biome-report.sarif --reporter=default`
     # Astro: `astro check | tee astro-report.txt`
     #
     # Default: `lint:ci`
@@ -94,7 +94,7 @@ Action to lint Node.js projects with support for pull request reporting and anno
 |                         |                                                                                                                                                               |              |             |
 |                         | ESLint: `eslint --format json -o eslint-report.json .`                                                                                                        |              |             |
 |                         | Prettier: `prettier --check . \| tee prettier-report.txt`                                                                                                     |              |             |
-|                         | Biome: `biome lint --error-on-warnings . --reporter=sarif \| tee biome-report.sarif`                                                                          |              |             |
+|                         | Biome: `biome check --assist-enabled=false . --reporter=sarif --reporter-file=biome-report.sarif --reporter=default`                                          |              |             |
 |                         | Astro: `astro check \| tee astro-report.txt`                                                                                                                  |              |             |
 | **`report-file`**       | Optional lint report path forwarded to the [parse-ci-reports](https://github.com/hoverkraft-tech/ci-github-common/tree/main/actions/parse-ci-reports) action. | **false**    | -           |
 |                         | Provide an absolute path or one relative to the working directory.                                                                                            |              |             |
