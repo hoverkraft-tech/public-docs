@@ -3,8 +3,8 @@ title: Ci GitHub Nodejs
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: README.md
 source_branch: main
-source_run_id: 40919563118
-last_synced: 2026-10-29T17:28:01.703Z
+source_run_id: 41855375389
+last_synced: 2026-11-04T15:22:12.806Z
 ---
 
 # Continuous Integration - GitHub - Node.js
@@ -40,13 +40,14 @@ _Actions for continuous integration steps: build, lint, and test._
 
 #### - [Codecov](actions/codecov/index.md)
 
-#### - [Package](actions/package/index.md)
-
 #### - [Lint](actions/lint/index.md)
 
 #### - [Test](actions/test/index.md)
 
-#### - [Publish](actions/publish/index.md)
+### Package Actions
+
+- [Create a package tarball](actions/package/create/index.md)
+- [Publish a package tarball](actions/package/publish/index.md)
 
 ### Dependencies
 
@@ -68,11 +69,11 @@ _Actions focused on discovering and preparing the Node.js environment._
 
 ### Continuous Integration
 
-- [Continuous Integration](github/workflows/continuous-integration.md) — documentation for the reusable Node.js CI workflow.
+- [Continuous Integration](github/workflows/continuous-integration.md): documentation for the reusable Node.js CI workflow.
 
 ### Release
 
-- [Release](github/workflows/release.md) — guide to Node.js project releases using `ci-github-publish` release actions and the package/publish actions.
+- [Release](github/workflows/release.md): publish prepared packages using the package actions and `ci-github-publish`.
 
 ## Contributing
 

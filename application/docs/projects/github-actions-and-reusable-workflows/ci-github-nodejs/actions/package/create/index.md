@@ -1,10 +1,10 @@
 ---
-title: Package
+title: Create
 source_repo: hoverkraft-tech/ci-github-nodejs
-source_path: actions/package/README.md
+source_path: actions/package/create/README.md
 source_branch: main
-source_run_id: 40919563118
-last_synced: 2026-10-29T17:28:01.703Z
+source_run_id: 41855375389
+last_synced: 2026-11-04T15:22:12.806Z
 ---
 
 <!-- header:start -->
@@ -12,7 +12,7 @@ last_synced: 2026-10-29T17:28:01.703Z
 # ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItcGFja2FnZSIgY29sb3I9ImJsdWUiPjxsaW5lIHgxPSIxNi41IiB5MT0iOS40IiB4Mj0iNy41IiB5Mj0iNC4yMSI+PC9saW5lPjxwYXRoIGQ9Ik0yMSAxNlY4YTIgMiAwIDAgMC0xLTEuNzNsLTctNGEyIDIgMCAwIDAtMiAwbC03IDRBMiAyIDAgMCAwIDMgOHY4YTIgMiAwIDAgMCAxIDEuNzNsNyA0YTIgMiAwIDAgMCAyIDBsNy00QTIgMiAwIDAgMCAyMSAxNnoiPjwvcGF0aD48cG9seWxpbmUgcG9pbnRzPSIzLjI3IDYuOTYgMTIgMTIuMDEgMjAuNzMgNi45NiI+PC9wb2x5bGluZT48bGluZSB4MT0iMTIiIHkxPSIyMi4wOCIgeDI9IjEyIiB5Mj0iMTIiPjwvbGluZT48L3N2Zz4=) GitHub Action: Package
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/d3cfc8b5e0d32c7bbee8e143f24dda679c080d2de26953e5a85b8ea744ddf609/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Package" />
+  <img src="https://opengraph.githubassets.com/3fb447d0403952a43eebe2b03f436945955c160699ea2bb62cb2abc5229c52cb/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Package" />
 </div>
 
 ---
@@ -35,7 +35,10 @@ last_synced: 2026-10-29T17:28:01.703Z
 
 ## Overview
 
-Action to create and upload an npm package tarball from a Node.js project
+Create and upload a package tarball from prepared files, optionally restored from a build artifact.
+Check out the project, configure Node.js and its package manager, and prepare dependencies, versions and build output before calling this action.
+Uses the project's npm, pnpm or Yarn Classic configuration to select its native pack command.
+Packaging never installs dependencies, changes versions or runs lifecycle scripts.
 
 <!-- overview:end -->
 <!-- usage:start -->
@@ -43,17 +46,17 @@ Action to create and upload an npm package tarball from a Node.js project
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-nodejs/actions/package@81a4bca8445b7b273455ff26a9a5c3c31c86b2a1 # 0.25.0
+- uses: hoverkraft-tech/ci-github-nodejs/actions/package/create@97f64bc080b78daca8fb3ece49de448aaac83429 # 1.1.0
   with:
-    # Working directory where dependencies are installed for packaging.
+    # Prepared project directory containing the package manager configuration.
     # Can be absolute or relative to the repository root.
     #
     # Default: `.`
     working-directory: .
 
-    # Optional package directory to version and pack.
+    # Optional prepared package directory to pack.
     # Can be absolute or relative to `working-directory`.
-    # Useful for monorepos where dependencies are installed at the root.
+    # Useful for monorepos with package manager configuration at the root.
     package-directory: ""
 
     # Optional build artifact ID to download before packaging.
@@ -66,10 +69,6 @@ Action to create and upload an npm package tarball from a Node.js project
     # Default: `${{ github.workspace }}`
     build-artifact-path: ${{ github.workspace }}
 
-    # Optional version to apply with `npm version` before packaging.
-    # The version is applied without creating a Git tag.
-    version: ""
-
     # Name of the uploaded package tarball artifact
     artifact-name: ""
 ```
@@ -81,17 +80,15 @@ Action to create and upload an npm package tarball from a Node.js project
 
 | **Input**                 | **Description**                                                                             | **Required** | **Default**               |
 | ------------------------- | ------------------------------------------------------------------------------------------- | ------------ | ------------------------- |
-| **`working-directory`**   | Working directory where dependencies are installed for packaging.                           | **false**    | `.`                       |
+| **`working-directory`**   | Prepared project directory containing the package manager configuration.                    | **false**    | `.`                       |
 |                           | Can be absolute or relative to the repository root.                                         |              |                           |
-| **`package-directory`**   | Optional package directory to version and pack.                                             | **false**    | -                         |
+| **`package-directory`**   | Optional prepared package directory to pack.                                                | **false**    | -                         |
 |                           | Can be absolute or relative to `working-directory`.                                         |              |                           |
-|                           | Useful for monorepos where dependencies are installed at the root.                          |              |                           |
+|                           | Useful for monorepos with package manager configuration at the root.                        |              |                           |
 | **`build-artifact-id`**   | Optional build artifact ID to download before packaging.                                    | **false**    | -                         |
 |                           | When provided, the artifact will be downloaded to the workspace.                            |              |                           |
 | **`build-artifact-path`** | Optional path to the build artifact contents relative to the workspace root.                | **false**    | `${{ github.workspace }}` |
 |                           | Used to locate the files to be included in the package when a build artifact is downloaded. |              |                           |
-| **`version`**             | Optional version to apply with `npm version` before packaging.                              | **false**    | -                         |
-|                           | The version is applied without creating a Git tag.                                          |              |                           |
 | **`artifact-name`**       | Name of the uploaded package tarball artifact                                               | **false**    | -                         |
 
 <!-- inputs:end -->
@@ -111,9 +108,11 @@ Action to create and upload an npm package tarball from a Node.js project
 
 ## Examples
 
+Replace `<sha>` with a supported commit containing these action paths.
+
 Use the [Publish action](../publish/index.md) to publish the resulting tarball.
 
-See the [release guide](../../github/workflows/release.md) for version planning and GitHub release orchestration.
+See the [release guide](../../../github/workflows/release.md) for version planning and GitHub release orchestration.
 
 ```yaml
 jobs:
@@ -123,7 +122,7 @@ jobs:
       package-tarball-artifact-id: ${{ steps.package.outputs.package-tarball-artifact-id }}
     steps:
       - id: package
-        uses: hoverkraft-tech/ci-github-nodejs/actions/package@81a4bca8445b7b273455ff26a9a5c3c31c86b2a1 # 0.25.0
+        uses: hoverkraft-tech/ci-github-nodejs/actions/package/create@97f64bc080b78daca8fb3ece49de448aaac83429 # 1.1.0
 
   consume:
     needs: package

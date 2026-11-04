@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: .github/workflows/continuous-integration.md
 source_branch: main
-source_run_id: 40919563118
-last_synced: 2026-10-29T17:28:01.703Z
+source_run_id: 41855375389
+last_synced: 2026-11-04T15:22:12.806Z
 ---
 
 <!-- header:start -->
@@ -11,7 +11,7 @@ last_synced: 2026-10-29T17:28:01.703Z
 # GitHub Reusable Workflow: Node.js Continuous Integration
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/438ddeb2c21070c4705b9160e0565ec1a0c9852867a60806ea81459a5246fa2b/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Node.js Continuous Integration" />
+  <img src="https://opengraph.githubassets.com/3fb447d0403952a43eebe2b03f436945955c160699ea2bb62cb2abc5229c52cb/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Node.js Continuous Integration" />
 </div>
 
 ---
@@ -66,7 +66,7 @@ on:
 permissions: {}
 jobs:
   continuous-integration:
-    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@1f81dd00d941680ab227a6eae5378790d6242e02 # 1.0.0
+    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@97f64bc080b78daca8fb3ece49de448aaac83429 # 1.1.0
     permissions:
       contents: read
       id-token: write
@@ -91,6 +91,13 @@ jobs:
       # Defaults to `GITHUB_TOKEN` if not provided.
       github-token: ""
     with:
+      # Disable project and dependency lifecycle scripts during installation in build, lint and test jobs.
+      # Set false to allow installation hooks, subject to the package manager's script approval settings.
+      # Explicit commands are unaffected. Does not apply in container mode, which skips installation.
+      #
+      # Default: `true`
+      ignore-scripts: true
+
       # JSON array of runner(s) to use.
       # See https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job.
       #
@@ -249,6 +256,9 @@ jobs:
 
 | **Input**               | **Description**                                                                                                                                                                                                                                                                                                                                                                                     | **Required** | **Type**    | **Default**         |
 | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------- | ------------------- |
+| **`ignore-scripts`**    | Disable project and dependency lifecycle scripts during installation in build, lint and test jobs.                                                                                                                                                                                                                                                                                                  | **false**    | **boolean** | `true`              |
+|                         | Set false to allow installation hooks, subject to the package manager's script approval settings.                                                                                                                                                                                                                                                                                                   |              |             |                     |
+|                         | Explicit commands are unaffected. Does not apply in container mode, which skips installation.                                                                                                                                                                                                                                                                                                       |              |             |                     |
 | **`runs-on`**           | JSON array of runner(s) to use.                                                                                                                                                                                                                                                                                                                                                                     | **false**    | **string**  | `["ubuntu-latest"]` |
 |                         | See [https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).                                                                                                                                                                                                                                                                                                                  |              |             |                     |
 | **`build`**             | Build parameters. Must be a string or a JSON object.                                                                                                                                                                                                                                                                                                                                                | **false**    | **string**  | `build`             |
@@ -426,7 +436,7 @@ on:
 
 jobs:
   continuous-integration:
-    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@1f81dd00d941680ab227a6eae5378790d6242e02 # 1.0.0
+    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@97f64bc080b78daca8fb3ece49de448aaac83429 # 1.1.0
     permissions:
       id-token: write
       security-events: write
@@ -492,7 +502,7 @@ jobs:
   # Run CI checks inside the Docker container
   continuous-integration:
     needs: build-image
-    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@1f81dd00d941680ab227a6eae5378790d6242e02 # 1.0.0
+    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@97f64bc080b78daca8fb3ece49de448aaac83429 # 1.1.0
     permissions:
       id-token: write
       security-events: write
@@ -516,7 +526,7 @@ on:
     branches: [main]
 jobs:
   continuous-integration:
-    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@1f81dd00d941680ab227a6eae5378790d6242e02 # 1.0.0
+    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@97f64bc080b78daca8fb3ece49de448aaac83429 # 1.1.0
     permissions:
       id-token: write
       security-events: write
@@ -544,7 +554,7 @@ on:
 
 jobs:
   continuous-integration:
-    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@1f81dd00d941680ab227a6eae5378790d6242e02 # 1.0.0
+    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@97f64bc080b78daca8fb3ece49de448aaac83429 # 1.1.0
     permissions:
       id-token: write
       security-events: write
