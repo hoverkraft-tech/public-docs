@@ -3,8 +3,8 @@ title: Test
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: actions/test/README.md
 source_branch: main
-source_run_id: 40919563118
-last_synced: 2026-10-29T17:28:01.703Z
+source_run_id: 41855375389
+last_synced: 2026-11-04T15:22:12.806Z
 ---
 
 <!-- header:start -->
@@ -12,7 +12,7 @@ last_synced: 2026-10-29T17:28:01.703Z
 # ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItY2hlY2stc3F1YXJlIiBjb2xvcj0iYmx1ZSI+PHBvbHlsaW5lIHBvaW50cz0iOSAxMSAxMiAxNCAyMiA0Ij48L3BvbHlsaW5lPjxwYXRoIGQ9Ik0yMSAxMnY3YTIgMiAwIDAgMS0yIDJINWEyIDIgMCAwIDEtMi0yVjVhMiAyIDAgMCAxIDItMmgxMSI+PC9wYXRoPjwvc3ZnPg==) GitHub Action: Test
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/d3cfc8b5e0d32c7bbee8e143f24dda679c080d2de26953e5a85b8ea744ddf609/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Test" />
+  <img src="https://opengraph.githubassets.com/3fb447d0403952a43eebe2b03f436945955c160699ea2bb62cb2abc5229c52cb/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Test" />
 </div>
 
 ---
@@ -51,8 +51,15 @@ permissions:
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-nodejs/actions/test@81a4bca8445b7b273455ff26a9a5c3c31c86b2a1 # 0.25.0
+- uses: hoverkraft-tech/ci-github-nodejs/actions/test@97f64bc080b78daca8fb3ece49de448aaac83429 # 1.1.0
   with:
+    # Disable project and dependency lifecycle scripts during installation.
+    # Set false to allow installation hooks, subject to the package manager's script approval settings.
+    # Explicit commands are unaffected. Does not apply in container mode, which skips installation.
+    #
+    # Default: `true`
+    ignore-scripts: "true"
+
     # Working directory where test commands are executed.
     # Can be absolute or relative to the repository root.
     #
@@ -108,6 +115,9 @@ permissions:
 
 | **Input**               | **Description**                                                                                                                                                                             | **Required** | **Default** |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------- |
+| **`ignore-scripts`**    | Disable project and dependency lifecycle scripts during installation.                                                                                                                       | **false**    | `true`      |
+|                         | Set false to allow installation hooks, subject to the package manager's script approval settings.                                                                                           |              |             |
+|                         | Explicit commands are unaffected. Does not apply in container mode, which skips installation.                                                                                               |              |             |
 | **`working-directory`** | Working directory where test commands are executed.                                                                                                                                         | **false**    | `.`         |
 |                         | Can be absolute or relative to the repository root.                                                                                                                                         |              |             |
 | **`container`**         | Whether running in container mode (skips checkout and node setup)                                                                                                                           | **false**    | `false`     |

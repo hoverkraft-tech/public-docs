@@ -3,8 +3,8 @@ title: Get Package Manager
 source_repo: hoverkraft-tech/ci-github-nodejs
 source_path: actions/get-package-manager/README.md
 source_branch: main
-source_run_id: 40919563118
-last_synced: 2026-10-29T17:28:01.703Z
+source_run_id: 41855375389
+last_synced: 2026-11-04T15:22:12.806Z
 ---
 
 <!-- header:start -->
@@ -12,7 +12,7 @@ last_synced: 2026-10-29T17:28:01.703Z
 # ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItcGFja2FnZSIgY29sb3I9ImJsdWUiPjxsaW5lIHgxPSIxNi41IiB5MT0iOS40IiB4Mj0iNy41IiB5Mj0iNC4yMSI+PC9saW5lPjxwYXRoIGQ9Ik0yMSAxNlY4YTIgMiAwIDAgMC0xLTEuNzNsLTctNGEyIDIgMCAwIDAtMiAwbC03IDRBMiAyIDAgMCAwIDMgOHY4YTIgMiAwIDAgMCAxIDEuNzNsNyA0YTIgMiAwIDAgMCAyIDBsNy00QTIgMiAwIDAgMCAyMSAxNnoiPjwvcGF0aD48cG9seWxpbmUgcG9pbnRzPSIzLjI3IDYuOTYgMTIgMTIuMDEgMjAuNzMgNi45NiI+PC9wb2x5bGluZT48bGluZSB4MT0iMTIiIHkxPSIyMi4wOCIgeDI9IjEyIiB5Mj0iMTIiPjwvbGluZT48L3N2Zz4=) GitHub Action: Get package manager
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/d3cfc8b5e0d32c7bbee8e143f24dda679c080d2de26953e5a85b8ea744ddf609/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Get package manager" />
+  <img src="https://opengraph.githubassets.com/3fb447d0403952a43eebe2b03f436945955c160699ea2bb62cb2abc5229c52cb/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Get package manager" />
 </div>
 
 ---
@@ -43,7 +43,7 @@ Action to detect the package manager used. Supports Yarn, pnpm, and npm
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-nodejs/actions/get-package-manager@81a4bca8445b7b273455ff26a9a5c3c31c86b2a1 # 0.25.0
+- uses: hoverkraft-tech/ci-github-nodejs/actions/get-package-manager@97f64bc080b78daca8fb3ece49de448aaac83429 # 1.1.0
   with:
     # Working directory where the dependencies are installed.
     # Can be absolute or relative to the repository root.
@@ -72,12 +72,15 @@ Action to detect the package manager used. Supports Yarn, pnpm, and npm
 
 ## Outputs
 
-| **Output**                  | **Description**                                       |
-| --------------------------- | ----------------------------------------------------- |
-| **`package-manager`**       | The package manager used.                             |
-| **`cache-dependency-path`** | The path to the dependency file for cache management. |
-| **`install-command`**       | The command to install dependencies.                  |
-| **`run-script-command`**    | The command to run a script in the package.json file. |
+| **Output**                  | **Description**                                                                                     |
+| --------------------------- | --------------------------------------------------------------------------------------------------- |
+| **`package-manager`**       | The package manager used.                                                                           |
+| **`cache-dependency-path`** | The path to the dependency file for cache management.                                               |
+| **`install-command`**       | The command to install dependencies.                                                                |
+| **`run-script-command`**    | The command to run a script in the package.json file.                                               |
+| **`pack-command`**          | Bash command to pack prepared files without lifecycle scripts using npm, pnpm or Yarn Classic.      |
+|                             | Set PACK_DESTINATION to an existing absolute output directory before executing the command.         |
+|                             | Configure the project's package manager first; this command does not install dependencies or build. |
 
 <!-- outputs:end -->
 

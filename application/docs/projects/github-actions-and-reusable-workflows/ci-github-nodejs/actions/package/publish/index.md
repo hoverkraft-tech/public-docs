@@ -1,10 +1,10 @@
 ---
 title: Publish
 source_repo: hoverkraft-tech/ci-github-nodejs
-source_path: actions/publish/README.md
+source_path: actions/package/publish/README.md
 source_branch: main
-source_run_id: 40919563118
-last_synced: 2026-10-29T17:28:01.703Z
+source_run_id: 41855375389
+last_synced: 2026-11-04T15:22:12.806Z
 ---
 
 <!-- header:start -->
@@ -12,7 +12,7 @@ last_synced: 2026-10-29T17:28:01.703Z
 # ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItdXBsb2FkLWNsb3VkIiBjb2xvcj0iYmx1ZSI+PHBvbHlsaW5lIHBvaW50cz0iMTYgMTYgMTIgMTIgOCAxNiI+PC9wb2x5bGluZT48bGluZSB4MT0iMTIiIHkxPSIxMiIgeDI9IjEyIiB5Mj0iMjEiPjwvbGluZT48cGF0aCBkPSJNMjAuMzkgMTguMzlBNSA1IDAgMCAwIDE4IDloLTEuMjZBOCA4IDAgMSAwIDMgMTYuMyI+PC9wYXRoPjxwb2x5bGluZSBwb2ludHM9IjE2IDE2IDEyIDEyIDggMTYiPjwvcG9seWxpbmU+PC9zdmc+) GitHub Action: Publish
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/d3cfc8b5e0d32c7bbee8e143f24dda679c080d2de26953e5a85b8ea744ddf609/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Publish" />
+  <img src="https://opengraph.githubassets.com/3fb447d0403952a43eebe2b03f436945955c160699ea2bb62cb2abc5229c52cb/hoverkraft-tech/ci-github-nodejs" width="60px" align="center" alt="Publish" />
 </div>
 
 ---
@@ -34,7 +34,7 @@ Publish a CI-produced Node.js package tarball to an npm-compatible registry
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-nodejs/actions/publish@81a4bca8445b7b273455ff26a9a5c3c31c86b2a1 # 0.25.0
+- uses: hoverkraft-tech/ci-github-nodejs/actions/package/publish@97f64bc080b78daca8fb3ece49de448aaac83429 # 1.1.0
   with:
     # Artifact ID of one package tarball uploaded by the package action
     # This input is required.
@@ -84,6 +84,8 @@ Publish a CI-produced Node.js package tarball to an npm-compatible registry
 
 ## Examples
 
+Replace `<sha>` with a supported commit containing these action paths.
+
 ## Authentication
 
 ### npm trusted publishing
@@ -107,7 +109,7 @@ For npm token authentication, use an npm publishing token stored in a repository
 For GitHub Packages, use a scoped package name, set the registry URL, and grant the job `packages: write`:
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-nodejs/actions/publish@81a4bca8445b7b273455ff26a9a5c3c31c86b2a1 # 0.25.0
+- uses: hoverkraft-tech/ci-github-nodejs/actions/package/publish@97f64bc080b78daca8fb3ece49de448aaac83429 # 1.1.0
   with:
     package-tarball-artifact-id: ${{ needs.package.outputs.package-tarball-artifact-id }}
     registry-url: https://npm.pkg.github.com
@@ -123,7 +125,7 @@ The `github-token` input only authenticates artifact downloads; it is not an npm
 A dry run downloads the same tarball and executes `npm publish --dry-run` without publishing:
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-nodejs/actions/publish@81a4bca8445b7b273455ff26a9a5c3c31c86b2a1 # 0.25.0
+- uses: hoverkraft-tech/ci-github-nodejs/actions/package/publish@97f64bc080b78daca8fb3ece49de448aaac83429 # 1.1.0
   with:
     package-tarball-artifact-id: ${{ needs.package.outputs.package-tarball-artifact-id }}
     dry-run: "true"
