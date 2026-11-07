@@ -14,7 +14,7 @@ permissions: {}
 
 jobs:
   linter:
-    uses: hoverkraft-tech/ci-github-common/.github/workflows/linter.yml@3a27d31e9ccefbe9609cc9165017ed100ff34a22 # 0.38.0
+    uses: hoverkraft-tech/ci-github-common/.github/workflows/linter.yml@ec55a0f4e8adc436072114dfce3826f56ea69492 # feat/shared-commit-policy
     permissions:
       actions: read
       contents: read
