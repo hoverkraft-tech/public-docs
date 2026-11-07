@@ -41,6 +41,7 @@ class ArtifactProcessor {
     this.staticPath = staticPath;
     this.syncTimestamp = syncTimestamp;
     this.assetMap = new Map();
+    this.documentMap = new Map();
     this.docsRootSegment = deriveRootSegment(docsPath);
     this.markdownProcessor = new MarkdownProcessor({
       sourceRepository,
@@ -48,6 +49,7 @@ class ArtifactProcessor {
       runId,
       syncTimestamp,
       assetMap: this.assetMap,
+      documentMap: this.documentMap,
       docsPath: this.docsPath,
       staticPath: this.staticPath,
     });
@@ -94,6 +96,7 @@ class ArtifactProcessor {
 
       if (isMarkdown) {
         targetRelativePath = sanitizedRelativePath;
+        this.documentMap.set(normalizedSourcePath, targetRelativePath);
       } else {
         assetRegistration = registerAssetPath(
           this.assetMap,

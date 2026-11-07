@@ -47,13 +47,13 @@ optional configuration.
 - [Documentation](github/workflows/documentation.md): generate PHP API documentation for separate deployment.
 - [Prepare package release](github/workflows/prepare-package-release.md): plan a version before validation.
 - [Release](github/workflows/release.md): manual and scheduled Composer releases, configuration and recovery.
-- [Documentation index](docs/index.md): usage and development guides.
+- [Documentation index](https://github.com/hoverkraft-tech/ci-github-php/blob/main/docs/README.md): usage and development guides.
 
 ## Contributing
 
 See the [contributing guidelines](CONTRIBUTING.md) and
-[development guide](docs/development/index.md).
+[development guide](https://github.com/hoverkraft-tech/ci-github-php/blob/main/docs/development/README.md).
 
 ## License
 
-[MIT](LICENSE). Copyright [Hoverkraft](https://hoverkraft.cloud).
+[MIT](https://github.com/hoverkraft-tech/ci-github-php/blob/main/LICENSE). Copyright [Hoverkraft](https://hoverkraft.cloud).

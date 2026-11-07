@@ -1,6 +1,17 @@
+import path from "node:path";
+import fs from "node:fs";
 import { createRequire } from "node:module";
-import mockFs from "mock-fs";
+import os from "node:os";
+import { writeFixtureTree } from "./fixtures.mjs";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
+
+let workspace;
+beforeEach(() => {
+  workspace = fs.mkdtempSync(path.join(os.tmpdir(), "prepare-docs-test-"));
+});
+afterEach(() => {
+  fs.rmSync(workspace, { recursive: true, force: true });
+});
 
 const require = createRequire(import.meta.url);
 const {
@@ -11,36 +22,31 @@ function createOptions(overrides = {}) {
   return {
     assetMap: overrides.assetMap ?? new Map(),
     docRelativePath: overrides.docRelativePath ?? "docs/guide/index.md",
-    docsPath: overrides.docsPath ?? "/workspace/docs",
-    staticPath: overrides.staticPath ?? "/workspace/static/ci-namespace",
+    docsPath: overrides.docsPath ?? path.join(workspace, "docs"),
+    staticPath:
+      overrides.staticPath ?? path.join(workspace, "static/ci-namespace"),
   };
 }
 
 describe("normalizeMarkdownBody", () => {
   beforeEach(() => {
-    mockFs({
-      "/workspace": {
-        docs: {
-          guide: {
-            "index.md": "",
-          },
+    writeFixtureTree(workspace, {
+      docs: {
+        guide: {
+          "index.md": "",
         },
-        static: {
-          "ci-namespace": {
-            assets: {
-              images: {
-                "logo.png": "image-bytes",
-              },
-              "photo.jpg": "image-bytes",
+      },
+      static: {
+        "ci-namespace": {
+          assets: {
+            images: {
+              "logo.png": "image-bytes",
             },
+            "photo.jpg": "image-bytes",
           },
         },
       },
     });
-  });
-
-  afterEach(() => {
-    mockFs.restore();
   });
 
   it("returns the original content when input is empty", () => {

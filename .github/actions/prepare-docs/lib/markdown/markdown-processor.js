@@ -11,6 +11,7 @@ class MarkdownProcessor {
     runId,
     syncTimestamp,
     assetMap,
+    documentMap,
     docsPath,
     staticPath,
   }) {
@@ -19,6 +20,7 @@ class MarkdownProcessor {
     this.runId = runId;
     this.syncTimestamp = syncTimestamp;
     this.assetMap = assetMap;
+    this.documentMap = documentMap;
     this.docsPath = docsPath;
     this.staticPath = staticPath;
   }
@@ -41,6 +43,10 @@ class MarkdownProcessor {
     const metadata = metadataLines.join("\n");
     const normalizedBody = normalizeMarkdownBody(body, {
       assetMap: this.assetMap,
+      documentMap: this.documentMap,
+      sourcePath,
+      sourceRepository: this.sourceRepository,
+      sourceBranch: this.sourceBranch,
       docRelativePath,
       docsPath: this.docsPath,
       staticPath: this.staticPath,

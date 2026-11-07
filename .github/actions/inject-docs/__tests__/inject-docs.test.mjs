@@ -1,8 +1,8 @@
 import fs from "node:fs";
 import { createRequire } from "node:module";
 import path from "node:path";
-import mockFs from "mock-fs";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import os from "node:os";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 const require = createRequire(import.meta.url);
 const { run } = require("../inject-docs");
@@ -43,14 +43,16 @@ function createIo() {
 }
 
 describe("inject-docs", () => {
+  let workspace;
+  beforeEach(() => {
+    workspace = fs.mkdtempSync(path.join(os.tmpdir(), "inject-docs-test-"));
+  });
   afterEach(() => {
-    mockFs.restore();
+    fs.rmSync(workspace, { recursive: true, force: true });
     vi.restoreAllMocks();
   });
 
   it("fails when prepared dir is missing", async () => {
-    mockFs();
-
     const core = { setFailed: vi.fn(), info: vi.fn() };
     const io = createIo();
 
@@ -62,7 +64,7 @@ describe("inject-docs", () => {
         DOCS_PATH:
           "application/docs/projects/github-actions-and-reusable-workflows/ci-github-common",
         STATIC_PATH: "application/static/ci-github-common",
-        PREPARED_DIR: "/tmp/does-not-exist",
+        PREPARED_DIR: path.join(workspace, "does-not-exist"),
       },
     });
 
@@ -75,34 +77,24 @@ describe("inject-docs", () => {
     const core = { setFailed: vi.fn(), info: vi.fn() };
     const io = createIo();
 
-    const preparedDir = "/tmp/prepared";
-    const docsPath = "application/docs/projects/ci-cd-tools/demo";
-    const staticPath = "application/static/demo";
+    const preparedDir = path.join(workspace, "prepared");
+    const docsPath = path.join(
+      workspace,
+      "application/docs/projects/ci-cd-tools/demo",
+    );
+    const staticPath = path.join(workspace, "application/static/demo");
 
-    mockFs({
-      [preparedDir]: {
-        "index.md": "# Hello",
-        static: {
-          "logo.png": "binary",
-        },
-      },
-      application: {
-        docs: {
-          projects: {
-            "ci-cd-tools": {
-              demo: {
-                "old.md": "old",
-              },
-            },
-          },
-        },
-        static: {
-          demo: {
-            "old.png": "old",
-          },
-        },
-      },
-    });
+    for (const directory of [
+      path.join(preparedDir, "static"),
+      docsPath,
+      staticPath,
+    ]) {
+      fs.mkdirSync(directory, { recursive: true });
+    }
+    fs.writeFileSync(path.join(preparedDir, "index.md"), "# Hello");
+    fs.writeFileSync(path.join(preparedDir, "static/logo.png"), "binary");
+    fs.writeFileSync(path.join(docsPath, "old.md"), "old");
+    fs.writeFileSync(path.join(staticPath, "old.png"), "old");
 
     await run({
       core,

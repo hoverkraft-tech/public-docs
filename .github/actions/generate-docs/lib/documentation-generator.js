@@ -16,17 +16,23 @@ const {
 const { ProjectsIndexUpdater } = require("./projects/projects-index-updater");
 
 class DocumentationGenerator {
-  constructor({ github }) {
+  constructor({
+    github,
+    projectsPagePath = PROJECTS_PAGE_PATH,
+    homepagePath = HOMEPAGE_PATH,
+  }) {
+    this.projectsPagePath = projectsPagePath;
+    this.homepagePath = homepagePath;
     this.repositoryService = new GitHubRepositoryService(github);
     this.repositoryFilter = new RepositoryFilter({
       ignoredNames: IGNORED_REPOSITORIES,
     });
     this.repositoryCategorizer = new RepositoryCategorizer();
     this.homepageUpdater = new HomepageProjectsUpdater({
-      homepagePath: HOMEPAGE_PATH,
+      homepagePath: this.homepagePath,
     });
     this.projectsIndexUpdater = new ProjectsIndexUpdater({
-      projectsPagePath: PROJECTS_PAGE_PATH,
+      projectsPagePath: this.projectsPagePath,
     });
   }
 
@@ -65,11 +71,11 @@ class DocumentationGenerator {
 
     const projectsRelative = path.relative(
       process.env.GITHUB_WORKSPACE,
-      PROJECTS_PAGE_PATH,
+      this.projectsPagePath,
     );
     const homepageRelative = path.relative(
       process.env.GITHUB_WORKSPACE,
-      HOMEPAGE_PATH,
+      this.homepagePath,
     );
 
     console.log("📄 Generated files:");
