@@ -2,11 +2,14 @@
 source_repo: hoverkraft-tech/ci-github-php
 source_path: CONTRIBUTING.md
 source_branch: main
-source_run_id: 42356244066
-last_synced: 2026-11-07T08:39:53.263Z
+source_run_id: 42413332279
+last_synced: 2026-11-07T20:57:29.249Z
 ---
 
 # Contributing
+
+Use the [common commit process](https://github.com/hoverkraft-tech/ci-github-common/blob/9e235e87e1da898e33689b346590dfc69b45b0a6/docs/usage/commits.md)
+for commit messages, PR titles and dependency updates.
 
 When contributing to this repository, please first discuss the change you wish to make via issue,
 email, or any other method with the owners of this repository before making a change.

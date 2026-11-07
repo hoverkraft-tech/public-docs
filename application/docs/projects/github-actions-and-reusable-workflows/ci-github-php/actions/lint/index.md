@@ -3,8 +3,8 @@ title: Lint
 source_repo: hoverkraft-tech/ci-github-php
 source_path: actions/lint/README.md
 source_branch: main
-source_run_id: 42356244066
-last_synced: 2026-11-07T08:39:53.263Z
+source_run_id: 42413332279
+last_synced: 2026-11-07T20:57:29.249Z
 ---
 
 <!-- header:start -->
@@ -12,7 +12,7 @@ last_synced: 2026-11-07T08:39:53.263Z
 # ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItcGFja2FnZSIgY29sb3I9ImJsdWUiPjxsaW5lIHgxPSIxNi41IiB5MT0iOS40IiB4Mj0iNy41IiB5Mj0iNC4yMSI+PC9saW5lPjxwYXRoIGQ9Ik0yMSAxNlY4YTIgMiAwIDAgMC0xLTEuNzNsLTctNGEyIDIgMCAwIDAtMiAwbC03IDRBMiAyIDAgMCAwIDMgOHY4YTIgMiAwIDAgMCAxIDEuNzNsNyA0YTIgMiAwIDAgMCAyIDBsNy00QTIgMiAwIDAgMCAyMSAxNnoiPjwvcGF0aD48cG9seWxpbmUgcG9pbnRzPSIzLjI3IDYuOTYgMTIgMTIuMDEgMjAuNzMgNi45NiI+PC9wb2x5bGluZT48bGluZSB4MT0iMTIiIHkxPSIyMi4wOCIgeDI9IjEyIiB5Mj0iMTIiPjwvbGluZT48L3N2Zz4=) GitHub Action: Lint PHP
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/269dc7c35b6772556bc3b24861469b980a12ee6cb0d1feb365738f3a1d8d0e94/hoverkraft-tech/ci-github-php" width="60px" align="center" alt="Lint PHP" />
+  <img src="https://opengraph.githubassets.com/7952085af0a270f3e7c5ffa94dd3d14b478b2cf4dece0a52f44539818a8d0288/hoverkraft-tech/ci-github-php" width="60px" align="center" alt="Lint PHP" />
 </div>
 
 ---
@@ -30,7 +30,7 @@ Run a project-defined Composer lint script and report results.
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-php/actions/lint@94aa62658eecb5c1d58e96c4dc6c5f99d9e52000 # main
+- uses: hoverkraft-tech/ci-github-php/actions/lint@83f80d1716625b68a933473a27c1dc25443768ff # 1.0.0
   with:
     # Composer project directory. Run setup-php first to install its dependencies.
     # Default: `.`

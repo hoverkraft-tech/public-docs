@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-php
 source_path: .github/workflows/documentation.md
 source_branch: main
-source_run_id: 42356244066
-last_synced: 2026-11-07T08:39:53.263Z
+source_run_id: 42413332279
+last_synced: 2026-11-07T20:57:29.249Z
 ---
 
 <!-- header:start -->
@@ -11,7 +11,7 @@ last_synced: 2026-11-07T08:39:53.263Z
 # GitHub Reusable Workflow: Build PHP documentation
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/269dc7c35b6772556bc3b24861469b980a12ee6cb0d1feb365738f3a1d8d0e94/hoverkraft-tech/ci-github-php" width="60px" align="center" alt="Build PHP documentation" />
+  <img src="https://opengraph.githubassets.com/7952085af0a270f3e7c5ffa94dd3d14b478b2cf4dece0a52f44539818a8d0288/hoverkraft-tech/ci-github-php" width="60px" align="center" alt="Build PHP documentation" />
 </div>
 
 ---
@@ -46,7 +46,7 @@ on:
 permissions: {}
 jobs:
   documentation:
-    uses: hoverkraft-tech/ci-github-php/.github/workflows/documentation.yml@94aa62658eecb5c1d58e96c4dc6c5f99d9e52000 # main
+    uses: hoverkraft-tech/ci-github-php/.github/workflows/documentation.yml@83f80d1716625b68a933473a27c1dc25443768ff # 1.0.0
     permissions:
       contents: read
     with:
