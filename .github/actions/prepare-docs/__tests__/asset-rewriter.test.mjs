@@ -1,6 +1,17 @@
+import path from "node:path";
+import fs from "node:fs";
 import { createRequire } from "node:module";
-import mockFs from "mock-fs";
-import { describe, expect, it } from "vitest";
+import os from "node:os";
+import { writeFixtureTree } from "./fixtures.mjs";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
+
+let workspace;
+beforeEach(() => {
+  workspace = fs.mkdtempSync(path.join(os.tmpdir(), "prepare-docs-test-"));
+});
+afterEach(() => {
+  fs.rmSync(workspace, { recursive: true, force: true });
+});
 
 const require = createRequire(import.meta.url);
 
@@ -13,10 +24,10 @@ function createRewriter(overrides = {}) {
   return new AssetRewriter({
     assetMap: overrides.assetMap ?? new Map(),
     docRelativePath: overrides.docRelativePath ?? "projects/index.md",
-    docsPath: hasDocsPath ? overrides.docsPath : "/workspace/docs",
+    docsPath: hasDocsPath ? overrides.docsPath : path.join(workspace, "docs"),
     staticPath: hasStaticPath
       ? overrides.staticPath
-      : "/workspace/static/ci-github-common",
+      : path.join(workspace, "static/ci-github-common"),
   });
 }
 
@@ -75,47 +86,37 @@ describe("AssetRewriter", () => {
   });
 
   it("uses an existing static asset when registration is missing", () => {
-    mockFs({
-      "/workspace/static/ci-github-common/assets/images": {
+    writeFixtureTree(workspace, {
+      "static/ci-github-common/assets/images": {
         "logo.png": "binary",
       },
     });
 
-    try {
-      const rewriter = createRewriter();
+    const rewriter = createRewriter();
 
-      const result = rewriter.rewrite("../images/logo.png");
+    const result = rewriter.rewrite("../images/logo.png");
 
-      expect(result).toEqual({
-        value: "/ci-github-common/assets/images/logo.png",
-        changed: true,
-      });
-    } finally {
-      mockFs.restore();
-    }
+    expect(result).toEqual({
+      value: "/ci-github-common/assets/images/logo.png",
+      changed: true,
+    });
   });
 
   it("retains absolute static links when the asset already exists", () => {
-    mockFs({
-      "/workspace/static/ci-github-common/assets/images": {
+    writeFixtureTree(workspace, {
+      "static/ci-github-common/assets/images": {
         "logo.png": "binary",
       },
     });
 
-    try {
-      const rewriter = createRewriter();
+    const rewriter = createRewriter();
 
-      const result = rewriter.rewrite(
-        "/ci-github-common/assets/images/logo.png",
-      );
+    const result = rewriter.rewrite("/ci-github-common/assets/images/logo.png");
 
-      expect(result).toEqual({
-        value: "/ci-github-common/assets/images/logo.png",
-        changed: false,
-      });
-    } finally {
-      mockFs.restore();
-    }
+    expect(result).toEqual({
+      value: "/ci-github-common/assets/images/logo.png",
+      changed: false,
+    });
   });
 
   it("falls back to the registered public path when no static namespace is configured", () => {

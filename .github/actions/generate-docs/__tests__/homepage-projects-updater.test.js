@@ -1,6 +1,6 @@
 import path from "node:path";
 import fs from "node:fs";
-import mockFs from "mock-fs";
+import os from "node:os";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it, vi } from "vitest";
 
@@ -107,23 +107,25 @@ describe("HomepageProjectsUpdater", () => {
   it("writes homepage projects using lint-compatible TSX style", async () => {
     const homepageContent = fs.readFileSync(homepagePath, "utf8");
 
-    mockFs({
-      [homepagePath]: homepageContent,
-    });
+    const temporaryDirectory = fs.mkdtempSync(
+      path.join(os.tmpdir(), "homepage-test-"),
+    );
+    const outputPath = path.join(temporaryDirectory, "index.tsx");
+    fs.writeFileSync(outputPath, homepageContent);
 
     try {
       const formatter = {
         format: vi.fn().mockResolvedValue(undefined),
       };
       const updater = new HomepageProjectsUpdater({
-        homepagePath,
+        homepagePath: outputPath,
         constDeclarationUpdater: new ConstDeclarationUpdater(),
         formatter,
       });
 
       await updater.update(repositories);
 
-      const updatedHomepage = fs.readFileSync(homepagePath, "utf8");
+      const updatedHomepage = fs.readFileSync(outputPath, "utf8");
 
       expect(updatedHomepage).toContain('name: "compose-action"');
       expect(updatedHomepage).toContain("const projects = [");
@@ -134,7 +136,7 @@ describe("HomepageProjectsUpdater", () => {
       expect(updatedHomepage).not.toContain("name: 'compose-action'");
       expect(updatedHomepage).not.toContain("'continuous-integration'");
     } finally {
-      mockFs.restore();
+      fs.rmSync(temporaryDirectory, { recursive: true, force: true });
     }
   });
 });

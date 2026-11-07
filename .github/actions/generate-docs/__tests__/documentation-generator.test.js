@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import mockFs from "mock-fs";
+import os from "node:os";
 import {
   afterAll,
   afterEach,
@@ -41,10 +41,6 @@ const { PROJECTS_PAGE_PATH, HOMEPAGE_PATH } = await import(
   "../lib/constants.js"
 );
 
-function readFixture(absolutePath) {
-  return fs.readFileSync(absolutePath, "utf8");
-}
-
 beforeAll(() => {
   if (!fs.existsSync(projectsPagePath) || !fs.existsSync(homepagePath)) {
     throw new Error(
@@ -57,35 +53,40 @@ afterAll(() => {
   process.env.GITHUB_REPOSITORY_OWNER = previousOwner;
   process.env.GITHUB_REPOSITORY = previousRepository;
   process.env.GITHUB_WORKSPACE = previousWorkspace;
-  restoreMockFileSystem();
 });
 
 describe("DocumentationGenerator", () => {
   let githubClient;
+  let temporaryDirectory;
+  let outputProjectsPath;
+  let outputHomepagePath;
 
   beforeEach(() => {
-    restoreMockFileSystem();
     githubClient = createGithubClient();
 
-    const realProjectsContent = readFixture(PROJECTS_PAGE_PATH);
-    const realHomepageContent = readFixture(HOMEPAGE_PATH);
-
-    mockFs({
-      [PROJECTS_PAGE_PATH]: realProjectsContent,
-      [HOMEPAGE_PATH]: realHomepageContent,
-    });
+    temporaryDirectory = fs.mkdtempSync(
+      path.join(os.tmpdir(), "generate-docs-test-"),
+    );
+    outputProjectsPath = path.join(temporaryDirectory, "projects.mdx");
+    outputHomepagePath = path.join(temporaryDirectory, "index.tsx");
+    fs.copyFileSync(PROJECTS_PAGE_PATH, outputProjectsPath);
+    fs.copyFileSync(HOMEPAGE_PATH, outputHomepagePath);
   });
 
   afterEach(() => {
     vi.restoreAllMocks();
-    restoreMockFileSystem();
+    fs.rmSync(temporaryDirectory, { recursive: true, force: true });
   });
 
   describe("run", () => {
     it("orchestrates repository generation end-to-end without service stubs", async () => {
       const consoleLog = vi.spyOn(console, "log").mockImplementation(() => {});
 
-      const generator = new DocumentationGenerator({ github: githubClient });
+      const generator = new DocumentationGenerator({
+        github: githubClient,
+        projectsPagePath: outputProjectsPath,
+        homepagePath: outputHomepagePath,
+      });
 
       await generator.run();
 
@@ -96,8 +97,8 @@ describe("DocumentationGenerator", () => {
         "✅ Documentation generation completed!",
       );
 
-      const projectsOutput = fs.readFileSync(PROJECTS_PAGE_PATH, "utf8");
-      const homepageOutput = fs.readFileSync(HOMEPAGE_PATH, "utf8");
+      const projectsOutput = fs.readFileSync(outputProjectsPath, "utf8");
+      const homepageOutput = fs.readFileSync(outputHomepagePath, "utf8");
 
       expect(projectsOutput).toContain("const projectSections");
       expect(homepageOutput).toContain("const projects = [");
@@ -108,7 +109,11 @@ describe("DocumentationGenerator", () => {
     it("updates projects page and logs relative paths without stubbing services", async () => {
       const consoleLog = vi.spyOn(console, "log").mockImplementation(() => {});
 
-      const generator = new DocumentationGenerator({ github: githubClient });
+      const generator = new DocumentationGenerator({
+        github: githubClient,
+        projectsPagePath: outputProjectsPath,
+        homepagePath: outputHomepagePath,
+      });
 
       const categories = {
         "Core Services": [
@@ -134,17 +139,17 @@ describe("DocumentationGenerator", () => {
         generatedAt,
       });
 
-      const projectsOutput = fs.readFileSync(PROJECTS_PAGE_PATH, "utf8");
+      const projectsOutput = fs.readFileSync(outputProjectsPath, "utf8");
       expect(projectsOutput).toContain("Alpha project");
       expect(projectsOutput).toContain("const statsSummary");
 
       const projectsRelative = path.relative(
         process.env.GITHUB_WORKSPACE,
-        PROJECTS_PAGE_PATH,
+        outputProjectsPath,
       );
       const homepageRelative = path.relative(
         process.env.GITHUB_WORKSPACE,
-        HOMEPAGE_PATH,
+        outputHomepagePath,
       );
 
       expect(consoleLog).toHaveBeenNthCalledWith(1, "📄 Generated files:");
@@ -189,15 +194,4 @@ function createGithubClient() {
       },
     })),
   };
-}
-
-function restoreMockFileSystem() {
-  try {
-    mockFs.restore();
-  } catch (error) {
-    const message = String(error?.message || "");
-    if (!/not mocked/i.test(message)) {
-      throw error;
-    }
-  }
 }

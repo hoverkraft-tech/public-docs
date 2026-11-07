@@ -10,7 +10,20 @@ const {
 const { MARKDOWN_EXTENSIONS, STATIC_ASSET_PREFIX } = require("../constants");
 
 class AssetRewriter {
-  constructor({ assetMap, docRelativePath, docsPath, staticPath } = {}) {
+  constructor({
+    assetMap,
+    documentMap,
+    sourcePath,
+    sourceRepository,
+    sourceBranch,
+    docRelativePath,
+    docsPath,
+    staticPath,
+  } = {}) {
+    this.documentMap = documentMap;
+    this.sourcePath = sourcePath;
+    this.sourceRepository = sourceRepository;
+    this.sourceBranch = sourceBranch;
     this.assetMap = assetMap;
     this.docRelativePath = docRelativePath;
     this.docsPath = docsPath;
@@ -25,6 +38,29 @@ class AssetRewriter {
     const { path: targetPath, suffix } = splitLinkPathAndSuffix(value);
     if (!targetPath) {
       return { value, changed: false };
+    }
+
+    if (
+      this.documentMap &&
+      this.sourcePath &&
+      !targetPath.startsWith("/") &&
+      (MARKDOWN_EXTENSIONS.has(path.posix.extname(targetPath).toLowerCase()) ||
+        path.posix.extname(targetPath) === "")
+    ) {
+      const sourceTarget = path.posix.normalize(
+        path.posix.join(path.posix.dirname(this.sourcePath), targetPath.trim()),
+      );
+      const localTarget = this.documentMap.get(sourceTarget);
+      // Documentation bundles may omit guides linked by the source README.
+      // Keep those links on GitHub instead of inventing a missing site page.
+      const rewrittenPath = localTarget
+        ? path.posix.relative(
+            path.posix.dirname(this.docRelativePath),
+            localTarget,
+          )
+        : `https://github.com/${this.sourceRepository}/blob/${encodeURIComponent(this.sourceBranch)}/${sourceTarget.split("/").map(encodeURIComponent).join("/")}`;
+      const rebuiltTarget = `${rewrittenPath}${suffix}`;
+      return { value: rebuiltTarget, changed: rebuiltTarget !== value };
     }
 
     const sanitizedPath = sanitizeLinkPath(targetPath);

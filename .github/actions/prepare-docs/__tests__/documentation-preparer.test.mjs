@@ -1,8 +1,17 @@
 import fs from "node:fs";
 import { createRequire } from "node:module";
 import path from "node:path";
-import mockFs from "mock-fs";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import os from "node:os";
+import { writeFixtureTree } from "./fixtures.mjs";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+
+let workspace;
+beforeEach(() => {
+  workspace = fs.mkdtempSync(path.join(os.tmpdir(), "prepare-docs-test-"));
+});
+afterEach(() => {
+  fs.rmSync(workspace, { recursive: true, force: true });
+});
 
 const require = createRequire(import.meta.url);
 const { DocumentationPreparer } = require("../lib/documentation-preparer");
@@ -43,12 +52,12 @@ function createOptions(overrides = {}) {
     github,
     core,
     io,
-    artifactPath: overrides.artifactPath ?? "/workspace/artifact",
-    outputPath: overrides.outputPath ?? "/workspace/output",
+    artifactPath: overrides.artifactPath ?? path.join(workspace, "artifact"),
+    outputPath: overrides.outputPath ?? path.join(workspace, "output"),
     sourceRepository: overrides.sourceRepository ?? "hoverkraft-tech/example",
     runId: overrides.runId ?? "12345",
-    docsPath: overrides.docsPath ?? "/workspace/site/docs",
-    staticPath: overrides.staticPath ?? "/workspace/site/static",
+    docsPath: overrides.docsPath ?? path.join(workspace, "site/docs"),
+    staticPath: overrides.staticPath ?? path.join(workspace, "site/static"),
     ...overrides,
   };
 }
@@ -75,28 +84,22 @@ function listRelativeFiles(root) {
 }
 
 describe("DocumentationPreparer", () => {
-  afterEach(() => {
-    mockFs.restore();
-  });
-
   it("prepares the documentation bundle end-to-end", async () => {
-    mockFs({
-      "/workspace": {
-        artifact: {
-          docs: {
-            "guide.md": "# Guide\n\nContent",
-            nested: {
-              "overview.md": "# Overview\n\nDetails",
-            },
-          },
-          images: {
-            "logo.png": "binary",
+    writeFixtureTree(workspace, {
+      artifact: {
+        docs: {
+          "guide.md": "# Guide\n\nContent",
+          nested: {
+            "overview.md": "# Overview\n\nDetails",
           },
         },
-        site: {
-          docs: {},
-          static: {},
+        images: {
+          "logo.png": "binary",
         },
+      },
+      site: {
+        docs: {},
+        static: {},
       },
     });
 
@@ -166,22 +169,20 @@ describe("DocumentationPreparer", () => {
   });
 
   it("creates index pages for intermediate directories without direct markdown", async () => {
-    mockFs({
-      "/workspace": {
-        artifact: {
-          actions: {
-            checkout: {
-              "README.md": "# Checkout\n\nDetails",
-            },
-            slugify: {
-              "README.md": "# Slugify\n\nDetails",
-            },
+    writeFixtureTree(workspace, {
+      artifact: {
+        actions: {
+          checkout: {
+            "README.md": "# Checkout\n\nDetails",
+          },
+          slugify: {
+            "README.md": "# Slugify\n\nDetails",
           },
         },
-        site: {
-          docs: {},
-          static: {},
-        },
+      },
+      site: {
+        docs: {},
+        static: {},
       },
     });
 
@@ -201,20 +202,18 @@ describe("DocumentationPreparer", () => {
   });
 
   it("does not create a fallback _index when the bundle already contains index.md", async () => {
-    mockFs({
-      "/workspace": {
-        artifact: {
-          "README.md": "# Example\n\nMain page",
-          actions: {
-            checkout: {
-              "README.md": "# Checkout\n\nDetails",
-            },
+    writeFixtureTree(workspace, {
+      artifact: {
+        "README.md": "# Example\n\nMain page",
+        actions: {
+          checkout: {
+            "README.md": "# Checkout\n\nDetails",
           },
         },
-        site: {
-          docs: {},
-          static: {},
-        },
+      },
+      site: {
+        docs: {},
+        static: {},
       },
     });
 
@@ -233,14 +232,48 @@ describe("DocumentationPreparer", () => {
     );
   });
 
-  it("fails fast when the source repository slug is invalid", async () => {
-    mockFs({
-      "/workspace": {
-        artifact: {},
-        site: {
-          docs: {},
-          static: {},
+  it("keeps bundled Markdown links local and links omitted guides to their source", async () => {
+    writeFixtureTree(workspace, {
+      artifact: {
+        "README.md":
+          "# Example\n\n[Guides](docs/README.md#usage)\n[Action](actions/demo/README.md)\n[License](LICENSE)",
+        actions: {
+          demo: {
+            "README.md":
+              "# Demo\n\n[Home](../../README.md)\n[Guide](../../docs/Getting Started.md?raw=1#usage)",
+          },
         },
+      },
+    });
+    const options = createOptions();
+    await new DocumentationPreparer(options).run();
+    const homepage = fs.readFileSync(
+      path.join(options.outputPath, "index.md"),
+      "utf8",
+    );
+    expect(homepage).toContain(
+      "[Guides](https://github.com/hoverkraft-tech/example/blob/main/docs/README.md#usage)",
+    );
+    expect(homepage).toContain("[Action](actions/demo/index.md)");
+    expect(homepage).toContain(
+      "[License](https://github.com/hoverkraft-tech/example/blob/main/LICENSE)",
+    );
+    const actionPage = fs.readFileSync(
+      path.join(options.outputPath, "actions/demo/index.md"),
+      "utf8",
+    );
+    expect(actionPage).toContain("[Home](../../index.md)");
+    expect(actionPage).toContain(
+      "[Guide](https://github.com/hoverkraft-tech/example/blob/main/docs/Getting%20Started.md?raw=1#usage)",
+    );
+  });
+
+  it("fails fast when the source repository slug is invalid", async () => {
+    writeFixtureTree(workspace, {
+      artifact: {},
+      site: {
+        docs: {},
+        static: {},
       },
     });
 
