@@ -3,8 +3,8 @@ title: GitHub Action Ovh Mks Scaling
 source_repo: hoverkraft-tech/github-action-ovh-mks-scaling
 source_path: README.md
 source_branch: main
-source_run_id: 41020028523
-last_synced: 2026-10-30T07:29:53.807Z
+source_run_id: 42600952883
+last_synced: 2026-11-09T10:42:11.949Z
 ---
 
 <!-- header:start -->
@@ -47,7 +47,7 @@ See the [documentation index](https://github.com/hoverkraft-tech/github-action-o
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/github-action-ovh-mks-scaling@e68fa92b7eb3304dab72d98e57da5ef9e29b9017 # 1.0.0
+- uses: hoverkraft-tech/github-action-ovh-mks-scaling@dc2ea8e0bdae1854c4d2b22b478f56e299614983 # 2.0.0
   with:
     # The OVH endpoint to use.
     # See the [available endpoints](https://github.com/ovh/node-ovh/blob/master/lib/endpoints.js) list.
