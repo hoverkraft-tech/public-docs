@@ -3,8 +3,8 @@ title: Lint
 source_repo: hoverkraft-tech/ci-github-php
 source_path: actions/lint/README.md
 source_branch: main
-source_run_id: 42413332279
-last_synced: 2026-11-07T20:57:29.249Z
+source_run_id: 42906541198
+last_synced: 2026-11-10T21:40:02.605Z
 ---
 
 <!-- header:start -->
@@ -12,7 +12,7 @@ last_synced: 2026-11-07T20:57:29.249Z
 # ![Icon](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItcGFja2FnZSIgY29sb3I9ImJsdWUiPjxsaW5lIHgxPSIxNi41IiB5MT0iOS40IiB4Mj0iNy41IiB5Mj0iNC4yMSI+PC9saW5lPjxwYXRoIGQ9Ik0yMSAxNlY4YTIgMiAwIDAgMC0xLTEuNzNsLTctNGEyIDIgMCAwIDAtMiAwbC03IDRBMiAyIDAgMCAwIDMgOHY4YTIgMiAwIDAgMCAxIDEuNzNsNyA0YTIgMiAwIDAgMCAyIDBsNy00QTIgMiAwIDAgMCAyMSAxNnoiPjwvcGF0aD48cG9seWxpbmUgcG9pbnRzPSIzLjI3IDYuOTYgMTIgMTIuMDEgMjAuNzMgNi45NiI+PC9wb2x5bGluZT48bGluZSB4MT0iMTIiIHkxPSIyMi4wOCIgeDI9IjEyIiB5Mj0iMTIiPjwvbGluZT48L3N2Zz4=) GitHub Action: Lint PHP
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/7952085af0a270f3e7c5ffa94dd3d14b478b2cf4dece0a52f44539818a8d0288/hoverkraft-tech/ci-github-php" width="60px" align="center" alt="Lint PHP" />
+  <img src="https://opengraph.githubassets.com/c49d1c486499c0cc920b472e06585d607dc90b4134f10a98830b5edc30a8a0b8/hoverkraft-tech/ci-github-php" width="60px" align="center" alt="Lint PHP" />
 </div>
 
 ---
@@ -24,13 +24,18 @@ last_synced: 2026-11-07T20:57:29.249Z
 
 Run a project-defined Composer lint script and report results.
 
+Native lint reports are retained for seven days, including after command
+failures. Only parsed report files are uploaded. Keep `comment: false` and
+call the common `ci-reports` workflow after producer jobs for consolidated
+comments with collapsed details.
+
 <!-- overview:end -->
 <!-- usage:start -->
 
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-php/actions/lint@83f80d1716625b68a933473a27c1dc25443768ff # 1.0.0
+- uses: hoverkraft-tech/ci-github-php/actions/lint@41b42b7c00ad20527f1f40fd8c7a85881e36ea6b # 1.1.1
   with:
     # Composer project directory. Run setup-php first to install its dependencies.
     # Default: `.`
@@ -51,6 +56,10 @@ Run a project-defined Composer lint script and report results.
     #
     # Default: `lint:ci`
     command: lint:ci
+
+    # Publish an individual lint PR comment. Requires pull-requests write permission. Fork comments are disabled. Leave false for consolidated reporting; annotations, summaries and artifacts remain enabled.
+    # Default: `false`
+    comment: "false"
 ```
 
 <!-- usage:end -->
@@ -58,26 +67,34 @@ Run a project-defined Composer lint script and report results.
 
 ## Inputs
 
-| **Input**               | **Description**                                                                        | **Required** | **Default** |
-| ----------------------- | -------------------------------------------------------------------------------------- | ------------ | ----------- |
-| **`working-directory`** | Composer project directory. Run setup-php first to install its dependencies.           | **false**    | `.`         |
-| **`command`**           | Composer script to execute, normally `lint:ci` in composer.json.                       | **false**    | `lint:ci`   |
-|                         | Define the tools and their configuration in that script. Examples:                     |              |             |
-|                         |                                                                                        |              |             |
-|                         | - PHPStan: `phpstan analyse --error-format=checkstyle > phpstan-checkstyle.xml`        |              |             |
-|                         | - Psalm: `psalm --output-format=checkstyle > psalm-checkstyle.xml`                     |              |             |
-|                         | - PHP_CodeSniffer: `phpcs --report=checkstyle --report-file=phpcs-checkstyle.xml`      |              |             |
-|                         | - PHP CS Fixer: `php-cs-fixer check --format=checkstyle > php-cs-fixer-checkstyle.xml` |              |             |
-|                         |                                                                                        |              |             |
-|                         | Redirecting output preserves the tool's exit status. The action discovers              |              |             |
-|                         | Checkstyle reports for annotations and summaries. Use paths relative to the project;   |              |             |
-|                         | for separate tooling installations, prefix binaries with `tools/vendor/bin/`.          |              |             |
-|                         | See the [CI guide](../../github/workflows/continuous-integration.md).                 |              |             |
+| **Input**               | **Description**                                                                                                                                                                                          | **Required** | **Default** |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------- |
+| **`working-directory`** | Composer project directory. Run setup-php first to install its dependencies.                                                                                                                             | **false**    | `.`         |
+| **`command`**           | Composer script to execute, normally `lint:ci` in composer.json.                                                                                                                                         | **false**    | `lint:ci`   |
+|                         | Define the tools and their configuration in that script. Examples:                                                                                                                                       |              |             |
+|                         |                                                                                                                                                                                                          |              |             |
+|                         | - PHPStan: `phpstan analyse --error-format=checkstyle > phpstan-checkstyle.xml`                                                                                                                          |              |             |
+|                         | - Psalm: `psalm --output-format=checkstyle > psalm-checkstyle.xml`                                                                                                                                       |              |             |
+|                         | - PHP_CodeSniffer: `phpcs --report=checkstyle --report-file=phpcs-checkstyle.xml`                                                                                                                        |              |             |
+|                         | - PHP CS Fixer: `php-cs-fixer check --format=checkstyle > php-cs-fixer-checkstyle.xml`                                                                                                                   |              |             |
+|                         |                                                                                                                                                                                                          |              |             |
+|                         | Redirecting output preserves the tool's exit status. The action discovers                                                                                                                                |              |             |
+|                         | Checkstyle reports for annotations and summaries. Use paths relative to the project;                                                                                                                     |              |             |
+|                         | for separate tooling installations, prefix binaries with `tools/vendor/bin/`.                                                                                                                            |              |             |
+|                         | See the [CI guide](../../github/workflows/continuous-integration.md).                                                                                                                                   |              |             |
+| **`comment`**           | Publish an individual lint PR comment. Requires pull-requests write permission. Fork comments are disabled. Leave false for consolidated reporting; annotations, summaries and artifacts remain enabled. | **false**    | `false`     |
 
 <!-- inputs:end -->
 <!-- secrets:start -->
 <!-- secrets:end -->
 <!-- outputs:start -->
+
+## Outputs
+
+| **Output**               | **Description**                                                              |
+| ------------------------ | ---------------------------------------------------------------------------- |
+| **`report-artifact-id`** | Native lint report artifact ID, empty when no supported reports were parsed. |
+
 <!-- outputs:end -->
 <!-- badges:start -->
 
