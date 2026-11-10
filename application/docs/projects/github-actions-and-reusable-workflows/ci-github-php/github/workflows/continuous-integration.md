@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-php
 source_path: .github/workflows/continuous-integration.md
 source_branch: main
-source_run_id: 42413332279
-last_synced: 2026-11-07T20:57:29.249Z
+source_run_id: 42906541198
+last_synced: 2026-11-10T21:40:02.605Z
 ---
 
 <!-- header:start -->
@@ -11,7 +11,7 @@ last_synced: 2026-11-07T20:57:29.249Z
 # GitHub Reusable Workflow: Continuous integration
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/7952085af0a270f3e7c5ffa94dd3d14b478b2cf4dece0a52f44539818a8d0288/hoverkraft-tech/ci-github-php" width="60px" align="center" alt="Continuous integration" />
+  <img src="https://opengraph.githubassets.com/c49d1c486499c0cc920b472e06585d607dc90b4134f10a98830b5edc30a8a0b8/hoverkraft-tech/ci-github-php" width="60px" align="center" alt="Continuous integration" />
 </div>
 
 ---
@@ -104,6 +104,40 @@ Codecov requires `id-token: write` and repository access. The action discovers
 Clover reports, falling back to Cobertura. For GitHub coverage summaries, generate
 Cobertura. Add generated report files to `.gitignore`. Clean any retained report
 files in your project command if it reuses an existing workspace.
+
+The lint and test actions upload only parsed native reports, including after a
+failed command, and retain them for seven days. Their `report-artifact-id`
+output identifies the artifact; it is empty when no supported reports were
+found. Test artifacts include coverage only with `coverage: github`.
+Codecov upload remains separate. Console-only lint output creates no artifact;
+configure a supported file report such as PHPStan Checkstyle for consolidation.
+
+Individual comments are disabled by default, keeping producer jobs read-only.
+When calling an action directly, set `comment: true` and grant
+`pull-requests: write` to opt in. Human and bot actors follow the same rules;
+fork PRs keep summaries, annotations and artifacts without commenting.
+
+For custom producer jobs named `lint` and `test`, leave individual comments
+disabled and add one final job using the common reporting workflow:
+
+```yaml
+reports:
+  needs: [lint, test]
+  if: always()
+  uses: hoverkraft-tech/ci-github-common/.github/workflows/ci-reports.yml@66882b24f9f13e45a6541896a5a7c638cb91c94c # 4.0.0
+  permissions:
+    contents: read
+    pull-requests: write
+  with:
+    job-results: ${{ toJSON(needs) }}
+```
+
+This updates one comment each for tests, coverage and lint, with details
+collapsed. Keep producer job IDs aligned with the shared reporter's contract;
+when wrapping producers in reusable workflows, use matching caller and inner
+job IDs. The full CI workflow uses inner `lint` and `test` jobs; use the
+individual actions when you need to compose them with this final reporter.
+Keep producer jobs as required checks: report publication does not replace them.
 
 Preparation belongs in the Composer script, with report arguments attached only
 to the test command:
@@ -202,7 +236,7 @@ on:
 permissions: {}
 jobs:
   continuous-integration:
-    uses: hoverkraft-tech/ci-github-php/.github/workflows/continuous-integration.yml@83f80d1716625b68a933473a27c1dc25443768ff # 1.0.0
+    uses: hoverkraft-tech/ci-github-php/.github/workflows/continuous-integration.yml@41b42b7c00ad20527f1f40fd8c7a85881e36ea6b # 1.1.1
     permissions:
       contents: read
       id-token: write
