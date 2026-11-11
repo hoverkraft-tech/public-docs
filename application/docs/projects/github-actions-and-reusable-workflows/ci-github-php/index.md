@@ -3,8 +3,8 @@ title: Ci GitHub Php
 source_repo: hoverkraft-tech/ci-github-php
 source_path: README.md
 source_branch: main
-source_run_id: 42906541198
-last_synced: 2026-11-10T21:40:02.605Z
+source_run_id: 43042691904
+last_synced: 2026-11-11T14:55:33.688Z
 ---
 
 # Continuous Integration - GitHub - PHP
@@ -39,6 +39,7 @@ optional configuration.
 
 ### Environment setup
 
+- [Get PHP versions](actions/get-php-versions/index.md): discover stable versions allowed by Composer.
 - [Setup PHP](actions/setup-php/index.md): install PHP and Composer dependencies.
 
 ## Reusable workflows and guides
