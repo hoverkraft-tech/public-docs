@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-php
 source_path: .github/workflows/continuous-integration.md
 source_branch: main
-source_run_id: 42906541198
-last_synced: 2026-11-10T21:40:02.605Z
+source_run_id: 43042691904
+last_synced: 2026-11-11T14:55:33.688Z
 ---
 
 <!-- header:start -->
@@ -11,7 +11,7 @@ last_synced: 2026-11-10T21:40:02.605Z
 # GitHub Reusable Workflow: Continuous integration
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/c49d1c486499c0cc920b472e06585d607dc90b4134f10a98830b5edc30a8a0b8/hoverkraft-tech/ci-github-php" width="60px" align="center" alt="Continuous integration" />
+  <img src="https://opengraph.githubassets.com/3d2511885985a0290215e9a9dd16896d3d1b2f7768fb4052866074e0b169a61d/hoverkraft-tech/ci-github-php" width="60px" align="center" alt="Continuous integration" />
 </div>
 
 ---
@@ -33,8 +33,6 @@ jobs:
     permissions:
       contents: read
       id-token: write
-    with:
-      php-versions: '["8.2", "8.3", "8.4", "8.5"]'
 ```
 
 Define `lint:ci` and `test:ci` in `composer.json`. These are explicit project commands;
@@ -44,15 +42,22 @@ they execute even when dependency installation scripts are disabled. An empty
 
 Use `runs-on` for a JSON array of Linux runner labels, for example
 `runs-on: '["self-hosted", "linux"]'`. Every job uses those labels.
+Docker must be available for the PHP version discovery action.
 Set `checks: false` to skip lint, tests, dependency review and distribution checks.
 
 ### Runtime and dependencies
 
-With no `php-versions` input, setup reads the project's `.php-version`, then the
-repository's `.php-version`, then delegates platform detection to `setup-php`.
-An explicit version matrix tests all listed versions. The last entry runs lint
-and package checks; only that version publishes coverage. An empty entry
-in the matrix uses the default version selection.
+With no `php-versions` input, CI reads `composer.json`'s `require.php` and
+discovers released stable versions from PHP.net using Composer's constraint parser.
+Discovery runs in its own container without changing the runner's PHP installation.
+It tests the newest compatible patch of every matching minor, including end-of-life
+versions still allowed by the project. Prereleases are excluded. Missing or invalid
+constraints and release-catalog failures stop discovery instead of choosing an arbitrary runtime.
+The highest discovered version runs lint and package checks and publishes coverage.
+Set `php-versions` explicitly to override the matrix, for example `'["8.2", "8.5"]'`.
+The last explicit entry is primary; an empty entry delegates to the setup action,
+which honors `.php-version` and Composer platform overrides before automatic discovery.
+See [PHP version selection](../../actions/get-php-versions/index.md#local-docker-builds) for local Docker builds.
 
 Composer projects with or without a committed lockfile are supported. Each
 project is installed independently. By default, setup installs the root manifest
@@ -124,7 +129,7 @@ disabled and add one final job using the common reporting workflow:
 reports:
   needs: [lint, test]
   if: always()
-  uses: hoverkraft-tech/ci-github-common/.github/workflows/ci-reports.yml@66882b24f9f13e45a6541896a5a7c638cb91c94c # 4.0.0
+  uses: hoverkraft-tech/ci-github-common/.github/workflows/ci-reports.yml@d07ee49b460ae2f3815804b5153fe918092aa321 # 4.2.0
   permissions:
     contents: read
     pull-requests: write
@@ -236,7 +241,7 @@ on:
 permissions: {}
 jobs:
   continuous-integration:
-    uses: hoverkraft-tech/ci-github-php/.github/workflows/continuous-integration.yml@41b42b7c00ad20527f1f40fd8c7a85881e36ea6b # 1.1.1
+    uses: hoverkraft-tech/ci-github-php/.github/workflows/continuous-integration.yml@7b1303edc25e97da2a297dd285a54cf4b6ae76a1 # 1.1.2
     permissions:
       contents: read
       id-token: write
@@ -253,7 +258,7 @@ jobs:
       # Default: `.`
       working-directory: .
 
-      # Optional JSON array of PHP versions to test. The last entry runs lint and package checks and publishes coverage. An empty entry uses .php-version or setup-php platform detection. Empty input runs that default once.
+      # Optional JSON array overriding Composer-based PHP discovery. Empty discovers the newest stable compatible patch per minor. The last version runs lint/package checks and publishes coverage. An empty entry uses the setup action default.
       php-versions: ""
 
       # PHP extensions forwarded to setup-php.
@@ -308,31 +313,31 @@ jobs:
 
 ### Workflow Call Inputs
 
-| **Input**                  | **Description**                                                                                                                                                                                                        | **Required** | **Type**    | **Default**                                      |
-| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------- | ------------------------------------------------ |
-| **`runs-on`**              | JSON array of Linux runner labels. Applies to every job, including the configuration job.                                                                                                                              | **false**    | **string**  | `["ubuntu-latest"]`                              |
-| **`checks`**               | Enable lint, tests, dependency review and optional distribution checks.                                                                                                                                                | **false**    | **boolean** | `true`                                           |
-| **`working-directory`**    | Composer project directory relative to the checkout.                                                                                                                                                                   | **false**    | **string**  | `.`                                              |
-| **`php-versions`**         | Optional JSON array of PHP versions to test. The last entry runs lint and package checks and publishes coverage. An empty entry uses .php-version or setup-php platform detection. Empty input runs that default once. | **false**    | **string**  | -                                                |
-| **`extensions`**           | PHP extensions forwarded to setup-php.                                                                                                                                                                                 | **false**    | **string**  | `mbstring, dom, xml, xmlwriter, curl, zip, intl` |
-| **`composer-directories`** | Optional JSON array of Composer directories relative to working-directory. Empty installs the root project and tools/composer.json when present, without recursive discovery.                                          | **false**    | **string**  | -                                                |
-| **`ignore-scripts`**       | Disable Composer installation scripts. Explicit project commands still run.                                                                                                                                            | **false**    | **boolean** | `true`                                           |
-| **`ignore-plugins`**       | Disable Composer plugins during installation. When false, Composer allow-plugins configuration still applies.                                                                                                          | **false**    | **boolean** | `true`                                           |
-| **`lint`**                 | Composer lint script name or a JSON object with `command` (default `lint:ci`). Pass "false", "null" or an empty string to disable.                                                                                     | **false**    | **string**  | `true`                                           |
-| **`test`**                 | Run the Composer `test:ci` script unchanged, or provide another script name.                                                                                                                                           | **false**    | **string**  | `true`                                           |
-|                            | Pass "false", "null" or an empty string to disable tests.                                                                                                                                                              |              |             |                                                  |
-|                            | A JSON object groups test options: `command` (default `test:ci`),                                                                                                                                                      |              |             |                                                  |
-|                            | `coverage` (`github`, `codecov` or empty), and `cache` (one directory relative to working-directory).                                                                                                                  |              |             |                                                  |
-|                            | Configure report/coverage generation in the Composer script itself.                                                                                                                                                    |              |             |                                                  |
-|                            | Coverage is published on the last PHP version only; the command controls collection on every version. Codecov requires id-token: write.                                                                                |              |             |                                                  |
-|                            | Example: `{"coverage":"codecov","cache":".cache"}`.                                                                                                                                                                    |              |             |                                                  |
-| **`package`**              | Validate a public Composer source distribution from the Git repository root.                                                                                                                                           | **false**    | **string**  | `false`                                          |
-|                            | Pass "false" (the default) to disable, "true" for archive and autoload checks,                                                                                                                                         |              |             |                                                  |
-|                            | or a JSON object with `tests` for additional commands in an isolated Composer consumer.                                                                                                                                |              |             |                                                  |
-|                            | Quote booleans because this input has type string. Example: `{"tests":"my-cli --help"}`.                                                                                                                               |              |             |                                                  |
-|                            | vendor/bin is on PATH; PACKAGE_NAME, PACKAGE_INSTALL_PATH and PACKAGE_ARCHIVE_PATH identify the package.                                                                                                               |              |             |                                                  |
-|                            | Unknown options and non-string tests are rejected before distribution checks.                                                                                                                                          |              |             |                                                  |
-| **`dependency-review`**    | Review dependency changes on pull requests.                                                                                                                                                                            | **false**    | **boolean** | `true`                                           |
+| **Input**                  | **Description**                                                                                                                                                                                                                            | **Required** | **Type**    | **Default**                                      |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------ | ----------- | ------------------------------------------------ |
+| **`runs-on`**              | JSON array of Linux runner labels. Applies to every job, including the configuration job.                                                                                                                                                  | **false**    | **string**  | `["ubuntu-latest"]`                              |
+| **`checks`**               | Enable lint, tests, dependency review and optional distribution checks.                                                                                                                                                                    | **false**    | **boolean** | `true`                                           |
+| **`working-directory`**    | Composer project directory relative to the checkout.                                                                                                                                                                                       | **false**    | **string**  | `.`                                              |
+| **`php-versions`**         | Optional JSON array overriding Composer-based PHP discovery. Empty discovers the newest stable compatible patch per minor. The last version runs lint/package checks and publishes coverage. An empty entry uses the setup action default. | **false**    | **string**  | -                                                |
+| **`extensions`**           | PHP extensions forwarded to setup-php.                                                                                                                                                                                                     | **false**    | **string**  | `mbstring, dom, xml, xmlwriter, curl, zip, intl` |
+| **`composer-directories`** | Optional JSON array of Composer directories relative to working-directory. Empty installs the root project and tools/composer.json when present, without recursive discovery.                                                              | **false**    | **string**  | -                                                |
+| **`ignore-scripts`**       | Disable Composer installation scripts. Explicit project commands still run.                                                                                                                                                                | **false**    | **boolean** | `true`                                           |
+| **`ignore-plugins`**       | Disable Composer plugins during installation. When false, Composer allow-plugins configuration still applies.                                                                                                                              | **false**    | **boolean** | `true`                                           |
+| **`lint`**                 | Composer lint script name or a JSON object with `command` (default `lint:ci`). Pass "false", "null" or an empty string to disable.                                                                                                         | **false**    | **string**  | `true`                                           |
+| **`test`**                 | Run the Composer `test:ci` script unchanged, or provide another script name.                                                                                                                                                               | **false**    | **string**  | `true`                                           |
+|                            | Pass "false", "null" or an empty string to disable tests.                                                                                                                                                                                  |              |             |                                                  |
+|                            | A JSON object groups test options: `command` (default `test:ci`),                                                                                                                                                                          |              |             |                                                  |
+|                            | `coverage` (`github`, `codecov` or empty), and `cache` (one directory relative to working-directory).                                                                                                                                      |              |             |                                                  |
+|                            | Configure report/coverage generation in the Composer script itself.                                                                                                                                                                        |              |             |                                                  |
+|                            | Coverage is published on the last PHP version only; the command controls collection on every version. Codecov requires id-token: write.                                                                                                    |              |             |                                                  |
+|                            | Example: `{"coverage":"codecov","cache":".cache"}`.                                                                                                                                                                                        |              |             |                                                  |
+| **`package`**              | Validate a public Composer source distribution from the Git repository root.                                                                                                                                                               | **false**    | **string**  | `false`                                          |
+|                            | Pass "false" (the default) to disable, "true" for archive and autoload checks,                                                                                                                                                             |              |             |                                                  |
+|                            | or a JSON object with `tests` for additional commands in an isolated Composer consumer.                                                                                                                                                    |              |             |                                                  |
+|                            | Quote booleans because this input has type string. Example: `{"tests":"my-cli --help"}`.                                                                                                                                                   |              |             |                                                  |
+|                            | vendor/bin is on PATH; PACKAGE_NAME, PACKAGE_INSTALL_PATH and PACKAGE_ARCHIVE_PATH identify the package.                                                                                                                                   |              |             |                                                  |
+|                            | Unknown options and non-string tests are rejected before distribution checks.                                                                                                                                                              |              |             |                                                  |
+| **`dependency-review`**    | Review dependency changes on pull requests.                                                                                                                                                                                                | **false**    | **boolean** | `true`                                           |
 
 <!-- inputs:end -->
 <!-- secrets:start -->

@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-php
 source_path: .github/workflows/prepare-package-release.md
 source_branch: main
-source_run_id: 42906541198
-last_synced: 2026-11-10T21:40:02.605Z
+source_run_id: 43042691904
+last_synced: 2026-11-11T14:55:33.688Z
 ---
 
 <!-- header:start -->
@@ -11,7 +11,7 @@ last_synced: 2026-11-10T21:40:02.605Z
 # GitHub Reusable Workflow: Prepare Composer Package Release
 
 <div align="center">
-  <img src="https://opengraph.githubassets.com/c49d1c486499c0cc920b472e06585d607dc90b4134f10a98830b5edc30a8a0b8/hoverkraft-tech/ci-github-php" width="60px" align="center" alt="Prepare Composer Package Release" />
+  <img src="https://opengraph.githubassets.com/a34afe6048695ba84de01344b4411e2ff7f3d84ff89656758648d934c793f392/hoverkraft-tech/ci-github-php" width="60px" align="center" alt="Prepare Composer Package Release" />
 </div>
 
 ---
@@ -44,7 +44,7 @@ on:
 permissions: {}
 jobs:
   prepare-package-release:
-    uses: hoverkraft-tech/ci-github-php/.github/workflows/prepare-package-release.yml@41b42b7c00ad20527f1f40fd8c7a85881e36ea6b # 1.1.1
+    uses: hoverkraft-tech/ci-github-php/.github/workflows/prepare-package-release.yml@7b1303edc25e97da2a297dd285a54cf4b6ae76a1 # 1.1.2
     permissions:
       contents: read
       pull-requests: read
