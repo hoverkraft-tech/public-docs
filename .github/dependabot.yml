@@ -42,7 +42,7 @@ updates:
     open-pull-requests-limit: 20
     directories:
       - "/"
-      - "/.github/actions/**/action.yml"
+      - "/.github/actions/**/*"
     cooldown:
       default-days: 7
     schedule:
