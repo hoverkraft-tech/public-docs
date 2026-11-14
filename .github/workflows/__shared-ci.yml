@@ -13,8 +13,9 @@ on:
 permissions: {}
 
 jobs:
-  linter:
-    uses: hoverkraft-tech/ci-github-common/.github/workflows/linter.yml@90211d735aa0289702ddbd7eb95b218020ccadad # 2.0.2
+  lint:
+    name: linter
+    uses: hoverkraft-tech/ci-github-common/.github/workflows/linter.yml@f44e1bcc350b6bfe9e4a86a27b1d5e032e58f292 # 4.2.1
     permissions:
       actions: read
       contents: read
@@ -23,9 +24,11 @@ jobs:
       pull-requests: write
       security-events: write
       statuses: write
+    with:
+      comment: false
 
   continuous-integration-prepare-docs:
-    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@81a4bca8445b7b273455ff26a9a5c3c31c86b2a1 # 0.25.0
+    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@a60704c5e9902675a1b4a5141411d95733e80ff5 # 3.0.2
     strategy:
       matrix:
         working-directory:
@@ -40,13 +43,14 @@ jobs:
       pull-requests: write
       security-events: write
     with:
+      test: '{"comment": false, "report-group": "continuous-integration-prepare-docs"}'
       working-directory: ${{ matrix.working-directory }}
-      build: null
-      lint: null
+      build: ""
+      lint: ""
       dependency-review: false
 
   continuous-integration:
-    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@81a4bca8445b7b273455ff26a9a5c3c31c86b2a1 # 0.25.0
+    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@a60704c5e9902675a1b4a5141411d95733e80ff5 # 3.0.2
     permissions:
       contents: read
       id-token: write
@@ -57,9 +61,20 @@ jobs:
       build-secrets: |
         ALGOLIA_API_KEY=${{ secrets.ALGOLIA_API_KEY }}
     with:
+      test: '{"comment": false, "report-group": "continuous-integration"}'
       working-directory: application
       build: |
         {
           "artifact": ["build"],
           "env": { "ALGOLIA_APP_ID": "${{ vars.ALGOLIA_APP_ID }}" }
         }
+
+  reports:
+    needs: [lint, continuous-integration-prepare-docs, continuous-integration]
+    if: always()
+    uses: hoverkraft-tech/ci-github-common/.github/workflows/ci-reports.yml@f44e1bcc350b6bfe9e4a86a27b1d5e032e58f292 # 4.2.1
+    permissions:
+      contents: read
+      pull-requests: write
+    with:
+      job-results: ${{ toJSON(needs) }}

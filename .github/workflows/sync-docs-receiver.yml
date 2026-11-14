@@ -48,7 +48,7 @@ jobs:
 
       - name: Resolve documentation target
         id: resolve
-        uses: ./.github/actions/resolve-docs-target
+        uses: $/.github/actions/resolve-docs-target
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ steps.validate.outputs.repository }}
@@ -65,7 +65,7 @@ jobs:
 
       - name: Prepare documentation content
         id: prepare-docs
-        uses: ./.github/actions/prepare-docs
+        uses: $/.github/actions/prepare-docs
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           artifact-path: ${{ steps.download-artifact.outputs.download-path }}
@@ -75,7 +75,7 @@ jobs:
           static-path: ${{ steps.resolve.outputs.static-path }}
 
       - name: Inject documentation
-        uses: ./.github/actions/inject-docs
+        uses: $/.github/actions/inject-docs
         with:
           source-repository: ${{ steps.validate.outputs.repository }}
           docs-path: ${{ steps.resolve.outputs.docs-path }}
@@ -83,11 +83,11 @@ jobs:
           prepared-dir: ${{ steps.prepare-docs.outputs.output-path }}
 
       - name: Generate Documentation
-        uses: ./.github/actions/generate-docs
+        uses: $/.github/actions/generate-docs
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+      - uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
         id: generate_token
         with:
           client-id: ${{ vars.CI_BOT_APP_CLIENT_ID }}
@@ -97,7 +97,7 @@ jobs:
           permission-contents: write
           permission-pull-requests: write
 
-      - uses: hoverkraft-tech/ci-github-common/actions/create-and-merge-pull-request@3a27d31e9ccefbe9609cc9165017ed100ff34a22 # 0.30.21
+      - uses: hoverkraft-tech/ci-github-common/actions/create-and-merge-pull-request@f44e1bcc350b6bfe9e4a86a27b1d5e032e58f292 # 4.2.1
         with:
           github-token: ${{ steps.generate_token.outputs.token }}
           branch: docs/sync-documentation-${{ github.event.client_payload.repository }}
