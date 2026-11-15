@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-php
 source_path: .github/workflows/continuous-integration.md
 source_branch: main
-source_run_id: 43042691904
-last_synced: 2026-11-11T14:55:33.688Z
+source_run_id: 43701738968
+last_synced: 2026-11-15T10:00:56.363Z
 ---
 
 <!-- header:start -->
@@ -129,7 +129,7 @@ disabled and add one final job using the common reporting workflow:
 reports:
   needs: [lint, test]
   if: always()
-  uses: hoverkraft-tech/ci-github-common/.github/workflows/ci-reports.yml@d07ee49b460ae2f3815804b5153fe918092aa321 # 4.2.0
+  uses: hoverkraft-tech/ci-github-common/.github/workflows/ci-reports.yml@c63b4ce928082260ab263abc01faf3c1fa20c52b # 4.2.3
   permissions:
     contents: read
     pull-requests: write
