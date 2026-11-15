@@ -3,8 +3,8 @@ title: Setup Php
 source_repo: hoverkraft-tech/ci-github-php
 source_path: actions/setup-php/README.md
 source_branch: main
-source_run_id: 43701738968
-last_synced: 2026-11-15T10:00:56.363Z
+source_run_id: 43729103611
+last_synced: 2026-11-15T15:20:53.919Z
 ---
 
 <!-- header:start -->
