@@ -2,8 +2,8 @@
 source_repo: hoverkraft-tech/ci-github-php
 source_path: .github/workflows/prepare-package-release.md
 source_branch: main
-source_run_id: 43729103611
-last_synced: 2026-11-15T15:20:53.919Z
+source_run_id: 44054889290
+last_synced: 2026-11-17T09:25:01.321Z
 ---
 
 <!-- header:start -->
@@ -44,7 +44,7 @@ on:
 permissions: {}
 jobs:
   prepare-package-release:
-    uses: hoverkraft-tech/ci-github-php/.github/workflows/prepare-package-release.yml@b81aa7b46f6b7a18ff1d9582c918cc1cc8296b98 # 2.0.0
+    uses: hoverkraft-tech/ci-github-php/.github/workflows/prepare-package-release.yml@6d0964888074223db9c53b756d004846f3a1569e # 2.0.1
     permissions:
       contents: read
       pull-requests: read
