@@ -1,5 +1,9 @@
 "use strict";
 
+const fs = require("node:fs/promises");
+const path = require("node:path");
+const { format } = require("prettier");
+const { MARKDOWN_EXTENSIONS } = require("./constants");
 const { validateOptions } = require("./validators/options-validator");
 const {
   ensureArtifactDirectory,
@@ -64,6 +68,8 @@ class DocumentationPreparer {
       syncTimestamp,
     });
 
+    await this.formatMarkdown(processedFiles);
+
     this.core.info(
       `Documentation bundle prepared with ${processedFiles.length} files.`,
     );
@@ -72,6 +78,18 @@ class DocumentationPreparer {
       processedFiles,
       sourceBranch,
     };
+  }
+
+  async formatMarkdown(processedFiles) {
+    for (const relativePath of processedFiles) {
+      if (!MARKDOWN_EXTENSIONS.has(path.extname(relativePath).toLowerCase())) {
+        continue;
+      }
+
+      const filepath = path.join(this.outputPath, relativePath);
+      const content = await fs.readFile(filepath, "utf8");
+      await fs.writeFile(filepath, await format(content, { filepath }));
+    }
   }
 }
 

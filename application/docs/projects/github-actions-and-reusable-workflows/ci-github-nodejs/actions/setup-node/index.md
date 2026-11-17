@@ -79,19 +79,19 @@ Action to setup Node.js and install dependencies according to the package manage
 
 ## Inputs
 
-| **Input**                  | **Description**                                                                                   | **Required** | **Default** |
-| -------------------------- | ------------------------------------------------------------------------------------------------- | ------------ | ----------- |
-| **`install-dependencies`** | Install project dependencies after configuring Node.js and the package manager.                   | **false**    | `true`      |
-|                            | Set false when only tooling is needed, such as packaging prepared build files,                    |              |             |
-|                            | or when the caller manages dependency installation separately.                                    |              |             |
-| **`ignore-scripts`**       | Disable project and dependency lifecycle scripts during installation.                             | **false**    | `true`      |
-|                            | Set false to allow installation hooks, subject to the package manager's script approval settings. |              |             |
-|                            | Explicit commands run after installation are unaffected.                                          |              |             |
-| **`dependencies-cache`**   | List of dependencies for which the cache should be managed                                        | **false**    | -           |
-| **`working-directory`**    | Working directory where the dependencies are installed.                                           | **false**    | `.`         |
-|                            | Can be absolute or relative to the repository root.                                               |              |             |
-| **`registry-url`**         | Optional registry to set up for auth.                                                             | **false**    | -           |
-|                            | See [https://github.com/actions/setup-node?tab=readme-ov-file#usage](https://github.com/actions/setup-node?tab=readme-ov-file#usage).                             |              |             |
+| **Input**                  | **Description**                                                                                                                       | **Required** | **Default** |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------- |
+| **`install-dependencies`** | Install project dependencies after configuring Node.js and the package manager.                                                       | **false**    | `true`      |
+|                            | Set false when only tooling is needed, such as packaging prepared build files,                                                        |              |             |
+|                            | or when the caller manages dependency installation separately.                                                                        |              |             |
+| **`ignore-scripts`**       | Disable project and dependency lifecycle scripts during installation.                                                                 | **false**    | `true`      |
+|                            | Set false to allow installation hooks, subject to the package manager's script approval settings.                                     |              |             |
+|                            | Explicit commands run after installation are unaffected.                                                                              |              |             |
+| **`dependencies-cache`**   | List of dependencies for which the cache should be managed                                                                            | **false**    | -           |
+| **`working-directory`**    | Working directory where the dependencies are installed.                                                                               | **false**    | `.`         |
+|                            | Can be absolute or relative to the repository root.                                                                                   |              |             |
+| **`registry-url`**         | Optional registry to set up for auth.                                                                                                 | **false**    | -           |
+|                            | See [https://github.com/actions/setup-node?tab=readme-ov-file#usage](https://github.com/actions/setup-node?tab=readme-ov-file#usage). |              |             |
 
 <!-- inputs:end -->
 
