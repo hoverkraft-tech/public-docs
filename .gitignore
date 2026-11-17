@@ -11,3 +11,4 @@ application/npm-debug.log*
 
 # macOS-specific files
 .DS_Store
+.ci-github-nodejs-cache
