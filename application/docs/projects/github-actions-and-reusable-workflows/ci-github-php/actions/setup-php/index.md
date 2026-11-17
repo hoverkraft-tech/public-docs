@@ -3,8 +3,8 @@ title: Setup Php
 source_repo: hoverkraft-tech/ci-github-php
 source_path: actions/setup-php/README.md
 source_branch: main
-source_run_id: 43729103611
-last_synced: 2026-11-15T15:20:53.919Z
+source_run_id: 44054889290
+last_synced: 2026-11-17T09:25:01.321Z
 ---
 
 <!-- header:start -->
@@ -30,7 +30,7 @@ Set up PHP and Composer, cache downloads and install project dependencies with o
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-php/actions/setup-php@b81aa7b46f6b7a18ff1d9582c918cc1cc8296b98 # 2.0.0
+- uses: hoverkraft-tech/ci-github-php/actions/setup-php@6d0964888074223db9c53b756d004846f3a1569e # 2.0.1
   with:
     # Project directory relative to the checkout.
     # Default: `.`
