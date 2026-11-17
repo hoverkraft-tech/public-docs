@@ -30,6 +30,7 @@ Responsibilities:
 - Copy supporting assets into a sandbox directory.
 - Inject sync metadata into Markdown and MDX files.
 - Generate a default index page and metadata manifest when missing.
+- Format Markdown and MDX after rewriting links and adding metadata.
 
 <!-- overview:end -->
 <!-- usage:start -->

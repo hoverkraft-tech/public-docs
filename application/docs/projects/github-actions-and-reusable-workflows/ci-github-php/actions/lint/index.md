@@ -81,7 +81,7 @@ comments with collapsed details.
 |                         | Redirecting output preserves the tool's exit status. The action discovers                                                                                                                                |              |             |
 |                         | Checkstyle reports for annotations and summaries. Use paths relative to the project;                                                                                                                     |              |             |
 |                         | for separate tooling installations, prefix binaries with `tools/vendor/bin/`.                                                                                                                            |              |             |
-|                         | See the [CI guide](../../github/workflows/continuous-integration.md).                                                                                                                                   |              |             |
+|                         | See the [CI guide](../../github/workflows/continuous-integration.md).                                                                                                                                    |              |             |
 | **`comment`**           | Publish an individual lint PR comment. Requires pull-requests write permission. Fork comments are disabled. Leave false for consolidated reporting; annotations, summaries and artifacts remain enabled. | **false**    | `false`     |
 
 <!-- inputs:end -->

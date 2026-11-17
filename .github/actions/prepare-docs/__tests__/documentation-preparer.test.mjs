@@ -2,6 +2,7 @@ import fs from "node:fs";
 import { createRequire } from "node:module";
 import path from "node:path";
 import os from "node:os";
+import { check, format } from "prettier";
 import { writeFixtureTree } from "./fixtures.mjs";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
@@ -85,10 +86,14 @@ function listRelativeFiles(root) {
 
 describe("DocumentationPreparer", () => {
   it("prepares the documentation bundle end-to-end", async () => {
+    const guideContent = await format(
+      "# Guide\n\n| Link |\n| --- |\n| <https://example.com> |\n| [Overview](nested/overview.md) |\n",
+      { parser: "markdown" },
+    );
     writeFixtureTree(workspace, {
       artifact: {
         docs: {
-          "guide.md": "# Guide\n\nContent",
+          "guide.md": guideContent,
           nested: {
             "overview.md": "# Overview\n\nDetails",
           },
@@ -141,6 +146,9 @@ describe("DocumentationPreparer", () => {
     );
     expect(docContent).toContain("source_repo: hoverkraft-tech/example");
     expect(docContent).toContain("last_synced:");
+    expect(docContent).toContain("[https://example.com](https://example.com)");
+    expect(docContent).toContain("[Overview](nested/overview.md)");
+    expect(await check(docContent, { parser: "markdown" })).toBe(true);
 
     const indexContent = fs.readFileSync(
       path.join(options.outputPath, "_index.md"),
