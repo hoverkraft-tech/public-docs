@@ -3,8 +3,8 @@ title: Lint
 source_repo: hoverkraft-tech/ci-github-php
 source_path: actions/lint/README.md
 source_branch: main
-source_run_id: 44054889290
-last_synced: 2026-11-17T09:25:01.321Z
+source_run_id: 44912913121
+last_synced: 2026-11-21T14:17:47.665Z
 ---
 
 <!-- header:start -->
