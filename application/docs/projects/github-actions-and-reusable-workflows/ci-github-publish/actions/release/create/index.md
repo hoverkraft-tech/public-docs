@@ -52,7 +52,7 @@ The release is published by default after optional changelog summarization and a
 ## Usage
 
 ````yaml
-- uses: hoverkraft-tech/ci-github-publish/actions/release/create@a0a9d185c51c10710a5987822e78feb2b5ce1932 # 0.29.0
+- uses: hoverkraft-tech/ci-github-publish/actions/release/create@a0a9d185c51c10710a5987822e78feb2b5ce1932 # 3.1.0
   with:
     # Whether the release is a prerelease
     # Default: `false`
@@ -98,7 +98,7 @@ The release is published by default after optional changelog summarization and a
     # Supported properties:
     # - llmAuth (required)
     # - llmProvider (optional, default: `openai`)
-    # - llmModel (optional, default: `gpt-5.4`)
+    # - llmModel (optional, defaults are resolved by `release/summarize-changelog` when omitted)
     # - llmConfig (optional object or JSON string forwarded to `release/summarize-changelog`)
     # - workingDirectory (optional, default: `working-directory` input or `.`)
     # - summaryTemplate (optional template forwarded to `release/summarize-changelog`)
@@ -110,8 +110,7 @@ The release is published by default after optional changelog summarization and a
     # ```json
     # {
     # "llmAuth": "$\{{ secrets.OPENAI_API_KEY }}",
-    # "llmProvider": "openai",
-    # "llmModel": "gpt-5.4",
+    # "llmProvider": "openai"
     # }
     # ```
     changelog-summary: ""
@@ -163,7 +162,7 @@ The release is published by default after optional changelog summarization and a
 |                           | Supported properties:                                                                                                                                                                       |              |                       |
 |                           | - llmAuth (required)                                                                                                                                                                        |              |                       |
 |                           | - llmProvider (optional, default: `openai`)                                                                                                                                                 |              |                       |
-|                           | - llmModel (optional, default: `gpt-5.4`)                                                                                                                                                   |              |                       |
+|                           | - llmModel (optional, defaults are resolved by `release/summarize-changelog` when omitted)                                                                                                                                                   |              |                       |
 |                           | - llmConfig (optional object or JSON string forwarded to `release/summarize-changelog`)                                                                                                     |              |                       |
 |                           | - workingDirectory (optional, default: `working-directory` input or `.`)                                                                                                                    |              |                       |
 |                           | - summaryTemplate (optional template forwarded to `release/summarize-changelog`)                                                                                                            |              |                       |
@@ -172,7 +171,7 @@ The release is published by default after optional changelog summarization and a
 |                           |                                                                                                                                                                                             |              |                       |
 |                           | Example value:                                                                                                                                                                              |              |                       |
 |                           |                                                                                                                                                                                             |              |                       |
-|                           | <!-- textlint-disable --><pre lang="json">{&#13; "llmAuth": "$\{{ secrets.OPENAI_API_KEY }}",&#13; "llmProvider": "openai",&#13; "llmModel": "gpt-5.4",&#13;}</pre><!-- textlint-enable --> |              |                       |
+|                           | <!-- textlint-disable --><pre lang="json">{&#13; "llmAuth": "$\{{ secrets.OPENAI_API_KEY }}",&#13; "llmProvider": "openai"&#13;}</pre><!-- textlint-enable --> |              |                       |
 | **`release-artifact-id`** | Optional workflow artifact ID containing files to upload as GitHub release assets after the draft release is created or updated.                                                            | **false**    | -                     |
 |                           | The artifact is downloaded automatically before upload.                                                                                                                                     |              |                       |
 |                           | Prefer `actions/release/update` when you only need to mutate an existing release.                                                                                                           |              |                       |

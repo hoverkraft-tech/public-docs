@@ -396,8 +396,7 @@ jobs:
           changelog-summary: |
             {
               "llmAuth": "${{ secrets.OPENAI_API_KEY }}",
-              "llmProvider": "openai",
-              "llmModel": "gpt-5.4"
+              "llmProvider": "openai"
             }
 ```
 
