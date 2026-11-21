@@ -65,9 +65,8 @@ Generate a concise end user release summary from an existing changelog with opti
     # Default: `.`
     working-directory: .
 
-    # Provider model name used to generate the release summary. The action resolves it as `${llm-provider}:${llm-model}` for LangChain `initChatModel`.
-    # Default: `gpt-5.4`
-    llm-model: gpt-5.4
+    # Provider model name used to generate the release summary. When omitted, a maintained per-provider default is used.
+    llm-model: ""
 
     # LangChain provider name used to resolve the final model identifier `${llm-provider}:${llm-model}` (`openai`, `anthropic`, `google-genai`).
     # Default: `openai`
@@ -112,7 +111,7 @@ Generate a concise end user release summary from an existing changelog with opti
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **`changelog-body`**    | Markdown changelog body used as the source material for the release summary.                                                                      | **true**     | -                                                                                                                                                                                  |
 | **`working-directory`** | Optional repository-relative directory used to narrow GitHub evidence collection.                                                                 | **false**    | `.`                                                                                                                                                                                |
-| **`llm-model`**         | Provider model name used to generate the release summary. The action resolves it as `${llm-provider}:${llm-model}` for LangChain `initChatModel`. | **false**    | `gpt-5.4`                                                                                                                                                                          |
+| **`llm-model`**         | Provider model name used to generate the release summary. When omitted, a maintained per-provider default is used. | **false**    | -                                                                                                                                                                                  |
 | **`llm-provider`**      | LangChain provider name used to resolve the final model identifier `${llm-provider}:${llm-model}` (`openai`, `anthropic`, `google-genai`).        | **false**    | `openai`                                                                                                                                                                           |
 | **`llm-auth`**          | Authentication token or API key for the selected LLM provider.                                                                                    | **true**     | -                                                                                                                                                                                  |
 | **`llm-config`**        | Optional JSON-serialized object of additional LangChain `initChatModel` config (for example `{"baseUrl":"https://api.openai.com/v1"}`).           | **false**    | `{}`                                                                                                                                                                               |

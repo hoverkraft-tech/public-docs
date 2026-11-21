@@ -181,7 +181,7 @@ jobs:
       contents: write
       pull-requests: read
     steps:
-      - uses: hoverkraft-tech/ci-github-publish/actions/release/create@ed354ada70b9f518c2bb663e18a80041c2cf5156 # 0.27.1
+      - uses: hoverkraft-tech/ci-github-publish/actions/release/create@ed354ada70b9f518c2bb663e18a80041c2cf5156 # 3.1.0
         with:
           tag: ${{ needs.plan.outputs.tag }}
           target-sha: ${{ github.sha }}
