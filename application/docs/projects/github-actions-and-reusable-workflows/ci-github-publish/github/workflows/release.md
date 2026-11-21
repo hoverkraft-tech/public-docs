@@ -393,11 +393,7 @@ jobs:
         with:
           github-token: ${{ github.token }}
           # The summary is generated and prepended automatically before publication.
-          changelog-summary: |
-            {
-              "llmAuth": "${{ secrets.OPENAI_API_KEY }}",
-              "llmProvider": "openai"
-            }
+          changelog-summary: ${{ secrets.CHANGELOG_SUMMARY }}
 ```
 
 #### Mode B: Summarize directly so the summary can be reviewed or transformed
