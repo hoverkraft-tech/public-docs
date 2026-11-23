@@ -83,7 +83,7 @@ on:
 permissions: {}
 jobs:
   sync-docs-dispatcher:
-    uses: hoverkraft-tech/public-docs/.github/workflows/sync-docs-dispatcher.yml@f3c9291760d927e6214e8d5f0a376af2d537c369 # 0.4.0
+    uses: hoverkraft-tech/public-docs/.github/workflows/sync-docs-dispatcher.yml@ae92040858c538b6734dac4c37ca2d5f2dde486a # 0.5.0
     permissions:
       contents: read
     secrets:
