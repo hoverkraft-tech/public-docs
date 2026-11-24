@@ -3,8 +3,8 @@ title: Test
 source_repo: hoverkraft-tech/ci-github-php
 source_path: actions/package/test/README.md
 source_branch: main
-source_run_id: 44912913121
-last_synced: 2026-11-21T14:17:47.665Z
+source_run_id: 45346597248
+last_synced: 2026-11-24T07:18:41.616Z
 ---
 
 <!-- header:start -->
@@ -30,7 +30,7 @@ Test the committed Composer distribution in an isolated production installation,
 ## Usage
 
 ```yaml
-- uses: hoverkraft-tech/ci-github-php/actions/package/test@6d0964888074223db9c53b756d004846f3a1569e # 2.0.1
+- uses: hoverkraft-tech/ci-github-php/actions/package/test@066aee0d473f892c897c35511393ebc54394a4f1 # 2.0.2
   with:
     # Git repository root containing the public composer.json. Set up PHP and Composer first.
     # Default: `.`
