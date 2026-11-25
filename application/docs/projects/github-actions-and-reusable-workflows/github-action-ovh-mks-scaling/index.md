@@ -3,8 +3,8 @@ title: GitHub Action Ovh Mks Scaling
 source_repo: hoverkraft-tech/github-action-ovh-mks-scaling
 source_path: README.md
 source_branch: main
-source_run_id: 45644688983
-last_synced: 2026-11-25T15:28:04.232Z
+source_run_id: 45673231150
+last_synced: 2026-11-25T18:18:51.742Z
 ---
 
 <!-- header:start -->
